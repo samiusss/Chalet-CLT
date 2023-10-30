@@ -2,7 +2,7 @@
 import java.awt.Point;
 import java.util.List;
 
-public class controleur {
+public class Controleur {
     private Chalet chalet;
     private murDTO murSelectionne;
     private accessoireDTO AccessoireSelectionne;
@@ -42,15 +42,11 @@ public class controleur {
 
     public Controleur(){
         chalet = new Chalet();
-
     }
 
     private void ajouterFenetre (Point mousePoint,Pouces largeur, Pouces longueur, String AID)
     {
         Fenetre newFenetre = new Fenetre (mousePoint,largeur,longueur,AID);
         // Chalet.add(newFenetre)
-
     }
-
-
 }
