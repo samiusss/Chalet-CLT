@@ -1,4 +1,4 @@
-import A23-Equipe9.domain.controleur;
+import A23-Equipe9.domaine.controleur;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -20,7 +20,7 @@ public class Chaletdrawer {
     }
 
     private void drawChalet(Graphics g){
-    if controleur.vueselectionne == "Dessus"
+    //if controleur.vueChoisie == "Dessus"
 
         int largeur1 = (int) initialDimension.getWidth();
         int largeur1 = (int) initialDimension.getHeight();
