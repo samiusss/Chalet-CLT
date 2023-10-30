@@ -18,18 +18,20 @@ public class Mur {
         listeAccessoire.add(accesoires);
     }
 
-    public Mur(String MID, Color couleur, List<Accessoires> listeAccessoire, List<Point> listeSommets) {
+    public Mur(String MID, Color couleur, List<Accessoires> listeAccessoire, List<Point> listeSommets)
+    {
         this.MID = MID;
         this.couleur = couleur;
         this.listeAccessoire = listeAccessoire;
         this.listeSommets = listeSommets;
     }
 
-    public static void initialiserMurs(Mur murFacade, Mur murDroite, Mur murGauche, Mur murArriere) {
-        murListe[0] = murFacade;
-        murListe[1] = murDroite;
-        murListe[2] = murGauche;
-        murListe[3] = murArriere;
+    public static void initialiserMurs(Mur murFacade, Mur murDroite, Mur murGauche, Mur murArriere)
+    {
+        mur[0] = murFacade;
+        mur[1] = murDroite;
+        mur[2] = murGauche;
+        mur[3] = murArriere;
     }
 
 
