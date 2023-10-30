@@ -6,7 +6,9 @@ public class Mur {
     private Color couleur;
     private String MID;
     private List<Accessoires> listeAccessoire;
-    private List<Point> listeSommets;
+    private List<Point> listeSommets;  //rainures
+    private ArrayList<Mur> murListe;
+
 
     public Mur(String MID, Color couleur, List<Accessoires> listeAccessoire, List<Point> listeSommets) {
         this.MID = MID;
@@ -15,19 +17,31 @@ public class Mur {
         this.listeSommets = listeSommets;
     }
 
-    public Color getCouleur() {
+    Mur[] murs = new Mur[4];
+    murs[0] = murFacade;
+    murs[1] = murDroite;
+    murs[2] = murGauche;
+    murs[3] = murArriere;
+
+
+
+    public Color getCouleur()
+    {
         return couleur;
     }
 
-    public String getMID() {
+    public String getMID()
+    {
         return MID;
     }
 
-    public List<Accessoires> getListeAccessoire() {
+    public List<Accessoires> getListeAccessoire()
+    {
         return listeAccessoire;
     }
 
-    public List<Point> getListeSommets() {
+    public List<Point> getListeSommets()
+    {
         return listeSommets;
     }
 
@@ -40,7 +54,8 @@ public class Mur {
         listeAccessoire.add(accessoire);
     }
 
-    public void supprimerAccessoire(Accessoires accessoire) {
+    public void supprimerAccessoire(Accessoires accessoire)
+    {
         listeAccessoire.remove(accessoire);
     }
 }

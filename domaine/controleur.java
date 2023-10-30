@@ -9,7 +9,9 @@ public class controleur {
     private float zoom;
     private float offset;
 
-
+    public enum typeAccessoire{
+        PORTE,FENETRE
+    }
 
     public Controleur (Chalet chalet, murDTO murSelectionne, accessoireDTO AccessoireSelectionne,float zoom, float offset){
         this.chalet = chalet;
