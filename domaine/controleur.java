@@ -49,4 +49,5 @@ public class Controleur {
         Fenetre newFenetre = new Fenetre (mousePoint,largeur,longueur,AID);
         // Chalet.add(newFenetre)
     }
+
 }
