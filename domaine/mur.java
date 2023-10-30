@@ -1,6 +1,11 @@
+package A23-Equipe9.domaine;
+
+
 import java.awt.Color;
 import java.awt.Point;
 import java.util.List;
+import java.util.LinkedList;
+
 
 public class Mur {
     private Color couleur;
@@ -50,5 +55,4 @@ public class Mur {
     public List<Point> getListeSommets() {
         return listeSommets;
     }
-
 }
