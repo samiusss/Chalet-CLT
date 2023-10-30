@@ -44,3 +44,5 @@ public class Mur {
         listeAccessoire.remove(accessoire);
     }
 }
+
+
