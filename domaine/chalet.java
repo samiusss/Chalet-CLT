@@ -28,7 +28,7 @@ public class Chalet {
                 chalet.epaisseurChalet);
 
         if(chalet.longueurChalet < chalet.largeurChalet){
-            //pas fini
+            //pas encore fini
         }
     }
     public void ajouterFenetre(){}
