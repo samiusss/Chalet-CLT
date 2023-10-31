@@ -1,34 +1,48 @@
 import java.awt.*;
+import java.util.*;
+import A23-Equipe9.domaine.Mur;
 
 public class Chalet {
 
     private double largeurChalet;
     private double longueurChalet;
+    private double hauteur;
     private double epaisseurChalet;
     private double angleToit;
-    private List<Mur> listerMurs;
+    private List<Mur> listerMurs = new ArrayList<>();//ex: listeMurs = []
     private String orientationToit;
 
     public Chalet(double largeurChalet, double longueurChalet,
                   double epaisseurChalet, double angleToit,
-                  List<Mur> listerMurs, String orientationToit) {
+                  List<Mur> listeMurs, String orientationToit) {
         this.largeurChalet = largeurChalet;
         this.longueurChalet = longueurChalet;
+        this.hauteur = hauteur;
         this.epaisseurChalet = epaisseurChalet;
         this.angleToit = angleToit;
-        this.listerMurs = listerMurs;
+        this.listeMurs = listeMurs;
         this.orientationToit = orientationToit;
     }
 
     public retirerRainures(double distanceSupplementaire=0.2){
+
+        for(Mur mur in listeMurs){
+            if()
+        }
         Chalet chalet;
-        Mur facade = new Point(
-                chalet.longueurChalet,
-                chalet.largeurChalet,
-                chalet.epaisseurChalet);
+        Point pointInfGauche = new Point(0, 0, 0);
+        Point pointInfDroit = new Point(chalet.longueurChalet, 0, 0);
+        Point pointSupGauche = new Point(0);
 
         if(chalet.longueurChalet < chalet.largeurChalet){
             //pas encore fini
+        }
+        if (chalet.orientationToit == "Nord" || chalet.orientationToit == "Sud"){
+            if(mur.MID == "facade"){
+                listeMurs[0].get(2).setX()
+            }if(mur.MID == "")
+        } else {
+
         }
     }
     public void ajouterFenetre(){}
@@ -50,8 +64,8 @@ public class Chalet {
         return this.angleToit;
     }
 
-    public List<Mur> getListerMurs() {
-        return this.listerMurs;
+    public List<Mur> getListeMurs() {
+        return this.listeMurs;
     }
 
     public String getOrientationToit() {
@@ -74,8 +88,8 @@ public class Chalet {
         this.angleToit = angleToit;
     }
 
-    public void setListerMurs(List<Mur> listerMurs) {
-        this.listerMurs = listerMurs;
+    public void setListeMurs(List<Mur> listerMurs) {
+        this.listeMurs = listeMurs;
     }
 
     public void setOrientationToit(String orientationToit) {
