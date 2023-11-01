@@ -1,11 +1,13 @@
-package A23-Equipe9.domaine;
+package Domain;
 
 
+import Utilitaires.Point3D;
 import java.awt.Color;
 import java.awt.Point;
+//import java.util.LinkedList;
 import java.util.List;
-import java.util.LinkedList;
-import utilitaires;
+import java.util.Map;
+//import java.util.LinkedList;
 
 
 public class Mur {
