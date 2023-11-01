@@ -11,7 +11,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel PanelDroit;
     private JPanel FenetrePrincipale;
     private JButton weshButton;
-    private JButton button2;
+    private JButton hamidButton;
 
     public MainWindow() {
         setContentPane(FenetrePrincipale);
@@ -21,6 +21,12 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "vive l<algerie, isma t nul");
+            }
+        });
+        hamidButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Li7wak");
             }
         });
     }
