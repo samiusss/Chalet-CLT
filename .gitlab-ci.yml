@@ -6,6 +6,8 @@ stages:
 build:
   stage: build
   script:
+    - cd /ChalCLT/pom.xml
     - java -version  # Print the Java version for verification
     - mvn -version  # Print the Maven version for verification
     - mvn clean install  # Use Maven to build your Java project
+
