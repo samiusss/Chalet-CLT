@@ -15,15 +15,6 @@ public class Chalet {
     protected List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
     private String orientationToit;
 
-    public Chalet(){
-        this.largeurChalet = 10.0;
-        this.longueurChalet = 10.0;
-        this.hauteurMurs = 8.0;
-        this.epaisseurChalet = 2.0;
-        this.angleToit = 0.0;
-        this.listeMurs = new ArrayList<>();
-        this.orientationToit = "";
-    }
     public Chalet(double largeurChalet, double longueurChalet,
                   double epaisseurChalet, double angleToit,
                   double hauteurMurs, List<Mur> listeMurs, String orientationToit) {
@@ -35,7 +26,7 @@ public class Chalet {
         this.listeMurs = listeMurs;
         this.orientationToit = orientationToit;
     }
-    //Chalet chalet = new Chalet(); // TODO: je peux faire ca? --> a confirmer
+
 
     public void initialiserMurFacade(){
 

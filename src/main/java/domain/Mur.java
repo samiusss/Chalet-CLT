@@ -51,14 +51,11 @@ import java.util.*;
 
         // on peut creer un mur simple
         public Mur() {
-            this.nomMur = nomMur;
-            this.sommetsMur = sommetsMur; // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
-            this.accessoiresMur = accessoiresMur; // ceci est comme ci: [Liste de accessoires]
         }
 
         // deuxieme constructeur pour creer un mur avec 4 points et des accessoires et un nom
         // ce meme constructeur est appelle a la ligne
-        public Mur(String nomMur, List<PointDouble> coordonnees, List<String> accessoiresMur) {
+        public Mur(String nomMur, List<PointDouble> sommetsMur, List<String> accessoiresMur) {
             this.nomMur = nomMur;
             this.sommetsMur = sommetsMur; // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
             this.accessoiresMur = accessoiresMur; // ceci est comme ci: [Liste de accessoires]

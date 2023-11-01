@@ -5,9 +5,11 @@
 package ui;
 
 import domain.Chalet;
+import domain.Mur;
+
+import java.util.ArrayList;
 
 /**
- *
  * @author ismaelsdiri
  */
 public class Main {
@@ -16,11 +18,20 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);
 
-        Chalet chalet = new Chalet();
+        double largeurChalet = 10.0;
+        double longueurChalet = 10.0;
+        double hauteurMurs = 8.0;
+        double epaisseurChalet = 2.0;
+        double angleToit = 0.0;
+        ArrayList<Mur> listeMurs = new ArrayList<>();
+        String orientationToit = "";
+
+
+        Chalet chalet = new Chalet(largeurChalet, longueurChalet, epaisseurChalet, angleToit, hauteurMurs, listeMurs, orientationToit);
         chalet.initialiserMurFacade();
         chalet.initialiserMurArriere();
         chalet.initialiserMurDroite();
@@ -28,5 +39,5 @@ public class Main {
         chalet.afficherListeMurs();
 
     }
-    
+
 }
