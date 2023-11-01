@@ -7,17 +7,15 @@ public class Controleur {
     private float zoom;
     private float offset;
 
-    public enum typeAccessoire{
-        PORTE,FENETRE
-    }
+    //public enum typeAccessoire{
+       // PORTE,FENETRE
+   // }
 
-//    public Controleur (Chalet chalet, murDTO murSelectionne, accessoireDTO AccessoireSelectionne,float zoom, float offset){
-//        this.chalet = chalet;
-//        this.murSelectionne = murSelectionne;
-//        this.AccessoireSelectionne = AccessoireSelectionne;
-//        this.zoom = zoom;
-//        this.offset = offset;
-//    }
+   public Controleur (Chalet chalet,float zoom, float offset){
+       this.chalet = chalet;
+       this.zoom = zoom;
+       this.offset = offset;
+    }
 
     public Chalet getChalet() {
         return chalet;
@@ -38,8 +36,8 @@ public class Controleur {
         return offset;
     }
 
-//    public Controleur(){
-//        chalet = new Chalet();
+    //public Controleur(){
+     // chalet = new Chalet();
 //    }
 //
 //    private void ajouterFenetre (Point mousePoint,Pouces largeur, Pouces longueur, String AID)

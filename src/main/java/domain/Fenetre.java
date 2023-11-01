@@ -11,7 +11,7 @@ public class Fenetre extends Accessoires
 //    private Pouces largeur;
 //    private Pouces longueur;
 //
-//    public Fenetre(Point point, String AID, Pouces largeur, Pouces longueur)
+    //public Fenetre(Point point, String AID)
 //    {
 //        super(point, AID);
 //        this.largeur = largeur;
