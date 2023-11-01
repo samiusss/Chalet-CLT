@@ -2,8 +2,7 @@ package ui;
 
 import domain.Controleur;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class Chaletdrawer {
     private final Controleur controleur;
@@ -15,7 +14,8 @@ public class Chaletdrawer {
 
     }
 
-    public void draw(Graphics g){
+    public void draw(Graphics g)
+    {
         drawChalet(g);
     }
 
@@ -23,9 +23,9 @@ public class Chaletdrawer {
     //if controleur.vueChoisie == "Dessus"
 
 //        int largeur1 = (int) initialDimension.getWidth();
-//        int largeur1 = (int) initialDimension.getHeight();
+//        int longueur1 = (int) initialDimension.getHeight();
 //        g.setColor(new Color(140,98,57));
-//        g.fillRect(largeur1/1.75, (int)(largeur1/4), largeur1/2, largeur1/1.75);
+//        g.fillRect(largeur1/1.75, (int)(longueur1/4), largeur1/2, longueur1/1.75);
 //
 //        int largeur1 = (int) initialDimension.getWidth();
 //        int longueur1 = (int) initialDimension.getHeight();
@@ -33,14 +33,14 @@ public class Chaletdrawer {
 //        g.fillRect(largeur1/1.75, (int)(longueur1/4), largeur1/2, longueur1/1.75;
 //
 //        int largeur2 = (int) initialDimension.getWidth();
-//        int largeur2 = (int) initialDimension.getHeight();
+//        int longueur2 = (int) initialDimension.getHeight();
 //        g.setColor(new Color(140,98,57));
-//        g.fillRect(largeur2/1.75, (int)(largeur2/4), largeur2/2, largeur2/1.75);
+//        g.fillRect(longueur2/1.75, (int)(largeur2/4), largeur2/2, longueur2/1.75);
 //
 //        int largeur2 = (int) initialDimension.getWidth();
-//        int largeur2 = (int) initialDimension.getHeight();
+//        int longueur2 = (int) initialDimension.getHeight();
 //        g.setColor(new Color(140,98,57));
-//        g.fillRect(width/1.75, (int)(largeur2/4), width/2, largeur2/1.75);
+//        g.fillRect(longueur2/1.75, (int)(largeur2/4), longueur2/2, largeur2/1.75);
 
     }
 
