@@ -63,7 +63,7 @@ import java.util.*;
             this.sommetsMur = sommetsMur; // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
             this.accessoiresMur = accessoiresMur; // ceci est comme ci: [Liste de accessoires]
         }
-        public void creerMur(String nomMur, PointDouble pointInfGauche, PointDouble pointSupGauche, PointDouble pointSupDroit, PointDouble pointInfDroit, List<String> accessoiresMur) {
+        /*public void creerMur(String nomMur, PointDouble pointInfGauche, PointDouble pointSupGauche, PointDouble pointSupDroit, PointDouble pointInfDroit, List<String> accessoiresMur) {
             List<PointDouble> coordonnees = new ArrayList<>();
             coordonnees.add(pointInfGauche);
             coordonnees.add(pointSupGauche);
@@ -71,11 +71,6 @@ import java.util.*;
             coordonnees.add(pointInfDroit);
 
             Mur mur = new Mur(nomMur, coordonnees, accessoiresMur);
-        }
-        // Méthode pour créer un mur rectangulaire 3D avec des coordonnées et des accessoires
-/*        public void creerMur(String nomMur, List<PointDouble> coordonnees, List<String> accessoires) {
-            sommetsMur.put(nomMur, coordonnees);
-            accessoiresMurs.put(nomMur, accessoires);
         }*/
 
 

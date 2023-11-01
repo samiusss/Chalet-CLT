@@ -39,59 +39,71 @@ public class Chalet {
 
     public void initialiserMurFacade(){
 
-        Mur facade = new Mur();
-        facade.creerMur("Facade", new PointDouble(0, 0), new PointDouble(chalet.longueurChalet, 0), new PointDouble(chalet.longueurChalet, chalet.largeurChalet), new PointDouble(0, chalet.largeurChalet), new ArrayList<String>());
+        PointDouble pointInfGauche = new PointDouble(0, 0);
+        PointDouble pointSupGauche = new PointDouble(0, getEpaisseurChalet());
+        PointDouble pointSupDroit = new PointDouble(getLongueurChalet(), getEpaisseurChalet());
+        PointDouble pointInfDroit = new PointDouble(getLongueurChalet(), 0);
+        Mur facade = new Mur("Facade", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit), new ArrayList<String>());
 
         listeMurs.add(facade);
     }
 
     public void initialiserMurArriere(){
 
-        Mur arriere = new Mur();
-        arriere.creerMur("Arriere", new PointDouble(0, 0), new PointDouble(chalet.longueurChalet, 0), new PointDouble(chalet.longueurChalet, chalet.largeurChalet), new PointDouble(0, chalet.largeurChalet), new ArrayList<String>());
+        PointDouble pointInfGauche = new PointDouble(0, getLargeurChalet() - getEpaisseurChalet());
+        PointDouble pointSupGauche = new PointDouble(0, getLargeurChalet());
+        PointDouble pointSupDroit = new PointDouble(getLongueurChalet(), getLargeurChalet());
+        PointDouble pointInfDroit = new PointDouble(getLongueurChalet(), getLargeurChalet() - getEpaisseurChalet());
+        Mur arriere = new Mur("Arriere", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit), new ArrayList<String>());
 
         listeMurs.add(arriere);
     }
 
-    public void initialiserMurOuest(){
+    public void initialiserMurGauche(){
 
-        Mur ouest = new Mur();
-        ouest.creerMur("Ouest", new PointDouble(0, 0), new PointDouble(chalet.longueurChalet, 0), new PointDouble(chalet.longueurChalet, chalet.largeurChalet), new PointDouble(0, chalet.largeurChalet), new ArrayList<String>());
+        PointDouble pointInfGauche = new PointDouble(0, 0);
+        PointDouble pointSupGauche = new PointDouble(0, getLargeurChalet());
+        PointDouble pointSupDroit = new PointDouble(getEpaisseurChalet(), getLargeurChalet());
+        PointDouble pointInfDroit = new PointDouble(getEpaisseurChalet(), 0);
+        Mur gauche = new Mur("Gauche", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit), new ArrayList<String>());
 
-        listeMurs.add(ouest);
+        listeMurs.add(gauche);
     }
 
-    public void initialiserMurEst(){
+    public void initialiserMurDroite(){
 
-        Mur est = new Mur();
-        est.creerMur("Est", new PointDouble(0, 0), new PointDouble(chalet.longueurChalet, 0), new PointDouble(chalet.longueurChalet, chalet.largeurChalet), new PointDouble(0, chalet.largeurChalet), new ArrayList<String>());
+        PointDouble pointInfGauche = new PointDouble(getLongueurChalet() - getEpaisseurChalet(), 0);
+        PointDouble pointSupGauche = new PointDouble(getLongueurChalet() - getEpaisseurChalet(), getLargeurChalet());
+        PointDouble pointSupDroit = new PointDouble(getLongueurChalet(), getLargeurChalet());
+        PointDouble pointInfDroit = new PointDouble(getLongueurChalet(), 0);
+        Mur droite = new Mur("Droite", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit), new ArrayList<String>());
 
-        listeMurs.add(est);
+        listeMurs.add(droite);
     }
 
-    /*public retirerRainures(double distanceSupplementaire=0.2){
+/*public retirerRainures(double distanceSupplementaire=0.2){
 
-        for(Mur mur in listeMurs){
-            if()
-        }
-        Chalet chalet;
-        Point pointInfGauche = new Point3D(0, 0, 0);
-        Point pointInfDroit = new Point(chalet.longueurChalet, 0, 0);
-        Point pointSupGauche = new Point(0);
+    for(Mur mur in listeMurs){
+        if()
+    }
+    Chalet chalet;
+    Point pointInfGauche = new Point3D(0, 0, 0);
+    Point pointInfDroit = new Point(chalet.longueurChalet, 0, 0);
+    Point pointSupGauche = new Point(0);
 
-        if(chalet.longueurChalet < chalet.largeurChalet){
-            //pas encore fini
-        }
-        if (chalet.orientationToit == "Nord" || chalet.orientationToit == "Sud"){
-            if(mur.MID == "facade"){
-                listeMurs[0].get(2).setX()
-            }if(mur.MID == ""){
-
-            }
-        } else {
+    if(chalet.longueurChalet < chalet.largeurChalet){
+        //pas encore fini
+    }
+    if (chalet.orientationToit == "Nord" || chalet.orientationToit == "Sud"){
+        if(mur.MID == "facade"){
+            listeMurs[0].get(2).setX()
+        }if(mur.MID == ""){
 
         }
-    }*/
+    } else {
+
+    }
+}*/
   public void ajouterFenetre(){}
 
   public void ajouterPorte(){}
