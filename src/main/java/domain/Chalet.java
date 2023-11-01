@@ -87,8 +87,8 @@ public class Chalet {
     }
 
     public void setEpaisseurChalet(double epaisseurChalet) {
-        //this.epaisseurChalet = epaisseurChalet;
-        this.epaisseurChalet = 50;
+        this.epaisseurChalet = epaisseurChalet;
+        //this.epaisseurChalet = 50;
     }
 
     public void setAngleToit(double angleToit) {
@@ -97,7 +97,6 @@ public class Chalet {
 
     public void setListeMurs(List<Mur> listerMurs) {
         this.listeMurs = listeMurs;
-        //this.listeMurs = murFacade;
     }
 
     public void setOrientationToit(String orientationToit) {

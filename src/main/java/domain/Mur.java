@@ -69,7 +69,6 @@ import java.util.Map;
         public List<String> getAccessoiresMur(String nom) {
             return accessoiresMurs.get(nom);
         }
-
     }
 
 //}
