@@ -1,4 +1,4 @@
-package InterfaceUtilisateur;
+package ui;
 
 
 import javax.swing.*;
@@ -29,8 +29,8 @@ public class DrawingPanel extends JPanel implements Serializable {
     {
         if (mainWindow != null){
             super.paintComponent(g);
-            Chaletdrawer mainDrawer = new Chaletdrawer(mainWindow.controller,initialDimension);
-            mainDrawer.draw(g);
+//            Chaletdrawer mainDrawer = new Chaletdrawer(mainWindow,initialDimension);
+//            mainDrawer.draw(g);
         }
     }
 

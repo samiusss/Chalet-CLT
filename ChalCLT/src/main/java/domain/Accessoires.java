@@ -1,15 +1,15 @@
-package Domain;
+package domain;
 import java.awt.Point;
 
 public abstract class Accessoires{
     private Point point;
     private String AID;
 
-    public Accessoires(Point point, string AID){
+    public Accessoires(Point point, String AID){
         this.point = point;
-        this.id_accessoire = AID;
+        this.AID = AID;
     }
-    public string getAID() {
+    public String getAID() {
         return AID;
     }
     public Point getPoint() {
