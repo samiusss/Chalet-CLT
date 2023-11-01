@@ -1,5 +1,4 @@
 package domain;
-
 import java.awt.Point;
 
 public class Fenetre extends Accessoires
