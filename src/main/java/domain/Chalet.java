@@ -1,30 +1,31 @@
 package domain;
 
-import Utilitaires.Point3D;
 import java.util.*;
 import java.util.List;
 
 public class Chalet {
 
-    private double largeurChalet;
-    private double longueurChalet;
-    private double hauteur;
-    private double epaisseurChalet;
+    protected double largeurChalet;
+    protected double longueurChalet;
+    protected double hauteurMurs;
+    protected double epaisseurChalet;
     private double angleToit;
-    private List<Mur> listeMurs = new ArrayList<>();//ex: listeMurs = []
+    protected List<Mur> listeMurs = new ArrayList<>();//ex: listeMurs = []
     private String orientationToit;
 
     public Chalet(double largeurChalet, double longueurChalet,
                   double epaisseurChalet, double angleToit,
-                  List<Mur> listeMurs, String orientationToit) {
+                  double hauteurMurs, List<Mur> listeMurs, String orientationToit) {
         this.largeurChalet = largeurChalet;
         this.longueurChalet = longueurChalet;
-        this.hauteur = hauteur;
+        this.hauteurMurs = hauteurMurs;
         this.epaisseurChalet = epaisseurChalet;
         this.angleToit = angleToit;
         this.listeMurs = listeMurs;
         this.orientationToit = orientationToit;
     }
+
+
     /*public retirerRainures(double distanceSupplementaire=0.2){
 
         for(Mur mur in listeMurs){

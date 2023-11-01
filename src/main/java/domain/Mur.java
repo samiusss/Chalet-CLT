@@ -1,9 +1,11 @@
 package domain;
 
 
+import Utilitaires.PointDouble;
+
 import java.awt.Point;
 import java.util.HashMap;
-//import java.util.LinkedList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 //import java.util.LinkedList;
@@ -58,6 +60,16 @@ import java.util.Map;
         public void creerMur(String nomMur, List<Point> coordonnees, List<String> accessoires) {
             sommetsMurs.put(nomMur, coordonnees);
             accessoiresMurs.put(nomMur, accessoires);
+        }
+
+        public void initMurFacade(double longueurChalet, double largeurChalet){
+            List<Point> sommets = new LinkedList<>();
+            Chalet chalet = new Chalet(5.0, 10.0, 0.2, 30.0, 5.0, new LinkedList<Mur>(), "Nord");
+            sommets.add(new PointDouble(0, 0));
+            sommets.add(new PointDouble(chalet.longueurChalet, 0));// on utilise Point Double partout ici, car on veut pouvoir use des doubles au lieu de int
+            sommets.add(new PointDouble(longueurChalet, largeurChalet));
+            sommets.add(new PointDouble(0, largeurChalet));
+            sommetsMurs.put("Facade", sommets);
         }
 
         // Méthode pour obtenir les coordonnées d'un mur spécifique
