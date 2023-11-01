@@ -16,10 +16,10 @@ public class Chalet {
     private String orientationToit;
 
     public Chalet(){
-        this.largeurChalet = 0.0;
-        this.longueurChalet = 0.0;
-        this.hauteurMurs = 0.0;
-        this.epaisseurChalet = 0.0;
+        this.largeurChalet = 10.0;
+        this.longueurChalet = 10.0;
+        this.hauteurMurs = 8.0;
+        this.epaisseurChalet = 2.0;
         this.angleToit = 0.0;
         this.listeMurs = new ArrayList<>();
         this.orientationToit = "";
@@ -35,7 +35,7 @@ public class Chalet {
         this.listeMurs = listeMurs;
         this.orientationToit = orientationToit;
     }
-    Chalet chalet = new Chalet(); // TODO: je peux faire ca? --> a confirmer
+    //Chalet chalet = new Chalet(); // TODO: je peux faire ca? --> a confirmer
 
     public void initialiserMurFacade(){
 
@@ -81,41 +81,25 @@ public class Chalet {
         listeMurs.add(droite);
     }
 
-/*public retirerRainures(double distanceSupplementaire=0.2){
-
-    for(Mur mur in listeMurs){
-        if()
-    }
-    Chalet chalet;
-    Point pointInfGauche = new Point3D(0, 0, 0);
-    Point pointInfDroit = new Point(chalet.longueurChalet, 0, 0);
-    Point pointSupGauche = new Point(0);
-
-    if(chalet.longueurChalet < chalet.largeurChalet){
-        //pas encore fini
-    }
-    if (chalet.orientationToit == "Nord" || chalet.orientationToit == "Sud"){
-        if(mur.MID == "facade"){
-            listeMurs[0].get(2).setX()
-        }if(mur.MID == ""){
-
+    // function pour test
+    public void afficherListeMurs(){
+        for (Mur mur : listeMurs) {
+            System.out.println(mur);
         }
-    } else {
-
     }
-}*/
-  public void ajouterFenetre(){}
 
-  public void ajouterPorte(){}
-  public double getLargeurChalet() {
-      return this.largeurChalet;
-  }
+    public void ajouterFenetre(){}
 
-  public double getLongueurChalet() {
-      return this.longueurChalet;
-  }
+    public void ajouterPorte(){}
+    public double getLargeurChalet() {
+        return this.largeurChalet;
+    }
 
-  public double getEpaisseurChalet() {
+    public double getLongueurChalet() {
+        return(this.longueurChalet);
+    }
+
+    public double getEpaisseurChalet() {
         return this.epaisseurChalet;
     }
 
@@ -133,18 +117,15 @@ public class Chalet {
 
     public void setLargeurChalet(double largeurChalet) {
         this.largeurChalet = largeurChalet;
-        //this.largeurChalet = 1000;
 
     }
 
     public void setLongueurChalet(double longueurChalet) {
         this.longueurChalet = longueurChalet;
-        //this.longueurChalet = 1000;
     }
 
     public void setEpaisseurChalet(double epaisseurChalet) {
         this.epaisseurChalet = epaisseurChalet;
-        //this.epaisseurChalet = 50;
     }
 
     public void setAngleToit(double angleToit) {
@@ -158,6 +139,4 @@ public class Chalet {
     public void setOrientationToit(String orientationToit) {
         this.orientationToit = orientationToit;
     }
-
-
 }

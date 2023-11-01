@@ -4,6 +4,8 @@
  */
 package ui;
 
+import domain.Chalet;
+
 /**
  *
  * @author ismaelsdiri
@@ -17,6 +19,13 @@ public class Main {
         
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);
+
+        Chalet chalet = new Chalet();
+        chalet.initialiserMurFacade();
+        chalet.initialiserMurArriere();
+        chalet.initialiserMurDroite();
+        chalet.initialiserMurGauche();
+        chalet.afficherListeMurs();
 
     }
     

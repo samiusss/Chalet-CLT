@@ -63,6 +63,13 @@ import java.util.*;
             this.sommetsMur = sommetsMur; // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
             this.accessoiresMur = accessoiresMur; // ceci est comme ci: [Liste de accessoires]
         }
+
+        // laissez cette fonction, elle m'aide a debugger mon code de chalet pour l'afficher dans le main
+        @Override
+        public String toString() {
+            return "Mur: " + nomMur + ", Coordinates: " + sommetsMur + ", Accessories: " + accessoiresMur;
+        }
+
         /*public void creerMur(String nomMur, PointDouble pointInfGauche, PointDouble pointSupGauche, PointDouble pointSupDroit, PointDouble pointInfDroit, List<String> accessoiresMur) {
             List<PointDouble> coordonnees = new ArrayList<>();
             coordonnees.add(pointInfGauche);
