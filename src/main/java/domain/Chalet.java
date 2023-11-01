@@ -1,5 +1,7 @@
 package domain;
 
+import Utilitaires.PointDouble;
+import domain.Mur;
 import java.util.*;
 import java.util.List;
 
@@ -10,9 +12,18 @@ public class Chalet {
     protected double hauteurMurs;
     protected double epaisseurChalet;
     private double angleToit;
-    protected List<Mur> listeMurs = new ArrayList<>();//ex: listeMurs = []
+    protected List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
     private String orientationToit;
 
+    public Chalet(){
+        this.largeurChalet = 0.0;
+        this.longueurChalet = 0.0;
+        this.hauteurMurs = 0.0;
+        this.epaisseurChalet = 0.0;
+        this.angleToit = 0.0;
+        this.listeMurs = new ArrayList<>();
+        this.orientationToit = "";
+    }
     public Chalet(double largeurChalet, double longueurChalet,
                   double epaisseurChalet, double angleToit,
                   double hauteurMurs, List<Mur> listeMurs, String orientationToit) {
@@ -24,7 +35,39 @@ public class Chalet {
         this.listeMurs = listeMurs;
         this.orientationToit = orientationToit;
     }
+    Chalet chalet = new Chalet(); // TODO: je peux faire ca? --> a confirmer
 
+    public void initialiserMurFacade(){
+
+        Mur facade = new Mur();
+        facade.creerMur("Facade", new PointDouble(0, 0), new PointDouble(chalet.longueurChalet, 0), new PointDouble(chalet.longueurChalet, chalet.largeurChalet), new PointDouble(0, chalet.largeurChalet), new ArrayList<String>());
+
+        listeMurs.add(facade);
+    }
+
+    public void initialiserMurArriere(){
+
+        Mur arriere = new Mur();
+        arriere.creerMur("Arriere", new PointDouble(0, 0), new PointDouble(chalet.longueurChalet, 0), new PointDouble(chalet.longueurChalet, chalet.largeurChalet), new PointDouble(0, chalet.largeurChalet), new ArrayList<String>());
+
+        listeMurs.add(arriere);
+    }
+
+    public void initialiserMurOuest(){
+
+        Mur ouest = new Mur();
+        ouest.creerMur("Ouest", new PointDouble(0, 0), new PointDouble(chalet.longueurChalet, 0), new PointDouble(chalet.longueurChalet, chalet.largeurChalet), new PointDouble(0, chalet.largeurChalet), new ArrayList<String>());
+
+        listeMurs.add(ouest);
+    }
+
+    public void initialiserMurEst(){
+
+        Mur est = new Mur();
+        est.creerMur("Est", new PointDouble(0, 0), new PointDouble(chalet.longueurChalet, 0), new PointDouble(chalet.longueurChalet, chalet.largeurChalet), new PointDouble(0, chalet.largeurChalet), new ArrayList<String>());
+
+        listeMurs.add(est);
+    }
 
     /*public retirerRainures(double distanceSupplementaire=0.2){
 

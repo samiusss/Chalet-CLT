@@ -16,7 +16,7 @@ public class PointDouble extends Point{
     }
 
     public PointDouble(double x, double y){
-        super((int) x, (int) y);
+        super((int)x,(int) y);
         this.x = x;
         this.y = y;
     }

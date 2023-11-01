@@ -4,10 +4,7 @@ package domain;
 import Utilitaires.PointDouble;
 
 import java.awt.Point;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 //import java.util.LinkedList;
 
 
@@ -48,39 +45,51 @@ import java.util.Map;
 //    }
 
     public class Mur {
-        private Map<String, List<Point>> sommetsMurs;
-        private Map<String, List<String>> accessoiresMurs;
+        private String nomMur;
+        private List<PointDouble> sommetsMur;
+        private List<String> accessoiresMur;
 
+        // on peut creer un mur simple
         public Mur() {
-            sommetsMurs = new HashMap<>();
-            accessoiresMurs = new HashMap<>();
+            this.nomMur = nomMur;
+            this.sommetsMur = sommetsMur; // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
+            this.accessoiresMur = accessoiresMur; // ceci est comme ci: [Liste de accessoires]
         }
 
+        // deuxieme constructeur pour creer un mur avec 4 points et des accessoires et un nom
+        // ce meme constructeur est appelle a la ligne
+        public Mur(String nomMur, List<PointDouble> coordonnees, List<String> accessoiresMur) {
+            this.nomMur = nomMur;
+            this.sommetsMur = sommetsMur; // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
+            this.accessoiresMur = accessoiresMur; // ceci est comme ci: [Liste de accessoires]
+        }
+        public void creerMur(String nomMur, PointDouble pointInfGauche, PointDouble pointSupGauche, PointDouble pointSupDroit, PointDouble pointInfDroit, List<String> accessoiresMur) {
+            List<PointDouble> coordonnees = new ArrayList<>();
+            coordonnees.add(pointInfGauche);
+            coordonnees.add(pointSupGauche);
+            coordonnees.add(pointSupDroit);
+            coordonnees.add(pointInfDroit);
+
+            Mur mur = new Mur(nomMur, coordonnees, accessoiresMur);
+        }
         // Méthode pour créer un mur rectangulaire 3D avec des coordonnées et des accessoires
-        public void creerMur(String nomMur, List<Point> coordonnees, List<String> accessoires) {
-            sommetsMurs.put(nomMur, coordonnees);
+/*        public void creerMur(String nomMur, List<PointDouble> coordonnees, List<String> accessoires) {
+            sommetsMur.put(nomMur, coordonnees);
             accessoiresMurs.put(nomMur, accessoires);
-        }
+        }*/
 
-        public void initMurFacade(double longueurChalet, double largeurChalet){
-            List<Point> sommets = new LinkedList<>();
-            Chalet chalet = new Chalet(5.0, 10.0, 0.2, 30.0, 5.0, new LinkedList<Mur>(), "Nord");
-            sommets.add(new PointDouble(0, 0));
-            sommets.add(new PointDouble(chalet.longueurChalet, 0));// on utilise Point Double partout ici, car on veut pouvoir use des doubles au lieu de int
-            sommets.add(new PointDouble(longueurChalet, largeurChalet));
-            sommets.add(new PointDouble(0, largeurChalet));
-            sommetsMurs.put("Facade", sommets);
-        }
 
         // Méthode pour obtenir les coordonnées d'un mur spécifique
-        public List<Point> getSommetsMur(String nom) {
+        /*public List<Point> getSommetsMur(String nom) {
             return sommetsMurs.get(nom);
-        }
+        }*/
 
         // Méthode pour obtenir les accessoires d'un mur spécifique
-        public List<String> getAccessoiresMur(String nom) {
+        /*public List<String> getAccessoiresMur(String nom) {
             return accessoiresMurs.get(nom);
-        }
+        }*/
+
+
     }
 
 //}
