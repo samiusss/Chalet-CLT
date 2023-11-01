@@ -1,6 +1,6 @@
-package Domain;
 import java.awt.*;
 import java.util.*;
+import A23-Equipe9.domaine.Mur;
 
 public class Chalet {
 

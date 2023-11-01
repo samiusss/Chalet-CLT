@@ -1,5 +1,4 @@
-package Domain;
-
+import A23-Equipe9.domaine.controleur;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;

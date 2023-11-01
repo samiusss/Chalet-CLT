@@ -1,5 +1,3 @@
-package Utilitaires;
-
 public class Point3D {
     private double longueurMur;
     private double hauteurMur;
