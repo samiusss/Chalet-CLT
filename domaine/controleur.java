@@ -1,4 +1,4 @@
-package Domain;
+
 import java.awt.Point;
 import java.util.List;
 

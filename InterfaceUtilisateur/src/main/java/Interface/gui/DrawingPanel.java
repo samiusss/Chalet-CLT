@@ -1,10 +1,10 @@
-package InterfaceUtilisateur;
-
-
-import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.io.Serializable;
+import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import A23-Equipe9.domaine.controleur;
+import A23-Equipe9.InterfaceUtilisateir.src.main.java.Interface.gui.MainWindow;
 
 
 public class DrawingPanel extends JPanel implements Serializable {

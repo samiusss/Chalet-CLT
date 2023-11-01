@@ -1,5 +1,5 @@
-package Domain;
 
+package A23-Equipe9.domain;
 import java.awt.Point;
 
 public class Fenetre extends Accessoires
