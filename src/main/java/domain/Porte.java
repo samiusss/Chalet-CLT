@@ -12,7 +12,7 @@ public class Porte extends Accessoires{
 
 
 
-    public Porte( String AID, double largeurporte, double hauteurporte) {
+    public Porte(String AID, double largeurporte, double hauteurporte) {
         super(AID);
         this.largeurporte = largeurporte;
         this.hauteurporte = hauteurporte;

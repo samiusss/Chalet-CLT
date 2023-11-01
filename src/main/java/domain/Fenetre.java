@@ -4,7 +4,7 @@ import java.awt.Point;
 public class Fenetre extends Accessoires
 {
     public Fenetre(Point point, String AID) {
-        super(point, AID);
+        super(AID);
     }
 }
 //    private Pouces largeur;
