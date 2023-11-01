@@ -9,7 +9,7 @@ public class Chalet {
     private double hauteur;
     private double epaisseurChalet;
     private double angleToit;
-    private List<Mur> listerMurs = new ArrayList<>();//ex: listeMurs = []
+    private List<Mur> listeMurs = new ArrayList<>();//ex: listeMurs = []
     private String orientationToit;
 
     public Chalet(double largeurChalet, double longueurChalet,
@@ -20,7 +20,7 @@ public class Chalet {
         this.hauteur = hauteur;
         this.epaisseurChalet = epaisseurChalet;
         this.angleToit = angleToit;
-        this.listerMurs = listeMurs;
+        this.listeMurs = listeMurs;
         this.orientationToit = orientationToit;
     }}
 
