@@ -1,7 +1,7 @@
-package ui;
-import ui.*;
-import Utilitaires.*;
-import domain.*;
+package main.java.ui;
+
+import main.java.domain.Controleur;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
