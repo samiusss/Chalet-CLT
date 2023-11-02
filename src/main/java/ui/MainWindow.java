@@ -1,5 +1,6 @@
 package ui;
 
+import domain.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +8,13 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class MainWindow extends javax.swing.JFrame {
+    public Controleur controleur;
+    private ApplicationMode actualMode;
+    //public Point actualMousePoint = new Point();
+    //public Point delta = new Point();
+    public enum ApplicationMode {
+        SELECT,ADD
+    }
 
     private JPanel PanelGauche;
     private JPanel PanelHaut;
@@ -26,7 +34,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JComboBox comboBox2;
     private JComboBox comboBox3;
     private JComboBox comboBox4;
-    private JPanel PannelAffichage;
+    private javax.swing.JPanel drawingPanel;
     private JTabbedPane ToitPaneltabbedPane;
     private JPanel ToitPaneltabbedPaneDevantPanel;
     private JPanel ToitPaneltabbedPaneDerrierePanel;
@@ -34,7 +42,9 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel ToitPaneltabbedPaneGauchePanel;
 
     public MainWindow() {
-        setContentPane(FenetrePrincipale);
+        controleur = new Controleur();
+        initComponents();
+        setContentPane(drawingPanel);
         setSize(500, 500);
         setLocationRelativeTo(null);
 
@@ -66,7 +76,9 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
+    @SuppressWarnings("unchecked")
+    private void initComponents() {
+        drawingPanel = new ui.DrawingPanel(this);
+
     }
 }
