@@ -13,11 +13,15 @@ public class Fenetre extends Accessoires implements Serializable {
         super(AID,point, largeur, hauteur);
         this.sommetsFenetre = sommetsFenetre;
     }
-    public void initialiserFenetre(){
+    public void CreersommetFenetre(){
         PointDouble pointFenetreSupDroit = new PointDouble(getPoint().getX() + getLargeur()/2, getPoint().getY()+getHauteur()/2);
         PointDouble pointFenetreSupGauche = new PointDouble(getPoint().getX()-getLargeur()/2,getPoint().getY()+getHauteur()/2);
         PointDouble pointFenetreInfGauche = new PointDouble(getPoint().getX()-getLargeur()/2,getPoint().getY()-getHauteur()/2);
         PointDouble pointFenetreInfDroit = new PointDouble(getPoint().getX()+getLargeur()/2,getPoint().getY()-getHauteur()/2);
-        // Ajouter l'objet fenetre dans une liste qui est lié au mur.
+        // Ajouter l'objet fenetre dans une liste qui est lié au mur et les points dans une liste de points
+        sommetsFenetre.add(pointFenetreSupDroit);
+        sommetsFenetre.add(pointFenetreSupGauche);
+        sommetsFenetre.add(pointFenetreInfGauche);
+        sommetsFenetre.add(pointFenetreInfDroit);
     }
 }
