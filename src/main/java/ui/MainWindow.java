@@ -31,6 +31,8 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel ToitPaneltabbedPaneDerrierePanel;
     private JPanel ToitPaneltabbedPaneDroitPanel;
     private JPanel ToitPaneltabbedPaneGauchePanel;
+    private JLabel NomProjetLabel;
+    private JLabel VueLabel;
 
     public MainWindow() {
         setContentPane(FenetrePrincipale);
