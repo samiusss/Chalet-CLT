@@ -44,7 +44,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         controleur = new Controleur();
         initComponents();
-        setContentPane(drawingPanel);
+        setContentPane(FenetrePrincipale);
         setSize(500, 500);
         setLocationRelativeTo(null);
 
