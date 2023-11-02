@@ -1,6 +1,6 @@
 package domain;
 
-import main.java.Utilitaires.PointDouble;
+import Utilitaires.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
