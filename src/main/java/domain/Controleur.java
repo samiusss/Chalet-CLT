@@ -8,13 +8,13 @@ public class Controleur {
     private float offset;
 
     //public enum typeAccessoire{
-    // PORTE,FENETRE
+       // PORTE,FENETRE
    // }
 
    public Controleur (/*Chalet chalet,float zoom, float offset*/){
-       /*this.chalet = chalet;
-       this.zoom = zoom;
-       this.offset = offset;*/
+//       this.chalet = chalet;
+//       this.zoom = zoom;
+//       this.offset = offset;
     }
 
     public Chalet getChalet() {
