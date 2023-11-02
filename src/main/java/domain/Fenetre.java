@@ -1,27 +1,23 @@
 package domain;
-import java.awt.Point;
 
-public class Fenetre extends Accessoires
-{
-    public Fenetre(Point point, String AID) {
-        super(AID);
+import Utilitaires.PointDouble;
+
+import java.awt.Point;
+import java.io.Serializable;
+import java.util.List;
+
+public class Fenetre extends Accessoires implements Serializable {
+
+    private List<PointDouble> sommetsFenetre;
+    public Fenetre(Point point, List<PointDouble> sommetsFenetre, double largeur, double hauteur) {
+        super(point, largeur, hauteur);
+        this.sommetsFenetre = sommetsFenetre;
+    }
+    public void initialiserFenetre(){
+        PointDouble pointFenetreSupDroit = new PointDouble(getPoint().getX() + getLargeur()/2, getPoint().getY()+getHauteur()/2);
+        PointDouble pointFenetreSupGauche = new PointDouble(getPoint().getX()-getLargeur()/2,getPoint().getY()+getHauteur()/2);
+        PointDouble pointFenetreInfGauche = new PointDouble(getPoint().getX()-getLargeur()/2,getPoint().getY()-getHauteur()/2);
+        PointDouble pointFenetreInfDroit = new PointDouble(getPoint().getX()+getLargeur()/2,getPoint().getY()-getHauteur()/2);
+        // Ajouter l'objet fenetre dans une liste qui est lié au mur.
     }
 }
-//    private Pouces largeur;
-//    private Pouces longueur;
-//
-    //public Fenetre(Point point, String AID)
-//    {
-//        super(point, AID);
-//        this.largeur = largeur;
-//        this.longueur = longueur;
-//    }
-//
-//    public Pouces getLargeur() {
-//        return largeur;
-//    }
-//
-//    public Pouces getLongueur() {
-//        return longueur;
-//    }
-//}
