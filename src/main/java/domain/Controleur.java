@@ -16,7 +16,7 @@ public class Controleur {
        this.zoom = zoom;
        this.offset = offset;*/
     }
-
+//test
     public Chalet getChalet() {
         return chalet;
     }
