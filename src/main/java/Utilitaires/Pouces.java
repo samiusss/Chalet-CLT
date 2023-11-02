@@ -1,4 +1,4 @@
-package Utilitaires;
+package main.java.Utilitaires;
 
 public class Pouces {
     private int numerateur;

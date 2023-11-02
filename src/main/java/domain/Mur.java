@@ -1,10 +1,9 @@
-package domain;
+package main.java.domain;
 
 
-import Utilitaires.PointDouble;
+import main.java.Utilitaires.PointDouble;
 
-import java.awt.Point;
-import java.util.*;
+import java.util.List;
 //import java.util.LinkedList;
 
 

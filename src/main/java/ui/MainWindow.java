@@ -120,6 +120,6 @@ public class MainWindow extends javax.swing.JFrame {
         SELECT, ADD
     }
 
-    private JPanel drawingPanel;
-    private JPanel PanelOptions;
+    private javax.swing.JPanel drawingPanel;
+    private javax.swing.JPanel PanelOptions;
 }

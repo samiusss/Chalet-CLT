@@ -1,8 +1,8 @@
-package domain;
+package main.java.domain;
 
-import Utilitaires.PointDouble;
+import main.java.Utilitaires.PointDouble;
 
-import java.awt.Point;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 

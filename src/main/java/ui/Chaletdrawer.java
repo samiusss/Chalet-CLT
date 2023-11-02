@@ -5,7 +5,7 @@ import main.java.domain.Controleur;
 import java.awt.*;
 
 public class Chaletdrawer {
-    private final Controleur controleur;
+    private Controleur controleur;
     private Dimension initialDimension;
 
     public Chaletdrawer(Controleur controleur, Dimension initialDimension){

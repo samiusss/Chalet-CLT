@@ -1,8 +1,9 @@
-package domain;
+package main.java.domain;
 
-import Utilitaires.PointDouble;
-import domain.Mur;
-import java.util.*;
+import main.java.Utilitaires.PointDouble;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Chalet {

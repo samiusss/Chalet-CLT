@@ -7,10 +7,17 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="e7ee4" class="javax.swing.JList" binding="listeVue">
+      <scrollpane id="2d745">
         <constraints/>
         <properties/>
-      </component>
+        <border type="none"/>
+        <children>
+          <component id="e7ee4" class="javax.swing.JList" binding="listeVue">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
       <grid id="a0441" binding="drawingPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
         <constraints/>
         <properties>

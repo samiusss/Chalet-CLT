@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package ui;
+package main.java.ui;
 
-import domain.Chalet;
-import domain.Mur;
+import main.java.domain.Chalet;
+import main.java.domain.Mur;
 
 import java.util.ArrayList;
 

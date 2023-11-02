@@ -1,4 +1,4 @@
-package Utilitaires;
+package main.java.Utilitaires;
 
 public class Point3D {
     private double longueurMur;
