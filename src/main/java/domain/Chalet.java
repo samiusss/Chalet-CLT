@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Chalet {
-
+    //allo
     protected double largeurChalet;
     protected double longueurChalet;
     protected double hauteurMurs;
