@@ -1,12 +1,14 @@
 package domain;
 
-import Utilitaires.PointDouble;
-import domain.Mur;
-import java.util.*;
+import main.java.Utilitaires.PointDouble;
+import main.java.domain.Mur;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Chalet {
-
+    //allo
     protected double largeurChalet;
     protected double longueurChalet;
     protected double hauteurMurs;
@@ -70,7 +72,7 @@ public class Chalet {
         Mur droite = new Mur("Droite", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit), new ArrayList<String>());
 
         listeMurs.add(droite);
-    }
+    }//allo
 
     // function pour test
     public void afficherListeMurs(){

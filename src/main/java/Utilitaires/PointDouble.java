@@ -1,4 +1,4 @@
-package Utilitaires;
+package main.java.Utilitaires;
 
 import java.awt.*;
 

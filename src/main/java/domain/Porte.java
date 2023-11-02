@@ -1,12 +1,12 @@
 package domain;
 
-import Utilitaires.PointDouble;
+import main.java.Utilitaires.PointDouble;
 
-import java.awt.Point;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 
-public class Porte extends Accessoires implements Serializable {
+public class Porte extends main.java.domain.Accessoires implements Serializable {
 
     private List<PointDouble> sommetsPorte;
 
