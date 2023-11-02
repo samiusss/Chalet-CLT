@@ -17,7 +17,8 @@ public class MainWindow extends javax.swing.JFrame {
     private DefaultListModel<String> doorsAndWindowsModel;
     private JList<String> doorsAndWindowsList;
     private JScrollPane doorsAndWindowsScrollPane;
-
+    private javax.swing.JPanel drawingPanel;
+    private javax.swing.JPanel PanelOptions;
     public MainWindow() {
         controleur = new Controleur();
         initComponents();
@@ -120,6 +121,5 @@ public class MainWindow extends javax.swing.JFrame {
         SELECT, ADD
     }
 
-    private javax.swing.JPanel drawingPanel;
-    private javax.swing.JPanel PanelOptions;
+
 }
