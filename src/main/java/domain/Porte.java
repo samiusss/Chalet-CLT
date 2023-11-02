@@ -6,7 +6,7 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 
-public class Porte extends main.java.domain.Accessoires implements Serializable {
+public class Porte extends Accessoires implements Serializable {
 
     private List<PointDouble> sommetsPorte;
 

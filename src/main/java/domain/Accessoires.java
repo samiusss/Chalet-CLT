@@ -1,4 +1,4 @@
-package main.java.domain;
+package domain;
 import java.awt.Point;
 import java.io.Serializable;
 
