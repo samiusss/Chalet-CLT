@@ -18,5 +18,6 @@ public class Fenetre extends Accessoires implements Serializable {
         PointDouble pointFenetreSupGauche = new PointDouble(getPoint().getX()-getLargeur()/2,getPoint().getY()+getHauteur()/2);
         PointDouble pointFenetreInfGauche = new PointDouble(getPoint().getX()-getLargeur()/2,getPoint().getY()-getHauteur()/2);
         PointDouble pointFenetreInfDroit = new PointDouble(getPoint().getX()+getLargeur()/2,getPoint().getY()-getHauteur()/2);
+        // Ajouter l'objet fenetre dans une liste qui est lié au mur.
     }
 }
