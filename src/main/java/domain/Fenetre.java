@@ -2,7 +2,7 @@ package domain;
 
 import Utilitaires.PointDouble;
 
-import java.awt.Point;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 

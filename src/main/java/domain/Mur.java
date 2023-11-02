@@ -3,8 +3,7 @@ package domain;
 
 import Utilitaires.PointDouble;
 
-import java.awt.Point;
-import java.util.*;
+import java.util.List;
 //import java.util.LinkedList;
 
 
