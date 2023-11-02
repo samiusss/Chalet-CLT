@@ -4,8 +4,8 @@
  */
 package ui;
 
-import domain.*;
-import main.java.domain.Mur;
+import domain.Chalet;
+import domain.Mur;
 
 import java.util.ArrayList;
 

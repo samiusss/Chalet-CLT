@@ -1,7 +1,6 @@
 package domain;
 
 import main.java.Utilitaires.PointDouble;
-import main.java.domain.Mur;
 
 import java.util.ArrayList;
 import java.util.Arrays;
