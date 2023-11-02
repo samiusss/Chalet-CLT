@@ -10,8 +10,8 @@ public class Porte extends Accessoires implements Serializable {
 
     private List<PointDouble> sommetsPorte;
 
-    public Porte(Point point, List<PointDouble> sommetsPorte, double largeur, double hauteur) {
-        super(point, largeur, hauteur);
+    public Porte(String AID,Point point, List<PointDouble> sommetsPorte, double largeur, double hauteur) {
+        super(AID,point, largeur, hauteur);
         this.sommetsPorte = sommetsPorte;
     }
     public void initialiserPorte() {
