@@ -1,7 +1,6 @@
 package ui;
 
-import domain.Controleur;
-
+import domain.*;
 import java.awt.*;
 
 public class Chaletdrawer {
@@ -11,7 +10,6 @@ public class Chaletdrawer {
     public Chaletdrawer(Controleur controleur, Dimension initialDimension){
         this.controleur = controleur;
         this.initialDimension = initialDimension;
-
     }
 
     public void draw(Graphics g)
@@ -19,30 +17,21 @@ public class Chaletdrawer {
         drawChalet(g);
     }
 
-    private void drawChalet(Graphics g){
-    //if controleur.vueChoisie == "Dessus"
+    private void drawChalet(Graphics g){  // dessine les 4 murs
+            int largeur = (int) initialDimension.getWidth();
+            int longueur = (int) initialDimension.getHeight();
 
-//        int largeur1 = (int) initialDimension.getWidth();
-//        int longueur1 = (int) initialDimension.getHeight();
-//        g.setColor(new Color(140,98,57));
-//        g.fillRect(largeur1/1.75, (int)(longueur1/4), largeur1/2, longueur1/1.75);
-//
-//        int largeur1 = (int) initialDimension.getWidth();
-//        int longueur1 = (int) initialDimension.getHeight();
-//        g.setColor(new Color(140,98,57));
-//        g.fillRect(largeur1/1.75, (int)(longueur1/4), largeur1/2, longueur1/1.75;
-//
-//        int largeur2 = (int) initialDimension.getWidth();
-//        int longueur2 = (int) initialDimension.getHeight();
-//        g.setColor(new Color(140,98,57));
-//        g.fillRect(longueur2/1.75, (int)(largeur2/4), largeur2/2, longueur2/1.75);
-//
-//        int largeur2 = (int) initialDimension.getWidth();
-//        int longueur2 = (int) initialDimension.getHeight();
-//        g.setColor(new Color(140,98,57));
-//        g.fillRect(longueur2/1.75, (int)(largeur2/4), longueur2/2, largeur2/1.75);
+            // Couleur du mur
+            Color wallColor = new Color(40, 98, 57);
 
+            int perspective3d = 40;
+            // Dessine le mur de facade
+            g.setColor(wallColor);
+            g.fillRect(largeur, longueur, largeur, longueur);
+
+            // bordures sombres pour donner un aspect en relief
+            g.setColor(Color.BLACK);
+            g.drawRect(largeur / 4, longueur / 4, largeur / 2, longueur / 2);
+            g.drawRect(largeur / 4 + 10, longueur / 4 + 10, largeur / 2, longueur / 2);
+        }
     }
-
-
-}
