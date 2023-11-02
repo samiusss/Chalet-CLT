@@ -10,7 +10,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private JPanel PanelGauche;
     private JPanel PanelHaut;
-    private JPanel PannelAffichage;
+    private JPanel PannelDroit;
     private JPanel FenetrePrincipale;
     private JButton UndoButton;
     private JButton RedoButton;
@@ -19,13 +19,19 @@ public class MainWindow extends javax.swing.JFrame {
     private JComboBox VueComboBox;
     private JLabel ChalCLTPanel;
     private JLabel MurPanelLabel;
-    private JPanel MurLabel;
+    private JPanel MurPanel;
     private JLabel ToitPanelLabel;
     private JPanel ToitPanel;
     private JComboBox comboBox1;
     private JComboBox comboBox2;
     private JComboBox comboBox3;
     private JComboBox comboBox4;
+    private JPanel PannelAffichage;
+    private JTabbedPane ToitPaneltabbedPane;
+    private JPanel ToitPaneltabbedPaneDevantPanel;
+    private JPanel ToitPaneltabbedPaneDerrierePanel;
+    private JPanel ToitPaneltabbedPaneDroitPanel;
+    private JPanel ToitPaneltabbedPaneGauchePanel;
 
     public MainWindow() {
         setContentPane(FenetrePrincipale);
