@@ -1,7 +1,6 @@
 package domain;
 
-import domain.Mur;
-import Utilitaires.*;
+import Utilitaires.PointDouble;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -11,10 +10,12 @@ import java.util.Objects;
 
 public class Chalet {
     //allo
-    protected double largeurChalet;
-    protected double longueurChalet;
+    //public double largeurChalet=8;
+    public static double largeurChalet = 8.0;
+
+    protected static double longueurChalet;
     protected double hauteurMurs;
-    protected double epaisseurChalet;
+    public static double epaisseurChalet = 2.0;
     private double angleToit;
     protected List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
     private String orientationToit;
@@ -34,7 +35,6 @@ public class Chalet {
     public boolean addPorte(Point mousePoint, int w, int h)
     {
         return true;
-
     }
 
 
@@ -157,6 +157,7 @@ public class Chalet {
     public void ajouterPorte(){}
 
     public double getLargeurChalet() {
+        //return this.largeurChalet = 8.0;
         return this.largeurChalet;
     }
 

@@ -43,7 +43,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel VueLabel;
     private JPanel DrawingPanel;
     private JLabel DrawingPanelCoordonéesLabel;
-    //private ui.DrawingPanel drawingPanel;
+    //private ui.DrawingPanel DrawingPanel;
 
     public MainWindow() {
         controleur = new Controleur();
@@ -71,12 +71,11 @@ public class MainWindow extends javax.swing.JFrame {
         VueComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                // Handle item state change
             }
         });
         //Configure the layout for FenetrePrincipale n'affiche plus quand je add drawingPanel donc je le mets en commentaires jusqua que ca change
         DrawingPanel.setLayout(new FlowLayout());
-        DrawingPanel.add(FenetrePrincipale, BorderLayout.EAST);
+        DrawingPanel.add(FenetrePrincipale, BorderLayout.PAGE_END);
     }
 }
 
