@@ -1,33 +1,34 @@
 package domain;
+import java.awt.Point;
 
 public class Controleur {
     private Chalet chalet;
-//    private murDTO murSelectionne;
-//    private accessoireDTO AccessoireSelectionne;
     private float zoom;
     private float offset;
 
-    //public enum typeAccessoire{
-       // PORTE,FENETRE
-   // }
 
-   public Controleur (/*Chalet chalet,float zoom, float offset*/){
-//       this.chalet = chalet;
-//       this.zoom = zoom;
-//       this.offset = offset;
+    /*public Controleur (Chalet chalet){
+        this.chalet = chalet;
+    }
+    public BasketController() {
+        basket = new Basket();
+    }*/
+
+    public void ajouterFenetre(Point mousepoint){
+        //Fenetre newFenetre = new Accessoires("AID", mousepoint, double largeur, double hauteur);
+        //accessoiresmur.add(newFenetre);
+
+    }
+
+    public void ajouterPorte(Point mousepoint){
+        //Porte newPorte = newAccessoires("AID",mousepoint, double largeur,double hauteur);
+        //accessoiresmur.add(newPorte);
     }
 //test
     public Chalet getChalet() {
         return chalet;
     }
 
-//    public murDTO getMurSelectionne() {
-//        return murSelectionne;
-//    }
-//
-//    public accessoireDTO getAccessoireSelectionne() {
-//        return AccessoireSelectionne;
-//    }
     public float getZoom () {
         return zoom;
     }
@@ -36,14 +37,6 @@ public class Controleur {
         return offset;
     }
 
-    //public Controleur(){
-     // chalet = new Chalet();
-//    }
-//
-//    private void ajouterFenetre (Point mousePoint,Pouces largeur, Pouces longueur, String AID)
-//    {
-//        Fenetre newFenetre = new Fenetre (mousePoint,largeur,longueur,AID);
-//        // Chalet.add(newFenetre)
-//    }
+
 
 }

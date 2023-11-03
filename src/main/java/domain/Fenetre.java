@@ -9,8 +9,8 @@ import java.util.List;
 public class Fenetre extends Accessoires implements Serializable {
 
     private List<PointDouble> sommetsFenetre;
-    public Fenetre(String AID,Point point, List<PointDouble> sommetsFenetre, double largeur, double hauteur) {
-        super(AID,point, largeur, hauteur);
+    public Fenetre(String AID,Point mousepoint, List<PointDouble> sommetsFenetre, double largeur, double hauteur) {
+        super(AID,mousepoint, largeur, hauteur);
         this.sommetsFenetre = sommetsFenetre;
     }
     public void CreersommetFenetre(){

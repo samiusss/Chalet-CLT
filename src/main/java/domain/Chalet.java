@@ -80,7 +80,6 @@ public class Chalet {
         }
     }
 
-    public void ajouterFenetre(){}
 
     public void ajouterPorte(){}
     public double getLargeurChalet() {
