@@ -31,16 +31,17 @@ public class Chaletdrawer {
         ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         // Définir la couleur des murs
-        g.setColor(new Color(66, 66, 66));
+        g.setColor(new Color(166, 66, 66));
 
         //Dimensions du mur en 3D
         //double epaisseurMur = 70; // Épaisseur du mur test local
         double epaisseurMur = 100*Chalet.epaisseurChalet; // Épaisseur du mur test local
         double wallHeight = 1000; // Hauteur des murs, sera utilisée pour les vues de côté
         double largeurMur = 100*Chalet.largeurChalet; // Largeur des murs venant de chalet
-
-    // Vue par dessus
-        // Coordonnées du Mur de Facade (en 3D)
+//////////////////////////////////////////////////
+   /// Vue par dessus, if controleur.vue==dessus////
+     //////////////////////////////////////////////////
+        /// Coordonnées du Mur de Facade (en 3D)
         double facadeX = width / 4;
         double facadeY = height / 2 - epaisseurMur;
 
