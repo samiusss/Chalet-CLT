@@ -1,6 +1,8 @@
 package ui;
 
-import domain.*;
+import domain.Chalet;
+import domain.Controleur;
+import domain.Mur;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -31,12 +33,12 @@ public class Chaletdrawer {
         // Définir la couleur des murs
         g.setColor(new Color(66, 66, 66));
 
-        // Dimensions du mur en 3D
+        //Dimensions du mur en 3D
         //double epaisseurMur = 70; // Épaisseur du mur test local
         double epaisseurMur = 100*Chalet.epaisseurChalet; // Épaisseur du mur test local
         double wallHeight = 1000; // Hauteur des murs, sera utilisée pour les vues de côté
         double largeurMur = 100*Chalet.largeurChalet; // Largeur des murs venant de chalet
-        //double largeurMur = 800; // test local
+        //double largeurMur = pointTest.getX(); // test de point
 
     // Vue par dessus
         // Coordonnées du Mur de Facade (en 3D)
