@@ -71,7 +71,13 @@ public class Chalet {
         Mur droite = new Mur("Droite", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit), new ArrayList<String>());
 
         listeMurs.add(droite);
-    }//allo
+    }
+
+    /*public void retirerRainures(double distanceUsinage){
+        for (Mur mur : listeMurs) {
+
+        }
+    }*/
 
     // function pour test
     public void afficherListeMurs(){
