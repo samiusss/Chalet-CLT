@@ -33,6 +33,7 @@ public class Main {
         chalet.initialiserMurArriere();
         chalet.initialiserMurDroite();
         chalet.initialiserMurGauche();
+        chalet.mursChaletUsines();
         chalet.afficherListeMurs();
 
     }
