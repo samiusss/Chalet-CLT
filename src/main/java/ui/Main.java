@@ -25,7 +25,7 @@ public class Main {
         double epaisseurChalet = 2.0;
         double angleToit = 0.0;
         ArrayList<Mur> listeMurs = new ArrayList<>();
-        String orientationToit = "";
+        String orientationToit = "Nord";
 
 
         Chalet chalet = new Chalet(largeurChalet, longueurChalet, epaisseurChalet, angleToit, hauteurMurs, listeMurs, orientationToit);
@@ -33,6 +33,7 @@ public class Main {
         chalet.initialiserMurArriere();
         chalet.initialiserMurDroite();
         chalet.initialiserMurGauche();
+        //chalet.mursChaletUsines();
         chalet.afficherListeMurs();
 
     }
