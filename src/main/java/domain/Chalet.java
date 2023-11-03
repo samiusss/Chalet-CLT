@@ -3,6 +3,7 @@ package domain;
 import domain.Mur;
 import Utilitaires.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,8 +31,14 @@ public class Chalet {
         this.orientationToit = orientationToit;
     }
 
+    public boolean addPorte(Point mousePoint, int w, int h)
+    {
+        return true;
 
-    public void initialiserMurFacade(){
+    }
+
+
+        public void initialiserMurFacade(){
 
         PointDouble pointInfGauche = new PointDouble(0, 0);
         PointDouble pointSupGauche = new PointDouble(0, getEpaisseurChalet());

@@ -1,20 +1,26 @@
 package domain;
+import Utilitaires.Pouces;
 import java.awt.Point;
 import java.io.Serializable;
+import java.util.UUID;
+
 
 public abstract class Accessoires implements Serializable {
-    private String AID;
+    private UUID AID;
     private Point mousepoint;
-    private double largeur;
-    private double hauteur;
+    public Pouces largeur;
+    public Pouces hauteur;
 
-    public Accessoires(String AID,Point mousepoint, double largeur, double hauteur) {
+    public Accessoires(UUID AID,Point mousepoint, Pouces largeur, Pouces hauteur) {
         this.mousepoint = mousepoint;
         this.largeur = largeur;
         this.hauteur = hauteur;
-        this.AID=AID;
+        this.AID= UUID.randomUUID();;
     }
 
+    public UUID getIdAccessoire() {
+        return AID;
+    }
     public void setPoint(Point point) {
         this.mousepoint = point;
     }
@@ -22,22 +28,22 @@ public abstract class Accessoires implements Serializable {
         return this.mousepoint;
     }
 
-    public double getLargeur() {
+    public Pouces getLargeur() {
         return largeur;
     }
 
-    public double getHauteur() {
+    public Pouces getHauteur() {
         return hauteur;
     }
 
 
     // set la valeur de largeur lorsque l'on doit utiliser une valeur par default
-    public void setLargeur(double largeur) {
+    public void setLargeur(Pouces largeur) {
         this.largeur = largeur;
     }
     // set la valeur de hauteur lorsque l'on doit utiliser une valeur par default
 
-    public void setHauteur(double hauteur) {
+    public void setHauteur(Pouces hauteur) {
         this.hauteur = hauteur;
     }
 
