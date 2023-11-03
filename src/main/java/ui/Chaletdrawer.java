@@ -23,7 +23,7 @@ public class Chaletdrawer {
         double height = initialDimension.getHeight();
 
         // Définir la couleur des murs
-        g.setColor(new Color(1, 60, 150));
+        g.setColor(new Color(66, 66, 66));
 
         // Dimensions du mur en 3D
         double epaisseurMur = 70; // Épaisseur du mur
