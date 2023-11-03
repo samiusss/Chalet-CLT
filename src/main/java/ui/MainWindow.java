@@ -152,7 +152,7 @@ public class MainWindow extends javax.swing.JFrame {
         // Create an instance of DrawingPanel and add it to FenetrePrincipale
         drawingPanel = new DrawingPanel(this); // Pass 'this' to DrawingPanel if needed
 
-        // Configure the layout for FenetrePrincipale n'affiche plus quand je add drawingPanel donc je le mets en commentaires jusqua que ca change
+        //Configure the layout for FenetrePrincipale n'affiche plus quand je add drawingPanel donc je le mets en commentaires jusqua que ca change
         //FenetrePrincipale.setLayout(new BorderLayout());
         //FenetrePrincipale.add(drawingPanel, BorderLayout.EAST);
     }
