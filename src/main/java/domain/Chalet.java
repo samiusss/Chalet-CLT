@@ -73,6 +73,7 @@ public class Chalet {
         listeMurs.add(droite);
     }
 
+
     /*public void retirerRainures(double distanceUsinage){
         for (Mur mur : listeMurs) {
 
@@ -86,14 +87,14 @@ public class Chalet {
         }
     }
 
-
     public void ajouterPorte(){}
+
     public double getLargeurChalet() {
         return this.largeurChalet;
     }
 
     public double getLongueurChalet() {
-        return(this.longueurChalet);
+        return this.longueurChalet;
     }
 
     public double getEpaisseurChalet() {

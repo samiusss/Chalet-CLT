@@ -1,6 +1,7 @@
 package ui;
 
 import domain.Controleur;
+import domain.Chalet;
 
 import java.awt.*;
 
