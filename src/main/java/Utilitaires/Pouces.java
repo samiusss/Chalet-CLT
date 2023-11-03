@@ -206,7 +206,6 @@ public class Pouces implements Serializable {
             poucesEnString += Integer.toString(this.denominateur);
         }
         return poucesEnString;
-
     }
 
     public double toDouble()
@@ -214,8 +213,6 @@ public class Pouces implements Serializable {
         double total = (double) valeurEntiere + (double) numerateur/(double) denominateur;
         return total;
     }
-
-
 
 }
 

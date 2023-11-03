@@ -49,24 +49,29 @@ public class Chaletdrawer {
         int y1 = (int) facadeY;
         int x2 = (int) (facadeX + largeurMur);
         int y2 = (int) (facadeY + epaisseurMur);
-        g.fillRect(x1, y1, x2 - x1, y2 - y1);
+
+        int[] xPoints = {x1, x2, x2, x1};
+        int[] yPoints = {y1, y1, y2, y2};
+
+        g.fillPolygon(xPoints, yPoints, 4);
+
 
         // Dessiner le mur de façade en profondeur, pour ressemble à celui de l'énoncé
-        double pointDeVue3D = 120; // Hauteur de la perspective
-        /*g.setColor(new Color(1, 1, 150));
-        int[] xPoints = {
+        /*double pointDeVue3D = 120; // Hauteur de la perspective
+        g.setColor(new Color(1, 1, 150));
+        int[] xPointsP = {
                 (int) facadeX,
                 (int) (facadeX + 40),
                 (int) (facadeX + largeurMur - 40),
                 (int) (facadeX + largeurMur)
         };
-        int[] yPoints = {
+        int[] yPointsP = {
                 (int) facadeY,
                 (int) (facadeY - pointDeVue3D),
                 (int) (facadeY - pointDeVue3D),
                 (int) facadeY
         };
-        g.fillPolygon(xPoints, yPoints, 4);*/
+        g.fillPolygon(xPointsP, yPointsP, 4);*/
     }
 
 
