@@ -1,7 +1,6 @@
 package ui;
 
 import domain.Controleur;
-import domain.Chalet;
 
 import java.awt.*;
 
@@ -44,7 +43,7 @@ public class Chaletdrawer {
 
         // Dessiner le mur de façade en perspective
         double pointDeVue3D = 120; // Hauteur de la perspective
-        g.setColor(new Color(1, 1, 150));
+        /*g.setColor(new Color(1, 1, 150));
         int[] xPoints = {
                 (int) facadeX,
                 (int) (facadeX + 40),
@@ -57,7 +56,7 @@ public class Chaletdrawer {
                 (int) (facadeY - pointDeVue3D),
                 (int) facadeY
         };
-        g.fillPolygon(xPoints, yPoints, 4);
+        g.fillPolygon(xPoints, yPoints, 4);*/
     }
 
 

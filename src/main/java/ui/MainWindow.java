@@ -118,9 +118,6 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel drawingPanel;
     //private ui.DrawingPanel drawingPanel;
 
-
-
-
     public MainWindow() {
         controleur = new Controleur();
         initComponents();
@@ -156,6 +153,5 @@ public class MainWindow extends javax.swing.JFrame {
         //FenetrePrincipale.setLayout(new BorderLayout());
         //FenetrePrincipale.add(drawingPanel, BorderLayout.EAST);
     }
-
 }
 
