@@ -27,7 +27,7 @@ public class Chaletdrawer {
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
 
-
+        //Il faut que le controleur ou Chalet choisit les points, pas Main, puis j'appelle le point en bas
         ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         // Définir la couleur des murs
@@ -38,14 +38,13 @@ public class Chaletdrawer {
         double epaisseurMur = 100*Chalet.epaisseurChalet; // Épaisseur du mur test local
         double wallHeight = 1000; // Hauteur des murs, sera utilisée pour les vues de côté
         double largeurMur = 100*Chalet.largeurChalet; // Largeur des murs venant de chalet
-        //double largeurMur = pointTest.getX(); // test de point
 
     // Vue par dessus
         // Coordonnées du Mur de Facade (en 3D)
         double facadeX = width / 4;
         double facadeY = height / 2 - epaisseurMur;
 
-        // Dessiner la partie du mur de façade
+        // Dessiner la partie du mur de façade avec les points choisit du controleur
         int x1 = (int) facadeX;
         int y1 = (int) facadeY;
         int x2 = (int) (facadeX + largeurMur);

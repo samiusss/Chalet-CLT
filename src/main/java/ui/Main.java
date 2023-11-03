@@ -28,15 +28,19 @@ public class Main {
 
         Chalet chalet = new Chalet(largeurChalet, longueurChalet, epaisseurChalet, angleToit, hauteurMurs, listeMurs, orientationToit);
         chalet.initialiserMurFacade();
+        //chalet.initialiserMurDroite();
+        //chalet.initialiserMurGauche();
+        //chalet.initialiserMurArriere();
 
         // Accédez aux coordonnées du point "10.0" de Mur: Facade
         Mur facade = chalet.getListeMurs().get(0); // Obtenez le premier mur de la liste (Mur: Facade)
         Point point10_0 = facade.getSommetsMur().get(2); // Obtenez le troisième sommet (index 2) qui a les coordonnées (10.0, 2.0)
+        //IL FAUT CHOISIR LES VALEURS DANS CHALET OU CONTROLEUR POUR QUE JE PUISSE LE CALL
 
         // Affichez les coordonnées
         System.out.println("exemple pour get un point spécifique, soit l'absice du 3e point du mur facade:   "+point10_0.getX());
-
         chalet.afficherListeMurs();
+
 
     }
 
