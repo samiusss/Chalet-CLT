@@ -24,6 +24,11 @@ public class Chaletdrawer {
         drawChalet(g);
     }
 
+    private void drawAccessoire(Graphics g)
+    {
+        //
+    }
+
     private void drawChalet(Graphics g) {
         //double width = initialDimension.getWidth();
         //double height = initialDimension.getHeight();
@@ -49,16 +54,20 @@ public class Chaletdrawer {
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
         chalet.initialiserMurFacade();
-        //chalet.initialiserMurDroite();
-        //chalet.initialiserMurGauche();
-        //chalet.initialiserMurArriere();
+        chalet.initialiserMurDroite();
+        chalet.initialiserMurGauche();
+        chalet.initialiserMurArriere();
 
-        // Accédez aux coordonnées du pointSupDroit de Mur: Facade
-        Mur facade = chalet.getListeMurs().get(0); // Je veux le premier mur de la liste (Mur: Facade)
-        PointDouble pointSupDroit = facade.getSommetsMur().get(2); // Je veux le troisième sommet (index 2) qui a les coordonnées (10.0, 2.0)
-        PointDouble pointSupGauche = facade.getSommetsMur().get(1); // Je veux le deuxieme sommet (index 1) qui a les coordonnées (10.0, 2.0)
-        PointDouble pointInfDroit = facade.getSommetsMur().get(3); // Je veux le quatrième sommet (index 3) qui a les coordonnées (10.0, 2.0)
-        PointDouble pointInfGauche = facade.getSommetsMur().get(0); // Je veux le premier sommet (index 0) qui a les coordonnées (10.0, 2.0)
+        // Accédez aux coordonnées de Mur: Facade
+        Mur facade = chalet.getMursUsines().get(0); // Je veux le premier mur de la liste (Mur: Facade)
+        PointDouble pointSupDroitf = facade.getSommetsMur().get(2); // Je veux le troisième sommet (index 2)
+        PointDouble pointSupGauchef = facade.getSommetsMur().get(1); // Je veux le deuxieme sommet (index 1)
+        PointDouble pointInfDroitf = facade.getSommetsMur().get(3); // Je veux le quatrième sommet (index 3)
+        PointDouble pointInfGauchef = facade.getSommetsMur().get(0); // Je veux le premier sommet (index 0)
+        PointDouble rainureGauche1 = facade.getSommetsMur().get(8);
+        PointDouble rainureGauche2 = facade.getSommetsMur().get(9);
+        PointDouble rainureDroite1 = facade.getSommetsMur().get(10);
+        PointDouble rainureDroite2 = facade.getSommetsMur().get(11);
 
 
         //double facadeX = largeurMur / 4;
@@ -71,22 +80,33 @@ public class Chaletdrawer {
         int y2 = (int) (facadeY + epaisseurMur);*/
 
         double positionZero = 400;
-        int x1 = (int) (pointInfDroit.getX()+positionZero);
-        int y1 = (int) (pointInfDroit.getY()+positionZero);
-        //
-        int x2 = (int) (pointSupDroit.getX()+positionZero);
-        int y2 = (int) (pointSupDroit.getY()+positionZero);
-        //test d'un point, pointSupDroit
-        int x3 = (int) (pointSupGauche.getX()+positionZero);
-        int y3 = (int) (pointSupGauche.getY()+positionZero);
-        //
-        int x4 = (int) (pointInfGauche.getX()+positionZero);//(positionZero+largeurMur);
-        int y4 = (int) (pointInfGauche.getY()+positionZero);//positionZero;
+        int x1 = (int) (pointInfDroitf.getX()+positionZero);
+        int y1 = (int) (pointInfDroitf.getY()+positionZero);
 
-        int[] xPoints = {x1, x2, x3, x4};
-        int[] yPoints = {y1, y2, y3, y4};
+        int x1r1 = (int) (rainureGauche1.getX()+positionZero);
+        int y1r1 = (int) (rainureGauche1.getY()+positionZero);
+        int x1r2 = (int) (rainureGauche2.getX()+positionZero);
+        int y1r2 = (int) (rainureGauche2.getY()+positionZero);
+        //
+        int x2 = (int) (pointSupDroitf.getX()+positionZero);
+        int y2 = (int) (pointSupDroitf.getY()+positionZero);
+        //
+        int x3 = (int) (pointSupGauchef.getX()+positionZero);
+        int y3 = (int) (pointSupGauchef.getY()+positionZero);
 
-        g.fillPolygon(xPoints, yPoints, 4);
+        int x3r1 = (int) (rainureDroite1.getX()+positionZero);
+        int y3r1 = (int) (rainureDroite1.getY()+positionZero);
+        int x3r2 = (int) (rainureDroite2.getX()+positionZero);
+        int y3r2 = (int) (rainureDroite2.getY()+positionZero);
+        //
+        int x4 = (int) (pointInfGauchef.getX()+positionZero);//(positionZero+largeurMur);
+        int y4 = (int) (pointInfGauchef.getY()+positionZero);//positionZero;
+        //
+
+        int[] xPoints = {x1,x1r2,x1r1, x2, x3, x3r1, x3r2, x4};
+        int[] yPoints = {y1, y1r2, y1r1, y2, y3, y3r1, y3r2, y4};
+
+        g.fillPolygon(xPoints, yPoints, 8);
 
 
         // Dessiner le mur de façade en profondeur, pour ressemble à celui de l'énoncé
@@ -106,6 +126,4 @@ public class Chaletdrawer {
         };
         g.fillPolygon(xPointsP, yPointsP, 4);*/
     }
-
-
     }

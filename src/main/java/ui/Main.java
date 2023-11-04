@@ -31,7 +31,7 @@ public class Main {
         chalet.initialiserMurDroite();
         chalet.initialiserMurGauche();
         chalet.getMursUsines();
-        chalet.afficherListeMurs();
+        //chalet.afficherListeMurs();
 
     }
 
