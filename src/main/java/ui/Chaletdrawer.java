@@ -74,17 +74,17 @@ public class Chaletdrawer {
         int x1 = (int) (pointInfDroit.getX()+positionZero);
         int y1 = (int) (pointInfDroit.getY()+positionZero);
         //
-        int x2 = (int) (pointSupGauche.getX()+positionZero);
-        int y2 = (int) (pointSupGauche.getY()+positionZero);
+        int x2 = (int) (pointSupDroit.getX()+positionZero);
+        int y2 = (int) (pointSupDroit.getY()+positionZero);
         //test d'un point, pointSupDroit
-        int x3 = (int) (pointSupDroit.getX()+positionZero);
-        int y3 = (int) (pointSupDroit.getY()+positionZero);
+        int x3 = (int) (pointSupGauche.getX()+positionZero);
+        int y3 = (int) (pointSupGauche.getY()+positionZero);
         //
         int x4 = (int) (pointInfGauche.getX()+positionZero);//(positionZero+largeurMur);
         int y4 = (int) (pointInfGauche.getY()+positionZero);//positionZero;
 
-        int[] xPoints = {x1, x3, x2, x4};
-        int[] yPoints = {y1, y3, y2, y4};
+        int[] xPoints = {x1, x2, x3, x4};
+        int[] yPoints = {y1, y2, y3, y4};
 
         g.fillPolygon(xPoints, yPoints, 4);
 
