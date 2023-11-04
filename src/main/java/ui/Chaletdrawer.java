@@ -111,7 +111,7 @@ public class Chaletdrawer {
         int[] xPoints = {x1, x1r2, x1r1, x2, x3, x3r2, x3r1, x4};
         int[] yPoints = {y1, y1r2, y1r1, y2, y3, y3r2, y3r1, y4};
 
-        g.fillPolygon(xPoints, yPoints, 8);
+        g.drawPolygon(xPoints, yPoints, 8);
 
     // Accéder aux coordonnées de Mur: Arrière
         Mur arriere = chalet.getListeMurs().get(1);
@@ -155,7 +155,7 @@ public class Chaletdrawer {
         int[] yPointsArriere = {y1a, y1r2a, y1r1a, y2a, y3a, y3r2a, y3r1a, y4a};
 
     // Dessiner le polygone pour le mur arrière
-        g.fillPolygon(xPointsArriere, yPointsArriere, 8);
+        g.drawPolygon(xPointsArriere, yPointsArriere, 8);
 
 
 
