@@ -59,7 +59,9 @@ public class Chaletdrawer {
         chalet.initialiserMurArriere();
 
         // Accédez aux coordonnées de Mur: Facade
-        Mur facade = chalet.getMursUsines().get(0); // Je veux le premier mur de la liste (Mur: Facade)
+        Mur facade = chalet.getMursUsines().get(0); // mure facade deja codé en bas
+
+
         PointDouble pointSupDroitf = facade.getSommetsMur().get(2); // Je veux le troisième sommet (index 2)
         PointDouble pointSupGauchef = facade.getSommetsMur().get(1); // Je veux le deuxieme sommet (index 1)
         PointDouble pointInfDroitf = facade.getSommetsMur().get(3); // Je veux le quatrième sommet (index 3)
@@ -69,46 +71,79 @@ public class Chaletdrawer {
         PointDouble rainureDroite1 = facade.getSommetsMur().get(10);
         PointDouble rainureDroite2 = facade.getSommetsMur().get(11);
 
-
-        //double facadeX = largeurMur / 4;
-        //double facadeY = largeurMur / 1.3 - epaisseurMur;
-
-        // Dessiner la partie du mur de façade avec les points choisit du controleur
-/*      int x1 = (int) facadeX;
-        int y1 = (int) facadeY;
-        int x2 = (int) (facadeX + largeurMur);
-        int y2 = (int) (facadeY + epaisseurMur);*/
-
         double positionZero = 400;
         int x1 = (int) (pointInfDroitf.getX()+positionZero);
         int y1 = (int) (pointInfDroitf.getY()+positionZero);
-
-        int x3r1 = (int) (rainureGauche1.getX()+positionZero);
-        int y3r1 = (int) (rainureGauche1.getY()+positionZero);
-        int x3r2 = (int) (rainureGauche2.getX()+positionZero);
-        int y3r2 = (int) (rainureGauche2.getY()+positionZero);
+        int x1r1 = (int) (rainureDroite1.getX()+positionZero);
+        int y1r1 = (int) (rainureDroite1.getY()+positionZero);
+        int x1r2 = (int) (rainureDroite2.getX()+positionZero);
+        int y1r2 = (int) (rainureDroite2.getY()+positionZero);
         //
         int x2 = (int) (pointSupDroitf.getX()+positionZero);
         int y2 = (int) (pointSupDroitf.getY()+positionZero);
         //
         int x3 = (int) (pointSupGauchef.getX()+positionZero);
         int y3 = (int) (pointSupGauchef.getY()+positionZero);
-
-        int x1r1 = (int) (rainureDroite1.getX()+positionZero);
-        int y1r1 = (int) (rainureDroite1.getY()+positionZero);
-        int x1r2 = (int) (rainureDroite2.getX()+positionZero);
-        int y1r2 = (int) (rainureDroite2.getY()+positionZero);
+        int x3r1 = (int) (rainureGauche1.getX()+positionZero);
+        int y3r1 = (int) (rainureGauche1.getY()+positionZero);
+        int x3r2 = (int) (rainureGauche2.getX()+positionZero);
+        int y3r2 = (int) (rainureGauche2.getY()+positionZero);
         //
         int x4 = (int) (pointInfGauchef.getX()+positionZero);
         int y4 = (int) (pointInfGauchef.getY()+positionZero);
         //
-        int[] xPoints = {x1,  x1r2, x1r1, x2, x3, x3r2, x3r1, x4};
-        int[] yPoints = {y1,  y1r2, y1r1, y2, y3, y3r2, y3r1, y4};
+        int[] xPoints = {x1, x1r2, x1r1, x2, x3, x3r2, x3r1, x4};
+        int[] yPoints = {y1, y1r2, y1r1, y2, y3, y3r2, y3r1, y4};
 
         g.fillPolygon(xPoints, yPoints, 8);
 
+// Accédez aux coordonnées de Mur: Arrière
+        Mur arriere = chalet.getListeMurs().get(1);
 
-        // Dessiner le mur de façade en profondeur, pour ressemble à celui de l'énoncé
+// Récupérez les sommets du mur arrière
+        PointDouble pointSupDroita = arriere.getSommetsMur().get(2);
+        PointDouble pointSupGauchea = arriere.getSommetsMur().get(1);
+        PointDouble pointInfDroita = arriere.getSommetsMur().get(3);
+        PointDouble pointInfGauchea = arriere.getSommetsMur().get(0);
+        PointDouble rainureGauche1a = arriere.getSommetsMur().get(8);
+        PointDouble rainureGauche2a = arriere.getSommetsMur().get(9);
+        PointDouble rainureDroite1a = arriere.getSommetsMur().get(10);
+        PointDouble rainureDroite2a = arriere.getSommetsMur().get(11);
+
+// Définissez un décalage si nécessaire
+        double positionZeroArriere = 600; // Utilisez la position appropriée
+
+// Convertissez les coordonnées en entiers
+        int x1a = (int) (pointInfDroita.getX() + positionZeroArriere);
+        int y1a = (int) (pointInfDroita.getY() + positionZeroArriere);
+        int x1r1a = (int) (rainureDroite1a.getX() + positionZeroArriere);
+        int y1r1a = (int) (rainureDroite1a.getY() + positionZeroArriere);
+        int x1r2a = (int) (rainureDroite2a.getX() + positionZeroArriere);
+        int y1r2a = (int) (rainureDroite2a.getY() + positionZeroArriere);
+
+        int x2a = (int) (pointSupDroita.getX() + positionZeroArriere);
+        int y2a = (int) (pointSupDroita.getY() + positionZeroArriere);
+
+        int x3a = (int) (pointSupGauchea.getX() + positionZeroArriere);
+        int y3a = (int) (pointSupGauchea.getY() + positionZeroArriere);
+        int x3r1a = (int) (rainureGauche1a.getX() + positionZeroArriere);
+        int y3r1a = (int) (rainureGauche1a.getY() + positionZeroArriere);
+        int x3r2a = (int) (rainureGauche2a.getX() + positionZeroArriere);
+        int y3r2a = (int) (rainureGauche2a.getY() + positionZeroArriere);
+
+        int x4a = (int) (pointInfGauchea.getX() + positionZeroArriere);
+        int y4a = (int) (pointInfGauchea.getY() + positionZeroArriere);
+
+        // Définissez les tableaux de coordonnées pour le mur arrière
+        int[] xPointsArriere = {x1a, x2a, x3a, x4a};
+        int[] yPointsArriere = {y1a, y2a, y3a, y4a};
+
+        // Dessinez le polygone pour le mur arrière
+        g.fillPolygon(xPointsArriere, yPointsArriere, 4);
+
+
+
+        // Dessiner le mur de façade en profondeur, pour ressemble à celui de l'énoncé, laisser en commentaires
         /*double pointDeVue3D = 120; // Hauteur de la perspective
         g.setColor(new Color(1, 1, 150));
         int[] xPointsP = {
