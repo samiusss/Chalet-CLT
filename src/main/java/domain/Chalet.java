@@ -9,12 +9,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class Chalet {
-    //allo
-    //public double largeurChalet=8;
-    public static double largeurChalet = 8.0;
 
-    protected static double longueurChalet;
-    protected double hauteurMurs;
+    public static double largeurChalet = 10.0;
+    public static double longueurChalet = 10.0;
+    public static double hauteurMurs=8.0;
     public static double epaisseurChalet = 2.0;
     private double angleToit;
     protected List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
