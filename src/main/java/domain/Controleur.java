@@ -14,6 +14,12 @@ public class Controleur {
         basket = new Basket();
     }*/
 
+    public void addPorte(Point mousePoint) {
+        //Accessoires accessoire = new Accessoires("PorteFacade", mousePoint, 3.0, 6.0) {
+            //chalet.addPorte(accessoire);
+    };
+
+
     public void ajouterFenetre(Point mousepoint){
         //Fenetre newFenetre = new Accessoires("AID", mousepoint, double largeur, double hauteur);
         //accessoiresmur.add(newFenetre);

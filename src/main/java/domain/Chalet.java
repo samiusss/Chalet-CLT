@@ -9,10 +9,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class Chalet {
-
-    public static double largeurChalet = 10.0;
-    public static double longueurChalet = 10.0;
-    public static double hauteurMurs=8.0;
+    //allo
+    //public double largeurChalet=8;
+    public static double largeurChalet = 8.0;
+    protected static double longueurChalet;
+    protected double hauteurMurs;
     public static double epaisseurChalet = 2.0;
     private double angleToit;
     protected List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
@@ -36,13 +37,20 @@ public class Chalet {
     }
 
 
-        public void initialiserMurFacade(){
+    public void initialiserMurFacade(){
 
         PointDouble pointInfGauche = new PointDouble(0, 0);
         PointDouble pointSupGauche = new PointDouble(0, getEpaisseurChalet());
         PointDouble pointSupDroit = new PointDouble(getLongueurChalet(), getEpaisseurChalet());
         PointDouble pointInfDroit = new PointDouble(getLongueurChalet(), 0);
-        Mur facade = new Mur("Facade", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit), new ArrayList<String>());
+
+        PointDouble pointInfGaucheFace = new PointDouble(0, 0);
+        PointDouble pointSupGaucheFace = new PointDouble(0, getHauteurMurs());
+        PointDouble pointSupDroitFace = new PointDouble(getLongueurChalet(), getHauteurMurs());
+        PointDouble pointInfDroitFace = new PointDouble(getLongueurChalet(), 0);
+
+        Mur facade = new Mur("Facade", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit,
+                pointInfGaucheFace, pointSupGaucheFace, pointSupDroitFace, pointInfDroitFace), new ArrayList<String>());
 
         listeMurs.add(facade);
     }
@@ -53,7 +61,15 @@ public class Chalet {
         PointDouble pointSupGauche = new PointDouble(0, getLargeurChalet());
         PointDouble pointSupDroit = new PointDouble(getLongueurChalet(), getLargeurChalet());
         PointDouble pointInfDroit = new PointDouble(getLongueurChalet(), getLargeurChalet() - getEpaisseurChalet());
-        Mur arriere = new Mur("Arriere", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit), new ArrayList<String>());
+
+        //Ici il y a une twist: on a besoin de creer les points de l'arriere, mais on a besoin de les creer dans le sens inverse
+        PointDouble pointInfGaucheArriere = new PointDouble(getLongueurChalet(), 0); // Meme chose que mur de face mais en points inverses!
+        PointDouble pointSupGaucheArriere = new PointDouble(getLongueurChalet(), getHauteurMurs());
+        PointDouble pointSupDroitArriere = new PointDouble(0, getHauteurMurs());
+        PointDouble pointInfDroitArriere = new PointDouble(0, 0);
+
+        Mur arriere = new Mur("Arriere", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit,
+                pointInfGaucheArriere, pointSupGaucheArriere, pointSupDroitArriere, pointInfDroitArriere), new ArrayList<String>());
 
         listeMurs.add(arriere);
     }
@@ -64,7 +80,14 @@ public class Chalet {
         PointDouble pointSupGauche = new PointDouble(0, getLargeurChalet());
         PointDouble pointSupDroit = new PointDouble(getEpaisseurChalet(), getLargeurChalet());
         PointDouble pointInfDroit = new PointDouble(getEpaisseurChalet(), 0);
-        Mur gauche = new Mur("Gauche", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit), new ArrayList<String>());
+
+        PointDouble pointInfGaucheFace = new PointDouble(0, 0);
+        PointDouble pointSupGaucheFace = new PointDouble(0, getHauteurMurs());
+        PointDouble pointSupDroitFace = new PointDouble(getLargeurChalet(), getHauteurMurs());
+        PointDouble pointInfDroitFace = new PointDouble(getLargeurChalet(), 0);
+
+        Mur gauche = new Mur("Gauche", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit,
+                pointInfGaucheFace, pointSupGaucheFace, pointSupDroitFace, pointInfDroitFace), new ArrayList<String>());
 
         listeMurs.add(gauche);
     }
@@ -75,7 +98,14 @@ public class Chalet {
         PointDouble pointSupGauche = new PointDouble(getLongueurChalet() - getEpaisseurChalet(), getLargeurChalet());
         PointDouble pointSupDroit = new PointDouble(getLongueurChalet(), getLargeurChalet());
         PointDouble pointInfDroit = new PointDouble(getLongueurChalet(), 0);
-        Mur droite = new Mur("Droite", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit), new ArrayList<String>());
+
+        PointDouble pointInfGaucheFace = new PointDouble(0, 0);
+        PointDouble pointSupGaucheFace = new PointDouble(0, getHauteurMurs());
+        PointDouble pointSupDroitFace = new PointDouble(getLargeurChalet(), getHauteurMurs());
+        PointDouble pointInfDroitFace = new PointDouble(getLargeurChalet(), 0);
+
+        Mur droite = new Mur("Droite", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit,
+                pointInfGaucheFace, pointSupGaucheFace, pointSupDroitFace, pointInfDroitFace), new ArrayList<String>());
         listeMurs.add(droite);
     }
 
@@ -135,6 +165,8 @@ public class Chalet {
         }
         if(Objects.equals(orientationToit, "Ouest") || Objects.equals(orientationToit, "Est")){
             System.out.println("Ouest ou Est");
+            // it's gonna be the same as North or South, but with the Mur Gauche and Droite are the ones that are longer than Facade and Arriere
+
         }
     }
 
@@ -152,6 +184,10 @@ public class Chalet {
     }
 
     public void ajouterPorte(){}
+
+    public double getHauteurMurs() {
+        return this.hauteurMurs;
+    }
 
     public double getLargeurChalet() {
         //return this.largeurChalet = 8.0;
@@ -185,6 +221,10 @@ public class Chalet {
 
     public void setLongueurChalet(double longueurChalet) {
         this.longueurChalet = longueurChalet;
+    }
+
+    public void setHauteurMurs(double hauteurMurs) {
+        this.hauteurMurs = hauteurMurs;
     }
 
     public void setEpaisseurChalet(double epaisseurChalet) {
