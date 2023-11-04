@@ -43,6 +43,8 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel VueLabel;
     private JPanel DrawingPanel;
     private JLabel DrawingPanelCoordonéesLabel;
+    private JButton PannelDroitAjoutPorteButton;
+    private JButton PannelDroitAjoutFenetreButton;
     //private ui.DrawingPanel DrawingPanel;
 
     public MainWindow() {
@@ -53,7 +55,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
         DrawingPanel = new DrawingPanel(this);
         setContentPane(DrawingPanel);
-        setSize(500, 500);
+        setSize(1000, 1000);
         setLocationRelativeTo(null);
 
         /* UndoButton.addActionListener(new ActionListener() {
