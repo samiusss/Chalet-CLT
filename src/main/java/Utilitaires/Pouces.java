@@ -12,7 +12,7 @@ public class Pouces implements Serializable {
         {
             throw new ArithmeticException("Le dénominateur de pouces ne peut pas être 0");
         }
-        this.numerateur = numerateur;
+        this.valeurEntiere = valeurEntiere;
         this.numerateur = numerateur;
         this.denominateur = denominateur;
     }
