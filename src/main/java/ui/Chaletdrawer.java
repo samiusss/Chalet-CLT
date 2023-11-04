@@ -83,8 +83,8 @@ public class Chaletdrawer {
         int x4 = (int) (pointInfGauche.getX()+positionZero);//(positionZero+largeurMur);
         int y4 = (int) (pointInfGauche.getY()+positionZero);//positionZero;
 
-        int[] xPoints = {x1, x2, x3, x4};
-        int[] yPoints = {y1, y2, y3, y4};
+        int[] xPoints = {x1, x3, x2, x4};
+        int[] yPoints = {y1, y3, y2, y4};
 
         g.fillPolygon(xPoints, yPoints, 4);
 
