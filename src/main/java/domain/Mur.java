@@ -11,6 +11,10 @@ public class Mur {
     private String nomMur;
     private List<PointDouble> sommetsMur;
     private List<String> accessoiresMur;
+    private List<Porte> porteMur;
+    private List<Fenetre> fenetreMur;
+
+
 
     // on peut creer un mur simple
     public Mur() {
@@ -56,4 +60,34 @@ public class Mur {
     public void setAccessoiresMur(List<String> accessoiresMur) {
         this.accessoiresMur = accessoiresMur;
     }
+
+    public List<Porte> getListePorte(){
+        return porteMur;
+    }
+
+    public boolean clearListePorte() {
+        porteMur.clear();
+        return true;
+    }
+
+    public boolean ajouterPorte(Porte Porte){
+        return porteMur.add(Porte);
+    }
+
+    public boolean ajouterFenetre(Fenetre Fenetre)
+    {
+        return fenetreMur.add(Fenetre);
+    }
+
+    public List<Fenetre> getListeFenetre()
+    {
+        return fenetreMur;
+    }
+
+    public boolean clearListeFenetre() {
+        fenetreMur.clear();
+        return true;
+    }
+
+
 }

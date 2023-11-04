@@ -18,5 +18,7 @@ public class pointPouces implements Serializable {
     public Pouces getY() {
         return y;
     }
+
+
 }
 

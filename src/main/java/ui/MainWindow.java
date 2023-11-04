@@ -1,5 +1,6 @@
 package ui;
 
+import domain.Accessoires;
 import domain.Controleur;
 
 import javax.swing.*;
@@ -16,6 +17,7 @@ public class MainWindow extends javax.swing.JFrame {
     public enum ApplicationMode {
         SELECT, ADD
     }
+
 
     private JPanel PanelGauche;
     private JPanel PanelHaut;
@@ -47,9 +49,39 @@ public class MainWindow extends javax.swing.JFrame {
     private JButton PannelDroitAjoutFenetreButton;
     //private ui.DrawingPanel DrawingPanel;
 
+
+    public AccessoiresModes selectedAccessoiresModes;
+
+    public enum AccessoiresModes {
+        PORTE, FENETRE
+    }
+
+
+
     public MainWindow() {
         controleur = new Controleur();
         initComponents();
+
+        /*PannelDroitAjoutPorteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+
+
+        }); */
+
+        /* PannelDroitAjoutFenetreButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+
+        }); */
+
+
+
     }
 
     private void initComponents() {
@@ -57,6 +89,8 @@ public class MainWindow extends javax.swing.JFrame {
         setContentPane(DrawingPanel);
         setSize(1000, 1000);
         setLocationRelativeTo(null);
+
+
 
         /* UndoButton.addActionListener(new ActionListener() {
             @Override
@@ -69,15 +103,24 @@ public class MainWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Redo();
             }
-        }); */
+        });
         VueComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
             }
-        });
+        }); */
+
         //Configure the layout for FenetrePrincipale n'affiche plus quand je add drawingPanel donc je le mets en commentaires jusqua que ca change
         DrawingPanel.setLayout(new FlowLayout());
         DrawingPanel.add(FenetrePrincipale, BorderLayout.PAGE_END);
     }
+
+
+    public void setMode(AccessoiresModes newMode)
+    {
+        this.selectedAccessoiresModes = newMode;
+    }
+
+
 }
 

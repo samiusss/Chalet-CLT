@@ -40,7 +40,7 @@ public class Porte extends Accessoires implements Serializable {
     // version pas tout a fait finie reste a voir la convertion avec des pixels
     public void CreersommetPorte(){
         pointPouces pointPorteSupDroit = new pointPouces(getPointPouces(mousePoint).getX().addPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
-        pointPouces pointPorteSupGauche=new pointPouces(getPointPouces(mousePoint).getX().substractPouces(getHauteur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
+        pointPouces pointPorteSupGauche=new pointPouces(getPointPouces(mousePoint).getX().substractPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
         pointPouces pointPorteInfGauche = new pointPouces(getPointPouces(mousePoint).getX().substractPouces(getLargeur().diviserPouces(2)),new Pouces(0, 0, 1));
         pointPouces pointPorteInfDroit = new pointPouces(getPointPouces(mousePoint).getX().addPouces(getLargeur().diviserPouces(2)),new Pouces(0,0,1));
         sommetsPorte.add(pointPorteSupDroit);

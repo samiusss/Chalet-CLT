@@ -1,6 +1,7 @@
 package domain;
 
 import Utilitaires.PointDouble;
+import Utilitaires.Pouces;
 
 
 import java.awt.*;
@@ -9,6 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import static Utilitaires.ConvertisseurMesures.*;
+
 public class Chalet {
 
     public static double largeurChalet = 10.0;
@@ -16,7 +19,7 @@ public class Chalet {
     public static double hauteurMurs=8.0;
     public static double epaisseurChalet = 2.0;
     private double angleToit;
-    protected List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
+    protected static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
     private String orientationToit;
 
     public Chalet(double largeurChalet, double longueurChalet,
@@ -31,10 +34,6 @@ public class Chalet {
         this.orientationToit = orientationToit;
     }
 
-    public boolean addPorte(Point mousePoint, int w, int h)
-    {
-        return true;
-    }
 
 
     public void initialiserMurFacade(){
@@ -184,7 +183,105 @@ public class Chalet {
         }
     }
 
-    public void ajouterPorte(){}
+    public int DeterminerPointMurLargeur(int numMur,int w,int h) {
+
+        //Largeur & Hauteur PORTE
+        Pouces largeur = Porte.PORTE_LARGEUR_STANDARD;
+        Pouces hauteur = Porte.PORTE_HAUTEUR_STANDARD;
+
+        Mur mur = listeMurs.get(numMur);
+
+        //J'ai la largeur et la hauteur du panel. Pour determiner les coordonnées du mur de base je dois me baser sur cela.
+        //MUR POUCES
+        Pouces largeurMur = convertirDoubleEnPouces(largeurChalet);
+        Pouces hauteurMur = convertirDoubleEnPouces(hauteurMurs);
+
+        //MUR DIVISER 2 POUCES
+        int w1 = convertirPoucesEnPixels(largeurMur);
+        int h1 = convertirPoucesEnPixels(hauteurMur);
+
+        //MUR DIVISER 2
+        int w2 = w1/2;
+        int h2 = h1/2;
+
+        //LARGEUR PANEL DIVISER 2 - POINT MILIEU - ENTIER
+        int PointMurMilieuX = w/2;
+        int PointMurMilieuY = h/2;
+
+        //Pouces pointMurX = PointMurMilieuX.substractPouces(w1);
+        //Pouces pointMurY = PointMurMilieuY.substractPouces(h1);
+
+        //POINT MUR
+        int pointMurX = PointMurMilieuX - w2;
+        int pointMurY = PointMurMilieuY - h2;
+
+        Pouces pointMurPouceX = convertirPixelsEnPouces(pointMurX);
+        Pouces pointMurPouceY = convertirPixelsEnPouces(pointMurY);
+
+
+        return(pointMurY);
+
+    }
+
+
+    public static boolean ajouterPorte(Point mousepoint){
+
+        Mur mur = listeMurs.get(0);
+
+        //Une porte par mur
+        List<Porte> listePorte = mur.getListePorte();
+        int lenghtlistePorte = listePorte.size();
+
+        if(lenghtlistePorte > 0){
+            mur.clearListePorte();
+        }
+
+
+        int x = (int) mousepoint.getX();
+        Pouces hauteurMur = convertirDoubleEnPouces(hauteurMurs);
+        int hauteurMurInt = convertirPoucesEnPixels(hauteurMur);
+        Pouces hauteurPorte = Porte.PORTE_HAUTEUR_STANDARD;
+        int hauteurPorteInt = convertirPoucesEnPixels(hauteurPorte);
+
+        /*
+        int y = DeterminerPointMurLargeur(,w,h, mousePoint);
+        y = (y + hauteurMurInt) - hauteurPorteInt;
+        Point murPoint = new Point(x,y);
+        Porte Porte = new Porte(positionPorte, murPoint);
+
+        listeMurs.get(0).addPorte(Porte);
+        success = true;
+        */
+
+        return true;
+
+    }
+
+
+    public static boolean ajouterFenetre(Point mousepoint){
+
+        Pouces largeur = new Pouces(10, 0, 1);
+        Pouces hauteur = new Pouces(10, 0, 1);
+       // Fenetre Fenetre = new Fenetre(largeur,hauteur);  Revoir le constructeur de fenetre
+
+
+        int numMur = 0;
+
+            Mur mur = listeMurs.get(numMur);
+            List<Fenetre> listeFenetre = mur.getListeFenetre();
+            int lenghtlisteFenetre = listeFenetre.size();
+
+            if(lenghtlisteFenetre > 0){
+                mur.clearListeFenetre();
+            }
+
+
+            //listeMurs.get(numMur).ajouterFenetre(Fenetre);
+            boolean success = true;
+
+        return success;
+    }
+
 
     public double getLargeurChalet() {
         //return this.largeurChalet = 8.0;

@@ -14,13 +14,29 @@ public class Controleur {
         basket = new Basket();
     }*/
 
-    public void ajouterFenetre(Point mousepoint){
+
+
+    public boolean ajouterFenetre(Point mousepoint){
+
+        if(Chalet.ajouterFenetre(mousepoint))
+        {
+            return true;
+        }
+
+        return false;
         //Fenetre newFenetre = new Accessoires("AID", mousepoint, double largeur, double hauteur);
         //accessoiresmur.add(newFenetre);
 
     }
 
-    public void ajouterPorte(Point mousepoint){
+    public boolean ajouterPorte(Point mousepoint){
+
+        if(Chalet.ajouterPorte(mousepoint))
+        {
+            return true;
+        }
+
+        return false;
         //Porte newPorte = newAccessoires("AID",mousepoint, double largeur,double hauteur);
         //accessoiresmur.add(newPorte);
     }
