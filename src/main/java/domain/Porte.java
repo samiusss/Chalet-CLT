@@ -40,16 +40,17 @@ public class Porte extends Accessoires implements Serializable {
         return true;
     }
 
-    /*public void CreersommetPorte() {
-        pointPouces pointPorteSupDroit = new pointPouces(getPoint().getX()getLargeur() / 2, getPoint().getY() + getHauteur() / 2);
-        PointDouble pointPorteSupGauche = new PointDouble(getPoint().getX() - getLargeur() / 2, getPoint().getY() + getHauteur() / 2);
-        PointDouble pointPorteInfGauche = new PointDouble(getPoint().getX() - getLargeur() / 2, 0); // On suppose que la base du mur est a y=0
-        PointDouble pointPorteInfDroit = new PointDouble(getPoint().getX() + getLargeur() / 2, 0);
-        // Ajouter l'objet porte dans une liste qui est lié au mur.
-
+        public void CreersommetPorte(){
+        pointPouces pointPorteSupDroit = new pointPouces(getPointPouces(mousePoint).getX().addPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
+        pointPouces pointPorteSupGauche=new pointPouces(getPointPouces(mousePoint).getX().substractPouces(getHauteur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
+        pointPouces pointPorteInfGauche = new pointPouces(getPointPouces(mousePoint).getX().substractPouces(getLargeur().diviserPouces(2)),new Pouces(0, 0, 1));
+        pointPouces pointPorteInfDroit = new pointPouces(getPointPouces(mousePoint).getX().addPouces(getLargeur().diviserPouces(2)),new Pouces(0,0,1));
         sommetsPorte.add(pointPorteSupDroit);
         sommetsPorte.add(pointPorteSupGauche);
         sommetsPorte.add(pointPorteInfGauche);
-        sommetsPorte.add(pointPorteInfDroit);*/
+        sommetsPorte.add(pointPorteInfDroit);
+
+        }
+
     }
 
