@@ -1,24 +1,22 @@
 package domain;
 
 
-import Utilitaires.PointDouble;
-
 import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
-import Utilitaires.Pouces;
+import Utilitaires.*;
 
 
 public class Porte extends Accessoires implements Serializable {
 
-    private List<PointDouble> sommetsPorte;
+    private List<pointPouces> sommetsPorte;
     public static Pouces PORTE_LARGEUR_STANDARD = new Pouces(15, 0, 1);
     public static Pouces PORTE_HAUTEUR_STANDARD = new Pouces(25, 0, 1);
 
     public Point mousePoint;
 
-    public Porte(UUID AID, Point mousepoint, List<PointDouble> sommetsPorte, Pouces largeur, Pouces hauteur) {
+    public Porte(UUID AID, Point mousepoint, List<pointPouces> sommetsPorte, Pouces largeur, Pouces hauteur) {
         super(AID,mousepoint, largeur, hauteur);
         this.sommetsPorte = sommetsPorte;
     }
@@ -26,6 +24,7 @@ public class Porte extends Accessoires implements Serializable {
     public Point getPoint() {
         return mousePoint;
     }
+
     public boolean modifierMousePoint(Point newMousePoint) {
         mousePoint = newMousePoint;
         return true;
@@ -41,8 +40,8 @@ public class Porte extends Accessoires implements Serializable {
         return true;
     }
 
-    /* public void CreersommetPorte() {
-        PointDouble pointPorteSupDroit = new PointDouble(getPoint().getX() + getLargeur() / 2, getPoint().getY() + getHauteur() / 2);
+   /*  public void CreersommetPorte() {
+        pointPouces pointPorteSupDroit = new pointPouces(getPoint().getX() + getLargeur() / 2, getPoint().getY() + getHauteur() / 2);
         PointDouble pointPorteSupGauche = new PointDouble(getPoint().getX() - getLargeur() / 2, getPoint().getY() + getHauteur() / 2);
         PointDouble pointPorteInfGauche = new PointDouble(getPoint().getX() - getLargeur() / 2, 0); // On suppose que la base du mur est a y=0
         PointDouble pointPorteInfDroit = new PointDouble(getPoint().getX() + getLargeur() / 2, 0);
@@ -51,6 +50,6 @@ public class Porte extends Accessoires implements Serializable {
         sommetsPorte.add(pointPorteSupDroit);
         sommetsPorte.add(pointPorteSupGauche);
         sommetsPorte.add(pointPorteInfGauche);
-        sommetsPorte.add(pointPorteInfDroit);
-    } */
-}
+        sommetsPorte.add(pointPorteInfDroit);*/
+    }
+

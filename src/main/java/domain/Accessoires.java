@@ -1,5 +1,5 @@
 package domain;
-import Utilitaires.Pouces;
+import Utilitaires.*;
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.UUID;
@@ -47,5 +47,11 @@ public abstract class Accessoires implements Serializable {
         this.hauteur = hauteur;
     }
 
+   /* public pointPouces getPointPouces() {
+        Pouces xPouces = new Pouces(getPoint().x);
+        Pouces yPouces = new Pouces(getPoint().y);
+        return new pointPouces(xPouces, yPouces);
+    }
+*/
 }
 
