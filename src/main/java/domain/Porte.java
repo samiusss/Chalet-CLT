@@ -1,6 +1,4 @@
 package domain;
-
-
 import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
@@ -39,8 +37,8 @@ public class Porte extends Accessoires implements Serializable {
         PORTE_HAUTEUR_STANDARD = valeur;
         return true;
     }
-
-        public void CreersommetPorte(){
+    // version pas tout a fait finie reste a voir la convertion avec des pixels
+    public void CreersommetPorte(){
         pointPouces pointPorteSupDroit = new pointPouces(getPointPouces(mousePoint).getX().addPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
         pointPouces pointPorteSupGauche=new pointPouces(getPointPouces(mousePoint).getX().substractPouces(getHauteur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
         pointPouces pointPorteInfGauche = new pointPouces(getPointPouces(mousePoint).getX().substractPouces(getLargeur().diviserPouces(2)),new Pouces(0, 0, 1));
