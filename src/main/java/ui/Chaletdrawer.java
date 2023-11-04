@@ -83,10 +83,10 @@ public class Chaletdrawer {
         int x1 = (int) (pointInfDroitf.getX()+positionZero);
         int y1 = (int) (pointInfDroitf.getY()+positionZero);
 
-        int x1r1 = (int) (rainureGauche1.getX()+positionZero);
-        int y1r1 = (int) (rainureGauche1.getY()+positionZero);
-        int x1r2 = (int) (rainureGauche2.getX()+positionZero);
-        int y1r2 = (int) (rainureGauche2.getY()+positionZero);
+        int x3r1 = (int) (rainureGauche1.getX()+positionZero);
+        int y3r1 = (int) (rainureGauche1.getY()+positionZero);
+        int x3r2 = (int) (rainureGauche2.getX()+positionZero);
+        int y3r2 = (int) (rainureGauche2.getY()+positionZero);
         //
         int x2 = (int) (pointSupDroitf.getX()+positionZero);
         int y2 = (int) (pointSupDroitf.getY()+positionZero);
@@ -94,17 +94,16 @@ public class Chaletdrawer {
         int x3 = (int) (pointSupGauchef.getX()+positionZero);
         int y3 = (int) (pointSupGauchef.getY()+positionZero);
 
-        int x3r1 = (int) (rainureDroite1.getX()+positionZero);
-        int y3r1 = (int) (rainureDroite1.getY()+positionZero);
-        int x3r2 = (int) (rainureDroite2.getX()+positionZero);
-        int y3r2 = (int) (rainureDroite2.getY()+positionZero);
+        int x1r1 = (int) (rainureDroite1.getX()+positionZero);
+        int y1r1 = (int) (rainureDroite1.getY()+positionZero);
+        int x1r2 = (int) (rainureDroite2.getX()+positionZero);
+        int y1r2 = (int) (rainureDroite2.getY()+positionZero);
         //
-        int x4 = (int) (pointInfGauchef.getX()+positionZero);//(positionZero+largeurMur);
-        int y4 = (int) (pointInfGauchef.getY()+positionZero);//positionZero;
+        int x4 = (int) (pointInfGauchef.getX()+positionZero);
+        int y4 = (int) (pointInfGauchef.getY()+positionZero);
         //
-
-        int[] xPoints = {x1,x1r2,x1r1, x2, x3, x3r1, x3r2, x4};
-        int[] yPoints = {y1, y1r2, y1r1, y2, y3, y3r1, y3r2, y4};
+        int[] xPoints = {x1,  x1r2, x1r1, x2, x3, x3r2, x3r1, x4};
+        int[] yPoints = {y1,  y1r2, y1r1, y2, y3, y3r2, y3r1, y4};
 
         g.fillPolygon(xPoints, yPoints, 8);
 
