@@ -47,7 +47,7 @@ public abstract class Accessoires implements Serializable {
 
     public pointPouces getPointPouces(Point lepoint) {
         Pouces xPouces = new Pouces(lepoint.x,1,1);
-        Pouces yPouces = new Pouces(lepoint.x,1,1);
+        Pouces yPouces = new Pouces(lepoint.y,1,1);
         return new pointPouces (xPouces,yPouces);
     }
 
