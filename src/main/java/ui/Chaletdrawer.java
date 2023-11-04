@@ -111,7 +111,7 @@ public class Chaletdrawer {
         PointDouble rainureDroite2a = arriere.getSommetsMur().get(11);
 
 // Définissez un décalage si nécessaire
-        double positionZeroArriere = 600; // Utilisez la position appropriée
+        double positionZeroArriere = 550; // Utilisez la position appropriée
 
 // Convertissez les coordonnées en entiers
         int x1a = (int) (pointInfDroita.getX() + positionZeroArriere);
@@ -134,12 +134,12 @@ public class Chaletdrawer {
         int x4a = (int) (pointInfGauchea.getX() + positionZeroArriere);
         int y4a = (int) (pointInfGauchea.getY() + positionZeroArriere);
 
-        // Définissez les tableaux de coordonnées pour le mur arrière
-        int[] xPointsArriere = {x1a, x2a, x3a, x4a};
-        int[] yPointsArriere = {y1a, y2a, y3a, y4a};
+    // Définissez les tableaux de coordonnées pour le mur arrière
+        int[] xPointsArriere = {x1a, x1r2a, x1r1a, x2a, x3a, x3r2a, x3r1a, x4a};
+        int[] yPointsArriere = {y1a, y1r2a, y1r1a, y2a, y3a, y3r2a, y3r1a, y4a};
 
-        // Dessinez le polygone pour le mur arrière
-        g.fillPolygon(xPointsArriere, yPointsArriere, 4);
+    // Dessinez le polygone pour le mur arrière
+        g.fillPolygon(xPointsArriere, yPointsArriere, 8);
 
 
 
