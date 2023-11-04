@@ -40,8 +40,8 @@ public class Porte extends Accessoires implements Serializable {
         return true;
     }
 
-   /*  public void CreersommetPorte() {
-        pointPouces pointPorteSupDroit = new pointPouces(getPoint().getX() + getLargeur() / 2, getPoint().getY() + getHauteur() / 2);
+    /*public void CreersommetPorte() {
+        pointPouces pointPorteSupDroit = new pointPouces(getPoint().getX()getLargeur() / 2, getPoint().getY() + getHauteur() / 2);
         PointDouble pointPorteSupGauche = new PointDouble(getPoint().getX() - getLargeur() / 2, getPoint().getY() + getHauteur() / 2);
         PointDouble pointPorteInfGauche = new PointDouble(getPoint().getX() - getLargeur() / 2, 0); // On suppose que la base du mur est a y=0
         PointDouble pointPorteInfDroit = new PointDouble(getPoint().getX() + getLargeur() / 2, 0);
