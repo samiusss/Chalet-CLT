@@ -1,5 +1,5 @@
 package domain;
-import Utilitaires.Pouces;
+import Utilitaires.*;
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.UUID;
@@ -37,15 +37,20 @@ public abstract class Accessoires implements Serializable {
     }
 
 
-    // set la valeur de largeur lorsque l'on doit utiliser une valeur par default
     public void setLargeur(Pouces largeur) {
         this.largeur = largeur;
     }
-    // set la valeur de hauteur lorsque l'on doit utiliser une valeur par default
 
     public void setHauteur(Pouces hauteur) {
         this.hauteur = hauteur;
     }
+
+    public pointPouces getPointPouces(Point lepoint) {
+        Pouces xPouces = new Pouces(lepoint.x,1,1);
+        Pouces yPouces = new Pouces(lepoint.y,1,1);
+        return new pointPouces (xPouces,yPouces);
+    }
+
 
 }
 

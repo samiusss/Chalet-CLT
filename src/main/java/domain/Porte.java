@@ -1,24 +1,20 @@
 package domain;
-
-
-import Utilitaires.PointDouble;
-
 import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
-import Utilitaires.Pouces;
+import Utilitaires.*;
 
 
 public class Porte extends Accessoires implements Serializable {
 
-    private List<PointDouble> sommetsPorte;
+    private List<pointPouces> sommetsPorte;
     public static Pouces PORTE_LARGEUR_STANDARD = new Pouces(15, 0, 1);
     public static Pouces PORTE_HAUTEUR_STANDARD = new Pouces(35, 0, 1);
 
     public Point mousePoint;
 
-    public Porte(UUID AID, Point mousepoint, List<PointDouble> sommetsPorte, Pouces largeur, Pouces hauteur) {
+    public Porte(UUID AID, Point mousepoint, List<pointPouces> sommetsPorte, Pouces largeur, Pouces hauteur) {
         super(AID,mousepoint, largeur, hauteur);
         this.sommetsPorte = sommetsPorte;
     }
@@ -26,6 +22,7 @@ public class Porte extends Accessoires implements Serializable {
     public Point getPoint() {
         return mousePoint;
     }
+
     public boolean modifierMousePoint(Point newMousePoint) {
         mousePoint = newMousePoint;
         return true;
@@ -40,17 +37,18 @@ public class Porte extends Accessoires implements Serializable {
         PORTE_HAUTEUR_STANDARD = valeur;
         return true;
     }
-
-    /* public void CreersommetPorte() {
-        PointDouble pointPorteSupDroit = new PointDouble(getPoint().getX() + getLargeur() / 2, getPoint().getY() + getHauteur() / 2);
-        PointDouble pointPorteSupGauche = new PointDouble(getPoint().getX() - getLargeur() / 2, getPoint().getY() + getHauteur() / 2);
-        PointDouble pointPorteInfGauche = new PointDouble(getPoint().getX() - getLargeur() / 2, 0); // On suppose que la base du mur est a y=0
-        PointDouble pointPorteInfDroit = new PointDouble(getPoint().getX() + getLargeur() / 2, 0);
-        // Ajouter l'objet porte dans une liste qui est lié au mur.
-
+    // version pas tout a fait finie reste a voir la convertion avec des pixels
+    public void CreersommetPorte(){
+        pointPouces pointPorteSupDroit = new pointPouces(getPointPouces(mousePoint).getX().addPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
+        pointPouces pointPorteSupGauche=new pointPouces(getPointPouces(mousePoint).getX().substractPouces(getHauteur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
+        pointPouces pointPorteInfGauche = new pointPouces(getPointPouces(mousePoint).getX().substractPouces(getLargeur().diviserPouces(2)),new Pouces(0, 0, 1));
+        pointPouces pointPorteInfDroit = new pointPouces(getPointPouces(mousePoint).getX().addPouces(getLargeur().diviserPouces(2)),new Pouces(0,0,1));
         sommetsPorte.add(pointPorteSupDroit);
         sommetsPorte.add(pointPorteSupGauche);
         sommetsPorte.add(pointPorteInfGauche);
         sommetsPorte.add(pointPorteInfDroit);
-    } */
-}
+
+        }
+
+    }
+

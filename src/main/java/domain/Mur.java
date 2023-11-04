@@ -2,6 +2,8 @@ package domain;
 
 
 import Utilitaires.PointDouble;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +20,7 @@ public class Mur {
     // ce meme constructeur est appelle a la ligne
     public Mur(String nomMur, List<PointDouble> sommetsMur, List<String> accessoiresMur) {
         this.nomMur = nomMur;
-        this.sommetsMur = sommetsMur; // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
+        this.sommetsMur = new ArrayList<>(sommetsMur); // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
         this.accessoiresMur = accessoiresMur; // ceci est comme ci: [Liste de accessoires]
     }
 
@@ -43,8 +45,8 @@ public class Mur {
         this.sommetsMur = sommetsMur;
     }
 
-    public void createSommet(PointDouble point){
-        this.sommetsMur.add(point);
+    public void createSommet(Mur mur, PointDouble point){
+        mur.sommetsMur.add(point);
     }
 
     public List<String> getAccessoiresMur() {

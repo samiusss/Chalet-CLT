@@ -10,4 +10,13 @@ public class pointPouces implements Serializable {
       this.x = x;
       this.y = y;
   }
+
+    public Pouces getX() {
+        return x;
+    }
+
+    public Pouces getY() {
+        return y;
+    }
 }
+
