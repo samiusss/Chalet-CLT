@@ -2,6 +2,7 @@ package domain;
 
 import Utilitaires.PointDouble;
 
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,6 +71,7 @@ public class Chalet {
 
         listeMurs.add(gauche);
     }
+
 
     public void initialiserMurDroite(){
 

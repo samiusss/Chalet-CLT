@@ -56,18 +56,18 @@ public class MainWindow extends javax.swing.JFrame {
         setSize(500, 500);
         setLocationRelativeTo(null);
 
-        UndoButton.addActionListener(new ActionListener() {
+        /* UndoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Undo();
             }
-        });
-        RedoButton.addActionListener(new ActionListener() {
+        }); */
+        /* RedoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Redo();
             }
-        });
+        }); */
         VueComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {

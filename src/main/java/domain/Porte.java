@@ -14,7 +14,7 @@ public class Porte extends Accessoires implements Serializable {
 
     private List<PointDouble> sommetsPorte;
     public static Pouces PORTE_LARGEUR_STANDARD = new Pouces(15, 0, 1);
-    public static Pouces PORTE_HAUTEUR_STANDARD = new Pouces(25, 0, 1);
+    public static Pouces PORTE_HAUTEUR_STANDARD = new Pouces(35, 0, 1);
 
     public Point mousePoint;
 
