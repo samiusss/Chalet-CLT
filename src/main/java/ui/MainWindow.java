@@ -28,10 +28,6 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel MurPanel;
     private JLabel ToitPanelLabel;
     private JPanel ToitPanel;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
-    private JComboBox comboBox3;
-    private JComboBox comboBox4;
     //private DrawingPanel PannelAffichage; // Utilisez DrawingPanel au lieu de JPanel
     private JTabbedPane ToitPaneltabbedPane;
     private JPanel ToitPaneltabbedPaneDevantPanel;
@@ -46,6 +42,21 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel DrawingPanelCoordonéesLabel;
     private JButton PannelDroitAjoutPorteButton;
     private JButton PannelDroitAjoutFenetreButton;
+    private JTabbedPane MurPannelTabbedPane;
+    private JTextField MurPannelTabbedPaneFaçadeLabelLongeurTextField;
+    private JTextField MurPannelTabbedPaneFaçadeLabelLargeurTextField;
+    private JPanel MurPannelTabbedPaneFaçadeLabel;
+    private JPanel MurPannelTabbedPaneDerrièreLabel;
+    private JPanel MurPannelTabbedPaneGaucheLabel;
+    private JPanel MurPannelTabbedPaneDroitLabel;
+    private JTextField textField3;
+    private JTextField textField4;
+    private JLabel MurPannelTabbedPaneFaçadeLabelLongeurLabel;
+    private JLabel MurPannelTabbedPaneFaçadeLabelLargeurLabel;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JTextField textField5;
+    private JTextField textField6;
 
     // private JMenuBar menuBar1;
     //private ui.DrawingPanel DrawingPanel;
