@@ -9,12 +9,12 @@ import java.awt.event.ItemListener;
 
 public class MainWindow extends javax.swing.JFrame {
     private Controleur controleur;
-    private AccessoiresModes actualMode;
+    /*private AccessoiresModes actualMode;
     // Ces attributs servent à la gestion du déplacement.
     public Point actualMousePoint = new Point();
-    public Point delta = new Point();
+    public Point delta = new Point();*/
 
-
+    private boolean isAddingPorte = false; // État pour indiquer si l'utilisateur est en mode d'ajout de porte
     private JPanel PanelGauche;
     private JPanel PanelHaut;
     private JPanel PannelDroit;
@@ -46,11 +46,11 @@ public class MainWindow extends javax.swing.JFrame {
     //private ui.DrawingPanel DrawingPanel;
 
 
-    public AccessoiresModes selectedAccessoiresModes;
+    /*public AccessoiresModes selectedAccessoiresModes;
 
     public enum AccessoiresModes {
         PORTE, FENETRE
-    }
+    }*/
 
 
 
@@ -60,14 +60,36 @@ public class MainWindow extends javax.swing.JFrame {
 
 
 
-       /* PannelDroitAjoutPorteButton.addActionListener(new ActionListener() {
+
+        PannelDroitAjoutPorteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Activer le mode d'ajout de porte lorsque le bouton est cliqué
+                isAddingPorte = true;
+            }
+        });
+    }
 
+    private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
+        if (isAddingPorte) {
+            Point mousePoint = evt.getPoint();
+
+            // Ajouter la porte à l'emplacement du clic
+            boolean ajoutReussi = controleur.ajouterPorte(mousePoint);
+
+            // Traitez le résultat de l'ajout, par exemple, en affichant un message d'erreur si cela échoue
+            if (ajoutReussi) {
+                // Porte ajoutée avec succès
+            } else {
             }
 
+            // Désactiver le mode d'ajout de porte
+            isAddingPorte = false;
+        }
+    }
 
-        });*/
+
+
 
         /* PannelDroitAjoutFenetreButton.addActionListener(new ActionListener() {
 
@@ -80,7 +102,7 @@ public class MainWindow extends javax.swing.JFrame {
 
 
 
-    }
+
 
     private void initComponents() {
         DrawingPanel = new DrawingPanel(this);
@@ -116,6 +138,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
 
+/*
     public void setMode(AccessoiresModes newMode)
     {
         this.selectedAccessoiresModes = newMode;
@@ -134,6 +157,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         }
     }
+*/
 
 
 

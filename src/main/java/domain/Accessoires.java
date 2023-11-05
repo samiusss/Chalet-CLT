@@ -50,8 +50,6 @@ public abstract class Accessoires implements Serializable {
         Pouces xPouces = ConvertisseurMesures.convertirPixelsEnPouces(lepoint.x);
         Pouces yPouces = ConvertisseurMesures.convertirPixelsEnPouces(lepoint.y);
 
-        //Pouces xPouces = new Pouces(lepoint.x,1,1);
-        //Pouces yPouces = new Pouces(lepoint.y,1,1);
         return new pointPouces (xPouces,yPouces);
     }
 
