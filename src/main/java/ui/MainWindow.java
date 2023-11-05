@@ -1,11 +1,11 @@
 package ui;
-import domain.*;
+
+import domain.Controleur;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 public class MainWindow extends javax.swing.JFrame {
     private Controleur controleur;
@@ -53,11 +53,7 @@ public class MainWindow extends javax.swing.JFrame {
         return PannelAffichage;
     };
 
-    /*public AccessoiresModes selectedAccessoiresModes;
 
-    public enum AccessoiresModes {
-        PORTE, FENETRE
-    }*/
 
 
     public MainWindow() {

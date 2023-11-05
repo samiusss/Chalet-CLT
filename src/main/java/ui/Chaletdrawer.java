@@ -1,10 +1,10 @@
 package ui;
 
+import Utilitaires.ConvertisseurMesures;
 import Utilitaires.PointDouble;
-import domain.Accessoires;
-import domain.Chalet;
-import domain.Controleur;
-import domain.Mur;
+import Utilitaires.Pouces;
+import Utilitaires.pointPouces;
+import domain.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -30,18 +30,35 @@ public class Chaletdrawer {
 
     private void drawFenetre(Graphics g)
     {
+        ArrayList<pointPouces> sommetsFenetre = new ArrayList<>() ;
+        g.setColor(new Color(1, 100, 166));
+
+        // Appeler dimensions Fenetre
+        Pouces largeurFenetre = Fenetre.FENETRE_LARGEUR_STANDARD;
+        Pouces hauteurFenetre = Fenetre.FENETRE_HAUTEUR_STANDARD;
 
 
+        //Fenetre.CreersommetFenetre();
+
+        double x_fenetre = ConvertisseurMesures.convertirPoucesEnPixels(largeurFenetre);
+        double y_fenetre = ConvertisseurMesures.convertirPoucesEnPixels(hauteurFenetre);
+
+        // largeur et les hauteurs, il les transforme en sommets
+
+
+        // Coordonné
+        /*double PointSupDroitFenetre = ;
+        double PointSupGaucheFenetre = ;
+        double PointInfGaucheFenetre = ;
+        double PointInfDroitFenetre = */
 
     }
-
 
 
     private void drawChalet(Graphics g) {
         //double width = initialDimension.getWidth();
         //double height = initialDimension.getHeight();
 
-        //Il faut que le controleur ou Chalet choisit les points, pas Main, puis j'appelle le point en bas
         ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         // Définir la couleur des murs
@@ -75,7 +92,14 @@ public class Chaletdrawer {
         PointDouble rainureDroite1 = facade.getSommetsMur().get(10); // Je veux le onzième sommet (index 10) // rainureDroite1 = rainureDroite1 facade
         PointDouble rainureDroite2 = facade.getSommetsMur().get(11); // Je veux le douzième sommet (index 11) // rainureDroite2 = rainureDroite2 facade
 
-        double positionZero = 400; // TODO: C'est une coordonées symétriques
+        // Accéder coord de Mur facade de coté (fc)
+        PointDouble pointSupDroitfc = facade.getSommetsMur().get(4);
+        PointDouble pointSupGauchefc = facade.getSommetsMur().get(5);
+        PointDouble pointInfDroitfc = facade.getSommetsMur().get(6);
+        PointDouble pointInfGauchefc = facade.getSommetsMur().get(7);
+
+
+        double positionZero = 400;
         int x1 = (int) (pointInfDroitf.getX()+positionZero);
         int y1 = (int) (pointInfDroitf.getY()+positionZero);
         int x1r1 = (int) (rainureDroite1.getX()+positionZero);
@@ -115,8 +139,7 @@ public class Chaletdrawer {
         PointDouble rainureDroite2a = arriere.getSommetsMur().get(11);
 
     // Ajouter un décalage pour séparer le mur
-        double positionZeroArriere = 420; //TODO: J'ai fait retirer rainures pour pouvoir avoir un point d'origine pour tous les murs
-                                            // pk ici il est pas pareil que mur de facade?
+        double positionZeroArriere = 420;
 
     // Convertissez les coordonnées en entiers
         int x1a = (int) (pointInfDroita.getX() + positionZero);
@@ -150,9 +173,26 @@ public class Chaletdrawer {
         chalet.initialiserMurGauche();
 
 //////////Vue de coté facade, if controle.vue == facade; //////////
-        //////////////////////////////
+        ////////////////////////////////
 
+        int x1fc = (int) pointInfGauchefc.getX();
+        int y1fc = (int) pointInfGauchefc.getY();
 
+        int x2fc = (int) pointInfDroitfc.getX();
+        int y2fc = (int) pointInfDroitfc.getY();
+
+        int x3fc = (int) pointSupGauchefc.getX();
+        int y3fc = (int) pointSupGauchefc.getY();
+
+        int x4fc = (int) pointSupDroitfc.getX();
+        int y4fc = (int) pointSupDroitfc.getY();
+
+        // Construire tableaux de coordonnées pour le mur facade de coté
+        int[] xPointsFacadeCote = {x1fc, x2fc, x3fc, x4fc};
+        int[] yPointsFacadeCote = {y1fc, y2fc, y3fc, y4fc};
+
+        // Dessiner le polygone pour le mur facade de coté (fc)
+        g.drawPolygon(xPointsFacadeCote, yPointsFacadeCote, 4);
 
         // Dessiner le mur de façade en profondeur, pour ressemble à celui de l'énoncé, laisser en commentaires
         /*double pointDeVue3D = 120; // Hauteur de la perspective
