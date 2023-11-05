@@ -37,7 +37,6 @@ public class Chaletdrawer {
         Pouces largeurFenetre = Fenetre.FENETRE_LARGEUR_STANDARD;
         Pouces hauteurFenetre = Fenetre.FENETRE_HAUTEUR_STANDARD;
 
-
         //Fenetre.CreersommetFenetre();
 
         double x_fenetre = ConvertisseurMesures.convertirPoucesEnPixels(largeurFenetre);
@@ -46,7 +45,7 @@ public class Chaletdrawer {
         // largeur et les hauteurs, il les transforme en sommets
 
         // Coordonnée
-        /*double PointSupDroitFenetre = ;
+     /* double PointSupDroitFenetre = ;
         double PointSupGaucheFenetre = ;
         double PointInfGaucheFenetre = ;
         double PointInfDroitFenetre = */
@@ -55,8 +54,8 @@ public class Chaletdrawer {
 
 
     private void drawChalet(Graphics g) {
-        //double width = initialDimension.getWidth();
-        //double height = initialDimension.getHeight();
+        double width = initialDimension.getWidth();
+        double height = initialDimension.getHeight();
 
         ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
@@ -97,27 +96,29 @@ public class Chaletdrawer {
         PointDouble pointInfDroitfc = facade.getSommetsMur().get(6);
         PointDouble pointInfGauchefc = facade.getSommetsMur().get(7);
 
+        // Ajouter un décalage pour séparer le mur
+        double positionX = width/2;
+        double positionY = height/2;
 
-        double positionZero = 400;
-        int x1 = (int) (pointInfDroitf.getX()+positionZero);
-        int y1 = (int) (pointInfDroitf.getY()+positionZero);
-        int x1r1 = (int) (rainureDroite1.getX()+positionZero);
-        int y1r1 = (int) (rainureDroite1.getY()+positionZero);
-        int x1r2 = (int) (rainureDroite2.getX()+positionZero);
-        int y1r2 = (int) (rainureDroite2.getY()+positionZero);
+        int x1 = (int) (pointInfDroitf.getX()+positionX);
+        int y1 = (int) (pointInfDroitf.getY()+positionY);
+        int x1r1 = (int) (rainureDroite1.getX()+positionX);
+        int y1r1 = (int) (rainureDroite1.getY()+positionY);
+        int x1r2 = (int) (rainureDroite2.getX()+positionX);
+        int y1r2 = (int) (rainureDroite2.getY()+positionY);
         //
-        int x2 = (int) (pointSupDroitf.getX()+positionZero);
-        int y2 = (int) (pointSupDroitf.getY()+positionZero);
+        int x2 = (int) (pointSupDroitf.getX()+positionX);
+        int y2 = (int) (pointSupDroitf.getY()+positionY);
         //
-        int x3 = (int) (pointSupGauchef.getX()+positionZero);
-        int y3 = (int) (pointSupGauchef.getY()+positionZero);
-        int x3r1 = (int) (rainureGauche1.getX()+positionZero);
-        int y3r1 = (int) (rainureGauche1.getY()+positionZero);
-        int x3r2 = (int) (rainureGauche2.getX()+positionZero);
-        int y3r2 = (int) (rainureGauche2.getY()+positionZero);
+        int x3 = (int) (pointSupGauchef.getX()+positionX);
+        int y3 = (int) (pointSupGauchef.getY()+positionY);
+        int x3r1 = (int) (rainureGauche1.getX()+positionX);
+        int y3r1 = (int) (rainureGauche1.getY()+positionY);
+        int x3r2 = (int) (rainureGauche2.getX()+positionX);
+        int y3r2 = (int) (rainureGauche2.getY()+positionY);
         //
-        int x4 = (int) (pointInfGauchef.getX()+positionZero);
-        int y4 = (int) (pointInfGauchef.getY()+positionZero);
+        int x4 = (int) (pointInfGauchef.getX()+positionX);
+        int y4 = (int) (pointInfGauchef.getY()+positionY);
         //
         int[] xPoints = {x1, x1r2, x1r1, x2, x3, x3r2, x3r1, x4};
         int[] yPoints = {y1, y1r2, y1r1, y2, y3, y3r2, y3r1, y4};
@@ -137,29 +138,27 @@ public class Chaletdrawer {
         PointDouble rainureDroite1a = arriere.getSommetsMur().get(10);
         PointDouble rainureDroite2a = arriere.getSommetsMur().get(11);
 
-    // Ajouter un décalage pour séparer le mur
-        double positionZeroArriere = 400;
 
     // Convertissez les coordonnées en entiers
-        int x1a = (int) (pointInfDroita.getX() + positionZero);
-        int y1a = (int) (pointInfDroita.getY() + positionZeroArriere);
-        int x1r1a = (int) (rainureDroite1a.getX() + positionZero);
-        int y1r1a = (int) (rainureDroite1a.getY() + positionZeroArriere);
-        int x1r2a = (int) (rainureDroite2a.getX() + positionZero);
-        int y1r2a = (int) (rainureDroite2a.getY() + positionZeroArriere);
+        int x1a = (int) (pointInfDroita.getX() + positionX);
+        int y1a = (int) (pointInfDroita.getY() + positionY);
+        int x1r1a = (int) (rainureDroite1a.getX() + positionX);
+        int y1r1a = (int) (rainureDroite1a.getY() + positionX);
+        int x1r2a = (int) (rainureDroite2a.getX() + positionX);
+        int y1r2a = (int) (rainureDroite2a.getY() + positionX);
 
-        int x2a = (int) (pointSupDroita.getX() + positionZero);
-        int y2a = (int) (pointSupDroita.getY() + positionZeroArriere);
+        int x2a = (int) (pointSupDroita.getX() + positionX);
+        int y2a = (int) (pointSupDroita.getY() + positionX);
 
-        int x3a = (int) (pointSupGauchea.getX() + positionZero);
-        int y3a = (int) (pointSupGauchea.getY() + positionZeroArriere);
-        int x3r1a = (int) (rainureGauche1a.getX() + positionZero);
-        int y3r1a = (int) (rainureGauche1a.getY() + positionZeroArriere);
-        int x3r2a = (int) (rainureGauche2a.getX() + positionZero);
-        int y3r2a = (int) (rainureGauche2a.getY() + positionZeroArriere);
+        int x3a = (int) (pointSupGauchea.getX() + positionX);
+        int y3a = (int) (pointSupGauchea.getY() + positionX);
+        int x3r1a = (int) (rainureGauche1a.getX() + positionX);
+        int y3r1a = (int) (rainureGauche1a.getY() + positionX);
+        int x3r2a = (int) (rainureGauche2a.getX() + positionX);
+        int y3r2a = (int) (rainureGauche2a.getY() + positionX);
 
-        int x4a = (int) (pointInfGauchea.getX() + positionZero);
-        int y4a = (int) (pointInfGauchea.getY() + positionZeroArriere);
+        int x4a = (int) (pointInfGauchea.getX() + positionX);
+        int y4a = (int) (pointInfGauchea.getY() + positionX);
 
         // Construire tableaux de coordonnées pour le mur arrière
         int[] xPointsArriere = {x1a, x1r2a, x1r1a, x2a, x3a, x3r2a, x3r1a, x4a};

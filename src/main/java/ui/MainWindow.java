@@ -143,8 +143,7 @@ public class MainWindow extends javax.swing.JFrame {
         //Configure the layout for FenetrePrincipale n'affiche plus quand je add drawingPanel donc je le mets en commentaires jusqua que ca change
 
         DrawingPanel.setLayout(new FlowLayout());
-        DrawingPanel.add(FenetrePrincipale, BorderLayout.PAGE_END);
-
+        DrawingPanel.add(FenetrePrincipale, BorderLayout.WEST);
     }
 
 
