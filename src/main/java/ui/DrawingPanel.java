@@ -49,7 +49,7 @@ public class DrawingPanel extends JPanel implements Serializable {
         super.paintComponent(g);
         if (mainWindow != null){
             Chaletdrawer mainDrawer = new Chaletdrawer(controleur,getInitialDimension());
-            mainDrawer.draw(g);
+            mainDrawer.draw(g, mainWindow);
         }
     }
         public MainWindow getMainWindow() {

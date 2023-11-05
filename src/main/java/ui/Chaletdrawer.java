@@ -7,7 +7,11 @@ import domain.Controleur;
 import domain.Mur;
 
 import java.awt.*;
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
+
+import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 
 
 public class Chaletdrawer {
@@ -22,22 +26,40 @@ public class Chaletdrawer {
         this.initialDimension = initialDimension;
     }
 
-    public void draw(Graphics g)
+    public void draw(Graphics g, MainWindow mainWindow)
     {
-        drawFenetre(g);
-        drawChalet(g);
+        drawAccessoire(g);
+        drawChalet(g, mainWindow);
     }
 
-    private void drawFenetre(Graphics g)
-    {
+    private void drawAccessoire(Graphics g) {
+        List<String> elements = Mur.getAccessoiresMur();
 
+        for (Object element : elements) {
+            if (element instanceof Accessoires) {
+                Accessoires accessoire = (Accessoires) element;
+                Point accessoirePoint = accessoire.getPoint();
+                int width = convertirPoucesEnPixels(accessoire.getLargeur());
+                int height = convertirPoucesEnPixels(accessoire.getHauteur());
 
+                /*if (accessoire.isSelected()) {
+                    int offsetWidth = width + 1;
+                    int offsetHeight = height + 1;
+                    g.fillRect((int) accessoirePoint.getX() - offsetWidth / 2, (int) accessoirePoint.getY() - offsetHeight / 2, offsetWidth, offsetHeight);
+                }*/
 
+                g.setColor(new Color(166, 66, 66));
+                g.fillRect((int) accessoirePoint.getX() - width / 2, (int) accessoirePoint.getY() - height / 2, width, height);
+            } else if (element instanceof String) {
+                // Gérer le cas où l'élément est une chaîne de caractères (String)
+                // Vous pouvez ajouter un code spécifique pour traiter les chaînes ici
+            }
+        }
     }
 
 
 
-    private void drawChalet(Graphics g) {
+    private void drawChalet(Graphics g, MainWindow mainWindow) {
         //double width = initialDimension.getWidth();
         //double height = initialDimension.getHeight();
 
@@ -75,7 +97,12 @@ public class Chaletdrawer {
         PointDouble rainureDroite1 = facade.getSommetsMur().get(10); // Je veux le onzième sommet (index 10) // rainureDroite1 = rainureDroite1 facade
         PointDouble rainureDroite2 = facade.getSommetsMur().get(11); // Je veux le douzième sommet (index 11) // rainureDroite2 = rainureDroite2 facade
 
-        double positionZero = 400; // TODO: C'est une coordonées symétriques
+        JPanel pannelAffichage = mainWindow.getPannelAffichage();
+        double middleX = pannelAffichage.getWidth() / 2.0;
+        double middleY = pannelAffichage.getHeight() / 2.0;
+        double positionZero = middleX;
+
+        //double positionZero = 400; // TODO: C'est une coorodnées symétriques
         int x1 = (int) (pointInfDroitf.getX()+positionZero);
         int y1 = (int) (pointInfDroitf.getY()+positionZero);
         int x1r1 = (int) (rainureDroite1.getX()+positionZero);

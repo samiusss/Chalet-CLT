@@ -46,6 +46,8 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel DrawingPanelCoordonéesLabel;
     private JButton PannelDroitAjoutPorteButton;
     private JButton PannelDroitAjoutFenetreButton;
+
+    // private JMenuBar menuBar1;
     //private ui.DrawingPanel DrawingPanel;
 
 
