@@ -66,9 +66,6 @@ public class MainWindow extends javax.swing.JFrame {
         return PannelAffichage;
     };
 
-
-
-
     public MainWindow() {
         controleur = new Controleur();
         initComponents();

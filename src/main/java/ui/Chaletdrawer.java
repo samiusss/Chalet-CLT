@@ -137,11 +137,14 @@ public class Chaletdrawer {
         PointDouble rainureGauche2a = arriere.getSommetsMur().get(9);
         PointDouble rainureDroite1a = arriere.getSommetsMur().get(10);
         PointDouble rainureDroite2a = arriere.getSommetsMur().get(11);
-
+        PointDouble pointSupDroitac = arriere.getSommetsMur().get(6);
+        PointDouble pointSupGaucheac = arriere.getSommetsMur().get(5);
+        PointDouble pointInfDroitac = arriere.getSommetsMur().get(7);
+        PointDouble pointInfGaucheac = arriere.getSommetsMur().get(4);
 
     // Convertissez les coordonnées en entiers
         int x1a = (int) (pointInfDroita.getX() + positionX);
-        int y1a = (int) (pointInfDroita.getY() + positionY);
+        int y1a = (int) (pointInfDroita.getY() + positionX);
         int x1r1a = (int) (rainureDroite1a.getX() + positionX);
         int y1r1a = (int) (rainureDroite1a.getY() + positionX);
         int x1r2a = (int) (rainureDroite2a.getX() + positionX);
@@ -170,9 +173,9 @@ public class Chaletdrawer {
         chalet.initialiserMurDroite();
         chalet.initialiserMurGauche();
 
-///////////////////////////////////////////////////////
-//////////Vue de coté facade, if controle.vue == facade; //////////
-        ////////////////////////////////
+    ///////////////////////////////////////////////////////
+    //////////Vue de coté facade, if controle.vue == facade; //////////
+            ////////////////////////////////
 
         int x1fc = (int) pointInfGauchefc.getX();
         int y1fc = (int) pointInfGauchefc.getY();
@@ -192,6 +195,28 @@ public class Chaletdrawer {
 
         // Dessiner le polygone pour le mur facade de coté (fc)
         g.drawPolygon(xPointsFacadeCote, yPointsFacadeCote, 4);
+
+        ///////////////////////////////////////////////////////
+        //////////Vue de coté arrière, if controle.vue == arriere; //////////
+        ////////////////////////////////
+        int x1ac = (int) pointInfGaucheac.getX();
+        int y1ac = (int) pointInfGaucheac.getY();
+
+        int x2ac = (int) pointInfDroitac.getX();
+        int y2ac = (int) pointInfDroitac.getY();
+
+        int x3ac = (int) pointSupGaucheac.getX();
+        int y3ac = (int) pointSupGaucheac.getY();
+
+        int x4ac = (int) pointSupDroitac.getX();
+        int y4ac = (int) pointSupDroitac.getY();
+
+        // Construire tableaux de coordonnées pour le mur facade de coté
+        int[] xPointsArriereCote = {x1ac, x2ac, x3ac, x4ac};
+        int[] yPointsArriereCote = {y1ac, y2ac, y3ac, y4ac};
+
+        // Dessiner le polygone pour le mur facade de coté (fc)
+        g.drawPolygon(xPointsArriereCote, yPointsArriereCote, 4);
 
         // Dessiner le mur de façade en profondeur, pour ressemble à celui de l'énoncé, laisser en commentaires
         /*double pointDeVue3D = 120; // Hauteur de la perspective
