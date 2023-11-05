@@ -82,8 +82,6 @@ public class Chaletdrawer {
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
         chalet.initialiserMurFacade();
-        //chalet.initialiserMurDroite();
-        //chalet.initialiserMurGauche();
         chalet.initialiserMurArriere();
 
         // Accéder aux coordonnées de Mur: Facade
@@ -161,12 +159,23 @@ public class Chaletdrawer {
         int x4a = (int) (pointInfGauchea.getX() + positionZero);
         int y4a = (int) (pointInfGauchea.getY() + positionZeroArriere);
 
-    // Construire tableaux de coordonnées pour le mur arrière
+        // Construire tableaux de coordonnées pour le mur arrière
         int[] xPointsArriere = {x1a, x1r2a, x1r1a, x2a, x3a, x3r2a, x3r1a, x4a};
         int[] yPointsArriere = {y1a, y1r2a, y1r1a, y2a, y3a, y3r2a, y3r1a, y4a};
 
-    // Dessiner le polygone pour le mur arrière
+        // Dessiner le polygone pour le mur arrière
         g.drawPolygon(xPointsArriere, yPointsArriere, 8);
+
+        // Accéder aux coordonnées de Mur: Gauche
+
+        chalet.initialiserMurGauche();
+
+        // Accéder aux coordonnées de Mur: Droite
+
+        chalet.initialiserMurDroite();
+
+//////////Vue de coté facade, if controle.vue == facade; //////////
+        //////////////////////////////
 
 
 
