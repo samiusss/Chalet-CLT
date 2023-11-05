@@ -9,7 +9,9 @@ import java.io.Serializable;
 
 public class DrawingPanel extends JPanel implements Serializable {
 
-    public Dimension initialDimension;
+    public Dimension getInitialDimension() {
+        return getPreferredSize();
+    }
     private MainWindow mainWindow;
 
     public DrawingPanel(){
@@ -19,7 +21,6 @@ public class DrawingPanel extends JPanel implements Serializable {
         this.mainWindow = mainWindow;
         this.controleur = new Controleur();
         setPreferredSize(new Dimension(1000, 1000));
-
 
 //        JPanel drawingPanel = mainWindow.getPannelAffichage();
 //        drawingPanel.setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
@@ -35,8 +36,6 @@ public class DrawingPanel extends JPanel implements Serializable {
 //        //initialDimension = new Dimension(largeurPanel, hauteurPanel);
 //
 //        drawingPanel.setVisible(true);
-
-
 //        setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
 //        int largeurPanel = (int) (java.awt.Toolkit.getDefaultToolkit().getScreenSize().width*0.85);
 //        setPreferredSize(new Dimension(largeurPanel,1));
@@ -53,16 +52,10 @@ public class DrawingPanel extends JPanel implements Serializable {
             mainDrawer.draw(g);
         }
     }
-
         public MainWindow getMainWindow() {
         return mainWindow;
     }
-
         public void setMainWindow(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
-    }
-
-        public Dimension getInitialDimension() {
-        return getPreferredSize();
     }
 };

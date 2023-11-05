@@ -1,16 +1,13 @@
 package ui;
 
-import Utilitaires.*;
+import Utilitaires.PointDouble;
 import domain.Accessoires;
 import domain.Chalet;
 import domain.Controleur;
-import domain.*;
+import domain.Mur;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
-
-import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 
 
 public class Chaletdrawer {
@@ -27,33 +24,15 @@ public class Chaletdrawer {
 
     public void draw(Graphics g)
     {
-        drawAccessoire(g);
+        drawFenetre(g);
         drawChalet(g);
     }
 
-    private void drawAccessoire(Graphics g) {
-        List<String> elements = Mur.getAccessoiresMur();
+    private void drawFenetre(Graphics g)
+    {
 
-        for (Object element : elements) {
-            if (element instanceof Accessoires) {
-                Accessoires accessoire = (Accessoires) element;
-                Point accessoirePoint = accessoire.getPoint();
-                int width = convertirPoucesEnPixels(accessoire.getLargeur());
-                int height = convertirPoucesEnPixels(accessoire.getHauteur());
 
-                /*if (accessoire.isSelected()) {
-                    int offsetWidth = width + 1;
-                    int offsetHeight = height + 1;
-                    g.fillRect((int) accessoirePoint.getX() - offsetWidth / 2, (int) accessoirePoint.getY() - offsetHeight / 2, offsetWidth, offsetHeight);
-                }*/
 
-                g.setColor(new Color(166, 66, 66));
-                g.fillRect((int) accessoirePoint.getX() - width / 2, (int) accessoirePoint.getY() - height / 2, width, height);
-            } else if (element instanceof String) {
-                // Gérer le cas où l'élément est une chaîne de caractères (String)
-                // Vous pouvez ajouter un code spécifique pour traiter les chaînes ici
-            }
-        }
     }
 
 
@@ -75,15 +54,14 @@ public class Chaletdrawer {
         double longueurMur = 2*Chalet.longueurChalet;
         double angleToit = 0.0;
 
-    //////////////////////////////////////////////////
-   /// Vue par dessus, if controleur.vue==dessus////
-     //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+         /// Vue par dessus, if controleur.vue==dessus////
+          /////////////////////////////////////////////////
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
         chalet.initialiserMurFacade();
         chalet.initialiserMurArriere();
-        chalet.initialiserMurDroite();
-        chalet.initialiserMurGauche();
+
 
         // Accéder aux coordonnées de Mur: Facade
         Mur facade = chalet.getMursUsines().get(0); // mur facade deja codé en bas
@@ -97,7 +75,7 @@ public class Chaletdrawer {
         PointDouble rainureDroite1 = facade.getSommetsMur().get(10); // Je veux le onzième sommet (index 10) // rainureDroite1 = rainureDroite1 facade
         PointDouble rainureDroite2 = facade.getSommetsMur().get(11); // Je veux le douzième sommet (index 11) // rainureDroite2 = rainureDroite2 facade
 
-        double positionZero = 400; // TODO: C'est une coorodnées symétriques
+        double positionZero = 400; // TODO: C'est une coordonées symétriques
         int x1 = (int) (pointInfDroitf.getX()+positionZero);
         int y1 = (int) (pointInfDroitf.getY()+positionZero);
         int x1r1 = (int) (rainureDroite1.getX()+positionZero);
@@ -168,6 +146,8 @@ public class Chaletdrawer {
         // Dessiner le polygone pour le mur arrière
         g.drawPolygon(xPointsArriere, yPointsArriere, 8);
 
+        chalet.initialiserMurDroite();
+        chalet.initialiserMurGauche();
 
 //////////Vue de coté facade, if controle.vue == facade; //////////
         //////////////////////////////
