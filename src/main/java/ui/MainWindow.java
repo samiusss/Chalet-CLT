@@ -64,7 +64,6 @@ public class MainWindow extends javax.swing.JFrame {
         PannelDroitAjoutPorteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Activer le mode d'ajout de porte lorsque le bouton est cliqué
                 isAddingPorte = true;
             }
         });
@@ -73,17 +72,11 @@ public class MainWindow extends javax.swing.JFrame {
     private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
         if (isAddingPorte) {
             Point mousePoint = evt.getPoint();
-
-            // Ajouter la porte à l'emplacement du clic
             boolean ajoutReussi = controleur.ajouterPorte(mousePoint);
 
-            // Traitez le résultat de l'ajout, par exemple, en affichant un message d'erreur si cela échoue
             if (ajoutReussi) {
-                // Porte ajoutée avec succès
             } else {
             }
-
-            // Désactiver le mode d'ajout de porte
             isAddingPorte = false;
         }
     }
