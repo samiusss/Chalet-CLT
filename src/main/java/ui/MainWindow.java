@@ -40,12 +40,18 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel ToitPaneltabbedPaneGauchePanel;
     private JLabel NomProjetLabel;
     private JLabel VueLabel;
-    private JPanel DrawingPanel;
+    private JPanel PannelAffichage;
+
+    private DrawingPanel DrawingPanel;
     private JLabel DrawingPanelCoordonéesLabel;
     private JButton PannelDroitAjoutPorteButton;
     private JButton PannelDroitAjoutFenetreButton;
     //private ui.DrawingPanel DrawingPanel;
 
+
+    public JPanel getPannelAffichage() {
+        return PannelAffichage;
+    };
 
     /*public AccessoiresModes selectedAccessoiresModes;
 
@@ -54,13 +60,9 @@ public class MainWindow extends javax.swing.JFrame {
     }*/
 
 
-
     public MainWindow() {
         controleur = new Controleur();
         initComponents();
-
-
-
 
         PannelDroitAjoutPorteButton.addActionListener(new ActionListener() {
             @Override
@@ -78,7 +80,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         });
     }
-
 
     private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
         if (isAddingPorte) {
@@ -101,17 +102,17 @@ public class MainWindow extends javax.swing.JFrame {
 
     }
 
-
-
     private void initComponents() {
+
         DrawingPanel = new DrawingPanel(this);
-        setContentPane(DrawingPanel);
+
+        JPanel pannelAffichage = this.getPannelAffichage();
+        pannelAffichage.setLayout(new FlowLayout(FlowLayout.CENTER));
+        pannelAffichage.add(DrawingPanel);
+
+        setContentPane(pannelAffichage);
         setSize(1000, 1000);
         setLocationRelativeTo(null);
-
-
-
-
 
         /* UndoButton.addActionListener(new ActionListener() {
             @Override
@@ -132,8 +133,10 @@ public class MainWindow extends javax.swing.JFrame {
         }); */
 
         //Configure the layout for FenetrePrincipale n'affiche plus quand je add drawingPanel donc je le mets en commentaires jusqua que ca change
+
         DrawingPanel.setLayout(new FlowLayout());
         DrawingPanel.add(FenetrePrincipale, BorderLayout.PAGE_END);
+
     }
 
 
@@ -157,7 +160,6 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 */
-
 
 
 }

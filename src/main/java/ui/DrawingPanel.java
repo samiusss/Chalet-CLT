@@ -17,32 +17,59 @@ public class DrawingPanel extends JPanel implements Serializable {
     Controleur controleur = new Controleur();
     public DrawingPanel(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
-        setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
-        int largeurPanel = (int) (java.awt.Toolkit.getDefaultToolkit().getScreenSize().width*0.85);
-        setPreferredSize(new Dimension(largeurPanel,1));
-        setVisible(true);
-        int hauteurPanel = (int)(largeurPanel*0.5);
-        initialDimension = new Dimension(largeurPanel,hauteurPanel);
+        this.controleur = new Controleur();
+        setPreferredSize(new Dimension(1000, 1000));
+
+
+//        JPanel drawingPanel = mainWindow.getPannelAffichage();
+//        drawingPanel.setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
+//
+//        int largeurPanel = (int) (java.awt.Toolkit.getDefaultToolkit().getScreenSize().width * 0.85);
+//        int preferredWidth = largeurPanel;
+//        int preferredHeight = (int) (preferredWidth * 0.5);
+//        drawingPanel.setPreferredSize(new Dimension(preferredWidth, preferredHeight));
+//
+//        // drawingPanel.setPreferredSize(new Dimension(largeurPanel, 1));
+//
+//        //int hauteurPanel = (int) (largeurPanel * 0.5);
+//        //initialDimension = new Dimension(largeurPanel, hauteurPanel);
+//
+//        drawingPanel.setVisible(true);
+
+
+//        setBorder(new javax.swing.border.BevelBorder(BevelBorder.LOWERED));
+//        int largeurPanel = (int) (java.awt.Toolkit.getDefaultToolkit().getScreenSize().width*0.85);
+//        setPreferredSize(new Dimension(largeurPanel,1));
+//        setVisible(true);
+//        int hauteurPanel = (int)(largeurPanel*0.5);
+//        initialDimension = new Dimension(largeurPanel,hauteurPanel);
     }
     @Override
     protected void paintComponent(Graphics g)
     {
-        if (mainWindow != null){
-            super.paintComponent(g);
-            Chaletdrawer mainDrawer = new Chaletdrawer(controleur,initialDimension);
-            mainDrawer.draw(g);
+        super.paintComponent(g);
+
+        if (mainWindow != null) {
+            // Create a Chaletdrawer instance and pass the Graphics object
+            Chaletdrawer chaletDrawer = new Chaletdrawer(controleur, getInitialDimension());
+            chaletDrawer.draw(g);
         }
+//        if (mainWindow != null){
+//            super.paintComponent(g);
+//            Chaletdrawer mainDrawer = new Chaletdrawer(controleur,initialDimension);
+//            mainDrawer.draw(g);
+//        }
     }
 
-    public MainWindow getMainWindow(){
+        public MainWindow getMainWindow() {
         return mainWindow;
     }
 
-    public void setMainWindow(MainWindow mainWindow){
+        public void setMainWindow(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
     }
 
-    public Dimension getInitialDimension(){
-        return initialDimension;
+        public Dimension getInitialDimension() {
+        return getPreferredSize();
     }
-}
+};
