@@ -1,8 +1,8 @@
 package ui;
 
 import domain.Controleur;
+
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.io.Serializable;
 
@@ -48,17 +48,10 @@ public class DrawingPanel extends JPanel implements Serializable {
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-
-        if (mainWindow != null) {
-            // Create a Chaletdrawer instance and pass the Graphics object
-            Chaletdrawer chaletDrawer = new Chaletdrawer(controleur, getInitialDimension());
-            chaletDrawer.draw(g);
+        if (mainWindow != null){
+            Chaletdrawer mainDrawer = new Chaletdrawer(controleur,getInitialDimension());
+            mainDrawer.draw(g);
         }
-//        if (mainWindow != null){
-//            super.paintComponent(g);
-//            Chaletdrawer mainDrawer = new Chaletdrawer(controleur,initialDimension);
-//            mainDrawer.draw(g);
-//        }
     }
 
         public MainWindow getMainWindow() {

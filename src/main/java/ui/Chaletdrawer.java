@@ -97,7 +97,7 @@ public class Chaletdrawer {
         PointDouble rainureDroite1 = facade.getSommetsMur().get(10); // Je veux le onzième sommet (index 10) // rainureDroite1 = rainureDroite1 facade
         PointDouble rainureDroite2 = facade.getSommetsMur().get(11); // Je veux le douzième sommet (index 11) // rainureDroite2 = rainureDroite2 facade
 
-        double positionZero = 400; // TODO: devrait pas etre un point aussi?
+        double positionZero = 400; // TODO: C'est une coorodnées symétriques
         int x1 = (int) (pointInfDroitf.getX()+positionZero);
         int y1 = (int) (pointInfDroitf.getY()+positionZero);
         int x1r1 = (int) (rainureDroite1.getX()+positionZero);
