@@ -9,7 +9,7 @@ import java.util.*;
 public class Mur {
     private String nomMur;
     private List<PointDouble> sommetsMur;
-    private List<String> accessoiresMur;
+    private static List<String> accessoiresMur;
     private List<Porte> porteMur;
     private List<Fenetre> fenetreMur;
 
@@ -52,7 +52,7 @@ public class Mur {
         mur.sommetsMur.add(point);
     }
 
-    public List<String> getAccessoiresMur() {
+    public static List<String> getAccessoiresMur() {
         return accessoiresMur;
     }
 

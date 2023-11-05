@@ -1,13 +1,17 @@
 package ui;
 
-import Utilitaires.PointDouble;
+import Utilitaires.*;
 import domain.Accessoires;
 import domain.Chalet;
 import domain.Controleur;
-import domain.Mur;
+import domain.*;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
+
+import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
+
 
 public class Chaletdrawer {
     private Controleur controleur;
@@ -27,25 +31,32 @@ public class Chaletdrawer {
         drawChalet(g);
     }
 
-    private void drawAccessoire(Graphics g)
-    {        // Prototype
+    private void drawAccessoire(Graphics g) {
+        List<String> elements = Mur.getAccessoiresMur();
 
-        //List accessoires = (List) Mur.getAccessoiresMur(); // Remplacez Accessoire par le type d'objet approprié
-        /*for (Accessoires: accessoires) {
-            Point accessoirePoint = Point.getPoint();
-            int width = accessoires.getWidth(); // Largeur de la fenêtre ou de la porte
-            int height = accessoires.getHeight(); // Hauteur de la fenêtre ou de la porte
+        for (Object element : elements) {
+            if (element instanceof Accessoires) {
+                Accessoires accessoire = (Accessoires) element;
+                Point accessoirePoint = accessoire.getPoint();
+                int width = convertirPoucesEnPixels(accessoire.getLargeur());
+                int height = convertirPoucesEnPixels(accessoire.getHauteur());
 
-            if (accessoires.isSelected) {
-                int offsetWidth = width + 1;
-                int offsetHeight = height + 1;
-                g.fillRect((int) accessoirePoint.getX() - offsetWidth / 2, (int) accessoirePoint.getY() - offsetHeight / 2, offsetWidth, offsetHeight);
+                /*if (accessoire.isSelected()) {
+                    int offsetWidth = width + 1;
+                    int offsetHeight = height + 1;
+                    g.fillRect((int) accessoirePoint.getX() - offsetWidth / 2, (int) accessoirePoint.getY() - offsetHeight / 2, offsetWidth, offsetHeight);
+                }*/
+
+                g.setColor(new Color(166, 66, 66));
+                g.fillRect((int) accessoirePoint.getX() - width / 2, (int) accessoirePoint.getY() - height / 2, width, height);
+            } else if (element instanceof String) {
+                // Gérer le cas où l'élément est une chaîne de caractères (String)
+                // Vous pouvez ajouter un code spécifique pour traiter les chaînes ici
             }
-
-            g.setColor(new Color(166, 66, 66));
-            g.fillRect((int) accessoirePoint.getX() - width / 2, (int) accessoirePoint.getY() - height / 2, width, height);
-        }*/
+        }
     }
+
+
 
     private void drawChalet(Graphics g) {
         //double width = initialDimension.getWidth();
