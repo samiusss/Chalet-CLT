@@ -75,28 +75,29 @@ public class Chaletdrawer {
         double longueurMur = 2*Chalet.longueurChalet;
         double angleToit = 0.0;
 
-
- //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
    /// Vue par dessus, if controleur.vue==dessus////
      //////////////////////////////////////////////////
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
         chalet.initialiserMurFacade();
         chalet.initialiserMurArriere();
+        chalet.initialiserMurDroite();
+        chalet.initialiserMurGauche();
 
         // Accéder aux coordonnées de Mur: Facade
-        Mur facade = chalet.getMursUsines().get(0); // mure facade deja codé en bas
+        Mur facade = chalet.getMursUsines().get(0); // mur facade deja codé en bas
 
-        PointDouble pointSupDroitf = facade.getSommetsMur().get(2); // Je veux le troisième sommet (index 2)
-        PointDouble pointSupGauchef = facade.getSommetsMur().get(1); // Je veux le deuxieme sommet (index 1)
-        PointDouble pointInfDroitf = facade.getSommetsMur().get(3); // Je veux le quatrième sommet (index 3)
-        PointDouble pointInfGauchef = facade.getSommetsMur().get(0); // Je veux le premier sommet (index 0)
-        PointDouble rainureGauche1 = facade.getSommetsMur().get(8);
-        PointDouble rainureGauche2 = facade.getSommetsMur().get(9);
-        PointDouble rainureDroite1 = facade.getSommetsMur().get(10);
-        PointDouble rainureDroite2 = facade.getSommetsMur().get(11);
+        PointDouble pointSupDroitf = facade.getSommetsMur().get(2); // Je veux le troisième sommet (index 2) // pointSupDroitf = pointSupDroit facade
+        PointDouble pointSupGauchef = facade.getSommetsMur().get(1); // Je veux le deuxieme sommet (index 1) // pointSupGauchef = pointSupGauche facade
+        PointDouble pointInfDroitf = facade.getSommetsMur().get(3); // Je veux le quatrième sommet (index 3) // pointInfDroitf = pointInfDroit facade
+        PointDouble pointInfGauchef = facade.getSommetsMur().get(0); // Je veux le premier sommet (index 0) // pointInfGauchef = pointInfGauche facade
+        PointDouble rainureGauche1 = facade.getSommetsMur().get(8); // Je veux le neuvième sommet (index 8) // rainureGauche1 = rainureGauche1 facade
+        PointDouble rainureGauche2 = facade.getSommetsMur().get(9); // Je veux le dixième sommet (index 9) // rainureGauche2 = rainureGauche2 facade
+        PointDouble rainureDroite1 = facade.getSommetsMur().get(10); // Je veux le onzième sommet (index 10) // rainureDroite1 = rainureDroite1 facade
+        PointDouble rainureDroite2 = facade.getSommetsMur().get(11); // Je veux le douzième sommet (index 11) // rainureDroite2 = rainureDroite2 facade
 
-        double positionZero = 400;
+        double positionZero = 400; // TODO: devrait pas etre un point aussi?
         int x1 = (int) (pointInfDroitf.getX()+positionZero);
         int y1 = (int) (pointInfDroitf.getY()+positionZero);
         int x1r1 = (int) (rainureDroite1.getX()+positionZero);
@@ -136,7 +137,8 @@ public class Chaletdrawer {
         PointDouble rainureDroite2a = arriere.getSommetsMur().get(11);
 
     // Ajouter un décalage pour séparer le mur
-        double positionZeroArriere = 420; // Utilisez la position appropriée
+        double positionZeroArriere = 420; //TODO: J'ai fait retirer rainures pour pouvoir avoir un point d'origine pour tous les murs
+                                            // pk ici il est pas pareil que mur de facade?
 
     // Convertissez les coordonnées en entiers
         int x1a = (int) (pointInfDroita.getX() + positionZero);
@@ -166,13 +168,6 @@ public class Chaletdrawer {
         // Dessiner le polygone pour le mur arrière
         g.drawPolygon(xPointsArriere, yPointsArriere, 8);
 
-        // Accéder aux coordonnées de Mur: Gauche
-
-        chalet.initialiserMurGauche();
-
-        // Accéder aux coordonnées de Mur: Droite
-
-        chalet.initialiserMurDroite();
 
 //////////Vue de coté facade, if controle.vue == facade; //////////
         //////////////////////////////

@@ -18,9 +18,9 @@ public class Chalet {
     public static double longueurChalet = 10.0;
     public static double hauteurMurs=8.0;
     public static double epaisseurChalet = 2.0;
-    private double angleToit;
-    protected static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
-    private String orientationToit;
+    public static double angleToit;
+    public static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
+    public static String orientationToit;
 
     public Chalet(double largeurChalet, double longueurChalet,
                   double epaisseurChalet, double angleToit,
@@ -38,29 +38,33 @@ public class Chalet {
 
     public void initialiserMurFacade(){
 
-    PointDouble pointInfGauche = new PointDouble(0, 0);
-    PointDouble pointSupGauche = new PointDouble(0, getEpaisseurChalet());
-    PointDouble pointSupDroit = new PointDouble(getLongueurChalet(), getEpaisseurChalet());
-    PointDouble pointInfDroit = new PointDouble(getLongueurChalet(), 0);
+        //points du haut
+        PointDouble pointInfGauche = new PointDouble(0, 0);
+        PointDouble pointSupGauche = new PointDouble(0, getEpaisseurChalet());
+        PointDouble pointSupDroit = new PointDouble(getLongueurChalet(), getEpaisseurChalet());
+        PointDouble pointInfDroit = new PointDouble(getLongueurChalet(), 0);
 
-    PointDouble pointInfGaucheFace = new PointDouble(0, 0);
-    PointDouble pointSupGaucheFace = new PointDouble(0, getHauteurMurs());
-    PointDouble pointSupDroitFace = new PointDouble(getLongueurChalet(), getHauteurMurs());
-    PointDouble pointInfDroitFace = new PointDouble(getLongueurChalet(), 0);
+        //Points de face
+        PointDouble pointInfGaucheFace = new PointDouble(0, 0);
+        PointDouble pointSupGaucheFace = new PointDouble(0, getHauteurMurs());
+        PointDouble pointSupDroitFace = new PointDouble(getLongueurChalet(), getHauteurMurs());
+        PointDouble pointInfDroitFace = new PointDouble(getLongueurChalet(), 0);
 
-    Mur facade = new Mur("Facade", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit,
-            pointInfGaucheFace, pointSupGaucheFace, pointSupDroitFace, pointInfDroitFace), new ArrayList<String>());
+        Mur facade = new Mur("Facade", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit,
+                pointInfGaucheFace, pointSupGaucheFace, pointSupDroitFace, pointInfDroitFace), new ArrayList<String>());
 
-    listeMurs.add(facade);
+        listeMurs.add(facade);
     }
 
     public void initialiserMurArriere(){
 
+        //points de haut
         PointDouble pointInfGauche = new PointDouble(0, getLargeurChalet() - getEpaisseurChalet());
         PointDouble pointSupGauche = new PointDouble(0, getLargeurChalet());
         PointDouble pointSupDroit = new PointDouble(getLongueurChalet(), getLargeurChalet());
         PointDouble pointInfDroit = new PointDouble(getLongueurChalet(), getLargeurChalet() - getEpaisseurChalet());
 
+        //points de face
         //Ici il y a une twist: on a besoin de creer les points de l'arriere, mais on a besoin de les creer dans le sens inverse
         PointDouble pointInfGaucheArriere = new PointDouble(getLongueurChalet(), 0); // Meme chose que mur de face mais en points inverses!
         PointDouble pointSupGaucheArriere = new PointDouble(getLongueurChalet(), getHauteurMurs());
@@ -75,11 +79,13 @@ public class Chalet {
 
     public void initialiserMurGauche(){
 
+        //points de haut
         PointDouble pointInfGauche = new PointDouble(0, 0);
         PointDouble pointSupGauche = new PointDouble(0, getLargeurChalet());
         PointDouble pointSupDroit = new PointDouble(getEpaisseurChalet(), getLargeurChalet());
         PointDouble pointInfDroit = new PointDouble(getEpaisseurChalet(), 0);
 
+        //points de face
         PointDouble pointInfGaucheFace = new PointDouble(0, 0);
         PointDouble pointSupGaucheFace = new PointDouble(0, getHauteurMurs());
         PointDouble pointSupDroitFace = new PointDouble(getLargeurChalet(), getHauteurMurs());
@@ -94,11 +100,13 @@ public class Chalet {
 
     public void initialiserMurDroite(){
 
+        //points de haut
         PointDouble pointInfGauche = new PointDouble(getLongueurChalet() - getEpaisseurChalet(), 0);
         PointDouble pointSupGauche = new PointDouble(getLongueurChalet() - getEpaisseurChalet(), getLargeurChalet());
         PointDouble pointSupDroit = new PointDouble(getLongueurChalet(), getLargeurChalet());
         PointDouble pointInfDroit = new PointDouble(getLongueurChalet(), 0);
 
+        //points de face
         PointDouble pointInfGaucheFace = new PointDouble(0, 0);
         PointDouble pointSupGaucheFace = new PointDouble(0, getHauteurMurs());
         PointDouble pointSupDroitFace = new PointDouble(getLargeurChalet(), getHauteurMurs());
@@ -169,6 +177,7 @@ public class Chalet {
 
         }
     }
+
 
     public List<Mur> getMursUsines(){
         retirerRainures(listeMurs, 0.3, "Nord");
