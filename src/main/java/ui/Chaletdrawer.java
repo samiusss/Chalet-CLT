@@ -96,7 +96,7 @@ public class Chaletdrawer {
         PointDouble pointInfDroitfc = facade.getSommetsMur().get(6);
         PointDouble pointInfGauchefc = facade.getSommetsMur().get(7);
 
-        // Ajouter un décalage pour séparer le mur
+        // Centrer au milieu du drawingPanel
         double positionX = width/2;
         double positionY = height/2;
 
@@ -197,13 +197,13 @@ public class Chaletdrawer {
         g.drawPolygon(xPointsFacadeCote, yPointsFacadeCote, 4);
 
         ///////////////////////////////////////////////////////
-        //////////Vue de coté arrière, if controle.vue == arriere; //////////
+        //////////Vue de coté arrière, if controle.vue == arriere;
         ////////////////////////////////
-        int x1ac = (int) pointInfGaucheac.getX();
-        int y1ac = (int) pointInfGaucheac.getY();
+        int x2ac = (int) pointInfGaucheac.getX();
+        int y2ac = (int) pointInfGaucheac.getY();
 
-        int x2ac = (int) pointInfDroitac.getX();
-        int y2ac = (int) pointInfDroitac.getY();
+        int x1ac = (int) pointInfDroitac.getX();
+        int y1ac = (int) pointInfDroitac.getY();
 
         int x3ac = (int) pointSupGaucheac.getX();
         int y3ac = (int) pointSupGaucheac.getY();
@@ -236,3 +236,5 @@ public class Chaletdrawer {
         g.fillPolygon(xPointsP, yPointsP, 4);*/
     }
     }
+
+
