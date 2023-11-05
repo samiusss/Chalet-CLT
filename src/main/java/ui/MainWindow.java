@@ -46,6 +46,8 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel DrawingPanelCoordonéesLabel;
     private JButton PannelDroitAjoutPorteButton;
     private JButton PannelDroitAjoutFenetreButton;
+
+    // private JMenuBar menuBar1;
     //private ui.DrawingPanel DrawingPanel;
 
 
@@ -95,7 +97,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
             isAddingFenetre = false;
         }
-
     }
 
     private void initComponents() {
@@ -107,7 +108,7 @@ public class MainWindow extends javax.swing.JFrame {
         pannelAffichage.add(DrawingPanel);
 
         setContentPane(pannelAffichage);
-        setSize(1000, 1000);
+        setSize(500, 500);
         setLocationRelativeTo(null);
 
         /* UndoButton.addActionListener(new ActionListener() {

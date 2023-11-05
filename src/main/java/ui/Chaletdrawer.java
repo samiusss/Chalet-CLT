@@ -45,8 +45,7 @@ public class Chaletdrawer {
 
         // largeur et les hauteurs, il les transforme en sommets
 
-
-        // Coordonné
+        // Coordonnée
         /*double PointSupDroitFenetre = ;
         double PointSupGaucheFenetre = ;
         double PointInfGaucheFenetre = ;
@@ -139,7 +138,7 @@ public class Chaletdrawer {
         PointDouble rainureDroite2a = arriere.getSommetsMur().get(11);
 
     // Ajouter un décalage pour séparer le mur
-        double positionZeroArriere = 420;
+        double positionZeroArriere = 400;
 
     // Convertissez les coordonnées en entiers
         int x1a = (int) (pointInfDroita.getX() + positionZero);
@@ -172,6 +171,7 @@ public class Chaletdrawer {
         chalet.initialiserMurDroite();
         chalet.initialiserMurGauche();
 
+///////////////////////////////////////////////////////
 //////////Vue de coté facade, if controle.vue == facade; //////////
         ////////////////////////////////
 
