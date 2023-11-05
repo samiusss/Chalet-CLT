@@ -1,8 +1,5 @@
 package ui;
-
-import domain.Accessoires;
-import domain.Controleur;
-
+import domain.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,11 +9,10 @@ import java.awt.event.ItemListener;
 
 public class MainWindow extends javax.swing.JFrame {
     private Controleur controleur;
-    private ApplicationMode actualMode;
-
-    public enum ApplicationMode {
-        SELECT, ADD
-    }
+    private AccessoiresModes actualMode;
+    // Ces attributs servent à la gestion du déplacement.
+    public Point actualMousePoint = new Point();
+    public Point delta = new Point();
 
 
     private JPanel PanelGauche;
@@ -62,14 +58,16 @@ public class MainWindow extends javax.swing.JFrame {
         controleur = new Controleur();
         initComponents();
 
-        /*PannelDroitAjoutPorteButton.addActionListener(new ActionListener() {
+
+
+       /* PannelDroitAjoutPorteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
 
 
-        }); */
+        });*/
 
         /* PannelDroitAjoutFenetreButton.addActionListener(new ActionListener() {
 
@@ -89,6 +87,8 @@ public class MainWindow extends javax.swing.JFrame {
         setContentPane(DrawingPanel);
         setSize(1000, 1000);
         setLocationRelativeTo(null);
+
+
 
 
 
@@ -120,6 +120,21 @@ public class MainWindow extends javax.swing.JFrame {
     {
         this.selectedAccessoiresModes = newMode;
     }
+
+    private void FENETREButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        this.setMode(AccessoiresModes.FENETRE);
+    }
+    private void PORTEBUTTONACTIONPERFORMED(java.awt.event.ActionEvent evt){
+        this.setMode(AccessoiresModes.PORTE);
+    }
+    private void drawingPanelMousePressed(java.awt.event.MouseEvent evt){
+        Point mousePoint = evt.getPoint();
+        this.actualMousePoint = mousePoint;
+        if (this.actualMode == AccessoiresModes.PORTE){
+
+        }
+    }
+
 
 
 }

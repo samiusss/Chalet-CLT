@@ -7,13 +7,13 @@ public class Controleur {
     private float offset;
 
 
-    /*public Controleur (Chalet chalet){
+   /* public Controleur (Chalet chalet){
         this.chalet = chalet;
-    }
-    public BasketController() {
-        basket = new Basket();
     }*/
-
+    /*public Controleur() {
+        chalet = new Chalet();
+    }
+*/
 
 
     public boolean ajouterFenetre(Point mousepoint){
