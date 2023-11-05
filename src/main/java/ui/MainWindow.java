@@ -15,6 +15,7 @@ public class MainWindow extends javax.swing.JFrame {
     public Point delta = new Point();*/
 
     private boolean isAddingPorte = false; // État pour indiquer si l'utilisateur est en mode d'ajout de porte
+    private boolean isAddingFenetre = false; // Moyen de valider si l'utilisateur ajoute une fenetre
     private JPanel PanelGauche;
     private JPanel PanelHaut;
     private JPanel PannelDroit;
@@ -67,7 +68,17 @@ public class MainWindow extends javax.swing.JFrame {
                 isAddingPorte = true;
             }
         });
+        PannelDroitAjoutFenetreButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isAddingFenetre = true;
+
+            }
+
+        });
     }
+
 
     private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
         if (isAddingPorte) {
@@ -79,21 +90,16 @@ public class MainWindow extends javax.swing.JFrame {
             }
             isAddingPorte = false;
         }
-    }
-
-
-
-
-        /* PannelDroitAjoutFenetreButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
+        if (isAddingFenetre){
+            Point mousePoint = evt.getPoint();
+            boolean ajoutFenetrereussi = controleur.ajouterFenetre(mousePoint);
+            if (ajoutFenetrereussi){
+            }else {
             }
+            isAddingFenetre = false;
+        }
 
-        }); */
-
-
+    }
 
 
 
