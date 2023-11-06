@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Fenetre extends Accessoires implements Serializable {
 
-    private List<pointPouces> sommetsFenetre;
+    public List<pointPouces> sommetsFenetre;
 
     public Point mousePoint;
     public static Pouces FENETRE_LARGEUR_STANDARD = new Pouces(10, 0, 1) ;
@@ -39,6 +39,10 @@ public class Fenetre extends Accessoires implements Serializable {
         return true;
     }
     // version pas tout a fait finie reste a voir la convertion avec des pixels
+    public List<pointPouces> getSommetsFenetre(){
+        return this.sommetsFenetre;
+    }
+
     public void CreersommetFenetre(){
         pointPouces pointFenetreSupDroit = new pointPouces(getPointPouces(mousePoint).getX().addPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
         pointPouces pointFenetreSupGauche=new pointPouces(getPointPouces(mousePoint).getX().substractPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));

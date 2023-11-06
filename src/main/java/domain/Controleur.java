@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.util.List;
 
 public class Controleur {
-    private Chalet chalet;
+    private ChaletDTO chalet;
     private float zoom;
     private float offset;
 
@@ -46,10 +46,9 @@ public class Controleur {
         //accessoiresmur.add(newPorte);
     }
 //test
-    public Chalet getChalet() {
+    public ChaletDTO getChalet() {
         return chalet;
     }
-
     public float getZoom () {
         return zoom;
     }
