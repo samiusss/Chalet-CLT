@@ -73,10 +73,6 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel AccessoireID;
     private JLabel AccessoirePanelLargeurPanel;
 
-    // private JMenuBar menuBar1;
-    //private ui.DrawingPanel DrawingPanel;
-
-
     public MainWindow() {
         controleur = new Controleur();
         initComponents();

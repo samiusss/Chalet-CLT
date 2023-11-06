@@ -39,6 +39,10 @@ public class Fenetre extends Accessoires implements Serializable {
         return true;
     }
     // version pas tout a fait finie reste a voir la convertion avec des pixels
+    public List<pointPouces> getSommetsFenetre(){
+        return this.sommetsFenetre;
+    }
+
     public void CreersommetFenetre(){
         pointPouces pointFenetreSupDroit = new pointPouces(getPointPouces(mousePoint).getX().addPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
         pointPouces pointFenetreSupGauche=new pointPouces(getPointPouces(mousePoint).getX().substractPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));

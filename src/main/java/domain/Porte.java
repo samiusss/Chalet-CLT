@@ -9,10 +9,9 @@ import Utilitaires.*;
 public class Porte extends Accessoires implements Serializable {
 
     private List<pointPouces> sommetsPorte;
+    public Point mousePoint;
     public static Pouces PORTE_LARGEUR_STANDARD = new Pouces(15, 0, 1);
     public static Pouces PORTE_HAUTEUR_STANDARD = new Pouces(35, 0, 1);
-
-    public Point mousePoint;
 
     public Porte(Point mousepoint,Pouces largeur, Pouces hauteur) {
         super(largeur, hauteur);
@@ -37,6 +36,7 @@ public class Porte extends Accessoires implements Serializable {
         PORTE_HAUTEUR_STANDARD = valeur;
         return true;
     }
+
     // version pas tout a fait finie reste a voir la convertion avec des pixels
     public void CreersommetPorte(){
         pointPouces pointPorteSupDroit = new pointPouces(getPointPouces(mousePoint).getX().addPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
@@ -49,6 +49,9 @@ public class Porte extends Accessoires implements Serializable {
         sommetsPorte.add(pointPorteInfDroit);
 
         }
+    public List<pointPouces> getSommetsPorte(){
+        return this.sommetsPorte;
+    }
 
     }
 
