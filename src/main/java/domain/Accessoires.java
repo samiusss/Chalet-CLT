@@ -11,7 +11,7 @@ public abstract class Accessoires implements Serializable {
     public Pouces largeur;
     public Pouces hauteur;
 
-    public Accessoires(UUID AID,Point mousepoint, Pouces largeur, Pouces hauteur) {
+    public Accessoires(Pouces largeur, Pouces hauteur) {
         this.mousepoint = mousepoint;
         this.largeur = largeur;
         this.hauteur = hauteur;

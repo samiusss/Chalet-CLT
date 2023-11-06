@@ -14,9 +14,10 @@ public class Porte extends Accessoires implements Serializable {
 
     public Point mousePoint;
 
-    public Porte(UUID AID, Point mousepoint, List<pointPouces> sommetsPorte, Pouces largeur, Pouces hauteur) {
-        super(AID,mousepoint, largeur, hauteur);
-        this.sommetsPorte = sommetsPorte;
+    public Porte(Point mousepoint,Pouces largeur, Pouces hauteur) {
+        super(largeur, hauteur);
+        this.mousePoint = mousepoint;
+
     }
 
     public Point getPoint() {

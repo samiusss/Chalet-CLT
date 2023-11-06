@@ -271,7 +271,7 @@ public class Chalet {
 
         Pouces largeur = new Pouces(10, 0, 1);
         Pouces hauteur = new Pouces(10, 0, 1);
-       // Fenetre Fenetre = new Fenetre(largeur,hauteur);  Revoir le constructeur de fenetre
+        Fenetre Fenetre = new Fenetre(mousepoint,largeur,hauteur);
 
 
         int numMur = 0;

@@ -13,9 +13,9 @@ public class Fenetre extends Accessoires implements Serializable {
     public static Pouces FENETRE_LARGEUR_STANDARD = new Pouces(10, 0, 1) ;
     public static Pouces FENETRE_HAUTEUR_STANDARD = new Pouces(10, 0, 1) ;
 
-    public Fenetre(UUID AID,Point mousepoint, List<pointPouces> sommetsFenetre, Pouces largeur, Pouces hauteur) {
-        super(AID,mousepoint, largeur, hauteur);
-        this.sommetsFenetre = sommetsFenetre;
+    public Fenetre(Point mousepoint, Pouces largeur, Pouces hauteur) {
+        super(largeur, hauteur);
+        this.mousePoint = mousepoint;
     }
 
     public Point getPoint() {
