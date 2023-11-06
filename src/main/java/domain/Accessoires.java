@@ -36,7 +36,6 @@ public abstract class Accessoires implements Serializable {
         return hauteur;
     }
 
-
     public void setLargeur(Pouces largeur) {
         this.largeur = largeur;
     }
