@@ -29,7 +29,7 @@ public class Chaletdrawer {
 
     private void drawFenetre(Graphics g)
     {
-        ArrayList<pointPouces> sommetsFenetre = new ArrayList<>() ;
+        /* ArrayList<pointPouces> sommetsFenetre = new ArrayList<>() ;
         g.setColor(new Color(1, 100, 166));
 
         // Appeler dimensions Fenetre
@@ -50,6 +50,7 @@ public class Chaletdrawer {
         pointPouces pointFenetreSupGauche = sommetsFenetre.get(1);
         pointPouces pointFenetreInfGauche = sommetsFenetre.get(2);
         pointPouces pointFenetreInfDroit = sommetsFenetre.get(3);
+
 
         //g.fillRect();
 
