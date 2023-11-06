@@ -52,14 +52,27 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel MurPannelTabbedPaneDerrièreLabel;
     private JPanel MurPannelTabbedPaneGaucheLabel;
     private JPanel MurPannelTabbedPaneDroitLabel;
-    private JTextField textField3;
-    private JTextField textField4;
+    private JTextField MurPannelTabbedPaneDerriereLabelLongeurTextField;
+    private JTextField MurPannelTabbedPaneDerriereLabelLargeurTextField;
     private JLabel MurPannelTabbedPaneFaçadeLabelLongeurLabel;
     private JLabel MurPannelTabbedPaneFaçadeLabelLargeurLabel;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField5;
-    private JTextField textField6;
+    private JTextField MurPannelTabbedPaneDroitLabelLongeurTextField;
+    private JTextField MurPannelTabbedPaneDroitLabelLargeurTextField;
+    private JTextField MurPannelTabbedPaneGaucheLabelLongeurTextField;
+    private JTextField MurPannelTabbedPaneGaucheLabelLargeurTextField;
+    private JLabel MurPannelTabbedPaneDerriereLabelLongeurLabel;
+    private JLabel MurPannelTabbedPaneDerriereLabelLargeurLabel;
+    private JLabel MurPannelTabbedPaneDroitLabelLongeurlabel;
+    private JLabel MurPannelTabbedPaneDroitLabelLargeurLabel;
+    private JLabel MurPannelTabbedPaneGaucheLabelLongeurLabel;
+    private JLabel MurPannelTabbedPaneGaucheLabelLargeurLabel;
+    private JTextField AccessoirePanelLongeurTextField;
+    private JTextField AccessoirePanelLargeurTextField;
+    private JLabel AccessoireLabel;
+    private JLabel AccessoirePanelLongeurPanel;
+    private JLabel AccessoirePanelIDPanel;
+    private JLabel AccessoireID;
+    private JLabel AccessoirePanelLargeurPanel;
 
     // private JMenuBar menuBar1;
     //private ui.DrawingPanel DrawingPanel;
@@ -114,6 +127,69 @@ public class MainWindow extends javax.swing.JFrame {
                         //}
                     }
 
+        });
+        MurPannelTabbedPaneFaçadeLabelLongeurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneFaçadeLabelLongeurTextField.getText();
+            }
+        });
+        MurPannelTabbedPaneFaçadeLabelLongeurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneFaçadeLabelLongeurTextField.getText();
+            }
+        });
+        MurPannelTabbedPaneFaçadeLabelLongeurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneFaçadeLabelLongeurTextField.getText();
+            }
+        });
+        MurPannelTabbedPaneDerriereLabelLargeurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneDerriereLabelLargeurTextField.getText();
+            }
+        });
+
+
+        MurPannelTabbedPaneDroitLabelLongeurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneDroitLabelLongeurTextField.getText();
+            }
+        });
+        MurPannelTabbedPaneDroitLabelLargeurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneDroitLabelLargeurTextField.getText();
+            }
+        });
+        MurPannelTabbedPaneGaucheLabelLongeurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneGaucheLabelLongeurTextField.getText();
+            }
+        });
+        MurPannelTabbedPaneGaucheLabelLargeurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneGaucheLabelLargeurTextField.getText();
+            }
+        });
+        AccessoirePanelLongeurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = AccessoirePanelLongeurTextField.getText();
+            }
+        });
+
+        AccessoirePanelLargeurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = AccessoirePanelLargeurTextField.getText();
+            }
         });
     }
 
