@@ -191,6 +191,10 @@ public class MainWindow extends javax.swing.JFrame {
                 String inputText = AccessoirePanelLargeurTextField.getText();
             }
         });
+
+//        public void setAccessoireIDText(String Accessoires.UUID) {
+//            AccessoireID.setText(Accessoires.UUID);
+//        }
     }
 
 
@@ -231,7 +235,7 @@ public class MainWindow extends javax.swing.JFrame {
         DrawingPanel.setPreferredSize(new java.awt.Dimension(555, 424));
         DrawingPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setContentPane(FenetrePrincipale);
-        setSize(500, 500);
+        setSize(1200, 700);
         setLocationRelativeTo(null);
 
 
