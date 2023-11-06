@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 
 public class MainWindow extends javax.swing.JFrame {
     private Controleur controleur;
@@ -82,6 +85,34 @@ public class MainWindow extends javax.swing.JFrame {
 
         });
 
+
+        VueComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                        // Check which option is selected and call the corresponding drawing function
+//                        String selectedOption = (String) VueComboBox.getSelectedItem();
+//                        if (selectedOption != null) {
+//                            switch (selectedOption) {
+//                                case "Facade":
+//                                    drawFacade();
+//                                    break;
+//                                case "Arriere":
+//                                    drawArriere();
+//                                    break;
+//                                case "Droit":
+//                                    drawDroit();
+//                                    break;
+//                                case "Gauche":
+//                                    drawGauche();
+//                                    break;
+//                                default:
+//                                    // Handle any other cases or do nothing
+//                                    break;
+                            //}
+                        //}
+                    }
+
+        });
     }
 
 
@@ -169,6 +200,5 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
 */
-
-}
+    }
 
