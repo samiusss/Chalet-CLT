@@ -20,7 +20,7 @@ public class DrawingPanel extends JPanel implements Serializable {
     public DrawingPanel(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
         controleur = new Controleur();
-        setPreferredSize(new Dimension(1000, 1000));
+        setPreferredSize(new Dimension(700, 700));
     }
 
     @Override

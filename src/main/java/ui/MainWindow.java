@@ -38,7 +38,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel VueLabel;
     private JPanel PannelAffichage;
 
-    private DrawingPanel DrawingPanel;
+    private JPanel DrawingPanel;
     private JLabel DrawingPanelCoordonéesLabel;
     private JButton PannelDroitAjoutPorteButton;
     private JButton PannelDroitAjoutFenetreButton;
@@ -61,10 +61,6 @@ public class MainWindow extends javax.swing.JFrame {
     // private JMenuBar menuBar1;
     //private ui.DrawingPanel DrawingPanel;
 
-
-    public JPanel getPannelAffichage() {
-        return PannelAffichage;
-    };
 
     public MainWindow() {
         controleur = new Controleur();
@@ -111,13 +107,13 @@ public class MainWindow extends javax.swing.JFrame {
 
         DrawingPanel = new DrawingPanel(this);
 
-        JPanel pannelAffichage = this.getPannelAffichage();
-        pannelAffichage.setLayout(new FlowLayout(FlowLayout.CENTER));
-        pannelAffichage.add(DrawingPanel);
+        PannelAffichage.setLayout(new BorderLayout());
+        PannelAffichage.add(DrawingPanel, BorderLayout.CENTER);
 
-        setContentPane(pannelAffichage);
+        setContentPane(FenetrePrincipale);
         setSize(500, 500);
         setLocationRelativeTo(null);
+
 
         /* UndoButton.addActionListener(new ActionListener() {
             @Override
@@ -139,8 +135,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         //Configure the layout for FenetrePrincipale n'affiche plus quand je add drawingPanel donc je le mets en commentaires jusqua que ca change
 
-        DrawingPanel.setLayout(new FlowLayout());
-        DrawingPanel.add(FenetrePrincipale, BorderLayout.WEST);
     }
 
 
