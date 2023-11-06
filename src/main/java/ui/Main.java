@@ -30,7 +30,8 @@ public class Main {
         chalet.initialiserMurArriere();
         chalet.initialiserMurDroite();
         chalet.initialiserMurGauche();
-        chalet.getMursUsines();
+        chalet.retirerRainures(listeMurs, 0.3, "Nord");
+        //chalet.getMursUsines();
         //chalet.afficherListeMurs();
 
 
