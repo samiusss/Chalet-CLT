@@ -16,9 +16,9 @@ public class Controleur {
 */
 
 
-    public boolean ajouterFenetre(Point mousepoint){
+    public boolean ajouterFenetre(Point mousepoint, String nomMur){
 
-        if(Chalet.ajouterFenetre(mousepoint))
+        if(Chalet.ajouterFenetre(mousepoint, nomMur))
         {
             return true;
         }
@@ -29,9 +29,9 @@ public class Controleur {
 
     }
 
-    public boolean ajouterPorte(Point mousepoint){
+    public boolean ajouterPorte(Point mousepoint, String nomMur){
 
-        if(Chalet.ajouterPorte(mousepoint))
+        if(Chalet.ajouterPorte(mousepoint, nomMur))
         {
             return true;
         }

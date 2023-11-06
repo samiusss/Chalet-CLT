@@ -85,12 +85,18 @@ public class MainWindow extends javax.swing.JFrame {
             }
 
         });
+
     }
+
 
     private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
         if (isAddingPorte) {
+            System.out.println("ajoutFenetrereussi");
+
             Point mousePoint = evt.getPoint();
-            boolean ajoutReussi = controleur.ajouterPorte(mousePoint);
+            String nomMur = "Droite";
+            boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur);
+
 
             if (ajoutReussi) {
             } else {
@@ -99,7 +105,11 @@ public class MainWindow extends javax.swing.JFrame {
         }
         if (isAddingFenetre){
             Point mousePoint = evt.getPoint();
-            boolean ajoutFenetrereussi = controleur.ajouterFenetre(mousePoint);
+            String nomMur = "Droite";
+            boolean ajoutFenetrereussi = controleur.ajouterFenetre(mousePoint,nomMur);
+            System.out.println("ajoutFenetrereussi");
+
+
             if (ajoutFenetrereussi){
             }else {
             }

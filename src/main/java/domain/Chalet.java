@@ -231,10 +231,34 @@ public class Chalet {
 
     }
 
+    public static int determinerMur(String nomMur){
 
-    public static boolean ajouterPorte(Point mousepoint){
+        int numMur = 0;
+        if (nomMur == "Facade") {
+            numMur = 0;
+        }
+        if (nomMur == "Arriere") {
+            numMur = 1;
 
-        Mur mur = listeMurs.get(0);
+        }
+        if(nomMur == "Droite" ) {
+            numMur = 2;
+
+        }
+        if (nomMur == "Arriere") {
+            numMur = 3;
+
+        }
+        return numMur;
+
+    }
+
+
+    public static boolean ajouterPorte(Point mousepoint, String nomMur){
+
+        int numMur = determinerMur(nomMur);
+
+        Mur mur = listeMurs.get(numMur);
 
         //Une porte par mur
         List<Porte> listePorte = mur.getListePorte();
@@ -257,25 +281,27 @@ public class Chalet {
         Point murPoint = new Point(x,y);
         Porte Porte = new Porte(positionPorte, murPoint);
 
-        listeMurs.get(0).addPorte(Porte);
-        success = true;
         */
+        Pouces largeur = new Pouces(10, 0, 1);
+        Pouces hauteur = new Pouces(10, 0, 1);
+        Porte Porte = new Porte(mousepoint,largeur, hauteur );
 
-        return true;
+        boolean success = mur.ajouterPorte(Porte);
+
+        return success;
 
     }
 
 
-    public static boolean ajouterFenetre(Point mousepoint){
+    public static boolean ajouterFenetre(Point mousepoint, String nomMur){
 
         Pouces largeur = new Pouces(10, 0, 1);
         Pouces hauteur = new Pouces(10, 0, 1);
         Fenetre Fenetre = new Fenetre(mousepoint,largeur,hauteur);
 
+        int numMur = determinerMur(nomMur);
 
-        int numMur = 0;
-
-            Mur mur = listeMurs.get(numMur);
+        Mur mur = listeMurs.get(numMur);
             List<Fenetre> listeFenetre = mur.getListeFenetre();
             int lenghtlisteFenetre = listeFenetre.size();
 
@@ -283,9 +309,7 @@ public class Chalet {
                 mur.clearListeFenetre();
             }
 
-
-            //listeMurs.get(numMur).ajouterFenetre(Fenetre);
-            boolean success = true;
+        boolean success = mur.ajouterFenetre(Fenetre);
 
         return success;
     }
