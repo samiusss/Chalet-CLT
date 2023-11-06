@@ -109,7 +109,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         PannelAffichage.setLayout(new BorderLayout());
         PannelAffichage.add(DrawingPanel, BorderLayout.CENTER);
-
+        DrawingPanel.setPreferredSize(new java.awt.Dimension(540, 324));
+        DrawingPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setContentPane(FenetrePrincipale);
         setSize(500, 500);
         setLocationRelativeTo(null);

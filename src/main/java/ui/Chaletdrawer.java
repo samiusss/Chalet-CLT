@@ -14,7 +14,6 @@ public class Chaletdrawer {
     private Controleur controleur;
     private Chalet chalet;
     private Accessoires accessoires;
-
     private Dimension initialDimension;
 
     public Chaletdrawer(Controleur controleur, Dimension initialDimension){
@@ -63,10 +62,10 @@ public class Chaletdrawer {
         g.setColor(new Color(166, 66, 66));
 
         //Dimensions du mur en 3D
-        double epaisseurMur = 2*Chalet.epaisseurChalet; // Épaisseur du mur test local
-        double hauteurMurs = 2*Chalet.hauteurMurs; // Hauteur des murs, sera utilisée pour les vues de côté
-        double largeurMur = 2*Chalet.largeurChalet; // Largeur des murs venant de chalet
-        double longueurMur = 2*Chalet.longueurChalet;
+        double epaisseurMur = 2*chalet.epaisseurChalet; // Épaisseur du mur test local
+        double hauteurMurs = 2*chalet.hauteurMurs; // Hauteur des murs, sera utilisée pour les vues de côté
+        double largeurMur = 2*chalet.largeurChalet; // Largeur des murs venant de chalet
+        double longueurMur = 2*chalet.longueurChalet;
         double angleToit = 0.0;
 
         //////////////////////////////////////////////////
