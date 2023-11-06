@@ -4,6 +4,8 @@ import domain.Controleur;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.io.Serializable;
 
 
@@ -11,6 +13,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 
     private MainWindow mainWindow;
     private Controleur controleur;
+    private double zoomFactor = 1.0;
 
     /*public DrawingPanel() {
         controleur = new Controleur();
@@ -21,6 +24,18 @@ public class DrawingPanel extends JPanel implements Serializable {
         this.mainWindow = mainWindow;
         controleur = new Controleur();
         setPreferredSize(new Dimension(700, 700));
+
+//        addMouseWheelListener(new MouseWheelListener() {
+//            @Override
+//            public void mouseWheelMoved(MouseWheelEvent e) {
+//                int notches = e.getWheelRotation();
+//                if (notches < 0) {
+//                    zoomIn();
+//                } else {
+//                    zoomOut();
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -39,4 +54,32 @@ public class DrawingPanel extends JPanel implements Serializable {
     public void setMainWindow(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
     }
+
+    private void zoomIn() {
+        zoomFactor += 0.1; // You can adjust the zoom level as needed
+        applyZoom();
+    }
+
+    private void zoomOut() {
+        zoomFactor -= 0.1; // You can adjust the zoom level as needed
+        applyZoom();
+    }
+
+    private void applyZoom() {
+        // Ensure the zoom factor is within a reasonable range (e.g., prevent negative zoom)
+        if (zoomFactor < 0.1) {
+            zoomFactor = 0.1;
+        }
+
+        // Update the size of the drawing
+        int newWidth = (int) (getPreferredSize().getWidth() * zoomFactor);
+        int newHeight = (int) (getPreferredSize().getHeight() * zoomFactor);
+        setPreferredSize(new Dimension(newWidth, newHeight));
+
+        // Repaint the drawing to reflect the changes
+        revalidate();
+        repaint();
+    }
+
+
 }
