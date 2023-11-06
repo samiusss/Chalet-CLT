@@ -36,7 +36,7 @@ public class Chaletdrawer {
         Pouces largeurFenetre = Fenetre.FENETRE_LARGEUR_STANDARD;
         Pouces hauteurFenetre = Fenetre.FENETRE_HAUTEUR_STANDARD;
 
-        //Fenetre.CreersommetFenetre();
+        //Fenetre.CreersommetFenetre(); Rafiou donne moi des nouvelles, cela ne marche pas
 
         double x_fenetre = ConvertisseurMesures.convertirPoucesEnPixels(largeurFenetre);
         double y_fenetre = ConvertisseurMesures.convertirPoucesEnPixels(hauteurFenetre);
@@ -69,7 +69,7 @@ public class Chaletdrawer {
         double angleToit = 0.0;
 
         //////////////////////////////////////////////////
-         /// Vue par dessus, if controleur.vue==dessus////
+         /// Vue par dessus, if controleur.vue.listener==dessus////
           /////////////////////////////////////////////////
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
@@ -141,7 +141,7 @@ public class Chaletdrawer {
         PointDouble pointInfDroitac = arriere.getSommetsMur().get(7);
         PointDouble pointInfGaucheac = arriere.getSommetsMur().get(4);
 
-    // Convertissez les coordonnées en entiers
+    // Convertir les coordonnées en entiers
         int x1a = (int) (pointInfDroita.getX() + positionX);
         int y1a = (int) (pointInfDroita.getY() + positionX);
         int x1r1a = (int) (rainureDroite1a.getX() + positionX);
@@ -174,8 +174,8 @@ public class Chaletdrawer {
         chalet.initialiserMurGauche();
 
     ///////////////////////////////////////////////////////
-    //////////Vue de coté facade, if controle.vue == facade; //////////
-            ////////////////////////////////
+    //////////Vue de coté facade, if controle.vue.listener == facade;
+            /////////////////////////////////////////
 
         int x1fc = (int) pointInfGauchefc.getX();
         int y1fc = (int) pointInfGauchefc.getY();
@@ -197,7 +197,7 @@ public class Chaletdrawer {
         g.fillPolygon(xPointsFacadeCote, yPointsFacadeCote, 4);
 
         ///////////////////////////////////////////////////////
-        //////////Vue de coté arrière, if controle.vue == arriere;
+        //////////Vue de coté arrière, if controle.vue.listener == arriere;
         ////////////////////////////////
         int x2ac = (int) pointInfGaucheac.getX();
         int y2ac = (int) pointInfGaucheac.getY();
@@ -235,6 +235,4 @@ public class Chaletdrawer {
         };
         g.fillPolygon(xPointsP, yPointsP, 4);*/
     }
-    }
-
-
+}
