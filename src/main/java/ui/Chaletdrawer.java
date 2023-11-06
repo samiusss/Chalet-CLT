@@ -14,7 +14,6 @@ public class Chaletdrawer {
     private Controleur controleur;
     private Chalet chalet;
     private Accessoires accessoires;
-
     private Dimension initialDimension;
 
     public Chaletdrawer(Controleur controleur, Dimension initialDimension){
@@ -63,10 +62,10 @@ public class Chaletdrawer {
         g.setColor(new Color(166, 66, 66));
 
         //Dimensions du mur en 3D
-        double epaisseurMur = 2*Chalet.epaisseurChalet; // Épaisseur du mur test local
-        double hauteurMurs = 2*Chalet.hauteurMurs; // Hauteur des murs, sera utilisée pour les vues de côté
-        double largeurMur = 2*Chalet.largeurChalet; // Largeur des murs venant de chalet
-        double longueurMur = 2*Chalet.longueurChalet;
+        double epaisseurMur = 2*chalet.epaisseurChalet; // Épaisseur du mur test local
+        double hauteurMurs = 2*chalet.hauteurMurs; // Hauteur des murs, sera utilisée pour les vues de côté
+        double largeurMur = 2*chalet.largeurChalet; // Largeur des murs venant de chalet
+        double longueurMur = 2*chalet.longueurChalet;
         double angleToit = 0.0;
 
         //////////////////////////////////////////////////
@@ -123,7 +122,7 @@ public class Chaletdrawer {
         int[] xPoints = {x1, x1r2, x1r1, x2, x3, x3r2, x3r1, x4};
         int[] yPoints = {y1, y1r2, y1r1, y2, y3, y3r2, y3r1, y4};
 
-        g.drawPolygon(xPoints, yPoints, 8);
+        g.fillPolygon(xPoints, yPoints, 8);
 
     // Accéder aux coordonnées de Mur: Arrière
         Mur arriere = chalet.getListeMurs().get(1);
@@ -166,9 +165,10 @@ public class Chaletdrawer {
         // Construire tableaux de coordonnées pour le mur arrière
         int[] xPointsArriere = {x1a, x1r2a, x1r1a, x2a, x3a, x3r2a, x3r1a, x4a};
         int[] yPointsArriere = {y1a, y1r2a, y1r1a, y2a, y3a, y3r2a, y3r1a, y4a};
+        g.setColor(new Color(66, 66, 166));
 
         // Dessiner le polygone pour le mur arrière
-        g.drawPolygon(xPointsArriere, yPointsArriere, 8);
+        g.fillPolygon(xPointsArriere, yPointsArriere, 8);
 
         chalet.initialiserMurDroite();
         chalet.initialiserMurGauche();
@@ -194,7 +194,7 @@ public class Chaletdrawer {
         int[] yPointsFacadeCote = {y1fc, y2fc, y3fc, y4fc};
 
         // Dessiner le polygone pour le mur facade de coté (fc)
-        g.drawPolygon(xPointsFacadeCote, yPointsFacadeCote, 4);
+        g.fillPolygon(xPointsFacadeCote, yPointsFacadeCote, 4);
 
         ///////////////////////////////////////////////////////
         //////////Vue de coté arrière, if controle.vue == arriere;
@@ -216,7 +216,7 @@ public class Chaletdrawer {
         int[] yPointsArriereCote = {y1ac, y2ac, y3ac, y4ac};
 
         // Dessiner le polygone pour le mur facade de coté (fc)
-        g.drawPolygon(xPointsArriereCote, yPointsArriereCote, 4);
+        g.fillPolygon(xPointsArriereCote, yPointsArriereCote, 4);
 
         // Dessiner le mur de façade en profondeur, pour ressemble à celui de l'énoncé, laisser en commentaires
         /*double pointDeVue3D = 120; // Hauteur de la perspective
