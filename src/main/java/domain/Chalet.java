@@ -20,6 +20,7 @@ public class Chalet {
     public static double epaisseurChalet = 2.0;
     public static double angleToit;
     public static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
+    public static List<Mur> listeMursPourAcc;
     public static String orientationToit;
 
     public Chalet(double largeurChalet, double longueurChalet,
@@ -181,6 +182,7 @@ public class Chalet {
     public List<Mur> getMursUsines(){
         retirerRainures(listeMurs, 0.3, "Nord");
         System.out.println("Liste de murs usines: " + listeMurs);
+        listeMursPourAcc = listeMurs;
         return listeMurs;
     }
 
@@ -254,11 +256,13 @@ public class Chalet {
     }
 
 
-    public static boolean ajouterPorte(Point mousepoint, String nomMur){
+    public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 
         int numMur = determinerMur(nomMur);
 
-        Mur mur = listeMurs.get(numMur);
+         //List<Mur> listeMurs1 = Chalet.getMursUsines();
+
+            Mur mur = listeMursDrawer.get(numMur);
 
         //Une porte par mur
         List<Porte> listePorte = mur.getListePorte();
@@ -293,15 +297,18 @@ public class Chalet {
     }
 
 
-    public static boolean ajouterFenetre(Point mousepoint, String nomMur){
+    public static boolean ajouterFenetre(Point mousepoint, String nomMur,  List<Mur> listeMursDrawer){
 
         Pouces largeur = new Pouces(10, 0, 1);
         Pouces hauteur = new Pouces(10, 0, 1);
         Fenetre Fenetre = new Fenetre(mousepoint,largeur,hauteur);
 
+        //List<Mur> listeMurs1 = Chalet.getMursUsines();
+
+
         int numMur = determinerMur(nomMur);
 
-        Mur mur = listeMurs.get(numMur);
+        Mur mur = listeMursDrawer.get(numMur);
             List<Fenetre> listeFenetre = mur.getListeFenetre();
             int lenghtlisteFenetre = listeFenetre.size();
 

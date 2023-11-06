@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Chaletdrawer {
     private Controleur controleur;
-    private Chalet chalet;
+    public static Chalet chalet;
     private Accessoires accessoires;
     private Dimension initialDimension;
 

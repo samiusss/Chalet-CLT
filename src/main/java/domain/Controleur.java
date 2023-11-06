@@ -1,5 +1,8 @@
 package domain;
+import ui.Chaletdrawer;
+
 import java.awt.Point;
+import java.util.List;
 
 public class Controleur {
     private Chalet chalet;
@@ -16,9 +19,10 @@ public class Controleur {
 */
 
 
-    public boolean ajouterFenetre(Point mousepoint, String nomMur){
 
-        if(Chalet.ajouterFenetre(mousepoint, nomMur))
+    public static boolean ajouterFenetre(Point mousepoint, String nomMur,List<Mur> listeMursDrawer){
+
+        if(Chalet.ajouterFenetre(mousepoint, nomMur,listeMursDrawer))
         {
             return true;
         }
@@ -29,9 +33,10 @@ public class Controleur {
 
     }
 
-    public boolean ajouterPorte(Point mousepoint, String nomMur){
+    public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 
-        if(Chalet.ajouterPorte(mousepoint, nomMur))
+
+        if(Chalet.ajouterPorte(mousepoint, nomMur,listeMursDrawer))
         {
             return true;
         }

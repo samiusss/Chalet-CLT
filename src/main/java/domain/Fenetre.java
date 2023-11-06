@@ -48,5 +48,6 @@ public class Fenetre extends Accessoires implements Serializable {
         sommetsFenetre.add(pointFenetreSupGauche);
         sommetsFenetre.add(pointFenetreInfGauche);
         sommetsFenetre.add(pointFenetreInfDroit);
+
     }
 }

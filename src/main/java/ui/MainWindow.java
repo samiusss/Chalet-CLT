@@ -1,11 +1,14 @@
 package ui;
 
 import domain.Controleur;
+import domain.Mur;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static ui.Chaletdrawer.chalet;
 
 public class MainWindow extends javax.swing.JFrame {
     private Controleur controleur;
@@ -82,7 +85,20 @@ public class MainWindow extends javax.swing.JFrame {
 
         });
 
+
+        Point mousePointt = new Point(2,4);
+        String nomMurr = "Droite";
+        java.util.List<Mur> listeMursDrawer = null ;
+
+        boolean ajoutFenetrereussii = Controleur.ajouterFenetre(mousePointt,nomMurr,listeMursDrawer);
+        System.out.println(ajoutFenetrereussii);
+        System.out.println("ajoutFenetrereussii");
+
+
+
     }
+
+
 
 
     private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
@@ -91,7 +107,8 @@ public class MainWindow extends javax.swing.JFrame {
 
             Point mousePoint = evt.getPoint();
             String nomMur = "Droite";
-            boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur);
+            java.util.List<Mur> listeMursDrawer = chalet.getMursUsines();
+            boolean ajoutReussi = Controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
 
 
             if (ajoutReussi) {
@@ -99,10 +116,12 @@ public class MainWindow extends javax.swing.JFrame {
             }
             isAddingPorte = false;
         }
+
         if (isAddingFenetre){
             Point mousePoint = evt.getPoint();
             String nomMur = "Droite";
-            boolean ajoutFenetrereussi = controleur.ajouterFenetre(mousePoint,nomMur);
+            java.util.List<Mur> listeMursDrawer = chalet.getMursUsines();
+            boolean ajoutFenetrereussi = controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer);
             System.out.println("ajoutFenetrereussi");
 
 
