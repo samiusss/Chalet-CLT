@@ -31,7 +31,7 @@ public class Fenetre extends Accessoires implements Serializable {
         largeur = valeur;
         this.FENETRE_LARGEUR_STANDARD = valeur;
 
-        return true;
+        return false;
     }
     public boolean modifierHauteur(Pouces valeur) {
         hauteur = valeur;
