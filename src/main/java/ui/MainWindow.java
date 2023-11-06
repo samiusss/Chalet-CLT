@@ -40,7 +40,6 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel NomProjetLabel;
     private JLabel VueLabel;
     private JPanel PannelAffichage;
-
     private JPanel DrawingPanel;
     private JLabel DrawingPanelCoordonéesLabel;
     private JButton PannelDroitAjoutPorteButton;
@@ -93,9 +92,7 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 isAddingFenetre = true;
-
             }
-
         });
 
         VueComboBox.addItemListener(new ItemListener() {
@@ -126,7 +123,6 @@ public class MainWindow extends javax.swing.JFrame {
                             //}
                         //}
                     }
-
         });
         MurPannelTabbedPaneFaçadeLabelLongeurTextField.addActionListener(new ActionListener() {
             @Override
@@ -152,8 +148,6 @@ public class MainWindow extends javax.swing.JFrame {
                 String inputText = MurPannelTabbedPaneDerriereLabelLargeurTextField.getText();
             }
         });
-
-
         MurPannelTabbedPaneDroitLabelLongeurTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -184,19 +178,16 @@ public class MainWindow extends javax.swing.JFrame {
                 String inputText = AccessoirePanelLongeurTextField.getText();
             }
         });
-
         AccessoirePanelLargeurTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = AccessoirePanelLargeurTextField.getText();
             }
         });
-
 //        public void setAccessoireIDText(String Accessoires.UUID) {
 //            AccessoireID.setText(Accessoires.UUID);
 //        }
     }
-
 
     private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
         if (isAddingPorte) {
@@ -206,18 +197,17 @@ public class MainWindow extends javax.swing.JFrame {
             String nomMur = "Droite";
             boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur);
 
-
             if (ajoutReussi) {
             } else {
             }
             isAddingPorte = false;
         }
+
         if (isAddingFenetre){
             Point mousePoint = evt.getPoint();
             String nomMur = "Droite";
             boolean ajoutFenetrereussi = controleur.ajouterFenetre(mousePoint,nomMur);
             System.out.println("ajoutFenetrereussi");
-
 
             if (ajoutFenetrereussi){
             }else {
@@ -227,9 +217,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void initComponents() {
-
         DrawingPanel = new DrawingPanel(this);
-
         PannelAffichage.setLayout(new BorderLayout());
         PannelAffichage.add(DrawingPanel, BorderLayout.CENTER);
         DrawingPanel.setPreferredSize(new java.awt.Dimension(555, 424));
@@ -237,7 +225,6 @@ public class MainWindow extends javax.swing.JFrame {
         setContentPane(FenetrePrincipale);
         setSize(1200, 700);
         setLocationRelativeTo(null);
-
 
         /* UndoButton.addActionListener(new ActionListener() {
             @Override
@@ -258,7 +245,6 @@ public class MainWindow extends javax.swing.JFrame {
         }); */
 
         //Configure the layout for FenetrePrincipale n'affiche plus quand je add drawingPanel donc je le mets en commentaires jusqua que ca change
-
     }
 
 
@@ -278,7 +264,6 @@ public class MainWindow extends javax.swing.JFrame {
         Point mousePoint = evt.getPoint();
         this.actualMousePoint = mousePoint;
         if (this.actualMode == AccessoiresModes.PORTE){
-
         }
     }
 */
