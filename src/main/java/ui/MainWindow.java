@@ -85,8 +85,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         });
 
-
         VueComboBox.addItemListener(new ItemListener() {
+            private String getSelectedVueOption() {
+                return (String) VueComboBox.getSelectedItem();
+            }
             @Override
             public void itemStateChanged(ItemEvent e) {
                         // Check which option is selected and call the corresponding drawing function
