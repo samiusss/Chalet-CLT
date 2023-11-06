@@ -25,8 +25,14 @@ public class Chaletdrawer {
     {
         drawFenetre(g);
         drawChalet(g);
+        drawPorte(g);
     }
 
+    private void drawPorte (Graphics g)
+    {
+        ArrayList<pointPouces> sommetsPorte = new ArrayList<>() ;
+        g.setColor(new Color(1,1,1));
+    }
     private void drawFenetre(Graphics g)
     {
         /* ArrayList<pointPouces> sommetsFenetre = new ArrayList<>() ;

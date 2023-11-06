@@ -17,7 +17,6 @@ public class Porte extends Accessoires implements Serializable {
     public Porte(Point mousepoint,Pouces largeur, Pouces hauteur) {
         super(largeur, hauteur);
         this.mousePoint = mousepoint;
-
     }
 
     public Point getPoint() {
