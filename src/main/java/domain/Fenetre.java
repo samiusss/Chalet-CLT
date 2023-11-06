@@ -24,7 +24,7 @@ public class Fenetre extends Accessoires implements Serializable {
 
     public boolean modifierMousePoint(Point newMousePoint) {
         mousePoint = newMousePoint;
-        return true;
+        return false;
     }
 
     public boolean modifierLargeur(Pouces valeur) {
