@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Fenetre extends Accessoires implements Serializable {
 
-    private List<pointPouces> sommetsFenetre;
+    public List<pointPouces> sommetsFenetre;
 
     public Point mousePoint;
     public static Pouces FENETRE_LARGEUR_STANDARD = new Pouces(10, 0, 1) ;

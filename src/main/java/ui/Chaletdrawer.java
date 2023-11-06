@@ -35,11 +35,23 @@ public class Chaletdrawer {
         // Appeler dimensions Fenetre
         Pouces largeurFenetre = Fenetre.FENETRE_LARGEUR_STANDARD;
         Pouces hauteurFenetre = Fenetre.FENETRE_HAUTEUR_STANDARD;
+        //if bouton.listener add.fenetre activated:
+        Point mousepoint = new Point(1,1);
+        Fenetre fenetre = new Fenetre(mousepoint, largeurFenetre, hauteurFenetre);
 
-        //Fenetre.CreersommetFenetre(); Rafiou donne moi des nouvelles, cela ne marche pas
+        fenetre.CreersommetFenetre();
 
-        double x_fenetre = ConvertisseurMesures.convertirPoucesEnPixels(largeurFenetre);
-        double y_fenetre = ConvertisseurMesures.convertirPoucesEnPixels(hauteurFenetre);
+        //double x_fenetre = ConvertisseurMesures.convertirPoucesEnPixels(largeurFenetre);
+        //double y_fenetre = ConvertisseurMesures.convertirPoucesEnPixels(hauteurFenetre);
+
+        //List<pointPouces> sommetsFenetre = fenetre.sommetsFenetre;
+
+        pointPouces pointFenetreSupDroit = sommetsFenetre.get(0);
+        pointPouces pointFenetreSupGauche = sommetsFenetre.get(1);
+        pointPouces pointFenetreInfGauche = sommetsFenetre.get(2);
+        pointPouces pointFenetreInfDroit = sommetsFenetre.get(3);
+
+        //g.fillRect();
 
         // largeur et les hauteurs, il les transforme en sommets
 
@@ -62,10 +74,10 @@ public class Chaletdrawer {
         g.setColor(new Color(166, 66, 66));
 
         //Dimensions du mur en 3D
-        double epaisseurMur = 2*chalet.epaisseurChalet; // Épaisseur du mur test local
-        double hauteurMurs = 2*chalet.hauteurMurs; // Hauteur des murs, sera utilisée pour les vues de côté
-        double largeurMur = 2*chalet.largeurChalet; // Largeur des murs venant de chalet
-        double longueurMur = 2*chalet.longueurChalet;
+        double epaisseurMur = 2*Chalet.epaisseurChalet; // Épaisseur du mur test local
+        double hauteurMurs = 2*Chalet.hauteurMurs; // Hauteur des murs, sera utilisée pour les vues de côté
+        double largeurMur = 2*Chalet.largeurChalet; // Largeur des murs venant de chalet
+        double longueurMur = 2*Chalet.longueurChalet;
         double angleToit = 0.0;
 
         //////////////////////////////////////////////////
@@ -174,7 +186,7 @@ public class Chaletdrawer {
         chalet.initialiserMurGauche();
 
     ///////////////////////////////////////////////////////
-    //////////Vue de coté facade, if controle.vue.listener == facade;
+    ///if Chalet....== "facade";
             /////////////////////////////////////////
 
         int x1fc = (int) pointInfGauchefc.getX();
