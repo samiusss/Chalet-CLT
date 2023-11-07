@@ -172,10 +172,10 @@ public class Chalet {
                     mur.createSommet(mur, new PointDouble((getEpaisseurChalet()/2), (getEpaisseurChalet()/2))); // creer Point(1.5, 1.5)
 
                     //Vue de face
-                    mur.getSommetsMur().get(4).setLocation(getEpaisseurChalet()/2, 0); //A: InfGauche // Point(0, 0) reste Point(0, 0)
-                    mur.getSommetsMur().get(5).setLocation(getEpaisseurChalet()/2, getHauteurMurs()); //B: SupGauche // Point(0, 8.0) reste Point(0, 8.0)
-                    mur.getSommetsMur().get(6).setLocation(getLargeurChalet() - (getEpaisseurChalet()/2), getHauteurMurs()); //C: SupDroite // Point(10.0, 8.0) reste Point(10.0, 8.0)
-                    mur.getSommetsMur().get(7).setLocation(getLargeurChalet() - (getEpaisseurChalet()/2), 0); //D: InfDroite // Point(10.0, 0) reste Point(10.0, 0)
+                    mur.getSommetsMur().get(4).setLocation((getEpaisseurChalet()/2) + distanceUsinage, 0); //A: InfGauche // Point(0, 0) reste Point(0, 0)
+                    mur.getSommetsMur().get(5).setLocation((getEpaisseurChalet()/2) + distanceUsinage, getHauteurMurs()); //B: SupGauche // Point(0, 8.0) reste Point(0, 8.0)
+                    mur.getSommetsMur().get(6).setLocation(getLargeurChalet() - (getEpaisseurChalet()/2) - distanceUsinage, getHauteurMurs()); //C: SupDroite // Point(10.0, 8.0) reste Point(10.0, 8.0)
+                    mur.getSommetsMur().get(7).setLocation(getLargeurChalet() - (getEpaisseurChalet()/2) - distanceUsinage, 0); //D: InfDroite // Point(10.0, 0) reste Point(10.0, 0)
 
                     mursDecoupes.add(mur);
                 }
@@ -193,10 +193,10 @@ public class Chalet {
                     mur.createSommet(mur, new PointDouble((getLongueurChalet() - (getEpaisseurChalet()/2)), getEpaisseurChalet())); // H creer Point(9, 2)
 
                     //Vue de face
-                    mur.getSommetsMur().get(4).setLocation(getEpaisseurChalet()/2, 0); //A: InfGauche // Point(0, 0) reste Point(0, 0)
-                    mur.getSommetsMur().get(5).setLocation(getEpaisseurChalet()/2, getHauteurMurs()); //B: SupGauche // Point(0, 8.0) reste Point(0, 8.0)
-                    mur.getSommetsMur().get(6).setLocation(getLargeurChalet() - (getEpaisseurChalet()/2), getHauteurMurs()); //C: SupDroite // Point(10.0, 8.0) reste Point(10.0, 8.0)
-                    mur.getSommetsMur().get(7).setLocation(getLargeurChalet() - (getEpaisseurChalet()/2), 0); //D: InfDroite // Point(10.0, 0) reste Point(10.0, 0)
+                    mur.getSommetsMur().get(4).setLocation((getEpaisseurChalet()/2) + distanceUsinage, 0); //A: InfGauche // Point(0, 0) reste Point(0, 0)
+                    mur.getSommetsMur().get(5).setLocation((getEpaisseurChalet() / 2) + distanceUsinage, getHauteurMurs()); //B: SupGauche // Point(0, 8.0) reste Point(0, 8.0)
+                    mur.getSommetsMur().get(6).setLocation(getLargeurChalet() - (getEpaisseurChalet()/2) - distanceUsinage, getHauteurMurs()); //C: SupDroite // Point(10.0, 8.0) reste Point(10.0, 8.0)
+                    mur.getSommetsMur().get(7).setLocation(getLargeurChalet() - (getEpaisseurChalet()/2) - distanceUsinage, 0); //D: InfDroite // Point(10.0, 0) reste Point(10.0, 0)
                     mursDecoupes.add(mur);
                 }
             }
@@ -219,7 +219,6 @@ public class Chalet {
 
     public List<Mur> getMursUsines(double distanceUsinage, String orientationToit) {
         retirerRainures(listeMurs, distanceUsinage, orientationToit);
-        System.out.println("Liste de murs usinés: " + listeMurs);
         return listeMurs;
     }
 
