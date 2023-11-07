@@ -7,7 +7,6 @@ import domain.Controleur;
 import domain.Mur;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class FacadeDrawer {
 
@@ -29,15 +28,17 @@ public class FacadeDrawer {
     private void drawFacade(Graphics g)
 
     {
+        Chalet chalet = controleur.getChaletProduction();
+
+        g.setColor(new Color(110, 166, 166));
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
         // Centrer au milieu du drawingPanel
         double positionX = width/2;
         double positionY = height/2;
-        ArrayList<Mur> listeMurs = new ArrayList<>();
+        /*ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         // Définir la couleur des murs
-        g.setColor(new Color(110, 166, 166));
 
         //Dimensions du mur en 3D
         double epaisseurMur = Chalet.epaisseurChalet; // Épaisseur du mur test local
@@ -46,7 +47,7 @@ public class FacadeDrawer {
         double longueurMur = Chalet.longueurChalet;
         double angleToit = 0.0;
 
-        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
+        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);*/
         chalet.initialiserMurFacade();
         // Accéder aux coordonnées de Mur: Facade
         Mur facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas

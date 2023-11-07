@@ -7,7 +7,6 @@ import domain.Controleur;
 import domain.Mur;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class GaucheDrawer
 {
@@ -28,14 +27,16 @@ public class GaucheDrawer
 
     private void drawGauche(Graphics g)
     {
+        Chalet chalet = controleur.getChaletProduction();
+        g.setColor(new Color(166, 1, 1));
+
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
         double positionX = width/2;
         double positionY = height/2;
-        ArrayList<Mur> listeMurs = new ArrayList<>();
+        /*ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         // Définir la couleur des murs
-        g.setColor(new Color(166, 1, 1));
 
         //Dimensions du mur en 3D
         double epaisseurMur = Chalet.epaisseurChalet; // Épaisseur du mur test local
@@ -45,7 +46,7 @@ public class GaucheDrawer
         double angleToit = 0.0;
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
-
+*/
         chalet.initialiserMurGauche();
         Mur gauche = chalet.getMursUsines(0.2, "Nord").get(0); // mur gauche deja codé en bas
 

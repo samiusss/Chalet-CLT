@@ -13,9 +13,9 @@ import static Utilitaires.ConvertisseurMesures.*;
 
 public class Chalet {
 
-    public static double largeurChalet = 10.0;
-    public static double longueurChalet = 10.0;
-    public static double hauteurMurs=8.0;
+    public static double largeurChalet = 20.0;
+    public static double longueurChalet = 20.0;
+    public static double hauteurMurs=16.0;
     public static double epaisseurChalet = 2.0;
     public static double angleToit;
     public static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
@@ -352,19 +352,19 @@ public class Chalet {
 
 
     public double getLargeurChalet() {
-        return this.largeurChalet;
+        return largeurChalet;
     }
 
     public double getHauteurMurs() {
-        return this.hauteurMurs;
+        return hauteurMurs;
     }
 
     public double getLongueurChalet() {
-        return this.longueurChalet;
+        return longueurChalet;
     }
 
     public double getEpaisseurChalet() {
-        return this.epaisseurChalet;
+        return epaisseurChalet;
     }
 
     public double getAngleToit() {

@@ -7,12 +7,13 @@ import domain.Controleur;
 import domain.Mur;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class SurplombDrawer
 {
     private Controleur controleur;
-    public static Chalet chalet;
+
+    public Chalet chalet;
+
     private Accessoires accessoires;
     private Dimension initialDimension;
 
@@ -28,11 +29,13 @@ public class SurplombDrawer
 
     private void drawSurplomb(Graphics g)
     {
+        Chalet chalet = controleur.getChaletProduction();
+
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
         double positionX = width/2;
         double positionY = height/2;
-        ArrayList<Mur> listeMurs = new ArrayList<>();
+        /*ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         // Définir la couleur des murs
         g.setColor(new Color(166, 66, 66));
@@ -45,6 +48,7 @@ public class SurplombDrawer
         double angleToit = 0.0;
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
+        */
         chalet.initialiserMurFacade();
         chalet.initialiserMurArriere();
         chalet.initialiserMurGauche();

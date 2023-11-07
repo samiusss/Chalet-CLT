@@ -7,7 +7,6 @@ import domain.Controleur;
 import domain.Mur;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class ArriereDrawer {
     private Controleur controleur;
@@ -27,16 +26,18 @@ public class ArriereDrawer {
 
     private void drawArriere(Graphics g)
     {
+        Chalet chalet = controleur.getChaletProduction();
+        g.setColor(new Color(1, 166, 1));
+
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
 
         double positionX = width/2;
         double positionY = height/2;
-
+/*
         ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         // Définir la couleur des murs
-        g.setColor(new Color(1, 166, 1));
 
         //Dimensions du mur en 3D
         double epaisseurMur = Chalet.epaisseurChalet; // Épaisseur du mur test local
@@ -46,7 +47,9 @@ public class ArriereDrawer {
         double angleToit = 0.0;
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
+        */
         chalet.initialiserMurArriere();
+
         Mur arriere = chalet.getMursUsines(0.2, "Nord").get(0); // mur arriere deja codé en bas
 
         // Accéder coord de Mur arriere de face (ac)

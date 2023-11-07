@@ -4,11 +4,6 @@
  */
 package ui;
 
-import domain.Chalet;
-import domain.Mur;
-
-import java.util.ArrayList;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -16,7 +11,7 @@ public class Main {
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);
 
-        double largeurChalet = 10.0;
+       /* double largeurChalet = 10.0;
         double longueurChalet = 10.0;
         double hauteurMurs = 8.0;
         double epaisseurChalet = 2.0;
@@ -30,7 +25,7 @@ public class Main {
         chalet.initialiserMurArriere();
         chalet.initialiserMurDroite();
         chalet.initialiserMurGauche();
-        chalet.getMursUsines(0.2, "Nord");
+        chalet.getMursUsines(0.2, "Nord");*/
 
 
     }
