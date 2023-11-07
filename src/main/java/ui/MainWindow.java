@@ -16,6 +16,7 @@ public class MainWindow extends javax.swing.JFrame {
     // Ces attributs servent à la gestion du déplacement.
     public Point actualMousePoint = new Point();
     public Point delta = new Point();*/
+    private String AccessoireSelectionneID;
 
     private boolean isAddingPorte = false; // État pour indiquer si l'utilisateur est en mode d'ajout de porte
     private boolean isAddingFenetre = false; // Moyen de valider si l'utilisateur ajoute une fenetre
@@ -30,6 +31,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel MurPanelLabel;
     private JPanel MurPanel;
     private JLabel ToitPanelLabel;
+    private JLabel CoordoneesAccessoiresLabel;
     private JPanel ToitPanel;
     //private DrawingPanel PannelAffichage; // Utilisez DrawingPanel au lieu de JPanel
     private JTabbedPane ToitPaneltabbedPane;
@@ -45,7 +47,6 @@ public class MainWindow extends javax.swing.JFrame {
     private JButton PannelDroitAjoutPorteButton;
     private JButton PannelDroitAjoutFenetreButton;
     private JTabbedPane MurPannelTabbedPane;
-    private JLabel CoordoneesAccessoiresLabel;
 
     private JTextField AccessoirePanelCoordonneeX;
 
@@ -345,6 +346,79 @@ public class MainWindow extends javax.swing.JFrame {
 
 
                 }
+            }
+        });
+
+        AccessoirePanelCoordonneeX.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedOption = (String) VueComboBox.getSelectedItem();
+                try {
+                    Integer.parseInt(selectedOption);
+                    //Accessoires.Point =  Double.parseDouble(selectedOption);
+                }
+                catch (NumberFormatException e1)
+                {
+                    try {
+                        Double.parseDouble(selectedOption);
+                        //Accessoires.Point =  Double.parseDouble(selectedOption);
+                    }
+                    catch (NumberFormatException e2){
+                        //throw "il faut entrer un nombre !
+                    }
+                }
+            }
+
+            //Integer.parseInt(selectedOption);
+            //Double.parseDouble(selectedOption);
+            //le met comme x dit Fenetre.Point
+            //if isAddingFentre (i.e. la il a cliqué sur ajouté une fenetre)
+            //drawFenetre();
+            //if isAddingPorte (i.e. la il a cliqué sur ajouté une fenetre)
+            //drawPorte();
+
+        });
+        AccessoirePanelCoordonneeY.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedOption = (String) VueComboBox.getSelectedItem();
+                try {
+                    Integer.parseInt(selectedOption);
+                    //Accessoires.Point =  Double.parseDouble(selectedOption);
+                }
+                catch (NumberFormatException e1)
+                {
+                    try {
+                        Double.parseDouble(selectedOption);
+                        //Accessoires.Point =  Double.parseDouble(selectedOption);
+                    }
+                    catch (NumberFormatException e2){
+                        //throw "il faut entrer un nombre !
+                    }
+                }
+            }
+            //le met comme y dit Fenetre.Point
+            //if isAddingFentre (i.e. la il a cliqué sur ajouté une fenetre)
+            //drawFenetre();
+            //if isAddingPorte (i.e. la il a cliqué sur ajouté une fenetre)
+            //drawPorte();
+
+        });
+        supprimmerLAccessoireButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //if (AccessoireSelectionnéID) = null
+                //  {
+                //  throw("Pas d'asscessoire séléectionné)
+                //  }
+                // else
+                // delete AccessoireSelectionnéID
+            }
+        });
+        AccessoireComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                AccessoireSelectionneID = (String) VueComboBox.getSelectedItem();
             }
         });
 
