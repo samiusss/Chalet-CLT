@@ -3,7 +3,6 @@ package ui;
 import domain.Chalet;
 import domain.Controleur;
 import domain.Mur;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -309,6 +308,7 @@ public class MainWindow extends javax.swing.JFrame {
                     boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
                     System.out.println(ajoutReussi);
                     System.out.println("ajoutPortereussi");
+
                     isAddingPorte = false;
                 }
                 if (isAddingFenetre)
@@ -323,9 +323,9 @@ public class MainWindow extends javax.swing.JFrame {
 
                     boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMurr,listeMursDrawer);
                     System.out.println(ajoutFenetrereussi);
-                    System.out.println("ajoutFenetrereussi");
-
                     isAddingFenetre = false;
+
+
 
                 }
             }
