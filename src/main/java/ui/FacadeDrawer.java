@@ -31,11 +31,13 @@ public class FacadeDrawer {
     {
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
-
+        // Centrer au milieu du drawingPanel
+        double positionX = width/2;
+        double positionY = height/2;
         ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         // Définir la couleur des murs
-        g.setColor(new Color(0, 66, 166));
+        g.setColor(new Color(110, 166, 166));
 
         //Dimensions du mur en 3D
         double epaisseurMur = 2*Chalet.epaisseurChalet; // Épaisseur du mur test local
@@ -54,17 +56,18 @@ public class FacadeDrawer {
         PointDouble pointInfDroitfc = facade.getSommetsMur().get(6);
         PointDouble pointInfGauchefc = facade.getSommetsMur().get(7);
 
-        int x1fc = (int) pointInfGauchefc.getX();
-        int y1fc = (int) pointInfGauchefc.getY();
+        int x1fc = (int) (pointInfGauchefc.getX() + positionX);
+        int y1fc = (int) (pointInfGauchefc.getY() + positionY);
 
-        int x2fc = (int) pointInfDroitfc.getX();
-        int y2fc = (int) pointInfDroitfc.getY();
+        int x2fc = (int) (pointInfDroitfc.getX() + positionX);
+        int y2fc = (int) (pointInfDroitfc.getY() + positionY);
 
-        int x3fc = (int) pointSupGauchefc.getX();
-        int y3fc = (int) pointSupGauchefc.getY();
+        int x3fc = (int) (pointSupGauchefc.getX() + positionX);
+        int y3fc = (int) (pointSupGauchefc.getY() + positionY);
 
-        int x4fc = (int) pointSupDroitfc.getX();
-        int y4fc = (int) pointSupDroitfc.getY();
+        int x4fc = (int) (pointSupDroitfc.getX() + positionX);
+        int y4fc = (int) (pointSupDroitfc.getY() + positionY);
+
 
         // Construire tableaux de coordonnées pour le mur facade de coté
         int[] xPointsFacadeCote = {x1fc, x2fc, x3fc, x4fc};

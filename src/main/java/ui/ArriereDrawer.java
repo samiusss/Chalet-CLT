@@ -36,7 +36,7 @@ public class ArriereDrawer {
         ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         // Définir la couleur des murs
-        g.setColor(new Color(166, 66, 66));
+        g.setColor(new Color(1, 166, 1));
 
         //Dimensions du mur en 3D
         double epaisseurMur = 2*Chalet.epaisseurChalet; // Épaisseur du mur test local
@@ -55,17 +55,18 @@ public class ArriereDrawer {
         PointDouble pointInfDroitac = arriere.getSommetsMur().get(6);
         PointDouble pointInfGaucheac = arriere.getSommetsMur().get(7);
 
-        int x2ac = (int) pointInfGaucheac.getX();
-        int y2ac = (int) pointInfGaucheac.getY();
+        int x2ac = (int) (pointInfGaucheac.getX() + positionX);
+        int y2ac = (int) (pointInfGaucheac.getY() + positionY);
 
-        int x1ac = (int) pointInfDroitac.getX();
-        int y1ac = (int) pointInfDroitac.getY();
+        int x1ac = (int) (pointInfDroitac.getX() + positionX);
+        int y1ac = (int) (pointInfDroitac.getY() + positionY);
 
-        int x3ac = (int) pointSupGaucheac.getX();
-        int y3ac = (int) pointSupGaucheac.getY();
+        int x3ac = (int) (pointSupGaucheac.getX() + positionX);
+        int y3ac = (int) (pointSupGaucheac.getY() + positionY);
 
-        int x4ac = (int) pointSupDroitac.getX();
-        int y4ac = (int) pointSupDroitac.getY();
+        int x4ac = (int) (pointSupDroitac.getX() + positionX);
+        int y4ac = (int) (pointSupDroitac.getY() + positionY);
+
 
         // Construire tableaux de coordonnées pour le mur facade de coté
         int[] xPointsArriereCote = {x1ac, x2ac, x3ac, x4ac};

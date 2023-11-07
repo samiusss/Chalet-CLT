@@ -34,7 +34,7 @@ public class DroitDrawer {
         ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         // Définir la couleur des murs
-        g.setColor(new Color(166, 66, 66));
+        g.setColor(new Color(1, 1, 166));
 
         //Dimensions du mur en 3D
         double epaisseurMur = 2*Chalet.epaisseurChalet; // Épaisseur du mur test local
@@ -57,17 +57,18 @@ public class DroitDrawer {
         double positionX = width/2;
         double positionY = height/2;
 
-        int x1dc = (int) pointInfGauchedc.getX();
-        int y1dc = (int) pointInfGauchedc.getY();
+        int x1dc = (int) (pointInfGauchedc.getX() + positionX);
+        int y1dc = (int) (pointInfGauchedc.getY() + positionY);
 
-        int x2dc = (int) pointInfDroitdc.getX();
-        int y2dc = (int) pointInfDroitdc.getY();
+        int x2dc = (int) (pointInfDroitdc.getX() + positionX);
+        int y2dc = (int) (pointInfDroitdc.getY() + positionY);
 
-        int x3dc = (int) pointSupGauchedc.getX();
-        int y3dc = (int) pointSupGauchedc.getY();
+        int x3dc = (int) (pointSupGauchedc.getX() + positionX);
+        int y3dc = (int) (pointSupGauchedc.getY() + positionY);
 
-        int x4dc = (int) pointSupDroitdc.getX();
-        int y4dc = (int) pointSupDroitdc.getY();
+        int x4dc = (int) (pointSupDroitdc.getX() + positionX);
+        int y4dc = (int) (pointSupDroitdc.getY() + positionY);
+
 
 // Construire tableaux de coordonnées pour le mur facade de coté
         int[] xPointsDroiteCote = {x1dc, x2dc, x3dc, x4dc};
