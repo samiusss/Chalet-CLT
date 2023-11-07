@@ -261,7 +261,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     }
 
-    private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
+    /*private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
         if (isAddingPorte) {
             System.out.println("ajoutPortereussi");
 
@@ -296,7 +296,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
             isAddingFenetre = false;
         }
-    }
+    }*/
 
     private void initComponents() {
         DrawingPanel = new DrawingPanel(this);

@@ -33,7 +33,7 @@ public class Chaletdrawer {
 
     private void drawPorte (Graphics g)
     {
-        ArrayList<pointPouces> sommetsPorte = new ArrayList<>() ;
+        ArrayList<pointPouces> sommetsPorte = new ArrayList<>();
         g.setColor(new Color(1,1,1));
 
 
@@ -169,103 +169,194 @@ public class Chaletdrawer {
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
         chalet.initialiserMurFacade();
         chalet.initialiserMurArriere();
+        chalet.initialiserMurGauche();
+        chalet.initialiserMurDroite();
 
 
         // Accéder aux coordonnées de Mur: Facade
-        Mur facade = chalet.getMursUsines().get(0); // mur facade deja codé en bas
+        Mur facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
+        Mur arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
+        Mur gauche = chalet.getMursUsines(0.2, "Nord").get(2); // mur gauche deja codé en bas
+        Mur droite = chalet.getMursUsines(0.2, "Nord").get(3); // mur droite deja codé en bas
 
-        PointDouble pointSupDroitf = facade.getSommetsMur().get(2); // Je veux le troisième sommet (index 2) // pointSupDroitf = pointSupDroit facade
-        PointDouble pointSupGauchef = facade.getSommetsMur().get(1); // Je veux le deuxieme sommet (index 1) // pointSupGauchef = pointSupGauche facade
-        PointDouble pointInfDroitf = facade.getSommetsMur().get(3); // Je veux le quatrième sommet (index 3) // pointInfDroitf = pointInfDroit facade
+        //Vue haut
         PointDouble pointInfGauchef = facade.getSommetsMur().get(0); // Je veux le premier sommet (index 0) // pointInfGauchef = pointInfGauche facade
+        PointDouble pointSupGauchef = facade.getSommetsMur().get(1); // Je veux le deuxieme sommet (index 1) // pointSupGauchef = pointSupGauche facade
+        PointDouble pointSupDroitf = facade.getSommetsMur().get(2); // Je veux le troisième sommet (index 2) // pointSupDroitf = pointSupDroit facade
+        PointDouble pointInfDroitf = facade.getSommetsMur().get(3); // Je veux le quatrième sommet (index 3) // pointInfDroitf = pointInfDroit facade
+
         PointDouble rainureGauche1 = facade.getSommetsMur().get(8); // Je veux le neuvième sommet (index 8) // rainureGauche1 = rainureGauche1 facade
         PointDouble rainureGauche2 = facade.getSommetsMur().get(9); // Je veux le dixième sommet (index 9) // rainureGauche2 = rainureGauche2 facade
         PointDouble rainureDroite1 = facade.getSommetsMur().get(10); // Je veux le onzième sommet (index 10) // rainureDroite1 = rainureDroite1 facade
         PointDouble rainureDroite2 = facade.getSommetsMur().get(11); // Je veux le douzième sommet (index 11) // rainureDroite2 = rainureDroite2 facade
 
-        // Accéder coord de Mur facade de coté (fc)
+
+        // Accéder aux coordonnées de Mur: Arrière
+        PointDouble pointInfGauchea = arriere.getSommetsMur().get(0);
+        PointDouble pointSupGauchea = arriere.getSommetsMur().get(1);
+        PointDouble pointSupDroita = arriere.getSommetsMur().get(2);
+        PointDouble pointInfDroita = arriere.getSommetsMur().get(3);
+
+        PointDouble rainureGauche1a = arriere.getSommetsMur().get(8);
+        PointDouble rainureGauche2a = arriere.getSommetsMur().get(9);
+        PointDouble rainureDroite1a = arriere.getSommetsMur().get(10);
+        PointDouble rainureDroite2a = arriere.getSommetsMur().get(11);
+
+        // Accéder aux coordonnées de Mur: Gauche
+        PointDouble pointInfGaucheg = gauche.getSommetsMur().get(0);
+        PointDouble pointSupGaucheg = gauche.getSommetsMur().get(1);
+        PointDouble pointSupDroitg = gauche.getSommetsMur().get(2);
+        PointDouble pointInfDroitg = gauche.getSommetsMur().get(3);
+
+        PointDouble rainureGauche1g = gauche.getSommetsMur().get(8);
+        PointDouble rainureGauche2g = gauche.getSommetsMur().get(9);
+        PointDouble rainureDroite1g = gauche.getSommetsMur().get(10);
+        PointDouble rainureDroite2g = gauche.getSommetsMur().get(11);
+
+        // Accéder aux coordonnées de Mur: Droite
+        PointDouble pointInfDroitd = droite.getSommetsMur().get(0);
+        PointDouble pointSupDroitd = droite.getSommetsMur().get(1);
+        PointDouble pointSupGauched = droite.getSommetsMur().get(2);
+        PointDouble pointInfGauched = droite.getSommetsMur().get(3);
+
+        PointDouble rainureGauche1d = droite.getSommetsMur().get(8);
+        PointDouble rainureGauche2d = droite.getSommetsMur().get(9);
+        PointDouble rainureDroite1d = droite.getSommetsMur().get(10);
+        PointDouble rainureDroite2d = droite.getSommetsMur().get(11);
+
+        // Accéder coord de Mur facade de face (fc)
         PointDouble pointSupDroitfc = facade.getSommetsMur().get(4);
         PointDouble pointSupGauchefc = facade.getSommetsMur().get(5);
         PointDouble pointInfDroitfc = facade.getSommetsMur().get(6);
         PointDouble pointInfGauchefc = facade.getSommetsMur().get(7);
 
+        // Accéder coord de Mur arriere de face (ac)
+        PointDouble pointSupDroitac = arriere.getSommetsMur().get(4);
+        PointDouble pointSupGaucheac = arriere.getSommetsMur().get(5);
+        PointDouble pointInfDroitac = arriere.getSommetsMur().get(6);
+        PointDouble pointInfGaucheac = arriere.getSommetsMur().get(7);
+
+        // Accéder coord de Mur gauche de face (gc)
+        PointDouble pointSupDroitgc = gauche.getSommetsMur().get(4);
+        PointDouble pointSupGauchegc = gauche.getSommetsMur().get(5);
+        PointDouble pointInfDroitgc = gauche.getSommetsMur().get(6);
+        PointDouble pointInfGauchegc = gauche.getSommetsMur().get(7);
+
+        // Accéder coord de Mur droite de face (dc)
+        PointDouble pointSupDroitdc = droite.getSommetsMur().get(4);
+        PointDouble pointSupGauchedc = droite.getSommetsMur().get(5);
+        PointDouble pointInfDroitdc = droite.getSommetsMur().get(6);
+        PointDouble pointInfGauchedc = droite.getSommetsMur().get(7);
+
         // Centrer au milieu du drawingPanel
         double positionX = width/2;
         double positionY = height/2;
 
-        int x1 = (int) (pointInfDroitf.getX()+positionX);
-        int y1 = (int) (pointInfDroitf.getY()+positionY);
-        int x1r1 = (int) (rainureDroite1.getX()+positionX);
-        int y1r1 = (int) (rainureDroite1.getY()+positionY);
-        int x1r2 = (int) (rainureDroite2.getX()+positionX);
-        int y1r2 = (int) (rainureDroite2.getY()+positionY);
+        int x1f = (int) (pointInfDroitf.getX()+positionX);
+        int y1f = (int) (pointInfDroitf.getY()+positionY);
+        int x1r1f = (int) (rainureDroite1.getX()+positionX);
+        int y1r1f = (int) (rainureDroite1.getY()+positionY);
+        int x1r2f = (int) (rainureDroite2.getX()+positionX);
+        int y1r2f = (int) (rainureDroite2.getY()+positionY);
         //
-        int x2 = (int) (pointSupDroitf.getX()+positionX);
-        int y2 = (int) (pointSupDroitf.getY()+positionY);
+        int x2f = (int) (pointSupDroitf.getX()+positionX);
+        int y2f = (int) (pointSupDroitf.getY()+positionY);
         //
-        int x3 = (int) (pointSupGauchef.getX()+positionX);
-        int y3 = (int) (pointSupGauchef.getY()+positionY);
-        int x3r1 = (int) (rainureGauche1.getX()+positionX);
-        int y3r1 = (int) (rainureGauche1.getY()+positionY);
-        int x3r2 = (int) (rainureGauche2.getX()+positionX);
-        int y3r2 = (int) (rainureGauche2.getY()+positionY);
+        int x3f = (int) (pointSupGauchef.getX()+positionX);
+        int y3f = (int) (pointSupGauchef.getY()+positionY);
+        int x3r1f = (int) (rainureGauche1.getX()+positionX);
+        int y3r1f = (int) (rainureGauche1.getY()+positionY);
+        int x3r2f = (int) (rainureGauche2.getX()+positionX);
+        int y3r2f = (int) (rainureGauche2.getY()+positionY);
         //
-        int x4 = (int) (pointInfGauchef.getX()+positionX);
-        int y4 = (int) (pointInfGauchef.getY()+positionY);
+        int x4f = (int) (pointInfGauchef.getX()+positionX);
+        int y4f = (int) (pointInfGauchef.getY()+positionY);
         //
-        int[] xPoints = {x1, x1r2, x1r1, x2, x3, x3r2, x3r1, x4};
-        int[] yPoints = {y1, y1r2, y1r1, y2, y3, y3r2, y3r1, y4};
+        int[] xPointsFacade = {x1f, x1r2f, x1r1f, x2f, x3f, x3r2f, x3r1f, x4f};
+        int[] yPointsFacade = {y1f, y1r2f, y1r1f, y2f, y3f, y3r2f, y3r1f, y4f};
+        g.setColor(new Color(12, 238, 162));
+        g.fillPolygon(xPointsFacade, yPointsFacade, 8);
 
-        g.fillPolygon(xPoints, yPoints, 8);
 
-    // Accéder aux coordonnées de Mur: Arrière
-        Mur arriere = chalet.getListeMurs().get(1);
-
-    // Prendre les sommets du mur arrière
-        PointDouble pointSupDroita = arriere.getSommetsMur().get(2);
-        PointDouble pointSupGauchea = arriere.getSommetsMur().get(1);
-        PointDouble pointInfDroita = arriere.getSommetsMur().get(3);
-        PointDouble pointInfGauchea = arriere.getSommetsMur().get(0);
-        PointDouble rainureGauche1a = arriere.getSommetsMur().get(8);
-        PointDouble rainureGauche2a = arriere.getSommetsMur().get(9);
-        PointDouble rainureDroite1a = arriere.getSommetsMur().get(10);
-        PointDouble rainureDroite2a = arriere.getSommetsMur().get(11);
-        PointDouble pointSupDroitac = arriere.getSommetsMur().get(6);
-        PointDouble pointSupGaucheac = arriere.getSommetsMur().get(5);
-        PointDouble pointInfDroitac = arriere.getSommetsMur().get(7);
-        PointDouble pointInfGaucheac = arriere.getSommetsMur().get(4);
-
-    // Convertir les coordonnées en entiers
-        int x1a = (int) (pointInfDroita.getX() + positionX);
-        int y1a = (int) (pointInfDroita.getY() + positionX);
-        int x1r1a = (int) (rainureDroite1a.getX() + positionX);
-        int y1r1a = (int) (rainureDroite1a.getY() + positionX);
-        int x1r2a = (int) (rainureDroite2a.getX() + positionX);
-        int y1r2a = (int) (rainureDroite2a.getY() + positionX);
-
-        int x2a = (int) (pointSupDroita.getX() + positionX);
-        int y2a = (int) (pointSupDroita.getY() + positionX);
-
-        int x3a = (int) (pointSupGauchea.getX() + positionX);
-        int y3a = (int) (pointSupGauchea.getY() + positionX);
-        int x3r1a = (int) (rainureGauche1a.getX() + positionX);
-        int y3r1a = (int) (rainureGauche1a.getY() + positionX);
-        int x3r2a = (int) (rainureGauche2a.getX() + positionX);
-        int y3r2a = (int) (rainureGauche2a.getY() + positionX);
-
-        int x4a = (int) (pointInfGauchea.getX() + positionX);
-        int y4a = (int) (pointInfGauchea.getY() + positionX);
-
-        // Construire tableaux de coordonnées pour le mur arrière
+        //Dessiner le polygone pour le mur arriere
+        int x1a = (int) (pointInfDroita.getX()+positionX);
+        int y1a = (int) (pointInfDroita.getY()+positionY);
+        int x1r1a = (int) (rainureDroite1a.getX()+positionX);
+        int y1r1a = (int) (rainureDroite1a.getY()+positionY);
+        int x1r2a = (int) (rainureDroite2a.getX()+positionX);
+        int y1r2a = (int) (rainureDroite2a.getY()+positionY);
+        //
+        int x2a = (int) (pointSupDroita.getX()+positionX);
+        int y2a = (int) (pointSupDroita.getY()+positionY);
+        //
+        int x3a = (int) (pointSupGauchea.getX()+positionX);
+        int y3a = (int) (pointSupGauchea.getY()+positionY);
+        int x3r1a = (int) (rainureGauche1a.getX()+positionX);
+        int y3r1a = (int) (rainureGauche1a.getY()+positionY);
+        int x3r2a = (int) (rainureGauche2a.getX()+positionX);
+        int y3r2a = (int) (rainureGauche2a.getY()+positionY);
+        //
+        int x4a = (int) (pointInfGauchea.getX()+positionX);
+        int y4a = (int) (pointInfGauchea.getY()+positionY);
+        //
         int[] xPointsArriere = {x1a, x1r2a, x1r1a, x2a, x3a, x3r2a, x3r1a, x4a};
         int[] yPointsArriere = {y1a, y1r2a, y1r1a, y2a, y3a, y3r2a, y3r1a, y4a};
         g.setColor(new Color(66, 66, 166));
-
-        // Dessiner le polygone pour le mur arrière
         g.fillPolygon(xPointsArriere, yPointsArriere, 8);
 
-        chalet.initialiserMurDroite();
-        chalet.initialiserMurGauche();
+        //Dessiner le polygone pour le mur gauche
+        int x1g = (int) (pointInfDroitg.getX()+positionX);
+        int y1g = (int) (pointInfDroitg.getY()+positionY);
+        int x1r1g = (int) (rainureDroite1g.getX()+positionX);
+        int y1r1g = (int) (rainureDroite1g.getY()+positionY);
+        int x1r2g = (int) (rainureDroite2g.getX()+positionX);
+        int y1r2g = (int) (rainureDroite2g.getY()+positionY);
+        //
+        int x2g = (int) (pointSupDroitg.getX()+positionX);
+        int y2g = (int) (pointSupDroitg.getY()+positionY);
+        //
+        int x3g = (int) (pointSupGaucheg.getX()+positionX);
+        int y3g = (int) (pointSupGaucheg.getY()+positionY);
+        int x3r1g = (int) (rainureGauche1g.getX()+positionX);
+        int y3r1g = (int) (rainureGauche1g.getY()+positionY);
+        int x3r2g = (int) (rainureGauche2g.getX()+positionX);
+        int y3r2g = (int) (rainureGauche2g.getY()+positionY);
+        //
+        int x4g = (int) (pointInfGaucheg.getX()+positionX);
+        int y4g = (int) (pointInfGaucheg.getY()+positionY);
+        //
+        int[] xPointsGauche = {x1g, x1r2g, x1r1g, x2g, x3g, x3r2g, x3r1g, x4g};
+        int[] yPointsGauche = {y1g, y1r2g, y1r1g, y2g, y3g, y3r2g, y3r1g, y4g};
+        g.setColor(new Color(80, 68, 166));
+        g.fillPolygon(xPointsGauche, yPointsGauche, 8);
+
+        //Dessiner le polygone pour le mur droit
+        int x1d = (int) (pointInfDroitd.getX()+positionX);
+        int y1d = (int) (pointInfDroitd.getY()+positionY);
+        int x1r1d = (int) (rainureDroite1d.getX()+positionX);
+        int y1r1d = (int) (rainureDroite1d.getY()+positionY);
+        int x1r2d = (int) (rainureDroite2d.getX()+positionX);
+        int y1r2d = (int) (rainureDroite2d.getY()+positionY);
+        //
+        int x2d = (int) (pointSupDroitd.getX()+positionX);
+        int y2d = (int) (pointSupDroitd.getY()+positionY);
+        //
+        int x3d = (int) (pointSupGauched.getX()+positionX);
+        int y3d = (int) (pointSupGauched.getY()+positionY);
+        int x3r1d = (int) (rainureGauche1d.getX()+positionX);
+        int y3r1d = (int) (rainureGauche1d.getY()+positionY);
+        int x3r2d = (int) (rainureGauche2d.getX()+positionX);
+        int y3r2d = (int) (rainureGauche2d.getY()+positionY);
+        //
+        int x4d = (int) (pointInfGauched.getX()+positionX);
+        int y4d = (int) (pointInfGauched.getY()+positionY);
+        //
+        int[] xPointsDroit = {x1d, x1r2d, x1r1d, x2d, x3d, x3r2d, x3r1d, x4d};
+        int[] yPointsDroit = {y1d, y1r2d, y1r1d, y2d, y3d, y3r2d, y3r1d, y4d};
+        g.setColor(new Color(200, 2, 236));
+        g.fillPolygon(xPointsDroit, yPointsDroit, 8);
+
+        // Construire tableaux de coordonnées pour le mur arrière
 
     ///////////////////////////////////////////////////////
     ///if Chalet....== "facade";

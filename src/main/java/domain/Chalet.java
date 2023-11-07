@@ -120,8 +120,6 @@ public class Chalet {
         List<Mur> mursDecoupes = new ArrayList<>();
         if (Objects.equals(orientationToit, "Nord") || Objects.equals(orientationToit, "Sud")) {
             for (Mur mur : listeDeMursARainurer) {
-                System.out.println("Mur: " + mur);
-                System.out.println("sommets:" + mur.getSommetsMur());
                 if (Objects.equals(mur.getNomMur(), "Facade")) {
                     mur.getSommetsMur().get(0).setLocation(0, 0); //A: InfGauche // Point(0, 0) reste Point(0, 0)
                     mur.createSommet(mur, new PointDouble(0,(getEpaisseurChalet()/2) - distanceUsinage)); // creer Point(0, 1.3)
@@ -220,8 +218,8 @@ public class Chalet {
         }
     }
 
-    public List<Mur> getMursUsines(){
-        retirerRainures(listeMurs, 0.3, "Nord");
+    public List<Mur> getMursUsines(double distanceUsinage, String orientationToit) {
+        retirerRainures(listeMurs, distanceUsinage, orientationToit);
         System.out.println("Liste de murs usinés: " + listeMurs);
         return listeMurs;
     }
