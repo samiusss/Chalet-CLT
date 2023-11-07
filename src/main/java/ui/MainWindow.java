@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import static ui.Chaletdrawer.chalet;
-
 
 public class MainWindow extends javax.swing.JFrame {
     private Controleur controleur;
@@ -124,6 +122,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             
             public void itemStateChanged(ItemEvent e) {
+                        int vueSelecteur;
                         String selectedOption = (String) VueComboBox.getSelectedItem();
 
                         if (selectedOption != null) {
