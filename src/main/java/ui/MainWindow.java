@@ -117,27 +117,29 @@ public class MainWindow extends javax.swing.JFrame {
             }
             @Override
             public void itemStateChanged(ItemEvent e) {
-                        // Check which option is selected and call the corresponding drawing function
-//                        String selectedOption = (String) VueComboBox.getSelectedItem();
-//                        if (selectedOption != null) {
-//                            switch (selectedOption) {
-//                                case "Facade":
-//                                    drawFacade();
-//                                    break;
-//                                case "Arriere":
-//                                    drawArriere();
-//                                    break;
-//                                case "Droit":
-//                                    drawDroit();
-//                                    break;
-//                                case "Gauche":
-//                                    drawGauche();
-//                                    break;
-//                                default:
-//                                    // Handle any other cases or do nothing
-//                                    break;
-                            //}
-                        //}
+                        String selectedOption = (String) VueComboBox.getSelectedItem();
+                        if (selectedOption != null) {
+                            switch (selectedOption) {
+                                case "Facade":
+                                    //drawFacade();
+                                    break;
+                                case "Arriere":
+                                    //drawArriere();
+                                    break;
+                                case "Droit":
+                                    //drawDroit();
+                                    break;
+                                case "Gauche":
+                                    //drawGauche();
+                                    break;
+                                case "Surplomb":
+                                    //drawSurplomb();
+                                    break;
+                                default:
+                                    // Handle any other cases or do nothing
+                                    break;
+                            }
+                        }
                     }
         });
         MurPannelTabbedPaneFaçadeLabelLongeurTextField.addActionListener(new ActionListener() {
