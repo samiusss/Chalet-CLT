@@ -130,31 +130,31 @@ public class MainWindow extends javax.swing.JFrame {
                                 case "Facade":
                                     //drawFacade();
                                     this.setVue(Controleur.AffichageVue.FACADE);
-                                    ui.DrawingPanel.changerVue(String.valueOf(selectedVue));
+                                    ui.DrawingPanel.changerVue(selectedVue);
                                     DrawingPanel.repaint();
                                     System.out.println("Facade");
                                     break;
                                 case "Arriere":
                                     this.setVue(Controleur.AffichageVue.ARRIERE);
-                                    ui.DrawingPanel.changerVue(String.valueOf(selectedVue));
+                                    ui.DrawingPanel.changerVue(selectedVue);
                                     System.out.println("Arriere");
                                     break;
                                 case "Droit":
                                     this.setVue(Controleur.AffichageVue.DROITE);
 
-                                    ui.DrawingPanel.changerVue(String.valueOf(selectedVue));
+                                    ui.DrawingPanel.changerVue(selectedVue);
                                     System.out.println("Droit");
                                     break;
                                 case "Gauche":
                                     this.setVue(Controleur.AffichageVue.GAUCHE);
 
-                                    ui.DrawingPanel.changerVue(String.valueOf(selectedVue));
+                                    ui.DrawingPanel.changerVue(selectedVue);
                                     System.out.println("Gauche");
                                     break;
                                 case "Surplomb":
                                     this.setVue(Controleur.AffichageVue.SURPLOMB);
 
-                                    ui.DrawingPanel.changerVue(String.valueOf(selectedVue));
+                                    ui.DrawingPanel.changerVue(selectedVue);
                                     System.out.println("Surplomb");
                                     break;
                                 default:
@@ -367,8 +367,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void initComponents() {
         DrawingPanel = new DrawingPanel(this);
-        DrawingPanel.setLayout(new BorderLayout());
-        DrawingPanel.add(DrawingPanel, BorderLayout.CENTER);
+        PannelAffichage.setLayout(new BorderLayout());
+        PannelAffichage.add(DrawingPanel, BorderLayout.CENTER);
         DrawingPanel.setPreferredSize(new java.awt.Dimension(555, 424));
         DrawingPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setContentPane(FenetrePrincipale);

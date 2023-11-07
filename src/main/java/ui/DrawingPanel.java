@@ -20,10 +20,12 @@ public class DrawingPanel extends JPanel implements Serializable {
         setPreferredSize(new Dimension(1000, 1000));
     }*/
 
-    private static String selectedAffichageVue;
+    private static Controleur.AffichageVue selectedAffichageVue;
 
 
     public DrawingPanel(MainWindow mainWindow) {
+        selectedAffichageVue = Controleur.AffichageVue.SURPLOMB;
+
         this.mainWindow = mainWindow;
         controleur = new Controleur();
         setPreferredSize(new Dimension(700, 700));
@@ -41,7 +43,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 //        });
     }
 
-    public static boolean changerVue(String selectedVue) {
+    public static boolean changerVue(Controleur.AffichageVue selectedVue) {
         selectedAffichageVue = selectedVue;
         return true;
     }
@@ -63,8 +65,26 @@ public class DrawingPanel extends JPanel implements Serializable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (mainWindow != null) {
-            SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
-            mainDrawer.draw(g/*, vueSelecteur*/);
+            if (selectedAffichageVue == Controleur.AffichageVue.SURPLOMB) {
+                SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
+                mainDrawer.draw(g/*, vueSelecteur*/);
+            }
+            if (selectedAffichageVue == Controleur.AffichageVue.FACADE) {
+                FacadeDrawer mainDrawer = new FacadeDrawer(controleur, getPreferredSize());
+                mainDrawer.draw(g/*, vueSelecteur*/);
+            }
+            if (selectedAffichageVue == Controleur.AffichageVue.ARRIERE) {
+                SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
+                mainDrawer.draw(g/*, vueSelecteur*/);
+            }
+            if (selectedAffichageVue == Controleur.AffichageVue.DROITE) {
+                SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
+                mainDrawer.draw(g/*, vueSelecteur*/);
+            }
+            if (selectedAffichageVue == Controleur.AffichageVue.GAUCHE) {
+                SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
+                mainDrawer.draw(g/*, vueSelecteur*/);
+            }
         }
     }
 
