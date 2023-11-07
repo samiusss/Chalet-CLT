@@ -137,24 +137,27 @@ public class MainWindow extends javax.swing.JFrame {
                                 case "Arriere":
                                     this.setVue(Controleur.AffichageVue.ARRIERE);
                                     ui.DrawingPanel.changerVue(selectedVue);
+                                    DrawingPanel.repaint();
                                     System.out.println("Arriere");
                                     break;
                                 case "Droit":
                                     this.setVue(Controleur.AffichageVue.DROITE);
-
                                     ui.DrawingPanel.changerVue(selectedVue);
+                                    DrawingPanel.repaint();
                                     System.out.println("Droit");
                                     break;
                                 case "Gauche":
                                     this.setVue(Controleur.AffichageVue.GAUCHE);
 
                                     ui.DrawingPanel.changerVue(selectedVue);
+                                    DrawingPanel.repaint();
                                     System.out.println("Gauche");
                                     break;
                                 case "Surplomb":
                                     this.setVue(Controleur.AffichageVue.SURPLOMB);
 
                                     ui.DrawingPanel.changerVue(selectedVue);
+                                    DrawingPanel.repaint();
                                     System.out.println("Surplomb");
                                     break;
                                 default:
