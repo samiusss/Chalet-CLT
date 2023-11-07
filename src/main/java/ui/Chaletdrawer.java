@@ -129,7 +129,7 @@ public class Chaletdrawer {
         int[] xPoints = {x1, x2, x2, x4};
         int[] yPoints = {y1, y2, y3, y4};
 
-        g.fillPolygon(xPoints, yPoints, 4);
+        //g.fillPolygon(xPoints, yPoints, 4);
 
         //g.fillRect();
 

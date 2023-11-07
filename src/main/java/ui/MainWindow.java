@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+import static ui.Chaletdrawer.chalet;
+
 
 public class MainWindow extends javax.swing.JFrame {
     private Controleur controleur;
@@ -116,6 +118,8 @@ public class MainWindow extends javax.swing.JFrame {
                 return (String) VueComboBox.getSelectedItem();
             }
             @Override
+
+            
             public void itemStateChanged(ItemEvent e) {
                         // Check which option is selected and call the corresponding drawing function
 //                        String selectedOption = (String) VueComboBox.getSelectedItem();
@@ -140,6 +144,8 @@ public class MainWindow extends javax.swing.JFrame {
                         //}
                     }
         });
+
+
         MurPannelTabbedPaneFaçadeLabelLongeurTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -261,14 +267,13 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
         if (isAddingPorte) {
-            System.out.println("ajoutPortereussi");
 
             Point mousePoint = evt.getPoint();
             String nomMur = "Droite";
-            java.util.List<Mur> listeMursDrawer = null ;
+            java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
 
             boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
-
+            System.out.println("ajoutPortereussi");
 
 
             if (ajoutReussi) {
@@ -281,7 +286,7 @@ public class MainWindow extends javax.swing.JFrame {
 
 
             String nomMurr = "Droite";
-            java.util.List<Mur> listeMursDrawer = null ;
+            java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
             Point mousePoint = evt.getPoint();
 
             boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMurr,listeMursDrawer);
