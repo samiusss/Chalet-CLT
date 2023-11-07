@@ -2,6 +2,7 @@ package domain;
 import ui.Chaletdrawer;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controleur {
@@ -12,6 +13,8 @@ public class Controleur {
     public enum AffichageVue
     {
         FACADE,
+
+        TEST,
         GAUCHE,
         DROITE,
         ARRIERE,
@@ -26,6 +29,35 @@ public class Controleur {
         chalet = new Chalet();
     }
 */
+
+
+    public Chalet createChalet() {
+
+        ArrayList<Mur> listeMurs = new ArrayList<>();
+        String orientationToit = "Nord";
+        //Dimensions du mur en 3D
+        double epaisseurMur = 2*Chalet.epaisseurChalet; // Épaisseur du mur test local
+        double hauteurMurs = 2*Chalet.hauteurMurs;      // Hauteur des murs, sera utilisée pour les vues de côté
+        double largeurMur = 2*Chalet.largeurChalet;     // Largeur des murs venant de chalet
+        double longueurMur = 2*Chalet.longueurChalet;
+        double angleToit = 0.0;
+
+        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
+        chalet.initialiserMurFacade();
+        chalet.initialiserMurArriere();
+        chalet.initialiserMurGauche();
+        chalet.initialiserMurDroite();
+
+        return chalet ;
+
+    }
+    Chalet chaletProduction = createChalet();
+
+
+    public Chalet getChaletProduction() {
+        return chaletProduction;
+    }
+
 
 
 

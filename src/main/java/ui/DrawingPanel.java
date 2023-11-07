@@ -65,6 +65,7 @@ public class DrawingPanel extends JPanel implements Serializable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (mainWindow != null) {
+
             if (selectedAffichageVue == Controleur.AffichageVue.SURPLOMB) {
                 SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
