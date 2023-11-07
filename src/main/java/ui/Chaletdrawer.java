@@ -126,7 +126,7 @@ public class Chaletdrawer {
         int x4 = convertirPoucesEnPixels(pointFenetreInfDroit.getX());
         int y4 = convertirPoucesEnPixels(pointFenetreInfDroit.getY());
 
-        int[] xPoints = {x1, x2, x2, x4};
+        int[] xPoints = {x1, x2, x3, x4};
         int[] yPoints = {y1, y2, y3, y4};
 
         //g.fillPolygon(xPoints, yPoints, 4);
