@@ -7,5 +7,7 @@ public class Main {
 
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);
+
+
     }
 }

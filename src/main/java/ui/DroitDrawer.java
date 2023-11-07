@@ -49,8 +49,8 @@ public class DroitDrawer {
         //Cadre du mur droit de base complet // Afficher en new Color(66, 66, 166)
         PointDouble pointInfGaucheCadre = new PointDouble(0,0);
         PointDouble pointSupGaucheCadre = new PointDouble(0, droite.getSommetsMur().get(5).getY());
-        PointDouble pointSupDroitCadre = new PointDouble(droite.getSommetsMur().get(5).getX() + droite.getSommetsMur().get(4).getX(), (droite.getSommetsMur().get(5).getY()));
-        PointDouble pointInfDroitCadre = new PointDouble(droite.getSommetsMur().get(5).getX() + droite.getSommetsMur().get(4).getX(), 0);
+        PointDouble pointSupDroitCadre = new PointDouble(droite.getSommetsMur().get(5).getX() + droite.getSommetsMur().get(6).getX(), (droite.getSommetsMur().get(5).getY()));
+        PointDouble pointInfDroitCadre = new PointDouble(droite.getSommetsMur().get(5).getX() + droite.getSommetsMur().get(6).getX(), 0);
 
         // Centrer au milieu du drawingPanel
         double positionX = width/2;
@@ -102,12 +102,12 @@ public class DroitDrawer {
         int[] xPointsDroiteCote = {x1dc, x2dc, x3dc, x4dc};
         int[] yPointsDroiteCote = {y1dc, y2dc, y3dc, y4dc};
         g.setColor(new Color(210, 68, 1));
-        g.fillPolygon(xPointsDroiteCote, yPointsDroiteCote, 4);
+        //g.fillPolygon(xPointsDroiteCote, yPointsDroiteCote, 4);
 
         int[] xDernierRect = {x2Cadre, x2dc, x4Cadre, x4dc};
         int[] yDernierRect = {y2Cadre, y2dc, y4Cadre, y4dc};
         g.setColor(new Color(66, 66, 166));
-        g.fillPolygon(xDernierRect, yDernierRect, 4);
+        //g.fillPolygon(xDernierRect, yDernierRect, 4);
         ////
 
     }

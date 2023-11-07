@@ -200,6 +200,7 @@ public class Chalet {
                     mursDecoupes.add(mur);
                 }
             }
+            System.out.println("Liste des murs avec rainures: " + mursDecoupes);
         }
         if(Objects.equals(orientationToit, "Ouest") || Objects.equals(orientationToit, "Est")){
             System.out.println("Orientation toit est Est OU Ouest, dans ce cas: " + orientationToit);
