@@ -323,6 +323,11 @@ public class MainWindow extends javax.swing.JFrame {
 
                     boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMurr,listeMursDrawer);
                     System.out.println(ajoutFenetrereussi);
+                    System.out.println(isAddingFenetre);
+                    //if (ajoutFenetrereussi){
+                       // FenetreDrawer fenetredrawer = new FenetreDrawer();
+                       // fenetredrawer.draw(DrawingPanel.getGraphics());
+                    //}
                     isAddingFenetre = false;
 
 
