@@ -350,6 +350,18 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        AccessoirePanelCoordonneeX.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        AccessoirePanelCoordonneeY.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     private void initComponents() {
