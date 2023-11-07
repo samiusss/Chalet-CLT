@@ -17,6 +17,10 @@ public class MainWindow extends javax.swing.JFrame {
     public Point actualMousePoint = new Point();
     public Point delta = new Point();*/
     private String AccessoireSelectionneID;
+    private int lex;
+    private int ley;
+    private boolean  CoordonneeXChoisie;
+    private boolean CoordonneeYChoisie;
 
     private boolean isAddingPorte = false; // État pour indiquer si l'utilisateur est en mode d'ajout de porte
     private boolean isAddingFenetre = false; // Moyen de valider si l'utilisateur ajoute une fenetre
@@ -110,14 +114,38 @@ public class MainWindow extends javax.swing.JFrame {
         PannelDroitAjoutPorteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                isAddingPorte = true;
+                if (CoordonneeXChoisie ) {
+                    Point mousePoint = new Point(lex + PannelAffichage.getWidth() / 2, PannelAffichage.getHeight() / 2 + 100);
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
+
+                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint, nomMur, listeMursDrawer);
+                    System.out.println("ajoutPortereussi");
+                    isAddingPorte = false;
+                    DrawingPanel.repaint();
+                }
             }
         });
         PannelDroitAjoutFenetreButton.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 isAddingFenetre = true;
+                if (CoordonneeXChoisie && CoordonneeYChoisie)
+                {
+                    Point mousePoint = new Point(lex + PannelAffichage.getWidth()/2, ley +PannelAffichage.getHeight()/2);
+
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+
+                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
+                    System.out.println("fenetreajoutée :_P");
+                    //ui.Chaletdrawer.changerVue(ui.DrawingPanel.selectedAffichageVue);
+                    DrawingPanel.repaint();
+                }
             }
         });
 
@@ -306,43 +334,43 @@ public class MainWindow extends javax.swing.JFrame {
                 {
                     //addPorte();
 
-                    Point mousePoint = e.getPoint();
-
-
-                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-
-                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
-                    //java.util.List<Mur> listeMursDrawer = null ;
-
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-
-                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
-                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                    System.out.println(ajoutReussi);
-                    System.out.println("ajoutPortereussi");
-                    isAddingPorte = false;
-                    //ui.Chaletdrawer.changerVue(ui.DrawingPanel.selectedAffichageVue);
-                    DrawingPanel.repaint();
+//                    Point mousePoint = e.getPoint();
+//
+//
+//                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+//
+//                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
+//                    //java.util.List<Mur> listeMursDrawer = null ;
+//
+//                    Chalet chalet = controleur.getChaletProduction();
+//                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+//
+//                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
+//                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+//                    System.out.println(ajoutReussi);
+//                    System.out.println("ajoutPortereussi");
+//                    isAddingPorte = false;
+//                    //ui.Chaletdrawer.changerVue(ui.DrawingPanel.selectedAffichageVue);
+//                    DrawingPanel.repaint();
 
                 }
                 if (isAddingFenetre)
                 {
 
 
-                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
-
-                    Point mousePoint = e.getPoint();
-
-                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer);
-                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
-
-                    System.out.println(ajoutFenetrereussi);
-                    System.out.println("ajoutFenetrereussi");
-                    isAddingFenetre = false;
-                    DrawingPanel.repaint();
+//                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+//                    Chalet chalet = controleur.getChaletProduction();
+//                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
+//
+//                    Point mousePoint = e.getPoint();
+//
+//                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer);
+//                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+//
+//                    System.out.println(ajoutFenetrereussi);
+//                    System.out.println("ajoutFenetrereussi");
+//                    isAddingFenetre = false;
+//                    DrawingPanel.repaint();
 
 
                 }
@@ -353,55 +381,34 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedOption = (String) VueComboBox.getSelectedItem();
+                CoordonneeXChoisie = true;
                 try {
                     Integer.parseInt(selectedOption);
-                    //Accessoires.Point =  Double.parseDouble(selectedOption);
+
                 }
                 catch (NumberFormatException e1)
                 {
-                    try {
-                        Double.parseDouble(selectedOption);
-                        //Accessoires.Point =  Double.parseDouble(selectedOption);
-                    }
-                    catch (NumberFormatException e2){
-                        //throw "il faut entrer un nombre !
-                    }
+                    System.out.println("y fo met un nombre");
                 }
+                lex = Integer.parseInt(selectedOption);
             }
-
-            //Integer.parseInt(selectedOption);
-            //Double.parseDouble(selectedOption);
-            //le met comme x dit Fenetre.Point
-            //if isAddingFentre (i.e. la il a cliqué sur ajouté une fenetre)
-            //drawFenetre();
-            //if isAddingPorte (i.e. la il a cliqué sur ajouté une fenetre)
-            //drawPorte();
 
         });
         AccessoirePanelCoordonneeY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selectedOption = (String) VueComboBox.getSelectedItem();
+                CoordonneeYChoisie = true;
                 try {
                     Integer.parseInt(selectedOption);
-                    //Accessoires.Point =  Double.parseDouble(selectedOption);
+
                 }
                 catch (NumberFormatException e1)
                 {
-                    try {
-                        Double.parseDouble(selectedOption);
-                        //Accessoires.Point =  Double.parseDouble(selectedOption);
-                    }
-                    catch (NumberFormatException e2){
-                        //throw "il faut entrer un nombre !
-                    }
+                    System.out.println("y fo met un nombre");
                 }
+                ley = Integer.parseInt(selectedOption);
             }
-            //le met comme y dit Fenetre.Point
-            //if isAddingFentre (i.e. la il a cliqué sur ajouté une fenetre)
-            //drawFenetre();
-            //if isAddingPorte (i.e. la il a cliqué sur ajouté une fenetre)
-            //drawPorte();
 
         });
         supprimmerLAccessoireButton.addActionListener(new ActionListener() {
