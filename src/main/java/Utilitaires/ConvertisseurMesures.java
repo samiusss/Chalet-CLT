@@ -39,18 +39,6 @@ public class ConvertisseurMesures {
     }
 
     // Fonction qui convertit decimal en fraction
-    public static double convertirPoucesEnDouble(Pouces pouces)
-    {
-        double total = (double) pouces.getValeurEntiere() + (double) pouces.getNumerateur() /(double) pouces.getDenominateur();
-        return total;
-    }
-
-    public static int convertirPoucesEnInt(Pouces pouces)
-    {
-        int total = (int) pouces.getValeurEntiere() + (int) pouces.getNumerateur() /(int) pouces.getDenominateur();
-        return total;
-    }
-
     public static int[] decimalVersFraction(double number)
     {
 
