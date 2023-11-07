@@ -349,10 +349,10 @@ public class Chaletdrawer {
         int x4d = (int) (pointInfGauched.getX()+positionX);
         int y4d = (int) (pointInfGauched.getY()+positionY);
         //
-        int[] xPointsDroit = {x1r2d, x1r1d,x1d, x2d, x3d, x3r2d, x3r1d, x4d};
-        int[] yPointsDroit = {y1r2d, y1r1d,y1d, y2d, y3d, y3r2d, y3r1d, y4d};
+        int[] xPointsDroit = {x1r1d, x1r2d, x1d, x2d, x3r1d, x3r2d, x3d, x4d};
+        int[] yPointsDroit = {y1r1d, y1r2d, y1d, y2d, y3r1d, y3r2d, y3d, y4d};
         g.setColor(new Color(210, 68, 1));
-        g.drawPolygon(xPointsDroit, yPointsDroit, 8);
+        g.fillPolygon(xPointsDroit, yPointsDroit, 8);
 
         // Construire tableaux de coordonnées pour le mur arrière
 
