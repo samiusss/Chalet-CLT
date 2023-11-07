@@ -175,6 +175,12 @@ public class GaucheDrawer
         PointDouble pointInfDroitgc = gauche.getSommetsMur().get(6);
         PointDouble pointInfGauchegc = gauche.getSommetsMur().get(7);
 
+
+        PointDouble pointInfGaucheCadre = new PointDouble(0,0);
+        PointDouble pointSupGaucheCadre = new PointDouble(0, gauche.getSommetsMur().get(5).getY());
+        PointDouble pointSupDroitCadre = new PointDouble(gauche.getSommetsMur().get(5).getX() + gauche.getSommetsMur().get(4).getX(), (gauche.getSommetsMur().get(5).getY()));
+        PointDouble pointInfDroitCadre = new PointDouble(gauche.getSommetsMur().get(5).getX() + gauche.getSommetsMur().get(4).getX(), 0);
+
         double positionX = width/2 - pointInfDroitgc.getX()/2;
         double positionY = height/2 - pointInfDroitgc.getY()/2;
 
@@ -189,15 +195,44 @@ public class GaucheDrawer
 
         int x4gc = (int) (pointSupDroitgc.getX() + positionX);
         int y4gc = (int) (pointSupDroitgc.getY() + positionY);
+        /////////////////////////////////
+        int x1Cadre = (int) (pointInfGaucheCadre.getX() + positionX);
+        int y1Cadre = (int) (pointInfGaucheCadre.getY() + positionY);
 
+        int x2Cadre = (int) (pointSupGaucheCadre.getX() + positionX);
+        int y2Cadre = (int) (pointSupGaucheCadre.getY() + positionY);
+
+        int x3Cadre = (int) (pointSupDroitCadre.getX() + positionX);
+        int y3Cadre = (int) (pointSupDroitCadre.getY() + positionY);
+
+        int x4Cadre = (int) (pointInfDroitCadre.getX() + positionX);
+        int y4Cadre = (int) (pointInfDroitCadre.getY() + positionY);
+
+        int[] xPointsCadre = {x1Cadre, x2Cadre, x3Cadre, x4Cadre};
+        int[] yPointsCadre = {y1Cadre, y2Cadre, y3Cadre, y4Cadre};
 
 // Construire tableaux de coordonnées pour le mur facade de coté
         int[] xPointsGaucheCote = {x1gc, x2gc, x3gc, x4gc};
         int[] yPointsGaucheCote = {y1gc, y2gc, y3gc, y4gc};
 
 // Dessiner le polygone pour le mur facade de coté (gc)
+        //premiere rainure
+        int[] PremiereRainurex = {x1Cadre, x2Cadre, x3gc, x1gc};
+        int[] PremiereRainurey = {y1Cadre, y2Cadre, y3gc, y1gc};
+        g.setColor(new Color(66, 66, 166));
+        g.fillPolygon(PremiereRainurex, PremiereRainurey, 4);
 
-        g.fillPolygon(xPointsGaucheCote, yPointsGaucheCote, 4);
+        //mur gauche
+        int[] murGauchex = {x1gc, x2gc, x3gc, x4gc};
+        int[] murGauchey = {y1gc, y2gc, y3gc, y4gc};
+        g.setColor(new Color(210, 68, 1));
+        g.fillPolygon(murGauchex, murGauchey, 4);
+
+        //troisieme rainure
+        int[] rainureTroisiemex = {x4gc + x1gc, x4gc, x3gc + x2gc, x2gc};
+        int[] rainureTroisiemey = {y4gc, y4gc, y2gc, y2gc};
+        g.setColor(new Color(66, 66, 166));
+        //g.fillPolygon(rainureTroisiemex, rainureTroisiemey, 4);
 
     }
 }

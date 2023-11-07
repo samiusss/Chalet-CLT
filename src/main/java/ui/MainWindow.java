@@ -16,6 +16,11 @@ public class MainWindow extends javax.swing.JFrame {
     // Ces attributs servent à la gestion du déplacement.
     public Point actualMousePoint = new Point();
     public Point delta = new Point();*/
+    private String AccessoireSelectionneID;
+    private int lex;
+    private int ley;
+    private boolean  CoordonneeXChoisie;
+    private boolean CoordonneeYChoisie;
 
     private boolean isAddingPorte = false; // État pour indiquer si l'utilisateur est en mode d'ajout de porte
     private boolean isAddingFenetre = false; // Moyen de valider si l'utilisateur ajoute une fenetre
@@ -30,6 +35,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel MurPanelLabel;
     private JPanel MurPanel;
     private JLabel ToitPanelLabel;
+    private JLabel CoordoneesAccessoiresLabel;
     private JPanel ToitPanel;
     //private DrawingPanel PannelAffichage; // Utilisez DrawingPanel au lieu de JPanel
     private JTabbedPane ToitPaneltabbedPane;
@@ -45,7 +51,6 @@ public class MainWindow extends javax.swing.JFrame {
     private JButton PannelDroitAjoutPorteButton;
     private JButton PannelDroitAjoutFenetreButton;
     private JTabbedPane MurPannelTabbedPane;
-    private JLabel CoordoneesAccessoiresLabel;
 
     private JTextField AccessoirePanelCoordonneeX;
 
@@ -109,14 +114,38 @@ public class MainWindow extends javax.swing.JFrame {
         PannelDroitAjoutPorteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                isAddingPorte = true;
+                if (CoordonneeXChoisie ) {
+                    Point mousePoint = new Point(lex + PannelAffichage.getWidth() / 2, PannelAffichage.getHeight() / 2 + 100);
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
+
+                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint, nomMur, listeMursDrawer);
+                    System.out.println("ajoutPortereussi");
+                    isAddingPorte = false;
+                    DrawingPanel.repaint();
+                }
             }
         });
         PannelDroitAjoutFenetreButton.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 isAddingFenetre = true;
+                if (CoordonneeXChoisie && CoordonneeYChoisie)
+                {
+                    Point mousePoint = new Point(lex + PannelAffichage.getWidth()/2, ley +PannelAffichage.getHeight()/2);
+
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+
+                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
+                    System.out.println("fenetreajoutée :_P");
+                    //ui.Chaletdrawer.changerVue(ui.DrawingPanel.selectedAffichageVue);
+                    DrawingPanel.repaint();
+                }
             }
         });
 
@@ -305,46 +334,98 @@ public class MainWindow extends javax.swing.JFrame {
                 {
                     //addPorte();
 
-                    Point mousePoint = e.getPoint();
-
-
-                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-
-                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
-                    //java.util.List<Mur> listeMursDrawer = null ;
-
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-
-                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
-                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                    System.out.println(ajoutReussi);
-                    System.out.println("ajoutPortereussi");
-                    isAddingPorte = false;
-                    //ui.Chaletdrawer.changerVue(ui.DrawingPanel.selectedAffichageVue);
-                    DrawingPanel.repaint();
+//                    Point mousePoint = e.getPoint();
+//
+//
+//                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+//
+//                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
+//                    //java.util.List<Mur> listeMursDrawer = null ;
+//
+//                    Chalet chalet = controleur.getChaletProduction();
+//                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+//
+//                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
+//                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+//                    System.out.println(ajoutReussi);
+//                    System.out.println("ajoutPortereussi");
+//                    isAddingPorte = false;
+//                    //ui.Chaletdrawer.changerVue(ui.DrawingPanel.selectedAffichageVue);
+//                    DrawingPanel.repaint();
 
                 }
                 if (isAddingFenetre)
                 {
 
 
-                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
-
-                    Point mousePoint = e.getPoint();
-
-                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer);
-                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
-
-                    System.out.println(ajoutFenetrereussi);
-                    System.out.println("ajoutFenetrereussi");
-                    isAddingFenetre = false;
-                    DrawingPanel.repaint();
+//                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+//                    Chalet chalet = controleur.getChaletProduction();
+//                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
+//
+//                    Point mousePoint = e.getPoint();
+//
+//                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer);
+//                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+//
+//                    System.out.println(ajoutFenetrereussi);
+//                    System.out.println("ajoutFenetrereussi");
+//                    isAddingFenetre = false;
+//                    DrawingPanel.repaint();
 
 
                 }
+            }
+        });
+
+        AccessoirePanelCoordonneeX.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedOption = (String) VueComboBox.getSelectedItem();
+                CoordonneeXChoisie = true;
+                try {
+                    Integer.parseInt(selectedOption);
+
+                }
+                catch (NumberFormatException e1)
+                {
+                    System.out.println("y fo met un nombre");
+                }
+                lex = Integer.parseInt(selectedOption);
+            }
+
+        });
+        AccessoirePanelCoordonneeY.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedOption = (String) VueComboBox.getSelectedItem();
+                CoordonneeYChoisie = true;
+                try {
+                    Integer.parseInt(selectedOption);
+
+                }
+                catch (NumberFormatException e1)
+                {
+                    System.out.println("y fo met un nombre");
+                }
+                ley = Integer.parseInt(selectedOption);
+            }
+
+        });
+        supprimmerLAccessoireButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //if (AccessoireSelectionnéID) = null
+                //  {
+                //  throw("Pas d'asscessoire séléectionné)
+                //  }
+                // else
+                // delete AccessoireSelectionnéID
+            }
+        });
+        AccessoireComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                AccessoireSelectionneID = (String) VueComboBox.getSelectedItem();
             }
         });
 
