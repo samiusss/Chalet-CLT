@@ -35,7 +35,7 @@ public class FacadeDrawer {
         ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         // Définir la couleur des murs
-        g.setColor(new Color(166, 66, 66));
+        g.setColor(new Color(0, 66, 166));
 
         //Dimensions du mur en 3D
         double epaisseurMur = 2*Chalet.epaisseurChalet; // Épaisseur du mur test local
