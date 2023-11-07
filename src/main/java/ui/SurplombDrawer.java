@@ -33,8 +33,7 @@ public class SurplombDrawer
 
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
-        double positionX = width/2;
-        double positionY = height/2;
+
         /*ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         // Définir la couleur des murs
@@ -104,6 +103,9 @@ public class SurplombDrawer
         PointDouble rainureGauche2d = droite.getSommetsMur().get(9);
         PointDouble rainureDroite1d = droite.getSommetsMur().get(10);
         PointDouble rainureDroite2d = droite.getSommetsMur().get(11);
+
+        double positionX = width/2 - pointSupDroita.getX()/2;
+        double positionY = height/2 - pointSupDroita.getY()/2;
 
         int x1f = (int) (pointInfDroitf.getX()+positionX);
         int y1f = (int) (pointInfDroitf.getY()+positionY);

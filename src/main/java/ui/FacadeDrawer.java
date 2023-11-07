@@ -33,9 +33,6 @@ public class FacadeDrawer {
         g.setColor(new Color(110, 166, 166));
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
-        // Centrer au milieu du drawingPanel
-        double positionX = width/2;
-        double positionY = height/2;
 
         chalet.initialiserMurFacade();
 
@@ -46,6 +43,9 @@ public class FacadeDrawer {
         PointDouble pointSupGauchefc = facade.getSommetsMur().get(5);
         PointDouble pointInfDroitfc = facade.getSommetsMur().get(6);
         PointDouble pointInfGauchefc = facade.getSommetsMur().get(7);
+
+        double positionX = width/2 - pointInfDroitfc.getX()/2;
+        double positionY = height/2- pointInfDroitfc.getY()/2;
 
         int x1fc = (int) (pointInfGauchefc.getX() + positionX);
         int y1fc = (int) (pointInfGauchefc.getY() + positionY);

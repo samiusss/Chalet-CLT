@@ -32,8 +32,7 @@ public class GaucheDrawer
 
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
-        double positionX = width/2;
-        double positionY = height/2;
+
         /*ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         // Définir la couleur des murs
@@ -55,6 +54,9 @@ public class GaucheDrawer
         PointDouble pointSupGauchegc = gauche.getSommetsMur().get(5);
         PointDouble pointInfDroitgc = gauche.getSommetsMur().get(6);
         PointDouble pointInfGauchegc = gauche.getSommetsMur().get(7);
+
+        double positionX = width/2 - pointInfDroitgc.getX()/2;
+        double positionY = height/2 - pointInfDroitgc.getY()/2;
 
         int x1gc = (int) (pointInfGauchegc.getX() + positionX);
         int y1gc = (int) (pointInfGauchegc.getY() + positionY);

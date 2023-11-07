@@ -24,9 +24,9 @@ public class Chaletdrawer {
 
     public void draw(Graphics g)
     {
-        drawFenetre(g);
         drawChalet(g);
         drawPorte(g);
+        drawFenetre(g);
     }
 
     private void drawPorte (Graphics g)
