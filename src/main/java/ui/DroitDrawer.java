@@ -41,10 +41,10 @@ public class DroitDrawer {
         Mur droite = chalet.getMursUsines(0.2, "Nord").get(0); // mur droite deja codé en bas
 
         // Accéder coord de Mur droite de face (dc) // Afficher en new Color(210, 68, 1)
-        PointDouble pointInfGauchedc = droite.getSommetsMur().get(7); //(1.5, 0)
+        PointDouble pointInfDroitdc = droite.getSommetsMur().get(7); //(1.5, 0)
         PointDouble pointSupGauchedc = droite.getSommetsMur().get(5); //(1.5, 8)
-        PointDouble pointSupDroitdc = droite.getSommetsMur().get(4); // (8.5, 8)
-        PointDouble pointInfDroitdc = droite.getSommetsMur().get(6); // (8.5, 0)
+        PointDouble pointInfGauchedc = droite.getSommetsMur().get(4); // (8.5, 8)
+        PointDouble pointSupDroitdc = droite.getSommetsMur().get(6); // (8.5, 0)
 
         //Cadre du mur droit de base complet // Afficher en new Color(66, 66, 166)
         PointDouble pointInfGaucheCadre = new PointDouble(0,0);
@@ -59,27 +59,27 @@ public class DroitDrawer {
         int x1dc = (int) (pointInfGauchedc.getX() + positionX);
         int y1dc = (int) (pointInfGauchedc.getY() + positionY);
 
-        int x2dc = (int) (pointInfDroitdc.getX() + positionX);
-        int y2dc = (int) (pointInfDroitdc.getY() + positionY);
+        int x4dc = (int) (pointInfDroitdc.getX() + positionX);
+        int y4dc = (int) (pointInfDroitdc.getY() + positionY);
 
-        int x3dc = (int) (pointSupGauchedc.getX() + positionX);
-        int y3dc = (int) (pointSupGauchedc.getY() + positionY);
+        int x2dc = (int) (pointSupGauchedc.getX() + positionX);
+        int y2dc = (int) (pointSupGauchedc.getY() + positionY);
 
-        int x4dc = (int) (pointSupDroitdc.getX() + positionX);
-        int y4dc = (int) (pointSupDroitdc.getY() + positionY);
+        int x3dc = (int) (pointSupDroitdc.getX() + positionX);
+        int y3dc = (int) (pointSupDroitdc.getY() + positionY);
 
         // points du cadre new Color(66, 66, 166)
         int x1Cadre = (int) (pointInfGaucheCadre.getX() + positionX);
         int y1Cadre = (int) (pointInfGaucheCadre.getY() + positionY);
 
-        int x2Cadre = (int) (pointInfDroitCadre.getX() + positionX);
-        int y2Cadre = (int) (pointInfDroitCadre.getY() + positionY);
+        int x4Cadre = (int) (pointInfDroitCadre.getX() + positionX);
+        int y4Cadre = (int) (pointInfDroitCadre.getY() + positionY);
 
-        int x3Cadre = (int) (pointSupGaucheCadre.getX() + positionX);
-        int y3Cadre = (int) (pointSupGaucheCadre.getY() + positionY);
+        int x2Cadre = (int) (pointSupGaucheCadre.getX() + positionX);
+        int y2Cadre = (int) (pointSupGaucheCadre.getY() + positionY);
 
-        int x4Cadre = (int) (pointSupDroitCadre.getX() + positionX);
-        int y4Cadre = (int) (pointSupDroitCadre.getY() + positionY);
+        int x3Cadre = (int) (pointSupDroitCadre.getX() + positionX);
+        int y3Cadre = (int) (pointSupDroitCadre.getY() + positionY);
 
         /*System.out.println("DroiteInfGauche" + x1dc + "," + y1dc);
         System.out.println("DroiteSupGauche" + x3dc + "," + y3dc);
@@ -94,21 +94,20 @@ public class DroitDrawer {
 
 
         /////
-        int[] xPremierRect = {x1Cadre, x1dc, x3Cadre, x3dc};
-        int[] yPremierRest = {y1Cadre, y1dc, y3Cadre, y3dc};
+        int[] xPremierRect = {x1Cadre, x2Cadre, x1dc, x2dc};
+        int[] yPremierRect = {y1Cadre, y2Cadre, y1dc, y2dc};
         g.setColor(new Color(66, 66, 166));
-        g.fillPolygon(xPremierRect, yPremierRest, 4);
+        //g.fillPolygon(xPremierRect, yPremierRect, 4);
 
         int[] xPointsDroiteCote = {x1dc, x2dc, x3dc, x4dc};
         int[] yPointsDroiteCote = {y1dc, y2dc, y3dc, y4dc};
         g.setColor(new Color(210, 68, 1));
-        //g.fillPolygon(xPointsDroiteCote, yPointsDroiteCote, 4);
+        g.fillPolygon(xPointsDroiteCote, yPointsDroiteCote, 4);
 
-        int[] xDernierRect = {x2Cadre, x2dc, x4Cadre, x4dc};
-        int[] yDernierRect = {y2Cadre, y2dc, y4Cadre, y4dc};
+        int[] xDernierRect = {x3Cadre - x1dc, x3dc, x4Cadre - x2dc, x1dc};
+        int[] yDernierRect = {y3Cadre, y3dc, y4Cadre, y1dc};
         g.setColor(new Color(66, 66, 166));
         //g.fillPolygon(xDernierRect, yDernierRect, 4);
-        ////
-
+        //////
     }
 }

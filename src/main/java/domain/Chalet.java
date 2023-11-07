@@ -172,20 +172,20 @@ public class Chalet {
                     mur.createSommet(mur, new PointDouble((getEpaisseurChalet()/2), (getEpaisseurChalet()/2))); // creer Point(1.5, 1.5)
 
                     //Vue de face
-                    mur.getSommetsMur().get(4).setLocation(getEpaisseurChalet()/2, 0); //A: InfGauche // Point(0, 0) reste Point(0, 0)
-                    mur.getSommetsMur().get(5).setLocation(getEpaisseurChalet()/2, getHauteurMurs()); //B: SupGauche // Point(0, 8.0) reste Point(0, 8.0)
-                    mur.getSommetsMur().get(6).setLocation(getLargeurChalet() - (getEpaisseurChalet()/2), getHauteurMurs()); //C: SupDroite // Point(10.0, 8.0) reste Point(10.0, 8.0)
-                    mur.getSommetsMur().get(7).setLocation(getLargeurChalet() - (getEpaisseurChalet()/2), 0); //D: InfDroite // Point(10.0, 0) reste Point(10.0, 0)
+                    mur.getSommetsMur().get(4).setLocation((getEpaisseurChalet()/2) + distanceUsinage, 0); //A: InfGauche // Point(0, 0) reste Point(0, 0)
+                    mur.getSommetsMur().get(5).setLocation((getEpaisseurChalet()/2) + distanceUsinage, getHauteurMurs()); //B: SupGauche // Point(0, 8.0) reste Point(0, 8.0)
+                    mur.getSommetsMur().get(6).setLocation(getLargeurChalet() - (getEpaisseurChalet()/2) - distanceUsinage, getHauteurMurs()); //C: SupDroite // Point(10.0, 8.0) reste Point(10.0, 8.0)
+                    mur.getSommetsMur().get(7).setLocation(getLargeurChalet() - (getEpaisseurChalet()/2) - distanceUsinage, 0); //D: InfDroite // Point(10.0, 0) reste Point(10.0, 0)
 
                     mursDecoupes.add(mur);
                 }
                 if(Objects.equals(mur.getNomMur(), "Droite")){
                     //initial points: A  0:(7.0, 0)  B  1:(7.0, 10)  C  2:(10.0, 10.0)  D  3:(10.0, 0)
                     //final points: A:(7.0, 3.2)  B:(7.0, 6.8)  E:(8.7, 6.8)  F:(8.7, 8.3)   C:(10, 8.3)  D:(10.0, 1.7)  G:(8.7, 1.7)  H:(8.7, 3.2)
-                    mur.getSommetsMur().get(0).setLocation(getLongueurChalet() - getEpaisseurChalet(), getEpaisseurChalet()); //A: InfGauche // Point(7.0, 0) devient Point(8,2)
-                    mur.getSommetsMur().get(1).setLocation(getLongueurChalet() - getEpaisseurChalet(), getLongueurChalet() - getEpaisseurChalet()); //B: SupGauche // Point(7.0, 10.0) devient Point(8, 8)
-                    mur.createSommet(mur, new PointDouble((getLongueurChalet() - (getEpaisseurChalet()/2)), getLongueurChalet() - getEpaisseurChalet())); // E creer Point(9, 8)
-                    mur.createSommet(mur, new PointDouble((getLongueurChalet() - (getEpaisseurChalet()/2)),  (getLongueurChalet() - (getEpaisseurChalet()/2)))); // F creer Point(9, 9)
+                    mur.getSommetsMur().get(0).setLocation((getLongueurChalet() - getEpaisseurChalet()), getEpaisseurChalet()); //A: InfGauche // Point(7.0, 0) devient Point(8,2)
+                    mur.getSommetsMur().get(1).setLocation((getLongueurChalet() - getEpaisseurChalet()), (getLargeurChalet() - getEpaisseurChalet())); //B: SupGauche // Point(7.0, 10.0) devient Point(8, 8)
+                    mur.createSommet(mur, new PointDouble((getLongueurChalet() - (getEpaisseurChalet()/2)), (getLargeurChalet() - getEpaisseurChalet()))); // E creer Point(9, 8)
+                    mur.createSommet(mur, new PointDouble((getLongueurChalet() - (getEpaisseurChalet()/2)), ((getLargeurChalet() - (getEpaisseurChalet()/2))))); // F creer Point(9, 9)
 
                     mur.getSommetsMur().get(2).setLocation(getLongueurChalet(), (getLongueurChalet() - (getEpaisseurChalet()/2))); //C: SupDroite // Point(10.0, 10.0) devient Point(10.0, 9)
                     mur.getSommetsMur().get(3).setLocation(getLongueurChalet(), (getEpaisseurChalet()/2)); //D: InfDroite // Point(10.0, 0) devient Point(10.0, 1)
@@ -200,6 +200,7 @@ public class Chalet {
                     mursDecoupes.add(mur);
                 }
             }
+            System.out.println("Liste des murs avec rainures: " + mursDecoupes);
         }
         if(Objects.equals(orientationToit, "Ouest") || Objects.equals(orientationToit, "Est")){
             System.out.println("Orientation toit est Est OU Ouest, dans ce cas: " + orientationToit);
@@ -219,7 +220,6 @@ public class Chalet {
 
     public List<Mur> getMursUsines(double distanceUsinage, String orientationToit) {
         retirerRainures(listeMurs, distanceUsinage, orientationToit);
-        System.out.println("Liste de murs usinés: " + listeMurs);
         return listeMurs;
     }
 
@@ -318,7 +318,6 @@ public class Chalet {
         int hauteurMurInt = convertirPoucesEnPixels(hauteurMur);
         Pouces hauteurPorte = Porte.PORTE_HAUTEUR_STANDARD;
         int hauteurPorteInt = convertirPoucesEnPixels(hauteurPorte);
-
 
         /*
         int y = DeterminerPointMurLargeur(,w,h, mousePoint);
