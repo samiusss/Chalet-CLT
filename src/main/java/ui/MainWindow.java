@@ -52,20 +52,20 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel MurPannelTabbedPaneDerrièreLabel;
     private JPanel MurPannelTabbedPaneGaucheLabel;
     private JPanel MurPannelTabbedPaneDroitLabel;
-    private JTextField MurPannelTabbedPaneDerriereLabelLongeurTextField;
-    private JTextField MurPannelTabbedPaneDerriereLabelLargeurTextField;
+    private JTextField MurPannelTabbedPaneDerriereLabelLongueurTextField;
+    private JTextField MurPannelTabbedPaneDerriereLabelHauteurTextField;
     private JLabel MurPannelTabbedPaneFaçadeLabelLongeurLabel;
     private JLabel MurPannelTabbedPaneFaçadeLabelLargeurLabel;
     private JTextField MurPannelTabbedPaneDroitLabelLongeurTextField;
-    private JTextField MurPannelTabbedPaneDroitLabelLargeurTextField;
+    private JTextField MurPannelTabbedPaneDroitLabelHauturTextField;
     private JTextField MurPannelTabbedPaneGaucheLabelLongeurTextField;
-    private JTextField MurPannelTabbedPaneGaucheLabelLargeurTextField;
+    private JTextField MurPannelTabbedPaneGaucheLabelHauteurTextField;
     private JLabel MurPannelTabbedPaneDerriereLabelLongeurLabel;
-    private JLabel MurPannelTabbedPaneDerriereLabelLargeurLabel;
+    private JLabel MurPannelTabbedPaneDerriereLabelHauteurLabel;
     private JLabel MurPannelTabbedPaneDroitLabelLongeurlabel;
-    private JLabel MurPannelTabbedPaneDroitLabelLargeurLabel;
+    private JLabel MurPannelTabbedPaneDroitLabelHauteurLabel;
     private JLabel MurPannelTabbedPaneGaucheLabelLongeurLabel;
-    private JLabel MurPannelTabbedPaneGaucheLabelLargeurLabel;
+    private JLabel MurPannelTabbedPaneGaucheLabelHauteurLabel;
     private JTextField AccessoirePanelLongeurTextField;
     private JTextField AccessoirePanelLargeurTextField;
     private JLabel AccessoireLabel;
@@ -73,6 +73,25 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel AccessoirePanelIDPanel;
     private JLabel AccessoireID;
     private JLabel AccessoirePanelLargeurPanel;
+    private JLabel ToitPaneltabbedPaneDroitPanelAngleLabel;
+    private JLabel ToitPaneltabbedPaneDroitPanelHauteurLabel;
+    private JTextField ToitPaneltabbedPaneDroitPanelAngleTextField;
+    private JTextField ToitPaneltabbedPaneDroitPanelHauteurTextField;
+    private JTextField ToitPaneltabbedPaneGauchePanelAngleTextField;
+    private JTextField ToitPaneltabbedPaneGauchePanelHauteurTextField;
+    private JLabel ToitPaneltabbedPaneGauchePanelAngleLabel;
+    private JLabel ToitPaneltabbedPaneGauchePanelHauteurLabel;
+    private JLabel AjoutPorteLabel;
+    private JLabel AjoutFenetreLabel;
+    private JTextField ToitPaneltabbedPaneDevantPanelAngleTextField;
+    private JTextField ToitPaneltabbedPaneDevantPanelHauteurTextField;
+    private JLabel ToitPaneltabbedPaneDevantPanelAngleLabel;
+    private JLabel ToitPaneltabbedPaneDevantPanelHauteurLabel;
+    private JTextField ToitPaneltabbedPaneDerrierePanelAngleTextField;
+    private JTextField ToitPaneltabbedPaneDerrierePanelHauteurTextField;
+    private JLabel ToitPaneltabbedPaneDerrierePanelAngleLabel;
+    private JLabel ToitPaneltabbedPaneDerrierePanelHauteurLabel;
+    private JComboBox AccessoireComboBox;
 
     public MainWindow() {
         controleur = new Controleur();
@@ -139,10 +158,10 @@ public class MainWindow extends javax.swing.JFrame {
                 String inputText = MurPannelTabbedPaneFaçadeLabelLongeurTextField.getText();
             }
         });
-        MurPannelTabbedPaneDerriereLabelLargeurTextField.addActionListener(new ActionListener() {
+        MurPannelTabbedPaneDerriereLabelHauteurTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String inputText = MurPannelTabbedPaneDerriereLabelLargeurTextField.getText();
+                String inputText = MurPannelTabbedPaneDerriereLabelHauteurTextField.getText();
             }
         });
         MurPannelTabbedPaneDroitLabelLongeurTextField.addActionListener(new ActionListener() {
@@ -151,10 +170,10 @@ public class MainWindow extends javax.swing.JFrame {
                 String inputText = MurPannelTabbedPaneDroitLabelLongeurTextField.getText();
             }
         });
-        MurPannelTabbedPaneDroitLabelLargeurTextField.addActionListener(new ActionListener() {
+        MurPannelTabbedPaneDroitLabelHauturTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String inputText = MurPannelTabbedPaneDroitLabelLargeurTextField.getText();
+                String inputText = MurPannelTabbedPaneDroitLabelHauturTextField.getText();
             }
         });
         MurPannelTabbedPaneGaucheLabelLongeurTextField.addActionListener(new ActionListener() {
@@ -163,10 +182,10 @@ public class MainWindow extends javax.swing.JFrame {
                 String inputText = MurPannelTabbedPaneGaucheLabelLongeurTextField.getText();
             }
         });
-        MurPannelTabbedPaneGaucheLabelLargeurTextField.addActionListener(new ActionListener() {
+        MurPannelTabbedPaneGaucheLabelHauteurTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String inputText = MurPannelTabbedPaneGaucheLabelLargeurTextField.getText();
+                String inputText = MurPannelTabbedPaneGaucheLabelHauteurTextField.getText();
             }
         });
         AccessoirePanelLongeurTextField.addActionListener(new ActionListener() {
@@ -184,13 +203,65 @@ public class MainWindow extends javax.swing.JFrame {
 //        public void setAccessoireIDText(String Accessoires.UUID) {
 //            AccessoireID.setText(Accessoires.UUID);
 //        }
+        ToitPaneltabbedPaneDroitPanelAngleTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = ToitPaneltabbedPaneDroitPanelAngleTextField.getText();
+            }
+        });
+        ToitPaneltabbedPaneDroitPanelHauteurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = ToitPaneltabbedPaneDroitPanelHauteurTextField.getText();
+            }
+        });
+
+        ToitPaneltabbedPaneGauchePanelAngleTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = ToitPaneltabbedPaneGauchePanelAngleTextField.getText();
+            }
+        });
+
+        ToitPaneltabbedPaneGauchePanelHauteurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = ToitPaneltabbedPaneGauchePanelHauteurTextField.getText();
+            }
+        });
+
+        ToitPaneltabbedPaneDevantPanelAngleTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = ToitPaneltabbedPaneDevantPanelAngleTextField.getText();
+            }
+        });
+        ToitPaneltabbedPaneDevantPanelHauteurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = ToitPaneltabbedPaneDevantPanelHauteurTextField.getText();
+
+            }
+        });
+        ToitPaneltabbedPaneDerrierePanelAngleTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = ToitPaneltabbedPaneDerrierePanelAngleTextField.getText();
+            }
+        });
+
+        ToitPaneltabbedPaneDerrierePanelHauteurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = ToitPaneltabbedPaneDerrierePanelHauteurTextField.getText();
+            }
+        });
+
     }
 
     private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
         if (isAddingPorte) {
             System.out.println("ajoutPortereussi");
-
-
 
             Point mousePoint = evt.getPoint();
             String nomMur = "Droite";
