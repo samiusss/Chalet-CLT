@@ -269,10 +269,32 @@ public class MainWindow extends javax.swing.JFrame {
                 if (isAddingPorte)
                 {
                     //addPorte();
+
+                    Point mousePoint = e.getPoint();
+                    String nomMur = "Droite";
+                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
+                    java.util.List<Mur> listeMursDrawer = null ;
+
+                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
+                    System.out.println("ajoutPortereussi");
+                    isAddingPorte = false;
                 }
                 if (isAddingFenetre)
                 {
                     //addFenetre();
+
+                    String nomMurr = "Droite";
+                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
+                    java.util.List<Mur> listeMursDrawer = null ;
+
+                    Point mousePoint = e.getPoint();
+
+                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMurr,listeMursDrawer);
+                    System.out.println(ajoutFenetrereussi);
+                    System.out.println("ajoutFenetrereussi");
+
+                    isAddingFenetre = false;
+
                 }
             }
         });

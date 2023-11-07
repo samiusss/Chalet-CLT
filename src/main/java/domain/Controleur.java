@@ -20,9 +20,11 @@ public class Controleur {
 
 
 
-    /*public static boolean ajouterFenetre(Point mousepoint, String nomMur,List<Mur> listeMursDrawer){
+    public static boolean ajouterFenetre(Point mousepoint, String nomMur,List<Mur> listeMursDrawer){
 
-        if(Chalet.ajouterFenetre(mousepoint, nomMur,listeMursDrawer))
+        java.util.List<Mur> listeMursDrawer2 = Chaletdrawer.chalet.getMursUsines(0,"NORD") ;
+
+        if(Chalet.ajouterFenetre(mousepoint, nomMur,listeMursDrawer2))
         {
             return true;
         }
@@ -31,12 +33,13 @@ public class Controleur {
         //Fenetre newFenetre = new Accessoires("AID", mousepoint, double largeur, double hauteur);
         //accessoiresmur.add(newFenetre);
 
-    }*/
+    }
 
-    /*public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
+    public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
+        java.util.List<Mur> listeMursDrawer2 = Chaletdrawer.chalet.getMursUsines(0,"NORD") ;
 
 
-        if(Chalet.ajouterPorte(mousepoint, nomMur,listeMursDrawer))
+        if(Chalet.ajouterPorte(mousepoint, nomMur,listeMursDrawer2))
         {
             return true;
         }
@@ -44,7 +47,10 @@ public class Controleur {
         return false;
         //Porte newPorte = newAccessoires("AID",mousepoint, double largeur,double hauteur);
         //accessoiresmur.add(newPorte);
-    }*/
+    }
+
+
+
 //test
     public ChaletDTO getChalet() {
         return chalet;
