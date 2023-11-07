@@ -28,7 +28,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 
         this.mainWindow = mainWindow;
         controleur = new Controleur();
-        setPreferredSize(new Dimension(700, 700));
+        setPreferredSize(new Dimension(500, 500));
 
 //        addMouseWheelListener(new MouseWheelListener() {
 //            @Override
@@ -52,8 +52,6 @@ public class DrawingPanel extends JPanel implements Serializable {
         repaint();
         return true;
     }
-
-
 
     /*public void changerVue(Controleur.AffichageVue nouvelleVue)
     {

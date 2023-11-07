@@ -89,6 +89,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel ToitPaneltabbedPaneDerrierePanelAngleLabel;
     private JLabel ToitPaneltabbedPaneDerrierePanelHauteurLabel;
     private JComboBox AccessoireComboBox;
+    private JButton supprimmerLAccessoireButton;
 
     private Controleur.AffichageVue selectedVue;
 
@@ -167,10 +168,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             private void setVue(Controleur.AffichageVue facade) {
                 this.selectedVue = facade;
-
             }
-            
-
 
         });
 
@@ -370,7 +368,7 @@ public class MainWindow extends javax.swing.JFrame {
         DrawingPanel = new DrawingPanel(this);
         PannelAffichage.setLayout(new BorderLayout());
         PannelAffichage.add(DrawingPanel, BorderLayout.CENTER);
-        DrawingPanel.setPreferredSize(new java.awt.Dimension(555, 424));
+        DrawingPanel.setPreferredSize(new java.awt.Dimension(500, 500));
         DrawingPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setContentPane(FenetrePrincipale);
         setSize(1200, 700);
