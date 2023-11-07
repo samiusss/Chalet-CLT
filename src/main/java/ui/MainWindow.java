@@ -334,43 +334,41 @@ public class MainWindow extends javax.swing.JFrame {
                 {
                     //addPorte();
 
-//                    Point mousePoint = e.getPoint();
-//
-//
-//                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                    Point mousePoint = e.getPoint();
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
 //
 //                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
 //                    //java.util.List<Mur> listeMursDrawer = null ;
 //
-//                    Chalet chalet = controleur.getChaletProduction();
-//                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-//
-//                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
-//                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
-//                    System.out.println(ajoutReussi);
-//                    System.out.println("ajoutPortereussi");
-//                    isAddingPorte = false;
-//                    //ui.Chaletdrawer.changerVue(ui.DrawingPanel.selectedAffichageVue);
-//                    DrawingPanel.repaint();
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+
+                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
+                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                    System.out.println(ajoutReussi);
+                    System.out.println("ajoutPortereussi");
+                    isAddingPorte = false;
+                    //ui.Chaletdrawer.changerVue(ui.DrawingPanel.selectedAffichageVue);
+                    DrawingPanel.repaint();
 
                 }
                 if (isAddingFenetre)
                 {
 
 
-//                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-//                    Chalet chalet = controleur.getChaletProduction();
-//                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
 //
-//                    Point mousePoint = e.getPoint();
+                    Point mousePoint = e.getPoint();
 //
-//                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer);
-//                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer);
+                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
 //
-//                    System.out.println(ajoutFenetrereussi);
-//                    System.out.println("ajoutFenetrereussi");
-//                    isAddingFenetre = false;
-//                    DrawingPanel.repaint();
+                    System.out.println(ajoutFenetrereussi);
+                    System.out.println("ajoutFenetrereussi");
+                    isAddingFenetre = false;
+                    DrawingPanel.repaint();
 
 
                 }
@@ -411,17 +409,17 @@ public class MainWindow extends javax.swing.JFrame {
             }
 
         });
-        supprimmerLAccessoireButton.addActionListener(new ActionListener() {
+       /* supprimmerLAccessoireButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //if (AccessoireSelectionnéID) = null
-                //  {
+                  {
                 //  throw("Pas d'asscessoire séléectionné)
                 //  }
                 // else
                 // delete AccessoireSelectionnéID
             }
-        });
+        }); */
         AccessoireComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
