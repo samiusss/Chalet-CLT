@@ -20,6 +20,9 @@ public class DrawingPanel extends JPanel implements Serializable {
         setPreferredSize(new Dimension(1000, 1000));
     }*/
 
+    private static String selectedAffichageVue;
+
+
     public DrawingPanel(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
         controleur = new Controleur();
@@ -37,6 +40,24 @@ public class DrawingPanel extends JPanel implements Serializable {
 //            }
 //        });
     }
+
+    public static boolean changerVue(String selectedVue) {
+        selectedAffichageVue = selectedVue;
+        return true;
+    }
+
+    public boolean repaintMode() {
+        repaint();
+        return true;
+    }
+
+
+
+    /*public void changerVue(Controleur.AffichageVue nouvelleVue)
+    {
+        selectedAffichageVue = nouvelleVue;
+        repaint();
+    } */
 
     @Override
     protected void paintComponent(Graphics g) {

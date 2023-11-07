@@ -293,8 +293,8 @@ public class Chalet {
 
         int numMur = determinerMur(nomMur);
 
-        Mur mur = listeMurs.get(numMur);
-        //java.util.List<Mur> listeMursDrawer2 = Chaletdrawer.chalet.getMursUsines(0,"NORD") ;
+        java.util.List<Mur> listeMursDrawer2 = Chaletdrawer.chalet.getMursUsines(0,"NORD") ;
+        Mur mur = listeMursDrawer2.get(numMur);
 
 
 

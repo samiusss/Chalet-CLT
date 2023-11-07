@@ -9,6 +9,15 @@ public class Controleur {
     private float zoom;
     private float offset;
 
+    public enum AffichageVue
+    {
+        FACADE,
+        GAUCHE,
+        DROITE,
+        ARRIERE,
+        SURPLOMB
+    }
+
 
    /* public Controleur (Chalet chalet){
         this.chalet = chalet;

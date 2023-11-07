@@ -92,6 +92,9 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel ToitPaneltabbedPaneDerrierePanelHauteurLabel;
     private JComboBox AccessoireComboBox;
 
+    private Controleur.AffichageVue selectedVue;
+
+
     public MainWindow() {
         controleur = new Controleur();
         initComponents();
@@ -111,6 +114,9 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         VueComboBox.addItemListener(new ItemListener() {
+
+            private Controleur.AffichageVue selectedVue;
+
             private String getSelectedVueOption() {
                 return (String) VueComboBox.getSelectedItem();
             }
@@ -119,23 +125,38 @@ public class MainWindow extends javax.swing.JFrame {
             
             public void itemStateChanged(ItemEvent e) {
                         String selectedOption = (String) VueComboBox.getSelectedItem();
+
                         if (selectedOption != null) {
                             switch (selectedOption) {
                                 case "Facade":
                                     //drawFacade();
-                                    System.out.println("PORTEPORTE");
+                                    this.setVue(Controleur.AffichageVue.FACADE);
+                                    ui.DrawingPanel.changerVue(String.valueOf(selectedVue));
+                                    DrawingPanel.repaint();
+                                    System.out.println("Facade");
                                     break;
                                 case "Arriere":
-                                    //drawArriere();
+                                    this.setVue(Controleur.AffichageVue.ARRIERE);
+                                    ui.DrawingPanel.changerVue(String.valueOf(selectedVue));
+                                    System.out.println("Arriere");
                                     break;
                                 case "Droit":
-                                    //drawDroit();
+                                    this.setVue(Controleur.AffichageVue.DROITE);
+
+                                    ui.DrawingPanel.changerVue(String.valueOf(selectedVue));
+                                    System.out.println("Droit");
                                     break;
                                 case "Gauche":
-                                    //drawGauche();
+                                    this.setVue(Controleur.AffichageVue.GAUCHE);
+
+                                    ui.DrawingPanel.changerVue(String.valueOf(selectedVue));
+                                    System.out.println("Gauche");
                                     break;
                                 case "Surplomb":
-                                    //drawSurplomb();
+                                    this.setVue(Controleur.AffichageVue.SURPLOMB);
+
+                                    ui.DrawingPanel.changerVue(String.valueOf(selectedVue));
+                                    System.out.println("Surplomb");
                                     break;
                                 default:
                                     // Handle any other cases or do nothing
@@ -143,6 +164,14 @@ public class MainWindow extends javax.swing.JFrame {
                             }
                         }
                     }
+
+            private void setVue(Controleur.AffichageVue facade) {
+                this.selectedVue = facade;
+
+            }
+            
+
+
         });
 
 
@@ -339,8 +368,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void initComponents() {
         DrawingPanel = new DrawingPanel(this);
-        PannelAffichage.setLayout(new BorderLayout());
-        PannelAffichage.add(DrawingPanel, BorderLayout.CENTER);
+        DrawingPanel.setLayout(new BorderLayout());
+        DrawingPanel.add(DrawingPanel, BorderLayout.CENTER);
         DrawingPanel.setPreferredSize(new java.awt.Dimension(555, 424));
         DrawingPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setContentPane(FenetrePrincipale);
