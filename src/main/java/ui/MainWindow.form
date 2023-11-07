@@ -660,7 +660,7 @@
               <model>
                 <item value="Surplomb"/>
                 <item value="Facade"/>
-                <item value="Arrière"/>
+                <item value="Arriere"/>
                 <item value="Droit"/>
                 <item value="Gauche"/>
               </model>

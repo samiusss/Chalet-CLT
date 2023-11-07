@@ -13,11 +13,11 @@ import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 
 public class Chaletdrawer {
     private Controleur controleur;
-    public static Chalet chalet;
+    public  Chalet chalet;
     private Accessoires accessoires;
     private Dimension initialDimension;
 
-    public Chaletdrawer(Controleur controleur, Dimension initialDimension){
+    public Chaletdrawer(Controleur controleur ,Dimension initialDimension){
         this.controleur = controleur;
         this.initialDimension = initialDimension;
     }
@@ -74,6 +74,23 @@ public class Chaletdrawer {
     {
         ArrayList<pointPouces> sommetsFenetre = new ArrayList<>() ;
         g.setColor(new Color(1, 100, 166));
+
+
+        ArrayList<Mur> listeMurs = new ArrayList<>();
+        String orientationToit = "Nord";
+        //Dimensions du mur en 3D
+        double epaisseurMur = 2*Chalet.epaisseurChalet; // Épaisseur du mur test local
+        double hauteurMurs = 2*Chalet.hauteurMurs;      // Hauteur des murs, sera utilisée pour les vues de côté
+        double largeurMur = 2*Chalet.largeurChalet;     // Largeur des murs venant de chalet
+        double longueurMur = 2*Chalet.longueurChalet;
+        double angleToit = 0.0;
+
+        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
+        chalet.initialiserMurFacade();
+        chalet.initialiserMurArriere();
+        chalet.initialiserMurGauche();
+        chalet.initialiserMurDroite();
+
 
         // Appeler dimensions Fenetre
         Pouces largeurFenetre = Fenetre.FENETRE_LARGEUR_STANDARD;
@@ -140,27 +157,14 @@ public class Chaletdrawer {
 
     }
 
+
     private void drawChalet(Graphics g) {
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
 
-        ArrayList<Mur> listeMurs = new ArrayList<>();
-        String orientationToit = "Nord";
+
         // Définir la couleur des murs
         g.setColor(new Color(166, 66, 66));
-
-        //Dimensions du mur en 3D
-        double epaisseurMur = 2*Chalet.epaisseurChalet; // Épaisseur du mur test local
-        double hauteurMurs = 2*Chalet.hauteurMurs;      // Hauteur des murs, sera utilisée pour les vues de côté
-        double largeurMur = 2*Chalet.largeurChalet;     // Largeur des murs venant de chalet
-        double longueurMur = 2*Chalet.longueurChalet;
-        double angleToit = 0.0;
-
-        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
-        chalet.initialiserMurFacade();
-        chalet.initialiserMurArriere();
-        chalet.initialiserMurGauche();
-        chalet.initialiserMurDroite();
 
         // Accéder aux coordonnées de Mur: Facade
         Mur facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
