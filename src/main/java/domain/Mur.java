@@ -41,7 +41,7 @@ public class Mur {
     }
 
     public List<PointDouble> getSommetsMur() {
-        return sommetsMur;
+        return this.sommetsMur;
     }
 
     public void setSommetsMur(List<PointDouble> sommetsMur) {
