@@ -20,7 +20,7 @@ public class Controleur {
 
 
 
-    public static boolean ajouterFenetre(Point mousepoint, String nomMur,List<Mur> listeMursDrawer){
+    /*public static boolean ajouterFenetre(Point mousepoint, String nomMur,List<Mur> listeMursDrawer){
 
         if(Chalet.ajouterFenetre(mousepoint, nomMur,listeMursDrawer))
         {
@@ -31,9 +31,9 @@ public class Controleur {
         //Fenetre newFenetre = new Accessoires("AID", mousepoint, double largeur, double hauteur);
         //accessoiresmur.add(newFenetre);
 
-    }
+    }*/
 
-    public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
+    /*public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 
 
         if(Chalet.ajouterPorte(mousepoint, nomMur,listeMursDrawer))
@@ -44,7 +44,7 @@ public class Controleur {
         return false;
         //Porte newPorte = newAccessoires("AID",mousepoint, double largeur,double hauteur);
         //accessoiresmur.add(newPorte);
-    }
+    }*/
 //test
     public ChaletDTO getChalet() {
         return chalet;
