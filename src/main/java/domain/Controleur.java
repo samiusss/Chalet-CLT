@@ -35,10 +35,10 @@ public class Controleur {
         ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         //Dimensions du mur en 3D
-        double epaisseurMur = 10; // Épaisseur du mur test local
-        double hauteurMurs = 80;      // Hauteur des murs, sera utilisée pour les vues de côté
-        double largeurMur = 100;     // Largeur des murs venant de chalet
-        double longueurMur = 100;
+        double epaisseurMur = 2*20;   // Épaisseur du mur
+        double hauteurMurs = 2*80;      // Hauteur des murs, sera utilisée pour les vues de côté
+        double largeurMur = 2*100;     // Largeur des murs venant
+        double longueurMur = 2*100;
         double angleToit = 0.0;
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);

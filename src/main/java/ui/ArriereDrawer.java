@@ -58,11 +58,11 @@ public class ArriereDrawer {
         PointDouble pointInfDroitac = arriere.getSommetsMur().get(6);
         PointDouble pointInfGaucheac = arriere.getSommetsMur().get(7);
 
-        int x2ac = (int) (pointInfGaucheac.getX() + positionX);
-        int y2ac = (int) (pointInfGaucheac.getY() + positionY);
+        int x1ac = (int) (pointInfGaucheac.getX() + positionX);
+        int y1ac = (int) (pointInfGaucheac.getY() + positionY);
 
-        int x1ac = (int) (pointInfDroitac.getX() + positionX);
-        int y1ac = (int) (pointInfDroitac.getY() + positionY);
+        int x2ac = (int) (pointInfDroitac.getX() + positionX);
+        int y2ac = (int) (pointInfDroitac.getY() + positionY);
 
         int x3ac = (int) (pointSupGaucheac.getX() + positionX);
         int y3ac = (int) (pointSupGaucheac.getY() + positionY);
