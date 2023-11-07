@@ -90,6 +90,9 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel ToitPaneltabbedPaneDerrierePanelHauteurLabel;
     private JComboBox AccessoireComboBox;
     private JButton supprimmerLAccessoireButton;
+    private JLabel CoordoneesAccessoiresLabel;
+    private JTextField AccessoirePanelCoordonneeX;
+    private JTextField AccessoirePanelCoordonneeY;
 
     private Controleur.AffichageVue selectedVue;
 
@@ -316,16 +319,14 @@ public class MainWindow extends javax.swing.JFrame {
                 }
                 if (isAddingFenetre)
                 {
-
-
                     String nomMurr = "Droite";
                     Chalet chalet = controleur.getChaletProduction();
                     java.util.List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
 
                     Point mousePoint = e.getPoint();
 
-                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMurr,listeMursDrawer);
-                    System.out.println(ajoutFenetrereussi);
+                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMurr,listeMursDrawer);
+                    System.out.println(ajoutReussi);
                     System.out.println(isAddingFenetre);
                     //if (ajoutFenetrereussi){
                        // FenetreDrawer fenetredrawer = new FenetreDrawer();
@@ -339,6 +340,28 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        AccessoirePanelCoordonneeX.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //get le texte
+                //le met comme x dit Fenetre.Point
+                //if isAddingFentre (i.e. la il a cliqué sur ajouté une fenetre)
+                //drawFenetre();
+                //if isAddingPorte (i.e. la il a cliqué sur ajouté une fenetre)
+                //drawPorte();
+            }
+        });
+        AccessoirePanelCoordonneeY.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //get le texte
+                //le met comme y dit Fenetre.Point
+                //if isAddingFentre (i.e. la il a cliqué sur ajouté une fenetre)
+                //drawFenetre();
+                //if isAddingPorte (i.e. la il a cliqué sur ajouté une fenetre)
+                //drawPorte();
+            }
+        });
     }
 
     private void initComponents() {

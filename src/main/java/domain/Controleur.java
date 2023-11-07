@@ -3,6 +3,9 @@ package domain;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+//import static domain.Mur.accessoiresMur;
 
 public class Controleur {
     private ChaletDTO chalet;
@@ -57,7 +60,7 @@ public class Controleur {
 
 
 
-    public static boolean ajouterFenetre(Point mousepoint, String nomMur,List<Mur> listeMursDrawer){
+    public boolean ajouterFenetre(Point mousepoint, String nomMur,List<Mur> listeMursDrawer){
 
         if(Chalet.ajouterFenetre(mousepoint, nomMur,listeMursDrawer))
         {
