@@ -5,10 +5,7 @@ import domain.Mur;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 
 import static ui.Chaletdrawer.chalet;
 
@@ -263,6 +260,42 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = ToitPaneltabbedPaneDerrierePanelHauteurTextField.getText();
+            }
+        });
+
+        PannelAffichage.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (isAddingPorte)
+                {
+                    //addPorte();
+
+                    Point mousePoint = e.getPoint();
+                    String nomMur = "Droite";
+                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
+                    java.util.List<Mur> listeMursDrawer = null ;
+
+                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
+                    System.out.println("ajoutPortereussi");
+                    isAddingPorte = false;
+                }
+                if (isAddingFenetre)
+                {
+                    //addFenetre();
+
+                    String nomMurr = "Droite";
+                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
+                    java.util.List<Mur> listeMursDrawer = null ;
+
+                    Point mousePoint = e.getPoint();
+
+                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMurr,listeMursDrawer);
+                    System.out.println(ajoutFenetrereussi);
+                    System.out.println("ajoutFenetrereussi");
+
+                    isAddingFenetre = false;
+
+                }
             }
         });
 

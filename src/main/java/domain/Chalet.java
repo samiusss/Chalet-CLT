@@ -288,7 +288,7 @@ public class Chalet {
     }
 
 
-    public static boolean ajouterPorte(Point mousepoint, String nomMur){
+    public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 
         int numMur = determinerMur(nomMur);
 
@@ -327,7 +327,7 @@ public class Chalet {
     }
 
 
-    public static boolean ajouterFenetre(Point mousepoint, String nomMur){
+    public static boolean ajouterFenetre(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 
         Pouces largeur = new Pouces(10, 0, 1);
         Pouces hauteur = new Pouces(10, 0, 1);
