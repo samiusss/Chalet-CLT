@@ -303,12 +303,12 @@ public class MainWindow extends javax.swing.JFrame {
                     java.util.List<Mur> listeMursDrawer = null ;
 
                     boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
+                    System.out.println(ajoutReussi);
                     System.out.println("ajoutPortereussi");
                     isAddingPorte = false;
                 }
                 if (isAddingFenetre)
                 {
-                    //addFenetre();
 
                     String nomMurr = "Droite";
                     //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
@@ -327,42 +327,6 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
     }
-
-    /*private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
-        if (isAddingPorte) {
-
-            Point mousePoint = evt.getPoint();
-            String nomMur = "Droite";
-            java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
-
-            boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
-            System.out.println("ajoutPortereussi");
-
-
-            if (ajoutReussi) {
-            } else {
-            }
-            isAddingPorte = false;
-        }
-
-        if (isAddingFenetre){
-
-
-            String nomMurr = "Droite";
-            java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
-            Point mousePoint = evt.getPoint();
-
-            boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMurr,listeMursDrawer);
-            System.out.println(ajoutFenetrereussi);
-            System.out.println("ajoutFenetrereussi");
-
-
-            if (ajoutFenetrereussi){
-            }else {
-            }
-            isAddingFenetre = false;
-        }
-    }*/
 
     private void initComponents() {
         DrawingPanel = new DrawingPanel(this);
@@ -392,28 +356,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }); */
 
-        //Configure the layout for FenetrePrincipale n'affiche plus quand je add drawingPanel donc je le mets en commentaires jusqua que ca change
     }
 
-
-/*
-    public void setMode(AccessoiresModes newMode)
-    {
-        this.selectedAccessoiresModes = newMode;
-    }
-
-    private void FENETREButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        this.setMode(AccessoiresModes.FENETRE);
-    }
-    private void PORTEBUTTONACTIONPERFORMED(java.awt.event.ActionEvent evt){
-        this.setMode(AccessoiresModes.PORTE);
-    }
-    private void drawingPanelMousePressed(java.awt.event.MouseEvent evt){
-        Point mousePoint = evt.getPoint();
-        this.actualMousePoint = mousePoint;
-        if (this.actualMode == AccessoiresModes.PORTE){
-        }
-    }
-*/
     }
 

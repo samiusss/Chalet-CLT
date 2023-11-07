@@ -59,7 +59,7 @@ public class Controleur {
 
     public static boolean ajouterFenetre(Point mousepoint, String nomMur,List<Mur> listeMursDrawer){
 
-        //java.util.List<Mur> listeMursDrawer2 = Chaletdrawer.chalet.getMursUsines(0,"NORD") ;
+        //java.util.List<Mur> listeMursDrawer2 = Chalet.getMursUsines(0.2,"NORD") ;
 
         if(Chalet.ajouterFenetre(mousepoint, nomMur,listeMursDrawer))
         {
@@ -87,8 +87,6 @@ public class Controleur {
     }
 
 
-
-//test
     public ChaletDTO getChalet() {
         return chalet;
     }

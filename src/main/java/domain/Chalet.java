@@ -224,6 +224,8 @@ public class Chalet {
     }
 
 
+
+
     public int DeterminerPointMurLargeur(int numMur,int w,int h) {
 
         //Largeur & Hauteur PORTE
@@ -290,6 +292,7 @@ public class Chalet {
     public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 
         int numMur = determinerMur(nomMur);
+        //java.util.List<Mur> listeMursDrawer2 = this.getMursUsines(0.2,"NORD") ;
 
         //java.util.List<Mur> listeMursDrawer2 = Chaletdrawer.chalet.getMursUsines(0,"NORD") ;
         Mur mur = listeMursDrawer.get(numMur);

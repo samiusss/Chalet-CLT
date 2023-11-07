@@ -36,19 +36,9 @@ public class FacadeDrawer {
         // Centrer au milieu du drawingPanel
         double positionX = width/2;
         double positionY = height/2;
-        /*ArrayList<Mur> listeMurs = new ArrayList<>();
-        String orientationToit = "Nord";
-        // Définir la couleur des murs
 
-        //Dimensions du mur en 3D
-        double epaisseurMur = Chalet.epaisseurChalet; // Épaisseur du mur test local
-        double hauteurMurs = Chalet.hauteurMurs;      // Hauteur des murs, sera utilisée pour les vues de côté
-        double largeurMur = Chalet.largeurChalet;     // Largeur des murs venant de chalet
-        double longueurMur = Chalet.longueurChalet;
-        double angleToit = 0.0;
-
-        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);*/
         chalet.initialiserMurFacade();
+
         // Accéder aux coordonnées de Mur: Facade
         Mur facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
         // Accéder coord de Mur facade de face (fc)
