@@ -301,10 +301,14 @@ public class Chalet {
 
         //Une porte par mur
         List<Porte> listePorte = mur.getListePorte();
-        int lenghtlistePorte = listePorte.size();
 
-        if(lenghtlistePorte > 0){
-            mur.clearListePorte();
+        if(listePorte != null) {
+
+            int lenghtlistePorte = listePorte.size();
+
+            if (lenghtlistePorte > 0) {
+                mur.clearListePorte();
+            }
         }
 
 
@@ -340,13 +344,18 @@ public class Chalet {
 
         int numMur = determinerMur(nomMur);
 
-        Mur mur = listeMurs.get(numMur);
+        Mur mur = listeMursDrawer.get(numMur);
             List<Fenetre> listeFenetre = mur.getListeFenetre();
-            int lenghtlisteFenetre = listeFenetre.size();
 
-            if(lenghtlisteFenetre > 0){
-                mur.clearListeFenetre();
+            if(listeFenetre != null) {
+                int lenghtlisteFenetre = listeFenetre.size();
+
+                if(lenghtlisteFenetre > 0){
+                    mur.clearListeFenetre();
+                }
+
             }
+
 
         boolean success = mur.ajouterFenetre(Fenetre);
 

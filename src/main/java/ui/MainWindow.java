@@ -1,5 +1,6 @@
 package ui;
 
+import domain.Chalet;
 import domain.Controleur;
 import domain.Mur;
 
@@ -300,7 +301,10 @@ public class MainWindow extends javax.swing.JFrame {
                     Point mousePoint = e.getPoint();
                     String nomMur = "Droite";
                     //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
-                    java.util.List<Mur> listeMursDrawer = null ;
+                    //java.util.List<Mur> listeMursDrawer = null ;
+
+                    Chalet chalet = controleur.getChaletProduction();
+                    java.util.List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
 
                     boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
                     System.out.println(ajoutReussi);
@@ -310,9 +314,10 @@ public class MainWindow extends javax.swing.JFrame {
                 if (isAddingFenetre)
                 {
 
+
                     String nomMurr = "Droite";
-                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
-                    java.util.List<Mur> listeMursDrawer = null ;
+                    Chalet chalet = controleur.getChaletProduction();
+                    java.util.List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
 
                     Point mousePoint = e.getPoint();
 

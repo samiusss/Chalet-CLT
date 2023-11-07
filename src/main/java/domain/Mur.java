@@ -10,9 +10,10 @@ public class Mur {
     private String nomMur;
     private List<PointDouble> sommetsMur;
     private static List<String> accessoiresMur;
-    private List<Porte> porteMur;
-    private List<Fenetre> fenetreMur;
-
+    //private List<Porte> porteMur;
+    //private List<Fenetre> fenetreMur;
+    List<Porte> porteMur= new LinkedList();
+    List<Fenetre> fenetreMur = new LinkedList();
 
 
     // on peut creer un mur simple
@@ -25,6 +26,7 @@ public class Mur {
         this.nomMur = nomMur;
         this.sommetsMur = new ArrayList<>(sommetsMur); // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
         this.accessoiresMur = accessoiresMur; // ceci est comme ci: [Liste de accessoires]
+
     }
 
     @Override
