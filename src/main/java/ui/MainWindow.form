@@ -658,11 +658,11 @@
             </constraints>
             <properties>
               <model>
+                <item value="Surplomb"/>
                 <item value="Facade"/>
                 <item value="Arrière"/>
                 <item value="Droit"/>
                 <item value="Gauche"/>
-                <item value="Surplomb"/>
               </model>
               <toolTipText value=""/>
             </properties>
