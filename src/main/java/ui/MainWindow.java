@@ -45,6 +45,12 @@ public class MainWindow extends javax.swing.JFrame {
     private JButton PannelDroitAjoutPorteButton;
     private JButton PannelDroitAjoutFenetreButton;
     private JTabbedPane MurPannelTabbedPane;
+    private JLabel CoordoneesAccessoiresLabel;
+
+    private JTextField AccessoirePanelCoordonneeX;
+
+    private JTextField AccessoirePanelCoordonneeY;
+
     private JTextField MurPannelTabbedPaneFaçadeLabelLongeurTextField;
     private JTextField MurPannelTabbedPaneFaçadeLabelLargeurTextField;
     private JPanel MurPannelTabbedPaneFaçadeLabel;
