@@ -8,7 +8,7 @@ import domain.*;
 import java.awt.*;
 import java.util.List;
 
-import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
+import static Utilitaires.ConvertisseurMesures.*;
 
 public class ArriereDrawer {
     private Controleur controleur;
@@ -55,15 +55,38 @@ public class ArriereDrawer {
             if (fenetreActuel != null) {
 
                 // Appeler dimensions Fenetre
-                Pouces largeurFenetre = Fenetre.FENETRE_LARGEUR_STANDARD;
-                Pouces hauteurFenetre = Fenetre.FENETRE_HAUTEUR_STANDARD;
+                //Pouces largeurFenetre = Fenetre.FENETRE_LARGEUR_STANDARD;
+                //Pouces hauteurFenetre = Fenetre.FENETRE_HAUTEUR_STANDARD;
                 //if bouton.listener add.fenetre activated:
                 Point mousePoint = fenetre.mousePoint;
 
-                pointPouces pointFenetreSupDroit = new pointPouces(fenetre.getPointPouces(mousePoint).getX().addPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().addPouces(fenetre.getHauteur().diviserPouces(2)));
-                pointPouces pointFenetreSupGauche=new pointPouces(fenetre.getPointPouces(mousePoint).getX().substractPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().addPouces(fenetre.getHauteur().diviserPouces(2)));
-                pointPouces pointFenetreInfGauche = new pointPouces(fenetre.getPointPouces(mousePoint).getX().substractPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().substractPouces(fenetre.getHauteur().diviserPouces(2)));
-                pointPouces pointFenetreInfDroit = new pointPouces(fenetre.getPointPouces(mousePoint).getX().addPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().substractPouces(fenetre.getHauteur().diviserPouces(2)));
+
+                Pouces largeur = fenetre.getLargeur();
+
+                Pouces hauteur = fenetre.getHauteur();
+
+
+
+                int largeurFenetreInt = convertirPoucesEnInt(largeur);
+                int hauteurFenetreInt = convertirPoucesEnInt(hauteur);
+
+                g.fillRect(mousePoint.x, mousePoint.y, largeurFenetreInt, hauteurFenetreInt);
+
+
+                /*
+
+                pointPouces xyPouces = fenetre.getPointPouces(mousePoint);
+                Pouces xPouces = xyPouces.getX();
+                Pouces yPouces = xyPouces.getY();
+
+                Pouces largeurParDeux = largeur.diviserPouces(2);
+                Pouces hauteurParDeux = hauteur.diviserPouces(2);
+
+
+                pointPouces pointFenetreSupDroit = new pointPouces(xPouces.addPouces(largeurParDeux),yPouces.addPouces(hauteurParDeux));
+                pointPouces pointFenetreSupGauche=new pointPouces(xPouces.substractPouces(largeurParDeux),yPouces.addPouces(hauteurParDeux));
+                pointPouces pointFenetreInfGauche = new pointPouces(xPouces.substractPouces(largeurParDeux),yPouces.substractPouces(hauteurParDeux));
+                pointPouces pointFenetreInfDroit = new pointPouces(xPouces.addPouces(largeurParDeux),yPouces.substractPouces(hauteurParDeux));
 
 
                 int x1 = convertirPoucesEnPixels(pointFenetreSupDroit.getX());
@@ -82,7 +105,7 @@ public class ArriereDrawer {
                 int[] xPoints = {x1, x2, x3, x4};
                 int[] yPoints = {y1, y2, y3, y4};
 
-                g.fillPolygon(xPoints, yPoints, 4);
+                g.fillPolygon(xPoints, yPoints, 4); */
 
             }
         }
@@ -111,10 +134,30 @@ public class ArriereDrawer {
             Porte porteActuel = (Porte) porte;
             if (porteActuel != null) {
 
-                Pouces largeurPorte = Porte.PORTE_LARGEUR_STANDARD;
+                /* Pouces largeurPorte = Porte.PORTE_LARGEUR_STANDARD;
                 Pouces hauteurPorte = Porte.PORTE_HAUTEUR_STANDARD;
 
+                 */
+
                 Point mousePoint = porte.mousePoint;
+
+                Pouces largeur = porte.getLargeur();
+                Pouces hauteur = porte.getHauteur();
+
+                int largeurPorteInt = convertirPoucesEnInt(largeur);
+                int hauteurPorteInt = convertirPoucesEnInt(hauteur);
+
+
+                double height = initialDimension.getHeight();
+                PointDouble pointInfDroitac = arriere.getSommetsMur().get(6);
+                PointDouble pointInfGaucheac = arriere.getSommetsMur().get(7);
+                double positionY = height/2 - pointInfDroitac.getY()/2;
+                int y1ac = (int) ((pointInfGaucheac.getY() + positionY) - hauteurPorteInt);
+
+
+                g.fillRect(mousePoint.x, y1ac, largeurPorteInt, hauteurPorteInt);
+
+                /*
 
                 pointPouces pointPorteSupDroit = new pointPouces(porte.getPointPouces(mousePoint).getX().addPouces(porte.getLargeur().diviserPouces(2)), porte.getPointPouces(mousePoint).getY().addPouces(porte.getHauteur().diviserPouces(2)));
                 pointPouces pointPorteSupGauche = new pointPouces(porte.getPointPouces(mousePoint).getX().substractPouces(porte.getLargeur().diviserPouces(2)), porte.getPointPouces(mousePoint).getY().addPouces(porte.getHauteur().diviserPouces(2)));
@@ -139,6 +182,8 @@ public class ArriereDrawer {
                 int[] yPoints = {y1, y2, y3, y4};
 
                 g.fillPolygon(xPoints, yPoints, 4);
+
+                 */
 
             }
         }

@@ -79,6 +79,14 @@ public class MainWindow extends javax.swing.JFrame {
     private JTextField ToitPaneltabbedPaneGauchePanelAngleTextField;
     private JTextField ToitPaneltabbedPaneGauchePanelHauteurTextField;
     private JLabel ToitPaneltabbedPaneGauchePanelAngleLabel;
+
+    private JLabel CoordoneesAccessoiresLabel;
+    private JTextField AccessoirePanelCoordonneeX;
+
+    private JTextField AccessoirePanelCoordonnee;
+
+    private JTextField AccessoirePanelCoordonneeY;
+
     private JLabel ToitPaneltabbedPaneGauchePanelHauteurLabel;
     private JLabel AjoutPorteLabel;
     private JLabel AjoutFenetreLabel;

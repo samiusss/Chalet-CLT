@@ -85,7 +85,7 @@ public class Controleur {
 
 
 
-    public boolean ajouterFenetre(Point mousepoint, String nomMur,List<Mur> listeMursDrawer){
+    public static boolean ajouterFenetre(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 
         if(Chalet.ajouterFenetre(mousepoint, nomMur,listeMursDrawer))
         {
