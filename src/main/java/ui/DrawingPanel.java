@@ -20,7 +20,7 @@ public class DrawingPanel extends JPanel implements Serializable {
         setPreferredSize(new Dimension(1000, 1000));
     }*/
 
-    private static Controleur.AffichageVue selectedAffichageVue;
+    public static Controleur.AffichageVue selectedAffichageVue;
 
 
     public DrawingPanel(MainWindow mainWindow) {

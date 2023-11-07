@@ -20,4 +20,5 @@ public class ChaletDTO {
         listeMurs = bi.getListeMurs();
         orientationToit = bi.getOrientationToit();
     }
+
 }

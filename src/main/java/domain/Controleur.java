@@ -9,6 +9,13 @@ public class Controleur {
     private float zoom;
     private float offset;
 
+
+    public Mur facade ; // mur facade deja codé en bas
+    public Mur arriere; // mur arriere deja codé en bas
+    public Mur gauche ; // mur gauche deja codé en bas
+    public Mur droite; // mur droite deja codé en bas
+
+
     public enum AffichageVue
     {
         FACADE,
@@ -47,8 +54,26 @@ public class Controleur {
         return chalet ;
 
     }
+
+
+    public boolean initialiserChalet(Chalet chalet) {
+        chalet.initialiserMurFacade();
+        chalet.initialiserMurArriere();
+        chalet.initialiserMurGauche();
+        chalet.initialiserMurDroite();
+
+         this.facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
+        this.arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
+        this.gauche = chalet.getMursUsines(0.2, "Nord").get(2); // mur gauche deja codé en bas
+        this.droite = chalet.getMursUsines(0.2, "Nord").get(3); // mur droite deja codé en bas
+
+        return true;
+    }
+
+
     Chalet chaletProduction = createChalet();
 
+    boolean rep = initialiserChalet(chaletProduction);
 
     public Chalet getChaletProduction() {
         return chaletProduction;

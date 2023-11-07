@@ -269,19 +269,20 @@ public class Chalet {
     public static int determinerMur(String nomMur){
 
         int numMur = 0;
-        if (nomMur == "Facade") {
+
+        if (nomMur == "FACADE") {
             numMur = 0;
         }
-        if (nomMur == "Arriere") {
+        if (nomMur == "ARRIERE") {
             numMur = 1;
 
         }
-        if(nomMur == "Droite" ) {
-            numMur = 2;
+        if(nomMur == "DROITE" ) {
+            numMur = 3;
 
         }
-        if (nomMur == "Arriere") {
-            numMur = 3;
+        if (nomMur == "GAUCHE") {
+            numMur = 2;
 
         }
         return numMur;
@@ -325,21 +326,28 @@ public class Chalet {
         Porte Porte = new Porte(positionPorte, murPoint);
 
         */
-        Pouces largeur = new Pouces(10, 0, 1);
-        Pouces hauteur = new Pouces(10, 0, 1);
-        Porte Porte = new Porte(mousepoint,largeur, hauteur );
+        Pouces largeur = new Pouces(2, 0, 1);
+        Pouces hauteur = new Pouces(3, 0, 1);
+        Porte porte = new Porte(mousepoint,largeur, hauteur );
 
-        boolean success = mur.ajouterPorte(Porte);
+        boolean success = mur.ajouterPorte(porte);
+         listePorte = mur.getListePorte();
+        for (Porte porte1 : listePorte) {
+            System.out.println(porte1);
+            return success;
 
-        return success;
+        }
+
+        return false;
+
 
     }
 
 
     public static boolean ajouterFenetre(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 
-        Pouces largeur = new Pouces(10, 0, 1);
-        Pouces hauteur = new Pouces(10, 0, 1);
+        Pouces largeur = new Pouces(2, 0, 1);
+        Pouces hauteur = new Pouces(2, 0, 1);
         Fenetre Fenetre = new Fenetre(mousepoint,largeur,hauteur);
 
         int numMur = determinerMur(nomMur);
@@ -350,7 +358,7 @@ public class Chalet {
             if(listeFenetre != null) {
                 int lenghtlisteFenetre = listeFenetre.size();
 
-                if(lenghtlisteFenetre > 0){
+                if(lenghtlisteFenetre > 2){
                     mur.clearListeFenetre();
                 }
 

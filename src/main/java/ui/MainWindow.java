@@ -7,6 +7,7 @@ import domain.Mur;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 
 
 public class MainWindow extends javax.swing.JFrame {
@@ -299,33 +300,43 @@ public class MainWindow extends javax.swing.JFrame {
                     //addPorte();
 
                     Point mousePoint = e.getPoint();
-                    String nomMur = "Droite";
+
+
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+
                     //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
                     //java.util.List<Mur> listeMursDrawer = null ;
 
                     Chalet chalet = controleur.getChaletProduction();
-                    java.util.List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
 
                     boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
+                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
                     System.out.println(ajoutReussi);
                     System.out.println("ajoutPortereussi");
                     isAddingPorte = false;
+                    //ui.Chaletdrawer.changerVue(ui.DrawingPanel.selectedAffichageVue);
+                    DrawingPanel.repaint();
+
                 }
                 if (isAddingFenetre)
                 {
 
 
-                    String nomMurr = "Droite";
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
-                    java.util.List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
 
                     Point mousePoint = e.getPoint();
 
-                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMurr,listeMursDrawer);
+                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer);
+                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+
                     System.out.println(ajoutFenetrereussi);
                     System.out.println("ajoutFenetrereussi");
-
                     isAddingFenetre = false;
+                    DrawingPanel.repaint();
+
 
                 }
             }

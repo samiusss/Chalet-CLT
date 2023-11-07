@@ -1,12 +1,14 @@
 package ui;
 
 import Utilitaires.PointDouble;
-import domain.Accessoires;
-import domain.Chalet;
-import domain.Controleur;
-import domain.Mur;
+import Utilitaires.Pouces;
+import Utilitaires.pointPouces;
+import domain.*;
 
 import java.awt.*;
+import java.util.List;
+
+import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 
 public class SurplombDrawer
 {
@@ -17,9 +19,23 @@ public class SurplombDrawer
     private Accessoires accessoires;
     private Dimension initialDimension;
 
+
+    public Mur facade ; // mur facade deja codé en bas
+    public Mur arriere; // mur arriere deja codé en bas
+    public Mur gauche ; // mur gauche deja codé en bas
+    public Mur droite; // mur droite deja codé en bas
+
+
     public SurplombDrawer(Controleur controleur, Dimension initialDimension){
         this.controleur = controleur;
         this.initialDimension = initialDimension;
+        Chalet chalet = controleur.getChaletProduction();
+        this.facade = controleur.facade; // mur facade deja codé en bas
+        this.arriere = controleur.arriere; // mur facade deja codé en bas
+        this.droite = controleur.droite; // mur facade deja codé en bas
+        this.gauche = controleur.gauche; // mur facade deja codé en bas
+
+
     }
 
     public void draw(Graphics g)
@@ -27,9 +43,10 @@ public class SurplombDrawer
         drawSurplomb(g);
     }
 
+
     private void drawSurplomb(Graphics g)
     {
-        Chalet chalet = controleur.getChaletProduction();
+
 
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
@@ -49,16 +66,9 @@ public class SurplombDrawer
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
         */
-        chalet.initialiserMurFacade();
-        chalet.initialiserMurArriere();
-        chalet.initialiserMurGauche();
-        chalet.initialiserMurDroite();
 
-        // Accéder aux coordonnées de Mur: Facade
-        Mur facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
-        Mur arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
-        Mur gauche = chalet.getMursUsines(0.2, "Nord").get(2); // mur gauche deja codé en bas
-        Mur droite = chalet.getMursUsines(0.2, "Nord").get(3); // mur droite deja codé en bas
+
+
 
         //Vue haut
         PointDouble pointInfGauchef = facade.getSommetsMur().get(0); // Je veux le premier sommet (index 0) // pointInfGauchef = pointInfGauche facade
