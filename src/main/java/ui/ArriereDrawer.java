@@ -216,7 +216,7 @@ public class ArriereDrawer {
         //chalet.initialiserMurArriere();
 
         // Accéder coord de Mur arriere de face (ac)
-        PointDouble pointSupDroitac = arriere.getSommetsMur().get(4);
+        /*PointDouble pointSupDroitac = arriere.getSommetsMur().get(4);
         PointDouble pointSupGaucheac = arriere.getSommetsMur().get(5);
         PointDouble pointInfDroitac = arriere.getSommetsMur().get(6);
         PointDouble pointInfGaucheac = arriere.getSommetsMur().get(7);
@@ -243,6 +243,31 @@ public class ArriereDrawer {
 
         // Dessiner le polygone pour le mur facade de coté (fc)
         g.fillPolygon(xPointsArriereCote, yPointsArriereCote, 4);
+*/
+        PointDouble point1 = arriere.getSommetsMur().get(4);
+        PointDouble point2 = arriere.getSommetsMur().get(5);
+        PointDouble point3 = arriere.getSommetsMur().get(6);
+        PointDouble point4 = arriere.getSommetsMur().get(7);
+
+        double positionX = width/2 - point3.getX()/2;
+        double positionY = height/2 - point3.getY()/2;
+
+        int x1 = (int) (point1.getX() + positionX);
+        int y1 = (int) (point1.getY() + positionY);
+
+        int x2 = (int) (point2.getX() + positionX);
+        int y2 = (int) (point2.getY() + positionY);
+
+        int x3 = (int) (point3.getX() + positionX);
+        int y3 = (int) (point3.getY() + positionY);
+
+        int x4 = (int) (point3.getX() + positionX);
+        int y4 = (int) (point1.getY() + positionY);
+
+        int[] xPoints = {x1, x2, x3, x4};
+        int[] yPoints = {y1, y2, y3, y4};
+
+        g.fillPolygon(xPoints, yPoints, 4);
 
     }
 }
