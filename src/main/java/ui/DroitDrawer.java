@@ -13,6 +13,7 @@ import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 public class DroitDrawer {
 
     private Controleur controleur;
+
     public static Chalet chalet;
     private Accessoires accessoires;
     private Dimension initialDimension;
@@ -177,10 +178,11 @@ public class DroitDrawer {
         PointDouble pointInfGauchedc = droite.getSommetsMur().get(7);
 
         // Centrer au milieu du drawingPanel
-        double positionX = width/2;
-        double positionY = height/2;
+        double positionX = width/2 - pointInfDroitdc.getX()/2;
+        double positionY = height/2 - pointInfDroitdc.getY()/2;
 
         int x1dc = (int) (pointInfGauchedc.getX() + positionX);
+        int zebii = (int) (pointInfGauchedc.getX());
         int y1dc = (int) (pointInfGauchedc.getY() + positionY);
 
         int x2dc = (int) (pointInfDroitdc.getX() + positionX);

@@ -154,8 +154,6 @@ public class ArriereDrawer {
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
 
-        double positionX = width/2;
-        double positionY = height/2;
 /*
         ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
@@ -177,6 +175,9 @@ public class ArriereDrawer {
         PointDouble pointSupGaucheac = arriere.getSommetsMur().get(5);
         PointDouble pointInfDroitac = arriere.getSommetsMur().get(6);
         PointDouble pointInfGaucheac = arriere.getSommetsMur().get(7);
+
+        double positionX = width/2 - pointInfDroitac.getX()/2;
+        double positionY = height/2 - pointInfDroitac.getY()/2;
 
         int x1ac = (int) (pointInfGaucheac.getX() + positionX);
         int y1ac = (int) (pointInfGaucheac.getY() + positionY);

@@ -15,7 +15,7 @@ public abstract class Accessoires implements Serializable {
         /*this.mousepoint = mousepoint;
         this.largeur = largeur;
         this.hauteur = hauteur; */
-        this.AID= UUID.randomUUID();;
+        this.AID = UUID.randomUUID();;
     }
 
     public UUID getIdAccessoire() {
