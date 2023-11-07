@@ -126,6 +126,7 @@ public class MainWindow extends javax.swing.JFrame {
                             switch (selectedOption) {
                                 case "Facade":
                                     //drawFacade();
+                                    System.out.println("PORTEPORTE");
                                     break;
                                 case "Arriere":
                                     //drawArriere();
