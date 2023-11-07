@@ -1,6 +1,7 @@
 package ui;
 
 import domain.Controleur;
+import domain.Mur;
 
 import javax.swing.*;
 import java.awt.*;
@@ -187,11 +188,17 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void drawingPanelMousePressed(java.awt.event.MouseEvent evt) {
         if (isAddingPorte) {
-            System.out.println("ajoutFenetrereussi");
+            System.out.println("ajoutPortereussi");
+
+
 
             Point mousePoint = evt.getPoint();
             String nomMur = "Droite";
-            boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur);
+            java.util.List<Mur> listeMursDrawer = null ;
+
+            boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
+
+
 
             if (ajoutReussi) {
             } else {
@@ -200,10 +207,16 @@ public class MainWindow extends javax.swing.JFrame {
         }
 
         if (isAddingFenetre){
+
+
+            String nomMurr = "Droite";
+            java.util.List<Mur> listeMursDrawer = null ;
             Point mousePoint = evt.getPoint();
-            String nomMur = "Droite";
-            boolean ajoutFenetrereussi = controleur.ajouterFenetre(mousePoint,nomMur);
+
+            boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMurr,listeMursDrawer);
+            System.out.println(ajoutFenetrereussi);
             System.out.println("ajoutFenetrereussi");
+
 
             if (ajoutFenetrereussi){
             }else {
