@@ -2,8 +2,6 @@ package domain;
 
 import Utilitaires.PointDouble;
 import Utilitaires.Pouces;
-import ui.Chaletdrawer;
-
 
 import java.awt.*;
 import java.util.ArrayList;
