@@ -1,6 +1,5 @@
 package ui;
 
-import Utilitaires.ConvertisseurMesures;
 import Utilitaires.PointDouble;
 import Utilitaires.Pouces;
 import Utilitaires.pointPouces;
@@ -8,7 +7,6 @@ import domain.*;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 
@@ -325,9 +323,9 @@ public class Chaletdrawer {
         int x4g = (int) (pointInfGaucheg.getX()+positionX);
         int y4g = (int) (pointInfGaucheg.getY()+positionY);
         //
-        int[] xPointsGauche = {x1g, x1r2g, x1r1g, x2g, x3g, x3r2g, x3r1g, x4g};
-        int[] yPointsGauche = {y1g, y1r2g, y1r1g, y2g, y3g, y3r2g, y3r1g, y4g};
-        g.setColor(new Color(80, 68, 166));
+        int[] xPointsGauche = {x1r2g, x1r1g,  x1g,  x2g, x3r2g, x3r1g, x3g, x4g};
+        int[] yPointsGauche = {y1r2g, y1r1g,  y1g,  y2g, y3r2g, y3r1g, y3g, y4g};
+        g.setColor(new Color(210, 68, 1));
         g.fillPolygon(xPointsGauche, yPointsGauche, 8);
 
         //Dessiner le polygone pour le mur droit
@@ -351,10 +349,10 @@ public class Chaletdrawer {
         int x4d = (int) (pointInfGauched.getX()+positionX);
         int y4d = (int) (pointInfGauched.getY()+positionY);
         //
-        int[] xPointsDroit = {x1d, x1r2d, x1r1d, x2d, x3d, x3r2d, x3r1d, x4d};
-        int[] yPointsDroit = {y1d, y1r2d, y1r1d, y2d, y3d, y3r2d, y3r1d, y4d};
-        g.setColor(new Color(200, 2, 236));
-        g.fillPolygon(xPointsDroit, yPointsDroit, 8);
+        int[] xPointsDroit = {x1r2d, x1r1d,x1d, x2d, x3d, x3r2d, x3r1d, x4d};
+        int[] yPointsDroit = {y1r2d, y1r1d,y1d, y2d, y3d, y3r2d, y3r1d, y4d};
+        g.setColor(new Color(210, 68, 1));
+        g.drawPolygon(xPointsDroit, yPointsDroit, 8);
 
         // Construire tableaux de coordonnées pour le mur arrière
 
