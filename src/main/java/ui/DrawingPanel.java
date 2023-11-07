@@ -74,15 +74,15 @@ public class DrawingPanel extends JPanel implements Serializable {
                 mainDrawer.draw(g/*, vueSelecteur*/);
             }
             if (selectedAffichageVue == Controleur.AffichageVue.ARRIERE) {
-                SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
+                ArriereDrawer mainDrawer = new ArriereDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
             }
             if (selectedAffichageVue == Controleur.AffichageVue.DROITE) {
-                SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
+                DroitDrawer mainDrawer = new DroitDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
             }
             if (selectedAffichageVue == Controleur.AffichageVue.GAUCHE) {
-                SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
+                GaucheDrawer mainDrawer = new GaucheDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
             }
         }
