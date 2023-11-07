@@ -2,6 +2,7 @@ package domain;
 
 import Utilitaires.PointDouble;
 import Utilitaires.Pouces;
+import ui.Chaletdrawer;
 
 
 import java.awt.*;
@@ -293,6 +294,9 @@ public class Chalet {
         int numMur = determinerMur(nomMur);
 
         Mur mur = listeMurs.get(numMur);
+        //java.util.List<Mur> listeMursDrawer2 = Chaletdrawer.chalet.getMursUsines(0,"NORD") ;
+
+
 
         //Une porte par mur
         List<Porte> listePorte = mur.getListePorte();
