@@ -47,7 +47,7 @@ public class ArriereDrawer {
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
         chalet.initialiserMurArriere();
-        Mur arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
+        Mur arriere = chalet.getMursUsines(0.2, "Nord").get(0); // mur arriere deja codé en bas
 
         // Accéder coord de Mur arriere de face (ac)
         PointDouble pointSupDroitac = arriere.getSommetsMur().get(4);
