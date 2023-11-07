@@ -8,7 +8,9 @@ import domain.*;
 import java.awt.*;
 import java.util.List;
 
+import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
+import static domain.Chalet.hauteurMurs;
 
 public class FacadeDrawer {
 
@@ -60,6 +62,16 @@ public class FacadeDrawer {
                 //if bouton.listener add.fenetre activated:
                 Point mousePoint = fenetre.mousePoint;
 
+                Pouces largeur = fenetre.getLargeur();
+                Pouces hauteur = fenetre.getHauteur().diviserPouces(2);
+
+                int largeurFentreInt = convertirPoucesEnInt(largeur);
+                int hauteurFenetreInt = convertirPoucesEnInt(hauteur);
+
+                g.fillRect(mousePoint.x, mousePoint.y, largeurFentreInt, hauteurFenetreInt);
+
+                /*
+
                 pointPouces pointFenetreSupDroit = new pointPouces(fenetre.getPointPouces(mousePoint).getX().addPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().addPouces(fenetre.getHauteur().diviserPouces(2)));
                 pointPouces pointFenetreSupGauche=new pointPouces(fenetre.getPointPouces(mousePoint).getX().substractPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().addPouces(fenetre.getHauteur().diviserPouces(2)));
                 pointPouces pointFenetreInfGauche = new pointPouces(fenetre.getPointPouces(mousePoint).getX().substractPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().substractPouces(fenetre.getHauteur().diviserPouces(2)));
@@ -82,8 +94,9 @@ public class FacadeDrawer {
                 int[] xPoints = {x1, x2, x3, x4};
                 int[] yPoints = {y1, y2, y3, y4};
 
-                g.fillPolygon(xPoints, yPoints, 4);
+                //g.fillPolygon(xPoints, yPoints, 4);
 
+                 */
             }
         }
 
@@ -112,10 +125,27 @@ public class FacadeDrawer {
             Porte porteActuel = (Porte) porte;
             if (porteActuel != null) {
 
-                Pouces largeurPorte = Porte.PORTE_LARGEUR_STANDARD;
-                Pouces hauteurPorte = Porte.PORTE_HAUTEUR_STANDARD;
-
                 Point mousePoint = porte.mousePoint;
+
+                Pouces largeur = porte.getLargeur();
+                Pouces hauteur = porte.getHauteur();
+
+                int largeurPorteInt = convertirPoucesEnInt(largeur);
+                int hauteurPorteInt = convertirPoucesEnInt(hauteur);
+
+
+                double height = initialDimension.getHeight();
+                PointDouble pointInfDroitac = facade.getSommetsMur().get(6);
+                PointDouble pointInfGaucheac = facade.getSommetsMur().get(7);
+                double positionY = height/2 - pointInfDroitac.getY()/2;
+                int y1ac = (int) (((pointInfGaucheac.getY() + positionY) - hauteurPorteInt) + hauteurMurs);
+
+
+                g.fillRect(mousePoint.x, y1ac, largeurPorteInt, hauteurPorteInt);
+
+                /*
+
+
 
                 pointPouces pointPorteSupDroit = new pointPouces(porte.getPointPouces(mousePoint).getX().addPouces(porte.getLargeur().diviserPouces(2)), porte.getPointPouces(mousePoint).getY().addPouces(porte.getHauteur().diviserPouces(2)));
                 pointPouces pointPorteSupGauche = new pointPouces(porte.getPointPouces(mousePoint).getX().substractPouces(porte.getLargeur().diviserPouces(2)), porte.getPointPouces(mousePoint).getY().addPouces(porte.getHauteur().diviserPouces(2)));
@@ -140,6 +170,8 @@ public class FacadeDrawer {
                 int[] yPoints = {y1, y2, y3, y4};
 
                 g.fillPolygon(xPoints, yPoints, 4);
+
+                 */
 
             }
         }

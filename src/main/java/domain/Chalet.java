@@ -319,6 +319,7 @@ public class Chalet {
         Pouces hauteurPorte = Porte.PORTE_HAUTEUR_STANDARD;
         int hauteurPorteInt = convertirPoucesEnPixels(hauteurPorte);
 
+
         /*
         int y = DeterminerPointMurLargeur(,w,h, mousePoint);
         y = (y + hauteurMurInt) - hauteurPorteInt;
@@ -326,8 +327,8 @@ public class Chalet {
         Porte Porte = new Porte(positionPorte, murPoint);
 
         */
-        Pouces largeur = new Pouces(2, 0, 1);
-        Pouces hauteur = new Pouces(3, 0, 1);
+        Pouces largeur = new Pouces(35, 0, 1);
+        Pouces hauteur = new Pouces(60, 0, 1);
         Porte porte = new Porte(mousepoint,largeur, hauteur );
 
         boolean success = mur.ajouterPorte(porte);
@@ -346,8 +347,8 @@ public class Chalet {
 
     public static boolean ajouterFenetre(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 
-        Pouces largeur = new Pouces(2, 0, 1);
-        Pouces hauteur = new Pouces(2, 0, 1);
+        Pouces largeur = new Pouces(35, 0, 1);
+        Pouces hauteur = new Pouces(65, 0, 1);
         Fenetre Fenetre = new Fenetre(mousepoint,largeur,hauteur);
 
         int numMur = determinerMur(nomMur);
