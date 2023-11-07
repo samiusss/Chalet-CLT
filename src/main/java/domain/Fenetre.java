@@ -10,12 +10,16 @@ public class Fenetre extends Accessoires implements Serializable {
     public List<pointPouces> sommetsFenetre;
 
     public Point mousePoint;
-    public static Pouces FENETRE_LARGEUR_STANDARD = new Pouces(10, 0, 1) ;
-    public static Pouces FENETRE_HAUTEUR_STANDARD = new Pouces(10, 0, 1) ;
+    public static Pouces FENETRE_LARGEUR_STANDARD = new Pouces(4, 0, 1) ;
+    public static Pouces FENETRE_HAUTEUR_STANDARD = new Pouces(4, 0, 1) ;
 
     public Fenetre(Point mousepoint, Pouces largeur, Pouces hauteur) {
-        super(largeur, hauteur);
+        //super(largeur, hauteur);
         this.mousePoint = mousepoint;
+        this.largeur = largeur;
+        this.hauteur = hauteur;
+
+
     }
 
     public Point getPoint() {
@@ -27,6 +31,13 @@ public class Fenetre extends Accessoires implements Serializable {
         return false;
     }
 
+    public Pouces getLargeur() {
+        return largeur;
+    }
+
+    public Pouces getHauteur() {
+        return hauteur;
+    }
     public boolean modifierLargeur(Pouces valeur) {
         largeur = valeur;
         this.FENETRE_LARGEUR_STANDARD = valeur;
@@ -43,15 +54,4 @@ public class Fenetre extends Accessoires implements Serializable {
         return this.sommetsFenetre;
     }
 
-    public void CreersommetFenetre(){
-        pointPouces pointFenetreSupDroit = new pointPouces(getPointPouces(mousePoint).getX().addPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
-        pointPouces pointFenetreSupGauche=new pointPouces(getPointPouces(mousePoint).getX().substractPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().addPouces(getHauteur().diviserPouces(2)));
-        pointPouces pointFenetreInfGauche = new pointPouces(getPointPouces(mousePoint).getX().substractPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().substractPouces(getHauteur().diviserPouces(2)));
-        pointPouces pointFenetreInfDroit = new pointPouces(getPointPouces(mousePoint).getX().addPouces(getLargeur().diviserPouces(2)),getPointPouces(mousePoint).getY().substractPouces(getHauteur().diviserPouces(2)));
-        sommetsFenetre.add(pointFenetreSupDroit);
-        sommetsFenetre.add(pointFenetreSupGauche);
-        sommetsFenetre.add(pointFenetreInfGauche);
-        sommetsFenetre.add(pointFenetreInfDroit);
-
-    }
 }

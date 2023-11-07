@@ -164,6 +164,8 @@ public class Pouces implements Serializable {
     }
 
 
+
+
     public void reduire() {
         while (numerateur % 2 == 0 && denominateur % 2 == 0) {
             numerateur = numerateur/2;
