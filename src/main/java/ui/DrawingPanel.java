@@ -4,14 +4,14 @@ import domain.Controleur;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 import java.io.Serializable;
 
 
 public class DrawingPanel extends JPanel implements Serializable {
 
     private MainWindow mainWindow;
+
+
     private Controleur controleur;
     private double zoomFactor = 1.0;
 
@@ -42,8 +42,8 @@ public class DrawingPanel extends JPanel implements Serializable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (mainWindow != null) {
-            Chaletdrawer mainDrawer = new Chaletdrawer(controleur, getPreferredSize());
-            mainDrawer.draw(g);
+            SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
+            mainDrawer.draw(g/*, vueSelecteur*/);
         }
     }
 

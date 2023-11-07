@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import static ui.Chaletdrawer.chalet;
-
 
 public class MainWindow extends javax.swing.JFrame {
     private Controleur controleur;
@@ -118,24 +116,24 @@ public class MainWindow extends javax.swing.JFrame {
 
             
             public void itemStateChanged(ItemEvent e) {
+                        int vueSelecteur;
                         String selectedOption = (String) VueComboBox.getSelectedItem();
                         if (selectedOption != null) {
                             switch (selectedOption) {
                                 case "Facade":
-                                    //drawFacade();
+                                    vueSelecteur=1;
                                     System.out.println("PORTEPORTE");
                                     break;
                                 case "Arriere":
-                                    //drawArriere();
-                                    break;
+                                    vueSelecteur=2;
                                 case "Droit":
-                                    //drawDroit();
+                                    vueSelecteur=3;
                                     break;
                                 case "Gauche":
-                                    //drawGauche();
+                                    vueSelecteur=4;
                                     break;
                                 case "Surplomb":
-                                    //drawSurplomb();
+                                    vueSelecteur=5;
                                     break;
                                 default:
                                     // Handle any other cases or do nothing
