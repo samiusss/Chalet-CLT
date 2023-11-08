@@ -69,11 +69,20 @@ public class Controleur {
         return true;
     }
 
-    public static boolean reinitialiserChalet(Chalet chalet)
+    /*public static boolean reinitialiserChalet(Chalet chalet)
     {
-        //
-        return false;
-    }
+        chalet.reinitialiserMurFacade();
+        chalet.reinitialiserMurArriere();
+        chalet.reinitialiserMurGauche();
+        chalet.reinitialiserMurDroite();
+
+        facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
+        arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
+        gauche = chalet.getMursUsines(0.2, "Nord").get(2); // mur gauche deja codé en bas
+        droite = chalet.getMursUsines(0.2, "Nord").get(3); // mur droite deja codé en bas
+
+        return true;
+    }*/
 
         public void setEpaisseurChalet(double epaisseurChalet)
     {
