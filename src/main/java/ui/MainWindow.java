@@ -9,6 +9,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
+import static Utilitaires.ConvertisseurMesures.convertirPoucesEnDouble;
+
 
 public class MainWindow extends javax.swing.JFrame {
     private Controleur controleur;
@@ -406,8 +408,9 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = AccessoirePanelLargeurTextField.getText();
-
                 Pouces nouvelleLongueur = Pouces.fromString(inputText);
+
+
                 if (nouvelleLongueur != null) {
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
