@@ -31,6 +31,11 @@ public class Fenetre extends Accessoires implements Serializable {
         return false;
     }
 
+    public Pouces setLargeur(Pouces largeur){
+        this.largeur = largeur;
+        return largeur;
+    }
+
     public Pouces getLargeur() {
         return largeur;
     }
@@ -49,7 +54,7 @@ public class Fenetre extends Accessoires implements Serializable {
         this.FENETRE_HAUTEUR_STANDARD = valeur;
         return true;
     }
-    // version pas tout a fait finie reste a voir la convertion avec des pixels
+
     public List<pointPouces> getSommetsFenetre(){
         return this.sommetsFenetre;
     }

@@ -216,5 +216,22 @@ public class Pouces implements Serializable {
         return total;
     }
 
+    // Cette methode permet de transformer les String en Pouces
+    public static Pouces fromString(String input){
+        String[] parts = input.split(" ");
+        int valeurEntiere = Integer.parseInt(parts[0]);
+        int numerateur = 0;
+        int denominateur = 1;
+        if (parts.length >= 1) {
+            valeurEntiere = Integer.parseInt(parts[0]);
+        }
+        if (parts.length >= 3) {
+            String[] fraction = parts[2].split("/");
+            numerateur = Integer.parseInt(fraction[0]);
+            denominateur = Integer.parseInt(fraction[1]);
+        }
+        return new Pouces(valeurEntiere, numerateur, denominateur);
+    }
+
 }
 

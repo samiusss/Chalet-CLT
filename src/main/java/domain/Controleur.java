@@ -3,7 +3,6 @@ package domain;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 //import static domain.Mur.accessoiresMur;
 
@@ -45,33 +44,56 @@ public class Controleur {
         ArrayList<Mur> listeMurs = new ArrayList<>();
         String orientationToit = "Nord";
         //Dimensions du mur en 3D
-        double epaisseurMur = 2*20;   // Épaisseur du mur
-        double hauteurMurs = 2*80;      // Hauteur des murs, sera utilisée pour les vues de côté
-        double largeurMur = 2*100;     // Largeur des murs venant
-        double longueurMur = 2*100;
+        double epaisseurMur = Chalet.epaisseurChalet;     // Épaisseur du mur
+        double hauteurMurs = Chalet.hauteurMurs;      // Hauteur des murs, sera utilisée pour les vues de côté
+        double largeurMur = Chalet.largeurChalet;      // Largeur des murs venant
+        double longueurMur = Chalet.longueurChalet;
         double angleToit = 0.0;
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
-
 
         return chalet ;
 
     }
 
-
     public boolean initialiserChalet(Chalet chalet) {
+
         chalet.initialiserMurFacade();
         chalet.initialiserMurArriere();
         chalet.initialiserMurGauche();
         chalet.initialiserMurDroite();
 
-         this.facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
+
+        this.facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
         this.arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
         this.gauche = chalet.getMursUsines(0.2, "Nord").get(2); // mur gauche deja codé en bas
         this.droite = chalet.getMursUsines(0.2, "Nord").get(3); // mur droite deja codé en bas
 
         return true;
     }
+
+    public void setEpaisseurChalet(double epaisseurChalet)
+    {
+        Chalet.setEpaisseurChalet(epaisseurChalet);
+    }
+
+    public static void setLongueurChalet(double longueurChalet)
+    {
+        Chalet.setLongueurChalet(longueurChalet);
+        //boolean rep = initialiserChalet(chaletProduction);
+
+
+    }
+
+    public void setLargeurChalet(double largeurChalet)
+    {
+        Chalet.setLargeurChalet(largeurChalet);
+    }
+
+    public void setHauteurMurs(double hauteurMurs) {
+        Chalet.setHauteurMurs(hauteurMurs);
+    }
+
 
 
     Chalet chaletProduction = createChalet();

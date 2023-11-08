@@ -2,20 +2,17 @@ package ui;
 
 import Utilitaires.PointDouble;
 import Utilitaires.Pouces;
-import Utilitaires.pointPouces;
 import domain.*;
 
 import java.awt.*;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
-import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 import static domain.Chalet.hauteurMurs;
 
 public class DroitDrawer {
 
     private Controleur controleur;
-
     public static Chalet chalet;
     private Accessoires accessoires;
     private Dimension initialDimension;
@@ -39,8 +36,6 @@ public class DroitDrawer {
 
 
     private void drawFenetre(Graphics g) {
-
-
         System.out.println("fenetreDROIT");
 
         g.setColor(new Color(255, 0, 0));

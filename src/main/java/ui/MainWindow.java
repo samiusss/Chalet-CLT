@@ -80,7 +80,6 @@ public class MainWindow extends javax.swing.JFrame {
     private JTextField ToitPaneltabbedPaneGauchePanelHauteurTextField;
     private JLabel ToitPaneltabbedPaneGauchePanelAngleLabel;
 
-    private JLabel CoordoneesAccessoiresLabel;
     private JTextField AccessoirePanelCoordonneeX;
 
     private JTextField AccessoirePanelCoordonnee;
@@ -100,6 +99,12 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel ToitPaneltabbedPaneDerrierePanelHauteurLabel;
     private JComboBox AccessoireComboBox;
     private JButton supprimmerLAccessoireButton;
+    private JButton Selection;
+    private JButton confirmerMesuresButton;
+    private JLabel AccessoirePanelLargeurPorte;
+    private JTextField AccessoireLargeurPorteField;
+    private JLabel AccessoirePanelHauteurPorte;
+    private JTextField AccessoineHauteurPortefield;
 
     private Controleur.AffichageVue selectedVue;
 
@@ -237,6 +242,10 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = MurPannelTabbedPaneFaçadeLabelLongeurTextField.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double longueurChaletMN= Double.parseDouble(inputText);
+                Controleur.setLongueurChalet(longueurChaletMN);
+                System.out.println(longueurChaletMN+" entered by you..");
             }
         });
         MurPannelTabbedPaneFaçadeLabelLongeurTextField.addActionListener(new ActionListener() {
@@ -352,6 +361,7 @@ public class MainWindow extends javax.swing.JFrame {
 
 
 
+
         AccessoirePanelCoordonneeX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -366,7 +376,15 @@ public class MainWindow extends javax.swing.JFrame {
 
             }
         });
-    }
+
+ /*           @Override
+            public void caretPositionChanged(InputMethodEvent event) {
+
+            }*/
+        }
+
+
+
 
     private void initComponents() {
         DrawingPanel = new DrawingPanel(this);

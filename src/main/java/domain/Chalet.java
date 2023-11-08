@@ -13,10 +13,10 @@ import static Utilitaires.ConvertisseurMesures.*;
 
 public class Chalet {
 
-    public static double largeurChalet = 20.0;
-    public static double longueurChalet = 20.0;
-    public static double hauteurMurs=16.0;
-    public static double epaisseurChalet = 2.0;
+    public static double largeurChalet = 2*100;
+    public static double longueurChalet = 2*100;
+    public static double hauteurMurs=2*80;
+    public static double epaisseurChalet = 2*20;
     public static double angleToit;
     public static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
     public static String orientationToit;
@@ -456,25 +456,29 @@ public class Chalet {
         return this.orientationToit;
     }
 
-    public void setLargeurChalet(double largeurChalet) {
-        this.largeurChalet = largeurChalet;
+    public static void setLargeurChalet(double largeurChaletMN) {
+        largeurChalet = largeurChaletMN;
 
     }
 
-    public void setHauteurMurs(double hauteurMurs) {
-        this.hauteurMurs = hauteurMurs;
+    public static void setHauteurMurs(double hauteurMursMN) {
+        hauteurMurs = hauteurMursMN;
     }
 
-    public void setLongueurChalet(double longueurChalet) {
-        this.longueurChalet = longueurChalet;
+    public static void setLongueurChalet(double longueurChaletMN) {
+        longueurChalet = longueurChaletMN;
+        System.out.println(longueurChaletMN); //test
+        System.out.println(longueurChalet); //test
+
+
     }
 
-    public void setEpaisseurChalet(double epaisseurChalet) {
-        this.epaisseurChalet = epaisseurChalet;
+    public static void setEpaisseurChalet(double epaisseurChaletMN) {
+        epaisseurChalet = epaisseurChaletMN;
     }
 
     public void setAngleToit(double angleToit) {
-        this.angleToit = angleToit;
+        angleToit = angleToit;
     }
 
     public void setListeMurs(List<Mur> listerMurs) {
