@@ -80,7 +80,7 @@ public class Controleur {
     public static void setLongueurChalet(double longueurChalet)
     {
         Chalet.setLongueurChalet(longueurChalet);
-        boolean rep = initialiserChalet(chaletProduction);
+        //boolean rep = initialiserChalet(chaletProduction);
 
 
     }
