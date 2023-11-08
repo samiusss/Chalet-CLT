@@ -109,10 +109,10 @@ public class Controleur {
         Chalet.setHauteurMurs(hauteurMurs);
     }
 
-    public void setLargeurPorte(Pouces nouvellelargeur)
+    public boolean setLargeurPorte(Pouces nouvellelargeur, String nomMur, List<Mur> listeMursDrawer)
     {
-        Porte.PORTE_LARGEUR_STANDARD = nouvellelargeur;
-        System.out.println(Porte.PORTE_LARGEUR_STANDARD);
+        boolean success = Chalet.setLargeurPorte(nouvellelargeur, nomMur, listeMursDrawer);
+        return success;
     }
 
     public void setHauteurPorte(Pouces nouvellehauteur)

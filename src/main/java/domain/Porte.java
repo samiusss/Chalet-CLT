@@ -29,8 +29,8 @@ public class Porte extends Accessoires implements Serializable {
         return true;
     }
 
-    public boolean modifierLargeur(Pouces valeur) {
-        PORTE_LARGEUR_STANDARD = valeur;
+    public boolean setLargeur(Pouces valeur) {
+        largeur = valeur;
         return true;
     }
 
@@ -38,11 +38,7 @@ public class Porte extends Accessoires implements Serializable {
         return largeur;
     }
 
-    public Pouces setLargeur(Pouces largeur){
-        this.largeur = largeur;
-        return largeur;
 
-    }
     public Pouces setHauteur(Pouces hauteur){
         this.hauteur = hauteur;
         return hauteur;

@@ -319,12 +319,7 @@ public class Chalet {
     public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 
         int numMur = determinerMur(nomMur);
-        //java.util.List<Mur> listeMursDrawer2 = this.getMursUsines(0.2,"NORD") ;
-
-        //java.util.List<Mur> listeMursDrawer2 = Chaletdrawer.chalet.getMursUsines(0,"NORD") ;
         Mur mur = listeMursDrawer.get(numMur);
-
-
 
         //Une porte par mur
         List<Porte> listePorte = mur.getListePorte();
@@ -338,20 +333,6 @@ public class Chalet {
             }
         }
 
-
-        int x = (int) mousepoint.getX();
-        Pouces hauteurMur = convertirDoubleEnPouces(hauteurMurs);
-        int hauteurMurInt = convertirPoucesEnPixels(hauteurMur);
-        Pouces hauteurPorte = Porte.PORTE_HAUTEUR_STANDARD;
-        int hauteurPorteInt = convertirPoucesEnPixels(hauteurPorte);
-
-        /*
-        int y = DeterminerPointMurLargeur(,w,h, mousePoint);
-        y = (y + hauteurMurInt) - hauteurPorteInt;
-        Point murPoint = new Point(x,y);
-        Porte Porte = new Porte(positionPorte, murPoint);
-
-        */
         Pouces largeur = new Pouces(35, 0, 1);
         Pouces hauteur = new Pouces(60, 0, 1);
         Porte porte = new Porte(mousepoint,largeur, hauteur );
@@ -361,7 +342,6 @@ public class Chalet {
         for (Porte porte1 : listePorte) {
             System.out.println(porte1);
             return success;
-
         }
 
         return false;
@@ -371,56 +351,21 @@ public class Chalet {
 
 
 
-    public static boolean modifierPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
+    public static boolean setLargeurPorte(Pouces nouvelleLargeur, String nomMur, List<Mur> listeMursDrawer){
 
         int numMur = determinerMur(nomMur);
-        //java.util.List<Mur> listeMursDrawer2 = this.getMursUsines(0.2,"NORD") ;
-
-        //java.util.List<Mur> listeMursDrawer2 = Chaletdrawer.chalet.getMursUsines(0,"NORD") ;
         Mur mur = listeMursDrawer.get(numMur);
-
-
-
         //Une porte par mur
         List<Porte> listePorte = mur.getListePorte();
 
-        if(listePorte != null) {
+        for (Porte porte : listePorte) {
+            boolean success = porte.setLargeur(nouvelleLargeur);
 
-            int lenghtlistePorte = listePorte.size();
-
-            if (lenghtlistePorte > 0) {
-                mur.clearListePorte();
-            }
-        }
-
-
-        int x = (int) mousepoint.getX();
-        Pouces hauteurMur = convertirDoubleEnPouces(hauteurMurs);
-        int hauteurMurInt = convertirPoucesEnPixels(hauteurMur);
-        Pouces hauteurPorte = Porte.PORTE_HAUTEUR_STANDARD;
-        int hauteurPorteInt = convertirPoucesEnPixels(hauteurPorte);
-
-        /*
-        int y = DeterminerPointMurLargeur(,w,h, mousePoint);
-        y = (y + hauteurMurInt) - hauteurPorteInt;
-        Point murPoint = new Point(x,y);
-        Porte Porte = new Porte(positionPorte, murPoint);
-
-        */
-        Pouces largeur = new Pouces(35, 0, 1);
-        Pouces hauteur = new Pouces(60, 0, 1);
-        Porte porte = new Porte(mousepoint,largeur, hauteur );
-
-        boolean success = mur.ajouterPorte(porte);
-        listePorte = mur.getListePorte();
-        for (Porte porte1 : listePorte) {
-            System.out.println(porte1);
+            System.out.println(porte);
             return success;
-
         }
 
         return false;
-
 
     }
 

@@ -132,16 +132,8 @@ public class MainWindow extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 if (isAddingPorte)
                 {
-                    //addPorte();
-
                     Point mousePoint = e.getPoint();
-
-
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-
-                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
-                    //java.util.List<Mur> listeMursDrawer = null ;
-
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
 
@@ -150,7 +142,6 @@ public class MainWindow extends javax.swing.JFrame {
                     System.out.println(ajoutReussi);
                     System.out.println("ajoutPortereussi");
                     isAddingPorte = false;
-                    //ui.Chaletdrawer.changerVue(ui.DrawingPanel.selectedAffichageVue);
                     DrawingPanel.repaint();
 
                 }
@@ -385,7 +376,18 @@ public class MainWindow extends javax.swing.JFrame {
                 Pouces nouvellelargeur = Pouces.fromString(inputext);
                 if (nouvellelargeur != null) {
 
-                    controleur.setLargeurPorte(nouvellelargeur);
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+
+
+                    boolean success = controleur.setLargeurPorte(nouvellelargeur, nomMur, listeMursDrawer);
+
+                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                    System.out.println(success);
+                    System.out.println("ModificationPortereussi");
+                    DrawingPanel.repaint();
+
                 }
             }
         });
