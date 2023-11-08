@@ -80,7 +80,6 @@ public class MainWindow extends javax.swing.JFrame {
     private JTextField ToitPaneltabbedPaneGauchePanelHauteurTextField;
     private JLabel ToitPaneltabbedPaneGauchePanelAngleLabel;
 
-    private JLabel CoordoneesAccessoiresLabel;
     private JTextField AccessoirePanelCoordonneeX;
 
     private JTextField AccessoirePanelCoordonnee;
@@ -102,6 +101,10 @@ public class MainWindow extends javax.swing.JFrame {
     private JButton supprimmerLAccessoireButton;
     private JButton Selection;
     private JButton confirmerMesuresButton;
+    private JLabel AccessoirePanelLargeurPorte;
+    private JTextField AccessoireLargeurPorteField;
+    private JLabel AccessoirePanelHauteurPorte;
+    private JTextField textField1;
 
     private Controleur.AffichageVue selectedVue;
 
