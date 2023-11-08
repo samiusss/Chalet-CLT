@@ -113,6 +113,7 @@ public class MainWindow extends javax.swing.JFrame {
         controleur = new Controleur();
         initComponents();
 
+        //Gestion de l'ajout d'accessoires
         PannelDroitAjoutPorteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -126,7 +127,56 @@ public class MainWindow extends javax.swing.JFrame {
                 isAddingFenetre = true;
             }
         });
+        PannelAffichage.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (isAddingPorte)
+                {
+                    //addPorte();
 
+                    Point mousePoint = e.getPoint();
+
+
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+
+                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
+                    //java.util.List<Mur> listeMursDrawer = null ;
+
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+
+                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
+                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                    System.out.println(ajoutReussi);
+                    System.out.println("ajoutPortereussi");
+                    isAddingPorte = false;
+                    //ui.Chaletdrawer.changerVue(ui.DrawingPanel.selectedAffichageVue);
+                    DrawingPanel.repaint();
+
+                }
+                if (isAddingFenetre)
+                {
+
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
+
+                    Point mousePoint = e.getPoint();
+
+                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer);
+                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+
+                    System.out.println(ajoutFenetrereussi);
+                    System.out.println("ajoutFenetrereussi");
+                    isAddingFenetre = false;
+                    DrawingPanel.repaint();
+
+
+                }
+            }
+        });
+
+        //Gestion des vues
         VueComboBox.addItemListener(new ItemListener() {
 
             private Controleur.AffichageVue selectedVue;
@@ -310,66 +360,20 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        PannelAffichage.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (isAddingPorte)
-                {
-                    //addPorte();
 
-                    Point mousePoint = e.getPoint();
-
-
-                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-
-                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
-                    //java.util.List<Mur> listeMursDrawer = null ;
-
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-
-                    boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
-                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                    System.out.println(ajoutReussi);
-                    System.out.println("ajoutPortereussi");
-                    isAddingPorte = false;
-                    //ui.Chaletdrawer.changerVue(ui.DrawingPanel.selectedAffichageVue);
-                    DrawingPanel.repaint();
-
-                }
-                if (isAddingFenetre)
-                {
-
-
-                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
-
-                    Point mousePoint = e.getPoint();
-
-                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer);
-                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
-
-                    System.out.println(ajoutFenetrereussi);
-                    System.out.println("ajoutFenetrereussi");
-                    isAddingFenetre = false;
-                    DrawingPanel.repaint();
-
-
-                }
-            }
-        });
 
 
         AccessoirePanelCoordonneeX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+
             }
         });
         AccessoirePanelCoordonneeY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
 
             }
         });

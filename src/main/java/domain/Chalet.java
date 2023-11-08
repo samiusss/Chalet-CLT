@@ -13,8 +13,8 @@ import static Utilitaires.ConvertisseurMesures.*;
 
 public class Chalet {
 
-    public static double largeurChalet = 400;
-    public static double longueurChalet = 200;
+    public static double largeurChalet = 300;
+    public static double longueurChalet = 300;
     public static double hauteurMurs=2*80;
     public static double epaisseurChalet = 2*20;
     public static double angleToit;
@@ -55,6 +55,30 @@ public class Chalet {
         listeMurs.add(facade);
     }
 
+
+    public void ResetinitialiserMurFacade(){
+
+        //points du haut
+        PointDouble pointInfGauche = new PointDouble(0, 0);
+        PointDouble pointSupGauche = new PointDouble(0, epaisseurChalet);
+        PointDouble pointSupDroit = new PointDouble(longueurChalet, epaisseurChalet);
+        PointDouble pointInfDroit = new PointDouble(longueurChalet, 0);
+
+        //Points de face
+        PointDouble pointInfGaucheFace = new PointDouble(0, 0);
+        PointDouble pointSupGaucheFace = new PointDouble(0, hauteurMurs);
+        PointDouble pointSupDroitFace = new PointDouble(longueurChalet, hauteurMurs);
+        PointDouble pointInfDroitFace = new PointDouble(longueurChalet, 0);
+
+        Mur facade = new Mur("Facade", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit,
+                pointInfGaucheFace, pointSupGaucheFace, pointSupDroitFace, pointInfDroitFace), new ArrayList<String>());
+
+        listeMurs.add(facade);
+    }
+
+
+
+
     public void initialiserMurArriere(){
 
         //points de haut
@@ -73,6 +97,8 @@ public class Chalet {
                 pointInfGaucheArriere, pointSupGaucheArriere, pointSupDroitArriere, pointInfDroitArriere), new ArrayList<String>());
 
         listeMurs.add(arriere);
+        System.out.println("Initialisation");
+
     }
 
     public void initialiserMurGauche(){
@@ -344,6 +370,63 @@ public class Chalet {
     }
 
 
+
+    public static boolean modifierPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
+
+        int numMur = determinerMur(nomMur);
+        //java.util.List<Mur> listeMursDrawer2 = this.getMursUsines(0.2,"NORD") ;
+
+        //java.util.List<Mur> listeMursDrawer2 = Chaletdrawer.chalet.getMursUsines(0,"NORD") ;
+        Mur mur = listeMursDrawer.get(numMur);
+
+
+
+        //Une porte par mur
+        List<Porte> listePorte = mur.getListePorte();
+
+        if(listePorte != null) {
+
+            int lenghtlistePorte = listePorte.size();
+
+            if (lenghtlistePorte > 0) {
+                mur.clearListePorte();
+            }
+        }
+
+
+        int x = (int) mousepoint.getX();
+        Pouces hauteurMur = convertirDoubleEnPouces(hauteurMurs);
+        int hauteurMurInt = convertirPoucesEnPixels(hauteurMur);
+        Pouces hauteurPorte = Porte.PORTE_HAUTEUR_STANDARD;
+        int hauteurPorteInt = convertirPoucesEnPixels(hauteurPorte);
+
+        /*
+        int y = DeterminerPointMurLargeur(,w,h, mousePoint);
+        y = (y + hauteurMurInt) - hauteurPorteInt;
+        Point murPoint = new Point(x,y);
+        Porte Porte = new Porte(positionPorte, murPoint);
+
+        */
+        Pouces largeur = new Pouces(35, 0, 1);
+        Pouces hauteur = new Pouces(60, 0, 1);
+        Porte porte = new Porte(mousepoint,largeur, hauteur );
+
+        boolean success = mur.ajouterPorte(porte);
+        listePorte = mur.getListePorte();
+        for (Porte porte1 : listePorte) {
+            System.out.println(porte1);
+            return success;
+
+        }
+
+        return false;
+
+
+    }
+
+
+
+
     public static boolean ajouterFenetre(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 
         Pouces largeur = new Pouces(25, 0, 1);
@@ -401,6 +484,10 @@ public class Chalet {
 
     public static void setLargeurChalet(double largeurChaletMN) {
         largeurChalet = largeurChaletMN;
+        System.out.println(largeurChaletMN); //test
+        System.out.println(largeurChalet+" is the new value of largeur in Chalet.java"); //test
+
+
 
     }
 
