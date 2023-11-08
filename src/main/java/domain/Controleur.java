@@ -12,10 +12,10 @@ public class Controleur {
     private float offset;
 
 
-    public Mur facade ; // mur facade deja codé en bas
-    public Mur arriere; // mur arriere deja codé en bas
-    public Mur gauche ; // mur gauche deja codé en bas
-    public Mur droite; // mur droite deja codé en bas
+    public static Mur facade ; // mur facade deja codé en bas
+    public static Mur arriere; // mur arriere deja codé en bas
+    public static Mur gauche ; // mur gauche deja codé en bas
+    public static Mur droite; // mur droite deja codé en bas
 
 
     public enum AffichageVue
@@ -51,28 +51,31 @@ public class Controleur {
         double angleToit = 0.0;
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
-
         return chalet ;
-
     }
 
-    public boolean initialiserChalet(Chalet chalet) {
+    public static boolean initialiserChalet(Chalet chalet) {
 
         chalet.initialiserMurFacade();
         chalet.initialiserMurArriere();
         chalet.initialiserMurGauche();
         chalet.initialiserMurDroite();
 
-
-        this.facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
-        this.arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
-        this.gauche = chalet.getMursUsines(0.2, "Nord").get(2); // mur gauche deja codé en bas
-        this.droite = chalet.getMursUsines(0.2, "Nord").get(3); // mur droite deja codé en bas
+        facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
+        arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
+        gauche = chalet.getMursUsines(0.2, "Nord").get(2); // mur gauche deja codé en bas
+        droite = chalet.getMursUsines(0.2, "Nord").get(3); // mur droite deja codé en bas
 
         return true;
     }
 
-    public void setEpaisseurChalet(double epaisseurChalet)
+    public static boolean reinitialiserChalet(Chalet chalet)
+    {
+        //
+        return false;
+    }
+
+        public void setEpaisseurChalet(double epaisseurChalet)
     {
         Chalet.setEpaisseurChalet(epaisseurChalet);
     }
@@ -80,14 +83,14 @@ public class Controleur {
     public static void setLongueurChalet(double longueurChalet)
     {
         Chalet.setLongueurChalet(longueurChalet);
-        //boolean rep = initialiserChalet(chaletProduction);
-
-
+        System.out.println(longueurChalet+" Réinitialisation en cours"); //test
+        initialiserChalet(chaletProduction);
     }
 
     public void setLargeurChalet(double largeurChalet)
     {
         Chalet.setLargeurChalet(largeurChalet);
+
     }
 
     public void setHauteurMurs(double hauteurMurs) {
@@ -96,7 +99,7 @@ public class Controleur {
 
 
 
-    Chalet chaletProduction = createChalet();
+    static Chalet chaletProduction = createChalet();
 
     boolean rep = initialiserChalet(chaletProduction);
 
@@ -143,7 +146,4 @@ public class Controleur {
     public float getOffset() {
         return offset;
     }
-
-
-
 }

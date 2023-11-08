@@ -24,8 +24,8 @@ public class Mur {
     // ce meme constructeur est appelle a la ligne
     public Mur(String nomMur, List<PointDouble> sommetsMur, List<String> accessoiresMur) {
         this.nomMur = nomMur;
-        this.sommetsMur = new ArrayList<>(sommetsMur); // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
-        this.accessoiresMur = accessoiresMur; // ceci est comme ci: [Liste de accessoires]
+        this.sommetsMur = new ArrayList<>(sommetsMur);  // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
+        this.accessoiresMur = accessoiresMur;           // ceci est comme ci: [Liste de accessoires]
 
     }
 
