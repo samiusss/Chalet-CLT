@@ -100,6 +100,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel ToitPaneltabbedPaneDerrierePanelHauteurLabel;
     private JComboBox AccessoireComboBox;
     private JButton supprimmerLAccessoireButton;
+    private JButton Selection;
 
     private Controleur.AffichageVue selectedVue;
 
