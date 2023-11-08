@@ -55,6 +55,30 @@ public class Chalet {
         listeMurs.add(facade);
     }
 
+
+    public void ResetinitialiserMurFacade(){
+
+        //points du haut
+        PointDouble pointInfGauche = new PointDouble(0, 0);
+        PointDouble pointSupGauche = new PointDouble(0, epaisseurChalet);
+        PointDouble pointSupDroit = new PointDouble(longueurChalet, epaisseurChalet);
+        PointDouble pointInfDroit = new PointDouble(longueurChalet, 0);
+
+        //Points de face
+        PointDouble pointInfGaucheFace = new PointDouble(0, 0);
+        PointDouble pointSupGaucheFace = new PointDouble(0, hauteurMurs);
+        PointDouble pointSupDroitFace = new PointDouble(longueurChalet, hauteurMurs);
+        PointDouble pointInfDroitFace = new PointDouble(longueurChalet, 0);
+
+        Mur facade = new Mur("Facade", Arrays.asList(pointInfGauche, pointSupGauche, pointSupDroit, pointInfDroit,
+                pointInfGaucheFace, pointSupGaucheFace, pointSupDroitFace, pointInfDroitFace), new ArrayList<String>());
+
+        listeMurs.add(facade);
+    }
+
+
+
+
     public void initialiserMurArriere(){
 
         //points de haut
@@ -73,6 +97,8 @@ public class Chalet {
                 pointInfGaucheArriere, pointSupGaucheArriere, pointSupDroitArriere, pointInfDroitArriere), new ArrayList<String>());
 
         listeMurs.add(arriere);
+        System.out.println("Initialisation");
+
     }
 
     public void initialiserMurGauche(){

@@ -12,10 +12,12 @@ public class Controleur {
     private float offset;
 
 
-    public Mur facade ; // mur facade deja codé en bas
-    public Mur arriere; // mur arriere deja codé en bas
-    public Mur gauche ; // mur gauche deja codé en bas
-    public Mur droite; // mur droite deja codé en bas
+    public static Mur facade ; // mur facade deja codé en bas
+    public static Mur arriere; // mur arriere deja codé en bas
+    public static Mur gauche ; // mur gauche deja codé en bas
+    public static Mur droite; // mur droite deja codé en bas
+
+    public static boolean reinitialisation;
 
 
     public enum AffichageVue
@@ -56,7 +58,7 @@ public class Controleur {
 
     }
 
-    public boolean initialiserChalet(Chalet chalet) {
+    public static boolean initialiserChalet(Chalet chalet) {
 
         chalet.initialiserMurFacade();
         chalet.initialiserMurArriere();
@@ -72,6 +74,13 @@ public class Controleur {
         return true;
     }
 
+
+    static Chalet chaletProduction = createChalet();
+
+    boolean rep = initialiserChalet(chaletProduction);
+
+
+
     public void setEpaisseurChalet(double epaisseurChalet)
     {
         Chalet.setEpaisseurChalet(epaisseurChalet);
@@ -80,7 +89,7 @@ public class Controleur {
     public static void setLongueurChalet(double longueurChalet)
     {
         Chalet.setLongueurChalet(longueurChalet);
-        //boolean rep = initialiserChalet(chaletProduction);
+        boolean rep = initialiserChalet(chaletProduction);
 
 
     }
@@ -95,10 +104,6 @@ public class Controleur {
     }
 
 
-
-    Chalet chaletProduction = createChalet();
-
-    boolean rep = initialiserChalet(chaletProduction);
 
     public Chalet getChaletProduction() {
         return chaletProduction;
