@@ -1,9 +1,10 @@
 package domain;
 
+import Utilitaires.Pouces;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import Utilitaires.*;
 
 //import static domain.Mur.accessoiresMur;
 
@@ -102,11 +103,14 @@ public class Controleur {
     public void setLargeurChalet(double largeurChalet)
     {
         Chalet.setLargeurChalet(largeurChalet);
-
+        System.out.println(largeurChalet+" Réinitialisation en cours"); //test
+        initialiserChalet(chaletProduction);
     }
 
     public void setHauteurMurs(double hauteurMurs) {
         Chalet.setHauteurMurs(hauteurMurs);
+        System.out.println(hauteurMurs+" Réinitialisation en cours"); //test
+        initialiserChalet(chaletProduction);
     }
 
     public boolean setLargeurPorte(Pouces nouvellelargeur, String nomMur, List<Mur> listeMursDrawer)
