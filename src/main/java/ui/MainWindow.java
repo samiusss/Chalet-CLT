@@ -354,11 +354,42 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+
+                if (isAddingPorte)
+                {
+                    //addPorte();
+
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+
+                    //java.util.List<Mur> listeMursDrawer = chalet.getMursUsines() ;
+                    //java.util.List<Mur> listeMursDrawer = null ;
+
+                    String Xpoint = AccessoirePanelCoordonneeY.getText();
+
+                    int Xpoint2 = Integer.parseInt(Xpoint);
+
+
+                    Point mousePoint = new Point(5,0);
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+
+                    boolean ajoutReussi = controleur.modifierPorte(mousePoint,nomMur,listeMursDrawer);
+                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                    System.out.println(ajoutReussi);
+                    System.out.println("ajoutPortereussi");
+                    isAddingPorte = false;
+                    //ui.Chaletdrawer.changerVue(ui.DrawingPanel.selectedAffichageVue);
+                    DrawingPanel.repaint();
+
+                }
+
+
             }
         });
         AccessoirePanelCoordonneeY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
 
             }
         });

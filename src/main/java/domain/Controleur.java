@@ -110,6 +110,18 @@ public class Controleur {
         //accessoiresmur.add(newPorte);
     }
 
+    public static boolean modifierPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
+
+        if(Chalet.modifierPorte(mousepoint, nomMur,listeMursDrawer))
+        {
+            return true;
+        }
+
+        return false;
+        //Porte newPorte = newAccessoires("AID",mousepoint, double largeur,double hauteur);
+        //accessoiresmur.add(newPorte);
+    }
+
 
     public ChaletDTO getChalet() {
         return chalet;
