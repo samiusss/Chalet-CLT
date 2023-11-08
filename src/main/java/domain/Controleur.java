@@ -86,32 +86,35 @@ public class Controleur {
         return true;
     }*/
 
-        public void setEpaisseurChalet(double epaisseurChalet)
+        public static void setEpaisseurChalet(double epaisseurChalet)
     {
         Chalet.setEpaisseurChalet(epaisseurChalet);
+        initialiserChalet(chaletProduction);
     }
 
     public static void setLongueurChalet(double longueurChalet)
     {
         Chalet.setLongueurChalet(longueurChalet);
-        Chalet.setLargeurChalet(longueurChalet);
+        //Chalet.setLargeurChalet(longueurChalet);
 
         System.out.println(longueurChalet+" Réinitialisation en cours"); //test
         initialiserChalet(chaletProduction);
     }
 
-    public void setLargeurChalet(double largeurChalet)
+    public static void setLargeurChalet(double largeurChalet)
     {
         Chalet.setLargeurChalet(largeurChalet);
         System.out.println(largeurChalet+" Réinitialisation en cours"); //test
         initialiserChalet(chaletProduction);
     }
 
-    public void setHauteurMurs(double hauteurMurs) {
+    public static void setHauteurMurs(double hauteurMurs) {
         Chalet.setHauteurMurs(hauteurMurs);
         System.out.println(hauteurMurs+" Réinitialisation en cours"); //test
         initialiserChalet(chaletProduction);
     }
+
+    ///////////////////////////////////////PORTE//////////////////////////////////
 
     public void setLargeurPorte(Pouces nouvellelargeur)
     {
@@ -122,9 +125,7 @@ public class Controleur {
     public void setHauteurPorte(Pouces nouvellehauteur)
     {
         Porte.PORTE_HAUTEUR_STANDARD = nouvellehauteur;
-
     }
-
 
     static Chalet chaletProduction = createChalet();
 
