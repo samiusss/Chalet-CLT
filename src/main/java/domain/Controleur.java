@@ -3,6 +3,7 @@ package domain;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import Utilitaires.*;
 
 //import static domain.Mur.accessoiresMur;
 
@@ -97,6 +98,17 @@ public class Controleur {
         Chalet.setHauteurMurs(hauteurMurs);
     }
 
+    public void setLargeurPorte(Pouces nouvellelargeur)
+    {
+        Porte.PORTE_LARGEUR_STANDARD = nouvellelargeur;
+        System.out.println(Porte.PORTE_LARGEUR_STANDARD);
+    }
+
+    public void setHauteurPorte(Pouces nouvellehauteur)
+    {
+        Porte.PORTE_HAUTEUR_STANDARD = nouvellehauteur;
+
+    }
 
 
     static Chalet chaletProduction = createChalet();
