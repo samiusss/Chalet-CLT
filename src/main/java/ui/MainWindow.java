@@ -367,12 +367,23 @@ public class MainWindow extends javax.swing.JFrame {
         MurPannelTabbedPaneFaçadeLabelLongeurTextField.addInputMethodListener(new InputMethodListener() {
             @Override
             public void inputMethodTextChanged(InputMethodEvent event) {
-                //recoit la longueur de facade voulu et update le controleur
+                //recoit la longueur de facade écrite venant de la methode createChalet dans Controleur.java
+                //Pouces longueurChaletMN;
+                //On le recoit en pouces et on le transforme en double
+                //update la longueur de la methode createChalet dans Controleur.java
             }
 
             @Override
             public void caretPositionChanged(InputMethodEvent event) {
 
+            }
+        });
+        confirmerMesuresButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //VÉRIFIER SI IL A APPUYER
+                double longueurChaletMN=5;
+                Controleur.setLongueurChalet(longueurChaletMN);
             }
         });
     }
