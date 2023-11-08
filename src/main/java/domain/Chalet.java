@@ -351,6 +351,27 @@ public class Chalet {
 
 
 
+    public static boolean supprimerPorte(String nomMur, List<Mur> listeMursDrawer){
+
+
+        int numMur = determinerMur(nomMur);
+        Mur mur = listeMursDrawer.get(numMur);
+        //Une porte par mur
+        List<Porte> listePorte = mur.getListePorte();
+
+        if(listePorte != null) {
+
+            int lenghtlistePorte = listePorte.size();
+
+            if (lenghtlistePorte > 0) {
+                mur.clearListePorte();
+            }
+        }
+
+        return false;
+
+    }
+
     public static boolean setLargeurPorte(Pouces nouvelleLargeur, String nomMur, List<Mur> listeMursDrawer){
 
         int numMur = determinerMur(nomMur);

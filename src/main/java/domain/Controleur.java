@@ -119,6 +119,12 @@ public class Controleur {
         return success;
     }
 
+
+    public boolean supprimerPorte(String nomMur, List<Mur> listeMursDrawer)
+    {
+        boolean success = Chalet.supprimerPorte(nomMur, listeMursDrawer);
+        return success;
+    }
     public void setHauteurPorte(Pouces nouvellehauteur)
     {
         Porte.PORTE_HAUTEUR_STANDARD = nouvellehauteur;
