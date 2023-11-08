@@ -283,18 +283,7 @@ public class MainWindow extends javax.swing.JFrame {
                 String inputText = MurPannelTabbedPaneGaucheLabelHauteurTextField.getText();
             }
         });
-        AccessoirePanelLongeurTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = AccessoirePanelLongeurTextField.getText();
-            }
-        });
-        AccessoirePanelLargeurTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = AccessoirePanelLargeurTextField.getText();
-            }
-        });
+
 //        public void setAccessoireIDText(String Accessoires.UUID) {
 //            AccessoireID.setText(Accessoires.UUID);
 //        }
@@ -372,19 +361,63 @@ public class MainWindow extends javax.swing.JFrame {
         AccessoireLargeurPorteField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String inputext = AccessoireLargeurPorteField.getText();
-                Pouces nouvellelargeur = Pouces.fromString(inputext);
-                if (nouvellelargeur != null) {
+                String inputText = AccessoireLargeurPorteField.getText();
+                Pouces nouvelleLargeur = Pouces.fromString(inputText);
+                if (nouvelleLargeur != null) {
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                    boolean success = controleur.setLargeurPorte(nouvellelargeur, nomMur, listeMursDrawer);
+                    boolean success = controleur.setLargeurPorte(nouvelleLargeur, nomMur, listeMursDrawer);
                     System.out.println(ui.DrawingPanel.selectedAffichageVue);
                     System.out.println(success);
                     System.out.println("ModificationPortereussi");
                     DrawingPanel.repaint();
 
+                }
+
+            }
+        });
+
+        AccessoirePanelLongeurTextField.addActionListener(new ActionListener() {
+            //LargeurFenetre
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = AccessoirePanelLongeurTextField.getText();
+
+                Pouces nouvelleLargeur = Pouces.fromString(inputText);
+                if (nouvelleLargeur != null) {
+
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+                    boolean success = controleur.setLargeurFenetre(nouvelleLargeur, nomMur, listeMursDrawer);
+                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                    System.out.println(success);
+                    System.out.println("ModificationLargeurFenetreReussi");
+                    DrawingPanel.repaint();
+
+                }
+            }
+        });
+
+        AccessoirePanelLargeurTextField.addActionListener(new ActionListener() {
+            //HauteurFenetre
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = AccessoirePanelLargeurTextField.getText();
+
+                Pouces nouvelleLongueur = Pouces.fromString(inputText);
+                if (nouvelleLongueur != null) {
+
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+                    boolean success = controleur.setHauteurFenetre(nouvelleLongueur, nomMur, listeMursDrawer);
+                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                    System.out.println(success);
+                    System.out.println("ModificationLongueurFenetreReussi");
+                    DrawingPanel.repaint();
                 }
             }
         });
@@ -425,7 +458,23 @@ public class MainWindow extends javax.swing.JFrame {
                         System.out.println(ui.DrawingPanel.selectedAffichageVue);
                         System.out.println(ajoutFenetrereussi);
                         System.out.println("ajoutFenetrereussi");
-                        DrawingPanel.repaint(); */
+                        DrawingPanel.repaint();
+
+
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
+                    //Point mousePoint = e.getPoint();
+                    if(nomMur != "SURPLOMB") {
+                        boolean suppFenetrereussi = Controleur.supprimerFenetre(nomMur,listeMursDrawer);
+                        System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                        System.out.println(suppFenetrereussi);
+                        System.out.println("suppFenetrereussi");
+                        DrawingPanel.repaint();
+
+                        */
+
+
                     }
 
                     isAddingFenetre = false;

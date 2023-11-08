@@ -351,6 +351,27 @@ public class Chalet {
 
 
 
+    public static boolean supprimerFenetre(String nomMur, List<Mur> listeMursDrawer){
+
+
+        int numMur = determinerMur(nomMur);
+        Mur mur = listeMursDrawer.get(numMur);
+        //Une porte par mur
+        List<Fenetre> listeFenetre = mur.getListeFenetre();
+
+        if(listeFenetre != null) {
+
+            int lenghtlisteFenetre = listeFenetre.size();
+
+            if (lenghtlisteFenetre > 0) {
+                mur.clearListeFenetre();
+            }
+        }
+
+        return false;
+
+    }
+
     public static boolean supprimerPorte(String nomMur, List<Mur> listeMursDrawer){
 
 
@@ -380,7 +401,7 @@ public class Chalet {
         List<Porte> listePorte = mur.getListePorte();
 
         for (Porte porte : listePorte) {
-            boolean success = porte.setLargeur(nouvelleLargeur);
+            boolean success = porte.setLargeurPorte(nouvelleLargeur);
 
             System.out.println(porte);
             return success;
@@ -392,6 +413,42 @@ public class Chalet {
 
 
 
+    public static boolean setHauteurFenetre(Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer){
+
+        int numMur = determinerMur(nomMur);
+        Mur mur = listeMursDrawer.get(numMur);
+        //Une porte par mur
+        List<Fenetre> listeFenetre = mur.getListeFenetre();
+
+        for (Fenetre fenetre : listeFenetre) {
+            boolean success = fenetre.setHauteurFenetre(nouvelleLongueur);
+
+            System.out.println(fenetre);
+            return success;
+        }
+
+        return false;
+
+    }
+
+
+    public static boolean setLargeurFenetre(Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer){
+
+        int numMur = determinerMur(nomMur);
+        Mur mur = listeMursDrawer.get(numMur);
+        //Une porte par mur
+        List<Fenetre> listeFenetre = mur.getListeFenetre();
+
+        for (Fenetre fenetre : listeFenetre) {
+            boolean success = fenetre.setLargeurFenetre(nouvelleLongueur);
+
+            System.out.println(fenetre);
+            return success;
+        }
+
+        return false;
+
+    }
 
     public static boolean ajouterFenetre(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 

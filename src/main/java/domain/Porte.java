@@ -24,15 +24,29 @@ public class Porte extends Accessoires implements Serializable {
         return mousePoint;
     }
 
+    public boolean modifierLargeurStandard(Pouces valeur) {
+        largeur = valeur;
+        this.PORTE_LARGEUR_STANDARD = valeur;
+
+        return true;
+    }
+
+    public boolean modifierHauteurStandard(Pouces valeur) {
+        hauteur = valeur;
+        this.PORTE_HAUTEUR_STANDARD = valeur;
+        return true;
+    }
+
     public boolean modifierMousePoint(Point newMousePoint) {
         mousePoint = newMousePoint;
         return true;
     }
 
-    public boolean setLargeur(Pouces valeur) {
+    public boolean setLargeurPorte(Pouces valeur) {
         largeur = valeur;
         return true;
     }
+
 
     public Pouces getLargeur() {
         return largeur;

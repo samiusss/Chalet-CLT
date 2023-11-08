@@ -120,9 +120,26 @@ public class Controleur {
     }
 
 
+    public boolean setHauteurFenetre(Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer)
+    {
+        boolean success = Chalet.setHauteurFenetre(nouvelleLongueur, nomMur, listeMursDrawer);
+        return success;
+    }
+
+    public boolean setLargeurFenetre(Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer)
+    {
+        boolean success = Chalet.setLargeurFenetre(nouvelleLongueur, nomMur, listeMursDrawer);
+        return success;
+    }
     public boolean supprimerPorte(String nomMur, List<Mur> listeMursDrawer)
     {
         boolean success = Chalet.supprimerPorte(nomMur, listeMursDrawer);
+        return success;
+    }
+
+    public boolean supprimerFenetre(String nomMur, List<Mur> listeMursDrawer)
+    {
+        boolean success = Chalet.supprimerFenetre(nomMur, listeMursDrawer);
         return success;
     }
     public void setHauteurPorte(Pouces nouvellehauteur)

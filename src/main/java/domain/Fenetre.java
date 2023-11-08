@@ -43,17 +43,30 @@ public class Fenetre extends Accessoires implements Serializable {
     public Pouces getHauteur() {
         return hauteur;
     }
-    public boolean modifierLargeur(Pouces valeur) {
+    public boolean modifierLargeurStandard(Pouces valeur) {
         largeur = valeur;
         this.FENETRE_LARGEUR_STANDARD = valeur;
 
         return false;
     }
-    public boolean modifierHauteur(Pouces valeur) {
+
+    public boolean modifierHauteurStandard(Pouces valeur) {
         hauteur = valeur;
         this.FENETRE_HAUTEUR_STANDARD = valeur;
         return true;
     }
+
+    public boolean setLargeurFenetre(Pouces valeur) {
+        largeur = valeur;
+        return true;
+    }
+
+    public boolean setHauteurFenetre(Pouces valeur) {
+        hauteur = valeur;
+        return true;
+    }
+
+
 
     public List<pointPouces> getSommetsFenetre(){
         return this.sommetsFenetre;
