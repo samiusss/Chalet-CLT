@@ -95,7 +95,7 @@ public class Controleur {
     public static void setLongueurChalet(double longueurChalet)
     {
         Chalet.setLongueurChalet(longueurChalet);
-        //Chalet.setLargeurChalet(longueurChalet);
+        Chalet.setLargeurChalet(longueurChalet);
 
         System.out.println(longueurChalet+" Réinitialisation en cours"); //test
         initialiserChalet(chaletProduction);
@@ -114,18 +114,24 @@ public class Controleur {
         initialiserChalet(chaletProduction);
     }
 
-    ///////////////////////////////////////PORTE//////////////////////////////////
-
-    public void setLargeurPorte(Pouces nouvellelargeur)
+    public boolean setLargeurPorte(Pouces nouvellelargeur, String nomMur, List<Mur> listeMursDrawer)
     {
-        Porte.PORTE_LARGEUR_STANDARD = nouvellelargeur;
-        System.out.println(Porte.PORTE_LARGEUR_STANDARD);
+        boolean success = Chalet.setLargeurPorte(nouvellelargeur, nomMur, listeMursDrawer);
+        return success;
     }
 
+
+    public boolean supprimerPorte(String nomMur, List<Mur> listeMursDrawer)
+    {
+        boolean success = Chalet.supprimerPorte(nomMur, listeMursDrawer);
+        return success;
+    }
     public void setHauteurPorte(Pouces nouvellehauteur)
     {
         Porte.PORTE_HAUTEUR_STANDARD = nouvellehauteur;
+
     }
+
 
     static Chalet chaletProduction = createChalet();
 
