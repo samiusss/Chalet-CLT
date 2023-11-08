@@ -427,50 +427,6 @@ public class MainWindow extends javax.swing.JFrame {
 }
 
 
-        /*supprimmerLAccessoireButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                if (isAddingPorte)
-                {
-                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                    if(nomMur != "SURPLOMB") {
-                        boolean ajoutReussi = controleur.supprimerPorte(nomMur,listeMursDrawer);
-                        System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                        System.out.println(ajoutReussi);
-                        System.out.println("ajoutPortereussi");
-                        DrawingPanel.repaint();
-
-                    }
-                    isAddingPorte = false;
-
-                }
-                if (isAddingFenetre)
-                {
-
-                    /*String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
-                    Point mousePoint = e.getPoint();
-                    if(nomMur != "SURPLOMB") {
-                        boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer);
-                        System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                        System.out.println(ajoutFenetrereussi);
-                        System.out.println("ajoutFenetrereussi");
-                        DrawingPanel.repaint();
-                    }
-
-                    isAddingFenetre = false;
-
-                }
-    }
-    }
-                            */
-
-
-
     private void initComponents() {
         DrawingPanel = new DrawingPanel(this);
         PannelAffichage.setLayout(new BorderLayout());
