@@ -3,7 +3,7 @@ package ui;
 import domain.Chalet;
 import domain.Controleur;
 import domain.Mur;
-
+import Utilitaires.Pouces;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -376,6 +376,17 @@ public class MainWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
 
 
+            }
+        });
+        AccessoireLargeurPorteField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputext = AccessoireLargeurPorteField.getText();
+                Pouces nouvellelargeur = Pouces.fromString(inputext);
+                if (nouvellelargeur != null) {
+
+                    controleur.setLargeurPorte(nouvellelargeur);
+                }
             }
         });
 

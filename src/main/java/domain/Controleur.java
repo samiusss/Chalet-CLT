@@ -3,6 +3,7 @@ package domain;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import Utilitaires.*;
 
 //import static domain.Mur.accessoiresMur;
 
@@ -16,8 +17,6 @@ public class Controleur {
     public static Mur arriere; // mur arriere deja codé en bas
     public static Mur gauche ; // mur gauche deja codé en bas
     public static Mur droite; // mur droite deja codé en bas
-
-    public static boolean reinitialisation;
 
 
     public enum AffichageVue
@@ -71,13 +70,20 @@ public class Controleur {
         return true;
     }
 
-
-
-    public static boolean reinitialiserChalet(Chalet chalet)
+    /*public static boolean reinitialiserChalet(Chalet chalet)
     {
-        //
-        return false;
-    }
+        chalet.reinitialiserMurFacade();
+        chalet.reinitialiserMurArriere();
+        chalet.reinitialiserMurGauche();
+        chalet.reinitialiserMurDroite();
+
+        facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
+        arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
+        gauche = chalet.getMursUsines(0.2, "Nord").get(2); // mur gauche deja codé en bas
+        droite = chalet.getMursUsines(0.2, "Nord").get(3); // mur droite deja codé en bas
+
+        return true;
+    }*/
 
         public void setEpaisseurChalet(double epaisseurChalet)
     {
@@ -87,10 +93,8 @@ public class Controleur {
     public static void setLongueurChalet(double longueurChalet)
     {
         Chalet.setLongueurChalet(longueurChalet);
-        Chalet.setLargeurChalet(longueurChalet);
-
         System.out.println(longueurChalet+" Réinitialisation en cours"); //test
-        boolean rep = initialiserChalet(chaletProduction);
+        initialiserChalet(chaletProduction);
     }
 
     public void setLargeurChalet(double largeurChalet)
@@ -101,6 +105,18 @@ public class Controleur {
 
     public void setHauteurMurs(double hauteurMurs) {
         Chalet.setHauteurMurs(hauteurMurs);
+    }
+
+    public void setLargeurPorte(Pouces nouvellelargeur)
+    {
+        Porte.PORTE_LARGEUR_STANDARD = nouvellelargeur;
+        System.out.println(Porte.PORTE_LARGEUR_STANDARD);
+    }
+
+    public void setHauteurPorte(Pouces nouvellehauteur)
+    {
+        Porte.PORTE_HAUTEUR_STANDARD = nouvellehauteur;
+
     }
 
 
@@ -131,18 +147,6 @@ public class Controleur {
     public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 
         if(Chalet.ajouterPorte(mousepoint, nomMur,listeMursDrawer))
-        {
-            return true;
-        }
-
-        return false;
-        //Porte newPorte = newAccessoires("AID",mousepoint, double largeur,double hauteur);
-        //accessoiresmur.add(newPorte);
-    }
-
-    public static boolean modifierPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
-
-        if(Chalet.modifierPorte(mousepoint, nomMur,listeMursDrawer))
         {
             return true;
         }
