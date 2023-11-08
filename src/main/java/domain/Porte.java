@@ -41,6 +41,7 @@ public class Porte extends Accessoires implements Serializable {
     public Pouces setLargeur(Pouces largeur){
         this.largeur = largeur;
         return largeur;
+
     }
     public Pouces setHauteur(Pouces hauteur){
         this.hauteur = hauteur;

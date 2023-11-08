@@ -3,7 +3,7 @@ package ui;
 import domain.Chalet;
 import domain.Controleur;
 import domain.Mur;
-
+import Utilitaires.Pouces;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -104,7 +104,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel AccessoirePanelLargeurPorte;
     private JTextField AccessoireLargeurPorteField;
     private JLabel AccessoirePanelHauteurPorte;
-    private JTextField textField1;
+    private JTextField AccessoineHauteurPortefield;
 
     private Controleur.AffichageVue selectedVue;
 
@@ -355,6 +355,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+
         AccessoirePanelCoordonneeX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -367,6 +368,16 @@ public class MainWindow extends javax.swing.JFrame {
 
             }
         });
+       /* AccessoireLargeurPorteField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputext = AccessoireLargeurPorteField.getText();
+                try {
+                    //Pouces nouvellelargeur = inputext;
+                }
+
+            }
+        });*/
         MurPannelTabbedPaneFaçadeLabelLongeurTextField.addInputMethodListener(new InputMethodListener() {
             @Override
             public void inputMethodTextChanged(InputMethodEvent event) {
