@@ -1,12 +1,10 @@
 package ui;
 
-import Utilitaires.PointDouble;
 import Utilitaires.Pouces;
 import Utilitaires.pointPouces;
 import domain.*;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
@@ -89,8 +87,6 @@ public class Chaletdrawer {
 
             int lenghtlistePorte = listePorte.size();
                 System.out.println(lenghtlistePorte);
-
-
 
                 for (Porte porte : listePorte) {
                     System.out.println("porteSURPLOMB2");

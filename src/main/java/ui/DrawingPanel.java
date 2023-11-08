@@ -11,7 +11,6 @@ public class DrawingPanel extends JPanel implements Serializable {
 
     private MainWindow mainWindow;
 
-
     private Controleur controleur;
     private double zoomFactor = 1.0;
 

@@ -101,6 +101,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JComboBox AccessoireComboBox;
     private JButton supprimmerLAccessoireButton;
     private JButton Selection;
+    private JButton confirmerMesuresButton;
 
     private Controleur.AffichageVue selectedVue;
 
@@ -360,6 +361,17 @@ public class MainWindow extends javax.swing.JFrame {
         AccessoirePanelCoordonneeY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        MurPannelTabbedPaneFaçadeLabelLongeurTextField.addInputMethodListener(new InputMethodListener() {
+            @Override
+            public void inputMethodTextChanged(InputMethodEvent event) {
+                //recoit la longueur de facade voulu et update le controleur
+            }
+
+            @Override
+            public void caretPositionChanged(InputMethodEvent event) {
 
             }
         });
