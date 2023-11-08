@@ -246,6 +246,8 @@ public class MainWindow extends javax.swing.JFrame {
                 double longueurChaletMN= Double.parseDouble(inputText);
                 Controleur.setLongueurChalet(longueurChaletMN);
                 System.out.println(longueurChaletMN+" entered by you..");
+                DrawingPanel.repaint();
+
             }
         });
         MurPannelTabbedPaneFaçadeLabelLongeurTextField.addActionListener(new ActionListener() {

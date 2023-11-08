@@ -13,8 +13,8 @@ import static Utilitaires.ConvertisseurMesures.*;
 
 public class Chalet {
 
-    public static double largeurChalet = 2*100;
-    public static double longueurChalet = 2*100;
+    public static double largeurChalet = 300;
+    public static double longueurChalet = 300;
     public static double hauteurMurs=2*80;
     public static double epaisseurChalet = 2*20;
     public static double angleToit;
@@ -484,6 +484,10 @@ public class Chalet {
 
     public static void setLargeurChalet(double largeurChaletMN) {
         largeurChalet = largeurChaletMN;
+        System.out.println(largeurChaletMN); //test
+        System.out.println(largeurChalet+" is the new value of largeur in Chalet.java"); //test
+
+
 
     }
 
@@ -494,7 +498,7 @@ public class Chalet {
     public static void setLongueurChalet(double longueurChaletMN) {
         longueurChalet = longueurChaletMN;
         System.out.println(longueurChaletMN); //test
-        System.out.println(longueurChalet); //test
+        System.out.println(longueurChalet+" is the new value in Chalet.java"); //test
 
 
     }

@@ -53,9 +53,7 @@ public class Controleur {
         double angleToit = 0.0;
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
-
         return chalet ;
-
     }
 
     public static boolean initialiserChalet(Chalet chalet) {
@@ -65,23 +63,23 @@ public class Controleur {
         chalet.initialiserMurGauche();
         chalet.initialiserMurDroite();
 
-
-        this.facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
-        this.arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
-        this.gauche = chalet.getMursUsines(0.2, "Nord").get(2); // mur gauche deja codé en bas
-        this.droite = chalet.getMursUsines(0.2, "Nord").get(3); // mur droite deja codé en bas
+        facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
+        arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
+        gauche = chalet.getMursUsines(0.2, "Nord").get(2); // mur gauche deja codé en bas
+        droite = chalet.getMursUsines(0.2, "Nord").get(3); // mur droite deja codé en bas
 
         return true;
     }
 
 
-    static Chalet chaletProduction = createChalet();
 
-    boolean rep = initialiserChalet(chaletProduction);
+    public static boolean reinitialiserChalet(Chalet chalet)
+    {
+        //
+        return false;
+    }
 
-
-
-    public void setEpaisseurChalet(double epaisseurChalet)
+        public void setEpaisseurChalet(double epaisseurChalet)
     {
         Chalet.setEpaisseurChalet(epaisseurChalet);
     }
@@ -89,14 +87,16 @@ public class Controleur {
     public static void setLongueurChalet(double longueurChalet)
     {
         Chalet.setLongueurChalet(longueurChalet);
+        Chalet.setLargeurChalet(longueurChalet);
+
+        System.out.println(longueurChalet+" Réinitialisation en cours"); //test
         boolean rep = initialiserChalet(chaletProduction);
-
-
     }
 
     public void setLargeurChalet(double largeurChalet)
     {
         Chalet.setLargeurChalet(largeurChalet);
+
     }
 
     public void setHauteurMurs(double hauteurMurs) {
@@ -104,6 +104,9 @@ public class Controleur {
     }
 
 
+    static Chalet chaletProduction = createChalet();
+
+    boolean rep = initialiserChalet(chaletProduction);
 
     public Chalet getChaletProduction() {
         return chaletProduction;
@@ -160,7 +163,4 @@ public class Controleur {
     public float getOffset() {
         return offset;
     }
-
-
-
 }
