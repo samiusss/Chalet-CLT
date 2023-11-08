@@ -56,8 +56,8 @@ public class Controleur {
 
     }
 
-
     public boolean initialiserChalet(Chalet chalet) {
+
         chalet.initialiserMurFacade();
         chalet.initialiserMurArriere();
         chalet.initialiserMurGauche();
@@ -80,11 +80,14 @@ public class Controleur {
     public static void setLongueurChalet(double longueurChalet)
     {
         Chalet.setLongueurChalet(longueurChalet);
+        boolean rep = initialiserChalet(chaletProduction);
+
+
     }
 
     public void setLargeurChalet(double largeurChalet)
     {
-        Chalet.setLongueurChalet(largeurChalet);
+        Chalet.setLargeurChalet(largeurChalet);
     }
 
     public void setHauteurMurs(double hauteurMurs) {

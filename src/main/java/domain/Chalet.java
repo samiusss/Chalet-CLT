@@ -399,7 +399,7 @@ public class Chalet {
         return this.orientationToit;
     }
 
-    public void setLargeurChalet(double largeurChaletMN) {
+    public static void setLargeurChalet(double largeurChaletMN) {
         largeurChalet = largeurChaletMN;
 
     }
@@ -410,6 +410,10 @@ public class Chalet {
 
     public static void setLongueurChalet(double longueurChaletMN) {
         longueurChalet = longueurChaletMN;
+        System.out.println(longueurChaletMN); //test
+        System.out.println(longueurChalet); //test
+
+
     }
 
     public static void setEpaisseurChalet(double epaisseurChaletMN) {
