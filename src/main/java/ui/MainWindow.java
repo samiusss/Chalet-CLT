@@ -113,6 +113,12 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel MurPannelTabbedPaneDroitLabelLongueurlabel;
     private JTextField MurPannelTabbedPaneFaçadeLabelLongueurTextField;
     private JTextField MurPannelTabbedPaneFaçadeLabelHauteurTextField;
+    private JLabel XPorte;
+    private JLabel YPorte;
+    private JLabel XFenetre;
+    private JTextField XFenetreField;
+    private JLabel YFenetre;
+    private JTextField textField1;
 
     private Controleur.AffichageVue selectedVue;
 
