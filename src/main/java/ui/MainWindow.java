@@ -1,6 +1,5 @@
 package ui;
 
-import Utilitaires.ConvertisseurMesures;
 import Utilitaires.Pouces;
 import domain.Chalet;
 import domain.Controleur;
@@ -11,7 +10,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
-import static Utilitaires.ConvertisseurMesures.*;
+import static Utilitaires.ConvertisseurMesures.convertirStringImperialEnPouces;
+import static Utilitaires.ConvertisseurMesures.imperialToDoubleUniversel;
 
 
 public class MainWindow extends javax.swing.JFrame {
@@ -124,6 +124,10 @@ public class MainWindow extends javax.swing.JFrame {
     private JTextField XFenetreField;
     private JLabel YFenetre;
     private JTextField textField1;
+    private JTextField longueurchaletMN;
+    private JTextField largeurchaletMN;
+    private JTextField epaisseurchaletMN;
+    private JTextField hauteurchaletMN;
 
     private Controleur.AffichageVue selectedVue;
 
@@ -573,6 +577,54 @@ public class MainWindow extends javax.swing.JFrame {
         textField1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        longueurchaletMN.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = longueurchaletMN.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double longueurChaletMN= imperialToDoubleUniversel(inputText);
+                Controleur.setLongueurChalet(longueurChaletMN);
+                System.out.println(longueurChaletMN+" entered by you..");
+                DrawingPanel.repaint();
+
+            }
+        });
+        largeurchaletMN.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = largeurchaletMN.getText();
+
+                double largeurChaletMN= imperialToDoubleUniversel(inputText);
+                Controleur.setLargeurChalet(largeurChaletMN);
+                System.out.println(largeurChaletMN+" entered by you..");
+                DrawingPanel.repaint();
+
+            }
+        });
+        hauteurchaletMN.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = hauteurchaletMN.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double hauteurMursMN= imperialToDoubleUniversel(inputText);
+                Controleur.setHauteurMurs(hauteurMursMN);
+                System.out.println(hauteurMursMN+" entered by you..");
+                DrawingPanel.repaint();
+
+            }
+        });
+        epaisseurchaletMN.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = epaisseurchaletMN.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double epaisseurChaletMN= imperialToDoubleUniversel(inputText);
+                Controleur.setEpaisseurChalet(epaisseurChaletMN);
+                System.out.println(epaisseurChaletMN+" entered by you..");
+                DrawingPanel.repaint();
 
             }
         });
