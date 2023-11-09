@@ -115,26 +115,26 @@ public class Controleur {
         initialiserChalet(chaletProduction);
     }
 
-    public boolean setLargeurPorte(Pouces nouvellelargeur, String nomMur, List<Mur> listeMursDrawer)
+    public boolean setLargeurPorte(Pouces nouvellelargeur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
-        boolean success = Chalet.setLargeurPorte(nouvellelargeur, nomMur, listeMursDrawer);
+        boolean success = Chalet.setLargeurPorte(nouvellelargeur, nomMur, listeMursDrawer, initialDimension);
         return success;
     }
-    public boolean setHauteurPorte(Pouces nouvelleHauteur, String nomMur, List<Mur> listeMursDrawer)
+    public boolean setHauteurPorte(Pouces nouvelleHauteur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
-        boolean success = Chalet.setHauteurPorte(nouvelleHauteur, nomMur, listeMursDrawer);
-        return success;
-    }
-
-    public boolean setHauteurFenetre(Point mousePointClicked, Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer)
-    {
-        boolean success = Chalet.setHauteurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer);
+        boolean success = Chalet.setHauteurPorte(nouvelleHauteur, nomMur, listeMursDrawer,initialDimension);
         return success;
     }
 
-    public boolean setLargeurFenetre(Point mousePointClicked,Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer)
+    public boolean setHauteurFenetre(Point mousePointClicked, Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
-        boolean success = Chalet.setLargeurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer);
+        boolean success = Chalet.setHauteurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer, initialDimension);
+        return success;
+    }
+
+    public boolean setLargeurFenetre(Point mousePointClicked,Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
+    {
+        boolean success = Chalet.setLargeurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer,initialDimension);
         return success;
     }
     public boolean supprimerPorte(String nomMur, List<Mur> listeMursDrawer)
@@ -146,6 +146,12 @@ public class Controleur {
     public static boolean supprimerFenetre(Point mousePointClicked,String nomMur, List<Mur> listeMursDrawer)
     {
         boolean success = Chalet.supprimerFenetre(mousePointClicked,nomMur, listeMursDrawer);
+        return success;
+    }
+
+    public static boolean supprimerToutesFenetre(String nomMur, List<Mur> listeMursDrawer)
+    {
+        boolean success = Chalet.supprimerToutesFenetre(nomMur, listeMursDrawer);
         return success;
     }
 
@@ -162,9 +168,9 @@ public class Controleur {
 
 
 
-    public static boolean ajouterFenetre(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
+    public static boolean ajouterFenetre(Point mousepoint, String nomMur, List<Mur> listeMursDrawer, Dimension intitalDimension){
 
-        if(Chalet.ajouterFenetre(mousepoint, nomMur,listeMursDrawer))
+        if(Chalet.ajouterFenetre(mousepoint, nomMur,listeMursDrawer,intitalDimension))
         {
             return true;
         }
@@ -175,9 +181,9 @@ public class Controleur {
 
     }
 
-    public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
+    public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer,Dimension intitalDimension){
 
-        if(Chalet.ajouterPorte(mousepoint, nomMur,listeMursDrawer))
+        if(Chalet.ajouterPorte(mousepoint, nomMur,listeMursDrawer,intitalDimension))
         {
             return true;
         }

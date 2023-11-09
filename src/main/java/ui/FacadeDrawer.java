@@ -218,10 +218,10 @@ public class FacadeDrawer {
         // Construire tableaux de coordonnées pour le mur facade de coté
         int[] xPointsFacadeCote = {x1fc, x2fc, x3fc, x4fc};
         int[] yPointsFacadeCote = {y1fc, y2fc, y3fc, y4fc};
-        System.out.println(x1fc+" En Haut a Gauche "+y1fc);
-        System.out.println(x2fc+" En Bas a Gauche "+y2fc);
-        System.out.println(x3fc+" En Bas a Droite "+y3fc);
-        System.out.println(x4fc+" En Haut a Droite "+y4fc);
+        System.out.println(x1fc+""+ y1fc + "(FacadeDrawer) En Haut a Gauche");
+        System.out.println(x2fc+""+ y2fc + "(FacadeDrawer) En Bas a Gauche");
+        System.out.println(x3fc+""+ y3fc + "(FacadeDrawer) En Bas a Droite");
+        System.out.println(x4fc+""+ y4fc + "(FacadeDrawer) En Haut a Droite");
 
 
 

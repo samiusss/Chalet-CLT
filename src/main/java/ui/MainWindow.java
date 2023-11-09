@@ -150,15 +150,24 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 mousePointClicked = e.getPoint();
+
                 System.out.println(mousePointClicked);
                 if (isAddingPorte)
                 {
+
+                    XPorteField.setText(String.valueOf(mousePointClicked.getX()));
+                    AccessoirePanelCoordonneeY.setText(String.valueOf(mousePointClicked.getY()));
+
                     Point mousePoint = e.getPoint();
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+                    Dimension intitalDimension = DrawingPanel.getPreferredSize();
                     if(nomMur != "SURPLOMB") {
-                        boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer);
+                        boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer,intitalDimension);
+                        if(ajoutReussi == false){
+                            JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                        }
                         System.out.println(ui.DrawingPanel.selectedAffichageVue);
                         System.out.println(ajoutReussi);
                         System.out.println("ajoutPortereussi");
@@ -170,13 +179,21 @@ public class MainWindow extends javax.swing.JFrame {
                 }
                 if (isAddingFenetre && !isSelection)
                 {
+                    XFenetreField.setText(String.valueOf(mousePointClicked.getY()));
+                    textField1.setText(String.valueOf(mousePointClicked.getY()));
+
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
                     Point mousePoint = e.getPoint();
+                    Dimension intitalDimension = DrawingPanel.getPreferredSize();
                     if(nomMur != "SURPLOMB") {
-                        boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer);
+                        boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer, intitalDimension);
+                        if(ajoutFenetrereussi == false){
+                            JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+
+                        }
                         System.out.println(ui.DrawingPanel.selectedAffichageVue);
                         System.out.println(ajoutFenetrereussi);
                         System.out.println("ajoutFenetrereussi");
@@ -322,7 +339,6 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
             }
         });
         AccessoirePanelCoordonneeY.addActionListener(new ActionListener() {
@@ -342,8 +358,12 @@ public class MainWindow extends javax.swing.JFrame {
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
+                    Dimension initialDimension = DrawingPanel.getPreferredSize();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                    boolean success = controleur.setLargeurPorte(nouvelleLargeur, nomMur, listeMursDrawer);
+                    boolean success = controleur.setLargeurPorte(nouvelleLargeur, nomMur, listeMursDrawer, initialDimension);
+                    if(success == false){
+                        JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    }
                     System.out.println(ui.DrawingPanel.selectedAffichageVue);
                     System.out.println(success);
                     System.out.println("ModificationPortereussi");
@@ -364,12 +384,22 @@ public class MainWindow extends javax.swing.JFrame {
                 //Pouces nouvelleLargeur = convertirDoubleEnPouces(nouvelleLargeurDouble);
                 Pouces nouvelleLargeur = convertirStringImperialEnPouces(inputText);
                 System.out.println(nouvelleLargeur+" Largeur fenetre en pouces");
+                Dimension initialDimension = DrawingPanel.getPreferredSize();
+                XFenetreField.setText(String.valueOf(mousePointClicked.getY()));
+                textField1.setText(String.valueOf(mousePointClicked.getY()));
+
+
+
                 if (nouvelleLargeur != null) {
                     if(mousePointClicked != null && isSelection) {
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
                         List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
-                        boolean success = controleur.setLargeurFenetre(mousePointClicked,nouvelleLargeur, nomMur, listeMursDrawer);
+                        boolean success = controleur.setLargeurFenetre(mousePointClicked,nouvelleLargeur, nomMur, listeMursDrawer,initialDimension);
+                        if(success == false){
+                            JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+
+                        }
                         System.out.println(ui.DrawingPanel.selectedAffichageVue);
                         System.out.println(success);
                         System.out.println("ModificationLargeurFenetreReussi");
@@ -394,11 +424,18 @@ public class MainWindow extends javax.swing.JFrame {
                 if (nouvelleLongueur != null) {
 
                     if(mousePointClicked != null && isSelection) {
+                        XFenetreField.setText(String.valueOf(mousePointClicked.getY()));
+                        textField1.setText(String.valueOf(mousePointClicked.getY()));
+
 
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
+                        Dimension initialDimension = DrawingPanel.getPreferredSize();
                         List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                        boolean success = controleur.setHauteurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer);
+                        boolean success = controleur.setHauteurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer,initialDimension);
+                        if(success == false){
+                            JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                        }
                         System.out.println(ui.DrawingPanel.selectedAffichageVue);
                         System.out.println(success);
                         System.out.println(mousePointClicked);
@@ -416,12 +453,17 @@ public class MainWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inputText = AccessoineHauteurPortefield.getText();
                 Pouces nouvelleHauteur = convertirStringImperialEnPouces(inputText);
+                Dimension initialDimension = DrawingPanel.getPreferredSize();
+
                 if (nouvelleHauteur != null) {
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                    boolean success = controleur.setHauteurPorte(nouvelleHauteur, nomMur, listeMursDrawer);
+                    boolean success = controleur.setHauteurPorte(nouvelleHauteur, nomMur, listeMursDrawer,initialDimension);
+                    if(success == false){
+                        JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    }
                     System.out.println(ui.DrawingPanel.selectedAffichageVue);
                     System.out.println(success);
                     System.out.println("ModificationPortereussi");
@@ -450,13 +492,12 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //isSupprimer = true;
-                if (isAddingPorte)
-                {
+                if (isAddingPorte) {
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                    if(nomMur != "SURPLOMB") {
-                        boolean ajoutReussi = controleur.supprimerPorte(nomMur,listeMursDrawer);
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
+                    if (nomMur != "SURPLOMB") {
+                        boolean ajoutReussi = controleur.supprimerPorte(nomMur, listeMursDrawer);
                         System.out.println(ui.DrawingPanel.selectedAffichageVue);
                         System.out.println(ajoutReussi);
                         System.out.println("ajoutPortereussi");
@@ -467,16 +508,15 @@ public class MainWindow extends javax.swing.JFrame {
                     //isSupprimer = false;
 
                 }
-                if (isAddingFenetre && isSelection)
-                {
-                    if(mousePointClicked != null) {
+                if (isAddingFenetre && isSelection) {
+                    if (mousePointClicked != null) {
 
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
                         List<Mur> listeMursDrawer = chalet.getMursUsines(0.2, "NORD");
                         //Point mousePoint = e.getPoint();
                         if (nomMur != "SURPLOMB") {
-                            boolean suppFenetrereussi = Controleur.supprimerFenetre(mousePointClicked,nomMur, listeMursDrawer);
+                            boolean suppFenetrereussi = Controleur.supprimerFenetre(mousePointClicked, nomMur, listeMursDrawer);
                             System.out.println(ui.DrawingPanel.selectedAffichageVue);
                             System.out.println(suppFenetrereussi);
                             System.out.println("suppFenetrereussi");
@@ -484,15 +524,26 @@ public class MainWindow extends javax.swing.JFrame {
 
 
                         }
+                    } else {
+
+                        String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                        Chalet chalet = controleur.getChaletProduction();
+                        List<Mur> listeMursDrawer = chalet.getMursUsines(0.2, "NORD");
+                        //Point mousePoint = e.getPoint();
+                        if (nomMur != "SURPLOMB") {
+                            boolean suppFenetrereussi = Controleur.supprimerToutesFenetre(nomMur, listeMursDrawer);
+                            System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                            System.out.println(suppFenetrereussi);
+                            System.out.println("supToutesFenetres");
+                            DrawingPanel.repaint();
+
+                        }
+                        isAddingFenetre = false;
+                        //isSupprimer = false;
                     }
-                    isAddingFenetre = false;
-                    //isSupprimer = false;
+
+
                 }
-
-
-
-
-
             }
 
 
@@ -506,10 +557,23 @@ public class MainWindow extends javax.swing.JFrame {
                 isSelection = false;
                     Selection.setBackground(UIManager.getColor("Button.background")); // Restaure la couleur par défaut du bouton
                 } else {
+                    mousePointClicked = null;
                     isSelection = true;
                     Color rougeTresLeger = new Color(255, 200, 200);
                     Selection.setBackground(rougeTresLeger);
                 }
+            }
+        });
+        XFenetreField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        textField1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
             }
         });
     }
