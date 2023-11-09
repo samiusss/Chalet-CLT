@@ -467,6 +467,8 @@ public class Chalet {
 
     }
 
+
+
     public static boolean ajouterFenetre(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 
         Pouces largeur = new Pouces(25, 0, 1);

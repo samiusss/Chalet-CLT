@@ -82,7 +82,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JTextField ToitPaneltabbedPaneGauchePanelHauteurTextField;
     private JLabel ToitPaneltabbedPaneGauchePanelAngleLabel;
 
-    private JTextField AccessoirePanelCoordonneeX;
+    private JTextField XPorteField;
 
     private JTextField AccessoirePanelCoordonnee;
 
@@ -311,7 +311,7 @@ public class MainWindow extends javax.swing.JFrame {
 
 
 
-        AccessoirePanelCoordonneeX.addActionListener(new ActionListener() {
+        XPorteField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -410,10 +410,21 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
- /*           @Override
-            public void caretPositionChanged(InputMethodEvent event) {
+        // Modifier X Porte ---> Pas finit
+        XPorteField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = XPorteField.getText();
+                Pouces nouveauXPorte = Pouces.fromString(inputText);
+                if (nouveauXPorte!=null){
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+                }
+            }
+        });
 
-            }*/
+
         supprimmerLAccessoireButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

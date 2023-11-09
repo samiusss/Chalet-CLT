@@ -24,18 +24,6 @@ public class Porte extends Accessoires implements Serializable {
         return mousePoint;
     }
 
-    public boolean modifierLargeurStandard(Pouces valeur) {
-        largeur = valeur;
-        this.PORTE_LARGEUR_STANDARD = valeur;
-
-        return true;
-    }
-
-    public boolean modifierHauteurStandard(Pouces valeur) {
-        hauteur = valeur;
-        this.PORTE_HAUTEUR_STANDARD = valeur;
-        return true;
-    }
 
     public boolean setHauteurPorte(Pouces valeur) {
         hauteur = valeur;
@@ -58,11 +46,6 @@ public class Porte extends Accessoires implements Serializable {
     }
 
 
-    public Pouces setHauteur(Pouces hauteur){
-        this.hauteur = hauteur;
-        return hauteur;
-    }
-
     public Pouces getHauteur() {
         return hauteur;
     }
@@ -70,8 +53,6 @@ public class Porte extends Accessoires implements Serializable {
         PORTE_HAUTEUR_STANDARD = valeur;
         return true;
     }
-
-    // version pas tout a fait finie reste a voir la convertion avec des pixels
 
     public List<pointPouces> getSommetsPorte(){
         return this.sommetsPorte;
