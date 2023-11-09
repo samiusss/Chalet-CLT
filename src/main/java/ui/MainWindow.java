@@ -504,8 +504,12 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = MurPannelTabbedPaneFaçadeLabelLongueurTextField.getText();
-                //VÉRIFIER SI IL A APPUYER
-                double longueurChaletMN= Double.parseDouble(inputText);
+                //! MUR ARRIERE, LONGUEUR !\\
+                Pouces nouvelleLongueur = Pouces.fromString(inputText);
+                System.out.println(nouvelleLongueur+" test pouces in string");
+                double nouvelleLongueurF = convertirPoucesEnDouble(nouvelleLongueur);
+                System.out.println(nouvelleLongueurF+" test in double");
+                double longueurChaletMN= nouvelleLongueurF;
                 Controleur.setLongueurChalet(longueurChaletMN);
                 System.out.println(longueurChaletMN+" entered by you..");
                 DrawingPanel.repaint();
@@ -542,9 +546,7 @@ public class MainWindow extends javax.swing.JFrame {
                 Pouces nouvelleLargeur = Pouces.fromString(inputText);
                 System.out.println(nouvelleLargeur+", the value in imperial system entered");
                 double largeurChaletMN = convertirPoucesEnDouble(nouvelleLargeur);
-
                 Controleur.setLargeurChalet(largeurChaletMN);
-
                 System.out.println(largeurChaletMN + " entered by you..");
                 DrawingPanel.repaint();
             }
