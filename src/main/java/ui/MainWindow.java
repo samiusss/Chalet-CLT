@@ -457,7 +457,7 @@ public class MainWindow extends javax.swing.JFrame {
                         System.out.println(ui.DrawingPanel.selectedAffichageVue);
                         System.out.println(ajoutFenetrereussi);
                         System.out.println("ajoutFenetrereussi");
-                        DrawingPanel.repaint();
+                        DrawingPanel.repaint();   */
 
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -471,7 +471,9 @@ public class MainWindow extends javax.swing.JFrame {
                         System.out.println("suppFenetrereussi");
                         DrawingPanel.repaint();
 
-                        */
+                        }
+
+
 
 
                     }

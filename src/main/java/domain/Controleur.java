@@ -142,7 +142,7 @@ public class Controleur {
         return success;
     }
 
-    public boolean supprimerFenetre(String nomMur, List<Mur> listeMursDrawer)
+    public static boolean supprimerFenetre(String nomMur, List<Mur> listeMursDrawer)
     {
         boolean success = Chalet.supprimerFenetre(nomMur, listeMursDrawer);
         return success;
