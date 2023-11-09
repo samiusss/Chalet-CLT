@@ -100,16 +100,6 @@
                           <text value="Longueur"/>
                         </properties>
                       </component>
-                      <component id="e76e3" class="javax.swing.JTextField" binding="MurPannelTabbedPaneFaçadeLabelLongueurTextField">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <text value=""/>
-                        </properties>
-                      </component>
                       <component id="51d6a" class="javax.swing.JLabel" binding="MurPannelTabbedPaneFaçadeLabelLargeurLabel">
                         <constraints>
                           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -117,14 +107,6 @@
                         <properties>
                           <text value="Hauteur"/>
                         </properties>
-                      </component>
-                      <component id="50ce1" class="javax.swing.JTextField" binding="MurPannelTabbedPaneFaçadeLabelHauteurTextField">
-                        <constraints>
-                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties/>
                       </component>
                       <vspacer id="710f6">
                         <constraints>
@@ -151,6 +133,24 @@
                           <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </hspacer>
+                      <component id="e6a22" class="javax.swing.JTextField" binding="MurPannelTabbedPaneFaçadeLabelLongueurTextField">
+                        <constraints>
+                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="39578" class="javax.swing.JTextField" binding="MurPannelTabbedPaneFaçadeLabelHauteurTextField">
+                        <constraints>
+                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
                     </children>
                   </grid>
                   <grid id="3f7e5" binding="MurPannelTabbedPaneDerrièreLabel" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -228,14 +228,6 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="22db7" class="javax.swing.JLabel" binding="MurPannelTabbedPaneDroitLabelLongueurlabel">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <text value="Largeur"/>
-                        </properties>
-                      </component>
                       <component id="a1a60" class="javax.swing.JLabel" binding="MurPannelTabbedPaneDroitLabelHauteurLabel">
                         <constraints>
                           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -249,24 +241,6 @@
                           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </vspacer>
-                      <component id="7c566" class="javax.swing.JTextField" binding="MurPannelTabbedPaneDroitLabelLongueurTextField">
-                        <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties/>
-                      </component>
-                      <component id="4f661" class="javax.swing.JTextField" binding="MurPannelTabbedPaneDroitLabelHauteurTextField">
-                        <constraints>
-                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <text value=""/>
-                        </properties>
-                      </component>
                       <hspacer id="360dc">
                         <constraints>
                           <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -287,6 +261,32 @@
                           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </hspacer>
+                      <component id="11967" class="javax.swing.JTextField" binding="MurPannelTabbedPaneDroitLabelLongueurTextField">
+                        <constraints>
+                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="520fd" class="javax.swing.JTextField" binding="MurPannelTabbedPaneDroitLabelHauteurTextField">
+                        <constraints>
+                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="322d5" class="javax.swing.JLabel" binding="MurPannelTabbedPaneDroitLabelLongueurlabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Largeur"/>
+                        </properties>
+                      </component>
                     </children>
                   </grid>
                   <grid id="6ee1b" binding="MurPannelTabbedPaneGaucheLabel" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -338,17 +338,17 @@
                           <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </hspacer>
-                      <component id="e9966" class="javax.swing.JTextField" binding="MurPannelTabbedPaneGaucheLabelLongueurTextField">
+                      <component id="bf4a0" class="javax.swing.JTextField" binding="MurPannelTabbedPaneGaucheLabelHauteurTextField">
                         <constraints>
-                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
                           </grid>
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="bf4a0" class="javax.swing.JTextField" binding="MurPannelTabbedPaneGaucheLabelHauteurTextField">
+                      <component id="c07d3" class="javax.swing.JTextField" binding="MurPannelTabbedPaneGaucheLabelLongueurTextField">
                         <constraints>
-                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
                           </grid>
                         </constraints>
