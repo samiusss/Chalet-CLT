@@ -237,47 +237,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         });
 
-/*
-        MurPannelTabbedPaneDroitLabelHauturTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = MurPannelTabbedPaneDroitLabelHauturTextField.getText();
-                //VÉRIFIER SI IL A APPUYER
-                double hauteurMursMN= Double.parseDouble(inputText);
-                Controleur.setHauteurMurs(hauteurMursMN);
-                System.out.println(hauteurMursMN+" entered by you..");
-                DrawingPanel.repaint();
-            }
-        });
-
-        MurPannelTabbedPaneGaucheLabelHauteurTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = MurPannelTabbedPaneGaucheLabelHauteurTextField.getText();
-                //VÉRIFIER SI IL A APPUYER
-                double hauteurMursMN= Double.parseDouble(inputText);
-                Controleur.setHauteurMurs(hauteurMursMN);
-                System.out.println(hauteurMursMN+" entered by you..");
-                DrawingPanel.repaint();            }
-        });
-        AccessoirePanelLongeurTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = AccessoirePanelLongeurTextField.getText();
-            }
-        });
-        MurPannelTabbedPaneDerriereLabelLongueurTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = MurPannelTabbedPaneDerriereLabelLongueurTextField.getText();
-                //VÉRIFIER SI IL A APPUYER
-                double longueurChaletMN= Double.parseDouble(inputText);
-                Controleur.setLongueurChalet(longueurChaletMN);
-                System.out.println(longueurChaletMN+" entered by you..");
-                DrawingPanel.repaint();
-
-            }
-        });*/
 
         AccessoirePanelLargeurTextField.addActionListener(new ActionListener() {
             @Override
@@ -486,7 +445,96 @@ public class MainWindow extends javax.swing.JFrame {
 
 
         });
-}
+        MurPannelTabbedPaneFaçadeLabelLongueurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneFaçadeLabelLongueurTextField.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double longueurChaletMN= Double.parseDouble(inputText);
+                Controleur.setLongueurChalet(longueurChaletMN);
+                System.out.println(longueurChaletMN+" entered by you..");
+                DrawingPanel.repaint();
+            }
+        });
+        MurPannelTabbedPaneDerriereLabelLongueurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneDerriereLabelLongueurTextField.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double longueurChaletMN= Double.parseDouble(inputText);
+                Controleur.setLongueurChalet(longueurChaletMN);
+                System.out.println(longueurChaletMN+" entered by you..");
+                DrawingPanel.repaint();
+            }
+        });
+        MurPannelTabbedPaneDroitLabelLongueurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneDroitLabelLongueurTextField.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double largeurChaletMN= Double.parseDouble(inputText);
+                Controleur.setLargeurChalet(largeurChaletMN);
+                System.out.println(largeurChaletMN+" entered by you..");
+                DrawingPanel.repaint();
+            }
+        });
+        MurPannelTabbedPaneGaucheLabelLongueurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneGaucheLabelLongueurTextField.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double largeurChaletMN= Double.parseDouble(inputText);
+                Controleur.setLargeurChalet(largeurChaletMN);
+                System.out.println(largeurChaletMN+" entered by you..");
+                DrawingPanel.repaint();
+            }
+        });
+
+        MurPannelTabbedPaneFaçadeLabelHauteurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneFaçadeLabelHauteurTextField.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double hauteurMursMN= Double.parseDouble(inputText);
+                Controleur.setHauteurMurs(hauteurMursMN);
+                System.out.println(hauteurMursMN+" entered by you..");
+                DrawingPanel.repaint();
+            }
+        });
+        MurPannelTabbedPaneDerriereLabelHauteurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneDerriereLabelHauteurTextField.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double hauteurMursMN= Double.parseDouble(inputText);
+                Controleur.setHauteurMurs(hauteurMursMN);
+                System.out.println(hauteurMursMN+" entered by you..");
+                DrawingPanel.repaint();
+            }
+        });
+        MurPannelTabbedPaneDroitLabelHauteurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneDroitLabelHauteurTextField.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double hauteurMursMN= Double.parseDouble(inputText);
+                Controleur.setHauteurMurs(hauteurMursMN);
+                System.out.println(hauteurMursMN+" entered by you..");
+                DrawingPanel.repaint();
+            }
+        });
+        MurPannelTabbedPaneGaucheLabelHauteurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = MurPannelTabbedPaneGaucheLabelHauteurTextField.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double hauteurMursMN= Double.parseDouble(inputText);
+                Controleur.setHauteurMurs(hauteurMursMN);
+                System.out.println(hauteurMursMN+" entered by you..");
+                DrawingPanel.repaint();
+            }
+        });
+    }
 
 
     private void initComponents() {
