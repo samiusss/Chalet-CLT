@@ -5,6 +5,38 @@ import java.awt.Toolkit;
 
 public class ConvertisseurMesures {
 
+
+
+    public static double imperialToDoubleUniversel(String inputText) {
+        String[] parts = inputText.split("\\s+");  // Divise la chaîne par des espaces
+
+        double feet = 0;
+        double inches = 0;
+        double fraction = 0;
+
+        for (String part : parts) {
+            if (part.contains("'")) {
+                // Trouvé la partie en pieds
+                feet = Double.parseDouble(part.replace("'", ""));
+            } else if (part.contains("\"")) {
+                // Trouvé la partie en pouces
+                inches = Double.parseDouble(part.replace("\"", ""));
+            } else if (part.contains("/")) {
+                // Trouvé la partie fractionnaire
+                String[] fractionParts = part.split("/");
+                if (fractionParts.length == 2) {
+                    double numerator = Double.parseDouble(fractionParts[0]);
+                    double denominator = Double.parseDouble(fractionParts[1]);
+                    fraction = numerator / denominator;
+                }
+            }
+        }
+
+        // Conversion en pouces
+        double totalInches = feet * 12 + inches + fraction;
+        return totalInches;
+    }
+
     public static Pouces convertirPixelsEnPouces(int pixels){
         final int DPI = Toolkit.getDefaultToolkit().getScreenResolution();
         double pouces = pixels/(DPI);
