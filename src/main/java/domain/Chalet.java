@@ -350,14 +350,48 @@ public class Chalet {
     }
 
 
+    public static boolean selectionFenetre(Fenetre fenetre, Point mousePointClicked){
+        //On récupere les mesures de la fenetres
+        int largeur = convertirPoucesEnInt(fenetre.largeur);
+        int hauteur = convertirPoucesEnInt(fenetre.hauteur);
 
-    public static boolean supprimerFenetre(String nomMur, List<Mur> listeMursDrawer){
+        //On determine les sommets de la fenetres
+        Point coinSuperieurGauche = fenetre.mousePoint;
+        Point coinSuperieurDroit = new Point(coinSuperieurGauche.x + largeur, coinSuperieurGauche.y);
+        Point coinInferieurGauche = new Point(coinSuperieurGauche.x, coinSuperieurGauche.y + hauteur);
+        Point coinInferieurDroit = new Point(coinSuperieurGauche.x + largeur, coinSuperieurGauche.y + hauteur);
+
+        //On verifie si le mousePointClicked se trouvemt entres les 4 sommets
+        if( mousePointClicked.getX() >= coinSuperieurGauche.getX() && mousePointClicked.getX() <= coinSuperieurDroit.getX() &&
+                mousePointClicked.getY() >= coinSuperieurGauche.getY() && mousePointClicked.getY() <= coinInferieurGauche.getY() ) {
+            return true;
+        }
+        return false;
+    }
+
+
+
+    public static boolean supprimerFenetre(Point mousePointClicked,String nomMur, List<Mur> listeMursDrawer){
 
 
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
         //Une porte par mur
         List<Fenetre> listeFenetre = mur.getListeFenetre();
+        int i = 0;
+        for (Fenetre fenetre : listeFenetre) {
+
+            boolean fenetreTrouve = selectionFenetre(fenetre,mousePointClicked);
+            if(fenetreTrouve == true){
+
+                listeFenetre.remove(i);
+                System.out.println(fenetre);
+                return true;
+
+            }
+            i= i + 1;
+
+        }
 
         if(listeFenetre != null) {
 
@@ -413,18 +447,27 @@ public class Chalet {
 
 
 
-    public static boolean setHauteurFenetre(Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer){
+    public static boolean setHauteurFenetre(Point mousePointClicked, Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer){
 
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
         //Une porte par mur
         List<Fenetre> listeFenetre = mur.getListeFenetre();
 
-        for (Fenetre fenetre : listeFenetre) {
-            boolean success = fenetre.setHauteurFenetre(nouvelleLongueur);
 
-            System.out.println(fenetre);
-            return success;
+
+        for (Fenetre fenetre : listeFenetre) {
+
+            boolean fenetreTrouve = selectionFenetre(fenetre,mousePointClicked);
+            if(fenetreTrouve == true){
+
+                boolean success = fenetre.setHauteurFenetre(nouvelleLongueur);
+                System.out.println(fenetre);
+                return success;
+
+            }
+
+
         }
 
         return false;
@@ -432,7 +475,7 @@ public class Chalet {
     }
 
 
-    public static boolean setLargeurFenetre(Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer){
+    public static boolean setLargeurFenetre(Point mousePointClicked,Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer){
 
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
@@ -440,10 +483,17 @@ public class Chalet {
         List<Fenetre> listeFenetre = mur.getListeFenetre();
 
         for (Fenetre fenetre : listeFenetre) {
-            boolean success = fenetre.setLargeurFenetre(nouvelleLongueur);
 
-            System.out.println(fenetre);
-            return success;
+            boolean fenetreTrouve = selectionFenetre(fenetre,mousePointClicked);
+            if(fenetreTrouve == true){
+
+
+                boolean success = fenetre.setLargeurFenetre(nouvelleLongueur);
+                System.out.println(fenetre);
+                return success;
+
+            }
+
         }
 
         return false;

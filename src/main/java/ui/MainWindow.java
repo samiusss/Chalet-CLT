@@ -23,6 +23,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private boolean isAddingPorte = false; // État pour indiquer si l'utilisateur est en mode d'ajout de porte
     private boolean isAddingFenetre = false; // Moyen de valider si l'utilisateur ajoute une fenetre
+    private boolean isSupprimer = false;
+    private Point mousePointClicked = null;
     private JPanel PanelGauche;
     private JPanel PanelHaut;
     private JPanel PannelDroit;
@@ -146,6 +148,7 @@ public class MainWindow extends javax.swing.JFrame {
         PannelAffichage.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                mousePointClicked = e.getPoint();
                 if (isAddingPorte)
                 {
                     Point mousePoint = e.getPoint();
@@ -360,15 +363,16 @@ public class MainWindow extends javax.swing.JFrame {
                 Pouces nouvelleLargeur = convertirStringImperialEnPouces(inputText);
                 System.out.println(nouvelleLargeur+" Largeur fenetre en pouces");
                 if (nouvelleLargeur != null) {
-
-                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                    boolean success = controleur.setLargeurFenetre(nouvelleLargeur, nomMur, listeMursDrawer);
-                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                    System.out.println(success);
-                    System.out.println("ModificationLargeurFenetreReussi");
-                    DrawingPanel.repaint();
+                    if(mousePointClicked != null) {
+                        String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                        Chalet chalet = controleur.getChaletProduction();
+                        List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
+                        boolean success = controleur.setLargeurFenetre(mousePointClicked,nouvelleLargeur, nomMur, listeMursDrawer);
+                        System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                        System.out.println(success);
+                        System.out.println("ModificationLargeurFenetreReussi");
+                        DrawingPanel.repaint();
+                    }
 
                 }
             }
@@ -387,14 +391,20 @@ public class MainWindow extends javax.swing.JFrame {
 
                 if (nouvelleLongueur != null) {
 
-                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                    boolean success = controleur.setHauteurFenetre(nouvelleLongueur, nomMur, listeMursDrawer);
-                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                    System.out.println(success);
-                    System.out.println("ModificationLongueurFenetreReussi");
-                    DrawingPanel.repaint();
+                    if(mousePointClicked != null) {
+
+                        String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                        Chalet chalet = controleur.getChaletProduction();
+                        List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+                        boolean success = controleur.setHauteurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer);
+                        System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                        System.out.println(success);
+                        System.out.println(mousePointClicked);
+                        System.out.println("ModificationLongueurFenetreReussi");
+                        DrawingPanel.repaint();
+
+                    }
+
                 }
             }
         });
@@ -437,7 +447,7 @@ public class MainWindow extends javax.swing.JFrame {
         supprimmerLAccessoireButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                isSupprimer = true;
                 if (isAddingPorte)
                 {
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -452,30 +462,33 @@ public class MainWindow extends javax.swing.JFrame {
 
                     }
                     isAddingPorte = false;
+                    isSupprimer = false;
 
                 }
                 if (isAddingFenetre)
                 {
+                    if(mousePointClicked != null) {
 
-                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
-                    //Point mousePoint = e.getPoint();
-                    if(nomMur != "SURPLOMB") {
-                        boolean suppFenetrereussi = Controleur.supprimerFenetre(nomMur,listeMursDrawer);
-                        System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                        System.out.println(suppFenetrereussi);
-                        System.out.println("suppFenetrereussi");
-                        DrawingPanel.repaint();
+                        String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                        Chalet chalet = controleur.getChaletProduction();
+                        List<Mur> listeMursDrawer = chalet.getMursUsines(0.2, "NORD");
+                        //Point mousePoint = e.getPoint();
+                        if (nomMur != "SURPLOMB") {
+                            boolean suppFenetrereussi = Controleur.supprimerFenetre(mousePointClicked,nomMur, listeMursDrawer);
+                            System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                            System.out.println(suppFenetrereussi);
+                            System.out.println("suppFenetrereussi");
+                            DrawingPanel.repaint();
 
                         }
-
-
                     }
-
-                    isAddingFenetre = false;
-
                 }
+
+                isAddingFenetre = false;
+                isSupprimer = false;
+
+
+            }
 
 
         });

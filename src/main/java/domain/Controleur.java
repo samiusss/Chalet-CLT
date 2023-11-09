@@ -125,15 +125,15 @@ public class Controleur {
         return success;
     }
 
-    public boolean setHauteurFenetre(Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer)
+    public boolean setHauteurFenetre(Point mousePointClicked, Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer)
     {
-        boolean success = Chalet.setHauteurFenetre(nouvelleLongueur, nomMur, listeMursDrawer);
+        boolean success = Chalet.setHauteurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer);
         return success;
     }
 
-    public boolean setLargeurFenetre(Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer)
+    public boolean setLargeurFenetre(Point mousePointClicked,Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer)
     {
-        boolean success = Chalet.setLargeurFenetre(nouvelleLongueur, nomMur, listeMursDrawer);
+        boolean success = Chalet.setLargeurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer);
         return success;
     }
     public boolean supprimerPorte(String nomMur, List<Mur> listeMursDrawer)
@@ -142,9 +142,9 @@ public class Controleur {
         return success;
     }
 
-    public static boolean supprimerFenetre(String nomMur, List<Mur> listeMursDrawer)
+    public static boolean supprimerFenetre(Point mousePointClicked,String nomMur, List<Mur> listeMursDrawer)
     {
-        boolean success = Chalet.supprimerFenetre(nomMur, listeMursDrawer);
+        boolean success = Chalet.supprimerFenetre(mousePointClicked,nomMur, listeMursDrawer);
         return success;
     }
 
