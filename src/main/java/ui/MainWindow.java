@@ -364,7 +364,7 @@ public class MainWindow extends javax.swing.JFrame {
                 Pouces nouvelleLargeur = convertirStringImperialEnPouces(inputText);
                 System.out.println(nouvelleLargeur+" Largeur fenetre en pouces");
                 if (nouvelleLargeur != null) {
-                    if(mousePointClicked != null) {
+                    if(mousePointClicked != null && isSelection) {
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
                         List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
@@ -392,7 +392,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                 if (nouvelleLongueur != null) {
 
-                    if(mousePointClicked != null) {
+                    if(mousePointClicked != null && isSelection) {
 
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
@@ -501,7 +501,15 @@ public class MainWindow extends javax.swing.JFrame {
         Selection.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                isSelection = true;
+                if(isSelection)
+                {
+                isSelection = false;
+                    Selection.setBackground(UIManager.getColor("Button.background")); // Restaure la couleur par défaut du bouton
+                } else {
+                    isSelection = true;
+                    Color rougeTresLeger = new Color(255, 200, 200);
+                    Selection.setBackground(rougeTresLeger);
+                }
             }
         });
     }

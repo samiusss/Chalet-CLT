@@ -533,7 +533,7 @@ public class Chalet {
         if(listeFenetre != null) {
             int lenghtlisteFenetre = listeFenetre.size();
 
-            if(lenghtlisteFenetre > 2){
+            if(lenghtlisteFenetre > 5){
                 mur.clearListeFenetre();
             }
 
