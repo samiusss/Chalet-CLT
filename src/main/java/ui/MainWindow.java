@@ -24,6 +24,7 @@ public class MainWindow extends javax.swing.JFrame {
     private boolean isAddingPorte = false; // État pour indiquer si l'utilisateur est en mode d'ajout de porte
     private boolean isAddingFenetre = false; // Moyen de valider si l'utilisateur ajoute une fenetre
     private boolean isSupprimer = false;
+    private boolean isSelection = false;
     private Point mousePointClicked = null;
     private JPanel PanelGauche;
     private JPanel PanelHaut;
@@ -166,7 +167,7 @@ public class MainWindow extends javax.swing.JFrame {
                     isAddingPorte = false;
 
                 }
-                if (isAddingFenetre)
+                if (isAddingFenetre && !isSelection)
                 {
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -447,7 +448,7 @@ public class MainWindow extends javax.swing.JFrame {
         supprimmerLAccessoireButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                isSupprimer = true;
+                //isSupprimer = true;
                 if (isAddingPorte)
                 {
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -462,10 +463,10 @@ public class MainWindow extends javax.swing.JFrame {
 
                     }
                     isAddingPorte = false;
-                    isSupprimer = false;
+                    //isSupprimer = false;
 
                 }
-                if (isAddingFenetre)
+                if (isAddingFenetre && isSelection)
                 {
                     if(mousePointClicked != null) {
 
@@ -480,12 +481,16 @@ public class MainWindow extends javax.swing.JFrame {
                             System.out.println("suppFenetrereussi");
                             DrawingPanel.repaint();
 
+
                         }
                     }
+                    isAddingFenetre = false;
+                    //isSupprimer = false;
+                    isSelection = false;
                 }
 
-                isAddingFenetre = false;
-                isSupprimer = false;
+
+
 
 
             }
@@ -493,6 +498,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         });
 
+        Selection.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                isSelection = true;
+            }
+        });
     }
 
 
