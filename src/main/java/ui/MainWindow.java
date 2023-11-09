@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
+import static Utilitaires.ConvertisseurMesures.convertirPoucesEnDouble;
 
 
 public class MainWindow extends javax.swing.JFrame {
@@ -482,6 +483,23 @@ public class MainWindow extends javax.swing.JFrame {
 
 
         });
+
+    }
+
+
+    private void initComponents() {
+
+        //LINKER DRAWINGPANEL AU JPANEL
+        DrawingPanel = new DrawingPanel(this);
+        PannelAffichage.setLayout(new BorderLayout());
+        PannelAffichage.add(DrawingPanel, BorderLayout.CENTER);
+        DrawingPanel.setPreferredSize(new java.awt.Dimension(500, 500));
+        DrawingPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setContentPane(FenetrePrincipale);
+        setSize(1200, 700);
+        setLocationRelativeTo(null);
+
+        // EDITION DES MURS, IL RESTE UN BUG SUR VUE DE SURPLOMB, peut-etre du backend...
         MurPannelTabbedPaneFaçadeLabelLongueurTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -519,13 +537,19 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = MurPannelTabbedPaneGaucheLabelLongueurTextField.getText();
-                //VÉRIFIER SI IL A APPUYER
-                double largeurChaletMN= Double.parseDouble(inputText);
+
+                // Convertir impériale en double
+                Pouces nouvelleLargeur = Pouces.fromString(inputText);
+                System.out.println(nouvelleLargeur+", the value in imperial system entered");
+                double largeurChaletMN = convertirPoucesEnDouble(nouvelleLargeur);
+
                 Controleur.setLargeurChalet(largeurChaletMN);
-                System.out.println(largeurChaletMN+" entered by you..");
+
+                System.out.println(largeurChaletMN + " entered by you..");
                 DrawingPanel.repaint();
             }
         });
+
 
         MurPannelTabbedPaneFaçadeLabelHauteurTextField.addActionListener(new ActionListener() {
             @Override
@@ -572,37 +596,5 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
     }
-
-
-    private void initComponents() {
-        DrawingPanel = new DrawingPanel(this);
-        PannelAffichage.setLayout(new BorderLayout());
-        PannelAffichage.add(DrawingPanel, BorderLayout.CENTER);
-        DrawingPanel.setPreferredSize(new java.awt.Dimension(500, 500));
-        DrawingPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        setContentPane(FenetrePrincipale);
-        setSize(1200, 700);
-        setLocationRelativeTo(null);
-
-        /* UndoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Undo();
-            }
-        }); */
-        /* RedoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Redo();
-            }
-        });
-        VueComboBox.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-            }
-        }); */
-
-    }
-
     }
 
