@@ -18,6 +18,7 @@ public class GaucheDrawer
     public static Chalet chalet;
     private Accessoires accessoires;
     private Dimension initialDimension;
+
     public Mur gauche ; // mur arriere deja codé en bas
 
     public GaucheDrawer(Controleur controleur, Dimension initialDimension){

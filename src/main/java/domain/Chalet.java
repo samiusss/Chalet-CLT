@@ -2,6 +2,7 @@ package domain;
 
 import Utilitaires.PointDouble;
 import Utilitaires.Pouces;
+import ui.DrawingPanel;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -369,6 +370,116 @@ public class Chalet {
         return false;
     }
 
+    public static List<Point> DeterminerCollisionSommetsMur(Mur mur){
+
+        List<PointDouble> sommetsMur = mur.getSommetsMur();
+
+
+        //double width = initialDimension.getWidth();
+        //double height = initialDimension.getHeight();
+
+        double width = 5;
+        double height = 5;
+
+
+        PointDouble pointSupDroitfc = mur.getSommetsMur().get(4);
+        PointDouble pointSupGauchefc = mur.getSommetsMur().get(5);
+        PointDouble pointInfDroitfc = mur.getSommetsMur().get(6);
+        PointDouble pointInfGauchefc = mur.getSommetsMur().get(7);
+
+        double positionX = width/2 - pointInfDroitfc.getX()/2;
+        double positionY = height/2- pointInfDroitfc.getY()/2;
+
+        int x1fc = (int) (pointInfGauchefc.getX() + positionX);
+        int y1fc = (int) (pointInfGauchefc.getY() + positionY);
+
+        int x2fc = (int) (pointInfDroitfc.getX() + positionX);
+        int y2fc = (int) (pointInfDroitfc.getY() + positionY);
+
+        int x3fc = (int) (pointSupGauchefc.getX() + positionX);
+        int y3fc = (int) (pointSupGauchefc.getY() + positionY);
+
+        int x4fc = (int) (pointSupDroitfc.getX() + positionX);
+        int y4fc = (int) (pointSupDroitfc.getY() + positionY);
+
+        // Construire tableaux de coordonnées pour le mur facade de coté
+        int[] xPointsFacadeCote = {x1fc, x2fc, x3fc, x4fc};
+        int[] yPointsFacadeCote = {y1fc, y2fc, y3fc, y4fc};
+        System.out.println(x1fc+" En Haut a Gauche "+y1fc);
+        System.out.println(x2fc+" En Bas a Gauche "+y2fc);
+        System.out.println(x3fc+" En Bas a Droite "+y3fc);
+        System.out.println(x4fc+" En Haut a Droite "+y4fc);
+
+        Point SupGauche = new Point(x1fc,y1fc);
+        Point SupDroite = new Point(x4fc,y4fc);
+        Point InfGauche = new Point(x2fc,y2fc);
+        Point InfDroite = new Point(x3fc,y3fc);
+
+
+        List<Point> PointsMur = null;
+        PointsMur.add(SupGauche);
+        PointsMur.add(SupDroite);
+        PointsMur.add(InfGauche);
+        PointsMur.add(InfDroite);
+
+        return PointsMur;
+
+    }
+
+    private static boolean estDansRectangle(Point pointVerification, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
+        return (pointVerification.x >= coinSupGauche.x && pointVerification.x <= coinSupDroit.x
+                && pointVerification.y >= coinSupGauche.y && pointVerification.y <= coinInfGauche.y);
+    }
+
+
+    public static boolean AntiCollisionFenetreMur(Mur mur, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces){
+        //On récupere les mesures de la fenetres
+        int largeur = convertirPoucesEnInt(largeurPouces);
+        int hauteur = convertirPoucesEnInt(hauteurPouces);
+
+        //On determine les sommets du mur
+        List<Point> PointsMur = DeterminerCollisionSommetsMur(mur);
+        Point SupGaucheMur = PointsMur.get(0);
+        Point SupDroiteMur = PointsMur.get(1);
+        Point InfGaucheMur = PointsMur.get(2);
+        Point InfDroiteMur = PointsMur.get(3);
+
+        //On determine les sommets de la fenetres
+        Point SupGaucheFenetre = mousePoint;
+        Point SupDroitFenetre = new Point(SupGaucheFenetre.x + largeur, SupGaucheFenetre.y);
+        Point InfGaucheFenetre = new Point(SupGaucheFenetre.x, SupGaucheFenetre.y + hauteur);
+        Point InfDroitFenetre = new Point(SupGaucheFenetre.x + largeur, SupGaucheFenetre.y + hauteur);
+
+        return (estDansRectangle(SupGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur)
+                && estDansRectangle(SupDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur)
+                && estDansRectangle(InfGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur)
+                && estDansRectangle(InfDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur));
+    }
+
+
+    public static boolean AntiCollisionPoteMur(Mur mur, Porte porte){
+        //On récupere les mesures de la fenetres
+        int largeur = convertirPoucesEnInt(porte.largeur);
+        int hauteur = convertirPoucesEnInt(porte.hauteur);
+
+        //On determine les sommets du mur
+        List<Point> PointsMur = DeterminerCollisionSommetsMur(mur);
+        Point SupGaucheMur = PointsMur.get(0);
+        Point SupDroiteMur = PointsMur.get(1);
+        Point InfGaucheMur = PointsMur.get(2);
+        Point InfDroiteMur = PointsMur.get(3);
+
+        //On determine les sommets de la fenetres
+        Point SupGaucheFenetre = porte.mousePoint;
+        Point SupDroitFenetre = new Point(SupGaucheFenetre.x + largeur, SupGaucheFenetre.y);
+        Point InfGaucheFenetre = new Point(SupGaucheFenetre.x, SupGaucheFenetre.y + hauteur);
+        Point InfDroitFenetre = new Point(SupGaucheFenetre.x + largeur, SupGaucheFenetre.y + hauteur);
+
+        return (estDansRectangle(SupGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur)
+                && estDansRectangle(SupDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur)
+                && estDansRectangle(InfGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur)
+                && estDansRectangle(InfDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur));
+    }
 
 
     public static boolean supprimerFenetre(Point mousePointClicked,String nomMur, List<Mur> listeMursDrawer){
@@ -523,7 +634,6 @@ public class Chalet {
 
         Pouces largeur = new Pouces(25, 0, 1);
         Pouces hauteur = new Pouces(25, 0, 1);
-        Fenetre Fenetre = new Fenetre(mousepoint,largeur,hauteur);
 
         int numMur = determinerMur(nomMur);
 
@@ -539,10 +649,15 @@ public class Chalet {
 
         }
 
+        if(1 == 1)
+        {
+            Fenetre Fenetre = new Fenetre(mousepoint,largeur,hauteur);
+            boolean success = mur.ajouterFenetre(Fenetre);
+            return success;
 
-        boolean success = mur.ajouterFenetre(Fenetre);
+        }
 
-        return success;
+        return false;
     }
 
 

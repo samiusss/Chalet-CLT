@@ -5,14 +5,20 @@ import domain.Controleur;
 import javax.swing.*;
 import java.awt.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 public class DrawingPanel extends JPanel implements Serializable {
 
     private MainWindow mainWindow;
-
     private Controleur controleur;
     private double zoomFactor = 1.0;
+
+
+    public Dimension initialDimensionNonStatic = getPreferredSize();
+    public int w = (int) initialDimensionNonStatic.getWidth();
+    public int h = (int) initialDimensionNonStatic.getHeight();
+    public Dimension initialDimensionReturn =  new Dimension(w,h);
 
     /*public DrawingPanel() {
         controleur = new Controleur();
@@ -28,6 +34,7 @@ public class DrawingPanel extends JPanel implements Serializable {
         this.mainWindow = mainWindow;
         controleur = new Controleur();
         setPreferredSize(new Dimension(500, 500));
+
 
 //        addMouseWheelListener(new MouseWheelListener() {
 //            @Override
@@ -47,10 +54,16 @@ public class DrawingPanel extends JPanel implements Serializable {
         return true;
     }
 
+    public Dimension getDimensionPanel(){
+        return initialDimensionReturn;
+    }
+
     public boolean repaintMode() {
         repaint();
         return true;
     }
+
+
 
     /*public void changerVue(Controleur.AffichageVue nouvelleVue)
     {
@@ -62,6 +75,7 @@ public class DrawingPanel extends JPanel implements Serializable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (mainWindow != null) {
+
 
             if (selectedAffichageVue == Controleur.AffichageVue.SURPLOMB) {
                 SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
@@ -83,8 +97,12 @@ public class DrawingPanel extends JPanel implements Serializable {
                 GaucheDrawer mainDrawer = new GaucheDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
             }
+
+
         }
     }
+
+
 
     public MainWindow getMainWindow() {
         return mainWindow;
@@ -119,6 +137,8 @@ public class DrawingPanel extends JPanel implements Serializable {
         revalidate();
         repaint();
     }
+
+
 
 
 }

@@ -150,6 +150,7 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 mousePointClicked = e.getPoint();
+                System.out.println(mousePointClicked);
                 if (isAddingPorte)
                 {
                     Point mousePoint = e.getPoint();
@@ -486,7 +487,6 @@ public class MainWindow extends javax.swing.JFrame {
                     }
                     isAddingFenetre = false;
                     //isSupprimer = false;
-                    isSelection = false;
                 }
 
 

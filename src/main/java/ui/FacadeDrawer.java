@@ -218,6 +218,13 @@ public class FacadeDrawer {
         // Construire tableaux de coordonnées pour le mur facade de coté
         int[] xPointsFacadeCote = {x1fc, x2fc, x3fc, x4fc};
         int[] yPointsFacadeCote = {y1fc, y2fc, y3fc, y4fc};
+        System.out.println(x1fc+" En Haut a Gauche "+y1fc);
+        System.out.println(x2fc+" En Bas a Gauche "+y2fc);
+        System.out.println(x3fc+" En Bas a Droite "+y3fc);
+        System.out.println(x4fc+" En Haut a Droite "+y4fc);
+
+
+
 
         // Dessiner le polygone pour le mur facade de coté (fc)
         g.fillPolygon(xPointsFacadeCote, yPointsFacadeCote, 4);
