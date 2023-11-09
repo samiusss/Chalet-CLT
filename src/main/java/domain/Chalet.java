@@ -449,6 +449,23 @@ public class Chalet {
         return false;
 
     }
+    public static boolean setHauteurPorte(Pouces nouvelleHauteur, String nomMur, List<Mur> listeMursDrawer){
+
+        int numMur = determinerMur(nomMur);
+        Mur mur = listeMursDrawer.get(numMur);
+        //Une porte par mur
+        List<Porte> listePorte = mur.getListePorte();
+
+        for (Porte porte : listePorte) {
+            boolean success = porte.setHauteurPorte(nouvelleHauteur);
+
+            System.out.println(porte);
+            return success;
+        }
+
+        return false;
+
+    }
 
     public static boolean ajouterFenetre(Point mousepoint, String nomMur, List<Mur> listeMursDrawer){
 

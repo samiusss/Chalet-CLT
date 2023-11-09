@@ -119,7 +119,11 @@ public class Controleur {
         boolean success = Chalet.setLargeurPorte(nouvellelargeur, nomMur, listeMursDrawer);
         return success;
     }
-
+    public boolean setHauteurPorte(Pouces nouvelleHauteur, String nomMur, List<Mur> listeMursDrawer)
+    {
+        boolean success = Chalet.setHauteurPorte(nouvelleHauteur, nomMur, listeMursDrawer);
+        return success;
+    }
 
     public boolean setHauteurFenetre(Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer)
     {
@@ -143,11 +147,7 @@ public class Controleur {
         boolean success = Chalet.supprimerFenetre(nomMur, listeMursDrawer);
         return success;
     }
-    public void setHauteurPorte(Pouces nouvellehauteur)
-    {
-        Porte.PORTE_HAUTEUR_STANDARD = nouvellehauteur;
 
-    }
 
 
     static Chalet chaletProduction = createChalet();

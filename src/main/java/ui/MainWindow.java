@@ -384,6 +384,26 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        AccessoineHauteurPortefield.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = AccessoineHauteurPortefield.getText();
+                Pouces nouvelleHauteur = Pouces.fromString(inputText);
+                if (nouvelleHauteur != null) {
+
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+                    boolean success = controleur.setHauteurPorte(nouvelleHauteur, nomMur, listeMursDrawer);
+                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                    System.out.println(success);
+                    System.out.println("ModificationPortereussi");
+                    DrawingPanel.repaint();
+
+                }
+            }
+        });
+
  /*           @Override
             public void caretPositionChanged(InputMethodEvent event) {
 
