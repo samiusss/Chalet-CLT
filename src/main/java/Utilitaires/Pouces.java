@@ -233,5 +233,6 @@ public class Pouces implements Serializable {
         return new Pouces(valeurEntiere, numerateur, denominateur);
     }
 
+
 }
 

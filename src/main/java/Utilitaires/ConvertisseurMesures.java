@@ -1,6 +1,9 @@
 package Utilitaires;
 
 import java.awt.Toolkit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 
 public class ConvertisseurMesures {
@@ -115,6 +118,27 @@ public class ConvertisseurMesures {
 
 
     }
+
+    public static Pouces convertirStringImperialEnPouces(String valeurImperiale) {
+        Pattern pattern = Pattern.compile("(\\d+)'? ?(\\d+)?\"?(?: ?(\\d+)/(\\d+))?");
+
+        Matcher matcher = pattern.matcher(valeurImperiale);
+
+        if (matcher.matches()) {
+            int pieds = Integer.parseInt(matcher.group(1));
+            int pouces = matcher.group(2) != null ? Integer.parseInt(matcher.group(2)) : 0;
+            int numerateur = matcher.group(3) != null ? Integer.parseInt(matcher.group(3)) : 0;
+            int denominateur = matcher.group(4) != null ? Integer.parseInt(matcher.group(4)) : 1;
+
+            int valeurEntiere = pieds * 12 + pouces;
+            return new Pouces(valeurEntiere, numerateur, denominateur);
+        }
+
+        return new Pouces(0,0,1); //Null
+    }
+
+
+
 
 
 }

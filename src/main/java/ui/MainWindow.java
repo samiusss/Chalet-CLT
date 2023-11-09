@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
+import static Utilitaires.ConvertisseurMesures.*;
+
 
 public class MainWindow extends javax.swing.JFrame {
     private Controleur controleur;
@@ -329,7 +331,8 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = AccessoireLargeurPorteField.getText();
-                Pouces nouvelleLargeur = Pouces.fromString(inputText);
+                Pouces nouvelleLargeur = convertirStringImperialEnPouces(inputText);
+
                 if (nouvelleLargeur != null) {
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -350,9 +353,12 @@ public class MainWindow extends javax.swing.JFrame {
             //LargeurFenetre
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Largeur
                 String inputText = AccessoirePanelLongeurTextField.getText();
-
-                Pouces nouvelleLargeur = Pouces.fromString(inputText);
+                //double nouvelleLargeurDouble = imperialToDoubleUniversel(inputText);
+                //Pouces nouvelleLargeur = convertirDoubleEnPouces(nouvelleLargeurDouble);
+                Pouces nouvelleLargeur = convertirStringImperialEnPouces(inputText);
+                System.out.println(nouvelleLargeur+" Largeur fenetre en pouces");
                 if (nouvelleLargeur != null) {
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -372,9 +378,12 @@ public class MainWindow extends javax.swing.JFrame {
             //HauteurFenetre
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Hauteur
                 String inputText = AccessoirePanelLargeurTextField.getText();
-                Pouces nouvelleLongueur = Pouces.fromString(inputText);
-
+                //double nouvelleLongueurDouble = imperialToDoubleUniversel(inputText);
+                //Pouces nouvelleLongueur = convertirDoubleEnPouces(nouvelleLongueurDouble);
+                Pouces nouvelleLongueur = convertirStringImperialEnPouces(inputText);
+                System.out.println(nouvelleLongueur+" Hauteur fenetre en pouces");
 
                 if (nouvelleLongueur != null) {
 
@@ -394,7 +403,7 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = AccessoineHauteurPortefield.getText();
-                Pouces nouvelleHauteur = Pouces.fromString(inputText);
+                Pouces nouvelleHauteur = convertirStringImperialEnPouces(inputText);
                 if (nouvelleHauteur != null) {
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -448,18 +457,6 @@ public class MainWindow extends javax.swing.JFrame {
                 if (isAddingFenetre)
                 {
 
-                    /*String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
-                    Point mousePoint = e.getPoint();
-                    if(nomMur != "SURPLOMB") {
-                        boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer);
-                        System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                        System.out.println(ajoutFenetrereussi);
-                        System.out.println("ajoutFenetrereussi");
-                        DrawingPanel.repaint();   */
-
-
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
@@ -472,8 +469,6 @@ public class MainWindow extends javax.swing.JFrame {
                         DrawingPanel.repaint();
 
                         }
-
-
 
 
                     }
@@ -507,7 +502,7 @@ public class MainWindow extends javax.swing.JFrame {
                 String inputText = MurPannelTabbedPaneFaçadeLabelLongueurTextField.getText();
                 //! MUR ARRIERE, LONGUEUR !\\
 
-                double longueurChaletMN= ConvertisseurMesures.imperialToDoubleUniversel(inputText);
+                double longueurChaletMN= imperialToDoubleUniversel(inputText);
                 Controleur.setLongueurChalet(longueurChaletMN);
                 System.out.println(longueurChaletMN+" entered by you..");
                 DrawingPanel.repaint();
@@ -519,7 +514,7 @@ public class MainWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inputText = MurPannelTabbedPaneDerriereLabelLongueurTextField.getText();
                 //VÉRIFIER SI IL A APPUYER
-                double longueurChaletMN= ConvertisseurMesures.imperialToDoubleUniversel(inputText);
+                double longueurChaletMN= imperialToDoubleUniversel(inputText);
                 Controleur.setLongueurChalet(longueurChaletMN);
                 System.out.println(longueurChaletMN+" entered by you..");
                 DrawingPanel.repaint();
@@ -530,7 +525,7 @@ public class MainWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inputText = MurPannelTabbedPaneDroitLabelLongueurTextField.getText();
 
-                double largeurChaletMN= ConvertisseurMesures.imperialToDoubleUniversel(inputText);
+                double largeurChaletMN= imperialToDoubleUniversel(inputText);
                 Controleur.setLargeurChalet(largeurChaletMN);
                 System.out.println(largeurChaletMN+" entered by you..");
                 DrawingPanel.repaint();
@@ -541,7 +536,7 @@ public class MainWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inputText = MurPannelTabbedPaneGaucheLabelLongueurTextField.getText();
 
-                double largeurChaletMN= ConvertisseurMesures.imperialToDoubleUniversel(inputText);
+                double largeurChaletMN= imperialToDoubleUniversel(inputText);
                 Controleur.setLargeurChalet(largeurChaletMN);
                 System.out.println(largeurChaletMN+" entered by you..");
                 DrawingPanel.repaint();
@@ -554,7 +549,7 @@ public class MainWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inputText = MurPannelTabbedPaneFaçadeLabelHauteurTextField.getText();
                 //VÉRIFIER SI IL A APPUYER
-                double hauteurMursMN= ConvertisseurMesures.imperialToDoubleUniversel(inputText);
+                double hauteurMursMN= imperialToDoubleUniversel(inputText);
                 Controleur.setHauteurMurs(hauteurMursMN);
                 System.out.println(hauteurMursMN+" entered by you..");
                 DrawingPanel.repaint();
@@ -566,7 +561,7 @@ public class MainWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inputText = MurPannelTabbedPaneDerriereLabelHauteurTextField.getText();
                 //VÉRIFIER SI IL A APPUYER
-                double hauteurMursMN= ConvertisseurMesures.imperialToDoubleUniversel(inputText);
+                double hauteurMursMN= imperialToDoubleUniversel(inputText);
                 Controleur.setHauteurMurs(hauteurMursMN);
                 System.out.println(hauteurMursMN+" entered by you..");
                 DrawingPanel.repaint();
@@ -577,7 +572,7 @@ public class MainWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inputText = MurPannelTabbedPaneDroitLabelHauteurTextField.getText();
                 //VÉRIFIER SI IL A APPUYER
-                double hauteurMursMN= ConvertisseurMesures.imperialToDoubleUniversel(inputText);
+                double hauteurMursMN= imperialToDoubleUniversel(inputText);
                 Controleur.setHauteurMurs(hauteurMursMN);
                 System.out.println(hauteurMursMN+" entered by you..");
                 DrawingPanel.repaint();
@@ -588,7 +583,7 @@ public class MainWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inputText = MurPannelTabbedPaneGaucheLabelHauteurTextField.getText();
                 //VÉRIFIER SI IL A APPUYER
-                double hauteurMursMN= ConvertisseurMesures.imperialToDoubleUniversel(inputText);
+                double hauteurMursMN= imperialToDoubleUniversel(inputText);
                 Controleur.setHauteurMurs(hauteurMursMN);
                 System.out.println(hauteurMursMN+" entered by you..");
                 DrawingPanel.repaint();
