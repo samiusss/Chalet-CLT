@@ -1,5 +1,6 @@
 package ui;
 
+import Utilitaires.ConvertisseurMesures;
 import Utilitaires.Pouces;
 import domain.Chalet;
 import domain.Controleur;
@@ -342,9 +343,28 @@ public class MainWindow extends javax.swing.JFrame {
         XPorteField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Vérifiez d'abord si une sélection (par exemple, une porte) est active
+                if (isSelection==true) {
+                    String inputText = XPorteField.getText();
+                    Pouces nouveauXPorte = Pouces.fromString(inputText);
+                    if (nouveauXPorte != null) {
+                        String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                        Chalet chalet = controleur.getChaletProduction();
+                        List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
+                        // On convertir mon point pouces en Point int
+                        int nouveauXporteint = ConvertisseurMesures.convertirPoucesEnInt(nouveauXPorte);
+                        boolean success = controleur.modifierXPorte(mousePointClicked, nouveauXporteint, nomMur, listeMursDrawer);
+                        //if (success == false) {
+                        //JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    }
+                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                    //System.out.println(success);
+                    DrawingPanel.repaint();
 
+                }
             }
-        });
+            }
+        );
         AccessoirePanelCoordonneeY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -477,17 +497,26 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        // Modifier X Porte ---> Pas finit
+        // Modifier X Porte ---> Drawing panel ne veut pas repaint
         XPorteField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = XPorteField.getText();
-                Pouces nouveauXPorte = Pouces.fromString(inputText);
+                Pouces nouveauXPorte = convertirStringImperialEnPouces(inputText);
                 if (nouveauXPorte!=null){
+                    System.out.println("Yes");
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+                    // On convertir mon point pouces en Point int
+                    int nouveauXporteint = ConvertisseurMesures.convertirPoucesEnInt(nouveauXPorte);
+                    boolean xportemodifie = controleur.modifierXPorte(mousePointClicked, nouveauXporteint, nomMur, listeMursDrawer);
+                    if (xportemodifie == false) {
+                    JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
+                System.out.println(xportemodifie);
+                DrawingPanel.repaint();
+            }
             }
         });
 

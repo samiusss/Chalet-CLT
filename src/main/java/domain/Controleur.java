@@ -141,6 +141,10 @@ public class Controleur {
         boolean success = Chalet.supprimerPorte(nomMur, listeMursDrawer);
         return success;
     }
+    public boolean modifierXPorte(Point mousePointClicked,int nouveauXporteint, String nomMur, List<Mur> listeMursDrawer)
+    {
+        boolean success = Chalet.modifierXporte(mousePointClicked,nouveauXporteint, nomMur, listeMursDrawer);
+        return success;}
 
     public static boolean supprimerFenetre(Point mousePointClicked,String nomMur, List<Mur> listeMursDrawer)
     {

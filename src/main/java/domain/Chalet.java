@@ -594,6 +594,20 @@ public class Chalet {
         }
         return false;
     }
+    public static boolean modifierXporte (Point mousePointClicked, int nouveauXporteint, String nomMur, List <Mur> listeMursDrawer) {
+        boolean modificationXreussieporte = false;
+        int numMur = determinerMur(nomMur);
+        Mur mur = listeMursDrawer.get(numMur);
+        //Une porte par mur
+        List<Porte> listePorte = mur.getListePorte();
+
+        for (Porte porte : listePorte) {
+            mousePointClicked.setLocation(nouveauXporteint, porte.mousePoint.getY());
+            System.out.println(porte + "X de la Porte Modifie ");
+            modificationXreussieporte = true;
+        }
+        return modificationXreussieporte;
+    }
 
     public static boolean supprimerFenetre(Point mousePointClicked,String nomMur, List<Mur> listeMursDrawer){
 
