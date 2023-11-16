@@ -594,7 +594,7 @@ public class Chalet {
         }
         return false;
     }
-    public static boolean modifierXporte (Point mousePointClicked, int nouveauXporteint, String nomMur, List <Mur> listeMursDrawer) {
+    public static boolean modifierXporte (Point mousePointClicked, int nouveauXporteint, String nomMur, List <Mur> listeMursDrawer,Dimension initialDimension ) {
         boolean modificationXreussieporte = false;
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
@@ -603,10 +603,15 @@ public class Chalet {
 
         for (Porte porte : listePorte) {
             mousePointClicked.setLocation(nouveauXporteint, porte.mousePoint.getY());
-            System.out.println(porte + "X de la Porte Modifie ");
-            modificationXreussieporte = true;
+            //Point mousesPointClicked = new Point(nouveauXporteint, (int) porte.mousePoint.getY());
+            if (AntiCollisionAccessoireMur(mur, mousePointClicked, porte.largeur, porte.hauteur, initialDimension)) {
+                modificationXreussieporte = porte.setPoint(mousePointClicked);
+                System.out.println(porte + "X de la Porte Modifie ");
+                return modificationXreussieporte;
+            }
         }
-        return modificationXreussieporte;
+        return false;
+
     }
 
     public static boolean supprimerFenetre(Point mousePointClicked,String nomMur, List<Mur> listeMursDrawer){

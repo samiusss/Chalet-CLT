@@ -11,8 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
-import static Utilitaires.ConvertisseurMesures.convertirStringImperialEnPouces;
-import static Utilitaires.ConvertisseurMesures.imperialToDoubleUniversel;
+import static Utilitaires.ConvertisseurMesures.*;
 
 
 public class MainWindow extends javax.swing.JFrame {
@@ -340,31 +339,7 @@ public class MainWindow extends javax.swing.JFrame {
 
 
 
-        XPorteField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Vérifiez d'abord si une sélection (par exemple, une porte) est active
-                if (isSelection==true) {
-                    String inputText = XPorteField.getText();
-                    Pouces nouveauXPorte = Pouces.fromString(inputText);
-                    if (nouveauXPorte != null) {
-                        String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-                        Chalet chalet = controleur.getChaletProduction();
-                        List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
-                        // On convertir mon point pouces en Point int
-                        int nouveauXporteint = ConvertisseurMesures.convertirPoucesEnInt(nouveauXPorte);
-                        boolean success = controleur.modifierXPorte(mousePointClicked, nouveauXporteint, nomMur, listeMursDrawer);
-                        //if (success == false) {
-                        //JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
-                    }
-                    System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                    //System.out.println(success);
-                    DrawingPanel.repaint();
 
-                }
-            }
-            }
-        );
         AccessoirePanelCoordonneeY.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -497,25 +472,32 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        // Modifier X Porte ---> Drawing panel ne veut pas repaint
-        XPorteField.addActionListener(new ActionListener() {
+        // Modifier X Porte ---> EN int, les pouces semblent avoir un prob de conversion
+        XPorteField.addActionListener(new ActionListener()
+        {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = XPorteField.getText();
-                Pouces nouveauXPorte = convertirStringImperialEnPouces(inputText);
-                if (nouveauXPorte!=null){
+                int nouveauXPorte = Integer.parseInt(inputText);
+                //Pouces nouveauXPorte = convertirStringImperialEnPouces(inputText);
+                Dimension initialDimension = DrawingPanel.getPreferredSize();
+                System.out.println(nouveauXPorte);
+                if (nouveauXPorte!=0){
                     System.out.println("Yes");
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                     // On convertir mon point pouces en Point int
-                    int nouveauXporteint = ConvertisseurMesures.convertirPoucesEnInt(nouveauXPorte);
-                    boolean xportemodifie = controleur.modifierXPorte(mousePointClicked, nouveauXporteint, nomMur, listeMursDrawer);
-                    if (xportemodifie == false) {
-                    JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
-                }
-                System.out.println(xportemodifie);
-                DrawingPanel.repaint();
+                    //int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
+                    int nouveauXporteint = nouveauXPorte;
+                    boolean xportemodifie = controleur.modifierXPorte(mousePointClicked, nouveauXporteint, nomMur, listeMursDrawer,initialDimension );
+                    System.out.println(mousePointClicked);
+                    if (xportemodifie == true) {
+                        // Redessiner le panneau uniquement si la modification est réussie
+                        DrawingPanel.repaint();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Une erreur s'est produite en essayant de modifier le X de la porte !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    }
             }
             }
         });
