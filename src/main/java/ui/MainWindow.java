@@ -1,6 +1,5 @@
 package ui;
 
-import Utilitaires.ConvertisseurMesures;
 import Utilitaires.Pouces;
 import domain.Chalet;
 import domain.Controleur;
@@ -91,7 +90,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private JTextField AccessoirePanelCoordonnee;
 
-    private JTextField AccessoirePanelCoordonneeY;
+    private JTextField YporteField;
 
     private JLabel ToitPaneltabbedPaneGauchePanelHauteurLabel;
     private JLabel AjoutPorteLabel;
@@ -160,7 +159,7 @@ public class MainWindow extends javax.swing.JFrame {
                 {
 
                     XPorteField.setText(String.valueOf(mousePointClicked.getX()));
-                    AccessoirePanelCoordonneeY.setText(String.valueOf(mousePointClicked.getY()));
+                    YporteField.setText(String.valueOf(mousePointClicked.getY()));
 
                     Point mousePoint = e.getPoint();
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -340,7 +339,7 @@ public class MainWindow extends javax.swing.JFrame {
 
 
 
-        AccessoirePanelCoordonneeY.addActionListener(new ActionListener() {
+        YporteField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -502,6 +501,33 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        XFenetreField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = XFenetreField.getText();
+                int nouveauXFenetre = Integer.parseInt(inputText);
+                //Pouces nouveauXPorte = convertirStringImperialEnPouces(inputText);
+                Dimension initialDimension = DrawingPanel.getPreferredSize();
+                System.out.println(nouveauXFenetre);
+                if (nouveauXFenetre!=0&isSelection){
+                    System.out.println("Yes");
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+                    // On convertir mon point pouces en Point int
+                    //int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
+                    int nouveauXFenetreint = nouveauXFenetre;
+                    boolean xFenetremodifie = controleur.modifierXFenetre(mousePointClicked, nouveauXFenetreint, nomMur, listeMursDrawer,initialDimension );
+                    System.out.println(mousePointClicked);
+                    if (xFenetremodifie == true) {
+                        // Redessiner le panneau uniquement si la modification est réussie
+                        DrawingPanel.repaint();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Une erreur s'est produite en essayant de modifier le X de la fenetre !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
 
         supprimmerLAccessoireButton.addActionListener(new ActionListener() {
             @Override

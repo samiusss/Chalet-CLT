@@ -145,6 +145,12 @@ public class Controleur {
     {
         boolean success = Chalet.modifierXporte(mousePointClicked,nouveauXporteint, nomMur, listeMursDrawer,initialDimension );
         return success;}
+    // J'ai un bugg ici
+    public boolean modifierXFenetre(Point mousePointClicked, int nouveauXfenetreint, String nomMur, List<Mur> listeMursDrawer,Dimension initialDimension)
+    {
+        boolean success = Chalet.modifierXfenetre(mousePointClicked,nouveauXfenetreint, nomMur, listeMursDrawer,initialDimension );
+        return success;
+    }
 
     public static boolean supprimerFenetre(Point mousePointClicked,String nomMur, List<Mur> listeMursDrawer)
     {
