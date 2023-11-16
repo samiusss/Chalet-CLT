@@ -130,10 +130,13 @@ public class MainWindow extends javax.swing.JFrame {
 
     private Controleur.AffichageVue selectedVue;
 
+    private double zoomFactor = 1.0;
+
 
     public MainWindow() {
         controleur = new Controleur();
         initComponents();
+
 
         //Gestion de l'ajout d'accessoires
         PannelDroitAjoutPorteButton.addActionListener(new ActionListener() {
@@ -217,6 +220,8 @@ public class MainWindow extends javax.swing.JFrame {
             private String getSelectedVueOption() {
                 return (String) VueComboBox.getSelectedItem();
             }
+
+
             @Override
 
             
@@ -774,6 +779,9 @@ public class MainWindow extends javax.swing.JFrame {
                 DrawingPanel.repaint();
             }
         });
+
+
+
     }
     }
 
