@@ -39,17 +39,17 @@ public class DrawingPanel extends JPanel implements Serializable {
         setPreferredSize(new Dimension(500, 500));
 
 
-        addMouseWheelListener(new MouseWheelListener() {
-            @Override
-            public void mouseWheelMoved(MouseWheelEvent e) {
-                int notches = e.getWheelRotation();
-                if (notches < 0) {
-                    zoomIn();
-                } else {
-                    zoomOut();
-                }
-            }
-        });
+//        addMouseWheelListener(new MouseWheelListener() {
+//            //@Override
+//            public void mouseWheelMoved(MouseWheelEvent e) {
+//                int notches = e.getWheelRotation();
+//                if (notches < 0) {
+//                    zoomIn();
+//                } else {
+//                    zoomOut();
+//                }
+//            }
+//        });
     }
 
     public static boolean changerVue(Controleur.AffichageVue selectedVue) {
