@@ -39,7 +39,10 @@ public class Controleur {
         chalet = new Chalet();
     }
 */
-
+   public Controleur()
+   {
+       this.zoom = 1;
+   }
 
     public static Chalet createChalet() {
 
@@ -197,11 +200,17 @@ public class Controleur {
     }
 
 
+
     public ChaletDTO getChalet() {
         return chalet;
     }
     public float getZoom () {
         return zoom;
+    }
+
+    public void setZoom(float zbi)
+    {
+        this.zoom = zbi;
     }
 
     public float getOffset() {
