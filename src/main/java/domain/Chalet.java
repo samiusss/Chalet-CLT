@@ -613,6 +613,7 @@ public class Chalet {
         return false;
 
     }
+    // Rajout de la methode modifierXfenetre qui considere le cas echeant on selectionne une fenetre
     public static boolean modifierXfenetre (Point mousePointClicked, int nouveauXfenetreint, String nomMur, List <Mur> listeMursDrawer,Dimension initialDimension ) {
         boolean modificationXreussiefenetre = false;
         int numMur = determinerMur(nomMur);
