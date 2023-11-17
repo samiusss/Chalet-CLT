@@ -122,7 +122,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel XFenetre;
     private JTextField XFenetreField;
     private JLabel YFenetre;
-    private JTextField textField1;
+    private JTextField YfenetreField;
     private JTextField longueurchaletMN;
     private JTextField largeurchaletMN;
     private JTextField epaisseurchaletMN;
@@ -186,7 +186,7 @@ public class MainWindow extends javax.swing.JFrame {
                 if (isAddingFenetre && !isSelection)
                 {
                     XFenetreField.setText(String.valueOf(mousePointClicked.getY()));
-                    textField1.setText(String.valueOf(mousePointClicked.getY()));
+                    YfenetreField.setText(String.valueOf(mousePointClicked.getY()));
 
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -389,7 +389,7 @@ public class MainWindow extends javax.swing.JFrame {
                 System.out.println(nouvelleLargeur+" Largeur fenetre en pouces");
                 Dimension initialDimension = DrawingPanel.getPreferredSize();
                 XFenetreField.setText(String.valueOf(mousePointClicked.getY()));
-                textField1.setText(String.valueOf(mousePointClicked.getY()));
+                YfenetreField.setText(String.valueOf(mousePointClicked.getY()));
 
 
 
@@ -428,7 +428,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                     if(mousePointClicked != null && isSelection) {
                         XFenetreField.setText(String.valueOf(mousePointClicked.getY()));
-                        textField1.setText(String.valueOf(mousePointClicked.getY()));
+                        YfenetreField.setText(String.valueOf(mousePointClicked.getY()));
 
 
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -534,6 +534,34 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        YfenetreField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = YfenetreField.getText();
+                int nouveauYFenetre = Integer.parseInt(inputText);
+                //Pouces nouveauYFenetre = convertirStringImperialEnPouces(inputText);
+                Dimension initialDimension = DrawingPanel.getPreferredSize();
+                System.out.println(nouveauYFenetre);
+                if (nouveauYFenetre!=0&isSelection){
+                    System.out.println("Yes");
+                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+                    // On convertir mon point pouces en Point int
+                    //int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
+                    int nouveauYFenetreint = nouveauYFenetre;
+                    boolean yFenetremodifie = controleur.modifierYFenetre(mousePointClicked, nouveauYFenetreint, nomMur, listeMursDrawer,initialDimension );
+                    System.out.println(mousePointClicked);
+                    if (yFenetremodifie == true) {
+                        // Redessiner le panneau uniquement si la modification est réussie
+                        DrawingPanel.repaint();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Une erreur s'est produite en essayant de modifier le Y de la fenetre !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
+
         supprimmerLAccessoireButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -616,7 +644,7 @@ public class MainWindow extends javax.swing.JFrame {
 
             }
         });
-        textField1.addActionListener(new ActionListener() {
+        YfenetreField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 

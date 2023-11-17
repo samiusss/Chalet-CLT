@@ -637,6 +637,29 @@ public class Chalet {
 
     }
 
+    public static boolean modifierYfenetre (Point mousePointClicked,int nouveauYfenetreint,String nomMur,List <Mur> listeMursDrawer,Dimension initialDimension ) {
+        boolean modificationYreussiefenetre = false;
+        int numMur = determinerMur(nomMur);
+        Mur mur = listeMursDrawer.get(numMur);
+        //Une porte par mur
+        List<Fenetre> listeFenetre = mur.getListeFenetre();
+
+        for (Fenetre fenetre : listeFenetre) {
+            boolean fenetreTrouve = selectionFenetre(fenetre,mousePointClicked);
+            if(fenetreTrouve == true){
+            mousePointClicked.setLocation(fenetre.mousePoint.getX(),nouveauYfenetreint);
+            //Point mousesPointClicked = new Point(nouveauXporteint, (int) porte.mousePoint.getY());
+            if (AntiCollisionAccessoireMur(mur, mousePointClicked, fenetre.largeur, fenetre.hauteur, initialDimension)) {
+                modificationYreussiefenetre = fenetre.setPoint(mousePointClicked);
+                System.out.println(fenetre + "Y de la Fenetre Modifie ");
+                return modificationYreussiefenetre;
+            }
+        }
+        }
+        return false;
+
+    }
+
     public static boolean supprimerFenetre(Point mousePointClicked,String nomMur, List<Mur> listeMursDrawer){
 
 

@@ -155,6 +155,12 @@ public class Controleur {
         return success;
     }
 
+    public boolean modifierYFenetre(Point mousePointClicked, int nouveauYfenetreint, String nomMur, List<Mur> listeMursDrawer,Dimension initialDimension)
+    {
+        boolean success = Chalet.modifierYfenetre(mousePointClicked,nouveauYfenetreint, nomMur, listeMursDrawer,initialDimension );
+        return success;
+    }
+
     public static boolean supprimerFenetre(Point mousePointClicked,String nomMur, List<Mur> listeMursDrawer)
     {
         boolean success = Chalet.supprimerFenetre(mousePointClicked,nomMur, listeMursDrawer);
