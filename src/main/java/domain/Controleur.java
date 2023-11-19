@@ -74,30 +74,27 @@ public class Controleur {
 
         List<Mur> listeMur = chalet.getListeMurs();
         if (!listeMur.isEmpty()) {
-            Mur facadeTest = listeMur.get(0); //
-            List<Porte> listePortef = facadeTest.getListePorte(); //
-            listePorteDAVANTf = listePortef; //
-            List<Fenetre> listeFenetref = facadeTest.getListeFenetre(); //
-            listeFenetreDAVANTf = listeFenetref; //
+            for (int i = 0; i < 4; i++) {
+                Mur mur = listeMur.get(i);
+                List<Porte> listePorte = mur.getListePorte();
+                List<Fenetre> listeFenetre = mur.getListeFenetre();
 
-            Mur arriereTest = listeMur.get(1); //
-            List<Porte> listePortea = arriereTest.getListePorte(); //
-            listePorteDAVANTa = listePortea; //
-            List<Fenetre> listeFenetrea = arriereTest.getListeFenetre(); //
-            listeFenetreDAVANTa = listeFenetrea; //
-
-            Mur gaucheTest = listeMur.get(2); //
-            List<Porte> listePorteg = gaucheTest.getListePorte(); //
-            listePorteDAVANTg = listePorteg; //
-            List<Fenetre> listeFenetreg = gaucheTest.getListeFenetre(); //
-            listeFenetreDAVANTg = listeFenetreg; //
-
-            Mur droiteTest = listeMur.get(3); //
-            List<Porte> listePorted = droiteTest.getListePorte(); //
-            listePorteDAVANTd = listePorted; //
-            List<Fenetre> listeFenetred = droiteTest.getListeFenetre(); //
-            listeFenetreDAVANTd = listeFenetred; //
+                if (i == 0) {
+                    listePorteDAVANTf = listePorte;
+                    listeFenetreDAVANTf = listeFenetre;
+                } else if (i == 1) {
+                    listePorteDAVANTa = listePorte;
+                    listeFenetreDAVANTa = listeFenetre;
+                } else if (i == 2) {
+                    listePorteDAVANTg = listePorte;
+                    listeFenetreDAVANTg = listeFenetre;
+                } else if (i == 3) {
+                    listePorteDAVANTd = listePorte;
+                    listeFenetreDAVANTd = listeFenetre;
+                }
+            }
         }
+
 
 
         chalet.getListeMurs().clear();
