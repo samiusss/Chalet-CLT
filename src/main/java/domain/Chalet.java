@@ -544,16 +544,16 @@ public class Chalet {
         for (Fenetre fenetre : listeFenetre) {
 
             Point mousePointFenetre = fenetre.getPoint();
-            Pouces ValidationTroisPouces = new Pouces(30,1,1);
+            Pouces ValidationTroisPouces = new Pouces(30,0,1);
 
             //Largeur
             Pouces largeurListe = fenetre.getLargeur();
-            largeurListe.addPouces(ValidationTroisPouces);
+            largeurListe = largeurListe.addPouces(ValidationTroisPouces);
             int largeurFenetre = convertirPoucesEnInt(largeurListe);
 
             //Hauteur
             Pouces hauteurListe = fenetre.getHauteur();
-            hauteurListe.addPouces(ValidationTroisPouces);
+            hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
             int hauteurFenetre = convertirPoucesEnInt(hauteurListe);
             System.out.println(fenetre + "FenetreDeListeFenetre ");
 
@@ -601,12 +601,12 @@ public class Chalet {
 
             //Largeur
             Pouces largeurListe = porte.getLargeur();
-            largeurListe.addPouces(ValidationTroisPouces);
+            largeurListe = largeurListe.addPouces(ValidationTroisPouces);
             int largeurPorte = convertirPoucesEnInt(largeurListe);
 
             //Hauteur
             Pouces hauteurListe = porte.getHauteur();
-            hauteurListe.addPouces(ValidationTroisPouces);
+            hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
             int hauteurPorte = convertirPoucesEnInt(hauteurListe);
             System.out.println(porte + "PorteDeListePorte");
 
@@ -683,12 +683,12 @@ public class Chalet {
 
                 //Largeur
                 Pouces largeurListe = fenetre.getLargeur();
-                largeurListe.addPouces(ValidationTroisPouces);
+                largeurListe = largeurListe.addPouces(ValidationTroisPouces);
                 int largeurFenetre = convertirPoucesEnInt(largeurListe);
 
                 //Hauteur
                 Pouces hauteurListe = fenetre.getHauteur();
-                hauteurListe.addPouces(ValidationTroisPouces);
+                hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
                 int hauteurFenetre = convertirPoucesEnInt(hauteurListe);
 
 
@@ -740,12 +740,12 @@ public class Chalet {
 
             //Largeur
             Pouces largeurListe = porte.getLargeur();
-            largeurListe.addPouces(ValidationTroisPouces);
+            largeurListe = largeurListe.addPouces(ValidationTroisPouces);
             int largeurFenetre = convertirPoucesEnInt(largeurListe);
 
             //Hauteur
             Pouces hauteurListe = porte.getHauteur();
-            hauteurListe.addPouces(ValidationTroisPouces);
+            hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
             int hauteurFenetre = convertirPoucesEnInt(hauteurListe);
             System.out.println(porte + "PorteDeListePorte");
 
@@ -820,12 +820,12 @@ public class Chalet {
 
             //Largeur
                 Pouces largeurListe = fenetre.getLargeur();
-                largeurListe.addPouces(ValidationTroisPouces);
+            largeurListe = largeurListe.addPouces(ValidationTroisPouces);
                 int largeurFenetre = convertirPoucesEnInt(largeurListe);
 
                 //Hauteur
                 Pouces hauteurListe = fenetre.getHauteur();
-                hauteurListe.addPouces(ValidationTroisPouces);
+                hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
                 int hauteurFenetre = convertirPoucesEnInt(hauteurListe);
 
                 System.out.println(fenetre + "FenetreDeListeFenetre ");
@@ -873,12 +873,12 @@ public class Chalet {
 
             //Largeur
             Pouces largeurListe = porte.getLargeur();
-            largeurListe.addPouces(ValidationTroisPouces);
+            largeurListe = largeurListe.addPouces(ValidationTroisPouces);
             int largeurPorte = convertirPoucesEnInt(largeurListe);
 
             //Hauteur
             Pouces hauteurListe = porte.getHauteur();
-            hauteurListe.addPouces(ValidationTroisPouces);
+            hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
             int hauteurPorte = convertirPoucesEnInt(hauteurListe);
             System.out.println(porte + "PorteDeListePorte");
 
