@@ -36,6 +36,11 @@ public class Fenetre extends Accessoires implements Serializable {
         return largeur;
     }
 
+    public boolean setPoint(Point mousePoint) {
+        this.mousePoint = mousePoint;
+        return true;
+    }
+
     public Pouces getLargeur() {
         return largeur;
     }

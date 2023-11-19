@@ -40,6 +40,11 @@ public class Porte extends Accessoires implements Serializable {
         return true;
     }
 
+    public boolean setPoint(Point mousePoint) {
+        this.mousePoint = mousePoint;
+        return true;
+    }
+
 
     public Pouces getLargeur() {
         return largeur;

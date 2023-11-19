@@ -18,13 +18,19 @@ public class ConvertisseurMesures {
         double fraction = 0;
 
         for (String part : parts) {
-            if (part.contains("'")) {
+            if (part.contains("'")) { // ajouter une condition pour "’"
                 // Trouvé la partie en pieds
                 feet = Double.parseDouble(part.replace("'", ""));
-            } else if (part.contains("\"")) {
+            }
+            else if (part.contains("’")) { // ajouter une condition pour "’"
+                // Trouvé la partie en pieds
+                feet = Double.parseDouble(part.replace("’", ""));
+            }
+            else if (part.contains("\"")) {
                 // Trouvé la partie en pouces
                 inches = Double.parseDouble(part.replace("\"", ""));
-            } else if (part.contains("/")) {
+            }
+            else if (part.contains("/")) {
                 // Trouvé la partie fractionnaire
                 String[] fractionParts = part.split("/");
                 if (fractionParts.length == 2) {

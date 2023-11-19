@@ -39,6 +39,7 @@ public class FacadeDrawer {
 
         //System.out.println("fenetreFACADE");
         g.setColor(new Color(1, 1, 0));
+
         List<Fenetre> listeFenetre = facade.getListeFenetre();
         int lenghtlisteFenetre = listeFenetre.size();
         //System.out.println(lenghtlisteFenetre);
@@ -51,8 +52,14 @@ public class FacadeDrawer {
             Fenetre fenetreActuel = (Fenetre) fenetre;
             if (fenetreActuel != null) {
                 Point mousePoint = fenetre.mousePoint;
+
+
                 Pouces largeur = fenetre.getLargeur();
+
                 Pouces hauteur = fenetre.getHauteur();
+
+
+
                 int largeurFenetreInt = convertirPoucesEnInt(largeur);
                 int hauteurFenetreInt = convertirPoucesEnInt(hauteur);
 

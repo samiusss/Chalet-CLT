@@ -5,7 +5,6 @@ import domain.Controleur;
 import javax.swing.*;
 import java.awt.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 
 public class DrawingPanel extends JPanel implements Serializable {
@@ -18,7 +17,7 @@ public class DrawingPanel extends JPanel implements Serializable {
     public Dimension initialDimensionNonStatic = getPreferredSize();
     public int w = (int) initialDimensionNonStatic.getWidth();
     public int h = (int) initialDimensionNonStatic.getHeight();
-    public Dimension initialDimensionReturn =  new Dimension(w,h);
+    public Dimension initialDimensionReturn = new Dimension(w, h);
 
     /*public DrawingPanel() {
         controleur = new Controleur();
@@ -37,7 +36,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 
 
 //        addMouseWheelListener(new MouseWheelListener() {
-//            @Override
+//            //@Override
 //            public void mouseWheelMoved(MouseWheelEvent e) {
 //                int notches = e.getWheelRotation();
 //                if (notches < 0) {
@@ -54,7 +53,7 @@ public class DrawingPanel extends JPanel implements Serializable {
         return true;
     }
 
-    public Dimension getDimensionPanel(){
+    public Dimension getDimensionPanel() {
         return initialDimensionReturn;
     }
 
@@ -103,7 +102,6 @@ public class DrawingPanel extends JPanel implements Serializable {
     }
 
 
-
     public MainWindow getMainWindow() {
         return mainWindow;
     }
@@ -112,33 +110,48 @@ public class DrawingPanel extends JPanel implements Serializable {
         this.mainWindow = mainWindow;
     }
 
-    private void zoomIn() {
-        zoomFactor += 0.1; // You can adjust the zoom level as needed
-        applyZoom();
-    }
-
-    private void zoomOut() {
-        zoomFactor -= 0.1; // You can adjust the zoom level as needed
-        applyZoom();
-    }
-
-    private void applyZoom() {
-        // Ensure the zoom factor is within a reasonable range (e.g., prevent negative zoom)
-        if (zoomFactor < 0.1) {
-            zoomFactor = 0.1;
-        }
-
-        // Update the size of the drawing
-        int newWidth = (int) (getPreferredSize().getWidth() * zoomFactor);
-        int newHeight = (int) (getPreferredSize().getHeight() * zoomFactor);
-        setPreferredSize(new Dimension(newWidth, newHeight));
-
-        // Repaint the drawing to reflect the changes
+    public void zoomIn() {
+        float leZoom = controleur.getZoom();
+        leZoom -= 0.01;
+        controleur.setZoom(leZoom);
         revalidate();
         repaint();
     }
 
+    public void zoomOut() {
+        float leZoom = controleur.getZoom();
+        leZoom += 0.01F;
+        controleur.setZoom(leZoom);
+        revalidate();
+        repaint();
+    }
+
+//    public void applyZoom() {
+//        if (zoomFactor < 0.1) {
+//            zoomFactor = 0.1;
+//        }
+//
+//        Dimension currentSize = getSize();
+//        Point currentPosition = getParent().getMousePosition();
+//
+//        // Calculate the new size based on the zoom factor
+//        int newWidth = (int) (1  * zoomFactor);
+//        int newHeight = (int) (initialDimensionReturn.getHeight() * zoomFactor);
+//        setPreferredSize(new Dimension(newWidth, newHeight));
+//
+//        // If there's a current position, adjust it based on the zoom factor
+//        if (currentPosition != null) {
+//            int deltaX = (int) ((currentSize.getWidth() - newWidth) * (currentPosition.getX() / currentSize.getWidth()));
+//            int deltaY = (int) ((currentSize.getHeight() - newHeight) * (currentPosition.getY() / currentSize.getHeight()));
+//            getParent().setComponentZOrder(this, 0); // Move the panel to the front
+//            setLocation(getX() + deltaX, getY() + deltaY);
+//        }
+//
+//
+//            revalidate();
+//            repaint();
+//        }
 
 
+    }
 
-}
