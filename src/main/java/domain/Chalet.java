@@ -12,7 +12,7 @@ import static java.util.Arrays.asList;
 
 public class Chalet {
 
-    public static double largeurChalet = 400;
+    public static double largeurChalet = 300;
     public static double longueurChalet = 300;
     public static double hauteurMurs=2*80;
     public static double epaisseurChalet = 2*20;

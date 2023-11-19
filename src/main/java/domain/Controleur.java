@@ -61,6 +61,8 @@ public class Controleur {
 
     public static boolean initialiserChalet(Chalet chalet) {
 
+        chalet.getListeMurs().clear();
+
         chalet.initialiserMurFacade();
         chalet.initialiserMurArriere();
         chalet.initialiserMurGauche();
