@@ -166,11 +166,11 @@ public class MainWindow extends javax.swing.JFrame {
                     if(nomMur != "SURPLOMB") {
                         boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer,intitalDimension);
                         if(ajoutReussi == false){
-                            JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
                         }
-                        System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                        //System.out.println(ui.DrawingPanel.selectedAffichageVue);
                         System.out.println(ajoutReussi);
-                        System.out.println("ajoutPortereussi");
+                        //System.out.println("ajoutPortereussi");
                         DrawingPanel.repaint();
 
                     }
@@ -191,12 +191,12 @@ public class MainWindow extends javax.swing.JFrame {
                     if(nomMur != "SURPLOMB") {
                         boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer, intitalDimension);
                         if(ajoutFenetrereussi == false){
-                            JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
 
                         }
-                        System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                        //System.out.println(ui.DrawingPanel.selectedAffichageVue);
                         System.out.println(ajoutFenetrereussi);
-                        System.out.println("ajoutFenetrereussi");
+                        //System.out.println("ajoutFenetrereussi");
                         DrawingPanel.repaint();
                     }
 
@@ -362,7 +362,7 @@ public class MainWindow extends javax.swing.JFrame {
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                     boolean success = controleur.setLargeurPorte(nouvelleLargeur, nomMur, listeMursDrawer, initialDimension);
                     if(success == false){
-                        JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
                     System.out.println(ui.DrawingPanel.selectedAffichageVue);
                     System.out.println(success);
@@ -397,12 +397,12 @@ public class MainWindow extends javax.swing.JFrame {
                         List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
                         boolean success = controleur.setLargeurFenetre(mousePointClicked,nouvelleLargeur, nomMur, listeMursDrawer,initialDimension);
                         if(success == false){
-                            JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
 
                         }
                         System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                        System.out.println(success);
-                        System.out.println("ModificationLargeurFenetreReussi");
+                        System.out.println("ModificationLargeurFenetre" + success);
+                        //System.out.println("ModificationLargeurFenetreReussi");
                         DrawingPanel.repaint();
                     }
 
@@ -434,7 +434,7 @@ public class MainWindow extends javax.swing.JFrame {
                         List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                         boolean success = controleur.setHauteurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer,initialDimension);
                         if(success == false){
-                            JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
                         }
                         System.out.println(ui.DrawingPanel.selectedAffichageVue);
                         System.out.println(success);
@@ -462,7 +462,7 @@ public class MainWindow extends javax.swing.JFrame {
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                     boolean success = controleur.setHauteurPorte(nouvelleHauteur, nomMur, listeMursDrawer,initialDimension);
                     if(success == false){
-                        JOptionPane.showMessageDialog(null, "Une erreur s'est produite !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
                     System.out.println(ui.DrawingPanel.selectedAffichageVue);
                     System.out.println(success);

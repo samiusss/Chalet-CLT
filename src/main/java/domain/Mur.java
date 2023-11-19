@@ -16,7 +16,7 @@ public class Mur {
     List<Fenetre> fenetreMur = new LinkedList();
 
 
-    // on peut creer un mur simple
+    // on peut creer un mur simple 
     public Mur() {
     }
 

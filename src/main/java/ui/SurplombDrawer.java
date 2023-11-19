@@ -191,7 +191,7 @@ public class SurplombDrawer
         //
         int[] xPointsGauche = {x1r2g, x1r1g,  x1g,  x2g, x3r2g, x3r1g, x3g, x4g};
         int[] yPointsGauche = {y1r2g, y1r1g,  y1g,  y2g, y3r2g, y3r1g, y3g, y4g};
-        g.setColor(new Color(210, 68, 1));
+        g.setColor(new Color(198, 216, 211));
         g.fillPolygon(xPointsGauche, yPointsGauche, 8);
 
         //Dessiner le polygone pour le mur droit

@@ -35,42 +35,28 @@ public class FacadeDrawer {
     }
 
 
-
     private void drawFenetre(Graphics g) {
 
-
-        System.out.println("fenetreFACADE");
-
+        //System.out.println("fenetreFACADE");
         g.setColor(new Color(1, 1, 0));
-
         List<Fenetre> listeFenetre = facade.getListeFenetre();
         int lenghtlisteFenetre = listeFenetre.size();
-        System.out.println(lenghtlisteFenetre);
+        //System.out.println(lenghtlisteFenetre);
 
 
         for (Fenetre fenetre : listeFenetre) {
-            System.out.println("porteFACADE2");
-
-            System.out.println(fenetre);
+            //System.out.println("porteFACADE2");
+            //System.out.println(fenetre);
 
             Fenetre fenetreActuel = (Fenetre) fenetre;
             if (fenetreActuel != null) {
                 Point mousePoint = fenetre.mousePoint;
-
-
                 Pouces largeur = fenetre.getLargeur();
-
                 Pouces hauteur = fenetre.getHauteur();
-
-
-
                 int largeurFenetreInt = convertirPoucesEnInt(largeur);
                 int hauteurFenetreInt = convertirPoucesEnInt(hauteur);
 
                 g.fillRect(mousePoint.x, mousePoint.y, largeurFenetreInt, hauteurFenetreInt);
-
-
-
                 /*
 
                 pointPouces pointFenetreSupDroit = new pointPouces(fenetre.getPointPouces(mousePoint).getX().addPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().addPouces(fenetre.getHauteur().diviserPouces(2)));
@@ -109,7 +95,7 @@ public class FacadeDrawer {
     private void drawPorte(Graphics g) {
 
 
-        System.out.println("porteFACADE");
+        //System.out.println("porteFACADE");
 
         g.setColor(new Color(1, 1, 0));
 
@@ -119,9 +105,8 @@ public class FacadeDrawer {
 
 
         for (Porte porte : listePorte) {
-            System.out.println("porteFACADE2");
-
-            System.out.println(porte);
+            //System.out.println("porteFACADE2");
+            //System.out.println(porte);
 
             Porte porteActuel = (Porte) porte;
             if (porteActuel != null) {
@@ -134,19 +119,15 @@ public class FacadeDrawer {
                 int largeurPorteInt = convertirPoucesEnInt(largeur);
                 int hauteurPorteInt = convertirPoucesEnInt(hauteur);
 
-
                 double height = initialDimension.getHeight();
                 PointDouble pointInfDroitac = facade.getSommetsMur().get(6);
                 PointDouble pointInfGaucheac = facade.getSommetsMur().get(7);
                 double positionY = height/2 - pointInfDroitac.getY()/2;
                 int y1ac = (int) (((pointInfGaucheac.getY() + positionY) - hauteurPorteInt) + hauteurMurs);
 
-
                 g.fillRect(mousePoint.x, y1ac, largeurPorteInt, hauteurPorteInt);
 
                 /*
-
-
 
                 pointPouces pointPorteSupDroit = new pointPouces(porte.getPointPouces(mousePoint).getX().addPouces(porte.getLargeur().diviserPouces(2)), porte.getPointPouces(mousePoint).getY().addPouces(porte.getHauteur().diviserPouces(2)));
                 pointPouces pointPorteSupGauche = new pointPouces(porte.getPointPouces(mousePoint).getX().substractPouces(porte.getLargeur().diviserPouces(2)), porte.getPointPouces(mousePoint).getY().addPouces(porte.getHauteur().diviserPouces(2)));
@@ -218,11 +199,10 @@ public class FacadeDrawer {
         // Construire tableaux de coordonnées pour le mur facade de coté
         int[] xPointsFacadeCote = {x1fc, x2fc, x3fc, x4fc};
         int[] yPointsFacadeCote = {y1fc, y2fc, y3fc, y4fc};
-        System.out.println(x1fc+""+ y1fc + "(FacadeDrawer) En Haut a Gauche");
+        /*System.out.println(x1fc+""+ y1fc + "(FacadeDrawer) En Haut a Gauche");
         System.out.println(x2fc+""+ y2fc + "(FacadeDrawer) En Bas a Gauche");
         System.out.println(x3fc+""+ y3fc + "(FacadeDrawer) En Bas a Droite");
-        System.out.println(x4fc+""+ y4fc + "(FacadeDrawer) En Haut a Droite");
-
+        System.out.println(x4fc+""+ y4fc + "(FacadeDrawer) En Haut a Droite"); */
 
 
 
