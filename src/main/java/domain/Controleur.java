@@ -98,7 +98,6 @@ public class Controleur {
     public static void setLongueurChalet(double longueurChalet)
     {
         Chalet.setLongueurChalet(longueurChalet);
-        //Chalet.setLargeurChalet(longueurChalet);
 
         System.out.println(longueurChalet+" Réinitialisation en cours"); //test
         initialiserChalet(chaletProduction);

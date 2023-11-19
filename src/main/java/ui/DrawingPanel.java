@@ -1,14 +1,10 @@
 package ui;
 
-import domain.Chalet;
 import domain.Controleur;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 
 public class DrawingPanel extends JPanel implements Serializable {
@@ -124,7 +120,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 
     public void zoomOut() {
         float leZoom = controleur.getZoom();
-        leZoom += 0.01;
+        leZoom += 0.01F;
         controleur.setZoom(leZoom);
         revalidate();
         repaint();

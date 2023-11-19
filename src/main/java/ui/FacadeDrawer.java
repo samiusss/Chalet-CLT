@@ -2,14 +2,12 @@ package ui;
 
 import Utilitaires.PointDouble;
 import Utilitaires.Pouces;
-import Utilitaires.pointPouces;
 import domain.*;
 
 import java.awt.*;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
-import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 import static domain.Chalet.hauteurMurs;
 
 public class FacadeDrawer {
@@ -77,8 +75,6 @@ public class FacadeDrawer {
 
 
     }
-
-
 
     private void drawPorte(Graphics g) {
 

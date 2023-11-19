@@ -3,12 +3,12 @@ package domain;
 
 import Utilitaires.PointDouble;
 
-import java.util.ArrayList;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Mur {
     private String nomMur;
-    private List<PointDouble> sommetsMur;
+    private LinkedList<PointDouble> sommetsMur;
     private static List<String> accessoiresMur;
     //private List<Porte> porteMur;
     //private List<Fenetre> fenetreMur;
@@ -24,7 +24,7 @@ public class Mur {
     // ce meme constructeur est appelle a la ligne
     public Mur(String nomMur, List<PointDouble> sommetsMur, List<String> accessoiresMur) {
         this.nomMur = nomMur;
-        this.sommetsMur = new ArrayList<>(sommetsMur);  // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
+        this.sommetsMur = new LinkedList<>(sommetsMur);  // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
         this.accessoiresMur = accessoiresMur;           // ceci est comme ci: [Liste de accessoires]
 
     }
@@ -46,7 +46,7 @@ public class Mur {
         return this.sommetsMur;
     }
 
-    public void setSommetsMur(List<PointDouble> sommetsMur) {
+    public void setSommetsMur(LinkedList<PointDouble> sommetsMur) {
         this.sommetsMur = sommetsMur;
     }
 
