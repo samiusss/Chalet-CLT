@@ -4,6 +4,7 @@ import Utilitaires.Pouces;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 //import static domain.Mur.accessoiresMur;
@@ -60,6 +61,44 @@ public class Controleur {
     }
 
     public static boolean initialiserChalet(Chalet chalet) {
+        //get les accessoires deja existant dans une variable externe
+        //System.out.println("Here la liste"+chalet.getListeMurs());
+        List<Porte> listePorteDAVANTf = new LinkedList<>();
+        List<Porte> listePorteDAVANTa = new LinkedList<>();
+        List<Porte> listePorteDAVANTg = new LinkedList<>();
+        List<Porte> listePorteDAVANTd = new LinkedList<>();
+        List<Fenetre> listeFenetreDAVANTf = new LinkedList<>();
+        List<Fenetre> listeFenetreDAVANTa = new LinkedList<>();
+        List<Fenetre> listeFenetreDAVANTg = new LinkedList<>();
+        List<Fenetre> listeFenetreDAVANTd = new LinkedList<>();
+
+        List<Mur> listeMur = chalet.getListeMurs();
+        if (!listeMur.isEmpty()) {
+            Mur facadeTest = listeMur.get(0); //
+            List<Porte> listePortef = facadeTest.getListePorte(); //
+            listePorteDAVANTf = listePortef; //
+            List<Fenetre> listeFenetref = facadeTest.getListeFenetre(); //
+            listeFenetreDAVANTf = listeFenetref; //
+
+            Mur arriereTest = listeMur.get(1); //
+            List<Porte> listePortea = arriereTest.getListePorte(); //
+            listePorteDAVANTa = listePortea; //
+            List<Fenetre> listeFenetrea = arriereTest.getListeFenetre(); //
+            listeFenetreDAVANTa = listeFenetrea; //
+
+            Mur gaucheTest = listeMur.get(2); //
+            List<Porte> listePorteg = gaucheTest.getListePorte(); //
+            listePorteDAVANTg = listePorteg; //
+            List<Fenetre> listeFenetreg = gaucheTest.getListeFenetre(); //
+            listeFenetreDAVANTg = listeFenetreg; //
+
+            Mur droiteTest = listeMur.get(3); //
+            List<Porte> listePorted = droiteTest.getListePorte(); //
+            listePorteDAVANTd = listePorted; //
+            List<Fenetre> listeFenetred = droiteTest.getListeFenetre(); //
+            listeFenetreDAVANTd = listeFenetred; //
+        }
+
 
         chalet.getListeMurs().clear();
 
@@ -67,7 +106,16 @@ public class Controleur {
         chalet.initialiserMurArriere();
         chalet.initialiserMurGauche();
         chalet.initialiserMurDroite();
+        chalet.getListeMurs().get(0).porteMur = listePorteDAVANTf;
+        chalet.getListeMurs().get(1).porteMur = listePorteDAVANTa;
+        chalet.getListeMurs().get(2).porteMur = listePorteDAVANTg;
+        chalet.getListeMurs().get(3).porteMur = listePorteDAVANTd;
+        chalet.getListeMurs().get(0).fenetreMur = listeFenetreDAVANTf;
+        chalet.getListeMurs().get(1).fenetreMur = listeFenetreDAVANTa;
+        chalet.getListeMurs().get(2).fenetreMur = listeFenetreDAVANTg;
+        chalet.getListeMurs().get(3).fenetreMur = listeFenetreDAVANTd;
 
+        // set les accessoires dans les nouveaux murs
         facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
         arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
         gauche = chalet.getMursUsines(0.2, "Nord").get(2); // mur gauche deja codé en bas
