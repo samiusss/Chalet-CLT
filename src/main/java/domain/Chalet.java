@@ -496,6 +496,27 @@ public class Chalet {
     }
 
 
+    public static List<Point> determinerSommetsAccessoires(Point mousePoint, int largeur, int hauteur){
+
+        //On determine les sommets de la Accessoires
+        Point SupGaucheAccessoires = mousePoint;
+        Point SupDroitAccessoires = new Point(SupGaucheAccessoires.x + largeur, SupGaucheAccessoires.y);
+        Point InfGaucheAccessoires = new Point(SupGaucheAccessoires.x, SupGaucheAccessoires.y + hauteur);
+        Point InfDroitAccessoires = new Point(SupGaucheAccessoires.x + largeur, SupGaucheAccessoires.y + hauteur);
+        /*System.out.println(SupGaucheAccessoires+"(AntiCollisionAccessoires) Accessoires En Haut a Gauche ");
+        System.out.println(InfGaucheAccessoires+"(AntiCollisionAccessoires) Accessoires En Bas a Gauche ");
+        System.out.println(InfDroitAccessoires+ "(AntiCollisionAccessoires) Accessoires En Bas a Droite ");
+        System.out.println(SupDroitAccessoires+ "(AntiCollisionAccessoires) Accessoires En Haut a Droite "); */
+
+        List<Point> PointsMur = new ArrayList<>();
+        PointsMur.add(SupGaucheAccessoires);
+        PointsMur.add(SupDroitAccessoires);
+        PointsMur.add(InfGaucheAccessoires);
+        PointsMur.add(InfDroitAccessoires);
+
+        return PointsMur;
+    }
+
 
     public static boolean AntiCollisionFenetreModification(Mur mur,Fenetre fenetreExistante, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
         //On récupere les mesures de la fenetres
