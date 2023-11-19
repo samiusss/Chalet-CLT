@@ -611,10 +611,10 @@ public class Chalet {
             Point InfGaucheListeFenetre = listePointsPorte.get(2);
             Point InfDroitListeFenetre = listePointsPorte.get(3);
 
-            System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Haut a Gauche ");
+            /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Haut a Gauche ");
             System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Bas a Gauche ");
             System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Bas a Droite ");
-            System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Haut a Droite ");
+            System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Haut a Droite "); */
 
             boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre) ;
@@ -622,10 +622,10 @@ public class Chalet {
             boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
 
-            System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
+            /*System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
             System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
             System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) ");
+            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
             if( PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect )
             {
@@ -695,10 +695,10 @@ public class Chalet {
             boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
 
-            System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
+            /* System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
             System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
             System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) ");
+            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
             if( PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect )
             {
@@ -717,35 +717,35 @@ public class Chalet {
             Point mousePointFenetre = porte.getPoint();
             //Largeur
             Pouces largeurListe = porte.getLargeur();
-            int largeurFenetre = convertirPoucesEnInt(largeurListe);
+            int largeurPorte = convertirPoucesEnInt(largeurListe);
 
             //Hauteur
             Pouces hauteurListe = porte.getHauteur();
-            int hauteurFenetre = convertirPoucesEnInt(hauteurListe);
+            int hauteurPorte = convertirPoucesEnInt(hauteurListe);
             System.out.println(porte + "PorteDeListePorte");
 
-            List<Point> listePointsPorte = determinerSommetsAccessoires(mousePointFenetre,largeurFenetre,hauteurFenetre);
+            List<Point> listePointsPorte = determinerSommetsAccessoires(mousePointFenetre,largeurPorte,hauteurPorte);
 
-            Point SupGaucheListeFenetre = listePointsPorte.get(0);
-            Point SupDroitListeFenetre = listePointsPorte.get(1);
-            Point InfGaucheListeFenetre = listePointsPorte.get(2);
-            Point InfDroitListeFenetre = listePointsPorte.get(3);
+            Point SupGaucheListePorte = listePointsPorte.get(0);
+            Point SupDroitListePorte = listePointsPorte.get(1);
+            Point InfGaucheListePorte = listePointsPorte.get(2);
+            Point InfDroitListePorte = listePointsPorte.get(3);
 
             /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Haut a Gauche ");
             System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Bas a Gauche ");
             System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Bas a Droite ");
             System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Haut a Droite "); */
 
-            boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
-            boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre) ;
-            boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre) ;
-            boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
+            boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
+            boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte) ;
+            boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte) ;
+            boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
             //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
 
-            System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
+            /* System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
             System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
             System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) ");
+            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
             if( PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect )
             {
@@ -819,10 +819,10 @@ public class Chalet {
                 boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
                 //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
 
-                System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
+                /*System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
                 System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
                 System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
-                System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) ");
+                System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
                 if( PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect )
                 {
@@ -833,6 +833,55 @@ public class Chalet {
                 }
 
             }
+
+
+        List<Porte> listePorte = mur.getListePorte();
+
+        for (Porte porte : listePorte) {
+
+            Point mousePointFenetre = porte.getPoint();
+            //Largeur
+            Pouces largeurListe = porte.getLargeur();
+            int largeurPorte = convertirPoucesEnInt(largeurListe);
+
+            //Hauteur
+            Pouces hauteurListe = porte.getHauteur();
+            int hauteurPorte = convertirPoucesEnInt(hauteurListe);
+            System.out.println(porte + "PorteDeListePorte");
+
+            List<Point> listePointsPorte = determinerSommetsAccessoires(mousePointFenetre,largeurPorte,hauteurPorte);
+
+            Point SupGaucheListePorte = listePointsPorte.get(0);
+            Point SupDroitListePorte = listePointsPorte.get(1);
+            Point InfGaucheListePorte = listePointsPorte.get(2);
+            Point InfDroitListePorte = listePointsPorte.get(3);
+
+            /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Haut a Gauche ");
+            System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Bas a Gauche ");
+            System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Bas a Droite ");
+            System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Haut a Droite "); */
+
+            boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
+            boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte) ;
+            boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte) ;
+            boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
+            //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
+
+            /* System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
+            System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
+            System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
+            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
+
+            if( PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect )
+            {
+                System.out.println(true+"(AntiCollisionPorte) ");
+
+                return true;
+
+            }
+
+        }
+
 
         System.out.println(false+"(AntiCollisionPorte) ");
         return false;
