@@ -25,7 +25,6 @@ public class STLWriter {
         }
     }
 
-    // TODO: a revoir cette partie, car il faut definir les data structure avant
     private static void writeVertex(PrintWriter writer, Point3D vertex) {
         writer.printf("      vertex %f %f %f%n", vertex.getLongueurMur(), vertex.getEpaisseurMur(), vertex.getHauteurMur());
     }
