@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ObjectToSTLConverter {
 
-    public static List<Triangle> convertWallsToTriangles(List<List<Point3D>> walls) {
+    /*public static List<Triangle> convertWallsToTriangles(List<List<Point3D>> walls) {
         List<Triangle> triangles = new ArrayList<>();
 
         // Convert each wall into triangles (assuming walls are represented as a list of points)
@@ -14,10 +14,10 @@ public class ObjectToSTLConverter {
             }
         }
         return triangles;
-    }
+    } */
 
-    public static List<Triangle> convertWallsToTriangles(List<Mur> murs, double hauteurMurs) {
-        List<Triangle> triangles = new ArrayList<>();
+    //public static List<Triangle> convertWallsToTriangles(List<Mur> murs, double hauteurMurs) {
+        //List<Triangle> triangles = new ArrayList<>();
 
         // Convert each wall into triangles (assuming walls are represented as a list of points)
         /*for (Mur mur : murs) {
@@ -25,8 +25,8 @@ public class ObjectToSTLConverter {
                 triangles.add(new Triangle(mur.getSommetsMur().get(i).getX(), mur.getSommetsMur().get(i).getY(), findPerspectivePoint(mur.getSommetsMur().get(i).getZ())));
             }
         }*/
-        return triangles;
-    }
+        //return triangles;
+    //}
 
     /*public static PointDouble findPerspectivePoint(Mur wall) {
         //for each wall
