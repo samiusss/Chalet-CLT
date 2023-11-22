@@ -4,13 +4,15 @@ import domain.Controleur;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.io.Serializable;
 
 
 public class DrawingPanel extends JPanel implements Serializable {
 
     private MainWindow mainWindow;
-    private Controleur controleur;
+    public Controleur controleur;
     private double zoomFactor = 1.0;
 
 
@@ -27,12 +29,14 @@ public class DrawingPanel extends JPanel implements Serializable {
     public static Controleur.AffichageVue selectedAffichageVue;
 
 
+
     public DrawingPanel(MainWindow mainWindow) {
         selectedAffichageVue = Controleur.AffichageVue.SURPLOMB;
 
         this.mainWindow = mainWindow;
         controleur = new Controleur();
         setPreferredSize(new Dimension(500, 500));
+
 
 
 //        addMouseWheelListener(new MouseWheelListener() {
@@ -106,25 +110,30 @@ public class DrawingPanel extends JPanel implements Serializable {
         return mainWindow;
     }
 
+
     public void setMainWindow(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
     }
 
-    public void zoomIn() {
-        float leZoom = controleur.getZoom();
-        leZoom -= 0.01;
-        controleur.setZoom(leZoom);
-        revalidate();
-        repaint();
-    }
-
-    public void zoomOut() {
-        float leZoom = controleur.getZoom();
-        leZoom += 0.01F;
-        controleur.setZoom(leZoom);
-        revalidate();
-        repaint();
-    }
+//    public void zoomIn() {
+//        float leZoom = controleur.getZoom();
+//        leZoom -= 0.05;
+//        if (leZoom < 0)
+//        {
+//            leZoom = 0;
+//        }
+//        controleur.setZoom(leZoom);
+//        revalidate();
+//        repaint();
+//    }
+//
+//    public void zoomOut() {
+//        float leZoom = controleur.getZoom();
+//        leZoom += 0.01F;
+//        controleur.setZoom(leZoom);
+//        revalidate();
+//        repaint();
+//    }
 
 //    public void applyZoom() {
 //        if (zoomFactor < 0.1) {

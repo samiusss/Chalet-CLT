@@ -5,12 +5,13 @@ import Utilitaires.Pouces;
 import Utilitaires.pointPouces;
 import domain.*;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 
-public class SurplombDrawer
+public class SurplombDrawer extends JFrame
 {
     private Controleur controleur;
 
@@ -18,6 +19,8 @@ public class SurplombDrawer
 
     private Accessoires accessoires;
     private Dimension initialDimension;
+
+    private double zoomFactor;
 
 
     public Mur facade ; // mur facade deja codé en bas
@@ -34,6 +37,8 @@ public class SurplombDrawer
         this.arriere = controleur.arriere; // mur facade deja codé en bas
         this.droite = controleur.droite; // mur facade deja codé en bas
         this.gauche = controleur.gauche; // mur facade deja codé en bas
+        this.zoomFactor = controleur.getZoom();
+        System.out.println(zoomFactor);
 
 
     }
@@ -46,8 +51,8 @@ public class SurplombDrawer
 
     private void drawSurplomb(Graphics g)
     {
-
-        double zoomFactor = controleur.getZoom();
+        super.paint(g);
+        //this.zoomFactor = controleur.getZoom();
         double width = initialDimension.getWidth() ;
         double height = initialDimension.getHeight();
 
@@ -117,13 +122,14 @@ public class SurplombDrawer
         double positionX = width/2 - pointSupDroita.getX()/2 ;
         double positionY = height/2 - pointSupDroita.getY()/2;
 
+
         int x1f = (int) (pointInfDroitf.getX() * zoomFactor +positionX);
         int y1f = (int) (pointInfDroitf.getY()* zoomFactor+positionY);
         int x1r1f = (int) (rainureDroite1.getX()* zoomFactor+positionX);
         int y1r1f = (int) (rainureDroite1.getY()* zoomFactor+positionY);
         int x1r2f = (int) (rainureDroite2.getX()* zoomFactor+positionX);
         int y1r2f = (int) (rainureDroite2.getY()* zoomFactor+positionY);
-        //
+        System.out.println(zoomFactor);
         int x2f = (int) (pointSupDroitf.getX()* zoomFactor+positionX);
         int y2f = (int) (pointSupDroitf.getY()* zoomFactor+positionY);
         //

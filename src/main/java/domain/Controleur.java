@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Controleur {
     private ChaletDTO chalet;
-    private float zoom;
+    private double zoom;
     private float offset;
 
 
@@ -259,17 +259,22 @@ public class Controleur {
 
 
 
+
+
     public ChaletDTO getChalet() {
         return chalet;
     }
-    public float getZoom () {
-        return zoom;
+    public double getZoom () {
+        double leZoom = Chalet.getZoom();
+        return leZoom;
     }
 
-    public void setZoom(float zbi)
+    public void setZoom(double newZoom)
     {
-        this.zoom = zbi;
+        Chalet.setZoom(newZoom);
     }
+
+
 
     public float getOffset() {
         return offset;
