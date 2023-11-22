@@ -5,28 +5,58 @@ import java.io.PrintWriter;
 import java.util.List;
 
 public class STLWriter {
-    public static void writeSTLFile(List<Triangle> triangles, String fileName) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
-            writer.println("solid ASCII_STL");
 
-            for (Triangle triangle : triangles) {
-                writer.println("  facet normal 0 0 0");
-                writer.println("    outer loop");
-                writeVertex(writer, triangle.vertex1);
-                writeVertex(writer, triangle.vertex2);
-                writeVertex(writer, triangle.vertex3);
-                writer.println("    endloop");
-                writer.println("  endfacet");
+        public static void main(String[] args) {
+
+        }
+
+    // Méthode pour le traitement automatique des vertices
+    private static String processVertex(float originalValue) {
+        String nombreAvecVirgule = String.valueOf(originalValue);
+        String nombreAvecPoint = nombreAvecVirgule.replace(",", ".");
+        return nombreAvecPoint;
+    }
+
+        public static void generateSTL(List<Triangle> triangles, String fileName) {
+            try (FileWriter fileWriter = new FileWriter(new File(fileName))) {
+                // Écrire l'en-tête du fichier STL
+                fileWriter.write("solid generated\n");
+
+                // Écrire les triangles
+                for (Triangle triangle : triangles) {
+                    fileWriter.write("  facet normal 0 0 1\n");
+                    fileWriter.write("    outer loop\n");
+
+                    //TRAITEMENT1
+                    String nombreAvecVirgule = String.valueOf(triangle.vertex1[0]);   // Remplacer la virgule par un point
+                    String nombreAvecPoint = nombreAvecVirgule.replace(",", ".");  // Convertir la chaîne résultante en float
+                    float vertex1 = Float.parseFloat(nombreAvecPoint);
+
+
+                    fileWriter.write(String.format("vertex %f %f %f\n", vertex1, triangle.vertex1[1], triangle.vertex1[2]));
+                    fileWriter.write(String.format("vertex %f %f %f\n", triangle.vertex2[0], triangle.vertex2[1], triangle.vertex2[2]));
+                    fileWriter.write(String.format("vertex %f %f %f\n", triangle.vertex3[0], triangle.vertex3[1], triangle.vertex3[2]));
+
+
+                    fileWriter.write("    endloop\n");
+                    fileWriter.write("  endfacet\n");
+                }
+
+                // Écrire le pied de page du fichier STL
+                fileWriter.write("endsolid generated\n");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
-            writer.println("endsolid");
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Fichier STL généré avec succès : " + fileName);
         }
+
+
+
+
+
+
+
+
     }
 
-    // TODO: a revoir cette partie, car il faut definir les data structure avant
-    private static void writeVertex(PrintWriter writer, Point3D vertex) {
-        writer.printf("      vertex %f %f %f%n", vertex.getLongueurMur(), vertex.getEpaisseurMur(), vertex.getHauteurMur());
-    }
-}
