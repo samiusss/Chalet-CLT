@@ -212,7 +212,6 @@ public class FacadeDrawer {
         System.out.println(x4fc+""+ y4fc + "(FacadeDrawer) En Haut a Droite"); */
 
 
-
         // Dessiner le polygone pour le mur facade de coté (fc)
         g.fillPolygon(xPointsFacadeCote, yPointsFacadeCote, 4);
     }

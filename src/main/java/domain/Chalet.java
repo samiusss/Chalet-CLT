@@ -544,7 +544,7 @@ public class Chalet {
         for (Fenetre fenetre : listeFenetre) {
 
             Point mousePointFenetre = fenetre.getPoint();
-            Pouces ValidationTroisPouces = new Pouces(30,0,1);
+            Pouces ValidationTroisPouces = new Pouces(3,0,1);
 
             //Largeur
             Pouces largeurListe = fenetre.getLargeur();
