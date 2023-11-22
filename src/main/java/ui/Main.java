@@ -2,6 +2,8 @@ package ui;
 import Utilitaires.Point3D;
 import Utilitaires.STLWriter;
 import Utilitaires.Triangle;
+
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,10 +16,18 @@ public class Main {
     public static void main(String[] args) {
 
         // Spécifiez le nom du fichier STL de sortie
-        String fileName = "chemin/vers/votre/repertoire/fichier.stl";
+        //String fileName = "chemin/vers/votre/repertoire/fichier.stl";
 
         // Créez un objet Path représentant le chemin du répertoire
-        Path directory = Paths.get("chemin/vers/votre/repertoire");
+        Path directory = Paths.get("C:\\STL");
+
+        // Spécifiez le chemin complet du répertoire et le nom du fichier
+        String directoryPath = "C:\\STL";
+        String fileName = "fichier.stl";
+
+        // Concaténez le chemin du répertoire et le nom du fichier pour obtenir le chemin complet
+        String filePath = directoryPath + File.separator + fileName;
+
 
         // Vérifiez si le répertoire existe, sinon, créez-le
         if (!Files.exists(directory)) {
@@ -48,7 +58,7 @@ public class Main {
         String stlFileName = "output.stl";
 
         // Générer le fichier STL
-        STLWriter.generateSTL(listeTriangles, fileName);
+        STLWriter.generateSTL(listeTriangles, filePath);
 
 
         /*List<Triangle> triangles = new ArrayList<>();
