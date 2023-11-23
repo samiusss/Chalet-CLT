@@ -18,8 +18,10 @@ public class GaucheDrawer
     public static Chalet chalet;
     private Accessoires accessoires;
     private Dimension initialDimension;
+    private double zoomFactor;
 
     public Mur gauche ; // mur arriere deja codé en bas
+
 
     public GaucheDrawer(Controleur controleur, Dimension initialDimension){
         this.controleur = controleur;
@@ -27,6 +29,7 @@ public class GaucheDrawer
 
         Chalet chalet = controleur.getChaletProduction();
         this.gauche = controleur.gauche; // mur facade deja codé en bas
+        this.zoomFactor = controleur.getZoom();
     }
 
     public void draw(Graphics g)
@@ -221,29 +224,29 @@ public class GaucheDrawer
         double positionX = width/2 - pointInfDroitgc.getX()/2;
         double positionY = height/2 - pointInfDroitgc.getY()/2;
 
-        int x1gc = (int) (pointInfGauchegc.getX() + positionX);
-        int y1gc = (int) (pointInfGauchegc.getY() + positionY);
+        int x1gc = (int) (pointInfGauchegc.getX()* zoomFactor + positionX);
+        int y1gc = (int) (pointInfGauchegc.getY()* zoomFactor + positionY);
 
-        int x2gc = (int) (pointInfDroitgc.getX() + positionX);
-        int y2gc = (int) (pointInfDroitgc.getY() + positionY);
+        int x2gc = (int) (pointInfDroitgc.getX()* zoomFactor + positionX);
+        int y2gc = (int) (pointInfDroitgc.getY()* zoomFactor + positionY);
 
-        int x3gc = (int) (pointSupGauchegc.getX() + positionX);
-        int y3gc = (int) (pointSupGauchegc.getY() + positionY);
+        int x3gc = (int) (pointSupGauchegc.getX()* zoomFactor + positionX);
+        int y3gc = (int) (pointSupGauchegc.getY()* zoomFactor + positionY);
 
-        int x4gc = (int) (pointSupDroitgc.getX() + positionX);
-        int y4gc = (int) (pointSupDroitgc.getY() + positionY);
+        int x4gc = (int) (pointSupDroitgc.getX()* zoomFactor + positionX);
+        int y4gc = (int) (pointSupDroitgc.getY()* zoomFactor + positionY);
         /////////////////////////////////
-        int x1Cadre = (int) (pointInfGaucheCadre.getX() + positionX);
-        int y1Cadre = (int) (pointInfGaucheCadre.getY() + positionY);
+        int x1Cadre = (int) (pointInfGaucheCadre.getX()* zoomFactor + positionX);
+        int y1Cadre = (int) (pointInfGaucheCadre.getY()* zoomFactor + positionY);
 
-        int x2Cadre = (int) (pointSupGaucheCadre.getX() + positionX);
-        int y2Cadre = (int) (pointSupGaucheCadre.getY() + positionY);
+        int x2Cadre = (int) (pointSupGaucheCadre.getX()* zoomFactor + positionX);
+        int y2Cadre = (int) (pointSupGaucheCadre.getY()* zoomFactor + positionY);
 
-        int x3Cadre = (int) (pointSupDroitCadre.getX() + positionX);
-        int y3Cadre = (int) (pointSupDroitCadre.getY() + positionY);
+        int x3Cadre = (int) (pointSupDroitCadre.getX()* zoomFactor + positionX);
+        int y3Cadre = (int) (pointSupDroitCadre.getY()* zoomFactor + positionY);
 
-        int x4Cadre = (int) (pointInfDroitCadre.getX() + positionX);
-        int y4Cadre = (int) (pointInfDroitCadre.getY() + positionY);
+        int x4Cadre = (int) (pointInfDroitCadre.getX()* zoomFactor + positionX);
+        int y4Cadre = (int) (pointInfDroitCadre.getY()* zoomFactor + positionY);
 
         int[] xPointsCadre = {x1Cadre, x2Cadre, x3Cadre, x4Cadre};
         int[] yPointsCadre = {y1Cadre, y2Cadre, y3Cadre, y4Cadre};

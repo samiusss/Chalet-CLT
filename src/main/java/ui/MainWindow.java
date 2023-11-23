@@ -127,6 +127,9 @@ public class MainWindow extends javax.swing.JFrame {
     private JTextField largeurchaletMN;
     private JTextField epaisseurchaletMN;
     private JTextField hauteurchaletMN;
+    private JButton Brut;
+    private JButton ExporterFinit;
+    private JButton ExporterRetrait;
 
     private Controleur.AffichageVue selectedVue;
 
@@ -345,7 +348,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                 if (notches < 0) {
                     zoomFactor = Chalet.getZoom();
-                    zoomFactor -= 0.05;
+                    zoomFactor -= 0.01;
                     if (zoomFactor < 0)
                     {
                         zoomFactor = 0;
@@ -360,7 +363,6 @@ public class MainWindow extends javax.swing.JFrame {
                     zoomFactor = controleur.getZoom();
                     zoomFactor += 0.01;
                     controleur.setZoom(zoomFactor);
-                    System.out.println(Chalet.getZoom());
 //                    DrawingPanel.revalidate();
                     DrawingPanel.repaint();
                 }
@@ -451,7 +453,7 @@ public class MainWindow extends javax.swing.JFrame {
             //HauteurFenetre
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Hauteur
+                //Hauteurr
                 String inputText = AccessoirePanelLargeurTextField.getText();
                 //double nouvelleLongueurDouble = imperialToDoubleUniversel(inputText);
                 //Pouces nouvelleLongueur = convertirDoubleEnPouces(nouvelleLongueurDouble);

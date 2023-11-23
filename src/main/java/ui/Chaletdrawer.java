@@ -22,6 +22,7 @@ public class Chaletdrawer {
     public Mur droite; // mur droite deja codé en bas
     public static Controleur.AffichageVue VueAccessoire ;
 
+
     public Chaletdrawer(Controleur controleur ,Dimension initialDimension){
         this.controleur = controleur;
         this.initialDimension = initialDimension;

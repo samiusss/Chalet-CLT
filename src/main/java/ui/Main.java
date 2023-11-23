@@ -30,7 +30,9 @@ public class Main {
         String fileName = "fichier.stl";
 
         // Concaténez le chemin du répertoire et le nom du fichier pour obtenir le chemin complet
-        String filePath = directoryPath + File.separator + fileName;
+        String filePath = directoryPath + File.separator + "MurFacade" + fileName;
+        String filePathDroite = directoryPath + File.separator + "MurDroite" + fileName;
+        String filePathChalet = directoryPath + File.separator + "Chalet" + fileName;
 
 
         // Vérifiez si le répertoire existe, sinon, créez-le
@@ -46,7 +48,8 @@ public class Main {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriter.ExporterPanneauxBrut(filePath);
+        //STLWriter.ExporterPanneauxBrut(filePath);
+        STLWriter.ExporterPanneauxRetrait(filePath,filePathDroite,filePathChalet);
 
 
 
