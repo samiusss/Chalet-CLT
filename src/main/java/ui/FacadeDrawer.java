@@ -11,6 +11,7 @@ import java.util.List;
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 import static domain.Chalet.hauteurMurs;
+import static domain.Chalet.zoom;
 
 public class FacadeDrawer {
 
@@ -125,7 +126,12 @@ public class FacadeDrawer {
             if (porteActuel != null) {
 
                 Point mousePoint = porte.mousePoint;
-                int lexdebase = (int) (mousePoint.x * zoomFactor);
+                double width = initialDimension.getWidth();
+                System.out.print(width / 2);
+                int leX = mousePoint.x;
+                double positionX = (width / 2 - (mousePoint.x * zoomFactor) );
+
+
 
                 Pouces largeur = porte.getLargeur();
                 Pouces hauteur = porte.getHauteur();
@@ -133,18 +139,18 @@ public class FacadeDrawer {
                 int largeurPorteInt = (int) (convertirPoucesEnInt(largeur) * zoomFactor);
                 int hauteurPorteInt = (int) (convertirPoucesEnInt(hauteur) * zoomFactor);
 
-                double height = initialDimension.getHeight();
-                PointDouble pointInfDroitac = facade.getSommetsMur().get(6) ;
+                double height = initialDimension.getHeight() ;
+
+
+                PointDouble pointInfDroitac = facade.getSommetsMur().get(6);
 
                 PointDouble pointInfGaucheac = facade.getSommetsMur().get(7);
-                double positionY = ((height/2 * zoomFactor) - (pointInfDroitac.getY()/2 * zoomFactor));
 
-                int y1ac = (int) ((((pointInfGaucheac.getY() + positionY))  - hauteurPorteInt  + hauteurMurs) * zoomFactor);
-                System.out.println(y1ac);
-                System.out.println(largeurPorteInt);
-                System.out.println(hauteurPorteInt);
-                System.out.println(lexdebase);
-                g.fillRect(lexdebase, y1ac, largeurPorteInt, hauteurPorteInt);
+                double positionY = (height / 2 - (pointInfDroitac.getY()/2 ) ) ;
+
+                int y1ac = (int) (((((pointInfGaucheac.getY() * zoomFactor + positionY))  - hauteurPorteInt  + hauteurMurs* zoomFactor) ) );
+
+                g.fillRect(leX , y1ac, largeurPorteInt, hauteurPorteInt);
 
 
                 // Faut juste considérer le offset !!!!!!
@@ -205,7 +211,7 @@ public class FacadeDrawer {
         double positionY = height/2- pointInfDroitfc.getY()/2;
 
         int x1fc = (int) (pointInfGauchefc.getX() * zoomFactor + positionX);
-        int y1fc = (int) (pointInfGauchefc.getY() + positionY);
+        int y1fc = (int) (pointInfGauchefc.getY() * zoomFactor + positionY);
 
         int x2fc = (int) (pointInfDroitfc.getX() * zoomFactor + positionX);
         int y2fc = (int) (pointInfDroitfc.getY() * zoomFactor + positionY);
