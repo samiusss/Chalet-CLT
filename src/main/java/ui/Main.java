@@ -4,6 +4,7 @@ import Utilitaires.STLWriter;
 import Utilitaires.Triangle;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,9 +12,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 
 
@@ -45,6 +47,7 @@ public class Main {
         }
 
         STLWriter.ExporterPanneauxBrut(filePath);
+
 
 
         /* // Définir la géométrie de l'objet (triangles)

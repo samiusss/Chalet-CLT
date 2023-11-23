@@ -1,23 +1,31 @@
 package Utilitaires;
 import domain.Chalet;
-import domain.Controleur;
 
 import java.awt.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Arrays;
 
 public class STLWriter {
 
         public static void main(String[] args) {
 
         }
+
+
+    private static double[] calculateNormal(double[] v1, double[] v2, double[] v3) {
+        double[] normal = new double[3];
+        double[] vector1 = {v2[0] - v1[0], v2[1] - v1[1], v2[2] - v1[2]};
+        double[] vector2 = {v3[0] - v1[0], v3[1] - v1[1], v3[2] - v1[2]};
+        normal[0] = vector1[1] * vector2[2] - vector1[2] * vector2[1];
+        normal[1] = vector1[2] * vector2[0] - vector1[0] * vector2[2];
+        normal[2] = vector1[0] * vector2[1] - vector1[1] * vector2[0];
+        return normal;
+    }
 
     // Méthode pour le traitement automatique des vertices
     private static String processVertex(float originalValue) {
@@ -29,6 +37,79 @@ public class STLWriter {
         return nombreAvecPoint;
     }
 
+    public static List<Triangle> generateRectangularPrism(float length, float width, float height) {
+        List<Triangle> triangles = new ArrayList<>();
+
+        float[] v0 = {0.0f, 0.0f, 0.0f};
+        float[] v1 = {length, 0.0f, 0.0f};
+        float[] v2 = {length, width, 0.0f};
+        float[] v3 = {0.0f, width, 0.0f};
+        float[] v4 = {0.0f, 0.0f, height};
+        float[] v5 = {length, 0.0f, height};
+        float[] v6 = {length, width, height};
+        float[] v7 = {0.0f, width, height};
+
+        // Front face
+        triangles.add(new Triangle(v0, v1, v2));
+        triangles.add(new Triangle(v0, v2, v3));
+
+        // Back face
+        triangles.add(new Triangle(v4, v6, v5));
+        triangles.add(new Triangle(v4, v7, v6));
+
+        // Left face
+        triangles.add(new Triangle(v0, v4, v3));
+        triangles.add(new Triangle(v4, v7, v3));
+
+        // Right face
+        triangles.add(new Triangle(v1, v5, v2));
+        triangles.add(new Triangle(v2, v5, v6));
+
+        // Top face
+        triangles.add(new Triangle(v3, v7, v2));
+        triangles.add(new Triangle(v2, v7, v6));
+
+        // Bottom face
+        triangles.add(new Triangle(v0, v1, v5));
+        triangles.add(new Triangle(v0, v5, v4));
+
+        return triangles;
+    }
+
+    public static List<Triangle> generateRectangularPrism2(List<Float> vertices, float thickness) {
+        List<Triangle> triangles = new ArrayList<>();
+
+        // Assuming vertices are provided in the order (x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4)
+        float[] bottomLeft = {vertices.get(0), vertices.get(1), vertices.get(2)};
+        float[] bottomRight = {vertices.get(3), vertices.get(4), vertices.get(5)};
+        float[] topRight = {vertices.get(6), vertices.get(7), vertices.get(8)};
+        float[] topLeft = {vertices.get(9), vertices.get(10), vertices.get(11)};
+
+        // Bottom face
+        triangles.add(new Triangle(bottomLeft, bottomRight, topRight));
+        triangles.add(new Triangle(bottomLeft, topRight, topLeft));
+
+        // Top face
+        float[] newTopBottomLeft = {bottomLeft[0], bottomLeft[1], bottomLeft[2] + thickness};
+        float[] newTopBottomRight = {bottomRight[0], bottomRight[1], bottomRight[2] + thickness};
+        float[] newTopTopRight = {topRight[0], topRight[1], topRight[2] + thickness};
+        float[] newTopTopLeft = {topLeft[0], topLeft[1], topLeft[2] + thickness};
+
+        triangles.add(new Triangle(newTopBottomRight, newTopBottomLeft, newTopTopRight));
+        triangles.add(new Triangle(newTopTopLeft, newTopTopRight, newTopBottomLeft));
+
+        // Side faces
+        triangles.add(new Triangle(bottomLeft, bottomRight, newTopBottomRight));
+        triangles.add(new Triangle(bottomLeft, newTopBottomRight, newTopBottomLeft));
+
+        triangles.add(new Triangle(newTopTopRight, newTopTopLeft, topLeft));
+        triangles.add(new Triangle(newTopTopRight, topLeft, newTopBottomLeft));
+
+        triangles.add(new Triangle(newTopTopLeft, newTopTopRight, newTopBottomRight));
+        triangles.add(new Triangle(newTopTopLeft, newTopBottomRight, newTopBottomLeft));
+
+        return triangles;
+    }
 
     public static float[] calculerNormale(float[] pointA, float[] pointB, float[] pointC) {
         // Calculez les vecteurs AB et AC
@@ -147,11 +228,11 @@ public class STLWriter {
 
                     float[] normal = calculerNormale(triangle.vertex1, triangle.vertex2,triangle.vertex3);
                     // Remplacement pour le vertex 1
-                    String normalA = String.valueOf(normal[0]);
+                    String normalA = processVertex(normal[0]);
 
-                    String normalB = String.valueOf(normal[1]);
+                    String normalB = processVertex(normal[1]);
 
-                    String normalC = String.valueOf(normal[2]);
+                    String normalC = processVertex(normal[2]);
 
                     // Remplacement pour le vertex 1
                     String vertex1a = processVertex(triangle.vertex1[0]);
@@ -174,9 +255,9 @@ public class STLWriter {
                     String vertex3b = processVertex(triangle.vertex3[1]);
 
                     String vertex3c = processVertex(triangle.vertex3[2]);
+                    //+normalA+" "+normalB+" "+ normalC+ System.getProperty("line.separator")
 
-
-                    fileWriter.write("  facet normal "+normalA+" "+normalB+" "+ normalC+ System.getProperty("line.separator"));
+                    fileWriter.write("  facet normal 0.0 0.0 0.0\n");
                     fileWriter.write("    outer loop\n");
 
 
@@ -204,6 +285,7 @@ public class STLWriter {
             //determinerSommetsAccessoires fait le meme traitement dont on a besoin d'ou son utlisation ici.
             List<Point> listPointPanneaux = Chalet.determinerSommetsAccessoires(point,100, 100);
 
+
             Point SupGauche = listPointPanneaux.get(0);
             Point SupDroit = listPointPanneaux.get(1);
             Point InfGauche = listPointPanneaux.get(2);
@@ -211,11 +293,43 @@ public class STLWriter {
 
             double epaisseur = Chalet.epaisseurChalet;
 
+            float[] vertex1 = {(float) SupGauche.getX(), (float) SupGauche.getY(), (float) epaisseur};
+            float[] vertex2 = {(float) SupDroit.getX(), (float) SupDroit.getY(), (float) epaisseur};
+            float[] vertex3 = {(float) InfGauche.getX(), (float) InfGauche.getY(), (float) epaisseur};
+            float[] vertex4 = {(float) InfDroit.getX(), (float) InfDroit.getY(), (float) epaisseur};
+
+            List<Float> verticesList = new LinkedList<>();
+            verticesList.add((float) SupGauche.getX());
+            verticesList.add((float) SupGauche.getY());
+            verticesList.add( (float) epaisseur);
+
+            verticesList.add((float) SupDroit.getX());
+            verticesList.add((float) SupDroit.getY());
+            verticesList.add( (float) epaisseur);
+
+            verticesList.add((float) InfGauche.getX());
+            verticesList.add((float) InfGauche.getY());
+            verticesList.add( (float) epaisseur);
+
+            verticesList.add((float) InfDroit.getX());
+            verticesList.add((float) InfDroit.getY());
+            verticesList.add( (float) epaisseur);
+
+            List<Triangle> listeTriangles = generateRectangularPrism(100,100, (float) epaisseur);
+                generateSTL(listeTriangles,fileName);
+
+
+            /*
+
             Point[] pointPrisme = genererPrisme(SupGauche,SupDroit,InfGauche,InfDroit,epaisseur);
 
 
             //Liste triangle Base Avant
             List<Triangle> listeTrianglesBaseAvant = decomposerRectangleTriangle(SupGauche,SupDroit,InfGauche,InfDroit,epaisseur) ;
+
+            // Base Arrière
+            List<Triangle> listeTrianglesBaseArriere = decomposerRectangleTriangle(
+                    pointPrisme[0], pointPrisme[1], pointPrisme[5], pointPrisme[4], epaisseur);
 
             // Base Supérieure
             List<Triangle> listeTrianglesBaseSuperieure = decomposerRectangleTriangle(
@@ -225,29 +339,25 @@ public class STLWriter {
             List<Triangle> listeTrianglesBaseInferieure = decomposerRectangleTriangle(
                     pointPrisme[0], pointPrisme[1], pointPrisme[2], pointPrisme[3], epaisseur);
 
-            // Base Arrière
-            List<Triangle> listeTrianglesBaseArriere = decomposerRectangleTriangle(
-                    pointPrisme[0], pointPrisme[1], pointPrisme[5], pointPrisme[4], epaisseur);
 
             // Base Gauche (vue de face)
             List<Triangle> listeTrianglesBaseGauche = decomposerRectangleTriangle(
-                    pointPrisme[0], pointPrisme[4], pointPrisme[7], pointPrisme[3], epaisseur);
+                    pointPrisme[0], pointPrisme[4], pointPrisme[7], pointPrisme[3], (double) 0);
 
             // Base Droite (vue de face)
             List<Triangle> listeTrianglesBaseDroite = decomposerRectangleTriangle(
-                    pointPrisme[1], pointPrisme[5], pointPrisme[6], pointPrisme[2], epaisseur);
+                    pointPrisme[1], pointPrisme[5], pointPrisme[6], pointPrisme[2], (double) 0);
 
 
             List<Triangle> listeTriangles= new LinkedList<>();
             listeTriangles.addAll(listeTrianglesBaseAvant);
             listeTriangles.addAll(listeTrianglesBaseArriere);
-            listeTriangles.addAll(listeTrianglesBaseInferieure);
-            listeTriangles.addAll(listeTrianglesBaseSuperieure);
-            listeTriangles.addAll(listeTrianglesBaseGauche);
-            listeTriangles.addAll(listeTrianglesBaseAvant);
+            //listeTriangles.addAll(listeTrianglesBaseInferieure);
+            //listeTriangles.addAll(listeTrianglesBaseSuperieure);
+            //listeTriangles.addAll(listeTrianglesBaseGauche);
+            //listeTriangles.addAll(listeTrianglesBaseDroite);  */
 
 
-            generateSTL(listeTriangles,fileName);
 
 
             /* Base Supérieure:
