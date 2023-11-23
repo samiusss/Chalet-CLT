@@ -10,22 +10,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Arrays;
 
+
 public class STLWriter {
 
         public static void main(String[] args) {
 
         }
 
-
-    private static double[] calculateNormal(double[] v1, double[] v2, double[] v3) {
-        double[] normal = new double[3];
-        double[] vector1 = {v2[0] - v1[0], v2[1] - v1[1], v2[2] - v1[2]};
-        double[] vector2 = {v3[0] - v1[0], v3[1] - v1[1], v3[2] - v1[2]};
-        normal[0] = vector1[1] * vector2[2] - vector1[2] * vector2[1];
-        normal[1] = vector1[2] * vector2[0] - vector1[0] * vector2[2];
-        normal[2] = vector1[0] * vector2[1] - vector1[1] * vector2[0];
-        return normal;
-    }
 
     // Méthode pour le traitement automatique des vertices
     private static String processVertex(float originalValue) {
@@ -247,7 +238,7 @@ public class STLWriter {
 
                     String vertex2b = processVertex(triangle.vertex2[1]);
 
-                    String vertex2c = processVertex(triangle.vertex3[2]);
+                    String vertex2c = processVertex(triangle.vertex2[2]);
 
                     // Remplacement pour le vertex 3
                     String vertex3a = processVertex(triangle.vertex3[0]);
@@ -255,9 +246,9 @@ public class STLWriter {
                     String vertex3b = processVertex(triangle.vertex3[1]);
 
                     String vertex3c = processVertex(triangle.vertex3[2]);
-                    //+normalA+" "+normalB+" "+ normalC+ System.getProperty("line.separator")
 
-                    fileWriter.write("  facet normal 0.0 0.0 0.0\n");
+                    fileWriter.write("  facet normal " +normalA+" "+normalB+" "+ normalC+ System.getProperty("line.separator")
+                    );
                     fileWriter.write("    outer loop\n");
 
 
