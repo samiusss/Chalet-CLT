@@ -20,6 +20,7 @@ public class Chalet {
     public static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
     public static String orientationToit;
 
+    public static double zoom;
     public Chalet(double largeurChalet, double longueurChalet,
                   double epaisseurChalet, double angleToit,
                   double hauteurMurs, List<Mur> listeMurs, String orientationToit) {
@@ -30,6 +31,7 @@ public class Chalet {
         this.angleToit = angleToit;
         this.listeMurs = listeMurs;
         this.orientationToit = orientationToit;
+        this.zoom = 1;
     }
 
 
@@ -1315,5 +1317,14 @@ public class Chalet {
 
     public void setOrientationToit(String orientationToit) {
         this.orientationToit = orientationToit;
+    }
+
+    public static double getZoom() {
+        return zoom;
+    }
+
+    public static void setZoom(double leZoom)
+    {
+        zoom = leZoom;
     }
 }

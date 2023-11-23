@@ -138,6 +138,7 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
 
 
+
         //Gestion de l'ajout d'accessoires
         PannelDroitAjoutPorteButton.addActionListener(new ActionListener() {
             @Override
@@ -209,8 +210,10 @@ public class MainWindow extends javax.swing.JFrame {
                     isAddingFenetre = false;
 
                 }
+
             }
         });
+
 
         //Gestion des vues
         VueComboBox.addItemListener(new ItemListener() {
@@ -299,6 +302,8 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+
+
         ToitPaneltabbedPaneGauchePanelAngleTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -330,6 +335,35 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = ToitPaneltabbedPaneDerrierePanelAngleTextField.getText();
+            }
+        });
+
+        PannelAffichage.addMouseWheelListener(new MouseWheelListener() {
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                int notches = e.getWheelRotation();
+
+                if (notches < 0) {
+                    zoomFactor = Chalet.getZoom();
+                    zoomFactor -= 0.05;
+                    if (zoomFactor < 0)
+                    {
+                        zoomFactor = 0;
+                    }
+
+                    controleur.setZoom(zoomFactor);
+//                    DrawingPanel.revalidate();
+                    DrawingPanel.repaint();
+
+
+                } if (notches > 0) {
+                    zoomFactor = controleur.getZoom();
+                    zoomFactor += 0.01;
+                    controleur.setZoom(zoomFactor);
+                    System.out.println(Chalet.getZoom());
+//                    DrawingPanel.revalidate();
+                    DrawingPanel.repaint();
+                }
             }
         });
 
@@ -653,15 +687,17 @@ public class MainWindow extends javax.swing.JFrame {
         longueurchaletMN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 String inputText = longueurchaletMN.getText();
                 //VÉRIFIER SI IL A APPUYER
                 double longueurChaletMN= imperialToDoubleUniversel(inputText);
                 Controleur.setLongueurChalet(longueurChaletMN);
                 System.out.println(longueurChaletMN+" entered by you..");
-                DrawingPanel.repaint();
-
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
             }
         });
+
         largeurchaletMN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -669,8 +705,10 @@ public class MainWindow extends javax.swing.JFrame {
 
                 double largeurChaletMN= imperialToDoubleUniversel(inputText);
                 Controleur.setLargeurChalet(largeurChaletMN);
+                System.out.println(largeurChaletMN);
                 System.out.println(largeurChaletMN+" entered by you..");
-                DrawingPanel.repaint();
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
 
             }
         });
@@ -682,7 +720,8 @@ public class MainWindow extends javax.swing.JFrame {
                 double hauteurMursMN= imperialToDoubleUniversel(inputText);
                 Controleur.setHauteurMurs(hauteurMursMN);
                 System.out.println(hauteurMursMN+" entered by you..");
-                DrawingPanel.repaint();
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
 
             }
         });
@@ -694,7 +733,8 @@ public class MainWindow extends javax.swing.JFrame {
                 double epaisseurChaletMN= imperialToDoubleUniversel(inputText);
                 Controleur.setEpaisseurChalet(epaisseurChaletMN);
                 System.out.println(epaisseurChaletMN+" entered by you..");
-                DrawingPanel.repaint();
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
 
             }
         });
@@ -723,7 +763,9 @@ public class MainWindow extends javax.swing.JFrame {
                 double longueurChaletMN= imperialToDoubleUniversel(inputText);
                 Controleur.setLongueurChalet(longueurChaletMN);
                 System.out.println(longueurChaletMN+" entered by you..");
-                DrawingPanel.repaint();
+
+                revalidate();
+                repaint();
 
             }
         });
@@ -735,6 +777,7 @@ public class MainWindow extends javax.swing.JFrame {
                 double longueurChaletMN= imperialToDoubleUniversel(inputText);
                 Controleur.setLongueurChalet(longueurChaletMN);
                 System.out.println(longueurChaletMN+" entered by you..");
+                DrawingPanel.revalidate();
                 DrawingPanel.repaint();
             }
         });
@@ -746,6 +789,7 @@ public class MainWindow extends javax.swing.JFrame {
                 double largeurChaletMN= imperialToDoubleUniversel(inputText);
                 Controleur.setLargeurChalet(largeurChaletMN);
                 System.out.println(largeurChaletMN+" entered by you..");
+                DrawingPanel.revalidate();
                 DrawingPanel.repaint();
             }
         });
@@ -757,6 +801,7 @@ public class MainWindow extends javax.swing.JFrame {
                 double largeurChaletMN= imperialToDoubleUniversel(inputText);
                 Controleur.setLargeurChalet(largeurChaletMN);
                 System.out.println(largeurChaletMN+" entered by you..");
+                DrawingPanel.revalidate();
                 DrawingPanel.repaint();
             }
         });
@@ -770,6 +815,7 @@ public class MainWindow extends javax.swing.JFrame {
                 double hauteurMursMN= imperialToDoubleUniversel(inputText);
                 Controleur.setHauteurMurs(hauteurMursMN);
                 System.out.println(hauteurMursMN+" entered by you..");
+                DrawingPanel.revalidate();
                 DrawingPanel.repaint();
 
             }
@@ -782,6 +828,7 @@ public class MainWindow extends javax.swing.JFrame {
                 double hauteurMursMN= imperialToDoubleUniversel(inputText);
                 Controleur.setHauteurMurs(hauteurMursMN);
                 System.out.println(hauteurMursMN+" entered by you..");
+                DrawingPanel.revalidate();
                 DrawingPanel.repaint();
             }
         });
@@ -793,6 +840,7 @@ public class MainWindow extends javax.swing.JFrame {
                 double hauteurMursMN= imperialToDoubleUniversel(inputText);
                 Controleur.setHauteurMurs(hauteurMursMN);
                 System.out.println(hauteurMursMN+" entered by you..");
+                DrawingPanel.revalidate();
                 DrawingPanel.repaint();
             }
         });
@@ -804,9 +852,13 @@ public class MainWindow extends javax.swing.JFrame {
                 double hauteurMursMN= imperialToDoubleUniversel(inputText);
                 Controleur.setHauteurMurs(hauteurMursMN);
                 System.out.println(hauteurMursMN+" entered by you..");
+                DrawingPanel.revalidate();
                 DrawingPanel.repaint();
             }
         });
+
+
+
 
 
 

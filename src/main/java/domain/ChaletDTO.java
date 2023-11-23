@@ -10,6 +10,7 @@ public class ChaletDTO {
     public static double angleToit;
     public static List<Mur> listeMurs;
     public static String orientationToit;
+    public static double ZoomFactor;
 
     public ChaletDTO(Chalet bi){
         largeurChalet = bi.getLargeurChalet();
@@ -19,6 +20,17 @@ public class ChaletDTO {
         angleToit = bi.getAngleToit();
         listeMurs = bi.getListeMurs();
         orientationToit = bi.getOrientationToit();
+        ZoomFactor = bi.getZoom();
+    }
+
+    public double getZoomFactor() {
+        return this.ZoomFactor;
+    }
+
+    public void setZoom(double newZoom)
+    {
+        ZoomFactor = newZoom;
+
     }
 
 }
