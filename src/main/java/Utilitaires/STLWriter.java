@@ -8,7 +8,6 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Arrays;
 
 
 public class STLWriter {
@@ -16,6 +15,8 @@ public class STLWriter {
         public static void main(String[] args) {
 
         }
+
+
 
 
     // Méthode pour le traitement automatique des vertices
@@ -28,17 +29,71 @@ public class STLWriter {
         return nombreAvecPoint;
     }
 
-    public static List<Triangle> generateRectangularPrism(float length, float width, float height) {
+
+    public static List<float[]> determinerPointsPrismes(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
+            /*Pour construire le panneau en 3D , on doit construire un prisme ,
+            le prisme est constitue de 6 faces qui s'emboitent donc partangent
+            les meme points en fonction d'une certaine épaisseur. Chacun de ces faces est constitue de deux triangles */
+
+        float[] v0 = {xSupGauche, ySupGauche, zSupGauche};           // PointSupGaucheFacade (Top Left Front)
+        float[] v1 = {xSupGauche + length, ySupGauche, zSupGauche};   // PointSupDroiteFacade (Top Right Front)
+        float[] v2 = {xSupGauche + length, ySupGauche + width, zSupGauche};   // PointSupDroiteArriere (Top Right Back)
+        float[] v3 = {xSupGauche, ySupGauche + width, zSupGauche};    // PointSupGaucheArriere (Top Left Back)
+        float[] v4 = {xSupGauche, ySupGauche, zSupGauche + height};   // PointInfGaucheFacade (Bottom Left Front)
+        float[] v5 = {xSupGauche + length, ySupGauche, zSupGauche + height};   // PointInfDroiteFacade (Bottom Right Front)
+        float[] v6 = {xSupGauche + length, ySupGauche + width, zSupGauche + height};   // PointInfDroiteArriere (Bottom Right Back)
+        float[] v7 = {xSupGauche, ySupGauche + width, zSupGauche + height};    // PointInfGaucheArriere (Bottom Left Back)
+
+        // Correspondance pour les autres bases :
+        // PointSupGaucheFacade correspond à PointInfGaucheFacade sur la base inférieure.
+        // PointSupDroiteFacade correspond à PointInfDroiteFacade sur la base inférieure.
+        // PointSupDroiteArriere correspond à PointInfDroiteArriere sur la base inférieure.
+        // PointSupGaucheArriere correspond à PointInfGaucheArriere sur la base inférieure.
+
+        // PointSupGaucheFacade correspond à PointSupDroiteFacade sur la base droite.
+        // PointSupDroiteFacade correspond à PointSupGaucheFacade sur la base gauche.
+        // PointSupDroiteArriere correspond à PointSupGaucheArriere sur la base gauche.
+        // PointSupGaucheArriere correspond à PointSupDroiteArriere sur la base droite.
+
+        // PointSupGaucheFacade correspond à PointSupGaucheArriere sur la base arrière.
+        // PointSupDroiteFacade correspond à PointSupDroiteArriere sur la base arrière.
+        // PointInfDroiteFacade correspond à PointInfDroiteArriere sur la base arrière.
+        // PointInfGaucheFacade correspond à PointInfGaucheArriere sur la base arrière.
+
+
+        List<float[]> listeVertex = new LinkedList<>();
+        listeVertex.add(v0);
+        listeVertex.add(v1);
+        listeVertex.add(v2);
+        listeVertex.add(v3);
+        listeVertex.add(v4);
+        listeVertex.add(v5);
+        listeVertex.add(v6);
+        listeVertex.add(v7);
+
+        return listeVertex;
+
+
+    }
+
+
+        public static List<Triangle> generateRectangularPrism(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
+            /*Pour construire le panneau en 3D , on doit construire un prisme ,
+            le prisme est constitue de 6 faces qui s'emboitent donc partangent
+            les meme points en fonction d'une certaine épaisseur. Chacun de ces faces est constitue de deux triangles */
         List<Triangle> triangles = new ArrayList<>();
 
-        float[] v0 = {0.0f, 0.0f, 0.0f};
-        float[] v1 = {length, 0.0f, 0.0f};
-        float[] v2 = {length, width, 0.0f};
-        float[] v3 = {0.0f, width, 0.0f};
-        float[] v4 = {0.0f, 0.0f, height};
-        float[] v5 = {length, 0.0f, height};
-        float[] v6 = {length, width, height};
-        float[] v7 = {0.0f, width, height};
+        List<float[]> listeVertex = determinerPointsPrismes(length,width,height,xSupGauche,ySupGauche,zSupGauche);
+
+            float[] v0 = listeVertex.get(0);
+            float[] v1 = listeVertex.get(1);
+            float[] v2 = listeVertex.get(2);
+            float[] v3 = listeVertex.get(3);
+            float[] v4 = listeVertex.get(4);
+            float[] v5 = listeVertex.get(5);
+            float[] v6 = listeVertex.get(6);
+            float[] v7 = listeVertex.get(7);
+
 
         // Front face
         triangles.add(new Triangle(v0, v1, v2));
@@ -51,6 +106,10 @@ public class STLWriter {
         // Left face
         triangles.add(new Triangle(v0, v4, v3));
         triangles.add(new Triangle(v4, v7, v3));
+        /*A   B
+          C
+               B
+          C    E  */
 
         // Right face
         triangles.add(new Triangle(v1, v5, v2));
@@ -67,40 +126,6 @@ public class STLWriter {
         return triangles;
     }
 
-    public static List<Triangle> generateRectangularPrism2(List<Float> vertices, float thickness) {
-        List<Triangle> triangles = new ArrayList<>();
-
-        // Assuming vertices are provided in the order (x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4)
-        float[] bottomLeft = {vertices.get(0), vertices.get(1), vertices.get(2)};
-        float[] bottomRight = {vertices.get(3), vertices.get(4), vertices.get(5)};
-        float[] topRight = {vertices.get(6), vertices.get(7), vertices.get(8)};
-        float[] topLeft = {vertices.get(9), vertices.get(10), vertices.get(11)};
-
-        // Bottom face
-        triangles.add(new Triangle(bottomLeft, bottomRight, topRight));
-        triangles.add(new Triangle(bottomLeft, topRight, topLeft));
-
-        // Top face
-        float[] newTopBottomLeft = {bottomLeft[0], bottomLeft[1], bottomLeft[2] + thickness};
-        float[] newTopBottomRight = {bottomRight[0], bottomRight[1], bottomRight[2] + thickness};
-        float[] newTopTopRight = {topRight[0], topRight[1], topRight[2] + thickness};
-        float[] newTopTopLeft = {topLeft[0], topLeft[1], topLeft[2] + thickness};
-
-        triangles.add(new Triangle(newTopBottomRight, newTopBottomLeft, newTopTopRight));
-        triangles.add(new Triangle(newTopTopLeft, newTopTopRight, newTopBottomLeft));
-
-        // Side faces
-        triangles.add(new Triangle(bottomLeft, bottomRight, newTopBottomRight));
-        triangles.add(new Triangle(bottomLeft, newTopBottomRight, newTopBottomLeft));
-
-        triangles.add(new Triangle(newTopTopRight, newTopTopLeft, topLeft));
-        triangles.add(new Triangle(newTopTopRight, topLeft, newTopBottomLeft));
-
-        triangles.add(new Triangle(newTopTopLeft, newTopTopRight, newTopBottomRight));
-        triangles.add(new Triangle(newTopTopLeft, newTopBottomRight, newTopBottomLeft));
-
-        return triangles;
-    }
 
     public static float[] calculerNormale(float[] pointA, float[] pointB, float[] pointC) {
         // Calculez les vecteurs AB et AC
@@ -186,6 +211,7 @@ public class STLWriter {
 
 
         public static List<Triangle> decomposerRectangleTriangle(Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit, Double EpaisseurChalet){
+            /* Un rectangle est composer de deux triangles */
 
             Double Epaisseur = 8.0;
 
@@ -276,119 +302,198 @@ public class STLWriter {
             //determinerSommetsAccessoires fait le meme traitement dont on a besoin d'ou son utlisation ici.
             List<Point> listPointPanneaux = Chalet.determinerSommetsAccessoires(point,100, 100);
 
-
             Point SupGauche = listPointPanneaux.get(0);
             Point SupDroit = listPointPanneaux.get(1);
             Point InfGauche = listPointPanneaux.get(2);
             Point InfDroit = listPointPanneaux.get(3);
 
-            double epaisseur = Chalet.epaisseurChalet;
+            double epaisseurChalet = Chalet.epaisseurChalet;
+            //double epaisseur = 15.0;
 
-            float[] vertex1 = {(float) SupGauche.getX(), (float) SupGauche.getY(), (float) epaisseur};
-            float[] vertex2 = {(float) SupDroit.getX(), (float) SupDroit.getY(), (float) epaisseur};
-            float[] vertex3 = {(float) InfGauche.getX(), (float) InfGauche.getY(), (float) epaisseur};
-            float[] vertex4 = {(float) InfDroit.getX(), (float) InfDroit.getY(), (float) epaisseur};
-
-            List<Float> verticesList = new LinkedList<>();
-            verticesList.add((float) SupGauche.getX());
-            verticesList.add((float) SupGauche.getY());
-            verticesList.add( (float) epaisseur);
-
-            verticesList.add((float) SupDroit.getX());
-            verticesList.add((float) SupDroit.getY());
-            verticesList.add( (float) epaisseur);
-
-            verticesList.add((float) InfGauche.getX());
-            verticesList.add((float) InfGauche.getY());
-            verticesList.add( (float) epaisseur);
-
-            verticesList.add((float) InfDroit.getX());
-            verticesList.add((float) InfDroit.getY());
-            verticesList.add( (float) epaisseur);
-
-            List<Triangle> listeTriangles = generateRectangularPrism(100,100, (float) epaisseur);
-                generateSTL(listeTriangles,fileName);
-
-
-            /*
-
-            Point[] pointPrisme = genererPrisme(SupGauche,SupDroit,InfGauche,InfDroit,epaisseur);
-
-
-            //Liste triangle Base Avant
-            List<Triangle> listeTrianglesBaseAvant = decomposerRectangleTriangle(SupGauche,SupDroit,InfGauche,InfDroit,epaisseur) ;
-
-            // Base Arrière
-            List<Triangle> listeTrianglesBaseArriere = decomposerRectangleTriangle(
-                    pointPrisme[0], pointPrisme[1], pointPrisme[5], pointPrisme[4], epaisseur);
-
-            // Base Supérieure
-            List<Triangle> listeTrianglesBaseSuperieure = decomposerRectangleTriangle(
-                    pointPrisme[4], pointPrisme[5], pointPrisme[6], pointPrisme[7], epaisseur);
-
-            // Base Inférieure
-            List<Triangle> listeTrianglesBaseInferieure = decomposerRectangleTriangle(
-                    pointPrisme[0], pointPrisme[1], pointPrisme[2], pointPrisme[3], epaisseur);
-
-
-            // Base Gauche (vue de face)
-            List<Triangle> listeTrianglesBaseGauche = decomposerRectangleTriangle(
-                    pointPrisme[0], pointPrisme[4], pointPrisme[7], pointPrisme[3], (double) 0);
-
-            // Base Droite (vue de face)
-            List<Triangle> listeTrianglesBaseDroite = decomposerRectangleTriangle(
-                    pointPrisme[1], pointPrisme[5], pointPrisme[6], pointPrisme[2], (double) 0);
-
-
-            List<Triangle> listeTriangles= new LinkedList<>();
-            listeTriangles.addAll(listeTrianglesBaseAvant);
-            listeTriangles.addAll(listeTrianglesBaseArriere);
-            //listeTriangles.addAll(listeTrianglesBaseInferieure);
-            //listeTriangles.addAll(listeTrianglesBaseSuperieure);
-            //listeTriangles.addAll(listeTrianglesBaseGauche);
-            //listeTriangles.addAll(listeTrianglesBaseDroite);  */
-
-
-
-
-            /* Base Supérieure:
-
-            Point 1 (Supérieur Gauche): pointsPrisme[4]
-            Point 2 (Supérieur Droit): pointsPrisme[5]
-            Point 3 (Inférieur Droit): pointsPrisme[6]
-            Point 4 (Inférieur Gauche): pointsPrisme[7]
-            Base Inférieure:
-
-            Point 1 (Supérieur Gauche): pointsPrisme[0]
-            Point 2 (Supérieur Droit): pointsPrisme[1]
-            Point 3 (Inférieur Droit): pointsPrisme[2]
-            Point 4 (Inférieur Gauche): pointsPrisme[3]
-            Base Gauche (vue de face):
-
-            Point 1 (Supérieur Gauche): pointsPrisme[0]
-            Point 2 (Supérieur Droit): pointsPrisme[4]
-            Point 3 (Inférieur Droit): pointsPrisme[7]
-            Point 4 (Inférieur Gauche): pointsPrisme[3]
-            Base Droite (vue de face):
-
-            Point 1 (Supérieur Gauche): pointsPrisme[1]
-            Point 2 (Supérieur Droit): pointsPrisme[5]
-            Point 3 (Inférieur Droit): pointsPrisme[6]
-            Point 4 (Inférieur Gauche): pointsPrisme[2]
-
-            Base Arrière (vue de face):
-
-            Point 1 (Supérieur Gauche): pointsPrisme[4]
-            Point 2 (Supérieur Droit): pointsPrisme[5]
-            Point 3 (Inférieur Droit): pointsPrisme[6]
-            Point 4 (Inférieur Gauche): pointsPrisme[7]
-
-            * */
-
-
-
+            List<Triangle> listeTriangles = generateRectangularPrism(100,(float) epaisseurChalet, 50,0,0,0);
+            generateSTL(listeTriangles,fileName);
 
         }
+
+
+    public static List<Triangle> ExporterPanneauxRetraitDroite(float[] SupGauche, float length, float width, float height){
+
+        /* MUR DROITE */
+        // Le point SupGauche du mur droite correspond au point superieur gauche de la base arriere du mur de facade v3
+
+        float lengthPrincipal = length - length/10;
+
+        double epaisseurChalet = Chalet.epaisseurChalet;
+        float thickness = (float) (epaisseurChalet);
+
+
+        // Generer le prisme de base
+        List<Triangle> listeTriangles = generateRectangularPrism(lengthPrincipal, width,height, SupGauche[0],SupGauche[1],SupGauche[2]);
+
+        // Determiner les points du prisme de base
+        List<float[]> listeVertex = determinerPointsPrismes(length,width,height,SupGauche[0],SupGauche[1],SupGauche[2]);
+
+        // Determiner les points de prismes qui seront d'une longueur determine et
+        // d'épaisseur correspondant a la moitie de l'épaisseur du prisme de base afin de construire les rainures gauches et droites
+        float[] v0 = listeVertex.get(0);
+        float[] v1 = listeVertex.get(1);
+        float[] v2 = listeVertex.get(2);
+        float[] v3 = listeVertex.get(3);
+        float[] v4 = listeVertex.get(4);
+        float[] v5 = listeVertex.get(5);
+        float[] v6 = listeVertex.get(6);
+        float[] v7 = listeVertex.get(7);
+
+
+        // v0 // PointSupGaucheFacade (Top Left Front)
+        // v1 // PointSupDroiteFacade (Top Right Front)
+        // v2 // PointSupDroiteArriere (Top Right Back)
+        // v3 // PointSupGaucheArriere (Top Left Back)
+        // v4 // PointInfGaucheFacade (Bottom Left Front)
+        // v5 // PointInfDroiteFacade (Bottom Right Front)
+        // v6 // PointInfDroiteArriere (Bottom Right Back)
+        // v7 // PointInfGaucheArriere (Bottom Left Back)
+
+        // Correspondance pour les autres bases :
+        // PointSupGaucheFacade correspond à PointInfGaucheFacade sur la base inférieure.
+        // PointSupDroiteFacade correspond à PointInfDroiteFacade sur la base inférieure.
+        // PointSupDroiteArriere correspond à PointInfDroiteArriere sur la base inférieure.
+        // PointSupGaucheArriere correspond à PointInfGaucheArriere sur la base inférieure.
+
+        // PointSupGaucheFacade correspond à PointSupDroiteFacade sur la base droite.
+        // PointSupDroiteFacade correspond à PointSupGaucheFacade sur la base gauche.
+        // PointSupDroiteArriere correspond à PointSupGaucheArriere sur la base gauche.
+        // PointSupGaucheArriere correspond à PointSupDroiteArriere sur la base droite.
+
+        // PointSupGaucheFacade correspond à PointSupGaucheArriere sur la base arrière.
+        // PointSupDroiteFacade correspond à PointSupDroiteArriere sur la base arrière.
+        // PointInfDroiteFacade correspond à PointInfDroiteArriere sur la base arrière.
+        // PointInfGaucheFacade correspond à PointInfGaucheArriere sur la base arrière.
+
+        // Dimensions du prisme secondaire
+        float lengthSecondaire = length/10;
+        float widthSecondaire = (float) (width / 2);
+        float heightSecondaire = height;
+
+        // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
+        float thicknessSecondaire = (float) (width / 2);
+
+
+        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire,thicknessSecondaire, heightSecondaire,SupGauche[0]-lengthSecondaire,SupGauche[1],SupGauche[2]);
+        listeTriangles.addAll(listeTrianglesGauche);
+
+        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire,thicknessSecondaire, heightSecondaire,v1[0] - lengthSecondaire ,SupGauche[1],SupGauche[2]);
+        listeTriangles.addAll(listeTrianglesDroite);
+
+        return listeTriangles;
+
+
+    }
+
+    public static void ExporterPanneauxRetrait(String fileName, String fileNameDroite, String fileNameChalet) {
+        Point point = new Point(0,0);
+        //determinerSommetsAccessoires fait le meme traitement dont on a besoin d'ou son utlisation ici.
+        List<Point> listPointPanneaux = Chalet.determinerSommetsAccessoires(point,100, 100);
+
+        Point SupGauche = listPointPanneaux.get(0);
+        Point SupDroit = listPointPanneaux.get(1);
+        Point InfGauche = listPointPanneaux.get(2);
+        Point InfDroit = listPointPanneaux.get(3);
+
+        double epaisseurChalet = Chalet.epaisseurChalet;
+        //double epaisseur = 15.0;
+
+        // Dimensions du prisme principal
+        float length = 100;
+        //On prend en compte les rainures qui correpondent a 1/10 de la longeur du prisme. Ainsi on
+        float lengthPrincipal = length - length/10;
+        float width = 25; // thickness
+        float height = 50;
+
+        // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
+        float thickness = (float) (epaisseurChalet);
+
+        // Coordonnées du coin supérieur gauche du prisme principal
+        float xSupGauche = 0f;
+        float ySupGauche = 0f;
+        float zSupGauche = 0f;
+
+        /* MUR FACADE */
+        // Generer le prisme de base
+        List<Triangle> listeTriangles = generateRectangularPrism(lengthPrincipal, thickness, 50,0,0,0);
+
+        // Determiner les points du prisme de base
+        List<float[]> listeVertex = determinerPointsPrismes(length,width,height,xSupGauche,ySupGauche,zSupGauche);
+
+        // Determiner les points de prismes qui seront d'une longueur determine et
+        // d'épaisseur correspondant a la moitie de l'épaisseur du prisme de base afin de construire les rainures gauches et droites
+        float[] v0 = listeVertex.get(0);
+        float[] v1 = listeVertex.get(1);
+        float[] v2 = listeVertex.get(2);
+        float[] v3 = listeVertex.get(3);
+        float[] v4 = listeVertex.get(4);
+        float[] v5 = listeVertex.get(5);
+        float[] v6 = listeVertex.get(6);
+        float[] v7 = listeVertex.get(7);
+
+
+        // v0 // PointSupGaucheFacade (Top Left Front)
+        // v1 // PointSupDroiteFacade (Top Right Front)
+        // v2 // PointSupDroiteArriere (Top Right Back)
+        // v3 // PointSupGaucheArriere (Top Left Back)
+        // v4 // PointInfGaucheFacade (Bottom Left Front)
+        // v5 // PointInfDroiteFacade (Bottom Right Front)
+        // v6 // PointInfDroiteArriere (Bottom Right Back)
+        // v7 // PointInfGaucheArriere (Bottom Left Back)
+
+        // Correspondance pour les autres bases :
+        // PointSupGaucheFacade correspond à PointInfGaucheFacade sur la base inférieure.
+        // PointSupDroiteFacade correspond à PointInfDroiteFacade sur la base inférieure.
+        // PointSupDroiteArriere correspond à PointInfDroiteArriere sur la base inférieure.
+        // PointSupGaucheArriere correspond à PointInfGaucheArriere sur la base inférieure.
+
+        // PointSupGaucheFacade correspond à PointSupDroiteFacade sur la base droite.
+        // PointSupDroiteFacade correspond à PointSupGaucheFacade sur la base gauche.
+        // PointSupDroiteArriere correspond à PointSupGaucheArriere sur la base gauche.
+        // PointSupGaucheArriere correspond à PointSupDroiteArriere sur la base droite.
+
+        // PointSupGaucheFacade correspond à PointSupGaucheArriere sur la base arrière.
+        // PointSupDroiteFacade correspond à PointSupDroiteArriere sur la base arrière.
+        // PointInfDroiteFacade correspond à PointInfDroiteArriere sur la base arrière.
+        // PointInfGaucheFacade correspond à PointInfGaucheArriere sur la base arrière.
+
+        // Dimensions du prisme secondaire
+        float lengthSecondaire = length/10;
+        float widthSecondaire = width;
+        float heightSecondaire = height;
+
+        // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
+        float thicknessSecondaire = (float) (thickness / 2);
+
+
+        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire,thicknessSecondaire, height,xSupGauche-lengthSecondaire,0,0);
+        listeTriangles.addAll(listeTrianglesGauche);
+
+        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire,thicknessSecondaire, height,v1[0] - lengthSecondaire ,0,0);
+        listeTriangles.addAll(listeTrianglesDroite);
+
+        // MUR DROITE
+        List<Triangle> trianglesDroites = ExporterPanneauxRetraitDroite(v3,length,width,height);
+
+        //CHALET
+        List<Triangle> triangleChalet = new LinkedList<>();
+        triangleChalet.addAll(listeTriangles);
+        triangleChalet.addAll(trianglesDroites);
+
+
+
+        generateSTL(listeTriangles,fileName);
+        generateSTL(trianglesDroites,fileNameDroite);
+        generateSTL(triangleChalet,fileNameChalet);
+
+
+
+    }
 
 
 
