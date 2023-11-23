@@ -127,6 +127,9 @@ public class MainWindow extends javax.swing.JFrame {
     private JTextField largeurchaletMN;
     private JTextField epaisseurchaletMN;
     private JTextField hauteurchaletMN;
+    private JButton Brut;
+    private JButton ExporterFinit;
+    private JButton ExporterRetrait;
 
     private Controleur.AffichageVue selectedVue;
 
