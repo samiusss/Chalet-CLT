@@ -247,7 +247,7 @@ public class STLWriter {
 
                     String vertex2b = processVertex(triangle.vertex2[1]);
 
-                    String vertex2c = processVertex(triangle.vertex3[2]);
+                    String vertex2c = processVertex(triangle.vertex2[2]);
 
                     // Remplacement pour le vertex 3
                     String vertex3a = processVertex(triangle.vertex3[0]);

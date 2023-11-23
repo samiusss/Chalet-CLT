@@ -192,7 +192,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(1700,"NORD");
                     Point mousePoint = e.getPoint();
                     Dimension intitalDimension = DrawingPanel.getPreferredSize();
                     if(nomMur != "SURPLOMB") {
@@ -753,7 +753,6 @@ public class MainWindow extends javax.swing.JFrame {
         setSize(1200, 700);
         setLocationRelativeTo(null);
 
-        // EDITION DES MURS, IL RESTE UN BUG SUR VUE DE SURPLOMB, peut-etre du backend...
         MurPannelTabbedPaneFaçadeLabelLongueurTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -769,6 +768,8 @@ public class MainWindow extends javax.swing.JFrame {
 
             }
         });
+
+
         MurPannelTabbedPaneDerriereLabelLongueurTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

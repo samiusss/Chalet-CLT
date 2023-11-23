@@ -94,9 +94,6 @@ public class Controleur {
                 }
             }
         }
-
-
-
         chalet.getListeMurs().clear();
 
         chalet.initialiserMurFacade();
