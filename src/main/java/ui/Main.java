@@ -15,6 +15,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+
+
         // Spécifiez le nom du fichier STL de sortie
         //String fileName = "chemin/vers/votre/repertoire/fichier.stl";
 
@@ -42,9 +44,10 @@ public class Main {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
+        STLWriter.ExporterPanneauxBrut(filePath);
 
 
-        // Définir la géométrie de l'objet (triangles)
+        /* // Définir la géométrie de l'objet (triangles)
         List<Triangle> listeTriangles =  new LinkedList<>();
 
         float[] vertex1 = {0, 0, 0};
@@ -58,7 +61,7 @@ public class Main {
         String stlFileName = "output.stl";
 
         // Générer le fichier STL
-        STLWriter.generateSTL(listeTriangles, filePath);
+        STLWriter.generateSTL(listeTriangles, filePath); */
 
 
         /*List<Triangle> triangles = new ArrayList<>();

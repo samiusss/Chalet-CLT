@@ -434,6 +434,9 @@ public class Chalet {
     }
 
 
+
+
+
     public static boolean estDansRectangle(Point point, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
         int x = point.x;
         int y = point.y;
