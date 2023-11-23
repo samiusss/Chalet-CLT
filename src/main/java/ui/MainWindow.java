@@ -453,7 +453,7 @@ public class MainWindow extends javax.swing.JFrame {
             //HauteurFenetre
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Hauteur
+                //Hauteurr
                 String inputText = AccessoirePanelLargeurTextField.getText();
                 //double nouvelleLongueurDouble = imperialToDoubleUniversel(inputText);
                 //Pouces nouvelleLongueur = convertirDoubleEnPouces(nouvelleLongueurDouble);
