@@ -16,6 +16,7 @@ public class ArriereDrawer {
     private Accessoires accessoires;
     private Dimension initialDimension;
     public Mur arriere ; // mur arriere deja codé en bas
+    private double zoomFactor;
 
     public ArriereDrawer(Controleur controleur, Dimension initialDimension){
         this.controleur = controleur;
@@ -23,6 +24,7 @@ public class ArriereDrawer {
 
         Chalet chalet = controleur.getChaletProduction();
         this.arriere = controleur.arriere; // mur facade deja codé en bas
+        this.zoomFactor = controleur.getZoom();
     }
 
     public void draw(Graphics g)
@@ -252,17 +254,17 @@ public class ArriereDrawer {
         double positionX = width/2 - point3.getX()/2;
         double positionY = height/2 - point3.getY()/2;
 
-        int x1 = (int) (point1.getX() + positionX);
-        int y1 = (int) (point1.getY() + positionY);
+        int x1 = (int) (point1.getX() * zoomFactor + positionX);
+        int y1 = (int) (point1.getY() * zoomFactor + positionY);
 
-        int x2 = (int) (point2.getX() + positionX);
-        int y2 = (int) (point2.getY() + positionY);
+        int x2 = (int) (point2.getX() * zoomFactor + positionX);
+        int y2 = (int) (point2.getY() * zoomFactor + positionY);
 
-        int x3 = (int) (point3.getX() + positionX);
-        int y3 = (int) (point3.getY() + positionY);
+        int x3 = (int) (point3.getX() * zoomFactor + positionX);
+        int y3 = (int) (point3.getY() * zoomFactor + positionY);
 
-        int x4 = (int) (point3.getX() + positionX);
-        int y4 = (int) (point1.getY() + positionY);
+        int x4 = (int) (point3.getX() * zoomFactor + positionX);
+        int y4 = (int) (point1.getY() * zoomFactor + positionY);
 
         int[] xPoints = {x1, x2, x3, x4};
         int[] yPoints = {y1, y2, y3, y4};

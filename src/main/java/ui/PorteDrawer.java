@@ -12,7 +12,7 @@ import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 
 public class PorteDrawer
 {
-
+    private double zoomFactor;
     public void draw(Graphics g)
     {
         drawPorte(g);

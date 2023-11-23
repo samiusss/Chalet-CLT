@@ -345,7 +345,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                 if (notches < 0) {
                     zoomFactor = Chalet.getZoom();
-                    zoomFactor -= 0.05;
+                    zoomFactor -= 0.01;
                     if (zoomFactor < 0)
                     {
                         zoomFactor = 0;

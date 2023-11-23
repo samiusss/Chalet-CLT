@@ -38,7 +38,6 @@ public class SurplombDrawer extends JFrame
         this.droite = controleur.droite; // mur facade deja codé en bas
         this.gauche = controleur.gauche; // mur facade deja codé en bas
         this.zoomFactor = controleur.getZoom();
-        System.out.println(zoomFactor);
 
 
     }
@@ -190,7 +189,7 @@ public class SurplombDrawer extends JFrame
         int x3r1g = (int) (rainureGauche1g.getX()* zoomFactor+positionX);
         int y3r1g = (int) (rainureGauche1g.getY()* zoomFactor+positionY);
         int x3r2g = (int) (rainureGauche2g.getX()* zoomFactor+positionX);
-        int y3r2g = (int) (rainureGauche2g.getY()+positionY);
+        int y3r2g = (int) (rainureGauche2g.getY() * zoomFactor+positionY);
         //
         int x4g = (int) (pointInfGaucheg.getX()* zoomFactor+positionX);
         int y4g = (int) (pointInfGaucheg.getY()* zoomFactor+positionY);
