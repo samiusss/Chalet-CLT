@@ -128,7 +128,7 @@ public class SurplombDrawer extends JFrame
         int y1r1f = (int) (rainureDroite1.getY()* zoomFactor+positionY);
         int x1r2f = (int) (rainureDroite2.getX()* zoomFactor+positionX);
         int y1r2f = (int) (rainureDroite2.getY()* zoomFactor+positionY);
-        System.out.println(zoomFactor);
+
         int x2f = (int) (pointSupDroitf.getX()* zoomFactor+positionX);
         int y2f = (int) (pointSupDroitf.getY()* zoomFactor+positionY);
         //

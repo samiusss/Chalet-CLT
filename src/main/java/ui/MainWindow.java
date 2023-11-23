@@ -360,7 +360,6 @@ public class MainWindow extends javax.swing.JFrame {
                     zoomFactor = controleur.getZoom();
                     zoomFactor += 0.01;
                     controleur.setZoom(zoomFactor);
-                    System.out.println(Chalet.getZoom());
 //                    DrawingPanel.revalidate();
                     DrawingPanel.repaint();
                 }
