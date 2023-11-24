@@ -288,13 +288,13 @@ public class GaucheDrawer
 
         int[] xPointsGaucheRainure = {intx1RainureGauche, intx2RainureGauche, intx3RainureGauche, intx4RainureGauche};
         int[] yPointsGaucheRainure = {inty1RainureGauche, inty2RainureGauche, inty3RainureGauche, inty4RainureGauche};
-        g.setColor(new Color(225, 118, 118));
+        g.setColor(new Color(104, 190, 83));
         g.fillPolygon(xPointsGaucheRainure, yPointsGaucheRainure, 4);
 
 
         int[] xPointsDroiteRainure = {intx1RainureDroite, intx2RainureDroite, intx3RainureDroite, intx4RainureDroite};
         int[] yPointsDroiteRainure = {inty1RainureDroite, inty2RainureDroite, inty3RainureDroite, inty4RainureDroite};
-        g.setColor(new Color(104, 190, 83));
+        g.setColor(new Color(225, 118, 118));
         g.fillPolygon(xPointsDroiteRainure, yPointsDroiteRainure, 4);
 
         int[] xPointsGauche = {x1gc, x2gc, x3gc, x4gc};

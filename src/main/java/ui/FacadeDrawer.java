@@ -273,14 +273,13 @@ public class FacadeDrawer {
 
         int[] xPointsRainureGauche = {RainureGaucheInfGaucheX, RainureGaucheSupGaucheX, RainureGaucheSupDroitX, RainureGaucheInfDroitX};
         int[] yPointsRainureGauche = {RainureGaucheInfGaucheY, RainureGaucheSupGaucheY, RainureGaucheSupDroitY, RainureGaucheInfDroitY};
-        g.setColor(new Color(239, 167, 139));
+        g.setColor(new Color(96, 96, 238));
         g.fillPolygon(xPointsRainureGauche, yPointsRainureGauche, 4);
 
         int[] xPointsRainureDroite = {RainureDroiteInfGaucheX, RainureDroiteSupGaucheX, RainureDroiteSupDroitX, RainureDroiteInfDroitX};
         int[] yPointsRainureDroite = {RainureDroiteInfGaucheY, RainureDroiteSupGaucheY, RainureDroiteSupDroitY, RainureDroiteInfDroitY};
-        g.setColor(new Color(96, 96, 238));
+        g.setColor(new Color(239, 167, 139));
         g.fillPolygon(xPointsRainureDroite, yPointsRainureDroite, 4);
-
 
 
         // Construire tableaux de coordonnées pour le mur facade de coté
