@@ -196,7 +196,6 @@ public class FacadeDrawer {
     {
         //Chalet chalet = controleur.getChaletProduction();
 
-        g.setColor(new Color(104, 190, 83));
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
 
@@ -247,10 +246,49 @@ public class FacadeDrawer {
         int x4fc = (int) (pointSupDroitfc.getX() * zoomFactor + positionX);
         int y4fc = (int) (pointSupDroitfc.getY() * zoomFactor + positionY);
 
+        int RainureGaucheInfGaucheX = (int) (GaucheRainureInfGauche.getX() * zoomFactor + positionX);
+        int RainureGaucheInfGaucheY = (int) (GaucheRainureInfGauche.getY() * zoomFactor + positionY);
+
+        int RainureGaucheSupGaucheX = (int) (GaucheRainureSupGauche.getX() * zoomFactor + positionX);
+        int RainureGaucheSupGaucheY = (int) (GaucheRainureSupGauche.getY() * zoomFactor + positionY);
+
+        int RainureGaucheSupDroitX = (int) (GaucheRainureSupDroit.getX() * zoomFactor + positionX);
+        int RainureGaucheSupDroitY = (int) (GaucheRainureSupDroit.getY() * zoomFactor + positionY);
+
+        int RainureGaucheInfDroitX = (int) (GaucheRainureInfDroit.getX() * zoomFactor + positionX);
+        int RainureGaucheInfDroitY = (int) (GaucheRainureInfDroit.getY() * zoomFactor + positionY);
+
+        int RainureDroiteInfGaucheX = (int) (DroiteRainureInfGauche.getX() * zoomFactor + positionX);
+        int RainureDroiteInfGaucheY = (int) (DroiteRainureInfGauche.getY() * zoomFactor + positionY);
+
+        int RainureDroiteSupGaucheX = (int) (DroiteRainureSupGauche.getX() * zoomFactor + positionX);
+        int RainureDroiteSupGaucheY = (int) (DroiteRainureSupGauche.getY() * zoomFactor + positionY);
+
+        int RainureDroiteSupDroitX = (int) (DroiteRainureSupDroit.getX() * zoomFactor + positionX);
+        int RainureDroiteSupDroitY = (int) (DroiteRainureSupDroit.getY() * zoomFactor + positionY);
+
+        int RainureDroiteInfDroitX = (int) (DroiteRainureInfDroit.getX() * zoomFactor + positionX);
+        int RainureDroiteInfDroitY = (int) (DroiteRainureInfDroit.getY() * zoomFactor + positionY);
+
+
+        int[] xPointsRainureGauche = {RainureGaucheInfGaucheX, RainureGaucheSupGaucheX, RainureGaucheSupDroitX, RainureGaucheInfDroitX};
+        int[] yPointsRainureGauche = {RainureGaucheInfGaucheY, RainureGaucheSupGaucheY, RainureGaucheSupDroitY, RainureGaucheInfDroitY};
+        g.setColor(new Color(239, 167, 139));
+        g.fillPolygon(xPointsRainureGauche, yPointsRainureGauche, 4);
+
+        int[] xPointsRainureDroite = {RainureDroiteInfGaucheX, RainureDroiteSupGaucheX, RainureDroiteSupDroitX, RainureDroiteInfDroitX};
+        int[] yPointsRainureDroite = {RainureDroiteInfGaucheY, RainureDroiteSupGaucheY, RainureDroiteSupDroitY, RainureDroiteInfDroitY};
+        g.setColor(new Color(96, 96, 238));
+        g.fillPolygon(xPointsRainureDroite, yPointsRainureDroite, 4);
+
+
 
         // Construire tableaux de coordonnées pour le mur facade de coté
         int[] xPointsFacadeCote = {x1fc, x2fc, x3fc, x4fc};
         int[] yPointsFacadeCote = {y1fc, y2fc, y3fc, y4fc};
+        g.setColor(new Color(104, 190, 83));
+        g.fillPolygon(xPointsFacadeCote, yPointsFacadeCote, 4);
+
         /*System.out.println(x1fc+""+ y1fc + "(FacadeDrawer) En Haut a Gauche");
         System.out.println(x2fc+""+ y2fc + "(FacadeDrawer) En Bas a Gauche");
         System.out.println(x3fc+""+ y3fc + "(FacadeDrawer) En Bas a Droite");
@@ -258,6 +296,5 @@ public class FacadeDrawer {
 
 
         // Dessiner le polygone pour le mur facade de coté (fc)
-        g.fillPolygon(xPointsFacadeCote, yPointsFacadeCote, 4);
     }
 }

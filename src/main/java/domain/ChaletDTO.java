@@ -118,10 +118,10 @@ public class ChaletDTO {
         chalet.getListeMurs().get(3).fenetreMur = listeFenetreDAVANTd;
 
         // set les accessoires dans les nouveaux murs
-        facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
-        arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
-        gauche = chalet.getMursUsines(0.2, "Nord").get(2); // mur gauche deja codé en bas
-        droite = chalet.getMursUsines(0.2, "Nord").get(3); // mur droite deja codé en bas
+        facade = chalet.getMursUsines(0.2, "Est").get(0); // mur facade deja codé en bas
+        arriere = chalet.getMursUsines(0.2, "Est").get(1); // mur arriere deja codé en bas
+        gauche = chalet.getMursUsines(0.2, "Est").get(2); // mur gauche deja codé en bas
+        droite = chalet.getMursUsines(0.2, "Est").get(3); // mur droite deja codé en bas
 
         return true;
     }
