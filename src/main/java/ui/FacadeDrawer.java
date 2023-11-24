@@ -47,9 +47,7 @@ public class FacadeDrawer {
 
         g.setColor(new Color(1, 1, 0));
         this.zoomFactor = controleur.getZoom();
-
         List<Fenetre> listeFenetre = facade.getListeFenetre();
-        int lenghtlisteFenetre = listeFenetre.size();
 
         for (Fenetre fenetre : listeFenetre) {
             Fenetre fenetreActuel = fenetre;
@@ -59,10 +57,18 @@ public class FacadeDrawer {
                 Pouces largeur = fenetre.getLargeur();
                 Pouces hauteur = fenetre.getHauteur();
 
-                int largeurFenetreInt = convertirPoucesEnInt(largeur);
-                int hauteurFenetreInt = convertirPoucesEnInt(hauteur);
+                PointDouble pointInfDroitac = facade.getSommetsMur().get(6);
 
-                g.fillRect(mousePoint.x, mousePoint.y, largeurFenetreInt, hauteurFenetreInt);
+                double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
+                double offsetY = initialDimension.getHeight()/2 - pointInfDroitac.getY()/2;
+
+                int x1ac = (int) (((mousePoint.x - offsetX ) * zoomFactor ) + offsetX);
+                int y1ac = (int) (((mousePoint.y - offsetY ) * zoomFactor ) + offsetY);
+
+                int largeurFenetreInt = (int)(convertirPoucesEnInt(largeur) * zoomFactor);
+                int hauteurFenetreInt = (int)(convertirPoucesEnInt(hauteur) * zoomFactor);
+
+                g.fillRect(x1ac, y1ac, largeurFenetreInt, hauteurFenetreInt);
             }
         }
 
@@ -78,7 +84,6 @@ public class FacadeDrawer {
 
         List<Porte> listePorte = facade.getListePorte();
         int lenghtlistePorte = listePorte.size();
-        System.out.println(lenghtlistePorte);
 
 
         for (Porte porte : listePorte) {
