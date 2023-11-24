@@ -132,6 +132,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JButton Brut;
     private JButton ExporterFinit;
     private JButton ExporterRetrait;
+    private JButton nouveauChaletButton;
 
     private ChaletDTO.AffichageVue selectedVue;
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 import static domain.ChaletDTO.createChalet;
 import static domain.ChaletDTO.initialiserChalet;
-
+import static domain.ChaletDTO.creerNouveauChalet;
 //import static domain.Mur.accessoiresMur;
 
 public class Controleur {
