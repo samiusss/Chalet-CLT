@@ -145,7 +145,7 @@ public class SurplombDrawer extends JFrame
         //
         int[] xPointsFacade = {x1f, x1r2f, x1r1f, x2f, x3f, x3r2f, x3r1f, x4f};
         int[] yPointsFacade = {y1f, y1r2f, y1r1f, y2f, y3f, y3r2f, y3r1f, y4f};
-        g.setColor(new Color(12, 238, 162));
+        g.setColor(new Color(104, 190, 83));
         g.fillPolygon(xPointsFacade, yPointsFacade, 8);
 
         //Dessiner le polygone pour le mur arriere
@@ -171,7 +171,7 @@ public class SurplombDrawer extends JFrame
         //
         int[] xPointsArriere = {x1a, x1r2a, x1r1a, x2a, x3a, x3r2a, x3r1a, x4a};
         int[] yPointsArriere = {y1a, y1r2a, y1r1a, y2a, y3a, y3r2a, y3r1a, y4a};
-        g.setColor(new Color(66, 66, 166));
+        g.setColor(new Color(225, 118, 118));
         g.fillPolygon(xPointsArriere, yPointsArriere, 8);
 
         //Dessiner le polygone pour le mur gauche
@@ -197,7 +197,7 @@ public class SurplombDrawer extends JFrame
         //
         int[] xPointsGauche = {x1r2g, x1r1g,  x1g,  x2g, x3r2g, x3r1g, x3g, x4g};
         int[] yPointsGauche = {y1r2g, y1r1g,  y1g,  y2g, y3r2g, y3r1g, y3g, y4g};
-        g.setColor(new Color(198, 216, 211));
+        g.setColor(new Color(239, 167, 139));
         g.fillPolygon(xPointsGauche, yPointsGauche, 8);
 
         //Dessiner le polygone pour le mur droit
@@ -223,7 +223,7 @@ public class SurplombDrawer extends JFrame
         //
         int[] xPointsDroit = {x1r1d, x1r2d, x1d, x2d, x3r1d, x3r2d, x3d, x4d};
         int[] yPointsDroit = {y1r1d, y1r2d, y1d, y2d, y3r1d, y3r2d, y3d, y4d};
-        g.setColor(new Color(210, 68, 1));
+        g.setColor(new Color(96, 96, 238));
         g.fillPolygon(xPointsDroit, yPointsDroit, 8);
     }
 

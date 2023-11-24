@@ -10,8 +10,7 @@ import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
-import static domain.Chalet.hauteurMurs;
-import static domain.Chalet.zoom;
+import static domain.Chalet.*;
 
 public class FacadeDrawer {
 
@@ -22,6 +21,9 @@ public class FacadeDrawer {
     private Dimension initialDimension;
 
     public Mur facade ; // mur facade deja codé en bas
+
+    public PointDouble GaucheRainureInfGauche, GaucheRainureInfDroit, GaucheRainureSupGauche, GaucheRainureSupDroit;
+    public PointDouble DroiteRainureInfGauche, DroiteRainureInfDroit, DroiteRainureSupGauche, DroiteRainureSupDroit;
     private double zoomFactor;
 
 
@@ -194,7 +196,7 @@ public class FacadeDrawer {
     {
         //Chalet chalet = controleur.getChaletProduction();
 
-        g.setColor(new Color(110, 166, 166));
+        g.setColor(new Color(104, 190, 83));
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
 
@@ -207,6 +209,28 @@ public class FacadeDrawer {
         PointDouble pointSupGauchefc = facade.getSommetsMur().get(5);
         PointDouble pointInfDroitfc = facade.getSommetsMur().get(6);
         PointDouble pointInfGauchefc = facade.getSommetsMur().get(7);
+
+        if(pointInfGauchefc.getX() != 0 || pointSupGauchefc.getX() != 0){
+            GaucheRainureInfGauche = new PointDouble(0, 0);
+            GaucheRainureSupGauche = new PointDouble(0, hauteurMurs);
+            GaucheRainureSupDroit = new PointDouble(epaisseurChalet/2, hauteurMurs);
+            GaucheRainureInfDroit = new PointDouble(epaisseurChalet/2, 0);
+
+            DroiteRainureInfGauche = new PointDouble(pointInfDroitfc.getX(), 0);
+            DroiteRainureSupGauche = new PointDouble(pointSupDroitfc.getX(), hauteurMurs);
+            DroiteRainureSupDroit = new PointDouble(largeurChalet, hauteurMurs);
+            DroiteRainureInfDroit = new PointDouble(largeurChalet, 0);
+        }else{
+            GaucheRainureInfGauche = new PointDouble(0, 0);
+            GaucheRainureSupGauche = new PointDouble(0, hauteurMurs);
+            GaucheRainureSupDroit = new PointDouble(0, hauteurMurs);
+            GaucheRainureInfDroit = new PointDouble(0, 0);
+
+            DroiteRainureInfGauche = new PointDouble(largeurChalet, 0);
+            DroiteRainureSupGauche = new PointDouble(largeurChalet, hauteurMurs);
+            DroiteRainureSupDroit = new PointDouble(largeurChalet, hauteurMurs);
+            DroiteRainureInfDroit = new PointDouble(largeurChalet, 0);
+        }
 
         double positionX = width/2 - pointInfDroitfc.getX()/2;
         double positionY = height/2- pointInfDroitfc.getY()/2;

@@ -197,7 +197,8 @@ public class ArriereDrawer {
 
     private void drawArriere(Graphics g)
     {
-        g.setColor(new Color(1, 166, 1));
+        g.setColor(new Color(225, 118, 118));
+
 
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
