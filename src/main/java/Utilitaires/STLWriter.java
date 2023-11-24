@@ -29,7 +29,6 @@ public class STLWriter {
         return nombreAvecPoint;
     }
 
-
     public static List<float[]> determinerPointsPrismes(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
             /*Pour construire le panneau en 3D , on doit construire un prisme ,
             le prisme est constitue de 6 faces qui s'emboitent donc partangent
@@ -72,10 +71,30 @@ public class STLWriter {
         listeVertex.add(v7);
 
         return listeVertex;
-
-
     }
+    public static List<float[]> determinerPointsPorte(float lengthporte, float widthporte, float heightporte, float xPorteSupGauche, float yPorteSupGauche, float zPorteSupGauche) {
 
+        float[] v8 = {xPorteSupGauche, yPorteSupGauche, zPorteSupGauche};           // PointSupGaucheFacade (Top Left Front)
+        float[] v9 = {xPorteSupGauche + lengthporte, yPorteSupGauche, zPorteSupGauche};   // PointSupDroiteFacade (Top Right Front)
+        float[] v10 = {xPorteSupGauche + lengthporte, yPorteSupGauche + widthporte, zPorteSupGauche};   // PointSupDroiteArriere (Top Right Back)
+        float[] v11 = {xPorteSupGauche, yPorteSupGauche + widthporte, zPorteSupGauche};    // PointSupGaucheArriere (Top Left Back)
+        float[] v12 = {xPorteSupGauche, yPorteSupGauche, zPorteSupGauche + heightporte};   // PointInfGaucheFacade (Bottom Left Front)
+        float[] v13 = {xPorteSupGauche + lengthporte, yPorteSupGauche, zPorteSupGauche + heightporte};   // PointInfDroiteFacade (Bottom Right Front)
+        float[] v14 = {xPorteSupGauche + lengthporte, yPorteSupGauche + widthporte, zPorteSupGauche + heightporte};   // PointInfDroiteArriere (Bottom Right Back)
+        float[] v15 = {xPorteSupGauche, yPorteSupGauche + widthporte, zPorteSupGauche + heightporte};    // PointInfGaucheArriere (Bottom Left Back)
+
+        List<float[]> listeVertex = new LinkedList<>();
+        listeVertex.add(v8);
+        listeVertex.add(v9);
+        listeVertex.add(v10);
+        listeVertex.add(v11);
+        listeVertex.add(v12);
+        listeVertex.add(v13);
+        listeVertex.add(v14);
+        listeVertex.add(v15);
+
+        return listeVertex;
+    }
 
         public static List<Triangle> generateRectangularPrism(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
             /*Pour construire le panneau en 3D , on doit construire un prisme ,
