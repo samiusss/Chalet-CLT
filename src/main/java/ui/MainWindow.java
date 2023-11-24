@@ -2,6 +2,7 @@ package ui;
 
 import Utilitaires.Pouces;
 import domain.Chalet;
+import domain.ChaletDTO;
 import domain.Controleur;
 import domain.Mur;
 
@@ -15,6 +16,7 @@ import static Utilitaires.ConvertisseurMesures.*;
 
 public class MainWindow extends javax.swing.JFrame {
     private Controleur controleur;
+    private ChaletDTO chaletdto;
     /*private AccessoiresModes actualMode;
     // Ces attributs servent à la gestion du déplacement.
     public Point actualMousePoint = new Point();
@@ -131,7 +133,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JButton ExporterFinit;
     private JButton ExporterRetrait;
 
-    private Controleur.AffichageVue selectedVue;
+    private ChaletDTO.AffichageVue selectedVue;
 
     private double zoomFactor = 1.0;
 
@@ -221,7 +223,7 @@ public class MainWindow extends javax.swing.JFrame {
         //Gestion des vues
         VueComboBox.addItemListener(new ItemListener() {
 
-            private Controleur.AffichageVue selectedVue;
+            private ChaletDTO.AffichageVue selectedVue;
 
             private String getSelectedVueOption() {
                 return (String) VueComboBox.getSelectedItem();
@@ -239,31 +241,31 @@ public class MainWindow extends javax.swing.JFrame {
                             switch (selectedOption) {
                                 case "Facade":
                                     //drawFacade();
-                                    this.setVue(Controleur.AffichageVue.FACADE);
+                                    this.setVue(ChaletDTO.AffichageVue.FACADE);
                                     ui.DrawingPanel.changerVue(selectedVue);
                                     DrawingPanel.repaint();
                                     System.out.println("Facade");
                                     break;
                                 case "Arriere":
-                                    this.setVue(Controleur.AffichageVue.ARRIERE);
+                                    this.setVue(ChaletDTO.AffichageVue.ARRIERE);
                                     ui.DrawingPanel.changerVue(selectedVue);
                                     DrawingPanel.repaint();
                                     System.out.println("Arriere");
                                     break;
                                 case "Droit":
-                                    this.setVue(Controleur.AffichageVue.DROITE);
+                                    this.setVue(ChaletDTO.AffichageVue.DROITE);
                                     ui.DrawingPanel.changerVue(selectedVue);
                                     DrawingPanel.repaint();
                                     System.out.println("Droit");
                                     break;
                                 case "Gauche":
-                                    this.setVue(Controleur.AffichageVue.GAUCHE);
+                                    this.setVue(ChaletDTO.AffichageVue.GAUCHE);
                                     ui.DrawingPanel.changerVue(selectedVue);
                                     DrawingPanel.repaint();
                                     System.out.println("Gauche");
                                     break;
                                 case "Surplomb":
-                                    this.setVue(Controleur.AffichageVue.SURPLOMB);
+                                    this.setVue(ChaletDTO.AffichageVue.SURPLOMB);
                                     ui.DrawingPanel.changerVue(selectedVue);
                                     DrawingPanel.repaint();
                                     System.out.println("Surplomb");
@@ -275,7 +277,7 @@ public class MainWindow extends javax.swing.JFrame {
                         }
                     }
 
-            private void setVue(Controleur.AffichageVue facade) {
+            private void setVue(ChaletDTO.AffichageVue facade) {
                 this.selectedVue = facade;
             }
 

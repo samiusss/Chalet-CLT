@@ -16,6 +16,7 @@ import static domain.Chalet.zoom;
 public class FacadeDrawer {
 
     private Controleur controleur;
+    public ChaletDTO chaletdto;
     public static Chalet chalet;
     private Accessoires accessoires;
     private Dimension initialDimension;
@@ -28,7 +29,7 @@ public class FacadeDrawer {
         this.controleur = controleur;
         this.initialDimension = initialDimension;
         Chalet chalet = controleur.getChaletProduction();
-        this.facade = controleur.facade; // mur facade deja codé en bas
+        this.facade = chaletdto.facade; // mur facade deja codé en bas
         this.zoomFactor = controleur.getZoom();
     }
 

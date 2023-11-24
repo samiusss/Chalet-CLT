@@ -15,6 +15,7 @@ import static domain.Chalet.hauteurMurs;
 public class GaucheDrawer
 {
     private Controleur controleur;
+    public ChaletDTO chaletdto;
     public static Chalet chalet;
     private Accessoires accessoires;
     private Dimension initialDimension;
@@ -28,7 +29,7 @@ public class GaucheDrawer
         this.initialDimension = initialDimension;
 
         Chalet chalet = controleur.getChaletProduction();
-        this.gauche = controleur.gauche; // mur facade deja codé en bas
+        this.gauche = chaletdto.gauche; // mur facade deja codé en bas
         this.zoomFactor = controleur.getZoom();
     }
 

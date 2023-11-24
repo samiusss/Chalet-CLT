@@ -16,6 +16,7 @@ public class SurplombDrawer extends JFrame
     private Controleur controleur;
 
     public Chalet chalet;
+    public ChaletDTO chaletdto;
 
     private Accessoires accessoires;
     private Dimension initialDimension;
@@ -33,10 +34,10 @@ public class SurplombDrawer extends JFrame
         this.controleur = controleur;
         this.initialDimension = initialDimension;
         Chalet chalet = controleur.getChaletProduction();
-        this.facade = controleur.facade; // mur facade deja codé en bas
-        this.arriere = controleur.arriere; // mur facade deja codé en bas
-        this.droite = controleur.droite; // mur facade deja codé en bas
-        this.gauche = controleur.gauche; // mur facade deja codé en bas
+        this.facade = chaletdto.facade; // mur facade deja codé en bas
+        this.arriere = chaletdto.arriere; // mur facade deja codé en bas
+        this.droite = chaletdto.droite; // mur facade deja codé en bas
+        this.gauche = chaletdto.gauche; // mur facade deja codé en bas
         this.zoomFactor = controleur.getZoom();
 
 

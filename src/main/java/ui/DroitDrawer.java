@@ -13,6 +13,8 @@ import static domain.Chalet.*;
 public class DroitDrawer {
 
     private Controleur controleur;
+    private ChaletDTO chaletdto;
+
     public static Chalet chalet;
     private Accessoires accessoires;
     private Dimension initialDimension;
@@ -25,7 +27,7 @@ public class DroitDrawer {
         this.initialDimension = initialDimension;
 
         Chalet chalet = controleur.getChaletProduction();
-        this.droite = controleur.droite; // mur facade deja codé en bas
+        this.droite = chaletdto.droite; // mur facade deja codé en bas
         this.zoomFactor = controleur.getZoom();
     }
 

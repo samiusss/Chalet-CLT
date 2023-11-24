@@ -13,6 +13,7 @@ import static Utilitaires.ConvertisseurMesures.*;
 public class ArriereDrawer {
     private Controleur controleur;
     public static Chalet chalet;
+    public ChaletDTO chaletdto;
     private Accessoires accessoires;
     private Dimension initialDimension;
     public Mur arriere ; // mur arriere deja codé en bas
@@ -23,7 +24,7 @@ public class ArriereDrawer {
         this.initialDimension = initialDimension;
 
         Chalet chalet = controleur.getChaletProduction();
-        this.arriere = controleur.arriere; // mur facade deja codé en bas
+        this.arriere = chaletdto.arriere; // mur facade deja codé en bas
         this.zoomFactor = controleur.getZoom();
     }
 
