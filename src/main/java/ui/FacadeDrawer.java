@@ -129,12 +129,6 @@ public class FacadeDrawer {
             if (porteActuel != null) {
 
                 Point mousePoint = porte.mousePoint;
-                double width = initialDimension.getWidth();
-                System.out.print(width / 2);
-                int leX = mousePoint.x;
-                double positionX = (width / 2 - (mousePoint.x * zoomFactor) );
-
-
 
                 Pouces largeur = porte.getLargeur();
                 Pouces hauteur = porte.getHauteur();
@@ -144,16 +138,18 @@ public class FacadeDrawer {
 
                 double height = initialDimension.getHeight() ;
 
-
                 PointDouble pointInfDroitac = facade.getSommetsMur().get(6);
-
                 PointDouble pointInfGaucheac = facade.getSommetsMur().get(7);
+
+                double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
+
+                int x1ac = (int) (((mousePoint.x - offsetX ) * zoomFactor ) + offsetX);
 
                 double positionY = (height / 2 - (pointInfDroitac.getY()/2 ) ) ;
 
                 int y1ac = (int) (((((pointInfGaucheac.getY() * zoomFactor + positionY))  - hauteurPorteInt  + hauteurMurs* zoomFactor) ) );
 
-                g.fillRect(leX , y1ac, largeurPorteInt, hauteurPorteInt);
+                g.fillRect(x1ac , y1ac, largeurPorteInt, hauteurPorteInt);
 
 
                 // Faut juste considérer le offset !!!!!!
