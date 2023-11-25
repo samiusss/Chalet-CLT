@@ -48,7 +48,7 @@ public class Main {
 
         //STLWriter.ExporterPanneauxBrut(filePath);
         STLWriter.ExporterPanneauxRetrait(filePath,filePathDroite,filePathChalet);
-        STLWriter.ExporterGrid("gridFile.stl");
+        STLWriter.ExporterPrismeWithGrids("gridFile.stl");
 
 
         /* // Définir la géométrie de l'objet (triangles)

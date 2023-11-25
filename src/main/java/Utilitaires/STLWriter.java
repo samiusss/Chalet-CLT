@@ -626,8 +626,8 @@ public class STLWriter {
         return prismTriangles;
     }
 
-    public static void ExporterGrid(String fileName) {
-        List<Triangle> gridTriangles = generateRectangularPrismWithGrid(100, 100, 10, 5, 5);
+    public static void ExporterPrismeWithGrids(String fileName) {
+        List<Triangle> gridTriangles = generateRectangularPrismWithGrid(200, 100, 10, 20, 20);
 
         for (Triangle triangle : gridTriangles) {
             float[] v1 = triangle.vertex1;
@@ -680,6 +680,18 @@ public class STLWriter {
             }
         }
         return trianglesList;
+    }
+
+    public static List<Triangle> generateHoleForAccessories(int accessoryRows, int accessoryColumn){
+        List<Triangle> accessories = new ArrayList<>();
+        // a suivre
+        //peut etre qqch comme:
+        //listeaccessoires: accessoireID(nbRows, nbColumns, row debut, columnhaut)
+        //for acce in listeaccessoires:
+            //getrectangles
+                //gettriangles for each rectangle
+                //turn normal of each triangle inward
+        return accessories;
     }
 
 }
