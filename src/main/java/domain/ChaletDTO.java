@@ -57,7 +57,7 @@ public class ChaletDTO {
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
         return chalet ;
     }
-
+/*
     public static void creerNouveauChalet(Chalet chalet){
         chalet.getListeMurs().clear();
         chalet.initialiserMurArriere();
@@ -67,7 +67,7 @@ public class ChaletDTO {
 
         //return true;
 
-    }
+    }*/
     public static boolean initialiserChalet(Chalet chalet) {
         //get les accessoires deja existant dans une variable externe
         //System.out.println("Here la liste"+chalet.getListeMurs());

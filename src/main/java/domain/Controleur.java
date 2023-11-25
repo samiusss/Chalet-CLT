@@ -9,7 +9,7 @@ import java.util.List;
 
 import static domain.ChaletDTO.createChalet;
 import static domain.ChaletDTO.initialiserChalet;
-import static domain.ChaletDTO.creerNouveauChalet;
+//import static domain.ChaletDTO.creerNouveauChalet;
 //import static domain.Mur.accessoiresMur;
 
 public class Controleur {
@@ -35,7 +35,7 @@ public class Controleur {
     {
         Chalet.setEpaisseurChalet(epaisseurChalet);
         initialiserChalet(chaletProduction);
-        creerNouveauChalet(chaletProduction);
+        //creerNouveauChalet(chaletProduction);
     }
 
     public static void setLongueurChalet(double longueurChalet)
@@ -44,7 +44,7 @@ public class Controleur {
 
         System.out.println(longueurChalet+" Réinitialisation en cours"); //test
         initialiserChalet(chaletProduction);
-        creerNouveauChalet(chaletProduction);
+        //creerNouveauChalet(chaletProduction);
 
     }
 
@@ -53,7 +53,7 @@ public class Controleur {
         Chalet.setLargeurChalet(largeurChalet);
         System.out.println(largeurChalet+" Réinitialisation en cours"); //test
         initialiserChalet(chaletProduction);
-        creerNouveauChalet(chaletProduction);
+        //creerNouveauChalet(chaletProduction);
 
     }
 
@@ -61,7 +61,7 @@ public class Controleur {
         Chalet.setHauteurMurs(hauteurMurs);
         System.out.println(hauteurMurs+" Réinitialisation en cours"); //test
         initialiserChalet(chaletProduction);
-        creerNouveauChalet(chaletProduction);
+        //creerNouveauChalet(chaletProduction);
 
     }
 
