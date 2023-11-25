@@ -31,7 +31,7 @@ public class FacadeDrawer {
         this.controleur = controleur;
         this.initialDimension = initialDimension;
         Chalet chalet = controleur.getChaletProduction();
-        this.facade = chaletdto.facade; // mur facade deja codé en bas
+        this.facade = chaletdto.facade;
         this.zoomFactor = controleur.getZoom();
     }
 
@@ -45,61 +45,30 @@ public class FacadeDrawer {
 
     private void drawFenetre(Graphics g) {
 
-        //System.out.println("fenetreFACADE");
         g.setColor(new Color(1, 1, 0));
         this.zoomFactor = controleur.getZoom();
-
         List<Fenetre> listeFenetre = facade.getListeFenetre();
-        int lenghtlisteFenetre = listeFenetre.size();
-        //System.out.println(lenghtlisteFenetre);
-
 
         for (Fenetre fenetre : listeFenetre) {
-            //System.out.println("porteFACADE2");
-            //System.out.println(fenetre);
-
-            Fenetre fenetreActuel = (Fenetre) fenetre;
+            Fenetre fenetreActuel = fenetre;
             if (fenetreActuel != null) {
                 Point mousePoint = fenetre.mousePoint;
 
-
                 Pouces largeur = fenetre.getLargeur();
-
                 Pouces hauteur = fenetre.getHauteur();
 
+                PointDouble pointInfDroitac = facade.getSommetsMur().get(6);
 
+                double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
+                double offsetY = initialDimension.getHeight()/2 - pointInfDroitac.getY()/2;
 
-                int largeurFenetreInt = convertirPoucesEnInt(largeur);
-                int hauteurFenetreInt = convertirPoucesEnInt(hauteur);
+                int x1ac = (int) (((mousePoint.x - offsetX ) * zoomFactor ) + offsetX);
+                int y1ac = (int) (((mousePoint.y - offsetY ) * zoomFactor ) + offsetY);
 
-                g.fillRect(mousePoint.x, mousePoint.y, largeurFenetreInt, hauteurFenetreInt);
-                /*
+                int largeurFenetreInt = (int)(convertirPoucesEnInt(largeur) * zoomFactor);
+                int hauteurFenetreInt = (int)(convertirPoucesEnInt(hauteur) * zoomFactor);
 
-                pointPouces pointFenetreSupDroit = new pointPouces(fenetre.getPointPouces(mousePoint).getX().addPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().addPouces(fenetre.getHauteur().diviserPouces(2)));
-                pointPouces pointFenetreSupGauche=new pointPouces(fenetre.getPointPouces(mousePoint).getX().substractPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().addPouces(fenetre.getHauteur().diviserPouces(2)));
-                pointPouces pointFenetreInfGauche = new pointPouces(fenetre.getPointPouces(mousePoint).getX().substractPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().substractPouces(fenetre.getHauteur().diviserPouces(2)));
-                pointPouces pointFenetreInfDroit = new pointPouces(fenetre.getPointPouces(mousePoint).getX().addPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().substractPouces(fenetre.getHauteur().diviserPouces(2)));
-
-
-                int x1 = convertirPoucesEnPixels(pointFenetreSupDroit.getX());
-                int y1 = convertirPoucesEnPixels(pointFenetreSupDroit.getY());
-
-                int x2 = convertirPoucesEnPixels(pointFenetreSupGauche.getX());
-                int y2 = convertirPoucesEnPixels(pointFenetreSupGauche.getY());
-
-                int x3 = convertirPoucesEnPixels(pointFenetreInfGauche.getX());
-                int y3 = convertirPoucesEnPixels(pointFenetreInfGauche.getY());
-
-
-                int x4 = convertirPoucesEnPixels(pointFenetreInfDroit.getX());
-                int y4 = convertirPoucesEnPixels(pointFenetreInfDroit.getY());
-
-                int[] xPoints = {x1, x2, x3, x4};
-                int[] yPoints = {y1, y2, y3, y4};
-
-                //g.fillPolygon(xPoints, yPoints, 4);
-
-                 */
+                g.fillRect(x1ac, y1ac, largeurFenetreInt, hauteurFenetreInt);
             }
         }
 
@@ -110,31 +79,19 @@ public class FacadeDrawer {
 
     private void drawPorte(Graphics g) {
 
-
-        //System.out.println("porteFACADE");
-
         g.setColor(new Color(1, 1, 0));
         this.zoomFactor = controleur.getZoom();
 
         List<Porte> listePorte = facade.getListePorte();
         int lenghtlistePorte = listePorte.size();
-        System.out.println(lenghtlistePorte);
 
 
         for (Porte porte : listePorte) {
-            //System.out.println("porteFACADE2");
-            //System.out.println(porte);
 
-            Porte porteActuel = (Porte) porte;
+            Porte porteActuel = porte;
             if (porteActuel != null) {
 
                 Point mousePoint = porte.mousePoint;
-                double width = initialDimension.getWidth();
-                System.out.print(width / 2);
-                int leX = mousePoint.x;
-                double positionX = (width / 2 - (mousePoint.x * zoomFactor) );
-
-
 
                 Pouces largeur = porte.getLargeur();
                 Pouces hauteur = porte.getHauteur();
@@ -144,67 +101,27 @@ public class FacadeDrawer {
 
                 double height = initialDimension.getHeight() ;
 
-
                 PointDouble pointInfDroitac = facade.getSommetsMur().get(6);
-
                 PointDouble pointInfGaucheac = facade.getSommetsMur().get(7);
+
+                double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
+
+                int x1ac = (int) (((mousePoint.x - offsetX ) * zoomFactor ) + offsetX);
 
                 double positionY = (height / 2 - (pointInfDroitac.getY()/2 ) ) ;
 
                 int y1ac = (int) (((((pointInfGaucheac.getY() * zoomFactor + positionY))  - hauteurPorteInt  + hauteurMurs* zoomFactor) ) );
 
-                g.fillRect(leX , y1ac, largeurPorteInt, hauteurPorteInt);
-
-
-                // Faut juste considérer le offset !!!!!!
-                /*
-
-                pointPouces pointPorteSupDroit = new pointPouces(porte.getPointPouces(mousePoint).getX().addPouces(porte.getLargeur().diviserPouces(2)), porte.getPointPouces(mousePoint).getY().addPouces(porte.getHauteur().diviserPouces(2)));
-                pointPouces pointPorteSupGauche = new pointPouces(porte.getPointPouces(mousePoint).getX().substractPouces(porte.getLargeur().diviserPouces(2)), porte.getPointPouces(mousePoint).getY().addPouces(porte.getHauteur().diviserPouces(2)));
-                pointPouces pointPorteInfGauche = new pointPouces(porte.getPointPouces(mousePoint).getX().substractPouces(porte.getLargeur().diviserPouces(2)), new Pouces(0, 0, 1));
-                pointPouces pointPorteInfDroit = new pointPouces(porte.getPointPouces(mousePoint).getX().addPouces(porte.getLargeur().diviserPouces(2)), new Pouces(0, 0, 1));
-
-
-                int x1 = convertirPoucesEnPixels(pointPorteSupDroit.getX());
-                int y1 = convertirPoucesEnPixels(pointPorteSupDroit.getY());
-
-                int x2 = convertirPoucesEnPixels(pointPorteSupGauche.getX());
-                int y2 = convertirPoucesEnPixels(pointPorteSupGauche.getY());
-
-                int x3 = convertirPoucesEnPixels(pointPorteInfGauche.getX());
-                int y3 = convertirPoucesEnPixels(pointPorteInfGauche.getY());
-
-
-                int x4 = convertirPoucesEnPixels(pointPorteInfDroit.getX());
-                int y4 = convertirPoucesEnPixels(pointPorteInfDroit.getY());
-
-                int[] xPoints = {x1, x2, x3, x4};
-                int[] yPoints = {y1, y2, y3, y4};
-
-                g.fillPolygon(xPoints, yPoints, 4);
-
-                 */
-
+                g.fillRect(x1ac , y1ac, largeurPorteInt, hauteurPorteInt);
             }
         }
-
-
     }
 
     private void drawFacade(Graphics g)
-
     {
-        //Chalet chalet = controleur.getChaletProduction();
-
-        g.setColor(new Color(104, 190, 83));
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
 
-        //chalet.initialiserMurFacade();
-
-        // Accéder aux coordonnées de Mur: Facade
-        //Mur facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
-        // Accéder coord de Mur facade de face (fc)
         PointDouble pointSupDroitfc = facade.getSommetsMur().get(4);
         PointDouble pointSupGauchefc = facade.getSommetsMur().get(5);
         PointDouble pointInfDroitfc = facade.getSommetsMur().get(6);
@@ -247,17 +164,44 @@ public class FacadeDrawer {
         int x4fc = (int) (pointSupDroitfc.getX() * zoomFactor + positionX);
         int y4fc = (int) (pointSupDroitfc.getY() * zoomFactor + positionY);
 
+        int RainureGaucheInfGaucheX = (int) (GaucheRainureInfGauche.getX() * zoomFactor + positionX);
+        int RainureGaucheInfGaucheY = (int) (GaucheRainureInfGauche.getY() * zoomFactor + positionY);
 
-        // Construire tableaux de coordonnées pour le mur facade de coté
+        int RainureGaucheSupGaucheX = (int) (GaucheRainureSupGauche.getX() * zoomFactor + positionX);
+        int RainureGaucheSupGaucheY = (int) (GaucheRainureSupGauche.getY() * zoomFactor + positionY);
+
+        int RainureGaucheSupDroitX = (int) (GaucheRainureSupDroit.getX() * zoomFactor + positionX);
+        int RainureGaucheSupDroitY = (int) (GaucheRainureSupDroit.getY() * zoomFactor + positionY);
+
+        int RainureGaucheInfDroitX = (int) (GaucheRainureInfDroit.getX() * zoomFactor + positionX);
+        int RainureGaucheInfDroitY = (int) (GaucheRainureInfDroit.getY() * zoomFactor + positionY);
+
+        int RainureDroiteInfGaucheX = (int) (DroiteRainureInfGauche.getX() * zoomFactor + positionX);
+        int RainureDroiteInfGaucheY = (int) (DroiteRainureInfGauche.getY() * zoomFactor + positionY);
+
+        int RainureDroiteSupGaucheX = (int) (DroiteRainureSupGauche.getX() * zoomFactor + positionX);
+        int RainureDroiteSupGaucheY = (int) (DroiteRainureSupGauche.getY() * zoomFactor + positionY);
+
+        int RainureDroiteSupDroitX = (int) (DroiteRainureSupDroit.getX() * zoomFactor + positionX);
+        int RainureDroiteSupDroitY = (int) (DroiteRainureSupDroit.getY() * zoomFactor + positionY);
+
+        int RainureDroiteInfDroitX = (int) (DroiteRainureInfDroit.getX() * zoomFactor + positionX);
+        int RainureDroiteInfDroitY = (int) (DroiteRainureInfDroit.getY() * zoomFactor + positionY);
+
+
+        int[] xPointsRainureGauche = {RainureGaucheInfGaucheX, RainureGaucheSupGaucheX, RainureGaucheSupDroitX, RainureGaucheInfDroitX};
+        int[] yPointsRainureGauche = {RainureGaucheInfGaucheY, RainureGaucheSupGaucheY, RainureGaucheSupDroitY, RainureGaucheInfDroitY};
+        g.setColor(new Color(96, 96, 238));
+        g.fillPolygon(xPointsRainureGauche, yPointsRainureGauche, 4);
+
+        int[] xPointsRainureDroite = {RainureDroiteInfGaucheX, RainureDroiteSupGaucheX, RainureDroiteSupDroitX, RainureDroiteInfDroitX};
+        int[] yPointsRainureDroite = {RainureDroiteInfGaucheY, RainureDroiteSupGaucheY, RainureDroiteSupDroitY, RainureDroiteInfDroitY};
+        g.setColor(new Color(239, 167, 139));
+        g.fillPolygon(xPointsRainureDroite, yPointsRainureDroite, 4);
+
         int[] xPointsFacadeCote = {x1fc, x2fc, x3fc, x4fc};
         int[] yPointsFacadeCote = {y1fc, y2fc, y3fc, y4fc};
-        /*System.out.println(x1fc+""+ y1fc + "(FacadeDrawer) En Haut a Gauche");
-        System.out.println(x2fc+""+ y2fc + "(FacadeDrawer) En Bas a Gauche");
-        System.out.println(x3fc+""+ y3fc + "(FacadeDrawer) En Bas a Droite");
-        System.out.println(x4fc+""+ y4fc + "(FacadeDrawer) En Haut a Droite"); */
-
-
-        // Dessiner le polygone pour le mur facade de coté (fc)
+        g.setColor(new Color(104, 190, 83));
         g.fillPolygon(xPointsFacadeCote, yPointsFacadeCote, 4);
     }
 }
