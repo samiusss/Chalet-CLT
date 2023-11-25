@@ -748,7 +748,7 @@ public class MainWindow extends javax.swing.JFrame {
         nouveauChaletButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-/*
+
                 String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
 
                 Chalet chalet = controleur.getChaletProduction();
@@ -762,17 +762,17 @@ public class MainWindow extends javax.swing.JFrame {
                 Controleur.supprimerToutesFenetre("GAUCHE", listeMursDrawer);
                 controleur.supprimerPorte("Arriere", listeMursDrawer);
                 Controleur.supprimerToutesFenetre("Arriere", listeMursDrawer);
-                Controleur.setEpaisseurChalet(40);
-                Controleur.setLongueurChalet(300);
-                Controleur.setLargeurChalet(300);
-                Controleur.setHauteurMurs(200);
+                Controleur.setEpaisseurChalet(imperialToDoubleUniversel("2'"));
+                Controleur.setLongueurChalet(imperialToDoubleUniversel("20'"));
+                Controleur.setLargeurChalet(imperialToDoubleUniversel("20'"));
+                Controleur.setHauteurMurs(imperialToDoubleUniversel("17'"));
 
-                System.out.println("Nouveau Chalet");
+                System.out.println("Nouveau Chalet Créeer");
 
                 FenetrePrincipale.revalidate();
                 FenetrePrincipale.repaint();
                 isAddingPorte = false;
-                isAddingFenetre = false;*/
+                isAddingFenetre = false;
             }
         });
     }

@@ -57,7 +57,8 @@ public class ChaletDTO {
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
         return chalet ;
     }
-/*
+
+    /*
     public static void creerNouveauChalet(Chalet chalet){
         chalet.getListeMurs().clear();
         chalet.initialiserMurArriere();
