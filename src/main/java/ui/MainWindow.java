@@ -17,6 +17,8 @@ import static Utilitaires.ConvertisseurMesures.*;
 public class MainWindow extends javax.swing.JFrame {
     private Controleur controleur;
     private ChaletDTO chaletdto;
+    private Chalet chalet;
+
     /*private AccessoiresModes actualMode;
     // Ces attributs servent à la gestion du déplacement.
     public Point actualMousePoint = new Point();
@@ -743,6 +745,37 @@ public class MainWindow extends javax.swing.JFrame {
 
             }
         });
+        nouveauChaletButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+
+                Chalet chalet = controleur.getChaletProduction();
+                List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
+
+                controleur.supprimerPorte("Facade", listeMursDrawer);
+                Controleur.supprimerToutesFenetre("Facade", listeMursDrawer);
+                controleur.supprimerPorte("DROITE", listeMursDrawer);
+                Controleur.supprimerToutesFenetre("DROITE", listeMursDrawer);
+                controleur.supprimerPorte("GAUCHE", listeMursDrawer);
+                Controleur.supprimerToutesFenetre("GAUCHE", listeMursDrawer);
+                controleur.supprimerPorte("Arriere", listeMursDrawer);
+                Controleur.supprimerToutesFenetre("Arriere", listeMursDrawer);
+                Controleur.setEpaisseurChalet(10);
+                Controleur.setLongueurChalet(120);
+                Controleur.setLargeurChalet(120);
+                Controleur.setHauteurMurs(96);
+
+                System.out.println(nomMur);
+
+                //DrawingPanel.repaint();
+                revalidate();
+                repaint();
+                isAddingPorte = false;
+                isAddingFenetre = false;
+            }
+        });
     }
 
 
@@ -770,7 +803,6 @@ public class MainWindow extends javax.swing.JFrame {
 
                 revalidate();
                 repaint();
-
             }
         });
 

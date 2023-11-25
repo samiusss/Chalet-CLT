@@ -58,14 +58,14 @@ public class ChaletDTO {
         return chalet ;
     }
 
-    public static boolean creerNouveauChalet(Chalet chalet){
+    public static void creerNouveauChalet(Chalet chalet){
         chalet.getListeMurs().clear();
         chalet.initialiserMurArriere();
         chalet.initialiserMurDroite();
         chalet.initialiserMurFacade();
         chalet.initialiserMurGauche();
 
-        return true;
+        //return true;
 
     }
     public static boolean initialiserChalet(Chalet chalet) {
