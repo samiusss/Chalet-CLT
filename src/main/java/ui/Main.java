@@ -17,8 +17,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-
-
         // Spécifiez le nom du fichier STL de sortie
         //String fileName = "chemin/vers/votre/repertoire/fichier.stl";
 
@@ -50,7 +48,7 @@ public class Main {
 
         //STLWriter.ExporterPanneauxBrut(filePath);
         STLWriter.ExporterPanneauxRetrait(filePath,filePathDroite,filePathChalet);
-
+        STLWriter.ExporterGrid("gridFile.stl");
 
 
         /* // Définir la géométrie de l'objet (triangles)

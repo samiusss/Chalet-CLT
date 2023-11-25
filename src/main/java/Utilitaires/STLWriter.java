@@ -23,10 +23,77 @@ public class STLWriter {
         BigDecimal bd = new BigDecimal(Float.toString(originalValue));
         bd = bd.setScale(2, RoundingMode.HALF_UP);
         String nombreAvecVirgule = bd.toPlainString();  // Utilisez toPlainString() pour éviter la notation scientifique
-
         String nombreAvecPoint = nombreAvecVirgule.replace(",", ".");
         return nombreAvecPoint;
     }
+
+    private static List<Triangle> createPrism(double length, double width, double height, int rows, int cols) {
+        List<Triangle> triangles = new ArrayList<>();
+
+        double deltaX = length / cols;
+        double deltaY = width / rows;
+        double deltaZ = height;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                // Calculate vertices of the current small rectangle on the base facade
+                double x1 = j * deltaX;
+                double y1 = i * deltaY;
+                double z1 = 0.0;
+
+                double x2 = (j + 1) * deltaX;
+                double y2 = i * deltaY;
+                double z2 = 0.0;
+
+                double x3 = j * deltaX;
+                double y3 = (i + 1) * deltaY;
+                double z3 = 0.0;
+
+                double x4 = (j + 1) * deltaX;
+                double y4 = (i + 1) * deltaY;
+                double z4 = 0.0;
+
+                // Create a Triangle object for the current small rectangle on the base facade
+                float[] verticesBase1 = {(float) x1, (float) y1, (float) z1};
+                float[] verticesBase2 = {(float) x2, (float) y2, (float) z2};
+                float[] verticesBase3 = {(float) x3, (float) y3, (float) z3};
+
+                Triangle triangleBase1 = new Triangle(verticesBase1, verticesBase2, verticesBase3);
+
+                // Create another Triangle object for the other diagonal of the rectangle on the base facade
+                float[] verticesBase4 = {(float) x2, (float) y2, (float) z2};
+                float[] verticesBase5 = {(float) x4, (float) y4, (float) z4};
+                float[] verticesBase6 = {(float) x3, (float) y3, (float) z3};
+
+                Triangle triangleBase2 = new Triangle(verticesBase4, verticesBase5, verticesBase6);
+
+                // Add both triangles to the list
+                triangles.add(triangleBase1);
+                triangles.add(triangleBase2);
+
+                // Create triangles for the corresponding rectangles on the top facade
+                float[] verticesTop1 = {(float) x1, (float) y1, (float) (z1 + deltaZ)};
+                float[] verticesTop2 = {(float) x2, (float) y2, (float) (z2 + deltaZ)};
+                float[] verticesTop3 = {(float) x3, (float) y3, (float) (z3 + deltaZ)};
+
+                Triangle triangleTop1 = new Triangle(verticesTop1, verticesTop2, verticesTop3);
+
+                float[] verticesTop4 = {(float) x2, (float) y2, (float) (z2 + deltaZ)};
+                float[] verticesTop5 = {(float) x4, (float) y4, (float) (z4 + deltaZ)};
+                float[] verticesTop6 = {(float) x3, (float) y3, (float) (z3 + deltaZ)};
+
+                Triangle triangleTop2 = new Triangle(verticesTop4, verticesTop5, verticesTop6);
+
+                // Add triangles for the top facade to the list
+                triangles.add(triangleTop1);
+                triangles.add(triangleTop2);
+            }
+        }
+
+        return triangles;
+    }
+
+
 
     public static List<float[]> determinerPointsPrismes(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
         //length correspond a longueur du mur
@@ -319,6 +386,41 @@ public class STLWriter {
         System.out.println("Fichier STL généré avec succès : " + fileName);
     }
 
+    /*public static void ExporterGrid(String fileName){
+        Point point = new Point(0, 0);
+
+        List<Triangle> trianglesDeGrid = createGridTriangles(100, 100, 0, 50, 50);
+        for (Triangle triangle : trianglesDeGrid) {
+            float[] v1 = triangle.vertex1;
+            float[] v2 = triangle.vertex2;
+            float[] v3 = triangle.vertex3;
+
+            System.out.println("Triangle vertices: " +
+                    v1[0] + ", " + v1[1] + ", " + v1[2] + ", " +
+                    v2[0] + ", " + v2[1] + ", " + v2[2] + ", " +
+                    v3[0] + ", " + v3[1] + ", " + v3[2]);
+        }
+        generateSTL(trianglesDeGrid, fileName);
+    }*/
+    /*public static void ExporterGrid(String fileName) {
+        Point point = new Point(0, 0);
+
+        List<Triangle> trianglesDeGrid = createPrism(100, 100, 10, 50, 50);
+
+        for (Triangle triangle : trianglesDeGrid) {
+            float[] v1 = triangle.vertex1;
+            float[] v2 = triangle.vertex2;
+            float[] v3 = triangle.vertex3;
+
+            System.out.println("Triangle vertices: " +
+                    v1[0] + ", " + v1[1] + ", " + v1[2] + ", " +
+                    v2[0] + ", " + v2[1] + ", " + v2[2] + ", " +
+                    v3[0] + ", " + v3[1] + ", " + v3[2]);
+        }
+
+        generateSTL(trianglesDeGrid, fileName);
+    }*/
+
 
     public static void ExporterPanneauxBrut(String fileName) {
         Point point = new Point(0, 0);
@@ -409,8 +511,6 @@ public class STLWriter {
         listeTriangles.addAll(listeTrianglesDroite);
 
         return listeTriangles;
-
-
     }
 
     public static void ExporterPanneauxRetrait(String fileName, String fileNameDroite, String fileNameChalet) {
@@ -508,14 +608,79 @@ public class STLWriter {
         triangleChalet.addAll(listeTriangles);
         triangleChalet.addAll(trianglesDroites);
 
-
         generateSTL(listeTriangles, fileName);
         generateSTL(trianglesDroites, fileNameDroite);
         generateSTL(triangleChalet, fileNameChalet);
-
-
     }
 
+    public static List<Triangle> generateRectangularPrismWithGrid(float length, float width, float height, int rows, int cols) {
+
+        List<Triangle> prismTriangles = generateRectangularPrism(length, width, height, 0, 0, 0);
+
+        List<Triangle> gridTriangles1 = createGridTriangles(length, width, height / 2, rows, cols);
+        List<Triangle> gridTriangles2 = createGridTriangles(length, width, height / 2, rows, cols);
+
+        prismTriangles.addAll(gridTriangles1);
+        prismTriangles.addAll(gridTriangles2);
+
+        return prismTriangles;
+    }
+
+    public static void ExporterGrid(String fileName) {
+        List<Triangle> gridTriangles = generateRectangularPrismWithGrid(100, 100, 10, 5, 5);
+
+        for (Triangle triangle : gridTriangles) {
+            float[] v1 = triangle.vertex1;
+            float[] v2 = triangle.vertex2;
+            float[] v3 = triangle.vertex3;
+
+            System.out.println("Triangle vertices: " +
+                    v1[0] + ", " + v1[1] + ", " + v1[2] + ", " +
+                    v2[0] + ", " + v2[1] + ", " + v2[2] + ", " +
+                    v3[0] + ", " + v3[1] + ", " + v3[2]);
+        }
+
+        generateSTL(gridTriangles, fileName);
+    }
+
+    private static List<Triangle> createGridTriangles(float length, float height, float width, int rows, int columns) {
+        List<Triangle> trianglesList = new ArrayList<>();
+
+        double deltaX = length / columns;
+        double deltaY = height / rows;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+
+                float x1 = (float) (j * deltaX);
+                float y1 = (float) (i * deltaY);
+
+                float x2 = (float) ((j + 1) * deltaX);
+                float y2 = (float) (i * deltaY);
+
+                float x3 = (float) (j * deltaX);
+                float y3 = (float) ((i + 1) * deltaY);
+
+                float x4 = (float) ((j + 1) * deltaX);
+                float y4 = (float) ((i + 1) * deltaY);
+
+                float[] vertices1 = {x1, y1, 0.0f};
+                float[] vertices2 = {x2, y2, 0.0f};
+                float[] vertices3 = {x3, y3, 0.0f};
+
+                Triangle triangleUpper = new Triangle(vertices1, vertices2, vertices3);
+
+                float[] vertices4 = {x2, y2, 0.0f};
+                float[] vertices5 = {x4, y4, 0.0f};
+                float[] vertices6 = {x3, y3, 0.0f};
+
+                Triangle triangleLower = new Triangle(vertices4, vertices5, vertices6);
+                trianglesList.add(triangleUpper);
+                trianglesList.add(triangleLower);
+            }
+        }
+        return trianglesList;
+    }
 
 }
 

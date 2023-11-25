@@ -14,4 +14,11 @@ public class Triangle {
         this.vertex2 = vertex2;
         this.vertex3 = vertex3;
     }
+
+    public Triangle(float[] vertices) {
+        this.vertex1 = vertices;
+        this.vertex2 = vertices;
+        this.vertex3 = vertices;
+    }
+
 }
