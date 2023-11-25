@@ -29,7 +29,7 @@ public class ChaletDTO {
     public static double epaisseurChalet = 2.0;
     public static double angleToit;
     public static List<Mur> listeMurs;
-    public static String orientationToit;
+    public static String orientationToit = "Nord";
     public static double ZoomFactor;
 
     public ChaletDTO(Chalet bi){
@@ -46,7 +46,6 @@ public class ChaletDTO {
     public static Chalet createChalet() {
 
         ArrayList<Mur> listeMurs = new ArrayList<>();
-        String orientationToit = "Nord";
         //Dimensions du mur en 3D
         double epaisseurMur = Chalet.epaisseurChalet;     // Épaisseur du mur
         double hauteurMurs = Chalet.hauteurMurs;      // Hauteur des murs, sera utilisée pour les vues de côté
@@ -119,10 +118,10 @@ public class ChaletDTO {
         chalet.getListeMurs().get(3).fenetreMur = listeFenetreDAVANTd;
 
         // set les accessoires dans les nouveaux murs
-        facade = chalet.getMursUsines(0.2, "Nord").get(0); // mur facade deja codé en bas
-        arriere = chalet.getMursUsines(0.2, "Nord").get(1); // mur arriere deja codé en bas
-        gauche = chalet.getMursUsines(0.2, "Nord").get(2); // mur gauche deja codé en bas
-        droite = chalet.getMursUsines(0.2, "Nord").get(3); // mur droite deja codé en bas
+        facade = chalet.getMursUsines(0.2, orientationToit).get(0); // mur facade deja codé en bas
+        arriere = chalet.getMursUsines(0.2, orientationToit).get(1); // mur arriere deja codé en bas
+        gauche = chalet.getMursUsines(0.2, orientationToit).get(2); // mur gauche deja codé en bas
+        droite = chalet.getMursUsines(0.2, orientationToit).get(3); // mur droite deja codé en bas
 
         return true;
     }
