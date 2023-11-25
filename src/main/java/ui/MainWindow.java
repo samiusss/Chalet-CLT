@@ -135,6 +135,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JButton ExporterFinit;
     private JButton ExporterRetrait;
     private JButton nouveauChaletButton;
+    private JButton changeOrientationButton;
 
     private ChaletDTO.AffichageVue selectedVue;
 
@@ -679,6 +680,27 @@ public class MainWindow extends javax.swing.JFrame {
                 }
             }
         });
+
+        /*changeOrientationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isSelection) {
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
+                    if (chalet.getOrientationToit() == "Nord" || chalet.getOrientationToit() == "Sud") {
+                        //a voir si on la cree
+                        //boolean changementOrientationReussi = controleur.setOrientationToit("Est", listeMursDrawer);
+                        System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                        System.out.println(changementOrientationReussi);
+                        System.out.println("changementOrientationReussi");
+                        DrawingPanel.repaint();
+                    }
+                    isSelection = false;
+                    //isSupprimer = false;
+
+                }
+            }
+        });*/
         XFenetreField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
