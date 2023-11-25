@@ -135,18 +135,18 @@ public class FacadeDrawer {
 
             DroiteRainureInfGauche = new PointDouble(pointInfDroitfc.getX(), 0);
             DroiteRainureSupGauche = new PointDouble(pointSupDroitfc.getX(), hauteurMurs);
-            DroiteRainureSupDroit = new PointDouble(largeurChalet, hauteurMurs);
-            DroiteRainureInfDroit = new PointDouble(largeurChalet, 0);
+            DroiteRainureSupDroit = new PointDouble(longueurChalet, hauteurMurs);
+            DroiteRainureInfDroit = new PointDouble(longueurChalet, 0);
         }else{
             GaucheRainureInfGauche = new PointDouble(0, 0);
             GaucheRainureSupGauche = new PointDouble(0, hauteurMurs);
             GaucheRainureSupDroit = new PointDouble(0, hauteurMurs);
             GaucheRainureInfDroit = new PointDouble(0, 0);
 
-            DroiteRainureInfGauche = new PointDouble(largeurChalet, 0);
-            DroiteRainureSupGauche = new PointDouble(largeurChalet, hauteurMurs);
-            DroiteRainureSupDroit = new PointDouble(largeurChalet, hauteurMurs);
-            DroiteRainureInfDroit = new PointDouble(largeurChalet, 0);
+            DroiteRainureInfGauche = new PointDouble(longueurChalet, 0);
+            DroiteRainureSupGauche = new PointDouble(longueurChalet, hauteurMurs);
+            DroiteRainureSupDroit = new PointDouble(longueurChalet, hauteurMurs);
+            DroiteRainureInfDroit = new PointDouble(longueurChalet, 0);
         }
 
         double positionX = width/2 - pointInfDroitfc.getX()/2;
@@ -201,7 +201,7 @@ public class FacadeDrawer {
 
         int[] xPointsFacadeCote = {x1fc, x2fc, x3fc, x4fc};
         int[] yPointsFacadeCote = {y1fc, y2fc, y3fc, y4fc};
-        g.setColor(new Color(104, 190, 83));
+        g.setColor(new Color(225, 118, 118));
         g.fillPolygon(xPointsFacadeCote, yPointsFacadeCote, 4);
     }
 }

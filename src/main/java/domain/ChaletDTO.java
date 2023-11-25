@@ -29,7 +29,7 @@ public class ChaletDTO {
     public static double epaisseurChalet = 2.0;
     public static double angleToit;
     public static List<Mur> listeMurs;
-    public static String orientationToit = "Nord";
+    public static String orientationToit = "Sud";
     public static double ZoomFactor;
 
     public ChaletDTO(Chalet bi){

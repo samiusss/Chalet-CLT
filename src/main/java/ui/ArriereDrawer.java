@@ -219,18 +219,18 @@ public class ArriereDrawer {
 
             RainureDroiteInfGauche = new PointDouble(point3.getX(), 0);
             RainureDroiteSupGauche = new PointDouble(point3.getX(), hauteurMurs);
-            RainureDroiteSupDroit = new PointDouble(largeurChalet, hauteurMurs);
-            RainureDroiteInfDroite = new PointDouble(largeurChalet, 0);
+            RainureDroiteSupDroit = new PointDouble(longueurChalet, hauteurMurs);
+            RainureDroiteInfDroite = new PointDouble(longueurChalet, 0);
         }else{
             RainureGaucheInfGauche = new PointDouble(0, 0);
             RainureGaucheSupGauche = new PointDouble(0, hauteurMurs);
             RainureGaucheSupDroit = new PointDouble(0, hauteurMurs);
             RainureGaucheInfDroit = new PointDouble(0, 0);
 
-            RainureDroiteInfGauche = new PointDouble(largeurChalet, 0);
-            RainureDroiteSupGauche = new PointDouble(largeurChalet, hauteurMurs);
-            RainureDroiteSupDroit = new PointDouble(largeurChalet, hauteurMurs);
-            RainureDroiteInfDroite = new PointDouble(largeurChalet, 0);
+            RainureDroiteInfGauche = new PointDouble(longueurChalet, 0);
+            RainureDroiteSupGauche = new PointDouble(longueurChalet, hauteurMurs);
+            RainureDroiteSupDroit = new PointDouble(longueurChalet, hauteurMurs);
+            RainureDroiteInfDroite = new PointDouble(longueurChalet, 0);
         }
 
         double positionX = width/2 - point3.getX()/2;
@@ -284,7 +284,7 @@ public class ArriereDrawer {
 
         int[] xPoints = {x1, x2, x3, x4};
         int[] yPoints = {y1, y2, y3, y4};
-        g.setColor(new Color(225, 118, 118));
+        g.setColor(new Color(104, 190, 83));
         g.fillPolygon(xPoints, yPoints, 4);
 
     }
