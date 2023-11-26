@@ -613,9 +613,11 @@ public class STLWriter {
         generateSTL(triangleChalet, fileNameChalet);
     }
 
+    // methode pour generer un prisme 3D sans rainures, avec les deux grosses faces etant une mosaique de triangles
+    //nb de triangles etant rows * cols * 2  par face
     public static List<Triangle> generateRectangularPrismWithGrid(float length, float width, float height, int rows, int cols) {
-        float distanceInterRows = height / rows;
-        float distanceInterCols = width / cols;
+        float deltaY = height / rows;
+        float deltaX = width / cols;
 
         List<Triangle> prismTriangles = generateRectangularPrism(length, width, height, 0, 0, 0);
 
@@ -625,7 +627,8 @@ public class STLWriter {
         prismTriangles.addAll(gridTriangles1);
         prismTriangles.addAll(gridTriangles2);
 
-        return prismTriangles;
+        defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3);
+        return addAccessoryIntoPrism(prismTriangles, defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3), 5, 5);
     }
 
     public static void ExporterPrismeWithGrids(String fileName) {
@@ -641,15 +644,15 @@ public class STLWriter {
                     v2[0] + ", " + v2[1] + ", " + v2[2] + ", " +
                     v3[0] + ", " + v3[1] + ", " + v3[2]);
         }
-        addAccessoryToPrism(gridTriangles, 5, 5, 20, 20);
         generateSTL(gridTriangles, fileName);
     }
 
+    // methode permettant de creer une grille de triangles composant une face rectangulaire
     private static List<Triangle> createGridTriangles(float length, float height, float width, int rows, int columns) {
         List<Triangle> trianglesList = new ArrayList<>();
 
-        double deltaX = length / columns;
-        double deltaY = height / rows;
+        double deltaX = length / columns; // distance inter colonnes
+        double deltaY = height / rows; //distance inter lignes
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -684,51 +687,57 @@ public class STLWriter {
         return trianglesList;
     }
 
-    /*public static List<Triangle> generateHoleForAccessories(List<Triangle> prismTriangles, int accessoryRows, int accessoryColumns, int prismRows, int prismColumns){
-        List<Triangle> updatedTriangles = new ArrayList<>();
-        List<Triangle> accessories = new ArrayList<>();
+    // methode permettant de definir quelles cellules de la grille seront des accessoires
+    // on prend en compte ici le positionnement de l'objet en plus de ses distances
+    public static List<Triangle> defineGridCellsBeingAccessories(float length, float height, int accessoryRows, int accessoryCols, float xSmallAccessory, float xLargeAccessory, float yTopAccessory, float yBotAccessory){
+        List<Triangle> trianglesOfAccessories = new ArrayList<>();
+        float deltaX = length / accessoryCols;
+        float deltaY = height / accessoryRows;
 
-        int accessoryStartRow = 0;
-        int accessoryStartColumn = prismColumns = accessoryColumns;
-        // a suivre
-        //peut etre qqch comme:
-        //listeaccessoires: accessoireID(nbRows, nbColumns, row debut, columnhaut)
-        //for acce in listeaccessoires:
-            //getrectangles
-                //gettriangles for each rectangle
-                //turn normal of each triangle inward
-        return accessories;
-    }*/
+        float xSmall = xSmallAccessory * deltaX;
+        float yTop = yTopAccessory * deltaY;
 
-    public static List<Triangle> addAccessoryToPrism(List<Triangle> prismTriangles, int doorRows, int doorCols, int prismRows, int prismCols) {
-        List<Triangle> updatedTriangles = new ArrayList<>(prismTriangles);
+        float xLarge = xLargeAccessory * deltaX;
+        float yBot = yBotAccessory * deltaY;
 
-        if(doorRows > prismRows || doorCols > prismCols){
-            System.out.println("Door dimensions are larger than prism dimensions");
-            return updatedTriangles;
-        }
-        // Choose a position for the door on the prism
-        int doorStartRow = (prismRows - doorRows) / 2; // center the door vertically
-        int doorStartCol = (prismCols - doorCols) / 2; // center the door horizontally
+        float[] verticeTopLeft = {xSmall, yTop, 0.0f};
+        float[] verticeTopRight = {xLarge, yTop, 0.0f};
+        float[] verticeBotLeft = {xSmall, yBot, 0.0f};
+        float[] verticeBotRight = {xLarge, yBot, 0.0f};
 
-        // Update normals for triangles within the door region
-        for (int i = doorStartRow; i < doorStartRow + doorRows; i++) {
-            for (int j = doorStartCol; j < doorStartCol + doorCols; j++) {
-                int triangleIndexUpper = 2 * ((i * prismCols) + j);
-                int triangleIndexLower = triangleIndexUpper + 1;
+        Triangle triangleUpper = new Triangle(verticeTopLeft, verticeTopRight, verticeBotLeft);
+        Triangle triangleLower = new Triangle(verticeTopRight, verticeBotRight, verticeBotLeft);
 
-                // Update normals to face inward
-                Triangle triangleUpper = updatedTriangles.get(triangleIndexUpper);
-                Triangle triangleLower = updatedTriangles.get(triangleIndexLower);
+        triangleUpper.setNormal(calculateInwardNormal(triangleUpper.getVertices()));
+        triangleLower.setNormal(calculateInwardNormal(triangleLower.getVertices()));
 
-                triangleUpper.setNormal(calculateInwardNormal(triangleUpper.getVertices()));
-                triangleLower.setNormal(calculateInwardNormal(triangleLower.getVertices()));
-            }
-        }
+        trianglesOfAccessories.add(triangleUpper);
+        trianglesOfAccessories.add(triangleLower);
 
-        return updatedTriangles;
+        return trianglesOfAccessories;
     }
 
+    // methode permettant d'ajouter les accessoires dans le prisme, et si les triangles sont pareils dans accesoires et dans le prisme, ne pas mettre
+    // ces triangles dans la liste updated de triangles du prisme
+    public static List<Triangle> addAccessoryIntoPrism(List<Triangle> prismTriangles, List<Triangle> trianglesOfAccessories, int accessoryRows, int accessoryCols) {
+        List<Triangle> updatedPrismTriangles = new ArrayList<>();
+
+        if (accessoryRows > prismTriangles.size() || accessoryCols > prismTriangles.size()) {
+            System.out.println("Accessory dimensions are larger than prism dimensions");
+            return updatedPrismTriangles;
+        }
+
+        if (trianglesOfAccessories.size() > 0) {
+            for (Triangle prismTriangle : prismTriangles) {
+                if (!trianglesOfAccessories.contains(prismTriangle)) {
+                    updatedPrismTriangles.add(prismTriangle);
+                }
+            }
+        }
+        return updatedPrismTriangles;
+    }
+
+    //methode permettant de calculer la normale d'une triangle pour la faire pointer vers l'interieur du prisme
     private static float[] calculateInwardNormal(float[] vertices) {
 
         float[] vector1 = {vertices[3] - vertices[0], vertices[4] - vertices[1], vertices[5] - vertices[2]};
@@ -747,9 +756,5 @@ public class STLWriter {
 
         return normal;
     }
-
-
-
-
 }
 

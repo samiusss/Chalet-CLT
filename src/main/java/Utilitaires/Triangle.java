@@ -1,5 +1,6 @@
 package Utilitaires;
 import java.util.ArrayList;
+import java.util.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,5 +50,24 @@ public class Triangle {
         normal[2] /= length;
 
         return normal;
+    }
+    private Object[] toObjectArray(float[] floatArray){
+        Object[] objectArray = new Object[floatArray.length];
+        for(int i = 0; i < floatArray.length; i++){
+            objectArray[i] = floatArray[i];
+        }
+        return objectArray;
+    }
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj){
+            return true;
+        }
+
+        if(obj == null || getClass() != obj.getClass()){
+            return false;
+        }
+        Triangle other = (Triangle) obj;
+        return Arrays.deepEquals(toObjectArray(this.getVertices()), toObjectArray(other.getVertices()));
     }
 }
