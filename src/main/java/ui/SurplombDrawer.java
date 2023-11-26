@@ -201,5 +201,4 @@ public class SurplombDrawer extends JFrame
         g.setColor(new Color(96, 96, 238));
         g.fillPolygon(xPointsDroit, yPointsDroit, 8);
     }
-
 }
