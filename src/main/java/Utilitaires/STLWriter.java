@@ -9,6 +9,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Arrays;
 
 
 public class STLWriter {
@@ -659,7 +660,10 @@ public class STLWriter {
         triangles.add(new Triangle(v0, v1, v5));
         triangles.add(new Triangle(v0, v5, v4));
 
-        return triangles;
+        defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3);
+        //addAccessoryIntoPrism(triangles, defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3), 5, 5);
+
+        return addAccessoryIntoPrism(triangles, defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3), 5, 5);
     }
 
 
@@ -782,10 +786,17 @@ public class STLWriter {
 
         if (!trianglesOfAccessories.isEmpty()) {
             for (Triangle prismTriangle : prismTriangles) {
-                if (trianglesOfAccessories.contains(prismTriangle)) {
-                    prismTriangle.setNormal(calculateInwardNormal(prismTriangle.getVertices()));
+                boolean isAccessoryTriangle = false;
+                for(Triangle accessoryTriangle: trianglesOfAccessories){
+                    if(Arrays.equals(prismTriangle.getVertices(), accessoryTriangle.getVertices())){
+                        isAccessoryTriangle = true;
+                        break;
+                    }
                 }
-                updatedPrismTriangles.add(prismTriangle);
+                if(!isAccessoryTriangle){
+                    prismTriangle.setNormal(calculateInwardNormal(prismTriangle.getVertices()));
+                    updatedPrismTriangles.add(prismTriangle);
+                }
             }
         }
 
