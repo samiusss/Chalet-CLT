@@ -164,25 +164,18 @@ public class FacadeDrawer {
 
         int RainureGaucheInfGaucheX = (int) (GaucheRainureInfGauche.getX() * zoomFactor + positionX);
         int RainureGaucheInfGaucheY = (int) (GaucheRainureInfGauche.getY() * zoomFactor + positionY);
-
         int RainureGaucheSupGaucheX = (int) (GaucheRainureSupGauche.getX() * zoomFactor + positionX);
         int RainureGaucheSupGaucheY = (int) (GaucheRainureSupGauche.getY() * zoomFactor + positionY);
-
         int RainureGaucheSupDroitX = (int) (GaucheRainureSupDroit.getX() * zoomFactor + positionX);
         int RainureGaucheSupDroitY = (int) (GaucheRainureSupDroit.getY() * zoomFactor + positionY);
-
         int RainureGaucheInfDroitX = (int) (GaucheRainureInfDroit.getX() * zoomFactor + positionX);
         int RainureGaucheInfDroitY = (int) (GaucheRainureInfDroit.getY() * zoomFactor + positionY);
-
         int RainureDroiteInfGaucheX = (int) (DroiteRainureInfGauche.getX() * zoomFactor + positionX);
         int RainureDroiteInfGaucheY = (int) (DroiteRainureInfGauche.getY() * zoomFactor + positionY);
-
         int RainureDroiteSupGaucheX = (int) (DroiteRainureSupGauche.getX() * zoomFactor + positionX);
         int RainureDroiteSupGaucheY = (int) (DroiteRainureSupGauche.getY() * zoomFactor + positionY);
-
         int RainureDroiteSupDroitX = (int) (DroiteRainureSupDroit.getX() * zoomFactor + positionX);
         int RainureDroiteSupDroitY = (int) (DroiteRainureSupDroit.getY() * zoomFactor + positionY);
-
         int RainureDroiteInfDroitX = (int) (DroiteRainureInfDroit.getX() * zoomFactor + positionX);
         int RainureDroiteInfDroitY = (int) (DroiteRainureInfDroit.getY() * zoomFactor + positionY);
 

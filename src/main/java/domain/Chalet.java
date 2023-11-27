@@ -218,8 +218,8 @@ public class Chalet {
                     mur.createSommet(mur, new PointDouble((longueurChalet - (epaisseurChalet / 2)), epaisseurChalet + distanceUsinage)); // H creer Point(9, 2)
                     //Vue de coté
                     mur.getSommetsMur().get(4).setLocation(epaisseurChalet / 2, 0); //A: InfGauche
-                    mur.getSommetsMur().get(5).setLocation(epaisseurChalet / 2, getHauteurMurs()); //B: SupGauche
-                    mur.getSommetsMur().get(6).setLocation(largeurChalet - (epaisseurChalet / 2), getHauteurMurs()); //C: SupDroite
+                    mur.getSommetsMur().get(5).setLocation(epaisseurChalet / 2, hauteurMurs); //B: SupGauche
+                    mur.getSommetsMur().get(6).setLocation(largeurChalet - (epaisseurChalet / 2), hauteurMurs); //C: SupDroite
                     mur.getSommetsMur().get(7).setLocation(largeurChalet - (epaisseurChalet / 2), 0); //D: InfDroite
                     mursDecoupes.add(mur);
                 }
@@ -943,11 +943,7 @@ public class Chalet {
                     return success;
 
                 }
-
-
             }
-
-
         }
 
 

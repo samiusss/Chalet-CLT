@@ -74,34 +74,6 @@ public class DroitDrawer {
 
 
 
-                /*
-
-                pointPouces pointFenetreSupDroit = new pointPouces(fenetre.getPointPouces(mousePoint).getX().addPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().addPouces(fenetre.getHauteur().diviserPouces(2)));
-                pointPouces pointFenetreSupGauche=new pointPouces(fenetre.getPointPouces(mousePoint).getX().substractPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().addPouces(fenetre.getHauteur().diviserPouces(2)));
-                pointPouces pointFenetreInfGauche = new pointPouces(fenetre.getPointPouces(mousePoint).getX().substractPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().substractPouces(fenetre.getHauteur().diviserPouces(2)));
-                pointPouces pointFenetreInfDroit = new pointPouces(fenetre.getPointPouces(mousePoint).getX().addPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().substractPouces(fenetre.getHauteur().diviserPouces(2)));
-
-
-                int x1 = convertirPoucesEnPixels(pointFenetreSupDroit.getX());
-                int y1 = convertirPoucesEnPixels(pointFenetreSupDroit.getY());
-
-                int x2 = convertirPoucesEnPixels(pointFenetreSupGauche.getX());
-                int y2 = convertirPoucesEnPixels(pointFenetreSupGauche.getY());
-
-                int x3 = convertirPoucesEnPixels(pointFenetreInfGauche.getX());
-                int y3 = convertirPoucesEnPixels(pointFenetreInfGauche.getY());
-
-
-                int x4 = convertirPoucesEnPixels(pointFenetreInfDroit.getX());
-                int y4 = convertirPoucesEnPixels(pointFenetreInfDroit.getY());
-
-                int[] xPoints = {x1, x2, x3, x4};
-                int[] yPoints = {y1, y2, y3, y4};
-
-                g.fillPolygon(xPoints, yPoints, 4);
-
-                 */
-
             }
         }
 
@@ -239,29 +211,6 @@ public class DroitDrawer {
             DroiteRainureInfDroit = new PointDouble(largeurChalet, 0);
         }
 
-
-        /*if(chalet.getOrientationToit().equals("Nord")|| chalet.getOrientationToit().equals("Sud")){
-            GaucheRainureInfGauche = new PointDouble(0, 0);
-            GaucheRainureSupGauche = new PointDouble(0, hauteurMurs);
-            GaucheRainureSupDroit = new PointDouble(epaisseurChalet/2, hauteurMurs);
-            GaucheRainureInfDroit = new PointDouble(epaisseurChalet/2, 0);
-
-            DroiteRainureInfGauche = new PointDouble(largeurChalet - epaisseurChalet/2, 0);
-            DroiteRainureSupGauche = new PointDouble(largeurChalet - epaisseurChalet/2, hauteurMurs);
-            DroiteRainureSupDroit = new PointDouble(largeurChalet, hauteurMurs);
-            DroiteRainureInfDroit = new PointDouble(largeurChalet, 0);
-        }
-        else if(chalet.getOrientationToit().equals("Est") || chalet.getOrientationToit().equals("Ouest")){
-            GaucheRainureInfGauche = new PointDouble(0, 0);
-            GaucheRainureSupGauche = new PointDouble(0, hauteurMurs);
-            GaucheRainureSupDroit = new PointDouble(0, hauteurMurs);
-            GaucheRainureInfDroit = new PointDouble(0, 0);
-
-            DroiteRainureInfGauche = new PointDouble(largeurChalet, 0);
-            DroiteRainureSupGauche = new PointDouble(largeurChalet, hauteurMurs);
-            DroiteRainureSupDroit = new PointDouble(largeurChalet, hauteurMurs);
-            DroiteRainureInfDroit = new PointDouble(largeurChalet, 0);
-        }*/
 
 
         // Centrer au milieu du drawingPanel
