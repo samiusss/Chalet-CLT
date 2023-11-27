@@ -398,8 +398,6 @@ public class Chalet {
 
 
 
-
-
     public static boolean estDansRectangle(Point point, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
         int x = point.x;
         int y = point.y;
@@ -423,6 +421,50 @@ public class Chalet {
         boolean conditionUn = x <= x1;
         boolean conditionDeux = x >= x2;
         boolean conditionTrois = y >= y1;
+        boolean conditionQuatre = y <= y3;
+        //System.out.println(conditionUn +""+  conditionDeux +""+  conditionTrois +""+  conditionQuatre +"Les conditions" );
+
+        // Vérifie si le point se trouve à l'intérieur du rectangle
+        boolean estDansRectangle = (conditionUn && conditionDeux && conditionTrois && conditionQuatre);
+
+        //System.out.println(estDansRectangle + "(estDansRectangle) " + point);
+        return estDansRectangle;
+
+    /*private static boolean estDansRectangle2(Point pointVerification, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
+        boolean Rect = pointVerification.x >= coinSupGauche.x && pointVerification.x <= coinSupDroit.x
+                && pointVerification.y >= coinSupGauche.y && pointVerification.y <= coinInfGauche.y ;
+        System.out.println(Rect + "(estDansRectangle) "+pointVerification);
+
+    return (pointVerification.x >= coinSupGauche.x && pointVerification.x <= coinSupDroit.x
+                && pointVerification.y >= coinSupGauche.y && pointVerification.y <= coinInfGauche.y);
+    } */
+
+    }
+
+
+    public static boolean estDansRectangleMurArriere(Point point, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
+        int x = point.x;
+        int y = point.y;
+
+        int x1 = coinSupGauche.x;
+        int y1 = coinSupGauche.y;
+
+        int x2 = coinSupDroit.x;
+        int y2 = coinSupDroit.y;
+
+        int x3 = coinInfGauche.x;
+        int y3 = coinInfGauche.y;
+
+        int x4 = coinInfDroit.x;
+        int y4 = coinInfDroit.y;
+
+        //Probleme dans la méthode de generations des sommets des murs. Le points superieur droit est plus petit que le coin superieur gauche.
+        //boolean conditionUn = x >= x1;
+        //boolean conditionDeux = x <= x2 ;
+
+        boolean conditionUn = x <= x1;
+        boolean conditionDeux = x >= x2;
+        boolean conditionTrois = y <= y1;
         boolean conditionQuatre = y <= y3;
         //System.out.println(conditionUn +""+  conditionDeux +""+  conditionTrois +""+  conditionQuatre +"Les conditions" );
 
@@ -508,12 +550,28 @@ public class Chalet {
         System.out.println(InfDroitFenetre+"(AntiCollisionFenetreMur) Fenetre En Bas a Droite ");
         System.out.println(SupDroitFenetre+"(AntiCollisionFenetreMur) Fenetre En Haut a Droite "); */
 
-        boolean PointUnRect = estDansRectangle(SupGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
-        boolean PointDeuxRect = estDansRectangle(SupDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
-        boolean PointTroisRect = estDansRectangle(InfGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
-        boolean PointQuatreRect = estDansRectangle(InfDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
+        if(mur.getNomMur() == "Arriere" )
+        {
 
-        return (PointUnRect && PointDeuxRect & PointTroisRect && PointQuatreRect);
+            boolean PointUnRect = estDansRectangleMurArriere(SupGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
+            boolean PointDeuxRect = estDansRectangleMurArriere(SupDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
+            boolean PointTroisRect = estDansRectangleMurArriere(InfGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
+            boolean PointQuatreRect = estDansRectangleMurArriere(InfDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
+
+            return (PointUnRect && PointDeuxRect & PointTroisRect && PointQuatreRect);
+
+
+        } else {
+
+            boolean PointUnRect = estDansRectangle(SupGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
+            boolean PointDeuxRect = estDansRectangle(SupDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
+            boolean PointTroisRect = estDansRectangle(InfGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
+            boolean PointQuatreRect = estDansRectangle(InfDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
+
+            return (PointUnRect && PointDeuxRect & PointTroisRect && PointQuatreRect);
+
+        }
+
 
 
         /* return (estDansRectangle(SupGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur)
@@ -872,8 +930,10 @@ public class Chalet {
         //Une porte par mur
         List<Porte> listePorte = mur.getListePorte();
         boolean Anticollision = AntiCollisionAccessoireMur(mur, mousepoint, largeur, hauteur, initialDimension);
+        System.out.println(Anticollision+"(ajouterPorte) Anticollision Mur Porte ");
 
         if (Anticollision) {
+            System.out.println(Anticollision+"(ajouterPorte) Anticollision Mur Porte ");
 
 
             if (AntiCollisionFenetrePorte(mur, mousepoint, largeur, largeur) == false) {
