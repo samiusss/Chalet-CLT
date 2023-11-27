@@ -45,7 +45,6 @@ public class ChaletDTO {
         double largeurMur = Chalet.largeurChalet;      // Largeur des murs venant
         double longueurMur = Chalet.longueurChalet;
         double angleToit = 0.0;
-        double distanceUsinage;
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
         return chalet ;
