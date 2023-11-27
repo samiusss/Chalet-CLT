@@ -6,6 +6,7 @@ import java.awt.*;
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -660,10 +661,9 @@ public class STLWriter {
         triangles.add(new Triangle(v0, v1, v5));
         triangles.add(new Triangle(v0, v5, v4));
 
-        defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3);
         //addAccessoryIntoPrism(triangles, defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3), 5, 5);
 
-        return addAccessoryIntoPrism(triangles, defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3), 5, 5);
+        return addAccessoryIntoPrism(triangles, defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3));
     }
 
 
@@ -673,19 +673,22 @@ public class STLWriter {
     public static List<Triangle> generateRectangularPrismWithGrid(float length, float width, float height, int rows, int cols) {
         float deltaY = height / rows;
         float deltaX = width / cols;
+        List<Triangle> updated = new ArrayList<>();
 
         List<Triangle> prismTriangles = generateRectangularPrism(length, width, height, 0, 0, 0);
 
-        List<Triangle> gridTriangles1 = createGridTriangles(length, width, height, rows, cols);
+        List<Triangle> accessoryTriangles = defineGridCellsBeingAccessories(length, height, 5, 5, 3, 8, 3, 8);
+
+        /*List<Triangle> gridTriangles1 = createGridTriangles(length, width, height, rows, cols);
         List<Triangle> gridTriangles2 = createGridTriangles(length, width, height, rows, cols);
 
         prismTriangles.addAll(gridTriangles1);
-        prismTriangles.addAll(gridTriangles2);
+        prismTriangles.addAll(gridTriangles2);*/
 
         /*defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3);
         addAccessoryIntoPrism(prismTriangles, defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3), 5, 5);
 */
-        return prismTriangles;
+        return addAccessoryIntoPrism(prismTriangles, accessoryTriangles);
     }
 
     public static void ExporterPrismeWithGrids(String fileName) {
@@ -776,29 +779,30 @@ public class STLWriter {
 
     // methode permettant d'ajouter les accessoires dans le prisme, et si les triangles sont pareils dans accesoires et dans le prisme, ne pas mettre
     // ces triangles dans la liste updated de triangles du prisme
-    public static List<Triangle> addAccessoryIntoPrism(List<Triangle> prismTriangles, List<Triangle> trianglesOfAccessories, int accessoryRows, int accessoryCols) {
+    public static List<Triangle> addAccessoryIntoPrism(List<Triangle> prismTriangles, List<Triangle> trianglesOfAccessories) {
         List<Triangle> updatedPrismTriangles = new ArrayList<>();
 
-        if (accessoryRows > prismTriangles.size() || accessoryCols > prismTriangles.size()) {
-            System.out.println("Accessory dimensions are larger than prism dimensions");
-            return updatedPrismTriangles;
-        }
-
-        if (!trianglesOfAccessories.isEmpty()) {
-            for (Triangle prismTriangle : prismTriangles) {
-                boolean isAccessoryTriangle = false;
-                for(Triangle accessoryTriangle: trianglesOfAccessories){
-                    if(Arrays.equals(prismTriangle.getVertices(), accessoryTriangle.getVertices())){
-                        isAccessoryTriangle = true;
-                        break;
-                    }
-                }
-                if(!isAccessoryTriangle){
-                    prismTriangle.setNormal(calculateInwardNormal(prismTriangle.getVertices()));
-                    updatedPrismTriangles.add(prismTriangle);
+        /*for (Triangle prismTriangle : prismTriangles) {
+            boolean isAccessoryTriangle = false;
+            for(Triangle accessoryTriangle: trianglesOfAccessories){
+                if(Arrays.equals(prismTriangle.getVertices(), accessoryTriangle.getVertices())){
+                    isAccessoryTriangle = true;
+                    break;
                 }
             }
+            prismTriangle.setNormal(calculateInwardNormal(prismTriangle.getVertices()));
+            updatedPrismTriangles.add(prismTriangle);
+        }*/
+        for(Triangle prismTriangle : prismTriangles){
+            if(trianglesOfAccessories.contains(prismTriangle)){
+                continue;
+            }
+            else{
+                prismTriangle.setNormal(calculateInwardNormal(prismTriangle.getVertices()));
+                updatedPrismTriangles.add(prismTriangle);
+            }
         }
+
 
         return updatedPrismTriangles;
     }
