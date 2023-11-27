@@ -13,6 +13,7 @@ import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 public class FenetreDrawer {
     private Point centre;
     private boolean isAddingFenetre = false;
+    private double zoomFactor;
     public void draw(Graphics g)
     {
         drawFenetre(g);

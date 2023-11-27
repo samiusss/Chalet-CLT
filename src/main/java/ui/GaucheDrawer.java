@@ -10,23 +10,29 @@ import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
-import static domain.Chalet.hauteurMurs;
+import static domain.Chalet.*;
 
 public class GaucheDrawer
 {
     private Controleur controleur;
+    public ChaletDTO chaletdto;
     public static Chalet chalet;
     private Accessoires accessoires;
     private Dimension initialDimension;
+    private double zoomFactor;
 
     public Mur gauche ; // mur arriere deja codé en bas
+
+    public PointDouble DroiteRainureInfGauche, DroiteRainureSupGauche, DroiteRainureInfDroit, DroiteRainureSupDroit;
+    public PointDouble GaucheRainureInfGauche, GaucheRainureSupGauche, GaucheRainureInfDroit, GaucheRainureSupDroit;
 
     public GaucheDrawer(Controleur controleur, Dimension initialDimension){
         this.controleur = controleur;
         this.initialDimension = initialDimension;
 
         Chalet chalet = controleur.getChaletProduction();
-        this.gauche = controleur.gauche; // mur facade deja codé en bas
+        this.gauche = chaletdto.gauche; // mur facade deja codé en bas
+        this.zoomFactor = controleur.getZoom();
     }
 
     public void draw(Graphics g)
@@ -190,86 +196,88 @@ public class GaucheDrawer
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
 
-        /*ArrayList<Mur> listeMurs = new ArrayList<>();
-        String orientationToit = "Nord";
-        // Définir la couleur des murs
-
-        //Dimensions du mur en 3D
-        double epaisseurMur = Chalet.epaisseurChalet; // Épaisseur du mur test local
-        double hauteurMurs = Chalet.hauteurMurs;      // Hauteur des murs, sera utilisée pour les vues de côté
-        double largeurMur = Chalet.largeurChalet;     // Largeur des murs venant de chalet
-        double longueurMur = Chalet.longueurChalet;
-        double angleToit = 0.0;
-
-        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
-*/
-        //chalet.initialiserMurGauche();
-        //Mur gauche = chalet.getMursUsines(0.2, "Nord").get(0); // mur gauche deja codé en bas
-
-        // Accéder coord de Mur gauche de face (gc)
         PointDouble pointSupDroitgc = gauche.getSommetsMur().get(4);
         PointDouble pointSupGauchegc = gauche.getSommetsMur().get(5);
         PointDouble pointInfDroitgc = gauche.getSommetsMur().get(6);
         PointDouble pointInfGauchegc = gauche.getSommetsMur().get(7);
 
+        if(pointSupGauchegc.getX() != 0 || pointInfGauchegc.getX() != 0)
+        {
+            GaucheRainureInfGauche = new PointDouble(0, 0);
+            GaucheRainureSupGauche = new PointDouble(0, hauteurMurs);
+            GaucheRainureSupDroit = new PointDouble(epaisseurChalet/2, hauteurMurs);
+            GaucheRainureInfDroit = new PointDouble(epaisseurChalet/2, 0);
 
-        PointDouble pointInfGaucheCadre = new PointDouble(0,0);
-        PointDouble pointSupGaucheCadre = new PointDouble(0, gauche.getSommetsMur().get(5).getY());
-        PointDouble pointSupDroitCadre = new PointDouble(gauche.getSommetsMur().get(5).getX() + gauche.getSommetsMur().get(4).getX(), (gauche.getSommetsMur().get(5).getY()));
-        PointDouble pointInfDroitCadre = new PointDouble(gauche.getSommetsMur().get(5).getX() + gauche.getSommetsMur().get(4).getX(), 0);
+            DroiteRainureInfGauche = new PointDouble(pointInfDroitgc.getX(), 0);
+            DroiteRainureSupGauche = new PointDouble(pointSupDroitgc.getX(), hauteurMurs);
+            DroiteRainureSupDroit = new PointDouble(largeurChalet, hauteurMurs);
+            DroiteRainureInfDroit = new PointDouble(largeurChalet, 0);
+        } else{
+            GaucheRainureInfGauche = new PointDouble(0, 0);
+            GaucheRainureSupGauche = new PointDouble(0, hauteurMurs);
+            GaucheRainureSupDroit = new PointDouble(0, hauteurMurs);
+            GaucheRainureInfDroit = new PointDouble(0, 0);
+
+            DroiteRainureInfGauche = new PointDouble(largeurChalet, 0);
+            DroiteRainureSupGauche = new PointDouble(largeurChalet, hauteurMurs);
+            DroiteRainureSupDroit = new PointDouble(largeurChalet, hauteurMurs);
+            DroiteRainureInfDroit = new PointDouble(largeurChalet, 0);
+        }
 
         double positionX = width/2 - pointInfDroitgc.getX()/2;
         double positionY = height/2 - pointInfDroitgc.getY()/2;
 
-        int x1gc = (int) (pointInfGauchegc.getX() + positionX);
-        int y1gc = (int) (pointInfGauchegc.getY() + positionY);
+        int x1gc = (int) (pointInfGauchegc.getX()* zoomFactor + positionX);
+        int y1gc = (int) (pointInfGauchegc.getY()* zoomFactor + positionY);
 
-        int x2gc = (int) (pointInfDroitgc.getX() + positionX);
-        int y2gc = (int) (pointInfDroitgc.getY() + positionY);
+        int x2gc = (int) (pointInfDroitgc.getX()* zoomFactor + positionX);
+        int y2gc = (int) (pointInfDroitgc.getY()* zoomFactor + positionY);
 
-        int x3gc = (int) (pointSupGauchegc.getX() + positionX);
-        int y3gc = (int) (pointSupGauchegc.getY() + positionY);
+        int x3gc = (int) (pointSupGauchegc.getX()* zoomFactor + positionX);
+        int y3gc = (int) (pointSupGauchegc.getY()* zoomFactor + positionY);
 
-        int x4gc = (int) (pointSupDroitgc.getX() + positionX);
-        int y4gc = (int) (pointSupDroitgc.getY() + positionY);
-        /////////////////////////////////
-        int x1Cadre = (int) (pointInfGaucheCadre.getX() + positionX);
-        int y1Cadre = (int) (pointInfGaucheCadre.getY() + positionY);
+        int x4gc = (int) (pointSupDroitgc.getX()* zoomFactor + positionX);
+        int y4gc = (int) (pointSupDroitgc.getY()* zoomFactor + positionY);
 
-        int x2Cadre = (int) (pointSupGaucheCadre.getX() + positionX);
-        int y2Cadre = (int) (pointSupGaucheCadre.getY() + positionY);
+        int intx1RainureGauche = (int) (GaucheRainureInfGauche.getX()* zoomFactor + positionX);
+        int inty1RainureGauche = (int) (GaucheRainureInfGauche.getY()* zoomFactor + positionY);
 
-        int x3Cadre = (int) (pointSupDroitCadre.getX() + positionX);
-        int y3Cadre = (int) (pointSupDroitCadre.getY() + positionY);
+        int intx2RainureGauche = (int) (GaucheRainureSupGauche.getX()* zoomFactor + positionX);
+        int inty2RainureGauche = (int) (GaucheRainureSupGauche.getY()* zoomFactor + positionY);
 
-        int x4Cadre = (int) (pointInfDroitCadre.getX() + positionX);
-        int y4Cadre = (int) (pointInfDroitCadre.getY() + positionY);
+        int intx3RainureGauche = (int) (GaucheRainureSupDroit.getX()* zoomFactor + positionX);
+        int inty3RainureGauche = (int) (GaucheRainureSupDroit.getY()* zoomFactor + positionY);
 
-        int[] xPointsCadre = {x1Cadre, x2Cadre, x3Cadre, x4Cadre};
-        int[] yPointsCadre = {y1Cadre, y2Cadre, y3Cadre, y4Cadre};
+        int intx4RainureGauche = (int) (GaucheRainureInfDroit.getX()* zoomFactor + positionX);
+        int inty4RainureGauche = (int) (GaucheRainureInfDroit.getY()* zoomFactor + positionY);
 
-// Construire tableaux de coordonnées pour le mur facade de coté
-        int[] xPointsGaucheCote = {x1gc, x2gc, x3gc, x4gc};
-        int[] yPointsGaucheCote = {y1gc, y2gc, y3gc, y4gc};
+        int intx1RainureDroite = (int) (DroiteRainureInfGauche.getX()* zoomFactor + positionX);
+        int inty1RainureDroite = (int) (DroiteRainureInfGauche.getY()* zoomFactor + positionY);
 
-// Dessiner le polygone pour le mur facade de coté (gc)
-        //premiere rainure
-        int[] PremiereRainurex = {x1Cadre, x2Cadre, x3gc, x1gc};
-        int[] PremiereRainurey = {y1Cadre, y2Cadre, y3gc, y1gc};
-        g.setColor(new Color(66, 66, 166));
-        g.fillPolygon(PremiereRainurex, PremiereRainurey, 4);
+        int intx2RainureDroite = (int) (DroiteRainureSupGauche.getX()* zoomFactor + positionX);
+        int inty2RainureDroite = (int) (DroiteRainureSupGauche.getY()* zoomFactor + positionY);
 
-        //mur gauche
-        int[] murGauchex = {x1gc, x2gc, x3gc, x4gc};
-        int[] murGauchey = {y1gc, y2gc, y3gc, y4gc};
-        g.setColor(new Color(210, 68, 1));
-        g.fillPolygon(murGauchex, murGauchey, 4);
+        int intx3RainureDroite = (int) (DroiteRainureSupDroit.getX()* zoomFactor + positionX);
+        int inty3RainureDroite = (int) (DroiteRainureSupDroit.getY()* zoomFactor + positionY);
 
-        //troisieme rainure
-        int[] rainureTroisiemex = {x4gc + x1gc, x4gc, x3gc + x2gc, x2gc};
-        int[] rainureTroisiemey = {y4gc, y4gc, y2gc, y2gc};
-        g.setColor(new Color(66, 66, 166));
-        //g.fillPolygon(rainureTroisiemex, rainureTroisiemey, 4);
+        int intx4RainureDroite = (int) (DroiteRainureInfDroit.getX()* zoomFactor + positionX);
+        int inty4RainureDroite = (int) (DroiteRainureInfDroit.getY()* zoomFactor + positionY);
 
+        int[] xPointsGaucheRainure = {intx1RainureGauche, intx2RainureGauche, intx3RainureGauche, intx4RainureGauche};
+        int[] yPointsGaucheRainure = {inty1RainureGauche, inty2RainureGauche, inty3RainureGauche, inty4RainureGauche};
+        g.setColor(new Color(104, 190, 83));
+        g.fillPolygon(xPointsGaucheRainure, yPointsGaucheRainure, 4);
+
+
+        int[] xPointsDroiteRainure = {intx1RainureDroite, intx2RainureDroite, intx3RainureDroite, intx4RainureDroite};
+        int[] yPointsDroiteRainure = {inty1RainureDroite, inty2RainureDroite, inty3RainureDroite, inty4RainureDroite};
+        g.setColor(new Color(225, 118, 118));
+        g.fillPolygon(xPointsDroiteRainure, yPointsDroiteRainure, 4);
+
+        int[] xPointsGauche = {x1gc, x2gc, x3gc, x4gc};
+        int[] yPointsGauche = {y1gc, y2gc, y3gc, y4gc};
+        g.setColor(new Color(239, 167, 139));
+        g.fillPolygon(xPointsGauche, yPointsGauche, 4);
     }
+
 }

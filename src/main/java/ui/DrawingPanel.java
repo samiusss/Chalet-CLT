@@ -1,5 +1,6 @@
 package ui;
 
+import domain.ChaletDTO;
 import domain.Controleur;
 
 import javax.swing.*;
@@ -26,12 +27,12 @@ public class DrawingPanel extends JPanel implements Serializable {
         setPreferredSize(new Dimension(1000, 1000));
     }*/
 
-    public static Controleur.AffichageVue selectedAffichageVue;
+    public static ChaletDTO.AffichageVue selectedAffichageVue;
 
 
 
     public DrawingPanel(MainWindow mainWindow) {
-        selectedAffichageVue = Controleur.AffichageVue.SURPLOMB;
+        selectedAffichageVue = ChaletDTO.AffichageVue.SURPLOMB;
 
         this.mainWindow = mainWindow;
         controleur = new Controleur();
@@ -52,7 +53,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 //        });
     }
 
-    public static boolean changerVue(Controleur.AffichageVue selectedVue) {
+    public static boolean changerVue(ChaletDTO.AffichageVue selectedVue) {
         selectedAffichageVue = selectedVue;
         return true;
     }
@@ -80,23 +81,23 @@ public class DrawingPanel extends JPanel implements Serializable {
         if (mainWindow != null) {
 
 
-            if (selectedAffichageVue == Controleur.AffichageVue.SURPLOMB) {
+            if (selectedAffichageVue == ChaletDTO.AffichageVue.SURPLOMB) {
                 SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
             }
-            if (selectedAffichageVue == Controleur.AffichageVue.FACADE) {
+            if (selectedAffichageVue == ChaletDTO.AffichageVue.FACADE) {
                 FacadeDrawer mainDrawer = new FacadeDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
             }
-            if (selectedAffichageVue == Controleur.AffichageVue.ARRIERE) {
+            if (selectedAffichageVue == ChaletDTO.AffichageVue.ARRIERE) {
                 ArriereDrawer mainDrawer = new ArriereDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
             }
-            if (selectedAffichageVue == Controleur.AffichageVue.DROITE) {
+            if (selectedAffichageVue == ChaletDTO.AffichageVue.DROITE) {
                 DroitDrawer mainDrawer = new DroitDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
             }
-            if (selectedAffichageVue == Controleur.AffichageVue.GAUCHE) {
+            if (selectedAffichageVue == ChaletDTO.AffichageVue.GAUCHE) {
                 GaucheDrawer mainDrawer = new GaucheDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
             }

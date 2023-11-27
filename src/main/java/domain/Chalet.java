@@ -19,8 +19,9 @@ public class Chalet {
     public static double angleToit;
     public static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
     public static String orientationToit;
-
     public static double zoom;
+    public static float offsetX = 100;
+    public static float offsetY = 170;
     public Chalet(double largeurChalet, double longueurChalet,
                   double epaisseurChalet, double angleToit,
                   double hauteurMurs, List<Mur> listeMurs, String orientationToit) {
@@ -1232,20 +1233,15 @@ public class Chalet {
         //Une porte par mur
         List<Fenetre> listeFenetre = mur.getListeFenetre();
 
-
         for (Fenetre fenetre : listeFenetre) {
-
             boolean fenetreTrouve = selectionFenetre(fenetre, mousePointClicked);
             if (fenetreTrouve == true) {
-
                 if (AntiCollisionAccessoireMur(mur, fenetre.mousePoint, fenetre.largeur, nouvelleHauteur, initialDimension)) {
-
                     if (AntiCollisionFenetreModification(mur, fenetre, fenetre.mousePoint, fenetre.largeur, nouvelleHauteur) == false) {
 
                         boolean success = fenetre.setHauteurFenetre(nouvelleHauteur);
                         System.out.println(fenetre + "Hauteur de la Fenetre Modifie ");
                         return success;
-
                     }
 
                 }
@@ -1274,11 +1270,9 @@ public class Chalet {
             if (fenetreTrouve == true) {
                 if (AntiCollisionAccessoireMur(mur, fenetre.mousePoint, nouvelleLargeur, fenetre.hauteur, initialDimension)) {
                     if (AntiCollisionFenetreModification(mur, fenetre, fenetre.mousePoint, nouvelleLargeur, fenetre.hauteur) == false) {
-
                         boolean success = fenetre.setLargeurFenetre(nouvelleLargeur);
                         System.out.println(fenetre + "Largeur de la Fenetre Modifie ");
                         return success;
-
                     }
 
                 }
@@ -1382,9 +1376,23 @@ public class Chalet {
     public static double getZoom() {
         return zoom;
     }
+    public static float getOffsetX() {
+        return offsetX;
+    }
 
+    public static float getOffsetY() {
+        return offsetY;
+    }
     public static void setZoom(double leZoom)
     {
         zoom = leZoom;
+    }
+    public static void setOffsetX(float leOffsetX)
+    {
+        offsetX = leOffsetX;
+    }
+    public static void setOffsetY(float leOffsetY)
+    {
+        offsetY = leOffsetY;
     }
 }

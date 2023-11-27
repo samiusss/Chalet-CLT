@@ -2,6 +2,7 @@ package ui;
 
 import Utilitaires.Pouces;
 import domain.Chalet;
+import domain.ChaletDTO;
 import domain.Controleur;
 import domain.Mur;
 
@@ -11,10 +12,14 @@ import java.awt.event.*;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.*;
+import static java.lang.Math.abs;
 
 
 public class MainWindow extends javax.swing.JFrame {
     private Controleur controleur;
+    private ChaletDTO chaletdto;
+    private Chalet chalet;
+
     /*private AccessoiresModes actualMode;
     // Ces attributs servent à la gestion du déplacement.
     public Point actualMousePoint = new Point();
@@ -127,8 +132,14 @@ public class MainWindow extends javax.swing.JFrame {
     private JTextField largeurchaletMN;
     private JTextField epaisseurchaletMN;
     private JTextField hauteurchaletMN;
+    private JButton Brut;
+    private JButton ExporterFinit;
+    private JButton ExporterRetrait;
+    private JButton nouveauChaletButton;
+    private JButton changeOrientationButton;
+    private Point ZoomOrigin;
 
-    private Controleur.AffichageVue selectedVue;
+    private ChaletDTO.AffichageVue selectedVue;
 
     private double zoomFactor = 1.0;
 
@@ -192,14 +203,13 @@ public class MainWindow extends javax.swing.JFrame {
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0.2,"NORD");
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(1700,"NORD");
                     Point mousePoint = e.getPoint();
                     Dimension intitalDimension = DrawingPanel.getPreferredSize();
                     if(nomMur != "SURPLOMB") {
                         boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer, intitalDimension);
                         if(ajoutFenetrereussi == false){
                             JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
-
                         }
                         //System.out.println(ui.DrawingPanel.selectedAffichageVue);
                         System.out.println(ajoutFenetrereussi);
@@ -218,7 +228,7 @@ public class MainWindow extends javax.swing.JFrame {
         //Gestion des vues
         VueComboBox.addItemListener(new ItemListener() {
 
-            private Controleur.AffichageVue selectedVue;
+            private ChaletDTO.AffichageVue selectedVue;
 
             private String getSelectedVueOption() {
                 return (String) VueComboBox.getSelectedItem();
@@ -236,31 +246,31 @@ public class MainWindow extends javax.swing.JFrame {
                             switch (selectedOption) {
                                 case "Facade":
                                     //drawFacade();
-                                    this.setVue(Controleur.AffichageVue.FACADE);
+                                    this.setVue(ChaletDTO.AffichageVue.FACADE);
                                     ui.DrawingPanel.changerVue(selectedVue);
                                     DrawingPanel.repaint();
                                     System.out.println("Facade");
                                     break;
                                 case "Arriere":
-                                    this.setVue(Controleur.AffichageVue.ARRIERE);
+                                    this.setVue(ChaletDTO.AffichageVue.ARRIERE);
                                     ui.DrawingPanel.changerVue(selectedVue);
                                     DrawingPanel.repaint();
                                     System.out.println("Arriere");
                                     break;
                                 case "Droit":
-                                    this.setVue(Controleur.AffichageVue.DROITE);
+                                    this.setVue(ChaletDTO.AffichageVue.DROITE);
                                     ui.DrawingPanel.changerVue(selectedVue);
                                     DrawingPanel.repaint();
                                     System.out.println("Droit");
                                     break;
                                 case "Gauche":
-                                    this.setVue(Controleur.AffichageVue.GAUCHE);
+                                    this.setVue(ChaletDTO.AffichageVue.GAUCHE);
                                     ui.DrawingPanel.changerVue(selectedVue);
                                     DrawingPanel.repaint();
                                     System.out.println("Gauche");
                                     break;
                                 case "Surplomb":
-                                    this.setVue(Controleur.AffichageVue.SURPLOMB);
+                                    this.setVue(ChaletDTO.AffichageVue.SURPLOMB);
                                     ui.DrawingPanel.changerVue(selectedVue);
                                     DrawingPanel.repaint();
                                     System.out.println("Surplomb");
@@ -272,7 +282,7 @@ public class MainWindow extends javax.swing.JFrame {
                         }
                     }
 
-            private void setVue(Controleur.AffichageVue facade) {
+            private void setVue(ChaletDTO.AffichageVue facade) {
                 this.selectedVue = facade;
             }
 
@@ -342,26 +352,37 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void mouseWheelMoved(MouseWheelEvent e) {
                 int notches = e.getWheelRotation();
+                ZoomOrigin = e.getPoint();
 
                 if (notches < 0) {
+                    float leoffsetdebaseX = controleur.getOffsetX();
+                    float leoffsetdebaseY = controleur.getOffsetY();
                     zoomFactor = Chalet.getZoom();
-                    zoomFactor -= 0.05;
+                    zoomFactor -= 0.01;
+
                     if (zoomFactor < 0)
                     {
                         zoomFactor = 0;
                     }
 
                     controleur.setZoom(zoomFactor);
-//                    DrawingPanel.revalidate();
+                    controleur.setOffsetX((float) ((leoffsetdebaseX + ((ZoomOrigin.x - leoffsetdebaseX) * (0.01 * zoomFactor)))));
+                    controleur.setOffsetY((float) ((leoffsetdebaseY + ((ZoomOrigin.y - leoffsetdebaseY) * (0.01 * zoomFactor)))));
+
                     DrawingPanel.repaint();
 
 
                 } if (notches > 0) {
+                    float leoffsetdebaseX = controleur.getOffsetX();
+                    float leoffsetdebaseY = controleur.getOffsetY();
+
                     zoomFactor = controleur.getZoom();
                     zoomFactor += 0.01;
                     controleur.setZoom(zoomFactor);
-                    System.out.println(Chalet.getZoom());
-//                    DrawingPanel.revalidate();
+                    controleur.setOffsetX((float) ((leoffsetdebaseX + ((ZoomOrigin.x - leoffsetdebaseX) * (0.01 * zoomFactor)))));
+                    controleur.setOffsetY((float) ((leoffsetdebaseY + ((ZoomOrigin.y - leoffsetdebaseY) * (0.01 * zoomFactor)))));
+
+
                     DrawingPanel.repaint();
                 }
             }
@@ -451,7 +472,7 @@ public class MainWindow extends javax.swing.JFrame {
             //HauteurFenetre
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Hauteur
+                //Hauteurr
                 String inputText = AccessoirePanelLargeurTextField.getText();
                 //double nouvelleLongueurDouble = imperialToDoubleUniversel(inputText);
                 //Pouces nouvelleLongueur = convertirDoubleEnPouces(nouvelleLongueurDouble);
@@ -672,6 +693,27 @@ public class MainWindow extends javax.swing.JFrame {
                 }
             }
         });
+
+        /*changeOrientationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isSelection) {
+                    Chalet chalet = controleur.getChaletProduction();
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
+                    if (chalet.getOrientationToit() == "Nord" || chalet.getOrientationToit() == "Sud") {
+                        //a voir si on la cree
+                        //boolean changementOrientationReussi = controleur.setOrientationToit("Est", listeMursDrawer);
+                        System.out.println(ui.DrawingPanel.selectedAffichageVue);
+                        System.out.println(changementOrientationReussi);
+                        System.out.println("changementOrientationReussi");
+                        DrawingPanel.repaint();
+                    }
+                    isSelection = false;
+                    //isSupprimer = false;
+
+                }
+            }
+        });*/
         XFenetreField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -738,6 +780,36 @@ public class MainWindow extends javax.swing.JFrame {
 
             }
         });
+        nouveauChaletButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
+
+                Chalet chalet = controleur.getChaletProduction();
+                List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
+
+                controleur.supprimerPorte("Facade", listeMursDrawer);
+                Controleur.supprimerToutesFenetre("Facade", listeMursDrawer);
+                controleur.supprimerPorte("DROITE", listeMursDrawer);
+                Controleur.supprimerToutesFenetre("DROITE", listeMursDrawer);
+                controleur.supprimerPorte("GAUCHE", listeMursDrawer);
+                Controleur.supprimerToutesFenetre("GAUCHE", listeMursDrawer);
+                controleur.supprimerPorte("Arriere", listeMursDrawer);
+                Controleur.supprimerToutesFenetre("Arriere", listeMursDrawer);
+                Controleur.setEpaisseurChalet(imperialToDoubleUniversel("2'"));
+                Controleur.setLongueurChalet(imperialToDoubleUniversel("20'"));
+                Controleur.setLargeurChalet(imperialToDoubleUniversel("20'"));
+                Controleur.setHauteurMurs(imperialToDoubleUniversel("17'"));
+
+                System.out.println("Nouveau Chalet Créeer");
+
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
+                isAddingPorte = false;
+                isAddingFenetre = false;
+            }
+        });
     }
 
 
@@ -753,7 +825,6 @@ public class MainWindow extends javax.swing.JFrame {
         setSize(1200, 700);
         setLocationRelativeTo(null);
 
-        // EDITION DES MURS, IL RESTE UN BUG SUR VUE DE SURPLOMB, peut-etre du backend...
         MurPannelTabbedPaneFaçadeLabelLongueurTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -766,9 +837,10 @@ public class MainWindow extends javax.swing.JFrame {
 
                 revalidate();
                 repaint();
-
             }
         });
+
+
         MurPannelTabbedPaneDerriereLabelLongueurTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

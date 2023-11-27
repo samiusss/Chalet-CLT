@@ -12,7 +12,7 @@ import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 
 public class Chaletdrawer {
     private Controleur controleur;
-    public  Chalet chalet;
+    public  ChaletDTO chaletdto;
     private Accessoires accessoires;
     private Dimension initialDimension;
 
@@ -20,21 +20,22 @@ public class Chaletdrawer {
     public Mur arriere; // mur arriere deja codé en bas
     public Mur gauche ; // mur gauche deja codé en bas
     public Mur droite; // mur droite deja codé en bas
-    public static Controleur.AffichageVue VueAccessoire ;
+    public static ChaletDTO.AffichageVue VueAccessoire ;
+
 
     public Chaletdrawer(Controleur controleur ,Dimension initialDimension){
         this.controleur = controleur;
         this.initialDimension = initialDimension;
         Chalet chalet = controleur.getChaletProduction();
-        this.facade = controleur.facade; // mur facade deja codé en bas
-        this.arriere = controleur.arriere; // mur facade deja codé en bas
-        this.droite = controleur.droite; // mur facade deja codé en bas
-        this.gauche = controleur.gauche; // mur facade deja codé en bas
+        this.facade = chaletdto.facade; // mur facade deja codé en bas
+        this.arriere = chaletdto.arriere; // mur facade deja codé en bas
+        this.droite = chaletdto.droite; // mur facade deja codé en bas
+        this.gauche = chaletdto.gauche; // mur facade deja codé en bas
 
 
     }
 
-    public static boolean changerVue(Controleur.AffichageVue selectedVue) {
+    public static boolean changerVue(ChaletDTO.AffichageVue selectedVue) {
          VueAccessoire = selectedVue;
          return true;
     }
@@ -54,7 +55,7 @@ public class Chaletdrawer {
         g.setColor(new Color(1, 1, 0));
 
 
-        if (VueAccessoire == Controleur.AffichageVue.SURPLOMB) {
+        if (VueAccessoire == ChaletDTO.AffichageVue.SURPLOMB) {
             System.out.println("lenghtlistePorte1");
 
 
@@ -62,22 +63,22 @@ public class Chaletdrawer {
 
             List<Porte>listePorte = facade.getListePorte();
 
-            if (VueAccessoire == Controleur.AffichageVue.FACADE) {
+            if (VueAccessoire == ChaletDTO.AffichageVue.FACADE) {
                 listePorte = facade.getListePorte();
                 System.out.println("lenghtlistePorte");
 
 
             }
-            if (VueAccessoire == Controleur.AffichageVue.ARRIERE) {
+            if (VueAccessoire == ChaletDTO.AffichageVue.ARRIERE) {
                 listePorte = arriere.getListePorte();
                 System.out.println("lenghtlistePorte3");
 
             }
-            if (VueAccessoire == Controleur.AffichageVue.DROITE) {
+            if (VueAccessoire == ChaletDTO.AffichageVue.DROITE) {
                 listePorte = droite.getListePorte();
 
             }
-            if (VueAccessoire == Controleur.AffichageVue.GAUCHE) {
+            if (VueAccessoire == ChaletDTO.AffichageVue.GAUCHE) {
                 listePorte = gauche.getListePorte();
 
             }
