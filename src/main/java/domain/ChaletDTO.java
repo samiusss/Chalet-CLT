@@ -32,16 +32,6 @@ public class ChaletDTO {
     public static String orientationToit = "Sud";
     public static double ZoomFactor;
 
-    public ChaletDTO(Chalet bi){
-        largeurChalet = bi.getLargeurChalet();
-        longueurChalet = bi.getLongueurChalet();
-        hauteurMurs = bi.getHauteurMurs();
-        epaisseurChalet = bi.getEpaisseurChalet();
-        angleToit = bi.getAngleToit();
-        listeMurs = bi.getListeMurs();
-        orientationToit = bi.getOrientationToit();
-        ZoomFactor = bi.getZoom();
-    }
 
     public static Chalet createChalet() {
 
@@ -124,15 +114,6 @@ public class ChaletDTO {
         droite = chalet.getMursUsines(0.2, orientationToit).get(3); // mur droite deja codé en bas
 
         return true;
-    }
-    public double getZoomFactor() {
-        return this.ZoomFactor;
-    }
-
-    public void setZoom(double newZoom)
-    {
-        ZoomFactor = newZoom;
-
     }
 
 }
