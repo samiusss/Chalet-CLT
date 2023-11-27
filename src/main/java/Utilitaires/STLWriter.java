@@ -1539,7 +1539,7 @@ public class STLWriter {
     public static List<Triangle> addAccessoryIntoPrism(List<Triangle> prismTriangles, List<Triangle> trianglesOfAccessories) {
         List<Triangle> updatedPrismTriangles = new ArrayList<>();
 
-        /*for (Triangle prismTriangle : prismTriangles) {
+        for (Triangle prismTriangle : prismTriangles) {
             boolean isAccessoryTriangle = false;
             for(Triangle accessoryTriangle: trianglesOfAccessories){
                 if(Arrays.equals(prismTriangle.getVertices(), accessoryTriangle.getVertices())){
@@ -1549,7 +1549,7 @@ public class STLWriter {
             }
             prismTriangle.setNormal(calculateInwardNormal(prismTriangle.getVertices()));
             updatedPrismTriangles.add(prismTriangle);
-        }*/
+        }
         for(Triangle prismTriangle : prismTriangles){
             if(trianglesOfAccessories.contains(prismTriangle)){
                 continue;
