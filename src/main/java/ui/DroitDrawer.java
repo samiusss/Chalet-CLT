@@ -108,8 +108,8 @@ public class DroitDrawer {
                 Pouces largeur = porte.getLargeur();
                 Pouces hauteur = porte.getHauteur();
 
-                int largeurPorteInt = convertirPoucesEnInt(largeur);
-                int hauteurPorteInt = convertirPoucesEnInt(hauteur);
+                int largeurPorteInt = convertirPoucesEnInt(largeur) * (int) zoomFactor;
+                int hauteurPorteInt = convertirPoucesEnInt(hauteur) * (int) zoomFactor;
 
                 double height = initialDimension.getHeight();
                 PointDouble pointInfDroitac = droite.getSommetsMur().get(6);
@@ -211,47 +211,41 @@ public class DroitDrawer {
             DroiteRainureInfDroit = new PointDouble(largeurChalet, 0);
         }
 
+        int x1dc = (int) (pointInfGauchedc.getX() * zoomFactor);
+        int y1dc = (int) (pointInfGauchedc.getY() * zoomFactor);
 
+        int x2dc = (int) (pointInfDroitdc.getX() * zoomFactor);
+        int y2dc = (int) (pointInfDroitdc.getY() * zoomFactor);
 
-        // Centrer au milieu du drawingPanel
-        double positionX = width / 2 - pointInfDroitdc.getX() / 2;
-        double positionY = height / 2 - pointInfDroitdc.getY() / 2;
+        int x3dc = (int) (pointSupGauchedc.getX() * zoomFactor);
+        int y3dc = (int) (pointSupGauchedc.getY() * zoomFactor);
 
-        int x1dc = (int) (pointInfGauchedc.getX() * zoomFactor + positionX);
-        int y1dc = (int) (pointInfGauchedc.getY() * zoomFactor + positionY);
+        int x4dc = (int) (pointSupDroitdc.getX() * zoomFactor);
+        int y4dc = (int) (pointSupDroitdc.getY() * zoomFactor);
 
-        int x2dc = (int) (pointInfDroitdc.getX() * zoomFactor + positionX);
-        int y2dc = (int) (pointInfDroitdc.getY() * zoomFactor + positionY);
+        int x1RainureGauche = (int) (GaucheRainureInfGauche.getX() * zoomFactor);
+        int y1RainureGauche = (int) (GaucheRainureInfGauche.getY() * zoomFactor);
 
-        int x3dc = (int) (pointSupGauchedc.getX() * zoomFactor + positionX);
-        int y3dc = (int) (pointSupGauchedc.getY() * zoomFactor + positionY);
+        int x2RainureGauche = (int) (GaucheRainureSupGauche.getX() * zoomFactor);
+        int y2RainureGauche = (int) (GaucheRainureSupGauche.getY() * zoomFactor);
 
-        int x4dc = (int) (pointSupDroitdc.getX() * zoomFactor + positionX);
-        int y4dc = (int) (pointSupDroitdc.getY() * zoomFactor + positionY);
+        int x3RainureGauche = (int) (GaucheRainureSupDroit.getX() * zoomFactor);
+        int y3RainureGauche = (int) (GaucheRainureSupDroit.getY() * zoomFactor);
 
-        int x1RainureGauche = (int) (GaucheRainureInfGauche.getX() * zoomFactor + positionX);
-        int y1RainureGauche = (int) (GaucheRainureInfGauche.getY() * zoomFactor + positionY);
+        int x4RainureGauche = (int) (GaucheRainureInfDroit.getX() * zoomFactor);
+        int y4RainureGauche = (int) (GaucheRainureInfDroit.getY() * zoomFactor);
 
-        int x2RainureGauche = (int) (GaucheRainureSupGauche.getX() * zoomFactor + positionX);
-        int y2RainureGauche = (int) (GaucheRainureSupGauche.getY() * zoomFactor + positionY);
+        int x1RainureDroite = (int) (DroiteRainureInfGauche.getX() * zoomFactor);
+        int y1RainureDroite = (int) (DroiteRainureInfGauche.getY() * zoomFactor);
 
-        int x3RainureGauche = (int) (GaucheRainureSupDroit.getX() * zoomFactor + positionX);
-        int y3RainureGauche = (int) (GaucheRainureSupDroit.getY() * zoomFactor + positionY);
+        int x2RainureDroite = (int) (DroiteRainureSupGauche.getX() * zoomFactor);
+        int y2RainureDroite = (int) (DroiteRainureSupGauche.getY() * zoomFactor);
 
-        int x4RainureGauche = (int) (GaucheRainureInfDroit.getX() * zoomFactor + positionX);
-        int y4RainureGauche = (int) (GaucheRainureInfDroit.getY() * zoomFactor + positionY);
+        int x3RainureDroite = (int) (DroiteRainureSupDroit.getX() * zoomFactor);
+        int y3RainureDroite = (int) (DroiteRainureSupDroit.getY() * zoomFactor);
 
-        int x1RainureDroite = (int) (DroiteRainureInfGauche.getX() * zoomFactor + positionX);
-        int y1RainureDroite = (int) (DroiteRainureInfGauche.getY() * zoomFactor + positionY);
-
-        int x2RainureDroite = (int) (DroiteRainureSupGauche.getX() * zoomFactor + positionX);
-        int y2RainureDroite = (int) (DroiteRainureSupGauche.getY() * zoomFactor + positionY);
-
-        int x3RainureDroite = (int) (DroiteRainureSupDroit.getX() * zoomFactor + positionX);
-        int y3RainureDroite = (int) (DroiteRainureSupDroit.getY() * zoomFactor + positionY);
-
-        int x4RainureDroite = (int) (DroiteRainureInfDroit.getX() * zoomFactor + positionX);
-        int y4RainureDroite = (int) (DroiteRainureInfDroit.getY() * zoomFactor + positionY);
+        int x4RainureDroite = (int) (DroiteRainureInfDroit.getX() * zoomFactor);
+        int y4RainureDroite = (int) (DroiteRainureInfDroit.getY() * zoomFactor);
 
 
 // Construire tableaux de coordonnées pour le mur facade de coté
