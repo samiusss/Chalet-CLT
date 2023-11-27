@@ -8,6 +8,8 @@ public class Triangle {
     public float[]  vertex2;
     public float[]  vertex3;
 
+    boolean accessoires;
+
     //constructeur
     public Triangle(float[]  vertex1, float[]  vertex2, float[]  vertex3) {
         this.vertex1 = vertex1;

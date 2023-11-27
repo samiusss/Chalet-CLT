@@ -32,7 +32,9 @@ public class Main {
         // Concaténez le chemin du répertoire et le nom du fichier pour obtenir le chemin complet
         String filePath = directoryPath + File.separator + "MurFacade" + fileName;
         String filePathDroite = directoryPath + File.separator + "MurDroite" + fileName;
-        String filePathChalet = directoryPath + File.separator + "Chalet" + fileName;
+        String filePathChalet = directoryPath + File.separator + "ToutChalet" + fileName;
+        String filePathGauche = directoryPath + File.separator + "MurGauche" + fileName;
+        String filePathArriere = directoryPath + File.separator + "MurArriere" + fileName;
 
 
         // Vérifiez si le répertoire existe, sinon, créez-le
@@ -49,7 +51,7 @@ public class Main {
         }
 
         //STLWriter.ExporterPanneauxBrut(filePath);
-        STLWriter.ExporterPanneauxRetrait(filePath,filePathDroite,filePathChalet);
+        STLWriter.ExporterPanneauxRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere);
 
 
 
