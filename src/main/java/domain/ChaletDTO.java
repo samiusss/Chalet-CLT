@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import domain.Chalet;
 
+//import static domain.Chalet.distanceUsinage;
+
 public class ChaletDTO {
     public static Mur facade ; // mur facade deja codé en bas
     public static Mur arriere; // mur arriere deja codé en bas
@@ -28,6 +30,7 @@ public class ChaletDTO {
     public static double hauteurMurs=8.0;
     public static double epaisseurChalet = 2.0;
     public static double angleToit;
+    public static double distanceUsinage=3.0;
     public static List<Mur> listeMurs;
     public static String orientationToit = "Sud";
     public static double ZoomFactor;
@@ -42,6 +45,7 @@ public class ChaletDTO {
         double largeurMur = Chalet.largeurChalet;      // Largeur des murs venant
         double longueurMur = Chalet.longueurChalet;
         double angleToit = 0.0;
+        double distanceUsinage;
 
         Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
         return chalet ;
@@ -108,10 +112,10 @@ public class ChaletDTO {
         chalet.getListeMurs().get(3).fenetreMur = listeFenetreDAVANTd;
 
         // set les accessoires dans les nouveaux murs
-        facade = chalet.getMursUsines(0.2, orientationToit).get(0); // mur facade deja codé en bas
-        arriere = chalet.getMursUsines(0.2, orientationToit).get(1); // mur arriere deja codé en bas
-        gauche = chalet.getMursUsines(0.2, orientationToit).get(2); // mur gauche deja codé en bas
-        droite = chalet.getMursUsines(0.2, orientationToit).get(3); // mur droite deja codé en bas
+        facade = chalet.getMursUsines(distanceUsinage, orientationToit).get(0); // mur facade deja codé en bas
+        arriere = chalet.getMursUsines(distanceUsinage, orientationToit).get(1); // mur arriere deja codé en bas
+        gauche = chalet.getMursUsines(distanceUsinage, orientationToit).get(2); // mur gauche deja codé en bas
+        droite = chalet.getMursUsines(distanceUsinage, orientationToit).get(3); // mur droite deja codé en bas
 
         return true;
     }

@@ -12,6 +12,7 @@ import java.awt.event.*;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.*;
+import static domain.Chalet.distanceUsinage;
 import static java.lang.Math.abs;
 
 
@@ -642,7 +643,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
-                        List<Mur> listeMursDrawer = chalet.getMursUsines(0.2, "NORD");
+                        List<Mur> listeMursDrawer = chalet.getMursUsines(3.0, "NORD");
                         //Point mousePoint = e.getPoint();
                         if (nomMur != "SURPLOMB") {
                             boolean suppFenetrereussi = Controleur.supprimerFenetre(mousePointClicked, nomMur, listeMursDrawer);
@@ -657,7 +658,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
-                        List<Mur> listeMursDrawer = chalet.getMursUsines(0.2, "NORD");
+                        List<Mur> listeMursDrawer = chalet.getMursUsines(3.0, "NORD");
                         //Point mousePoint = e.getPoint();
                         if (nomMur != "SURPLOMB") {
                             boolean suppFenetrereussi = Controleur.supprimerToutesFenetre(nomMur, listeMursDrawer);
