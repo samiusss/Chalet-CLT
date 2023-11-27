@@ -5,13 +5,10 @@ import java.awt.*;
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import Utilitaires.Rectangle;
 
-import static domain.Chalet.determinerSommetsAccessoires;
 import java.util.Arrays;
 
 
@@ -33,12 +30,13 @@ public class STLWriter {
     }
 
 
+    /*
 
     public static List<Triangle> generateRectangularPrism(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
      /*Pour construire le panneau en 3D , on doit construire un prisme ,
             le prisme est constitue de 6 faces qui s'emboitent donc partangent
-            les meme points en fonction d'une certaine épaisseur. Chacun de ces faces est constitue de deux triangles */
-        List<Triangle> triangles = new ArrayList<>();
+            les meme points en fonction d'une certaine épaisseur. Chacun de ces faces est constitue de deux triangles
+        //List<Triangle> triangles = new ArrayList<>();
 
         List<float[]> listeVertex = determinerPointsPrismes(length, width, height, xSupGauche, ySupGauche, zSupGauche);
 
@@ -53,7 +51,7 @@ public class STLWriter {
 
 
         // Front face
-        for(Triangle triangle: createGridTriangles(length, width, height, 20, 20)){
+        for(Triangle triangle: void createGridTriangles(length, width, height, 20, 20)){
             triangles.add(triangle);
         }
 
@@ -61,13 +59,13 @@ public class STLWriter {
         for(Triangle triangle: createGridTriangles(length, width, height, 20, 20)){
             triangles.add(triangle);
         }
-        *//*triangles.add(new Triangle(v4, v6, v5));
+        /*triangles.add(new Triangle(v4, v6, v5));
         triangles.add(new Triangle(v4, v7, v6));*//*
 
         // Left face
         triangles.add(new Triangle(v0, v4, v3));
         triangles.add(new Triangle(v4, v7, v3));
-        *//*A   B
+        /*A   B
           C
                B
           C    E  *//*
@@ -85,9 +83,7 @@ public class STLWriter {
         triangles.add(new Triangle(v0, v5, v4));
 
         return triangles;
-    }
-
-
+    } */
 
     private static List<Triangle> createPrism(double length, double width, double height, int rows, int cols) {
         List<Triangle> triangles = new ArrayList<>();
@@ -156,7 +152,7 @@ public class STLWriter {
     }
 
 
-    public static List<float[]> determinerPointsPrismes2(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
+    public static List<float[]> determinerPointsPrismes(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
         List<float[]> vertices = new ArrayList<>();
 
         float xInfGauche = xSupGauche + length;
@@ -185,61 +181,6 @@ public class STLWriter {
         return vertices;
     }
 
-
-
-    public static List<float[]> determinerPointsPrismes(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
-        /*Pour construire le panneau en 3D , on doit construire un prisme ,
-        le prisme est constitue de 6 faces qui s'emboitent donc partangent
-        les meme points en fonction d'une certaine épaisseur. Chacun de ces faces est constitue de deux triangles */
-
-        //length correspond a longueur du mur
-        //width correspond a epaisseur du mur
-        //height correspond a hauteur du mur
-
-        /*Pour construire le panneau en 3D , on doit construire un prisme ,
-        le prisme est constitue de 6 faces qui s'emboitent donc partangent
-        les meme points en fonction d'une certaine épaisseur. Chacun de ces faces est constitue de deux triangles */
-        //vue de face:
-        //float[] v0 = {xSupGauche, ySupGauche, zSupGauche};           // PointSupGaucheFacade (Top Left Front)
-
-        float[] v0 = {xSupGauche, ySupGauche, zSupGauche};           // PointSupGaucheFacade (Top Left Front)
-        float[] v1 = {xSupGauche + length, ySupGauche, zSupGauche};   // PointSupDroiteFacade (Top Right Front)
-        float[] v2 = {xSupGauche + length, ySupGauche + width, zSupGauche};   // PointSupDroiteArriere (Top Right Back)
-        float[] v3 = {xSupGauche, ySupGauche + width, zSupGauche};    // PointSupGaucheArriere (Top Left Back)
-        float[] v4 = {xSupGauche, ySupGauche, zSupGauche + height};   // PointInfGaucheFacade (Bottom Left Front)
-        float[] v5 = {xSupGauche + length, ySupGauche, zSupGauche + height};   // PointInfDroiteFacade (Bottom Right Front)
-        float[] v6 = {xSupGauche + length, ySupGauche + width, zSupGauche + height};   // PointInfDroiteArriere (Bottom Right Back)
-        float[] v7 = {xSupGauche, ySupGauche + width, zSupGauche + height};    // PointInfGaucheArriere (Bottom Left Back)
-
-        // Correspondance pour les autres bases :
-        // PointSupGaucheFacade correspond à PointInfGaucheFacade sur la base inférieure.
-        // PointSupDroiteFacade correspond à PointInfDroiteFacade sur la base inférieure.
-        // PointSupDroiteArriere correspond à PointInfDroiteArriere sur la base inférieure.
-        // PointSupGaucheArriere correspond à PointInfGaucheArriere sur la base inférieure.
-
-        // PointSupGaucheFacade correspond à PointSupDroiteFacade sur la base droite.
-        // PointSupDroiteFacade correspond à PointSupGaucheFacade sur la base gauche.
-        // PointSupDroiteArriere correspond à PointSupGaucheArriere sur la base gauche.
-        // PointSupGaucheArriere correspond à PointSupDroiteArriere sur la base droite.
-
-        // PointSupGaucheFacade correspond à PointSupGaucheArriere sur la base arrière.
-        // PointSupDroiteFacade correspond à PointSupDroiteArriere sur la base arrière.
-        // PointInfDroiteFacade correspond à PointInfDroiteArriere sur la base arrière.
-        // PointInfGaucheFacade correspond à PointInfGaucheArriere sur la base arrière.
-
-
-        List<float[]> listeVertex = new LinkedList<>();
-        listeVertex.add(v0);
-        listeVertex.add(v1);
-        listeVertex.add(v2);
-        listeVertex.add(v3);
-        listeVertex.add(v4);
-        listeVertex.add(v5);
-        listeVertex.add(v6);
-        listeVertex.add(v7);
-
-        return listeVertex;
-    }
 
     public static List<float[]> determinerPointsPorte(float lengthporte, float widthporte, float heightporte, float xPorteSupGauche, float yPorteSupGauche, float zPorteSupGauche) {
 
@@ -336,7 +277,7 @@ public class STLWriter {
                 float startY = ySupGauche + j * smallPrismWidth;
                 float startZ = zSupGauche + i * smallPrismHeight; // Ajuster la hauteur en fonction du nombre de petits prismes
 
-                List<float[]> prismVertices = determinerPointsPrismes2(smallPrismLength, smallPrismWidth, smallPrismHeight, startX, startY, startZ);
+                List<float[]> prismVertices = determinerPointsPrismes(smallPrismLength, smallPrismWidth, smallPrismHeight, startX, startY, startZ);
 
                 float[] v0 = prismVertices.get(0);
                 float[] v1 = prismVertices.get(1);
@@ -539,9 +480,7 @@ public class STLWriter {
             float[] vertexTriangle2_c = {(float) coinSupDroit.getX(), (float) coinSupDroit.getY(), Epaisseur.floatValue()};
 
             Triangle triangle1 = new Triangle(vertexTriangle1_a,vertexTriangle1_b,vertexTriangle1_c);
-            triangle1.accessoires  = true;
             Triangle triangle2 = new Triangle(vertexTriangle2_a,vertexTriangle2_b,vertexTriangle2_c);
-            triangle2.accessoires  = true;
 
 
             List<Triangle> listeTriangle = new LinkedList<>();
@@ -552,6 +491,8 @@ public class STLWriter {
         return listeTriangle;
 
     }
+
+
 
         public static void generateSTL(List<Triangle> triangles, String fileName) {
             try (FileWriter fileWriter = new FileWriter(new File(fileName))) {
