@@ -12,6 +12,7 @@ import java.awt.event.*;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.*;
+import static java.lang.Math.abs;
 
 
 public class MainWindow extends javax.swing.JFrame {
@@ -136,6 +137,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JButton ExporterRetrait;
     private JButton nouveauChaletButton;
     private JButton changeOrientationButton;
+    private Point ZoomOrigin;
 
     private ChaletDTO.AffichageVue selectedVue;
 
@@ -208,7 +210,6 @@ public class MainWindow extends javax.swing.JFrame {
                         boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer, intitalDimension);
                         if(ajoutFenetrereussi == false){
                             JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
-
                         }
                         //System.out.println(ui.DrawingPanel.selectedAffichageVue);
                         System.out.println(ajoutFenetrereussi);
@@ -351,25 +352,37 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void mouseWheelMoved(MouseWheelEvent e) {
                 int notches = e.getWheelRotation();
+                ZoomOrigin = e.getPoint();
 
                 if (notches < 0) {
+                    float leoffsetdebaseX = controleur.getOffsetX();
+                    float leoffsetdebaseY = controleur.getOffsetY();
                     zoomFactor = Chalet.getZoom();
                     zoomFactor -= 0.01;
+
                     if (zoomFactor < 0)
                     {
                         zoomFactor = 0;
                     }
 
                     controleur.setZoom(zoomFactor);
-//                    DrawingPanel.revalidate();
+                    controleur.setOffsetX((float) ((leoffsetdebaseX + ((ZoomOrigin.x - leoffsetdebaseX) * (0.01 * zoomFactor)))));
+                    controleur.setOffsetY((float) ((leoffsetdebaseY + ((ZoomOrigin.y - leoffsetdebaseY) * (0.01 * zoomFactor)))));
+
                     DrawingPanel.repaint();
 
 
                 } if (notches > 0) {
+                    float leoffsetdebaseX = controleur.getOffsetX();
+                    float leoffsetdebaseY = controleur.getOffsetY();
+
                     zoomFactor = controleur.getZoom();
                     zoomFactor += 0.01;
                     controleur.setZoom(zoomFactor);
-//                    DrawingPanel.revalidate();
+                    controleur.setOffsetX((float) ((leoffsetdebaseX + ((ZoomOrigin.x - leoffsetdebaseX) * (0.01 * zoomFactor)))));
+                    controleur.setOffsetY((float) ((leoffsetdebaseY + ((ZoomOrigin.y - leoffsetdebaseY) * (0.01 * zoomFactor)))));
+
+
                     DrawingPanel.repaint();
                 }
             }

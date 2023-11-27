@@ -15,7 +15,9 @@ import static domain.ChaletDTO.initialiserChalet;
 public class Controleur {
     private ChaletDTO chaletdto;
     private double zoom;
-    private float offset;
+    private float OffsetX;
+
+    private float OffsetY;
 
 
    /* public Controleur (Chalet chalet){
@@ -171,12 +173,24 @@ public class Controleur {
         return leZoom;
     }
 
+    public float getOffsetX () {
+        float leOffX = Chalet.getOffsetX();
+        return leOffX;
+    }
+    public float getOffsetY () {
+        float leOffY = Chalet.getOffsetY();
+        return leOffY;
+    }
     public void setZoom(double newZoom)
     {
         Chalet.setZoom(newZoom);
     }
-
-    public float getOffset() {
-        return offset;
+    public void setOffsetX(float newOffX)
+    {
+        Chalet.setOffsetX(newOffX);
+    }
+    public void setOffsetY(float newOffY)
+    {
+        Chalet.setOffsetY(newOffY);
     }
 }
