@@ -1,7 +1,7 @@
 package Utilitaires;
 
 import domain.Chalet;
-
+import domain.Mur;
 import java.awt.*;
 import java.io.*;
 import java.math.BigDecimal;
@@ -31,11 +31,20 @@ public class STLretrait {
         writer.write("endfacet\n");
     }
 
+    protected ArrayList<PointDouble> createAccessoryIntersectionPoints(Mur mur){
+        // Initialisation des variables
+        ArrayList<Pouces>  listHorizontal = new ArrayList<Pouces>();
+        ArrayList<Pouces>  listVertical = new ArrayList<Pouces>();
+        ArrayList<PointDouble> listIntersectionPoints = new ArrayList<PointDouble>();
 
+       /* // Ajout des points des murs
+        for(int i=0; i<mur.getSommetsByVue(mur.getCote().toVue()).size(); i++){
+            listVerticalLines.add(mur.getSommetsByVue(mur.getCote().toVue()).get(i).getY());
+            listHorizontalLines.add(mur.getSommetsByVue(mur.getCote().toVue()).get(i).getX());
+        }*/
 
-
-
-
+        return listIntersectionPoints;
+    }
 
 
 }
