@@ -13,8 +13,8 @@ import java.awt.geom.AffineTransform;
 import java.io.Serializable;
 import java.util.List;
 
-import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
-import static Utilitaires.ConvertisseurMesures.convertirStringImperialEnPouces;
+import static Utilitaires.ConvertisseurMesures.*;
+import static Utilitaires.ConvertisseurMesures.imperialToDoubleUniversel;
 import static ui.MainWindow.*;
 
 
@@ -61,9 +61,14 @@ public class DrawingPanel extends JPanel implements Serializable {
                 controleur.setOffsetX(offsetX);
                 controleur.setOffsetY(offsetY);
                 controleur.setZoom(zoomFactor);
+                int adjustedX = (int)((e.getX() - offsetX) / zoomFactor);
+                int adjustedY = (int)((e.getY() - offsetY) / zoomFactor);
+                Point mPoint = new Point(adjustedX, adjustedY);
+
                 repaint();
             }
         });
+
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -73,12 +78,15 @@ public class DrawingPanel extends JPanel implements Serializable {
                 if (MainWindow.isAddingPorte)
                 {
                     Point mousePoint = e.getPoint();
+
+                    int adjustedX = (int)((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                    Point mPoint = new Point(adjustedX, e.getY());
                     String nomMur = String.valueOf(selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     java.util.List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                     Dimension intitalDimension = getPreferredSize();
                     if(nomMur != "SURPLOMB") {
-                        boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer,intitalDimension);
+                        boolean ajoutReussi = controleur.ajouterPorte(mPoint,nomMur,listeMursDrawer,intitalDimension);
                         if(ajoutReussi == false){
                             JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
                         }
@@ -90,13 +98,17 @@ public class DrawingPanel extends JPanel implements Serializable {
                 }
                 if (MainWindow.isAddingFenetre && !MainWindow.isSelection)
                 {
+
                     String nomMur = String.valueOf(selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(1700,"NORD");
                     Point mousePoint = e.getPoint();
+                    int adjustedX = (int)((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                    int adjustedY = (int)((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
+                    Point mPoint = new Point(adjustedX, adjustedY);
                     Dimension intitalDimension = getPreferredSize();
                     if(nomMur != "SURPLOMB") {
-                        boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer, intitalDimension);
+                        boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mPoint,nomMur,listeMursDrawer, intitalDimension);
                         if(ajoutFenetrereussi == false){
                             JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
                         }
@@ -127,13 +139,6 @@ public class DrawingPanel extends JPanel implements Serializable {
         return true;
     }
 
-
-
-    /*public void changerVue(Controleur.AffichageVue nouvelleVue)
-    {
-        selectedAffichageVue = nouvelleVue;
-        repaint();
-    } */
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -596,6 +601,110 @@ public class DrawingPanel extends JPanel implements Serializable {
                 }
 
 
+            });
+
+            mainWindow.MurPannelTabbedPaneFaçadeLabelLongueurTextField.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String inputText = mainWindow.MurPannelTabbedPaneFaçadeLabelLongueurTextField.getText();
+                    //! MUR ARRIERE, LONGUEUR !\\
+
+                    double longueurChaletMN= imperialToDoubleUniversel(inputText);
+                    Controleur.setLongueurChalet(longueurChaletMN);
+                    System.out.println(longueurChaletMN+" entered by you..");
+
+                    revalidate();
+                    repaint();
+                }
+            });
+
+
+            mainWindow.MurPannelTabbedPaneDerriereLabelLongueurTextField.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String inputText = mainWindow.MurPannelTabbedPaneDerriereLabelLongueurTextField.getText();
+                    //VÉRIFIER SI IL A APPUYER
+                    double longueurChaletMN= imperialToDoubleUniversel(inputText);
+                    Controleur.setLongueurChalet(longueurChaletMN);
+                    System.out.println(longueurChaletMN+" entered by you..");
+                    revalidate();
+                    repaint();
+                }
+            });
+            mainWindow.MurPannelTabbedPaneDroitLabelLongueurTextField.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String inputText = mainWindow.MurPannelTabbedPaneDroitLabelLongueurTextField.getText();
+
+                    double largeurChaletMN= imperialToDoubleUniversel(inputText);
+                    Controleur.setLargeurChalet(largeurChaletMN);
+                    System.out.println(largeurChaletMN+" entered by you..");
+                    revalidate();
+                    repaint();
+                }
+            });
+            mainWindow.MurPannelTabbedPaneGaucheLabelLongueurTextField.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String inputText = mainWindow.MurPannelTabbedPaneGaucheLabelLongueurTextField.getText();
+
+                    double largeurChaletMN= imperialToDoubleUniversel(inputText);
+                    Controleur.setLargeurChalet(largeurChaletMN);
+                    System.out.println(largeurChaletMN+" entered by you..");
+                    revalidate();
+                    repaint();
+                }
+            });
+
+
+            mainWindow.MurPannelTabbedPaneFaçadeLabelHauteurTextField.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String inputText = mainWindow.MurPannelTabbedPaneFaçadeLabelHauteurTextField.getText();
+                    //VÉRIFIER SI IL A APPUYER
+                    double hauteurMursMN= imperialToDoubleUniversel(inputText);
+                    Controleur.setHauteurMurs(hauteurMursMN);
+                    System.out.println(hauteurMursMN+" entered by you..");
+                    revalidate();
+                    repaint();
+
+                }
+            });
+            mainWindow.MurPannelTabbedPaneDerriereLabelHauteurTextField.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String inputText = mainWindow.MurPannelTabbedPaneDerriereLabelHauteurTextField.getText();
+                    //VÉRIFIER SI IL A APPUYER
+                    double hauteurMursMN= imperialToDoubleUniversel(inputText);
+                    Controleur.setHauteurMurs(hauteurMursMN);
+                    System.out.println(hauteurMursMN+" entered by you..");
+                    revalidate();
+                    repaint();
+                }
+            });
+            mainWindow.MurPannelTabbedPaneDroitLabelHauteurTextField.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String inputText = mainWindow.MurPannelTabbedPaneDroitLabelHauteurTextField.getText();
+                    //VÉRIFIER SI IL A APPUYER
+                    double hauteurMursMN= imperialToDoubleUniversel(inputText);
+                    Controleur.setHauteurMurs(hauteurMursMN);
+                    System.out.println(hauteurMursMN+" entered by you..");
+                    revalidate();
+                    repaint();
+                }
+            });
+            mainWindow.MurPannelTabbedPaneGaucheLabelHauteurTextField.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String inputText = mainWindow.MurPannelTabbedPaneGaucheLabelHauteurTextField.getText();
+                    //VÉRIFIER SI IL A APPUYER
+                    double hauteurMursMN= imperialToDoubleUniversel(inputText);
+                    Controleur.setHauteurMurs(hauteurMursMN);
+                    System.out.println(hauteurMursMN+" entered by you..");
+                    revalidate();
+                    repaint();
+                }
             });
 
         }

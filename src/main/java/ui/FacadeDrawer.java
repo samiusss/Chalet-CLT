@@ -59,8 +59,8 @@ public class FacadeDrawer {
 
                 PointDouble pointInfDroitac = facade.getSommetsMur().get(6);
 
-                int x1ac = (int) (((mousePoint.x - 100 ) * zoomFactor ) ) ;
-                int y1ac = (int) (((mousePoint.y - 170 ) * zoomFactor ) ) ;
+                int x1ac = (int) (((mousePoint.x  ) * zoomFactor ) ) ;
+                int y1ac = (int) (((mousePoint.y  ) * zoomFactor ) ) ;
 
                 int largeurFenetreInt = (int)(convertirPoucesEnInt(largeur) * zoomFactor);
                 int hauteurFenetreInt = (int)(convertirPoucesEnInt(hauteur) * zoomFactor);
@@ -101,7 +101,7 @@ public class FacadeDrawer {
                 PointDouble pointInfGaucheac = facade.getSommetsMur().get(7);
 
 
-                int xPorte = (int) (((mousePoint.x - 100) * zoomFactor) ) ;
+                int xPorte = (int) (((mousePoint.x) * zoomFactor) ) ;
 
                 double positionY = 0 ;
                 int yPorte = (int) (((((pointInfGaucheac.getY() * zoomFactor + positionY))  - hauteurPorteInt  + hauteurMurs* zoomFactor) ) );
