@@ -15,9 +15,6 @@ public class DrawingPanel extends JPanel implements Serializable {
 
     private MainWindow mainWindow;
     public Controleur controleur;
-    private double zoomFactor = 1.0;
-
-
     public Dimension initialDimensionNonStatic = getPreferredSize();
     public int w = (int) initialDimensionNonStatic.getWidth();
     public int h = (int) initialDimensionNonStatic.getHeight();
@@ -79,14 +76,13 @@ public class DrawingPanel extends JPanel implements Serializable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
-        AffineTransform transform = new AffineTransform();
-        transform.translate(controleur.getOffsetX(), controleur.getOffsetY());
-        transform.scale(zoomFactor, zoomFactor);
-        g2.transform(transform);
+//        Graphics2D newG = (Graphics2D) g;
+//        AffineTransform transform = new AffineTransform();
+//        transform.translate(controleur.getOffsetX(), controleur.getOffsetY());
+//        transform.scale(1, 1);
+//        newG.transform(transform);
 
         if (mainWindow != null) {
-
 
             if (selectedAffichageVue == ChaletDTO.AffichageVue.SURPLOMB) {
                 SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
@@ -115,8 +111,6 @@ public class DrawingPanel extends JPanel implements Serializable {
 //                controleur.setOffsetX(100);
 //                controleur.setOffsetY(170);
             }
-
-
         }
     }
 

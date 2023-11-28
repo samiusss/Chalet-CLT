@@ -9,10 +9,12 @@ import Utilitaires.*;
 public class Porte extends Accessoires implements Serializable {
 
     private List<pointPouces> sommetsPorte;
+
     public Point mousePoint;
     public static Pouces PORTE_LARGEUR_STANDARD = new Pouces(2, 0, 1);
     public static Pouces PORTE_HAUTEUR_STANDARD = new Pouces(5, 0, 1);
-
+    public boolean Laportefutdessinee = false;
+    public int LeXDeLaPorte;
     public Porte(Point mousepoint,Pouces largeur, Pouces hauteur) {
         //super(largeur, hauteur);
         this.mousePoint = mousepoint;
@@ -61,6 +63,13 @@ public class Porte extends Accessoires implements Serializable {
 
     public List<pointPouces> getSommetsPorte(){
         return this.sommetsPorte;
+    }
+
+    public void setLaportefutdessinee(boolean existeDEJA){
+        Laportefutdessinee = existeDEJA;
+    }
+    public void setLeXDeLaPorte(int newX){
+        LeXDeLaPorte = newX;
     }
 
     }
