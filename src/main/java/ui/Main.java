@@ -56,7 +56,7 @@ public class Main {
         }
 
         //STLWriter.ExporterPanneauxBrut(filePath);
-        STLWriterPrincipal.ExporterPanneaux(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
+        STLWriterPrincipal.ExporterPanneauxFinisRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
 
 
 
