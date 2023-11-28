@@ -55,7 +55,6 @@ public class Controleur {
         Chalet.setLargeurChalet(largeurChalet);
         System.out.println(largeurChalet+" Réinitialisation en cours"); //test
         initialiserChalet(chaletProduction);
-        //creerNouveauChalet(chaletProduction);
 
     }
 
@@ -63,7 +62,12 @@ public class Controleur {
         Chalet.setHauteurMurs(hauteurMurs);
         System.out.println(hauteurMurs+" Réinitialisation en cours"); //test
         initialiserChalet(chaletProduction);
-        //creerNouveauChalet(chaletProduction);
+
+    }
+    public static void setRetraitChalet(double distanceUsinage) {
+        Chalet.setRetraitChalet(distanceUsinage);
+        System.out.println(distanceUsinage +" updated in Controleur"); //test
+        initialiserChalet(chaletProduction);
 
     }
 

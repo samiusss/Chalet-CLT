@@ -17,7 +17,7 @@ public class Chalet {
     public static double hauteurMurs = 2 * 80;
     public static double epaisseurChalet = 2 * 15;
     public static double angleToit;
-    public static double distanceUsinage;
+    public static double retraitChalet;
     public static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
     public static String orientationToit;
     public static double zoom;
@@ -314,7 +314,7 @@ public class Chalet {
     }
 
     public List<Mur> getMursUsines(double distanceUsinage, String orientationToit) {
-        retirerRainures(listeMurs, distanceUsinage, orientationToit);
+        retirerRainures(listeMurs, retraitChalet, orientationToit);
         return listeMurs;
     }
 
@@ -1315,6 +1315,11 @@ public class Chalet {
 
     public static void setEpaisseurChalet(double epaisseurChaletMN) {
         epaisseurChalet = epaisseurChaletMN;
+    }
+    public static void setRetraitChalet(double retraitChaletMN) {
+        retraitChalet = retraitChaletMN;
+        System.out.println(retraitChalet + " is the new value of retrait in Chalet.java"); //test
+
     }
 
     public void setAngleToit(double angleToit) {

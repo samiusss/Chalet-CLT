@@ -12,7 +12,6 @@ import java.awt.event.*;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.*;
-import static domain.Chalet.distanceUsinage;
 import static java.lang.Math.abs;
 
 
@@ -138,6 +137,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JButton ExporterRetrait;
     private JButton nouveauChaletButton;
     private JButton changeOrientationButton;
+    private JTextField retrait;
     private Point ZoomOrigin;
 
     private ChaletDTO.AffichageVue selectedVue;
@@ -826,6 +826,18 @@ public class MainWindow extends javax.swing.JFrame {
                 FenetrePrincipale.repaint();
                 isAddingPorte = false;
                 isAddingFenetre = false;
+            }
+        });
+        retrait.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = retrait.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double retraitChaletMN= imperialToDoubleUniversel(inputText);
+                Controleur.setRetraitChalet(retraitChaletMN);
+                System.out.println(retraitChaletMN+" entered by you..");
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
             }
         });
     }
