@@ -17,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        /*
+
 
         // Spécifiez le nom du fichier STL de sortie
         //String fileName = "chemin/vers/votre/repertoire/fichier.stl";
@@ -36,6 +36,11 @@ public class Main {
         String filePathGauche = directoryPath + File.separator + "MurGauche" + fileName;
         String filePathArriere = directoryPath + File.separator + "MurArriere" + fileName;
 
+        String filePathRetraitAvant = directoryPath + File.separator + "MurFacadeRetrait" + fileName;
+        String filePathRetraitDroite = directoryPath + File.separator + "MurDroiteRetrait" + fileName;
+        String filePathRetraitGauche = directoryPath + File.separator + "MurGaucheRetrait" + fileName;
+        String filePathRetraitArriere = directoryPath + File.separator + "MurArriereRetrait" + fileName;
+
 
         // Vérifiez si le répertoire existe, sinon, créez-le
         if (!Files.exists(directory)) {
@@ -51,7 +56,7 @@ public class Main {
         }
 
         //STLWriter.ExporterPanneauxBrut(filePath);
-        STLWriter.ExporterPanneauxRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere);
+        STLWriterPrincipal.ExporterPanneaux(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
 
 
 
