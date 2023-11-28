@@ -31,17 +31,19 @@ public class STLretrait {
         writer.write("endfacet\n");
     }
 
-    protected ArrayList<PointDouble> createAccessoryIntersectionPoints(Mur mur){
+    protected ArrayList<PointDouble> createAccessoryIntersectionPoints(){
         // Initialisation des variables
-        ArrayList<Pouces>  listHorizontal = new ArrayList<Pouces>();
-        ArrayList<Pouces>  listVertical = new ArrayList<Pouces>();
+        ArrayList<Double>  listHorizontal = new ArrayList<Double>();
+        ArrayList<Double>  listVertical = new ArrayList<Double>();
         ArrayList<PointDouble> listIntersectionPoints = new ArrayList<PointDouble>();
 
-       /* // Ajout des points des murs
-        for(int i=0; i<mur.getSommetsByVue(mur.getCote().toVue()).size(); i++){
-            listVerticalLines.add(mur.getSommetsByVue(mur.getCote().toVue()).get(i).getY());
-            listHorizontalLines.add(mur.getSommetsByVue(mur.getCote().toVue()).get(i).getX());
-        }*/
+        // Ajout des points des murs
+        for (Mur mur : Chalet.listeMurs) {
+            for (PointDouble sommet : mur.getSommetsMur()) {
+                listVertical.add(sommet.getY());
+                listHorizontal.add(sommet.getX());
+            }
+        }
 
         return listIntersectionPoints;
     }

@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.awt.geom.AffineTransform;
 import java.io.Serializable;
 
 
@@ -78,28 +79,41 @@ public class DrawingPanel extends JPanel implements Serializable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+        AffineTransform transform = new AffineTransform();
+        transform.translate(controleur.getOffsetX(), controleur.getOffsetY());
+        transform.scale(zoomFactor, zoomFactor);
+        g2.transform(transform);
+
         if (mainWindow != null) {
 
 
             if (selectedAffichageVue == ChaletDTO.AffichageVue.SURPLOMB) {
                 SurplombDrawer mainDrawer = new SurplombDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
+
             }
             if (selectedAffichageVue == ChaletDTO.AffichageVue.FACADE) {
                 FacadeDrawer mainDrawer = new FacadeDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
+
             }
             if (selectedAffichageVue == ChaletDTO.AffichageVue.ARRIERE) {
                 ArriereDrawer mainDrawer = new ArriereDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
+
             }
             if (selectedAffichageVue == ChaletDTO.AffichageVue.DROITE) {
                 DroitDrawer mainDrawer = new DroitDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
+
             }
             if (selectedAffichageVue == ChaletDTO.AffichageVue.GAUCHE) {
                 GaucheDrawer mainDrawer = new GaucheDrawer(controleur, getPreferredSize());
                 mainDrawer.draw(g/*, vueSelecteur*/);
+//                controleur.setZoom(1);
+//                controleur.setOffsetX(100);
+//                controleur.setOffsetY(170);
             }
 
 

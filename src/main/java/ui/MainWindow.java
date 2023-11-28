@@ -12,6 +12,7 @@ import java.awt.event.*;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.*;
+import static domain.Chalet.distanceUsinage;
 import static java.lang.Math.abs;
 
 
@@ -351,42 +352,59 @@ public class MainWindow extends javax.swing.JFrame {
         PannelAffichage.addMouseWheelListener(new MouseWheelListener() {
             @Override
             public void mouseWheelMoved(MouseWheelEvent e) {
-                int notches = e.getWheelRotation();
-                ZoomOrigin = e.getPoint();
+                double oldZoomFactor = zoomFactor;
+                double rotation = e.getPreciseWheelRotation();
+                zoomFactor *= (rotation < 0) ? 1.02 : 0.98;
 
-                if (notches < 0) {
-                    float leoffsetdebaseX = controleur.getOffsetX();
-                    float leoffsetdebaseY = controleur.getOffsetY();
-                    zoomFactor = Chalet.getZoom();
-                    zoomFactor -= 0.01;
+                double factor = zoomFactor / oldZoomFactor;
+                float offsetX = controleur.getOffsetX();
+                float offsetY = controleur.getOffsetY();
+                offsetX += (e.getX() - offsetX) * (1 - factor);
+                offsetY += (e.getY() - offsetY) * (1 - factor);
 
-                    if (zoomFactor < 0)
-                    {
-                        zoomFactor = 0;
-                    }
-
-                    controleur.setZoom(zoomFactor);
-                    controleur.setOffsetX((float) ((leoffsetdebaseX + ((ZoomOrigin.x - leoffsetdebaseX) * (0.01 * zoomFactor)))));
-                    controleur.setOffsetY((float) ((leoffsetdebaseY + ((ZoomOrigin.y - leoffsetdebaseY) * (0.01 * zoomFactor)))));
-
-                    DrawingPanel.repaint();
-
-
-                } if (notches > 0) {
-                    float leoffsetdebaseX = controleur.getOffsetX();
-                    float leoffsetdebaseY = controleur.getOffsetY();
-
-                    zoomFactor = controleur.getZoom();
-                    zoomFactor += 0.01;
-                    controleur.setZoom(zoomFactor);
-                    controleur.setOffsetX((float) ((leoffsetdebaseX + ((ZoomOrigin.x - leoffsetdebaseX) * (0.01 * zoomFactor)))));
-                    controleur.setOffsetY((float) ((leoffsetdebaseY + ((ZoomOrigin.y - leoffsetdebaseY) * (0.01 * zoomFactor)))));
-
-
-                    DrawingPanel.repaint();
-                }
+                controleur.setOffsetX(offsetX);
+                controleur.setOffsetY(offsetY);
+                controleur.setZoom(zoomFactor);
+                repaint();
+//                int notches = e.getWheelRotation();
+//                ZoomOrigin = e.getPoint();
+//
+//                if (notches < 0) {
+//                    float leoffsetdebaseX = controleur.getOffsetX();
+//                    float leoffsetdebaseY = controleur.getOffsetY();
+//                    zoomFactor = Chalet.getZoom();
+//                    zoomFactor -= 0.01;
+//
+//                    if (zoomFactor < 0)
+//                    {
+//                        zoomFactor = 0;
+//                    }
+//
+//                    controleur.setZoom(zoomFactor);
+//                    controleur.setOffsetX((float) ((leoffsetdebaseX + ((ZoomOrigin.x - leoffsetdebaseX) * (0.01 * zoomFactor)))));
+//                    controleur.setOffsetY((float) ((leoffsetdebaseY + ((ZoomOrigin.y - leoffsetdebaseY) * (0.01 * zoomFactor)))));
+//
+//                    DrawingPanel.repaint();
+//
+//
+//                } if (notches > 0) {
+//                    float leoffsetdebaseX = controleur.getOffsetX();
+//                    float leoffsetdebaseY = controleur.getOffsetY();
+//
+//                    zoomFactor = controleur.getZoom();
+//                    zoomFactor += 0.01;
+//                    controleur.setZoom(zoomFactor);
+//                    controleur.setOffsetX((float) ((leoffsetdebaseX + ((ZoomOrigin.x - leoffsetdebaseX) * (0.01 * zoomFactor)))));
+//                    controleur.setOffsetY((float) ((leoffsetdebaseY + ((ZoomOrigin.y - leoffsetdebaseY) * (0.01 * zoomFactor)))));
+//
+//
+//                    DrawingPanel.repaint();
+//                }
             }
         });
+
+
+
 
         ToitPaneltabbedPaneDerrierePanelHauteurTextField.addActionListener(new ActionListener() {
             @Override
@@ -537,19 +555,19 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = XPorteField.getText();
-                int nouveauXPorte = Integer.parseInt(inputText);
-                //Pouces nouveauXPorte = convertirStringImperialEnPouces(inputText);
+                //int nouveauXPorte = Integer.parseInt(inputText);
+                Pouces nouveauXPorte = convertirStringImperialEnPouces(inputText);
                 Dimension initialDimension = DrawingPanel.getPreferredSize();
                 System.out.println(nouveauXPorte);
-                if (nouveauXPorte!=0){
+                if (nouveauXPorte!=null){
                     System.out.println("Yes");
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                     // On convertir mon point pouces en Point int
-                    //int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
-                    int nouveauXporteint = nouveauXPorte;
-                    boolean xportemodifie = controleur.modifierXPorte(mousePointClicked, nouveauXporteint, nomMur, listeMursDrawer,initialDimension );
+                    int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
+                    //int nouveauXporteint = nouveauXPorte;
+                    boolean xportemodifie = controleur.modifierXPorte(mousePointClicked, (nouveauXporteint), nomMur, listeMursDrawer,initialDimension );
                     System.out.println(mousePointClicked);
                     if (xportemodifie == true) {
                         // Redessiner le panneau uniquement si la modification est réussie
@@ -642,7 +660,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
-                        List<Mur> listeMursDrawer = chalet.getMursUsines(0.2, "NORD");
+                        List<Mur> listeMursDrawer = chalet.getMursUsines(3.0, "NORD");
                         //Point mousePoint = e.getPoint();
                         if (nomMur != "SURPLOMB") {
                             boolean suppFenetrereussi = Controleur.supprimerFenetre(mousePointClicked, nomMur, listeMursDrawer);
@@ -657,7 +675,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
-                        List<Mur> listeMursDrawer = chalet.getMursUsines(0.2, "NORD");
+                        List<Mur> listeMursDrawer = chalet.getMursUsines(3.0, "NORD");
                         //Point mousePoint = e.getPoint();
                         if (nomMur != "SURPLOMB") {
                             boolean suppFenetrereussi = Controleur.supprimerToutesFenetre(nomMur, listeMursDrawer);
@@ -820,7 +838,7 @@ public class MainWindow extends javax.swing.JFrame {
         PannelAffichage.setLayout(new BorderLayout());
         PannelAffichage.add(DrawingPanel, BorderLayout.CENTER);
         DrawingPanel.setPreferredSize(new java.awt.Dimension(500, 500));
-        DrawingPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+//        DrawingPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setContentPane(FenetrePrincipale);
         setSize(1200, 700);
         setLocationRelativeTo(null);
