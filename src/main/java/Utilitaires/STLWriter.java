@@ -14,9 +14,9 @@ import java.util.Arrays;
 
 public class STLWriter {
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
-        }
+    }
 
 
     // Méthode pour le traitement automatique des vertices
@@ -609,23 +609,23 @@ public class STLWriter {
     }*/
 
 
-        public static void ExporterPanneauxBrut(String fileName) {
-            Point point = new Point(0,0);
-            //determinerSommetsAccessoires fait le meme traitement dont on a besoin d'ou son utlisation ici.
-            List<Point> listPointPanneaux = Chalet.determinerSommetsAccessoires(point,100, 100);
+    public static void ExporterPanneauxBrut(String fileName) {
+        Point point = new Point(0,0);
+        //determinerSommetsAccessoires fait le meme traitement dont on a besoin d'ou son utlisation ici.
+        List<Point> listPointPanneaux = Chalet.determinerSommetsAccessoires(point,100, 100);
 
-            Point SupGauche = listPointPanneaux.get(0);
-            Point SupDroit = listPointPanneaux.get(1);
-            Point InfGauche = listPointPanneaux.get(2);
-            Point InfDroit = listPointPanneaux.get(3);
+        Point SupGauche = listPointPanneaux.get(0);
+        Point SupDroit = listPointPanneaux.get(1);
+        Point InfGauche = listPointPanneaux.get(2);
+        Point InfDroit = listPointPanneaux.get(3);
 
-            double epaisseurChalet = Chalet.epaisseurChalet;
-            //double epaisseur = 15.0;
+        double epaisseurChalet = Chalet.epaisseurChalet;
+        //double epaisseur = 15.0;
 
-            List<Triangle> listeTriangles = generateRectangularPrism(100,(float) epaisseurChalet, 50,0,0,0);
-            generateSTL(listeTriangles,fileName);
+        List<Triangle> listeTriangles = generateRectangularPrism(100,(float) epaisseurChalet, 50,0,0,0);
+        generateSTL(listeTriangles,fileName);
 
-        }
+    }
 
 
     public static List<Triangle> ExporterPanneauxRetraitDroite(float[] SupGauche, float length, float width, float height){
