@@ -446,11 +446,11 @@ public class Chalet {
         int x = point.x;
         int y = point.y;
 
-        int x1 = coinSupGauche.x;
-        int y1 = coinSupGauche.y;
+        int x2 = coinSupGauche.x;
+        int y2 = coinSupGauche.y;
 
-        int x2 = coinSupDroit.x;
-        int y2 = coinSupDroit.y;
+        int x1 = coinSupDroit.x;
+        int y1 = coinSupDroit.y;
 
         int x3 = coinInfGauche.x;
         int y3 = coinInfGauche.y;
@@ -462,10 +462,10 @@ public class Chalet {
         //boolean conditionUn = x >= x1;
         //boolean conditionDeux = x <= x2 ;
 
-        boolean conditionUn = x <= x3;
-        boolean conditionDeux = x >= x2;
-        boolean conditionTrois = y >= y4;
-        boolean conditionQuatre = y <= y2;
+        boolean conditionUn = x >= x1;
+        boolean conditionDeux = x <= x2;
+        boolean conditionTrois = y >= y1;
+        boolean conditionQuatre = y <= y3;
         //System.out.println(conditionUn +""+  conditionDeux +""+  conditionTrois +""+  conditionQuatre +"Les conditions" );
 
         // Vérifie si le point se trouve à l'intérieur du rectangle
