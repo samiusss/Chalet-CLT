@@ -1372,8 +1372,8 @@ public class STLWriter {
         }
 
         // Left face
-        /*triangles.add(new Triangle(v0, v4, v3));
-        triangles.add(new Triangle(v4, v7, v3));*/
+        triangles.add(new Triangle(v0, v4, v3));
+        triangles.add(new Triangle(v4, v7, v3));
 
         /*triangles.add(new Triangle(v0, v3, v8));
         triangles.add(new Triangle(v0, v9, v8));
@@ -1382,51 +1382,51 @@ public class STLWriter {
 
         //////////////////////////////////////////////////////
         //rainure gauche:
-        triangles.add(new Triangle(v0, v3, v8));
+       /* triangles.add(new Triangle(v0, v3, v8));
         triangles.add(new Triangle(v0, v8, v9));
 
         triangles.add(new Triangle(v8, v9, v10));
         triangles.add(new Triangle(v10, v11, v9));
 
         triangles.add(new Triangle(v7, v4, v11));
-        triangles.add(new Triangle(v11, v10, v7));
+        triangles.add(new Triangle(v11, v10, v7));*/
         //////////////////////////////////////////////////////
 
         // Right face
-        /*triangles.add(new Triangle(v1, v5, v2));
-        triangles.add(new Triangle(v2, v5, v6));*/
+        triangles.add(new Triangle(v1, v5, v2));
+        triangles.add(new Triangle(v2, v5, v6));
 
         //rainure droite:
-        triangles.add(new Triangle(v1, v2, v14));
+        /*triangles.add(new Triangle(v1, v2, v14));
         triangles.add(new Triangle(v1, v14, v15));
 
         triangles.add(new Triangle(v15, v12, v13));
         triangles.add(new Triangle(v15, v14, v12));
 
         triangles.add(new Triangle(v12, v13, v6));
-        triangles.add(new Triangle(v6, v5, v13));
+        triangles.add(new Triangle(v6, v5, v13));*/
         //////////////////////////////////////////////////////
 
         // Top face
-        /*triangles.add(new Triangle(v3, v7, v2));
-        triangles.add(new Triangle(v2, v7, v6));*/
+        triangles.add(new Triangle(v3, v7, v2));
+        triangles.add(new Triangle(v2, v7, v6));
         //////////////////////////////////////////////////////
-        triangles.add(new Triangle(v0, v15, v1));
+        /*triangles.add(new Triangle(v0, v15, v1));
         triangles.add(new Triangle(v15, v9, v0));
 
         triangles.add(new Triangle(v11, v5, v13));
-        triangles.add(new Triangle(v11, v4, v5));
+        triangles.add(new Triangle(v11, v4, v5));*/
         //////////////////////////////////////////////////////
 
         // Bottom face
-        /*triangles.add(new Triangle(v0, v1, v5));
-        triangles.add(new Triangle(v0, v5, v4));*/
+        triangles.add(new Triangle(v0, v1, v5));
+        triangles.add(new Triangle(v0, v5, v4));
 
-        triangles.add(new Triangle(v3, v14, v2));
+        /*triangles.add(new Triangle(v3, v14, v2));
         triangles.add(new Triangle(v3, v8, v14));
 
         triangles.add(new Triangle(v10, v6, v12));
-        triangles.add(new Triangle(v10, v7, v6));
+        triangles.add(new Triangle(v10, v7, v6));*/
 
         //addAccessoryIntoPrism(triangles, defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3), 5, 5);
 
@@ -1444,7 +1444,7 @@ public class STLWriter {
 
         List<Triangle> prismTriangles = generateRectangularPrism(length, width, height, 0, 0, 0);
 
-        List<Triangle> accessoryTriangles = defineGridCellsBeingAccessories(length, height, 20, 20, 1, 3, 1, 3);
+        //List<Triangle> accessoryTriangles = defineGridCellsBeingAccessories(length, height, 20, 20, 1, 3, 1, 3);
 
         /*List<Triangle> gridTriangles1 = createGridTriangles(length, width, height, rows, cols);
         List<Triangle> gridTriangles2 = createGridTriangles(length, width, height, rows, cols);
@@ -1455,13 +1455,19 @@ public class STLWriter {
         /*defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3);
         addAccessoryIntoPrism(prismTriangles, defineGridCellsBeingAccessories(length, height, 5, 5, 3, 3, 3, 3), 5, 5);
 */
-        return addAccessoryIntoPrism(prismTriangles, accessoryTriangles);
+        return prismTriangles;
     }
 
     public static void ExporterPrismeWithGrids(String fileName) {
         List<Triangle> gridTriangles = generateRectangularPrismWithGrid(200, 100, 10, 20, 20);
+        GridPoint topLeft = new GridPoint(2, 2); // Example coordinates, adjust as needed
+        GridPoint topRight = new GridPoint(5, 2);
+        GridPoint bottomLeft = new GridPoint(2, 5);
+        GridPoint bottomRight = new GridPoint(5, 5);
+        List<Triangle> updatedList = removeTrianglesInRectangle(gridTriangles, topLeft, topRight, bottomLeft, bottomRight);
 
-        for (Triangle triangle : gridTriangles) {
+
+        for (Triangle triangle : updatedList) {
             float[] v1 = triangle.vertex1;
             float[] v2 = triangle.vertex2;
             float[] v3 = triangle.vertex3;
@@ -1471,7 +1477,7 @@ public class STLWriter {
                     v2[0] + ", " + v2[1] + ", " + v2[2] + ", " +
                     v3[0] + ", " + v3[1] + ", " + v3[2]);
         }
-        generateSTL(gridTriangles, fileName);
+        generateSTL(updatedList, fileName);
     }
 
     // methode permettant de creer une grille de triangles composant une face rectangulaire
@@ -1509,6 +1515,11 @@ public class STLWriter {
                 Triangle triangleLower = new Triangle(vertices4, vertices5, vertices6);
                 trianglesList.add(triangleUpper);
                 trianglesList.add(triangleLower);
+
+                GridPoint p1 = new GridPoint(i, j);
+                GridPoint p2 = new GridPoint(i, j + 1);
+                GridPoint p3 = new GridPoint(i + 1, j);
+                GridPoint p4 = new GridPoint(i+1, j+1);
             }
         }
         return trianglesList;
@@ -1623,5 +1634,54 @@ public class STLWriter {
 
         return normal;
     }
+
+    public static List<Triangle> removeTrianglesInRectangle(List<Triangle> trianglesList, GridPoint topLeft, GridPoint topRight, GridPoint bottomLeft, GridPoint bottomRight) {
+        List<Triangle> updatedTrianglesList = new ArrayList<>();
+
+        if (trianglesList == null || trianglesList.isEmpty()) {
+            return updatedTrianglesList; // Return an empty list if the input is null or empty
+        }
+
+        for (Triangle triangle : trianglesList) {
+            // Check if any vertex of the triangle is inside the rectangle
+            if (isVertexInsideRectangle(triangle.vertex1, topLeft, topRight, bottomLeft, bottomRight) ||
+                    isVertexInsideRectangle(triangle.vertex2, topLeft, topRight, bottomLeft, bottomRight) ||
+                    isVertexInsideRectangle(triangle.vertex3, topLeft, topRight, bottomLeft, bottomRight)) {
+                // Skip triangles that intersect with the rectangle
+                continue;
+            }
+
+            // If the triangle doesn't intersect with the rectangle, add it to the updated list
+            updatedTrianglesList.add(triangle);
+        }
+
+        return updatedTrianglesList;
+    }
+
+    // Helper method to check if a vertex is inside the rectangle
+    private static boolean isVertexInsideRectangle(float[] vertex, GridPoint topLeft, GridPoint topRight, GridPoint bottomLeft, GridPoint bottomRight) {
+        return vertex != null && vertex.length >= 2 &&
+                vertex[0] >= topLeft.getCol() && vertex[0] <= topRight.getCol() &&
+                vertex[1] >= topLeft.getRow() && vertex[1] <= bottomLeft.getRow();
+    }
+
+
+
+    // Helper method to get GridPoints associated with a triangle
+    private static GridPoint[] getTriangleGridPoints(Triangle triangle) {
+        // Assuming you have a method in Triangle class to get associated GridPoints
+        // Replace the following line with the actual method call in your Triangle class
+        return new GridPoint[]{/*triangle.getGridPoint1(), triangle.getGridPoint2(), triangle.getGridPoint3()*/};
+    }
+
+    // Helper method to check if a point is inside the given rectangle
+    private static boolean isPointInRectangle(GridPoint point, GridPoint topLeft, GridPoint topRight, GridPoint bottomLeft, GridPoint bottomRight) {
+        int x = point.getCol();
+        int y = point.getRow();
+
+        return x >= topLeft.getCol() && x <= topRight.getCol() &&
+                y >= topLeft.getRow() && y <= bottomLeft.getRow();
+    }
+
 }
 
