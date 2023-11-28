@@ -71,6 +71,8 @@ public class FacadeDrawer {
                 g.fillRect(x1ac, y1ac, largeurFenetreInt, hauteurFenetreInt);
             }
         }
+
+
     }
 
 
@@ -114,6 +116,7 @@ public class FacadeDrawer {
             }
         }
     }
+
 
     private void drawFacade(Graphics g)
     {
