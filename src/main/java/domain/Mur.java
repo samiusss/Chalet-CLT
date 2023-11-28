@@ -12,8 +12,8 @@ public class Mur {
     private static List<String> accessoiresMur;
     //private List<Porte> porteMur;
     //private List<Fenetre> fenetreMur;
-    List<Porte> porteMur= new LinkedList();
-    List<Fenetre> fenetreMur = new LinkedList();
+    public List<Porte> porteMur= new LinkedList();
+    public List<Fenetre> fenetreMur = new LinkedList();
 
 
     // on peut creer un mur simple 

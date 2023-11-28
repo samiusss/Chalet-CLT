@@ -33,6 +33,54 @@ public class STLWriterPrincipal {
     }
 
 
+    public static List<float[]> determinerPointsPrismesBase(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
+            /*Pour construire le panneau en 3D , on doit construire un prisme ,
+            le prisme est constitue de 6 faces qui s'emboitent donc partangent
+            les meme points en fonction d'une certaine épaisseur. Chacun de ces faces est constitue de deux triangles */
+
+        float[] v0 = {xSupGauche, ySupGauche, zSupGauche};           // PointSupGaucheFacade (Top Left Front)
+        float[] v1 = {xSupGauche + length, ySupGauche, zSupGauche};   // PointSupDroiteFacade (Top Right Front)
+        float[] v2 = {xSupGauche + length, ySupGauche + width, zSupGauche};   // PointSupDroiteArriere (Top Right Back)
+        float[] v3 = {xSupGauche, ySupGauche + width, zSupGauche};    // PointSupGaucheArriere (Top Left Back)
+        float[] v4 = {xSupGauche, ySupGauche, zSupGauche + height};   // PointInfGaucheFacade (Bottom Left Front)
+        float[] v5 = {xSupGauche + length, ySupGauche, zSupGauche + height};   // PointInfDroiteFacade (Bottom Right Front)
+        float[] v6 = {xSupGauche + length, ySupGauche + width, zSupGauche + height};   // PointInfDroiteArriere (Bottom Right Back)
+        float[] v7 = {xSupGauche, ySupGauche + width, zSupGauche + height};    // PointInfGaucheArriere (Bottom Left Back)
+
+        // Correspondance pour les autres bases :
+        // PointSupGaucheFacade correspond à PointInfGaucheFacade sur la base inférieure.
+        // PointSupDroiteFacade correspond à PointInfDroiteFacade sur la base inférieure.
+        // PointSupDroiteArriere correspond à PointInfDroiteArriere sur la base inférieure.
+        // PointSupGaucheArriere correspond à PointInfGaucheArriere sur la base inférieure.
+
+        // PointSupGaucheFacade correspond à PointSupDroiteFacade sur la base droite.
+        // PointSupDroiteFacade correspond à PointSupGaucheFacade sur la base gauche.
+        // PointSupDroiteArriere correspond à PointSupGaucheArriere sur la base gauche.
+        // PointSupGaucheArriere correspond à PointSupDroiteArriere sur la base droite.
+
+        // PointSupGaucheFacade correspond à PointSupGaucheArriere sur la base arrière.
+        // PointSupDroiteFacade correspond à PointSupDroiteArriere sur la base arrière.
+        // PointInfDroiteFacade correspond à PointInfDroiteArriere sur la base arrière.
+        // PointInfGaucheFacade correspond à PointInfGaucheArriere sur la base arrière.
+
+
+        List<float[]> listeVertex = new LinkedList<>();
+        listeVertex.add(v0);
+        listeVertex.add(v1);
+        listeVertex.add(v2);
+        listeVertex.add(v3);
+        listeVertex.add(v4);
+        listeVertex.add(v5);
+        listeVertex.add(v6);
+        listeVertex.add(v7);
+
+        return listeVertex;
+
+
+    }
+
+
+
     public static List<float[]> determinerPointsPrismes(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
             /*Pour construire le panneau en 3D , on doit construire un prisme ,
             le prisme est constitue de 6 faces qui s'emboitent donc partangent

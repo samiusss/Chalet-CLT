@@ -9,6 +9,7 @@ import domain.Mur;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.*;
@@ -148,6 +149,10 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         controleur = new Controleur();
         initComponents();
+        Dimension initialDimension = DrawingPanel.getPreferredSize();
+        System.out.println(initialDimension.width);
+        System.out.println(initialDimension.height);
+
 
 
 
@@ -826,6 +831,37 @@ public class MainWindow extends javax.swing.JFrame {
                 FenetrePrincipale.repaint();
                 isAddingPorte = false;
                 isAddingFenetre = false;
+            }
+        });
+        ExporterFinit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Controleur.ExporterPanneauxFinis();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+            }
+        });
+        ExporterRetrait.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Controleur.ExporterPanneauxRetrait();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        Brut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Controleur.ExporterPanneauxBrut();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }

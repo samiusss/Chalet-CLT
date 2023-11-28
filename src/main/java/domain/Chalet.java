@@ -15,7 +15,7 @@ public class Chalet {
     public static double largeurChalet = 300;
     public static double longueurChalet = 300;
     public static double hauteurMurs = 2 * 80;
-    public static double epaisseurChalet = 2 * 15;
+    public static double epaisseurChalet = 2 * 15; //15
     public static double angleToit;
     public static double distanceUsinage;
     public static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]

@@ -92,6 +92,11 @@ public class ConvertisseurMesures {
         return total;
     }
 
+    public static float convertirPoucesEnFloat(Pouces pouces) {
+        float total = pouces.getValeurEntiere() + (float) pouces.getNumerateur() / pouces.getDenominateur();
+        return total;
+    }
+
     public static int[] decimalVersFraction(double number)
     {
 
