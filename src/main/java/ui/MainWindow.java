@@ -555,19 +555,19 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = XPorteField.getText();
-                int nouveauXPorte = Integer.parseInt(inputText);
-                //Pouces nouveauXPorte = convertirStringImperialEnPouces(inputText);
+                //int nouveauXPorte = Integer.parseInt(inputText);
+                Pouces nouveauXPorte = convertirStringImperialEnPouces(inputText);
                 Dimension initialDimension = DrawingPanel.getPreferredSize();
                 System.out.println(nouveauXPorte);
-                if (nouveauXPorte!=0){
+                if (nouveauXPorte!=null){
                     System.out.println("Yes");
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                     // On convertir mon point pouces en Point int
-                    //int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
-                    int nouveauXporteint = nouveauXPorte;
-                    boolean xportemodifie = controleur.modifierXPorte(mousePointClicked, nouveauXporteint, nomMur, listeMursDrawer,initialDimension );
+                    int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
+                    //int nouveauXporteint = nouveauXPorte;
+                    boolean xportemodifie = controleur.modifierXPorte(mousePointClicked, (nouveauXporteint), nomMur, listeMursDrawer,initialDimension );
                     System.out.println(mousePointClicked);
                     if (xportemodifie == true) {
                         // Redessiner le panneau uniquement si la modification est réussie
