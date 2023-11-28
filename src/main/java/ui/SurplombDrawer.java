@@ -97,8 +97,8 @@ public class SurplombDrawer extends JFrame
         PointDouble rainureDroite1d = droite.getSommetsMur().get(10);
         PointDouble rainureDroite2d = droite.getSommetsMur().get(11);
 
-        double positionX = width/2 - pointSupDroita.getX()/2 ;
-        double positionY = height/2 - pointSupDroita.getY()/2;
+        double positionX = 0 ;
+        double positionY = 0;
 
         int x1f = (int) (pointInfDroitf.getX() * zoomFactor +positionX);
         int y1f = (int) (pointInfDroitf.getY()* zoomFactor+positionY);

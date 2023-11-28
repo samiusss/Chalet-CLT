@@ -12,44 +12,17 @@ public abstract class Accessoires implements Serializable {
     public Pouces hauteur;
 
     public Accessoires() {
-        /*this.mousepoint = mousepoint;
-        this.largeur = largeur;
-        this.hauteur = hauteur; */
         this.AID = UUID.randomUUID();;
     }
-
     public UUID getIdAccessoire() {
         return AID;
     }
-    /*public void setPoint(Point point) {
-        this.mousepoint = point;
-    }
-    public Point getPoint() {
-        return this.mousepoint;
-    } */
-
-
-    /*public Pouces getLargeur() {
-        return largeur;
-    }
-
-    public Pouces getHauteur() {
-        return hauteur;
-    } */
-    /* public void setLargeur(Pouces largeur) {
-        this.largeur = largeur;
-    }
-
-    public void setHauteur(Pouces hauteur) {
-        this.hauteur = hauteur;
-    } */
 
     public pointPouces getPointPouces(Point lepoint) {
-
         Pouces xPouces = ConvertisseurMesures.convertirPixelsEnPouces(lepoint.x);
         Pouces yPouces = ConvertisseurMesures.convertirPixelsEnPouces(lepoint.y);
-
         return new pointPouces (xPouces,yPouces);
+
     }
 
 

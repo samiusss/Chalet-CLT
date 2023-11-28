@@ -71,6 +71,10 @@ public class Porte extends Accessoires implements Serializable {
     public void setLeXDeLaPorte(int newX){
         LeXDeLaPorte = newX;
     }
+    public void setMousePoint(Point newMousePoint)
+    {
+        mousePoint = newMousePoint;
+    }
 
     }
 

@@ -59,11 +59,8 @@ public class FacadeDrawer {
 
                 PointDouble pointInfDroitac = facade.getSommetsMur().get(6);
 
-                double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
-                double offsetY = initialDimension.getHeight()/2 - pointInfDroitac.getY()/2;
-
-                int x1ac = (int) (((mousePoint.x - offsetX ) * zoomFactor ) + offsetX);
-                int y1ac = (int) (((mousePoint.y - offsetY ) * zoomFactor ) + offsetY);
+                int x1ac = (int) (((mousePoint.x - 100 ) * zoomFactor ) ) ;
+                int y1ac = (int) (((mousePoint.y - 170 ) * zoomFactor ) ) ;
 
                 int largeurFenetreInt = (int)(convertirPoucesEnInt(largeur) * zoomFactor);
                 int hauteurFenetreInt = (int)(convertirPoucesEnInt(hauteur) * zoomFactor);
@@ -99,20 +96,18 @@ public class FacadeDrawer {
                 int largeurPorteInt = (int) (convertirPoucesEnInt(largeur) * zoomFactor);
                 int hauteurPorteInt = (int) (convertirPoucesEnInt(hauteur) * zoomFactor);
 
-                double height = initialDimension.getHeight() ;
 
                 PointDouble pointInfDroitac = facade.getSommetsMur().get(6);
                 PointDouble pointInfGaucheac = facade.getSommetsMur().get(7);
 
-                double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
 
-                int x1ac = (int) (((mousePoint.x - offsetX ) * zoomFactor ) + offsetX);
+                int xPorte = (int) (((mousePoint.x - 100) * zoomFactor) ) ;
 
-                double positionY = (height / 2 - (pointInfDroitac.getY()/2 ) ) ;
+                double positionY = 0 ;
+                int yPorte = (int) (((((pointInfGaucheac.getY() * zoomFactor + positionY))  - hauteurPorteInt  + hauteurMurs* zoomFactor) ) );
 
-                int y1ac = (int) (((((pointInfGaucheac.getY() * zoomFactor + positionY))  - hauteurPorteInt  + hauteurMurs* zoomFactor) ) );
-
-                g.fillRect(x1ac , y1ac, largeurPorteInt, hauteurPorteInt);
+                g.fillRect(xPorte , yPorte, largeurPorteInt, hauteurPorteInt);
+                porte.setLaportefutdessinee(true);
             }
         }
     }
@@ -150,8 +145,8 @@ public class FacadeDrawer {
             DroiteRainureInfDroit = new PointDouble(longueurChalet, 0);
         }
 
-        double positionX = width/2 - pointInfDroitfc.getX()/2;
-        double positionY = height/2- pointInfDroitfc.getY()/2;
+        double positionX = 0;
+        double positionY = 0;
 
         int x1fc = (int) (pointInfGauchefc.getX() * zoomFactor + positionX);
         int y1fc = (int) (pointInfGauchefc.getY() * zoomFactor + positionY);

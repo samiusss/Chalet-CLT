@@ -148,8 +148,6 @@ public class Controleur {
         }
 
         return false;
-        //Fenetre newFenetre = new Accessoires("AID", mousepoint, double largeur, double hauteur);
-        //accessoiresmur.add(newFenetre);
 
     }
 

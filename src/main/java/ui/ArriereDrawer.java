@@ -40,14 +40,19 @@ public class ArriereDrawer {
     }
 
 
+
     private void drawFenetre(Graphics g) {
 
-        g.setColor(new Color(1, 1, 0));
-        this.zoomFactor = controleur.getZoom();
+        System.out.println("porteARRIERE");
+
+        g.setColor(new Color(102, 102, 0));
+
         List<Fenetre> listeFenetre = arriere.getListeFenetre();
+        int lenghtlisteFenetre = listeFenetre.size();
 
         for (Fenetre fenetre : listeFenetre) {
-            Fenetre fenetreActuel = fenetre;
+
+            Fenetre fenetreActuel = (Fenetre) fenetre;
             if (fenetreActuel != null) {
                 Point mousePoint = fenetre.mousePoint;
 
@@ -56,11 +61,11 @@ public class ArriereDrawer {
 
                 PointDouble pointInfDroitac = arriere.getSommetsMur().get(6);
 
-                double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
                 double offsetY = initialDimension.getHeight()/2 - pointInfDroitac.getY()/2;
+                double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
 
-                int x1ac = (int) (((mousePoint.x - offsetX ) * zoomFactor ) + offsetX);
-                int y1ac = (int) (((mousePoint.y - offsetY ) * zoomFactor ) + offsetY);
+                int x1ac = (int) (((mousePoint.x - offsetX ) * zoomFactor ) + offsetX) - 100;
+                int y1ac = (int) (((mousePoint.y - offsetY ) * zoomFactor ) + offsetY) - 170;
 
                 int largeurFenetreInt = (int)(convertirPoucesEnInt(largeur) * zoomFactor);
                 int hauteurFenetreInt = (int)(convertirPoucesEnInt(hauteur) * zoomFactor);
@@ -68,26 +73,18 @@ public class ArriereDrawer {
                 g.fillRect(x1ac, y1ac, largeurFenetreInt, hauteurFenetreInt);
             }
         }
-
-
     }
-
 
 
     private void drawPorte(Graphics g) {
 
-        g.setColor(new Color(1, 1, 0));
-        this.zoomFactor = controleur.getZoom();
-
+        g.setColor(new Color(204, 255, 204));
         List<Porte> listePorte = arriere.getListePorte();
         int lenghtlistePorte = listePorte.size();
 
-
         for (Porte porte : listePorte) {
-
-            Porte porteActuel = porte;
+            Porte porteActuel = (Porte) porte;
             if (porteActuel != null) {
-
                 Point mousePoint = porte.mousePoint;
 
                 Pouces largeur = porte.getLargeur();
@@ -96,22 +93,22 @@ public class ArriereDrawer {
                 int largeurPorteInt = (int) (convertirPoucesEnInt(largeur) * zoomFactor);
                 int hauteurPorteInt = (int) (convertirPoucesEnInt(hauteur) * zoomFactor);
 
-                double height = initialDimension.getHeight() ;
-
                 PointDouble pointInfDroitac = arriere.getSommetsMur().get(6);
                 PointDouble pointInfGaucheac = arriere.getSommetsMur().get(7);
 
                 double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
+                int xPorte = (int) (((mousePoint.x - offsetX) * zoomFactor) + offsetX) - 100;
 
-                int x1ac = (int) (((mousePoint.x - offsetX ) * zoomFactor ) + offsetX);
+                double positionY = 0 ;
 
-                double positionY = (height / 2 - (pointInfDroitac.getY()/2 ) ) ;
+                int yPorte = (int) (((((pointInfGaucheac.getY() * zoomFactor + positionY))  - hauteurPorteInt  + hauteurMurs* zoomFactor) ) );
 
-                int y1ac = (int) (((((pointInfGaucheac.getY() * zoomFactor + positionY))  - hauteurPorteInt  + hauteurMurs* zoomFactor) ) );
-
-                g.fillRect(x1ac , y1ac, largeurPorteInt, hauteurPorteInt);
+                g.fillRect(xPorte , yPorte, largeurPorteInt, hauteurPorteInt);
+                porte.setLaportefutdessinee(true);
             }
         }
+
+
     }
 
 
@@ -148,8 +145,8 @@ public class ArriereDrawer {
             RainureDroiteSupDroit = new PointDouble(longueurChalet, hauteurMurs);
             RainureDroiteInfDroite = new PointDouble(longueurChalet, 0);
         }
-        int positionX = (int) (width/2 - point3.getX()/2);
-        int positionY = (int) (height/2- point3.getY()/2);
+        int positionX = 0;
+        int positionY = 0;
 
         int x1 = (int) (point1.getX() * zoomFactor) + positionX;
         int y1 = (int) (point1.getY() * zoomFactor) + positionY;
