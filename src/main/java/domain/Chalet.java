@@ -422,7 +422,7 @@ public class Chalet {
         boolean conditionDeux = x >= x2;
         boolean conditionTrois = y >= y1;
         boolean conditionQuatre = y <= y3;
-        //System.out.println(conditionUn +""+  conditionDeux +""+  conditionTrois +""+  conditionQuatre +"Les conditions" );
+        System.out.println(conditionUn +""+  conditionDeux +""+  conditionTrois +""+  conditionQuatre +"Les conditions" );
 
         // Vérifie si le point se trouve à l'intérieur du rectangle
         boolean estDansRectangle = (conditionUn && conditionDeux && conditionTrois && conditionQuatre);
@@ -462,10 +462,10 @@ public class Chalet {
         //boolean conditionUn = x >= x1;
         //boolean conditionDeux = x <= x2 ;
 
-        boolean conditionUn = x <= x1;
+        boolean conditionUn = x <= x3;
         boolean conditionDeux = x >= x2;
-        boolean conditionTrois = y <= y1;
-        boolean conditionQuatre = y <= y3;
+        boolean conditionTrois = y >= y4;
+        boolean conditionQuatre = y <= y2;
         //System.out.println(conditionUn +""+  conditionDeux +""+  conditionTrois +""+  conditionQuatre +"Les conditions" );
 
         // Vérifie si le point se trouve à l'intérieur du rectangle
