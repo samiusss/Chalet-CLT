@@ -62,53 +62,23 @@ public class GaucheDrawer
 
             Fenetre fenetreActuel = (Fenetre) fenetre;
             if (fenetreActuel != null) {
-
-                //if bouton.listener add.fenetre activated:
                 Point mousePoint = fenetre.mousePoint;
 
-
-
                 Pouces largeur = fenetre.getLargeur();
-
                 Pouces hauteur = fenetre.getHauteur();
 
+                PointDouble pointInfDroitac = gauche.getSommetsMur().get(6);
 
+                double offsetY = initialDimension.getHeight()/2 - pointInfDroitac.getY()/2;
+                double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
 
-                int largeurFenetreInt = convertirPoucesEnInt(largeur);
-                int hauteurFenetreInt = convertirPoucesEnInt(hauteur);
+                int x1ac = (int) (((mousePoint.x - offsetX ) * zoomFactor ) + offsetX) - 100;
+                int y1ac = (int) (((mousePoint.y - offsetY ) * zoomFactor ) + offsetY) - 170;
 
-                g.fillRect(mousePoint.x, mousePoint.y, largeurFenetreInt, hauteurFenetreInt);
+                int largeurFenetreInt = (int)(convertirPoucesEnInt(largeur) * zoomFactor);
+                int hauteurFenetreInt = (int)(convertirPoucesEnInt(hauteur) * zoomFactor);
 
-
-
-                /*
-
-                pointPouces pointFenetreSupDroit = new pointPouces(fenetre.getPointPouces(mousePoint).getX().addPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().addPouces(fenetre.getHauteur().diviserPouces(2)));
-                pointPouces pointFenetreSupGauche=new pointPouces(fenetre.getPointPouces(mousePoint).getX().substractPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().addPouces(fenetre.getHauteur().diviserPouces(2)));
-                pointPouces pointFenetreInfGauche = new pointPouces(fenetre.getPointPouces(mousePoint).getX().substractPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().substractPouces(fenetre.getHauteur().diviserPouces(2)));
-                pointPouces pointFenetreInfDroit = new pointPouces(fenetre.getPointPouces(mousePoint).getX().addPouces(fenetre.getLargeur().diviserPouces(2)),fenetre.getPointPouces(mousePoint).getY().substractPouces(fenetre.getHauteur().diviserPouces(2)));
-
-
-                int x1 = convertirPoucesEnPixels(pointFenetreSupDroit.getX());
-                int y1 = convertirPoucesEnPixels(pointFenetreSupDroit.getY());
-
-                int x2 = convertirPoucesEnPixels(pointFenetreSupGauche.getX());
-                int y2 = convertirPoucesEnPixels(pointFenetreSupGauche.getY());
-
-                int x3 = convertirPoucesEnPixels(pointFenetreInfGauche.getX());
-                int y3 = convertirPoucesEnPixels(pointFenetreInfGauche.getY());
-
-
-                int x4 = convertirPoucesEnPixels(pointFenetreInfDroit.getX());
-                int y4 = convertirPoucesEnPixels(pointFenetreInfDroit.getY());
-
-                int[] xPoints = {x1, x2, x3, x4};
-                int[] yPoints = {y1, y2, y3, y4};
-
-                g.fillPolygon(xPoints, yPoints, 4);
-
-                 */
-
+                g.fillRect(x1ac, y1ac, largeurFenetreInt, hauteurFenetreInt);
             }
         }
 
@@ -118,71 +88,34 @@ public class GaucheDrawer
     private void drawPorte(Graphics g) {
 
 
-        System.out.println("porteGAUHE");
+        System.out.println("porteDROITE");
 
-        g.setColor(new Color(255, 255, 255));
-
+        g.setColor(new Color(255, 255, 0));
         List<Porte> listePorte = gauche.getListePorte();
         int lenghtlistePorte = listePorte.size();
         System.out.println(lenghtlistePorte);
 
-
         for (Porte porte : listePorte) {
-            System.out.println("porteGAUCHE2");
+            Point mousePoint = porte.mousePoint;
 
-            System.out.println(porte);
+            Pouces largeur = porte.getLargeur();
+            Pouces hauteur = porte.getHauteur();
 
-            Porte porteActuel = (Porte) porte;
-            if (porteActuel != null) {
+            int largeurPorteInt = (int) (convertirPoucesEnInt(largeur) * zoomFactor);
+            int hauteurPorteInt = (int) (convertirPoucesEnInt(hauteur) * zoomFactor);
 
+            PointDouble pointInfDroitac = gauche.getSommetsMur().get(6);
+            PointDouble pointInfGaucheac = gauche.getSommetsMur().get(7);
 
-                Point mousePoint = porte.mousePoint;
+            double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
+            int xPorte = (int) (((mousePoint.x - offsetX) * zoomFactor) + offsetX) - 100;
 
+            double positionY = 0 ;
 
-                Pouces largeur = porte.getLargeur();
-                Pouces hauteur = porte.getHauteur();
+            int yPorte = (int) (((((pointInfGaucheac.getY() * zoomFactor + positionY))  - hauteurPorteInt  + hauteurMurs* zoomFactor) ) );
 
-                int largeurPorteInt = convertirPoucesEnInt(largeur);
-                int hauteurPorteInt = convertirPoucesEnInt(hauteur);
-
-                double height = initialDimension.getHeight();
-                PointDouble pointInfDroitac = gauche.getSommetsMur().get(6);
-                PointDouble pointInfGaucheac = gauche.getSommetsMur().get(7);
-                double positionY = height/2 - pointInfDroitac.getY()/2;
-                int y1ac = (int) (((pointInfGaucheac.getY() + positionY) - hauteurPorteInt) + hauteurMurs);
-
-
-                g.fillRect(mousePoint.x, y1ac, largeurPorteInt, hauteurPorteInt);
-
-                /*
-
-                pointPouces pointPorteSupDroit = new pointPouces(porte.getPointPouces(mousePoint).getX().addPouces(porte.getLargeur().diviserPouces(2)), porte.getPointPouces(mousePoint).getY().addPouces(porte.getHauteur().diviserPouces(2)));
-                pointPouces pointPorteSupGauche = new pointPouces(porte.getPointPouces(mousePoint).getX().substractPouces(porte.getLargeur().diviserPouces(2)), porte.getPointPouces(mousePoint).getY().addPouces(porte.getHauteur().diviserPouces(2)));
-                pointPouces pointPorteInfGauche = new pointPouces(porte.getPointPouces(mousePoint).getX().substractPouces(porte.getLargeur().diviserPouces(2)), new Pouces(0, 0, 1));
-                pointPouces pointPorteInfDroit = new pointPouces(porte.getPointPouces(mousePoint).getX().addPouces(porte.getLargeur().diviserPouces(2)), new Pouces(0, 0, 1));
-
-
-                int x1 = convertirPoucesEnPixels(pointPorteSupDroit.getX());
-                int y1 = convertirPoucesEnPixels(pointPorteSupDroit.getY());
-
-                int x2 = convertirPoucesEnPixels(pointPorteSupGauche.getX());
-                int y2 = convertirPoucesEnPixels(pointPorteSupGauche.getY());
-
-                int x3 = convertirPoucesEnPixels(pointPorteInfGauche.getX());
-                int y3 = convertirPoucesEnPixels(pointPorteInfGauche.getY());
-
-
-                int x4 = convertirPoucesEnPixels(pointPorteInfDroit.getX());
-                int y4 = convertirPoucesEnPixels(pointPorteInfDroit.getY());
-
-                int[] xPoints = {x1, x2, x3, x4};
-                int[] yPoints = {y1, y2, y3, y4};
-
-                g.fillPolygon(xPoints, yPoints, 4);
-
-                 */
-
-            }
+            g.fillRect(xPorte , yPorte, largeurPorteInt, hauteurPorteInt);
+            porte.setLaportefutdessinee(true);
         }
 
 
@@ -224,41 +157,44 @@ public class GaucheDrawer
             DroiteRainureInfDroit = new PointDouble(largeurChalet, 0);
         }
 
-        int x1gc = (int) (pointInfGauchegc.getX()* zoomFactor);
-        int y1gc = (int) (pointInfGauchegc.getY()* zoomFactor);
+        int positionX = 0;
+        int positionY = 0;
 
-        int x2gc = (int) (pointInfDroitgc.getX()* zoomFactor);
-        int y2gc = (int) (pointInfDroitgc.getY()* zoomFactor);
+        int x1gc = (int) (pointInfGauchegc.getX()* zoomFactor) + positionX;
+        int y1gc = (int) (pointInfGauchegc.getY()* zoomFactor) + positionY;
 
-        int x3gc = (int) (pointSupGauchegc.getX()* zoomFactor);
-        int y3gc = (int) (pointSupGauchegc.getY()* zoomFactor);
+        int x2gc = (int) (pointInfDroitgc.getX()* zoomFactor)+ positionX;
+        int y2gc = (int) (pointInfDroitgc.getY()* zoomFactor) + positionY;
 
-        int x4gc = (int) (pointSupDroitgc.getX()* zoomFactor);
-        int y4gc = (int) (pointSupDroitgc.getY()* zoomFactor);
+        int x3gc = (int) (pointSupGauchegc.getX()* zoomFactor)+ positionX;
+        int y3gc = (int) (pointSupGauchegc.getY()* zoomFactor)+ positionY;
 
-        int intx1RainureGauche = (int) (GaucheRainureInfGauche.getX()* zoomFactor);
-        int inty1RainureGauche = (int) (GaucheRainureInfGauche.getY()* zoomFactor);
+        int x4gc = (int) (pointSupDroitgc.getX()* zoomFactor)+ positionX;
+        int y4gc = (int) (pointSupDroitgc.getY()* zoomFactor)+ positionY;
 
-        int intx2RainureGauche = (int) (GaucheRainureSupGauche.getX()* zoomFactor);
-        int inty2RainureGauche = (int) (GaucheRainureSupGauche.getY()* zoomFactor);
+        int intx1RainureGauche = (int) (GaucheRainureInfGauche.getX()* zoomFactor)+ positionX;
+        int inty1RainureGauche = (int) (GaucheRainureInfGauche.getY()* zoomFactor)+ positionY;
 
-        int intx3RainureGauche = (int) (GaucheRainureSupDroit.getX()* zoomFactor);
-        int inty3RainureGauche = (int) (GaucheRainureSupDroit.getY()* zoomFactor);
+        int intx2RainureGauche = (int) (GaucheRainureSupGauche.getX()* zoomFactor)+ positionX;
+        int inty2RainureGauche = (int) (GaucheRainureSupGauche.getY()* zoomFactor)+ positionY;
 
-        int intx4RainureGauche = (int) (GaucheRainureInfDroit.getX()* zoomFactor);
-        int inty4RainureGauche = (int) (GaucheRainureInfDroit.getY()* zoomFactor);
+        int intx3RainureGauche = (int) (GaucheRainureSupDroit.getX()* zoomFactor)+ positionX;
+        int inty3RainureGauche = (int) (GaucheRainureSupDroit.getY()* zoomFactor)+ positionY;
 
-        int intx1RainureDroite = (int) (DroiteRainureInfGauche.getX()* zoomFactor);
-        int inty1RainureDroite = (int) (DroiteRainureInfGauche.getY()* zoomFactor);
+        int intx4RainureGauche = (int) (GaucheRainureInfDroit.getX()* zoomFactor)+ positionX;
+        int inty4RainureGauche = (int) (GaucheRainureInfDroit.getY()* zoomFactor)+ positionY;
 
-        int intx2RainureDroite = (int) (DroiteRainureSupGauche.getX()* zoomFactor);
-        int inty2RainureDroite = (int) (DroiteRainureSupGauche.getY()* zoomFactor);
+        int intx1RainureDroite = (int) (DroiteRainureInfGauche.getX()* zoomFactor)+ positionX;
+        int inty1RainureDroite = (int) (DroiteRainureInfGauche.getY()* zoomFactor)+ positionY;
 
-        int intx3RainureDroite = (int) (DroiteRainureSupDroit.getX()* zoomFactor);
-        int inty3RainureDroite = (int) (DroiteRainureSupDroit.getY()* zoomFactor);
+        int intx2RainureDroite = (int) (DroiteRainureSupGauche.getX()* zoomFactor)+ positionX;
+        int inty2RainureDroite = (int) (DroiteRainureSupGauche.getY()* zoomFactor)+ positionY;
 
-        int intx4RainureDroite = (int) (DroiteRainureInfDroit.getX()* zoomFactor);
-        int inty4RainureDroite = (int) (DroiteRainureInfDroit.getY()* zoomFactor);
+        int intx3RainureDroite = (int) (DroiteRainureSupDroit.getX()* zoomFactor)+ positionX;
+        int inty3RainureDroite = (int) (DroiteRainureSupDroit.getY()* zoomFactor)+ positionY;
+
+        int intx4RainureDroite = (int) (DroiteRainureInfDroit.getX()* zoomFactor)+ positionX;
+        int inty4RainureDroite = (int) (DroiteRainureInfDroit.getY()* zoomFactor)+ positionY ;
 
         int[] xPointsGaucheRainure = {intx1RainureGauche, intx2RainureGauche, intx3RainureGauche, intx4RainureGauche};
         int[] yPointsGaucheRainure = {inty1RainureGauche, inty2RainureGauche, inty3RainureGauche, inty4RainureGauche};

@@ -97,50 +97,53 @@ public class SurplombDrawer extends JFrame
         PointDouble rainureDroite1d = droite.getSommetsMur().get(10);
         PointDouble rainureDroite2d = droite.getSommetsMur().get(11);
 
-        int x1f = (int) (pointInfDroitf.getX() * zoomFactor);
-        int y1f = (int) (pointInfDroitf.getY()* zoomFactor);
-        int x1r1f = (int) (rainureDroite1.getX()* zoomFactor);
-        int y1r1f = (int) (rainureDroite1.getY()* zoomFactor);
-        int x1r2f = (int) (rainureDroite2.getX()* zoomFactor);
-        int y1r2f = (int) (rainureDroite2.getY()* zoomFactor);
+        double positionX = 0 ;
+        double positionY = 0;
 
-        int x2f = (int) (pointSupDroitf.getX()* zoomFactor);
-        int y2f = (int) (pointSupDroitf.getY()* zoomFactor);
+        int x1f = (int) (pointInfDroitf.getX() * zoomFactor +positionX);
+        int y1f = (int) (pointInfDroitf.getY()* zoomFactor+positionY);
+        int x1r1f = (int) (rainureDroite1.getX()* zoomFactor+positionX);
+        int y1r1f = (int) (rainureDroite1.getY()* zoomFactor+positionY);
+        int x1r2f = (int) (rainureDroite2.getX()* zoomFactor+positionX);
+        int y1r2f = (int) (rainureDroite2.getY()* zoomFactor+positionY);
 
-        int x3f = (int) (pointSupGauchef.getX()* zoomFactor);
-        int y3f = (int) (pointSupGauchef.getY()* zoomFactor);
-        int x3r1f = (int) (rainureGauche1.getX()* zoomFactor);
-        int y3r1f = (int) (rainureGauche1.getY()* zoomFactor);
-        int x3r2f = (int) (rainureGauche2.getX()* zoomFactor);
-        int y3r2f = (int) (rainureGauche2.getY()* zoomFactor);
+        int x2f = (int) (pointSupDroitf.getX()* zoomFactor+positionX);
+        int y2f = (int) (pointSupDroitf.getY()* zoomFactor+positionY);
 
-        int x4f = (int) (pointInfGauchef.getX()* zoomFactor);
-        int y4f = (int) (pointInfGauchef.getY()* zoomFactor);
+        int x3f = (int) (pointSupGauchef.getX()* zoomFactor+positionX);
+        int y3f = (int) (pointSupGauchef.getY()* zoomFactor+positionY);
+        int x3r1f = (int) (rainureGauche1.getX()* zoomFactor+positionX);
+        int y3r1f = (int) (rainureGauche1.getY()* zoomFactor+positionY);
+        int x3r2f = (int) (rainureGauche2.getX()* zoomFactor+positionX);
+        int y3r2f = (int) (rainureGauche2.getY()* zoomFactor+positionY);
+
+        int x4f = (int) (pointInfGauchef.getX()* zoomFactor+positionX);
+        int y4f = (int) (pointInfGauchef.getY()* zoomFactor+positionY);
 
         int[] xPointsFacade = {x1f, x1r2f, x1r1f, x2f, x3f, x3r2f, x3r1f, x4f};
         int[] yPointsFacade = {y1f, y1r2f, y1r1f, y2f, y3f, y3r2f, y3r1f, y4f};
         g.setColor(new Color(104, 190, 83));
         g.fillPolygon(xPointsFacade, yPointsFacade, 8);
 
-        int x1a = (int) (pointInfDroita.getX()* zoomFactor);
-        int y1a = (int) (pointInfDroita.getY()* zoomFactor);
-        int x1r1a = (int) (rainureDroite1a.getX()* zoomFactor);
-        int y1r1a = (int) (rainureDroite1a.getY()* zoomFactor);
-        int x1r2a = (int) (rainureDroite2a.getX()* zoomFactor);
-        int y1r2a = (int) (rainureDroite2a.getY()* zoomFactor);
+        int x1a = (int) (pointInfDroita.getX()* zoomFactor+positionX);
+        int y1a = (int) (pointInfDroita.getY()* zoomFactor+positionY);
+        int x1r1a = (int) (rainureDroite1a.getX()* zoomFactor+positionX);
+        int y1r1a = (int) (rainureDroite1a.getY()* zoomFactor+positionY);
+        int x1r2a = (int) (rainureDroite2a.getX()* zoomFactor+positionX);
+        int y1r2a = (int) (rainureDroite2a.getY()* zoomFactor+positionY);
 
-        int x2a = (int) (pointSupDroita.getX()* zoomFactor);
-        int y2a = (int) (pointSupDroita.getY()* zoomFactor);
+        int x2a = (int) (pointSupDroita.getX()* zoomFactor+positionX);
+        int y2a = (int) (pointSupDroita.getY()* zoomFactor+positionY);
 
-        int x3a = (int) (pointSupGauchea.getX()* zoomFactor);
-        int y3a = (int) (pointSupGauchea.getY()* zoomFactor);
-        int x3r1a = (int) (rainureGauche1a.getX()* zoomFactor);
-        int y3r1a = (int) (rainureGauche1a.getY()* zoomFactor);
-        int x3r2a = (int) (rainureGauche2a.getX()* zoomFactor);
-        int y3r2a = (int) (rainureGauche2a.getY()* zoomFactor);
+        int x3a = (int) (pointSupGauchea.getX()* zoomFactor+positionX);
+        int y3a = (int) (pointSupGauchea.getY()* zoomFactor+positionY);
+        int x3r1a = (int) (rainureGauche1a.getX()* zoomFactor+positionX);
+        int y3r1a = (int) (rainureGauche1a.getY()* zoomFactor+positionY);
+        int x3r2a = (int) (rainureGauche2a.getX()* zoomFactor+positionX);
+        int y3r2a = (int) (rainureGauche2a.getY()* zoomFactor+positionY);
 
-        int x4a = (int) (pointInfGauchea.getX()* zoomFactor);
-        int y4a = (int) (pointInfGauchea.getY()* zoomFactor);
+        int x4a = (int) (pointInfGauchea.getX()* zoomFactor+positionX);
+        int y4a = (int) (pointInfGauchea.getY()* zoomFactor+positionY);
         //
         int[] xPointsArriere = {x1a, x1r2a, x1r1a, x2a, x3a, x3r2a, x3r1a, x4a};
         int[] yPointsArriere = {y1a, y1r2a, y1r1a, y2a, y3a, y3r2a, y3r1a, y4a};
@@ -148,50 +151,50 @@ public class SurplombDrawer extends JFrame
         g.fillPolygon(xPointsArriere, yPointsArriere, 8);
 
 
-        int x1g = (int) (pointInfDroitg.getX()* zoomFactor);
-        int y1g = (int) (pointInfDroitg.getY()* zoomFactor);
-        int x1r1g = (int) (rainureDroite1g.getX()* zoomFactor);
-        int y1r1g = (int) (rainureDroite1g.getY()* zoomFactor);
-        int x1r2g = (int) (rainureDroite2g.getX()* zoomFactor);
-        int y1r2g = (int) (rainureDroite2g.getY()* zoomFactor);
+        int x1g = (int) (pointInfDroitg.getX()* zoomFactor+positionX);
+        int y1g = (int) (pointInfDroitg.getY()* zoomFactor+positionY);
+        int x1r1g = (int) (rainureDroite1g.getX()* zoomFactor+positionX);
+        int y1r1g = (int) (rainureDroite1g.getY()* zoomFactor+positionY);
+        int x1r2g = (int) (rainureDroite2g.getX()* zoomFactor+positionX);
+        int y1r2g = (int) (rainureDroite2g.getY()* zoomFactor+positionY);
 
-        int x2g = (int) (pointSupDroitg.getX()* zoomFactor);
-        int y2g = (int) (pointSupDroitg.getY()* zoomFactor);
+        int x2g = (int) (pointSupDroitg.getX()* zoomFactor+positionX);
+        int y2g = (int) (pointSupDroitg.getY()* zoomFactor+positionY);
 
-        int x3g = (int) (pointSupGaucheg.getX()* zoomFactor);
-        int y3g = (int) (pointSupGaucheg.getY()* zoomFactor);
-        int x3r1g = (int) (rainureGauche1g.getX()* zoomFactor);
-        int y3r1g = (int) (rainureGauche1g.getY()* zoomFactor);
-        int x3r2g = (int) (rainureGauche2g.getX()* zoomFactor);
-        int y3r2g = (int) (rainureGauche2g.getY() * zoomFactor);
+        int x3g = (int) (pointSupGaucheg.getX()* zoomFactor+positionX);
+        int y3g = (int) (pointSupGaucheg.getY()* zoomFactor+positionY);
+        int x3r1g = (int) (rainureGauche1g.getX()* zoomFactor+positionX);
+        int y3r1g = (int) (rainureGauche1g.getY()* zoomFactor+positionY);
+        int x3r2g = (int) (rainureGauche2g.getX()* zoomFactor+positionX);
+        int y3r2g = (int) (rainureGauche2g.getY() * zoomFactor+positionY);
 
-        int x4g = (int) (pointInfGaucheg.getX()* zoomFactor);
-        int y4g = (int) (pointInfGaucheg.getY()* zoomFactor);
+        int x4g = (int) (pointInfGaucheg.getX()* zoomFactor+positionX);
+        int y4g = (int) (pointInfGaucheg.getY()* zoomFactor+positionY);
 
         int[] xPointsGauche = {x1r2g, x1r1g,  x1g,  x2g, x3r2g, x3r1g, x3g, x4g};
         int[] yPointsGauche = {y1r2g, y1r1g,  y1g,  y2g, y3r2g, y3r1g, y3g, y4g};
         g.setColor(new Color(239, 167, 139));
         g.fillPolygon(xPointsGauche, yPointsGauche, 8);
 
-        int x1d = (int) (pointInfDroitd.getX()* zoomFactor);
-        int y1d = (int) (pointInfDroitd.getY()* zoomFactor);
-        int x1r1d = (int) (rainureDroite1d.getX()* zoomFactor);
-        int y1r1d = (int) (rainureDroite1d.getY()* zoomFactor);
-        int x1r2d = (int) (rainureDroite2d.getX()* zoomFactor);
-        int y1r2d = (int) (rainureDroite2d.getY()* zoomFactor);
+        int x1d = (int) (pointInfDroitd.getX()* zoomFactor+positionX);
+        int y1d = (int) (pointInfDroitd.getY()* zoomFactor+positionY);
+        int x1r1d = (int) (rainureDroite1d.getX()* zoomFactor+positionX);
+        int y1r1d = (int) (rainureDroite1d.getY()* zoomFactor+positionY);
+        int x1r2d = (int) (rainureDroite2d.getX()* zoomFactor+positionX);
+        int y1r2d = (int) (rainureDroite2d.getY()* zoomFactor+positionY);
 
-        int x2d = (int) (pointSupDroitd.getX()* zoomFactor);
-        int y2d = (int) (pointSupDroitd.getY()* zoomFactor);
+        int x2d = (int) (pointSupDroitd.getX()* zoomFactor+positionX);
+        int y2d = (int) (pointSupDroitd.getY()* zoomFactor+positionY);
 
-        int x3d = (int) (pointSupGauched.getX()* zoomFactor);
-        int y3d = (int) (pointSupGauched.getY()* zoomFactor);
-        int x3r1d = (int) (rainureGauche1d.getX()* zoomFactor);
-        int y3r1d = (int) (rainureGauche1d.getY()* zoomFactor);
-        int x3r2d = (int) (rainureGauche2d.getX()* zoomFactor);
-        int y3r2d = (int) (rainureGauche2d.getY()* zoomFactor);
+        int x3d = (int) (pointSupGauched.getX()* zoomFactor+positionX);
+        int y3d = (int) (pointSupGauched.getY()* zoomFactor+positionY);
+        int x3r1d = (int) (rainureGauche1d.getX()* zoomFactor+positionX);
+        int y3r1d = (int) (rainureGauche1d.getY()* zoomFactor+positionY);
+        int x3r2d = (int) (rainureGauche2d.getX()* zoomFactor+positionX);
+        int y3r2d = (int) (rainureGauche2d.getY()* zoomFactor+positionY);
 
-        int x4d = (int) (pointInfGauched.getX()* zoomFactor);
-        int y4d = (int) (pointInfGauched.getY()* zoomFactor);
+        int x4d = (int) (pointInfGauched.getX()* zoomFactor+positionX);
+        int y4d = (int) (pointInfGauched.getY()* zoomFactor+positionY);
 
         int[] xPointsDroit = {x1r1d, x1r2d, x1d, x2d, x3r1d, x3r2d, x3d, x4d};
         int[] yPointsDroit = {y1r1d, y1r2d, y1d, y2d, y3r1d, y3r2d, y3d, y4d};
