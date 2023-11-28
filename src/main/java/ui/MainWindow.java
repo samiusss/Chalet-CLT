@@ -173,9 +173,9 @@ public class MainWindow extends javax.swing.JFrame {
                 System.out.println(mousePointClicked);
                 if (isAddingPorte)
                 {
-
-                    XPorteField.setText(String.valueOf(mousePointClicked.getX()));
-                    YporteField.setText(String.valueOf(mousePointClicked.getY()));
+                    // J'ai mis ca en commentaire pour la demo le prof ne dois pas voir ca
+                    //XPorteField.setText(String.valueOf(mousePointClicked.getX()));
+                    //YporteField.setText(String.valueOf(mousePointClicked.getY()));
 
                     Point mousePoint = e.getPoint();
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -198,8 +198,9 @@ public class MainWindow extends javax.swing.JFrame {
                 }
                 if (isAddingFenetre && !isSelection)
                 {
-                    XFenetreField.setText(String.valueOf(mousePointClicked.getY()));
-                    YfenetreField.setText(String.valueOf(mousePointClicked.getY()));
+                    // J'ai mis ca en commentaire pour la demo le prof ne dois pas voir ca
+                    //XFenetreField.setText(String.valueOf(mousePointClicked.getY()));
+                    //YfenetreField.setText(String.valueOf(mousePointClicked.getY()));
 
 
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -567,7 +568,7 @@ public class MainWindow extends javax.swing.JFrame {
                     // On convertir mon point pouces en Point int
                     int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
                     //int nouveauXporteint = nouveauXPorte;
-                    boolean xportemodifie = controleur.modifierXPorte(mousePointClicked, (nouveauXporteint), nomMur, listeMursDrawer,initialDimension );
+                    boolean xportemodifie = controleur.modifierXPorte(mousePointClicked, nouveauXporteint, nomMur, listeMursDrawer,initialDimension );
                     System.out.println(mousePointClicked);
                     if (xportemodifie == true) {
                         // Redessiner le panneau uniquement si la modification est réussie
@@ -583,18 +584,18 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = XFenetreField.getText();
-                int nouveauXFenetre = Integer.parseInt(inputText);
-                //Pouces nouveauXPorte = convertirStringImperialEnPouces(inputText);
+                //int nouveauXFenetre = Integer.parseInt(inputText);
+                Pouces nouveauXFenetre = convertirStringImperialEnPouces(inputText);
                 Dimension initialDimension = DrawingPanel.getPreferredSize();
                 System.out.println(nouveauXFenetre);
-                if (nouveauXFenetre!=0&isSelection){
+                if (nouveauXFenetre!=null&isSelection){
                     System.out.println("Yes");
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                     // On convertir mon point pouces en Point int
-                    //int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
-                    int nouveauXFenetreint = nouveauXFenetre;
+                    int nouveauXFenetreint = convertirPoucesEnInt(nouveauXFenetre);
+                    //int nouveauXFenetreint = nouveauXFenetre;
                     boolean xFenetremodifie = controleur.modifierXFenetre(mousePointClicked, nouveauXFenetreint, nomMur, listeMursDrawer,initialDimension );
                     System.out.println(mousePointClicked);
                     if (xFenetremodifie == true) {
@@ -611,18 +612,18 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = YfenetreField.getText();
-                int nouveauYFenetre = Integer.parseInt(inputText);
-                //Pouces nouveauYFenetre = convertirStringImperialEnPouces(inputText);
+                //int nouveauYFenetre = Integer.parseInt(inputText);
+                Pouces nouveauYFenetre = convertirStringImperialEnPouces(inputText);
                 Dimension initialDimension = DrawingPanel.getPreferredSize();
                 System.out.println(nouveauYFenetre);
-                if (nouveauYFenetre!=0&isSelection){
+                if (nouveauYFenetre!=null&isSelection){
                     System.out.println("Yes");
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                     // On convertir mon point pouces en Point int
-                    //int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
-                    int nouveauYFenetreint = nouveauYFenetre;
+                    int nouveauYFenetreint = convertirPoucesEnInt(nouveauYFenetre);
+                    //int nouveauYFenetreint = nouveauYFenetre;
                     boolean yFenetremodifie = controleur.modifierYFenetre(mousePointClicked, nouveauYFenetreint, nomMur, listeMursDrawer,initialDimension );
                     System.out.println(mousePointClicked);
                     if (yFenetremodifie == true) {
