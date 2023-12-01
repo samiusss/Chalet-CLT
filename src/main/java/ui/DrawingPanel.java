@@ -711,56 +711,10 @@ public class DrawingPanel extends JPanel implements Serializable {
         return mainWindow;
     }
 
-
     public void setMainWindow(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
     }
 
-//    public void zoomIn() {
-//        float leZoom = controleur.getZoom();
-//        leZoom -= 0.05;
-//        if (leZoom < 0)
-//        {
-//            leZoom = 0;
-//        }
-//        controleur.setZoom(leZoom);
-//        revalidate();
-//        repaint();
-//    }
-//
-//    public void zoomOut() {
-//        float leZoom = controleur.getZoom();
-//        leZoom += 0.01F;
-//        controleur.setZoom(leZoom);
-//        revalidate();
-//        repaint();
-//    }
-
-//    public void applyZoom() {
-//        if (zoomFactor < 0.1) {
-//            zoomFactor = 0.1;
-//        }
-//
-//        Dimension currentSize = getSize();
-//        Point currentPosition = getParent().getMousePosition();
-//
-//        // Calculate the new size based on the zoom factor
-//        int newWidth = (int) (1  * zoomFactor);
-//        int newHeight = (int) (initialDimensionReturn.getHeight() * zoomFactor);
-//        setPreferredSize(new Dimension(newWidth, newHeight));
-//
-//        // If there's a current position, adjust it based on the zoom factor
-//        if (currentPosition != null) {
-//            int deltaX = (int) ((currentSize.getWidth() - newWidth) * (currentPosition.getX() / currentSize.getWidth()));
-//            int deltaY = (int) ((currentSize.getHeight() - newHeight) * (currentPosition.getY() / currentSize.getHeight()));
-//            getParent().setComponentZOrder(this, 0); // Move the panel to the front
-//            setLocation(getX() + deltaX, getY() + deltaY);
-//        }
-//
-//
-//            revalidate();
-//            repaint();
-//        }
 
 
     }
