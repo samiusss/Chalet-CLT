@@ -345,6 +345,8 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+
+
         AccessoirePanelLongeurTextField.addActionListener(new ActionListener() {
             //LargeurFenetre
             @Override
@@ -461,6 +463,8 @@ public class MainWindow extends javax.swing.JFrame {
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                     // On convertir mon point pouces en Point int
                     int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
+                    nouveauXporteint = Math.round(nouveauXporteint);
+                    System.out.println(nouveauXporteint);
                     //int nouveauXporteint = nouveauXPorte;
                     boolean xportemodifie = controleur.modifierXPorte(mousePointClicked, nouveauXporteint, nomMur, listeMursDrawer,initialDimension );
                     System.out.println(mousePointClicked);
@@ -489,6 +493,8 @@ public class MainWindow extends javax.swing.JFrame {
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                     // On convertir mon point pouces en Point int
                     int nouveauXFenetreint = convertirPoucesEnInt(nouveauXFenetre);
+                    nouveauXFenetreint = Math.round(nouveauXFenetreint);
+                    System.out.println("Nouveau X" + nouveauXFenetreint);
                     //int nouveauXFenetreint = nouveauXFenetre;
                     boolean xFenetremodifie = controleur.modifierXFenetre(mousePointClicked, nouveauXFenetreint, nomMur, listeMursDrawer,initialDimension );
                     System.out.println(mousePointClicked);
@@ -517,6 +523,8 @@ public class MainWindow extends javax.swing.JFrame {
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                     // On convertir mon point pouces en Point int
                     int nouveauYFenetreint = convertirPoucesEnInt(nouveauYFenetre);
+                    nouveauYFenetreint = Math.round(nouveauYFenetreint);
+                    System.out.println("Nouveau Y" + nouveauYFenetreint);
                     //int nouveauYFenetreint = nouveauYFenetre;
                     boolean yFenetremodifie = controleur.modifierYFenetre(mousePointClicked, nouveauYFenetreint, nomMur, listeMursDrawer,initialDimension );
                     System.out.println(mousePointClicked);

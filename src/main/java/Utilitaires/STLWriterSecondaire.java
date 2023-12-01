@@ -260,7 +260,7 @@ public class STLWriterSecondaire {
         double epaisseurChalet = Chalet.epaisseurChalet;
         //double epaisseur = 15.0;
 
-        List<Triangle> listeTriangles = generateRectangularPrism(500,(float) epaisseurChalet, 200,0,0,0);
+        List<Triangle> listeTriangles = generateRectangularPrism(500,(float) epaisseurChalet, 400,0,0,0);
         generateSTL(listeTriangles,fileName);
 
     }
@@ -1032,7 +1032,7 @@ public class STLWriterSecondaire {
             //int xSupGauchePorteMousePoint = porte.mousePoint.x;
 
             // Calcul du point inférieur gauche
-            float xSupGauchePorteMousePoint = porte.mousePoint.x + lengthPorte;
+            float xSupGauchePorteMousePoint = porte.mousePoint.x - lengthPorte;
             float yInferieurGauche = porte.mousePoint.y + heightPorte;
 
 
