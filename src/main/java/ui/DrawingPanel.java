@@ -174,7 +174,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 //                controleur.setOffsetX(100);
 //                controleur.setOffsetY(170);
             }
-            mainWindow.Selection.addActionListener(new ActionListener() {
+   /*         mainWindow.Selection.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if(isSelection)
@@ -700,8 +700,8 @@ public class DrawingPanel extends JPanel implements Serializable {
                     System.out.println(hauteurMursMN+" entered by you..");
                     revalidate();
                     repaint();
-                }
-            });
+                }*/
+           /* });*/
 
         }
     }
