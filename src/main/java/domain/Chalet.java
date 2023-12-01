@@ -347,7 +347,6 @@ public class Chalet {
 
         //List<PointDouble> sommetsMur = mur.getSommetsMur();
 
-
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
 
@@ -359,17 +358,17 @@ public class Chalet {
         double positionX = width / 2 - pointInfDroitfc.getX() / 2;
         double positionY = height / 2 - pointInfDroitfc.getY() / 2;
 
-        int x1fc = (int) (pointInfGauchefc.getX() + positionX);
-        int y1fc = (int) (pointInfGauchefc.getY() + positionY);
+        int x1fc = (int) (pointInfGauchefc.getX() + 0);
+        int y1fc = (int) (pointInfGauchefc.getY() + 0);
 
-        int x2fc = (int) (pointInfDroitfc.getX() + positionX);
-        int y2fc = (int) (pointInfDroitfc.getY() + positionY);
+        int x2fc = (int) (pointInfDroitfc.getX() + 0);
+        int y2fc = (int) (pointInfDroitfc.getY() + 0);
 
-        int x3fc = (int) (pointSupGauchefc.getX() + positionX);
-        int y3fc = (int) (pointSupGauchefc.getY() + positionY);
+        int x3fc = (int) (pointSupGauchefc.getX() + 0);
+        int y3fc = (int) (pointSupGauchefc.getY() + 0);
 
-        int x4fc = (int) (pointSupDroitfc.getX() + positionX);
-        int y4fc = (int) (pointSupDroitfc.getY() + positionY);
+        int x4fc = (int) (pointSupDroitfc.getX() + 0);
+        int y4fc = (int) (pointSupDroitfc.getY() + 0);
 
         // Construire tableaux de coordonnées pour le mur facade de coté
         int[] xPointsFacadeCote = {x1fc, x2fc, x3fc, x4fc};
@@ -399,29 +398,20 @@ public class Chalet {
 
 
     public static boolean estDansRectangle(Point point, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
-        int x = point.x;
-        int y = point.y;
+        int xP = point.x;
+        int yP = point.y;
+        //le y du point considère le offset quand c une porte
 
-        int x1 = coinSupGauche.x;
-        int y1 = coinSupGauche.y;
+        int xGauche = coinSupGauche.x;
+        int xDroite = coinSupDroit.x;
 
-        int x2 = coinSupDroit.x;
-        int y2 = coinSupDroit.y;
+        int yHaut = coinSupGauche.y;
+        int yBas = coinInfGauche.y;
 
-        int x3 = coinInfGauche.x;
-        int y3 = coinInfGauche.y;
-
-        int x4 = coinInfDroit.x;
-        int y4 = coinInfDroit.y;
-
-        //Probleme dans la méthode de generations des sommets des murs. Le points superieur droit est plus petit que le coin superieur gauche.
-        //boolean conditionUn = x >= x1;
-        //boolean conditionDeux = x <= x2 ;
-
-        boolean conditionUn = x <= x1;
-        boolean conditionDeux = x >= x2;
-        boolean conditionTrois = y >= y1;
-        boolean conditionQuatre = y <= y3;
+        boolean conditionUn = xP >= xGauche;
+        boolean conditionDeux = xP <= xDroite;
+        boolean conditionTrois = yP >= yHaut;
+        boolean conditionQuatre = yP <= yBas;
         System.out.println(conditionUn +""+  conditionDeux +""+  conditionTrois +""+  conditionQuatre +"Les conditions" );
 
         // Vérifie si le point se trouve à l'intérieur du rectangle
@@ -430,59 +420,27 @@ public class Chalet {
         //System.out.println(estDansRectangle + "(estDansRectangle) " + point);
         return estDansRectangle;
 
-    /*private static boolean estDansRectangle2(Point pointVerification, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
-        boolean Rect = pointVerification.x >= coinSupGauche.x && pointVerification.x <= coinSupDroit.x
-                && pointVerification.y >= coinSupGauche.y && pointVerification.y <= coinInfGauche.y ;
-        System.out.println(Rect + "(estDansRectangle) "+pointVerification);
-
-    return (pointVerification.x >= coinSupGauche.x && pointVerification.x <= coinSupDroit.x
-                && pointVerification.y >= coinSupGauche.y && pointVerification.y <= coinInfGauche.y);
-    } */
-
     }
 
-
+    //à vérifier
     public static boolean estDansRectangleMurArriere(Point point, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
-        int x = point.x;
-        int y = point.y;
+        int xP = point.x;
+        int yP = point.y;
 
-        int x2 = coinSupGauche.x;
-        int y2 = coinSupGauche.y;
+        int xGauche = coinSupGauche.x;
+        int xDroite = coinSupDroit.x;
 
-        int x1 = coinSupDroit.x;
-        int y1 = coinSupDroit.y;
+        int yHaut = coinSupGauche.y;
+        int yBas = coinInfGauche.y;
 
-        int x3 = coinInfGauche.x;
-        int y3 = coinInfGauche.y;
+        boolean conditionUn = xP >= xGauche;
+        boolean conditionDeux = xP <= xDroite;
+        boolean conditionTrois = yP >= yHaut;
+        boolean conditionQuatre = yP <= yBas;
 
-        int x4 = coinInfDroit.x;
-        int y4 = coinInfDroit.y;
-
-        //Probleme dans la méthode de generations des sommets des murs. Le points superieur droit est plus petit que le coin superieur gauche.
-        //boolean conditionUn = x >= x1;
-        //boolean conditionDeux = x <= x2 ;
-
-        boolean conditionUn = x >= x1;
-        boolean conditionDeux = x <= x2;
-        boolean conditionTrois = y >= y1;
-        boolean conditionQuatre = y <= y3;
-        //System.out.println(conditionUn +""+  conditionDeux +""+  conditionTrois +""+  conditionQuatre +"Les conditions" );
-
-        // Vérifie si le point se trouve à l'intérieur du rectangle
         boolean estDansRectangle = (conditionUn && conditionDeux && conditionTrois && conditionQuatre);
 
-        //System.out.println(estDansRectangle + "(estDansRectangle) " + point);
         return estDansRectangle;
-
-    /*private static boolean estDansRectangle2(Point pointVerification, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
-        boolean Rect = pointVerification.x >= coinSupGauche.x && pointVerification.x <= coinSupDroit.x
-                && pointVerification.y >= coinSupGauche.y && pointVerification.y <= coinInfGauche.y ;
-        System.out.println(Rect + "(estDansRectangle) "+pointVerification);
-
-    return (pointVerification.x >= coinSupGauche.x && pointVerification.x <= coinSupDroit.x
-                && pointVerification.y >= coinSupGauche.y && pointVerification.y <= coinInfGauche.y);
-    } */
-
     }
 
 
@@ -527,17 +485,19 @@ public class Chalet {
         int largeur = convertirPoucesEnInt(largeurPouces);
         int hauteur = convertirPoucesEnInt(hauteurPouces);
 
+        System.out.println(mousePoint);
         //On determine les sommets du mur
         List<Point> PointsMur = DeterminerCollisionSommetsMur(mur, initialDimension);
 
-        Point SupGaucheMur = PointsMur.get(0);
-        Point SupDroiteMur = PointsMur.get(1);
-        Point InfGaucheMur = PointsMur.get(2);
-        Point InfDroiteMur = PointsMur.get(3);
-        /*System.out.println(SupGaucheMur+"(DeterminerCollisionSommetsMur) Mur En Haut a Gauche ");
-        System.out.println(InfGaucheMur+"(DeterminerCollisionSommetsMur) Mur En Bas a Gauche ");
-        System.out.println(InfDroiteMur+"(DeterminerCollisionSommetsMur) Mur En Bas a Droite ");
-        System.out.println(SupDroiteMur+"(DeterminerCollisionSommetsMur) Mur En Haut a Droite "); */
+        Point SupDroiteMur = PointsMur.get(0);
+
+        Point SupGaucheMur = PointsMur.get(1);
+
+        Point InfDroiteMur = PointsMur.get(2);
+
+        Point InfGaucheMur = PointsMur.get(3);
+
+
 
 
         //On determine les sommets de la fenetres
@@ -900,11 +860,9 @@ public class Chalet {
         //Une porte par mur
         List<Porte> listePorte = mur.getListePorte();
         boolean Anticollision = AntiCollisionAccessoireMur(mur, mousepoint, largeur, hauteur, initialDimension);
-        System.out.println(Anticollision+"(ajouterPorte) Anticollision Mur Porte ");
+
 
         if (Anticollision) {
-            System.out.println(Anticollision+"(ajouterPorte) Anticollision Mur Porte ");
-
 
             if (AntiCollisionFenetrePorte(mur, mousepoint, largeur, largeur) == false) {
 
@@ -923,16 +881,7 @@ public class Chalet {
 
 
         }
-
-        /*listePorte = mur.getListePorte();
-        for (Porte porte1 : listePorte) {
-            System.out.println(porte1);
-            return success;
-        } */
-
         return false;
-
-
     }
 
     public static boolean supprimerPorte(String nomMur, List<Mur> listeMursDrawer) {
@@ -940,7 +889,7 @@ public class Chalet {
 
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
-        //Une porte par mur
+
         List<Porte> listePorte = mur.getListePorte();
 
         if (listePorte != null) {
@@ -951,16 +900,14 @@ public class Chalet {
                 mur.clearListePorte();
             }
         }
-
         return false;
-
     }
 
     public static boolean setLargeurPorte(Pouces nouvelleLargeur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension) {
 
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
-        //Une porte par mur
+
         List<Porte> listePorte = mur.getListePorte();
 
         for (Porte porte : listePorte) {
@@ -1054,7 +1001,6 @@ public class Chalet {
 
     }
 
-    // Rajout de la methode modifierXfenetre qui considere le cas echeant on selectionne une fenetre
     public static boolean modifierXfenetre(Point mousePointClicked, int nouveauXfenetreint, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension) {
         boolean modificationXreussiefenetre = false;
         int numMur = determinerMur(nomMur);
@@ -1082,7 +1028,7 @@ public class Chalet {
         boolean modificationYreussiefenetre = false;
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
-        //Une porte par mur
+
         List<Fenetre> listeFenetre = mur.getListeFenetre();
 
         for (Fenetre fenetre : listeFenetre) {
@@ -1117,7 +1063,6 @@ public class Chalet {
                 listeFenetre.remove(i);
                 System.out.println(fenetre + "(supprimerFenetre) La fenetre supprimer en question");
                 return true;
-
             }
             i = i + 1;
 

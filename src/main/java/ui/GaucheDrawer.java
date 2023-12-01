@@ -67,13 +67,8 @@ public class GaucheDrawer
                 Pouces largeur = fenetre.getLargeur();
                 Pouces hauteur = fenetre.getHauteur();
 
-                PointDouble pointInfDroitac = gauche.getSommetsMur().get(6);
-
-                double offsetY = initialDimension.getHeight()/2 - pointInfDroitac.getY()/2;
-                double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
-
-                int x1ac = (int) (((mousePoint.x - offsetX ) * zoomFactor ) + offsetX) - 100;
-                int y1ac = (int) (((mousePoint.y - offsetY ) * zoomFactor ) + offsetY) - 170;
+                int x1ac = (int) (((mousePoint.x  ) * zoomFactor ) ) ;
+                int y1ac = (int) (((mousePoint.y  ) * zoomFactor ) ) ;
 
                 int largeurFenetreInt = (int)(convertirPoucesEnInt(largeur) * zoomFactor);
                 int hauteurFenetreInt = (int)(convertirPoucesEnInt(hauteur) * zoomFactor);
@@ -96,6 +91,7 @@ public class GaucheDrawer
         System.out.println(lenghtlistePorte);
 
         for (Porte porte : listePorte) {
+
             Point mousePoint = porte.mousePoint;
 
             Pouces largeur = porte.getLargeur();
@@ -103,15 +99,11 @@ public class GaucheDrawer
 
             int largeurPorteInt = (int) (convertirPoucesEnInt(largeur) * zoomFactor);
             int hauteurPorteInt = (int) (convertirPoucesEnInt(hauteur) * zoomFactor);
-
-            PointDouble pointInfDroitac = gauche.getSommetsMur().get(6);
             PointDouble pointInfGaucheac = gauche.getSommetsMur().get(7);
 
-            double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
-            int xPorte = (int) (((mousePoint.x - offsetX) * zoomFactor) + offsetX) - 100;
+            int xPorte = (int) (((mousePoint.x) * zoomFactor) ) ;
 
             double positionY = 0 ;
-
             int yPorte = (int) (((((pointInfGaucheac.getY() * zoomFactor + positionY))  - hauteurPorteInt  + hauteurMurs* zoomFactor) ) );
 
             g.fillRect(xPorte , yPorte, largeurPorteInt, hauteurPorteInt);

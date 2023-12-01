@@ -61,9 +61,6 @@ public class DrawingPanel extends JPanel implements Serializable {
                 controleur.setOffsetX(offsetX);
                 controleur.setOffsetY(offsetY);
                 controleur.setZoom(zoomFactor);
-                int adjustedX = (int)((e.getX() - offsetX) / zoomFactor);
-                int adjustedY = (int)((e.getY() - offsetY) / zoomFactor);
-                Point mPoint = new Point(adjustedX, adjustedY);
 
                 repaint();
             }
@@ -77,10 +74,9 @@ public class DrawingPanel extends JPanel implements Serializable {
                 System.out.println(mousePointClicked);
                 if (MainWindow.isAddingPorte)
                 {
-                    Point mousePoint = e.getPoint();
-
                     int adjustedX = (int)((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
-                    Point mPoint = new Point(adjustedX, e.getY());
+                    int adjustedY = (int)((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
+                    Point mPoint = new Point(adjustedX, adjustedY);
                     String nomMur = String.valueOf(selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     java.util.List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
