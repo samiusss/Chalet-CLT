@@ -55,19 +55,13 @@ public class DroitDrawer {
             Pouces largeur = fenetre.getLargeur();
             Pouces hauteur = fenetre.getHauteur();
 
-            PointDouble pointInfDroitac = droite.getSommetsMur().get(6);
-
-            double offsetY = initialDimension.getHeight()/2 - pointInfDroitac.getY()/2;
-            double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
-
-            int x1ac = (int) (((mousePoint.x - offsetX ) * zoomFactor ) + offsetX) - 100;
-            int y1ac = (int) (((mousePoint.y - offsetY ) * zoomFactor ) + offsetY) - 170;
+            int x1ac = (int) (((mousePoint.x  ) * zoomFactor ) ) ;
+            int y1ac = (int) (((mousePoint.y  ) * zoomFactor ) ) ;
 
             int largeurFenetreInt = (int)(convertirPoucesEnInt(largeur) * zoomFactor);
             int hauteurFenetreInt = (int)(convertirPoucesEnInt(hauteur) * zoomFactor);
 
             g.fillRect(x1ac, y1ac, largeurFenetreInt, hauteurFenetreInt);
-
         }
 
 
@@ -81,6 +75,7 @@ public class DroitDrawer {
         System.out.println(lenghtlistePorte);
 
         for (Porte porte : listePorte) {
+
             Point mousePoint = porte.mousePoint;
 
             Pouces largeur = porte.getLargeur();
@@ -89,14 +84,11 @@ public class DroitDrawer {
             int largeurPorteInt = (int) (convertirPoucesEnInt(largeur) * zoomFactor);
             int hauteurPorteInt = (int) (convertirPoucesEnInt(hauteur) * zoomFactor);
 
-            PointDouble pointInfDroitac = droite.getSommetsMur().get(6);
             PointDouble pointInfGaucheac = droite.getSommetsMur().get(7);
 
-            double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
-            int xPorte = (int) (((mousePoint.x - offsetX) * zoomFactor) + offsetX) - 100;
+            int xPorte = (int) (((mousePoint.x) * zoomFactor) ) ;
 
             double positionY = 0 ;
-
             int yPorte = (int) (((((pointInfGaucheac.getY() * zoomFactor + positionY))  - hauteurPorteInt  + hauteurMurs* zoomFactor) ) );
 
             g.fillRect(xPorte , yPorte, largeurPorteInt, hauteurPorteInt);
@@ -108,33 +100,11 @@ public class DroitDrawer {
 
 
     private void drawDroit(Graphics g) {
-        //Chalet chalet = controleur.getChaletProduction();
-
 
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
         this.zoomFactor = controleur.getZoom();
-/*
-        ArrayList<Mur> listeMurs = new ArrayList<>();
-        String orientationToit = "Nord";
-        // Définir la couleur des murs
 
-        //Dimensions du mur en 3D
-        double epaisseurMur = Chalet.epaisseurChalet; // Épaisseur du mur test local
-        double hauteurMurs = Chalet.hauteurMurs;      // Hauteur des murs, sera utilisée pour les vues de côté
-        double largeurMur = Chalet.largeurChalet;     // Largeur des murs venant de chalet
-        double longueurMur = Chalet.longueurChalet;
-        double angleToit = 0.0;
-
-        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
-        */
-        //chalet.initialiserMurDroite();
-        //Mur droite = chalet.getMursUsines(0.2, "Nord").get(0); // mur droite deja codé en bas
-
-        // Accéder coord de Mur droite de face (dc)
-
-
-        //ceux-ci sont les points reels du mur de droite
         PointDouble pointSupDroitdc = droite.getSommetsMur().get(4); //E ou W = (10, 8) & N ou S = (8.5, 10)
         PointDouble pointSupGauchedc = droite.getSommetsMur().get(5);//E ou W = (0, 8) & N ou S = (1.5, 8)
         PointDouble pointInfDroitdc = droite.getSommetsMur().get(6);//E ou W = (10, 0) & N ou S = (8.5, 0)

@@ -59,13 +59,8 @@ public class ArriereDrawer {
                 Pouces largeur = fenetre.getLargeur();
                 Pouces hauteur = fenetre.getHauteur();
 
-                PointDouble pointInfDroitac = arriere.getSommetsMur().get(6);
-
-                double offsetY = initialDimension.getHeight()/2 - pointInfDroitac.getY()/2;
-                double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
-
-                int x1ac = (int) (((mousePoint.x - offsetX ) * zoomFactor ) + offsetX) - 100;
-                int y1ac = (int) (((mousePoint.y - offsetY ) * zoomFactor ) + offsetY) - 170;
+                int x1ac = (int) (((mousePoint.x  ) * zoomFactor ) ) ;
+                int y1ac = (int) (((mousePoint.y  ) * zoomFactor ) ) ;
 
                 int largeurFenetreInt = (int)(convertirPoucesEnInt(largeur) * zoomFactor);
                 int hauteurFenetreInt = (int)(convertirPoucesEnInt(hauteur) * zoomFactor);
@@ -86,21 +81,20 @@ public class ArriereDrawer {
             Porte porteActuel = (Porte) porte;
             if (porteActuel != null) {
                 Point mousePoint = porte.mousePoint;
-
                 Pouces largeur = porte.getLargeur();
                 Pouces hauteur = porte.getHauteur();
 
                 int largeurPorteInt = (int) (convertirPoucesEnInt(largeur) * zoomFactor);
                 int hauteurPorteInt = (int) (convertirPoucesEnInt(hauteur) * zoomFactor);
 
+
                 PointDouble pointInfDroitac = arriere.getSommetsMur().get(6);
                 PointDouble pointInfGaucheac = arriere.getSommetsMur().get(7);
 
-                double offsetX = initialDimension.getWidth()/2 - pointInfDroitac.getX()/2;
-                int xPorte = (int) (((mousePoint.x - offsetX) * zoomFactor) + offsetX) - 100;
+
+                int xPorte = (int) (((mousePoint.x) * zoomFactor) ) ;
 
                 double positionY = 0 ;
-
                 int yPorte = (int) (((((pointInfGaucheac.getY() * zoomFactor + positionY))  - hauteurPorteInt  + hauteurMurs* zoomFactor) ) );
 
                 g.fillRect(xPorte , yPorte, largeurPorteInt, hauteurPorteInt);

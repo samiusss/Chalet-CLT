@@ -9,11 +9,9 @@ import domain.Mur;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.*;
-import static domain.Chalet.distanceUsinage;
 import static java.lang.Math.abs;
 
 
@@ -27,18 +25,18 @@ public class MainWindow extends javax.swing.JFrame {
     public Point actualMousePoint = new Point();
     public Point delta = new Point();*/
 
-    private boolean isAddingPorte = false; // État pour indiquer si l'utilisateur est en mode d'ajout de porte
-    private boolean isAddingFenetre = false; // Moyen de valider si l'utilisateur ajoute une fenetre
+    public static boolean isAddingPorte = false; // État pour indiquer si l'utilisateur est en mode d'ajout de porte
+    public static boolean isAddingFenetre = false; // Moyen de valider si l'utilisateur ajoute une fenetre
     private boolean isSupprimer = false;
-    private boolean isSelection = false;
-    private Point mousePointClicked = null;
+    public static boolean isSelection = false;
+    public static Point mousePointClicked = null;
     private JPanel PanelGauche;
     private JPanel PanelHaut;
     private JPanel PannelDroit;
-    private JPanel FenetrePrincipale;
+    public JPanel FenetrePrincipale;
     private JButton UndoButton;
     private JButton RedoButton;
-    private JComboBox VueComboBox;
+    public  JComboBox VueComboBox;
     private JLabel ChalCLTPanel;
     private JLabel MurPanelLabel;
     private JPanel MurPanel;
@@ -52,11 +50,11 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel ToitPaneltabbedPaneGauchePanel;
     private JLabel NomProjetLabel;
     private JLabel VueLabel;
-    private JPanel PannelAffichage;
-    private JPanel DrawingPanel;
+    public JPanel PannelAffichage;
+    public JPanel DrawingPanel;
     private JLabel DrawingPanelCoordonéesLabel;
-    private JButton PannelDroitAjoutPorteButton;
-    private JButton PannelDroitAjoutFenetreButton;
+    public  JButton PannelDroitAjoutPorteButton;
+    public  JButton PannelDroitAjoutFenetreButton;
     private JTabbedPane MurPannelTabbedPane;
     private JTextField MurPannelTabbedPaneFaçadeLabelLongeurTextField;
     private JTextField MurPannelTabbedPaneFaçadeLabelLargeurTextField;
@@ -64,22 +62,22 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel MurPannelTabbedPaneDerrièreLabel;
     private JPanel MurPannelTabbedPaneGaucheLabel;
     private JPanel MurPannelTabbedPaneDroitLabel;
-    private JTextField MurPannelTabbedPaneDerriereLabelLongueurTextField;
-    private JTextField MurPannelTabbedPaneDerriereLabelHauteurTextField;
+    public JTextField MurPannelTabbedPaneDerriereLabelLongueurTextField;
+    public JTextField MurPannelTabbedPaneDerriereLabelHauteurTextField;
     private JLabel MurPannelTabbedPaneFaçadeLabelLongeurLabel;
     private JLabel MurPannelTabbedPaneFaçadeLabelLargeurLabel;
     private JTextField MurPannelTabbedPaneDroitLabelLongeurTextField;
     private JTextField MurPannelTabbedPaneDroitLabelHauturTextField;
     private JTextField MurPannelTabbedPaneGaucheLabelLongeurTextField;
-    private JTextField MurPannelTabbedPaneGaucheLabelHauteurTextField;
+    public JTextField MurPannelTabbedPaneGaucheLabelHauteurTextField;
     private JLabel MurPannelTabbedPaneDerriereLabelLongeurLabel;
     private JLabel MurPannelTabbedPaneDerriereLabelHauteurLabel;
     private JLabel MurPannelTabbedPaneDroitLabelLongeurlabel;
     private JLabel MurPannelTabbedPaneDroitLabelHauteurLabel;
     private JLabel MurPannelTabbedPaneGaucheLabelLongeurLabel;
     private JLabel MurPannelTabbedPaneGaucheLabelHauteurLabel;
-    private JTextField AccessoirePanelLongeurTextField;
-    private JTextField AccessoirePanelLargeurTextField;
+    public JTextField AccessoirePanelLongeurTextField;
+    public  JTextField AccessoirePanelLargeurTextField;
     private JLabel AccessoireLabel;
     private JLabel AccessoirePanelLongeurPanel;
     private JLabel AccessoirePanelIDPanel;
@@ -87,58 +85,59 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel AccessoirePanelLargeurPanel;
     private JLabel ToitPaneltabbedPaneDroitPanelAngleLabel;
     private JLabel ToitPaneltabbedPaneDroitPanelHauteurLabel;
-    private JTextField ToitPaneltabbedPaneDroitPanelAngleTextField;
-    private JTextField ToitPaneltabbedPaneDroitPanelHauteurTextField;
-    private JTextField ToitPaneltabbedPaneGauchePanelAngleTextField;
-    private JTextField ToitPaneltabbedPaneGauchePanelHauteurTextField;
+    public JTextField ToitPaneltabbedPaneDroitPanelAngleTextField;
+    public JTextField ToitPaneltabbedPaneDroitPanelHauteurTextField;
+    public JTextField ToitPaneltabbedPaneGauchePanelAngleTextField;
+    public JTextField ToitPaneltabbedPaneGauchePanelHauteurTextField;
     private JLabel ToitPaneltabbedPaneGauchePanelAngleLabel;
 
-    private JTextField XPorteField;
+    public JTextField XPorteField;
 
     private JTextField AccessoirePanelCoordonnee;
 
-    private JTextField YporteField;
+    public JTextField YporteField;
 
     private JLabel ToitPaneltabbedPaneGauchePanelHauteurLabel;
     private JLabel AjoutPorteLabel;
     private JLabel AjoutFenetreLabel;
-    private JTextField ToitPaneltabbedPaneDevantPanelAngleTextField;
-    private JTextField ToitPaneltabbedPaneDevantPanelHauteurTextField;
+    public JTextField ToitPaneltabbedPaneDevantPanelAngleTextField;
+    public JTextField ToitPaneltabbedPaneDevantPanelHauteurTextField;
     private JLabel ToitPaneltabbedPaneDevantPanelAngleLabel;
     private JLabel ToitPaneltabbedPaneDevantPanelHauteurLabel;
-    private JTextField ToitPaneltabbedPaneDerrierePanelAngleTextField;
-    private JTextField ToitPaneltabbedPaneDerrierePanelHauteurTextField;
+    public JTextField ToitPaneltabbedPaneDerrierePanelAngleTextField;
+    public JTextField ToitPaneltabbedPaneDerrierePanelHauteurTextField;
     private JLabel ToitPaneltabbedPaneDerrierePanelAngleLabel;
     private JLabel ToitPaneltabbedPaneDerrierePanelHauteurLabel;
     private JComboBox AccessoireComboBox;
-    private JButton supprimmerLAccessoireButton;
-    private JButton Selection;
+    public JButton supprimmerLAccessoireButton;
+    public JButton Selection;
     private JButton confirmerMesuresButton;
     private JLabel AccessoirePanelLargeurPorte;
-    private JTextField AccessoireLargeurPorteField;
+    public JTextField AccessoireLargeurPorteField;
     private JLabel AccessoirePanelHauteurPorte;
-    private JTextField AccessoineHauteurPortefield;
-    private JTextField MurPannelTabbedPaneGaucheLabelLongueurTextField;
-    private JTextField MurPannelTabbedPaneDroitLabelLongueurTextField;
-    private JTextField MurPannelTabbedPaneDroitLabelHauteurTextField;
+    public JTextField AccessoineHauteurPortefield;
+    public JTextField MurPannelTabbedPaneGaucheLabelLongueurTextField;
+    public JTextField MurPannelTabbedPaneDroitLabelLongueurTextField;
+    public JTextField MurPannelTabbedPaneDroitLabelHauteurTextField;
     private JLabel MurPannelTabbedPaneDroitLabelLongueurlabel;
-    private JTextField MurPannelTabbedPaneFaçadeLabelLongueurTextField;
-    private JTextField MurPannelTabbedPaneFaçadeLabelHauteurTextField;
+    public JTextField MurPannelTabbedPaneFaçadeLabelLongueurTextField;
+    public JTextField MurPannelTabbedPaneFaçadeLabelHauteurTextField;
     private JLabel XPorte;
     private JLabel YPorte;
     private JLabel XFenetre;
-    private JTextField XFenetreField;
+    public JTextField XFenetreField;
     private JLabel YFenetre;
-    private JTextField YfenetreField;
-    private JTextField longueurchaletMN;
-    private JTextField largeurchaletMN;
-    private JTextField epaisseurchaletMN;
-    private JTextField hauteurchaletMN;
+    public JTextField YfenetreField;
+    public JTextField longueurchaletMN;
+    public JTextField largeurchaletMN;
+    public JTextField epaisseurchaletMN;
+    public JTextField hauteurchaletMN;
     private JButton Brut;
     private JButton ExporterFinit;
     private JButton ExporterRetrait;
-    private JButton nouveauChaletButton;
+    public JButton nouveauChaletButton;
     private JButton changeOrientationButton;
+    public JTextField retrait;
     private Point ZoomOrigin;
 
     private ChaletDTO.AffichageVue selectedVue;
@@ -149,144 +148,63 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         controleur = new Controleur();
         initComponents();
-        Dimension initialDimension = DrawingPanel.getPreferredSize();
-        System.out.println(initialDimension.width);
-        System.out.println(initialDimension.height);
 
-
-
-
-        //Gestion de l'ajout d'accessoires
         PannelDroitAjoutPorteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                isAddingPorte = true;
+                MainWindow.isAddingPorte = true;
             }
         });
         PannelDroitAjoutFenetreButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                isAddingFenetre = true;
+                MainWindow.isAddingFenetre = true;
             }
         });
-        PannelAffichage.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                mousePointClicked = e.getPoint();
-
-                System.out.println(mousePointClicked);
-                if (isAddingPorte)
-                {
-
-                    XPorteField.setText(String.valueOf(mousePointClicked.getX()));
-                    YporteField.setText(String.valueOf(mousePointClicked.getY()));
-
-                    Point mousePoint = e.getPoint();
-                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                    Dimension intitalDimension = DrawingPanel.getPreferredSize();
-                    if(nomMur != "SURPLOMB") {
-                        boolean ajoutReussi = controleur.ajouterPorte(mousePoint,nomMur,listeMursDrawer,intitalDimension);
-                        if(ajoutReussi == false){
-                            JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
-                        }
-                        //System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                        System.out.println(ajoutReussi);
-                        //System.out.println("ajoutPortereussi");
-                        DrawingPanel.repaint();
-
-                    }
-                    isAddingPorte = false;
-
-                }
-                if (isAddingFenetre && !isSelection)
-                {
-                    XFenetreField.setText(String.valueOf(mousePointClicked.getY()));
-                    YfenetreField.setText(String.valueOf(mousePointClicked.getY()));
-
-
-                    String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(1700,"NORD");
-                    Point mousePoint = e.getPoint();
-                    Dimension intitalDimension = DrawingPanel.getPreferredSize();
-                    if(nomMur != "SURPLOMB") {
-                        boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mousePoint,nomMur,listeMursDrawer, intitalDimension);
-                        if(ajoutFenetrereussi == false){
-                            JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
-                        }
-                        //System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                        System.out.println(ajoutFenetrereussi);
-                        //System.out.println("ajoutFenetrereussi");
-                        DrawingPanel.repaint();
-                    }
-
-                    isAddingFenetre = false;
-
-                }
-
-            }
-        });
-
-
-        //Gestion des vues
         VueComboBox.addItemListener(new ItemListener() {
-
             private ChaletDTO.AffichageVue selectedVue;
-
             private String getSelectedVueOption() {
                 return (String) VueComboBox.getSelectedItem();
             }
-
-
             @Override
-
-            
             public void itemStateChanged(ItemEvent e) {
-                        int vueSelecteur;
-                        String selectedOption = (String) VueComboBox.getSelectedItem();
+                int vueSelecteur;
+                String selectedOption = (String) VueComboBox.getSelectedItem();
 
-                        if (selectedOption != null) {
-                            switch (selectedOption) {
-                                case "Facade":
-                                    //drawFacade();
-                                    this.setVue(ChaletDTO.AffichageVue.FACADE);
-                                    ui.DrawingPanel.changerVue(selectedVue);
-                                    DrawingPanel.repaint();
-                                    System.out.println("Facade");
-                                    break;
-                                case "Arriere":
-                                    this.setVue(ChaletDTO.AffichageVue.ARRIERE);
-                                    ui.DrawingPanel.changerVue(selectedVue);
-                                    DrawingPanel.repaint();
-                                    System.out.println("Arriere");
-                                    break;
-                                case "Droit":
-                                    this.setVue(ChaletDTO.AffichageVue.DROITE);
-                                    ui.DrawingPanel.changerVue(selectedVue);
-                                    DrawingPanel.repaint();
-                                    System.out.println("Droit");
-                                    break;
-                                case "Gauche":
-                                    this.setVue(ChaletDTO.AffichageVue.GAUCHE);
-                                    ui.DrawingPanel.changerVue(selectedVue);
-                                    DrawingPanel.repaint();
-                                    System.out.println("Gauche");
-                                    break;
-                                case "Surplomb":
-                                    this.setVue(ChaletDTO.AffichageVue.SURPLOMB);
-                                    ui.DrawingPanel.changerVue(selectedVue);
-                                    DrawingPanel.repaint();
-                                    System.out.println("Surplomb");
-                                    break;
-                                default:
-                                    // Handle any other cases or do nothing
-                                    break;
-                            }
-                        }
+                if (selectedOption != null) {
+                    switch (selectedOption) {
+                        case "Facade":
+                            //drawFacade();
+                            this.setVue(ChaletDTO.AffichageVue.FACADE);
+                            ui.DrawingPanel.changerVue(selectedVue);
+                            DrawingPanel.repaint();
+                            break;
+                        case "Arriere":
+                            this.setVue(ChaletDTO.AffichageVue.ARRIERE);
+                            ui.DrawingPanel.changerVue(selectedVue);
+                            DrawingPanel.repaint();
+                            break;
+                        case "Droit":
+                            this.setVue(ChaletDTO.AffichageVue.DROITE);
+                            ui.DrawingPanel.changerVue(selectedVue);
+                            DrawingPanel.repaint();
+                            break;
+                        case "Gauche":
+                            this.setVue(ChaletDTO.AffichageVue.GAUCHE);
+                            ui.DrawingPanel.changerVue(selectedVue);
+                            DrawingPanel.repaint();
+                            break;
+                        case "Surplomb":
+                            this.setVue(ChaletDTO.AffichageVue.SURPLOMB);
+                            ui.DrawingPanel.changerVue(selectedVue);
+                            DrawingPanel.repaint();
+                            break;
+                        default:
+                            break;
                     }
+                }
+            }
 
             private void setVue(ChaletDTO.AffichageVue facade) {
                 this.selectedVue = facade;
@@ -294,6 +212,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         });
 
+        AccessoirePanelLargeurTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = AccessoirePanelLargeurTextField.getText();
+            }
+        });
 
         AccessoirePanelLargeurTextField.addActionListener(new ActionListener() {
             @Override
@@ -371,40 +295,6 @@ public class MainWindow extends javax.swing.JFrame {
                 controleur.setOffsetY(offsetY);
                 controleur.setZoom(zoomFactor);
                 repaint();
-//                int notches = e.getWheelRotation();
-//                ZoomOrigin = e.getPoint();
-//
-//                if (notches < 0) {
-//                    float leoffsetdebaseX = controleur.getOffsetX();
-//                    float leoffsetdebaseY = controleur.getOffsetY();
-//                    zoomFactor = Chalet.getZoom();
-//                    zoomFactor -= 0.01;
-//
-//                    if (zoomFactor < 0)
-//                    {
-//                        zoomFactor = 0;
-//                    }
-//
-//                    controleur.setZoom(zoomFactor);
-//                    controleur.setOffsetX((float) ((leoffsetdebaseX + ((ZoomOrigin.x - leoffsetdebaseX) * (0.01 * zoomFactor)))));
-//                    controleur.setOffsetY((float) ((leoffsetdebaseY + ((ZoomOrigin.y - leoffsetdebaseY) * (0.01 * zoomFactor)))));
-//
-//                    DrawingPanel.repaint();
-//
-//
-//                } if (notches > 0) {
-//                    float leoffsetdebaseX = controleur.getOffsetX();
-//                    float leoffsetdebaseY = controleur.getOffsetY();
-//
-//                    zoomFactor = controleur.getZoom();
-//                    zoomFactor += 0.01;
-//                    controleur.setZoom(zoomFactor);
-//                    controleur.setOffsetX((float) ((leoffsetdebaseX + ((ZoomOrigin.x - leoffsetdebaseX) * (0.01 * zoomFactor)))));
-//                    controleur.setOffsetY((float) ((leoffsetdebaseY + ((ZoomOrigin.y - leoffsetdebaseY) * (0.01 * zoomFactor)))));
-//
-//
-//                    DrawingPanel.repaint();
-//                }
             }
         });
 
@@ -572,7 +462,7 @@ public class MainWindow extends javax.swing.JFrame {
                     // On convertir mon point pouces en Point int
                     int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
                     //int nouveauXporteint = nouveauXPorte;
-                    boolean xportemodifie = controleur.modifierXPorte(mousePointClicked, (nouveauXporteint), nomMur, listeMursDrawer,initialDimension );
+                    boolean xportemodifie = controleur.modifierXPorte(mousePointClicked, nouveauXporteint, nomMur, listeMursDrawer,initialDimension );
                     System.out.println(mousePointClicked);
                     if (xportemodifie == true) {
                         // Redessiner le panneau uniquement si la modification est réussie
@@ -588,18 +478,18 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = XFenetreField.getText();
-                int nouveauXFenetre = Integer.parseInt(inputText);
-                //Pouces nouveauXPorte = convertirStringImperialEnPouces(inputText);
+                //int nouveauXFenetre = Integer.parseInt(inputText);
+                Pouces nouveauXFenetre = convertirStringImperialEnPouces(inputText);
                 Dimension initialDimension = DrawingPanel.getPreferredSize();
                 System.out.println(nouveauXFenetre);
-                if (nouveauXFenetre!=0&isSelection){
+                if (nouveauXFenetre!=null&isSelection){
                     System.out.println("Yes");
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                     // On convertir mon point pouces en Point int
-                    //int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
-                    int nouveauXFenetreint = nouveauXFenetre;
+                    int nouveauXFenetreint = convertirPoucesEnInt(nouveauXFenetre);
+                    //int nouveauXFenetreint = nouveauXFenetre;
                     boolean xFenetremodifie = controleur.modifierXFenetre(mousePointClicked, nouveauXFenetreint, nomMur, listeMursDrawer,initialDimension );
                     System.out.println(mousePointClicked);
                     if (xFenetremodifie == true) {
@@ -616,18 +506,18 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = YfenetreField.getText();
-                int nouveauYFenetre = Integer.parseInt(inputText);
-                //Pouces nouveauYFenetre = convertirStringImperialEnPouces(inputText);
+                //int nouveauYFenetre = Integer.parseInt(inputText);
+                Pouces nouveauYFenetre = convertirStringImperialEnPouces(inputText);
                 Dimension initialDimension = DrawingPanel.getPreferredSize();
                 System.out.println(nouveauYFenetre);
-                if (nouveauYFenetre!=0&isSelection){
+                if (nouveauYFenetre!=null&isSelection){
                     System.out.println("Yes");
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
                     // On convertir mon point pouces en Point int
-                    //int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
-                    int nouveauYFenetreint = nouveauYFenetre;
+                    int nouveauYFenetreint = convertirPoucesEnInt(nouveauYFenetre);
+                    //int nouveauYFenetreint = nouveauYFenetre;
                     boolean yFenetremodifie = controleur.modifierYFenetre(mousePointClicked, nouveauYFenetreint, nomMur, listeMursDrawer,initialDimension );
                     System.out.println(mousePointClicked);
                     if (yFenetremodifie == true) {
@@ -717,7 +607,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        /*changeOrientationButton.addActionListener(new ActionListener() {
+        changeOrientationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (isSelection) {
@@ -727,7 +617,7 @@ public class MainWindow extends javax.swing.JFrame {
                         //a voir si on la cree
                         //boolean changementOrientationReussi = controleur.setOrientationToit("Est", listeMursDrawer);
                         System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                        System.out.println(changementOrientationReussi);
+                        //System.out.println(changementOrientationReussi);
                         System.out.println("changementOrientationReussi");
                         DrawingPanel.repaint();
                     }
@@ -736,7 +626,7 @@ public class MainWindow extends javax.swing.JFrame {
 
                 }
             }
-        });*/
+        });
         XFenetreField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -833,35 +723,16 @@ public class MainWindow extends javax.swing.JFrame {
                 isAddingFenetre = false;
             }
         });
-        ExporterFinit.addActionListener(new ActionListener() {
+        retrait.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    Controleur.ExporterPanneauxFinis();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-            }
-        });
-        ExporterRetrait.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Controleur.ExporterPanneauxRetrait();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
-        Brut.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Controleur.ExporterPanneauxBrut();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                String inputText = retrait.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double retraitChaletMN= imperialToDoubleUniversel(inputText);
+                Controleur.setRetraitChalet(retraitChaletMN);
+                System.out.println(retraitChaletMN+" entered by you..");
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
             }
         });
     }
@@ -982,11 +853,6 @@ public class MainWindow extends javax.swing.JFrame {
                 DrawingPanel.repaint();
             }
         });
-
-
-
-
-
 
     }
     }

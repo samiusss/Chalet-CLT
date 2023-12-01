@@ -61,9 +61,6 @@ public class DrawingPanel extends JPanel implements Serializable {
                 controleur.setOffsetX(offsetX);
                 controleur.setOffsetY(offsetY);
                 controleur.setZoom(zoomFactor);
-                int adjustedX = (int)((e.getX() - offsetX) / zoomFactor);
-                int adjustedY = (int)((e.getY() - offsetY) / zoomFactor);
-                Point mPoint = new Point(adjustedX, adjustedY);
 
                 repaint();
             }
@@ -77,10 +74,9 @@ public class DrawingPanel extends JPanel implements Serializable {
                 System.out.println(mousePointClicked);
                 if (MainWindow.isAddingPorte)
                 {
-                    Point mousePoint = e.getPoint();
-
                     int adjustedX = (int)((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
-                    Point mPoint = new Point(adjustedX, e.getY());
+                    int adjustedY = (int)((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
+                    Point mPoint = new Point(adjustedX, adjustedY);
                     String nomMur = String.valueOf(selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     java.util.List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
@@ -178,7 +174,7 @@ public class DrawingPanel extends JPanel implements Serializable {
 //                controleur.setOffsetX(100);
 //                controleur.setOffsetY(170);
             }
-            mainWindow.Selection.addActionListener(new ActionListener() {
+   /*         mainWindow.Selection.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if(isSelection)
@@ -704,8 +700,8 @@ public class DrawingPanel extends JPanel implements Serializable {
                     System.out.println(hauteurMursMN+" entered by you..");
                     revalidate();
                     repaint();
-                }
-            });
+                }*/
+           /* });*/
 
         }
     }
@@ -715,56 +711,10 @@ public class DrawingPanel extends JPanel implements Serializable {
         return mainWindow;
     }
 
-
     public void setMainWindow(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
     }
 
-//    public void zoomIn() {
-//        float leZoom = controleur.getZoom();
-//        leZoom -= 0.05;
-//        if (leZoom < 0)
-//        {
-//            leZoom = 0;
-//        }
-//        controleur.setZoom(leZoom);
-//        revalidate();
-//        repaint();
-//    }
-//
-//    public void zoomOut() {
-//        float leZoom = controleur.getZoom();
-//        leZoom += 0.01F;
-//        controleur.setZoom(leZoom);
-//        revalidate();
-//        repaint();
-//    }
-
-//    public void applyZoom() {
-//        if (zoomFactor < 0.1) {
-//            zoomFactor = 0.1;
-//        }
-//
-//        Dimension currentSize = getSize();
-//        Point currentPosition = getParent().getMousePosition();
-//
-//        // Calculate the new size based on the zoom factor
-//        int newWidth = (int) (1  * zoomFactor);
-//        int newHeight = (int) (initialDimensionReturn.getHeight() * zoomFactor);
-//        setPreferredSize(new Dimension(newWidth, newHeight));
-//
-//        // If there's a current position, adjust it based on the zoom factor
-//        if (currentPosition != null) {
-//            int deltaX = (int) ((currentSize.getWidth() - newWidth) * (currentPosition.getX() / currentSize.getWidth()));
-//            int deltaY = (int) ((currentSize.getHeight() - newHeight) * (currentPosition.getY() / currentSize.getHeight()));
-//            getParent().setComponentZOrder(this, 0); // Move the panel to the front
-//            setLocation(getX() + deltaX, getY() + deltaY);
-//        }
-//
-//
-//            revalidate();
-//            repaint();
-//        }
 
 
     }
