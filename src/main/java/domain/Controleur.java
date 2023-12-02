@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import static domain.ChaletDTO.createChalet;
@@ -207,7 +205,12 @@ public class Controleur {
         initialiserChalet(chaletProduction);
 
     }
+    public static void setOrientation(String orientation) {
+        Chalet.setOrientation(orientation);
+        System.out.println(orientation +" comme orientation a été updated in Controleur"); //test
+        initialiserChalet(chaletProduction);
 
+    }
     public boolean setLargeurPorte(Pouces nouvellelargeur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setLargeurPorte(nouvellelargeur, nomMur, listeMursDrawer, initialDimension);
