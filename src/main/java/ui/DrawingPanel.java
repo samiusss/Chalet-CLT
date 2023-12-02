@@ -116,52 +116,6 @@ public class DrawingPanel extends JPanel implements Serializable {
             }
         });
 
-//        addMouseMotionListener(new MouseAdapter() {
-//            boolean pressOut;
-//            Chalet chalet = controleur.getChaletProduction();
-//              Faut que je trouve ce qu'est leDessin dans le code, i.e est-ce que je dois passer par chaque vu?
-//            @Override
-//            public void mousePressed (MouseEvent e){
-//
-//                int preX = LeDessin.x - e.getX();
-//                int preY = LeDessin.y - e.getY();
-//
-//                if (LeDessin.contains(e.getX(), e.getY())) {
-//                    updateLocation(e);
-//                } else {
-//                    pressOut = true;
-//                }
-//            }
-//
-//            @Override
-//            public void mouseDragged (MouseEvent e){
-//                if (!pressOut) {
-//                    updateLocation(e);
-//                } else {
-//                }
-//            }
-//
-//            @Override
-//            public void mouseReleased (MouseEvent e){
-//                if (LeDessin.contains(e.getX(), e.getY())) {
-//                    updateLocation(e);
-//                } else {
-//                    pressOut = false;
-//                }
-//            }
-//
-//            public void updateLocation (MouseEvent e){
-//                LeDessin.setLocation(preX + e.getX(), preY + e.getY());
-//                checkRect();
-//
-//                repaint();
-//            }
-//        };
-
-
-
-
-
 
     }
 
