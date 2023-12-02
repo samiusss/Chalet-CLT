@@ -368,24 +368,23 @@ public class MainWindow extends javax.swing.JFrame {
                 Pouces nouvelleLargeur = convertirStringImperialEnPouces(inputText);
                 System.out.println(nouvelleLargeur+" Largeur fenetre en pouces");
                 Dimension initialDimension = DrawingPanel.getPreferredSize();
-                XFenetreField.setText(String.valueOf(mousePointClicked.getY()));
-                YfenetreField.setText(String.valueOf(mousePointClicked.getY()));
-
+                int adjustedX = (int)((mousePointClicked.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                int adjustedY = (int)((mousePointClicked.getY() - controleur.getOffsetY()) / controleur.getZoom());
+                Point mPoint = new Point(adjustedX, adjustedY);
+                XFenetreField.setText(String.valueOf(adjustedX));
+                YfenetreField.setText(String.valueOf(adjustedY));
 
 
                 if (nouvelleLargeur != null) {
-                    if(mousePointClicked != null && isSelection) {
+                    if(mPoint != null && isSelection) {
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
                         List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
-                        boolean success = controleur.setLargeurFenetre(mousePointClicked,nouvelleLargeur, nomMur, listeMursDrawer,initialDimension);
+                        boolean success = controleur.setLargeurFenetre(mPoint,nouvelleLargeur, nomMur, listeMursDrawer,initialDimension);
                         if(success == false){
                             JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
 
                         }
-                        System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                        System.out.println("ModificationLargeurFenetre" + success);
-                        //System.out.println("ModificationLargeurFenetreReussi");
                         DrawingPanel.repaint();
                     }
 
@@ -397,32 +396,28 @@ public class MainWindow extends javax.swing.JFrame {
             //HauteurFenetre
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Hauteurr
+
                 String inputText = AccessoirePanelLargeurTextField.getText();
-                //double nouvelleLongueurDouble = imperialToDoubleUniversel(inputText);
-                //Pouces nouvelleLongueur = convertirDoubleEnPouces(nouvelleLongueurDouble);
                 Pouces nouvelleLongueur = convertirStringImperialEnPouces(inputText);
-                System.out.println(nouvelleLongueur+" Hauteur fenetre en pouces");
+                int adjustedX = (int)((mousePointClicked.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                int adjustedY = (int)((mousePointClicked.getY() - controleur.getOffsetY()) / controleur.getZoom());
+                Point mPoint = new Point(adjustedX, adjustedY);
 
                 if (nouvelleLongueur != null) {
 
-                    if(mousePointClicked != null && isSelection) {
-                        XFenetreField.setText(String.valueOf(mousePointClicked.getY()));
-                        YfenetreField.setText(String.valueOf(mousePointClicked.getY()));
+                    if(mPoint != null && isSelection) {
+                        XFenetreField.setText(String.valueOf(adjustedX));
+                        YfenetreField.setText(String.valueOf(adjustedY));
 
 
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
                         Dimension initialDimension = DrawingPanel.getPreferredSize();
                         List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                        boolean success = controleur.setHauteurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer,initialDimension);
+                        boolean success = controleur.setHauteurFenetre(mPoint,nouvelleLongueur, nomMur, listeMursDrawer,initialDimension);
                         if(success == false){
                             JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
                         }
-                        System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                        System.out.println(success);
-                        System.out.println(mousePointClicked);
-                        System.out.println("ModificationLongueurFenetreReussi");
                         DrawingPanel.repaint();
 
                     }
@@ -448,8 +443,6 @@ public class MainWindow extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
                     System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                    System.out.println(success);
-                    System.out.println("ModificationPortereussi");
                     DrawingPanel.repaint();
 
                 }
@@ -465,7 +458,10 @@ public class MainWindow extends javax.swing.JFrame {
                 //int nouveauXPorte = Integer.parseInt(inputText);
                 Pouces nouveauXPorte = convertirStringImperialEnPouces(inputText);
                 Dimension initialDimension = DrawingPanel.getPreferredSize();
-                System.out.println(nouveauXPorte);
+                int adjustedX = (int)((mousePointClicked.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                int adjustedY = (int)((mousePointClicked.getY() - controleur.getOffsetY()) / controleur.getZoom());
+                Point mPoint = new Point(adjustedX, adjustedY);
+
                 if (nouveauXPorte!=null){
                     System.out.println("Yes");
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -474,12 +470,10 @@ public class MainWindow extends javax.swing.JFrame {
                     // On convertir mon point pouces en Point int
                     int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
                     nouveauXporteint = Math.round(nouveauXporteint);
-                    System.out.println(nouveauXporteint);
-                    //int nouveauXporteint = nouveauXPorte;
-                    boolean xportemodifie = controleur.modifierXPorte(mousePointClicked, nouveauXporteint, nomMur, listeMursDrawer,initialDimension );
-                    System.out.println(mousePointClicked);
+
+
+                    boolean xportemodifie = controleur.modifierXPorte(mPoint, nouveauXporteint, nomMur, listeMursDrawer,initialDimension );
                     if (xportemodifie == true) {
-                        // Redessiner le panneau uniquement si la modification est réussie
                         DrawingPanel.repaint();
                     } else {
                         JOptionPane.showMessageDialog(null, "Une erreur s'est produite en essayant de modifier le X de la porte !", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -494,26 +488,30 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = XFenetreField.getText();
-                //int nouveauXFenetre = Integer.parseInt(inputText);
+
                 Pouces nouveauXFenetre = convertirStringImperialEnPouces(inputText);
                 Dimension initialDimension = DrawingPanel.getPreferredSize();
-                System.out.println(nouveauXFenetre);
+                int adjustedX = (int)((mousePointClicked.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                int adjustedY = (int)((mousePointClicked.getY() - controleur.getOffsetY()) / controleur.getZoom());
+                Point mPoint = new Point(adjustedX, adjustedY);
+
                 if (nouveauXFenetre!=null&isSelection){
-                    System.out.println("Yes");
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                    // On convertir mon point pouces en Point int
+
                     int nouveauXFenetreint = convertirPoucesEnInt(nouveauXFenetre);
                     nouveauXFenetreint = Math.round(nouveauXFenetreint);
                     System.out.println("Nouveau X" + nouveauXFenetreint);
-                    //int nouveauXFenetreint = nouveauXFenetre;
-                    boolean xFenetremodifie = controleur.modifierXFenetre(mousePointClicked, nouveauXFenetreint, nomMur, listeMursDrawer,initialDimension );
-                    System.out.println(mousePointClicked);
-                    if (xFenetremodifie == true) {
-                        // Redessiner le panneau uniquement si la modification est réussie
+
+                    boolean xFenetremodifie = controleur.modifierXFenetre(mPoint, nouveauXFenetreint, nomMur, listeMursDrawer,initialDimension );
+
+                    if (xFenetremodifie == true)
+                    {
                         DrawingPanel.repaint();
-                    } else {
+                    }
+                    else
+                    {
                         JOptionPane.showMessageDialog(null, "Une erreur s'est produite en essayant de modifier le X de la fenetre !", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
                 }
@@ -524,24 +522,24 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = YfenetreField.getText();
-                //int nouveauYFenetre = Integer.parseInt(inputText);
+
                 Pouces nouveauYFenetre = convertirStringImperialEnPouces(inputText);
                 Dimension initialDimension = DrawingPanel.getPreferredSize();
-                System.out.println(nouveauYFenetre);
+                int adjustedX = (int)((mousePointClicked.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                int adjustedY = (int)((mousePointClicked.getY() - controleur.getOffsetY()) / controleur.getZoom());
+                Point mPoint = new Point(adjustedX, adjustedY);
+
                 if (nouveauYFenetre!=null&isSelection){
-                    System.out.println("Yes");
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
                     List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                    // On convertir mon point pouces en Point int
                     int nouveauYFenetreint = convertirPoucesEnInt(nouveauYFenetre);
                     nouveauYFenetreint = Math.round(nouveauYFenetreint);
                     System.out.println("Nouveau Y" + nouveauYFenetreint);
-                    //int nouveauYFenetreint = nouveauYFenetre;
-                    boolean yFenetremodifie = controleur.modifierYFenetre(mousePointClicked, nouveauYFenetreint, nomMur, listeMursDrawer,initialDimension );
-                    System.out.println(mousePointClicked);
+
+                    boolean yFenetremodifie = controleur.modifierYFenetre(mPoint, nouveauYFenetreint, nomMur, listeMursDrawer,initialDimension );
+                    System.out.println(mPoint);
                     if (yFenetremodifie == true) {
-                        // Redessiner le panneau uniquement si la modification est réussie
                         DrawingPanel.repaint();
                     } else {
                         JOptionPane.showMessageDialog(null, "Une erreur s'est produite en essayant de modifier le Y de la fenetre !", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -553,7 +551,10 @@ public class MainWindow extends javax.swing.JFrame {
         supprimmerLAccessoireButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //isSupprimer = true;
+                int adjustedX = (int)((mousePointClicked.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                int adjustedY = (int)((mousePointClicked.getY() - controleur.getOffsetY()) / controleur.getZoom());
+                Point mPoint = new Point(adjustedX, adjustedY);
+
                 if (isAddingPorte) {
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
@@ -567,48 +568,36 @@ public class MainWindow extends javax.swing.JFrame {
 
                     }
                     isAddingPorte = false;
-                    //isSupprimer = false;
 
                 }
                 if (isAddingFenetre && isSelection) {
-                    if (mousePointClicked != null) {
+                    if (mPoint != null) {
 
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
                         List<Mur> listeMursDrawer = chalet.getMursUsines(3.0, "NORD");
                         //Point mousePoint = e.getPoint();
                         if (nomMur != "SURPLOMB") {
-                            boolean suppFenetrereussi = Controleur.supprimerFenetre(mousePointClicked, nomMur, listeMursDrawer);
-                            System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                            System.out.println(suppFenetrereussi);
-                            System.out.println("suppFenetrereussi");
+                            boolean suppFenetrereussi = Controleur.supprimerFenetre(mPoint, nomMur, listeMursDrawer);
                             DrawingPanel.repaint();
-
-
                         }
-                    } else {
+                    }
+                    else
+                    {
 
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
                         List<Mur> listeMursDrawer = chalet.getMursUsines(3.0, "NORD");
-                        //Point mousePoint = e.getPoint();
                         if (nomMur != "SURPLOMB") {
                             boolean suppFenetrereussi = Controleur.supprimerToutesFenetre(nomMur, listeMursDrawer);
-                            System.out.println(ui.DrawingPanel.selectedAffichageVue);
-                            System.out.println(suppFenetrereussi);
-                            System.out.println("supToutesFenetres");
+
                             DrawingPanel.repaint();
 
                         }
                         isAddingFenetre = false;
-                        //isSupprimer = false;
                     }
-
-
                 }
             }
-
-
         });
 
         Selection.addActionListener(new ActionListener() {
