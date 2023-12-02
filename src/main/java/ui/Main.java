@@ -1,18 +1,8 @@
 package ui;
-import Utilitaires.Point3D;
-import Utilitaires.STLWriterPrincipal;
-import Utilitaires.STLWriterSecondaire;
 
-import Utilitaires.Triangle;
+import domain.Chalet;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 
 public class Main {
@@ -62,6 +52,11 @@ public class Main {
         STLWriterSecondaire.ExporterPanneauxBrut(filePathBrut);
         STLWriterSecondaire.ExporterPanneauxFinisRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
         */
+        Chalet.initialiserPignonDroit();
+        System.out.println("liste de toit est: "+Chalet.listeToit);
+        //System.out.println(Toit.);
+
+
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);
 

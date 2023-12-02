@@ -16,9 +16,6 @@ public class Mur {
     public List<Fenetre> fenetreMur = new LinkedList();
 
 
-    // on peut creer un mur simple 
-    public Mur() {
-    }
 
     // deuxieme constructeur pour creer un mur avec 4 points et des accessoires et un nom
     // ce meme constructeur est appelle a la ligne

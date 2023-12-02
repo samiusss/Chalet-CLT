@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
+import static java.lang.Math.tan;
 import static java.util.Arrays.asList;
 
 public class Chalet {
@@ -19,13 +20,15 @@ public class Chalet {
     public static double angleToit = 15.0;
     public static double retraitChalet;
     public static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
+    public static List<Toit> listeToit = new ArrayList<>();
+
     public static String orientationToit;
     public static double zoom;
     public static float offsetX = 100;
     public static float offsetY = 170;
     public Chalet(double largeurChalet, double longueurChalet,
                   double epaisseurChalet, double angleToit,
-                  double hauteurMurs, List<Mur> listeMurs, String orientationToit) {
+                  double hauteurMurs, List<Mur> listeMurs,List<Toit> listeToit, String orientationToit) {
         this.largeurChalet = largeurChalet;
         this.longueurChalet = longueurChalet;
         this.hauteurMurs = hauteurMurs;
@@ -35,7 +38,22 @@ public class Chalet {
         this.orientationToit = orientationToit;
         this.zoom = 1;
     }
+    public static void initialiserPignonDroit()
+    {
 
+        //if (Objects.equals(Chalet.orientationToit, "Est"))
+        //{
+        Toit.hauteurPignon= Chalet.largeurChalet * tan(Chalet.angleToit* (Math.PI / 180)); //largeurChalet est la largeur du pignon
+
+        //Points de coté
+        PointDouble pointSupGauchePignon = new PointDouble(0, (Toit.hauteurPignon+Chalet.hauteurMurs));
+        PointDouble pointInfGauchePignon = new PointDouble(0, Chalet.hauteurMurs);
+        PointDouble pointInfDroitePignon = new PointDouble(Chalet.largeurChalet, Chalet.hauteurMurs);
+
+        Toit droit = new Toit("PignonDroit", Arrays.asList(pointSupGauchePignon, pointInfGauchePignon, pointInfDroitePignon));
+        listeToit.add(droit);
+
+    }
 
     public void initialiserMurFacade() {
 
@@ -45,7 +63,7 @@ public class Chalet {
         PointDouble pointSupDroit = new PointDouble(longueurChalet, epaisseurChalet);
         PointDouble pointInfDroit = new PointDouble(longueurChalet, 0);
 
-        //Points de face
+        //Points de coté
         PointDouble pointInfGaucheFace = new PointDouble(0, 0);
         PointDouble pointSupGaucheFace = new PointDouble(0, hauteurMurs);
         PointDouble pointSupDroitFace = new PointDouble(longueurChalet, hauteurMurs);

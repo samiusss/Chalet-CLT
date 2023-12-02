@@ -3,7 +3,6 @@ package domain;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import domain.Chalet;
 
 //import static domain.Chalet.distanceUsinage;
 
@@ -32,35 +31,28 @@ public class ChaletDTO {
     public static double angleToit;
     public static double distanceUsinage=1;
     public static List<Mur> listeMurs;
-    public static String orientationToit = "Est";
+    public static String orientationToit;
     public static double ZoomFactor;
 
 
     public static Chalet createChalet() {
 
         ArrayList<Mur> listeMurs = new ArrayList<>();
+        ArrayList<Toit> listeToit = new ArrayList<>();
+
         //Dimensions du mur en 3D
         double epaisseurMur = Chalet.epaisseurChalet;     // Épaisseur du mur
         double hauteurMurs = Chalet.hauteurMurs;      // Hauteur des murs, sera utilisée pour les vues de côté
         double largeurMur = Chalet.largeurChalet;      // Largeur des murs venant
         double longueurMur = Chalet.longueurChalet;
         double angleToit = 0.0;
+        String orientationToit = "Est";
 
-        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, orientationToit);
+        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs, listeToit, orientationToit);
         return chalet ;
     }
 
-    /*
-    public static void creerNouveauChalet(Chalet chalet){
-        chalet.getListeMurs().clear();
-        chalet.initialiserMurArriere();
-        chalet.initialiserMurDroite();
-        chalet.initialiserMurFacade();
-        chalet.initialiserMurGauche();
 
-        //return true;
-
-    }*/
     public static boolean initialiserChalet(Chalet chalet) {
         //get les accessoires deja existant dans une variable externe
         //System.out.println("Here la liste"+chalet.getListeMurs());
