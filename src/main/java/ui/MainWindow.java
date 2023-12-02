@@ -298,6 +298,16 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        PannelAffichage.addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)){
+
+                }
+
+            }
+        });
+
 
 
 
@@ -477,6 +487,8 @@ public class MainWindow extends javax.swing.JFrame {
             }
             }
         });
+
+
 
         XFenetreField.addActionListener(new ActionListener() {
             @Override

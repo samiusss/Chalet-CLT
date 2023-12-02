@@ -1407,6 +1407,26 @@ public class Chalet {
         return false;
     }
 
+    // Fonction qui sera utile pour le Drag
+    public static boolean selectionPorte(Porte porte, Point mousePointClicked){
+        int largeurPorte = convertirPoucesEnInt(porte.getLargeur());
+        int hauteurPorte = convertirPoucesEnInt(porte.getHauteur());
+
+        // On determine les sommets de la porte.. Pas sur verifier demain.
+        Point coinSuperieurGauchePorte = porte.mousePoint;
+        Point coinSuperieurDroitPorte = new Point(coinSuperieurGauchePorte.x + largeurPorte, coinSuperieurGauchePorte.y);
+        Point coinInferieurGauchePorte = new Point(coinSuperieurGauchePorte.x, coinSuperieurGauchePorte.y + hauteurPorte);
+        Point coinInferieurDroitPorte = new Point(coinSuperieurGauchePorte.x + largeurPorte, coinSuperieurGauchePorte.y + hauteurPorte);
+
+        // Verifier si le mousePointClicked se trouve entre les 4 sommets de la porte
+        if (mousePointClicked.getX() >= coinSuperieurGauchePorte.getX() && mousePointClicked.getX() <= coinSuperieurDroitPorte.getX() &&
+                mousePointClicked.getY() >= coinSuperieurGauchePorte.getY() && mousePointClicked.getY() <= coinInferieurGauchePorte.getY() ) {
+            return true;
+        }
+        return false;
+
+    }
+
 
     public static boolean selectionFenetre(Fenetre fenetre, Point mousePointClicked){
         //On récupere les mesures de la fenetres
