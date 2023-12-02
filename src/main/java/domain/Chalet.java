@@ -471,12 +471,6 @@ public class Chalet {
 
     }
 
-
-
-
-
-
-
     public static boolean estDansRectangleMurArriere(Point point, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
         int x = point.x;
         int y = point.y;
@@ -586,8 +580,9 @@ public class Chalet {
     }
 
 
-    public static boolean AntiCollisionFenetrePorte(Mur mur, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
-        //On récupere les mesures de la fenetres
+
+    public static boolean AntiCollisionPorteFenetre(Mur mur, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
+        //On récupere les mesures de la porte
         int largeur = convertirPoucesEnInt(largeurPouces);
         int hauteur = convertirPoucesEnInt(hauteurPouces);
 
@@ -650,13 +645,121 @@ public class Chalet {
 
             if( PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect )
             {
-                System.out.println(true+"(AntiCollisionFenetre) ");
+                System.out.println(true+"(AntiCollisionPorteFenetre) ");
 
                 return true;
 
             }
 
         }
+
+
+
+        System.out.println(false+"(AntiCollisionPorteFenetre) ");
+        return false;
+
+
+    }
+
+    public static boolean AntiCollisionFenetreFenetre(Mur mur, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
+        //On récupere les mesures de la fenetres
+        int largeur = convertirPoucesEnInt(largeurPouces);
+        int hauteur = convertirPoucesEnInt(hauteurPouces);
+
+        List<Point> listePoints = determinerSommetsAccessoires(mousePoint,largeur,hauteur);
+
+        Point SupGaucheFenetre = listePoints.get(0);
+        Point SupDroitFenetre = listePoints.get(1);
+        Point InfGaucheFenetre = listePoints.get(2);
+        Point InfDroitFenetre = listePoints.get(3);
+
+
+        /*System.out.println(SupGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Haut a Gauche ");
+        System.out.println(SupDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Bas a Gauche ");
+        System.out.println(InfGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Bas a Droite ");
+        System.out.println(InfDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Haut a Droite "); */
+
+
+        List<Fenetre> listeFenetre = mur.getListeFenetre();
+
+        for (Fenetre fenetre : listeFenetre) {
+
+
+            Point mousePointFenetre = fenetre.getPoint();
+            Pouces ValidationTroisPouces = new Pouces(3,0,1);
+
+            //Largeur
+            Pouces largeurListe = fenetre.getLargeur();
+            largeurListe = largeurListe.addPouces(ValidationTroisPouces);
+            int largeurFenetre = convertirPoucesEnInt(largeurListe);
+
+            //Hauteur
+            Pouces hauteurListe = fenetre.getHauteur();
+            hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
+            int hauteurFenetre = convertirPoucesEnInt(hauteurListe);
+
+
+
+            System.out.println(fenetre + "FenetreDeListeFenetre ");
+
+            List<Point> listePointsFenetre = determinerSommetsAccessoires(mousePointFenetre,largeurFenetre,hauteurFenetre);
+
+            Point SupGaucheListeFenetre = listePointsFenetre.get(0);
+            Point SupDroitListeFenetre = listePointsFenetre.get(1);
+            Point InfGaucheListeFenetre = listePointsFenetre.get(2);
+            Point InfDroitListeFenetre = listePointsFenetre.get(3);
+
+                /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listeFenetre En Haut a Gauche ");
+                System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listeFenetre En Bas a Gauche ");
+                System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listeFenetre En Bas a Droite ");
+                System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listeFenetre En Haut a Droite "); */
+
+            boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
+            boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre) ;
+            boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre) ;
+            boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
+            //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
+
+            System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
+            System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
+            System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
+            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) ");
+
+            if( PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect )
+            {
+                System.out.println(true+"(AntiCollisionFenetre) ");
+
+                return true;
+
+            }
+
+
+
+        }
+
+        System.out.println(false+"(AntiCollisionPorteFenetre) ");
+        return false;
+
+
+    }
+
+    public static boolean AntiCollisionFenetrePorte(Mur mur, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
+        //On récupere les mesures de la fenetres
+        int largeur = convertirPoucesEnInt(largeurPouces);
+        int hauteur = convertirPoucesEnInt(hauteurPouces);
+
+        List<Point> listePoints = determinerSommetsAccessoires(mousePoint,largeur,hauteur);
+
+        Point SupGaucheFenetre = listePoints.get(0);
+        Point SupDroitFenetre = listePoints.get(1);
+        Point InfGaucheFenetre = listePoints.get(2);
+        Point InfDroitFenetre = listePoints.get(3);
+
+
+        /*System.out.println(SupGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Haut a Gauche ");
+        System.out.println(SupDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Bas a Gauche ");
+        System.out.println(InfGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Bas a Droite ");
+        System.out.println(InfDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Haut a Droite "); */
 
         List<Porte> listePorte = mur.getListePorte();
 
@@ -703,7 +806,7 @@ public class Chalet {
 
             if( PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect )
             {
-                System.out.println(true+"(AntiCollisionPorte) ");
+                System.out.println(true+"(AntiCollisionFenetrePorte) ");
 
                 return true;
 
@@ -712,14 +815,13 @@ public class Chalet {
         }
 
 
-
-        System.out.println(false+"(AntiCollisionFenetre) ");
+        System.out.println(false+"(AntiCollisionFenetrePorte, Il y'a collision) ");
         return false;
 
 
     }
 
-    public static boolean AntiCollisionFenetreModification(Mur mur, Fenetre fenetreExistante, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
+    public static boolean AntiCollisionFenetreModificationErreur(Mur mur, Fenetre fenetreExistante, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
         //On récupere les mesures de la fenetres
         int largeur = convertirPoucesEnInt(largeurPouces);
         int hauteur = convertirPoucesEnInt(hauteurPouces);
@@ -796,58 +898,58 @@ public class Chalet {
         }
 
         List<Porte> listePorte = mur.getListePorte();
-        int nbPorte = listePorte.size();
-        if(nbPorte != 0) {
 
-            for (Porte porte : listePorte) {
+        for (Porte porte : listePorte) {
 
-                Point mousePointFenetre = porte.getPoint();
-                Pouces ValidationTroisPouces = new Pouces(3, 0, 1);
+            Point mousePointFenetre = porte.getPoint();
+            Pouces ValidationTroisPouces = new Pouces(3,0,1);
 
 
-                //Largeur
-                Pouces largeurListe = porte.getLargeur();
-                largeurListe = largeurListe.addPouces(ValidationTroisPouces);
-                int largeurPorte = convertirPoucesEnInt(largeurListe);
 
-                //Hauteur
-                Pouces hauteurListe = porte.getHauteur();
-                hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
-                int hauteurPorte = convertirPoucesEnInt(hauteurListe);
-                System.out.println(porte + "PorteDeListePorte");
+            //Largeur
+            Pouces largeurListe = porte.getLargeur();
+            largeurListe = largeurListe.addPouces(ValidationTroisPouces);
+            int largeurPorte = convertirPoucesEnInt(largeurListe);
 
-                List<Point> listePointsPorte = determinerSommetsAccessoires(mousePointFenetre, largeurPorte, hauteurPorte);
+            //Hauteur
+            Pouces hauteurListe = porte.getHauteur();
+            hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
+            int hauteurPorte = convertirPoucesEnInt(hauteurListe);
+            System.out.println(porte + "PorteDeListePorte");
 
-                Point SupGaucheListePorte = listePointsPorte.get(0);
-                Point SupDroitListePorte = listePointsPorte.get(1);
-                Point InfGaucheListePorte = listePointsPorte.get(2);
-                Point InfDroitListePorte = listePointsPorte.get(3);
+            List<Point> listePointsPorte = determinerSommetsAccessoires(mousePointFenetre,largeurPorte,hauteurPorte);
+
+            Point SupGaucheListePorte = listePointsPorte.get(0);
+            Point SupDroitListePorte = listePointsPorte.get(1);
+            Point InfGaucheListePorte = listePointsPorte.get(2);
+            Point InfDroitListePorte = listePointsPorte.get(3);
 
             /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Haut a Gauche ");
             System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Bas a Gauche ");
             System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Bas a Droite ");
             System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Haut a Droite "); */
 
-                boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
-                boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
-                boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
-                boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
-                //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
+            boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
+            boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte) ;
+            boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte) ;
+            boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
+            //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
 
             /* System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
             System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
             System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
             System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
-                if (PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect) {
-                    System.out.println(true + "(AntiCollisionPorte) ");
+            if( PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect )
+            {
+                System.out.println(true+"(AntiCollisionPorte) ");
 
-                    return true;
-
-                }
+                return true;
 
             }
+
         }
+
 
 
         System.out.println(false+"(AntiCollisionFenetre) ");
@@ -856,8 +958,7 @@ public class Chalet {
 
     }
 
-
-    public static boolean AntiCollisionPorteModification(Mur mur, Porte porteExistante, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
+    public static boolean AntiCollisionPorteModificationErreur(Mur mur, Porte porteExistante, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
         //On récupere les mesures de la fenetres
         int largeur = convertirPoucesEnInt(largeurPouces);
         int hauteur = convertirPoucesEnInt(hauteurPouces);
@@ -998,8 +1099,7 @@ public class Chalet {
 
     }
 
-
-    public static boolean AntiCollisionFenetreModification2(Mur mur,Fenetre fenetreExistante, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
+    public static boolean AntiCollisionFenetreModification(Mur mur,Fenetre fenetreExistante, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
         //On récupere les mesures de la fenetres
         int largeur = convertirPoucesEnInt(largeurPouces);
         int hauteur = convertirPoucesEnInt(hauteurPouces);
@@ -1136,8 +1236,7 @@ public class Chalet {
 
     }
 
-
-    public static boolean AntiCollisionPorteModification2(Mur mur, Porte porteExistante,Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
+    public static boolean AntiCollisionPorteModification(Mur mur, Porte porteExistante,Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
         //On récupere les mesures de la fenetres
         int largeur = convertirPoucesEnInt(largeurPouces);
         int hauteur = convertirPoucesEnInt(hauteurPouces);
@@ -1272,7 +1371,6 @@ public class Chalet {
 
     }
 
-
     public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer,Dimension initialDimension){
         Pouces largeur = new Pouces(35, 0, 1);
         Pouces hauteur = new Pouces(60, 0, 1);
@@ -1288,7 +1386,7 @@ public class Chalet {
         {
 
 
-            if(AntiCollisionFenetrePorte(mur,mousepoint,largeur,largeur) == false){
+            if(AntiCollisionPorteFenetre(mur,mousepoint,largeur,largeur) == false){
 
                 if(Anticollision && listePorte != null) {
                     int lenghtlistePorte = listePorte.size();
@@ -1390,17 +1488,42 @@ public class Chalet {
 
         if(AntiCollisionAccessoireMur(mur,mousepoint,largeur,largeur,initialDimension))
         {
-            if(!AntiCollisionFenetrePorte(mur, mousepoint, largeur, largeur)){
+            if(AntiCollisionFenetrePorte(mur,mousepoint,largeur,largeur) == false){
 
-                Fenetre Fenetre = new Fenetre(mousepoint,largeur,hauteur);
-                boolean success = mur.ajouterFenetre(Fenetre);
-                //System.out.println(Fenetre+"(ajouterFenetre) Fenetre ajoute");
-                return success;
+                if(AntiCollisionFenetreFenetre(mur,mousepoint,largeur,largeur) == false) {
+
+
+                    Fenetre Fenetre = new Fenetre(mousepoint,largeur,hauteur);
+                    boolean success = mur.ajouterFenetre(Fenetre);
+                    //System.out.println(Fenetre+"(ajouterFenetre) Fenetre ajoute");
+                    return success;
+
+                }
 
             }
 
         }
 
+        return false;
+    }
+
+
+    public static boolean selectionFenetre(Fenetre fenetre, Point mousePointClicked){
+        //On récupere les mesures de la fenetres
+        int largeur = convertirPoucesEnInt(fenetre.largeur);
+        int hauteur = convertirPoucesEnInt(fenetre.hauteur);
+
+        //On determine les sommets de la fenetres
+        Point coinSuperieurGauche = fenetre.mousePoint;
+        Point coinSuperieurDroit = new Point(coinSuperieurGauche.x + largeur, coinSuperieurGauche.y);
+        Point coinInferieurGauche = new Point(coinSuperieurGauche.x, coinSuperieurGauche.y + hauteur);
+        Point coinInferieurDroit = new Point(coinSuperieurGauche.x + largeur, coinSuperieurGauche.y + hauteur);
+
+        //On verifie si le mousePointClicked se trouvemt entres les 4 sommets
+        if( mousePointClicked.getX() >= coinSuperieurGauche.getX() && mousePointClicked.getX() <= coinSuperieurDroit.getX() &&
+                mousePointClicked.getY() >= coinSuperieurGauche.getY() && mousePointClicked.getY() <= coinInferieurGauche.getY() ) {
+            return true;
+        }
         return false;
     }
 
@@ -1422,26 +1545,6 @@ public class Chalet {
         }
         return false;
 
-    }
-
-
-    public static boolean selectionFenetre(Fenetre fenetre, Point mousePointClicked){
-        //On récupere les mesures de la fenetres
-        int largeur = convertirPoucesEnInt(fenetre.largeur);
-        int hauteur = convertirPoucesEnInt(fenetre.hauteur);
-
-        //On determine les sommets de la fenetres
-        Point coinSuperieurGauche = fenetre.mousePoint;
-        Point coinSuperieurDroit = new Point(coinSuperieurGauche.x + largeur, coinSuperieurGauche.y);
-        Point coinInferieurGauche = new Point(coinSuperieurGauche.x, coinSuperieurGauche.y + hauteur);
-        Point coinInferieurDroit = new Point(coinSuperieurGauche.x + largeur, coinSuperieurGauche.y + hauteur);
-
-        //On verifie si le mousePointClicked se trouvemt entres les 4 sommets
-        if( mousePointClicked.getX() >= coinSuperieurGauche.getX() && mousePointClicked.getX() <= coinSuperieurDroit.getX() &&
-                mousePointClicked.getY() >= coinSuperieurGauche.getY() && mousePointClicked.getY() <= coinInferieurGauche.getY() ) {
-            return true;
-        }
-        return false;
     }
 
     public static boolean modifierXporte(Point mousePointClicked, int nouveauXporteint, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension) {
@@ -1609,7 +1712,6 @@ public class Chalet {
 
     }
 
-
     public static boolean setLargeurFenetre(Point mousePointClicked,Pouces nouvelleLargeur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension){
 
         int numMur = determinerMur(nomMur);
@@ -1641,6 +1743,7 @@ public class Chalet {
         return false;
 
     }
+
     public static boolean setHauteurPorte(Pouces nouvelleHauteur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension){
 
         int numMur = determinerMur(nomMur);
@@ -1669,7 +1772,6 @@ public class Chalet {
         return false;
 
     }
-
 
 
     public double getLargeurChalet() {
