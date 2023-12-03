@@ -1,10 +1,7 @@
 package ui;
 
 import Utilitaires.Pouces;
-import domain.Chalet;
-import domain.ChaletDTO;
-import domain.Controleur;
-import domain.Mur;
+import domain.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +15,10 @@ import static Utilitaires.ConvertisseurMesures.imperialToDoubleUniversel;
 import static ui.MainWindow.*;
 
 
-public class DrawingPanel extends JPanel implements Serializable {
 
+public class DrawingPanel extends JPanel implements Serializable {
+    private int xOffsetDrag;
+    private int yOffsetDrag;
     private MainWindow mainWindow;
     public Controleur controleur;
     public Dimension initialDimensionNonStatic = getPreferredSize();
@@ -65,6 +64,41 @@ public class DrawingPanel extends JPanel implements Serializable {
                 repaint();
             }
         });
+        // Drag de la porte qu'il reste a tester
+        addMouseMotionListener(new MouseAdapter() {
+            public Porte porteSelectionnee;
+            @Override
+            public void mousePressed(MouseEvent mousePointClicked) {
+                Point mousePoint = mousePointClicked.getPoint();
+                Chalet chalet = controleur.getChaletProduction();
+                System.out.println(mousePoint);
+                System.out.println("Zebirafiou");
+                boolean succes = chalet.selectionPorte(porteSelectionnee,mousePoint);
+
+
+                // Vérifier si une porte est sélectionnée
+
+                if (succes) {
+                    xOffsetDrag = (int) (mousePoint.getX() - porteSelectionnee.getPoint().getX());
+                    yOffsetDrag = (int) (mousePoint.getY() - porteSelectionnee.getPoint().getY());}
+
+            }
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)&& porteSelectionnee != null) {
+                    int newX = (int) e.getPoint().getX() - xOffsetDrag;
+                    int newY = (int) e.getPoint().getY() - yOffsetDrag;
+
+                    // Mettre à jour la position de la porte sélectionnée
+                    porteSelectionnee.setPoint(new Point(newX, newY));
+                    repaint();
+                }
+            }
+            public void mouseReleased (MouseEvent e){
+                  porteSelectionnee = null;
+                }
+            });
+
 
         addMouseListener(new MouseAdapter() {
             @Override

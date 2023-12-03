@@ -420,34 +420,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        // Drag de la porte qu'il reste a tester
-        PannelAffichage.addMouseMotionListener(new MouseAdapter() {
-            public Porte porteSelectionnee;
-            public void mousePressed(MouseEvent mousePointClicked) {
-                Point mousePoint = mousePointClicked.getPoint();
-                boolean succes = chalet.selectionPorte(porteSelectionnee,mousePoint);
-
-                // Vérifier si une porte est sélectionnée
-
-                    if (succes) {
-                        xOffsetDrag = (int) (mousePoint.getX() - porteSelectionnee.getPoint().getX());
-                        yOffsetDrag = (int) (mousePoint.getY() - porteSelectionnee.getPoint().getY());}
-
-            }
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                if (SwingUtilities.isLeftMouseButton(e)&& porteSelectionnee != null) {
-                    int newX = (int) e.getPoint().getX() - xOffsetDrag;
-                    int newY = (int) e.getPoint().getY() - yOffsetDrag;
-
-                    // Mettre à jour la position de la porte sélectionnée
-                    porteSelectionnee.setPoint(new Point(newX, newY));
-                    DrawingPanel.repaint();
-
-                }
-
-            }
-        });
 
         AccessoineHauteurPortefield.addActionListener(new ActionListener() {
             @Override
