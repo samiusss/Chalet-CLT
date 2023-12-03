@@ -5,7 +5,7 @@ import domain.Chalet;
 import domain.ChaletDTO;
 import domain.Controleur;
 import domain.Mur;
-
+import domain.Porte;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -143,6 +143,8 @@ public class MainWindow extends javax.swing.JFrame {
     private ChaletDTO.AffichageVue selectedVue;
 
     private double zoomFactor = 1.0;
+    private int xOffsetDrag;
+    private int yOffsetDrag;
 
 
     public MainWindow() {
@@ -298,15 +300,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        PannelAffichage.addMouseMotionListener(new MouseAdapter() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                if (SwingUtilities.isLeftMouseButton(e)){
 
-                }
-
-            }
-        });
 
 
 
@@ -423,6 +417,35 @@ public class MainWindow extends javax.swing.JFrame {
                     }
 
                 }
+            }
+        });
+
+        // Drag de la porte qu'il reste a tester
+        PannelAffichage.addMouseMotionListener(new MouseAdapter() {
+            public Porte porteSelectionnee;
+            public void mousePressed(MouseEvent mousePointClicked) {
+                Point mousePoint = mousePointClicked.getPoint();
+                boolean succes = chalet.selectionPorte(porteSelectionnee,mousePoint);
+
+                // Vérifier si une porte est sélectionnée
+
+                    if (succes) {
+                        xOffsetDrag = (int) (mousePoint.getX() - porteSelectionnee.getPoint().getX());
+                        yOffsetDrag = (int) (mousePoint.getY() - porteSelectionnee.getPoint().getY());}
+
+            }
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)&& porteSelectionnee != null) {
+                    int newX = (int) e.getPoint().getX() - xOffsetDrag;
+                    int newY = (int) e.getPoint().getY() - yOffsetDrag;
+
+                    // Mettre à jour la position de la porte sélectionnée
+                    porteSelectionnee.setPoint(new Point(newX, newY));
+                    DrawingPanel.repaint();
+
+                }
+
             }
         });
 

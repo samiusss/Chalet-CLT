@@ -26,6 +26,7 @@ public class Chalet {
     public static double zoom;
     public static float offsetX = 100;
     public static float offsetY = 170;
+
     public Chalet(double largeurChalet, double longueurChalet,
                   double epaisseurChalet, double angleToit,
                   double hauteurMurs, List<Mur> listeMurs,List<Toit> listeToit, String orientationToit) {
