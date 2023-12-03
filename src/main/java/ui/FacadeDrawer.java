@@ -282,7 +282,7 @@ public class FacadeDrawer {
             int[] xPointsToit = {pointSupGaucheToitX, pointInfGaucheToitX, pointInfDroiteProcheToitX, pointInfDroiteLoinToitX, pointSupDroiteToitX};
             int[] yPointsToit = {pointSupGaucheToitY, pointInfGaucheToitY, pointInfDroiteProcheToitY, pointInfDroiteLoinToitY, pointSupDroiteToitY};
 
-            g.setColor(new Color(0, 255, 0));
+            g.setColor(new Color(0, 150, 100));
             g.fillPolygon(xPointsToit, yPointsToit, 5);
         }
     }
