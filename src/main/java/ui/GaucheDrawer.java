@@ -2,14 +2,12 @@ package ui;
 
 import Utilitaires.PointDouble;
 import Utilitaires.Pouces;
-import Utilitaires.pointPouces;
 import domain.*;
 
 import java.awt.*;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
-import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 import static domain.Chalet.*;
 
 public class GaucheDrawer
@@ -22,7 +20,7 @@ public class GaucheDrawer
     private double zoomFactor;
 
     public Mur gauche ; // mur arriere deja codé en bas
-
+    public Toit pignongauche;
     public PointDouble DroiteRainureInfGauche, DroiteRainureSupGauche, DroiteRainureInfDroit, DroiteRainureSupDroit;
     public PointDouble GaucheRainureInfGauche, GaucheRainureSupGauche, GaucheRainureInfDroit, GaucheRainureSupDroit;
 
@@ -203,6 +201,11 @@ public class GaucheDrawer
         int[] yPointsGauche = {y1gc, y2gc, y3gc, y4gc};
         g.setColor(new Color(239, 167, 139));
         g.fillPolygon(xPointsGauche, yPointsGauche, 4);
+
+        //pignon gauche
+
+
+
     }
 
 }

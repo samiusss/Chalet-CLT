@@ -7,11 +7,9 @@ import java.util.List;
 
 public class Toit {
 
-    public static double hauteurPignon;
     public static List<PointDouble> sommetsToit;
 
     private String nomToit;
-    //public LinkedList<PointDouble> sommetsToit;
 
     public Toit(String nomToit, List<PointDouble> sommetsToit) {
         this.nomToit = nomToit;
@@ -21,6 +19,9 @@ public class Toit {
         return this.sommetsToit;
     }
 
+    public String getNomToit() {
+        return nomToit;
+    }
 
 
     public void createSommetToit(Toit toit, PointDouble point){

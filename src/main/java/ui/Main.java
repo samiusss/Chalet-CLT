@@ -1,7 +1,5 @@
 package ui;
 
-import domain.Chalet;
-
 import java.io.IOException;
 
 
@@ -52,11 +50,6 @@ public class Main {
         STLWriterSecondaire.ExporterPanneauxBrut(filePathBrut);
         STLWriterSecondaire.ExporterPanneauxFinisRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
         */
-        Chalet.orientationToit = "Est";
-        Chalet.initialiserPignonGauche();
-        System.out.println("liste de toit est: "+Chalet.listeToit);
-        //System.out.println(Toit.);
-
 
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);

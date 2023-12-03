@@ -4,11 +4,12 @@ import Utilitaires.PointDouble;
 import Utilitaires.Pouces;
 
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
-import static java.lang.Math.tan;
 import static java.util.Arrays.asList;
 
 public class Chalet {
@@ -21,7 +22,8 @@ public class Chalet {
     public static double retraitChalet;
     public static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
     public static List<Toit> listeToit = new ArrayList<>();
-
+    public static double hauteurPignon;
+    public static double hauteurRallonge;
     public static String orientationToit;
     public static double zoom;
     public static float offsetX = 100;
@@ -29,7 +31,7 @@ public class Chalet {
 
     public Chalet(double largeurChalet, double longueurChalet,
                   double epaisseurChalet, double angleToit,
-                  double hauteurMurs, List<Mur> listeMurs,List<Toit> listeToit, String orientationToit) {
+                  double hauteurMurs, double hauteurPignon, List<Mur> listeMurs,List<Toit> listeToit, String orientationToit) {
         this.largeurChalet = largeurChalet;
         this.longueurChalet = longueurChalet;
         this.hauteurMurs = hauteurMurs;
@@ -40,21 +42,21 @@ public class Chalet {
         this.zoom = 1;
     }
     public static void initialiserPignonGauche()
-    {
+    {/*
         //Toujours le pignons a gauche de la pente
         //Pour EST et OUEST, Facade et Arriere ont les pignons entre les rainures
         //Pour NORD et SUD, Droite et Gauche ont les pignons entre les rainures
 
-        double basePignon = 0;
+        //double basePignon = 0;
         if (Objects.equals(Chalet.orientationToit, "Est"))
         {
-            basePignon = Chalet.longueurChalet;
-            Toit.hauteurPignon= basePignon * tan(Chalet.angleToit* (Math.PI / 180)); //largeurChalet est la largeur du pignon
+            //basePignon = Chalet.longueurChalet;
+            hauteurPignon= Chalet.longueurChalet * tan(Chalet.angleToit* (Math.PI / 180)); //largeurChalet est la largeur du pignon
 
             //Points de coté
-            PointDouble pointSupGauchePignon = new PointDouble(Chalet.epaisseurChalet, (Toit.hauteurPignon+Chalet.hauteurMurs));
-            PointDouble pointInfGauchePignon = new PointDouble(Chalet.epaisseurChalet, Chalet.hauteurMurs);
-            PointDouble pointInfDroitePignon = new PointDouble(basePignon+Chalet.epaisseurChalet, Chalet.hauteurMurs);
+            PointDouble pointSupGauchePignon = new PointDouble(epaisseurChalet, (hauteurPignon+hauteurMurs));
+            PointDouble pointInfGauchePignon = new PointDouble(epaisseurChalet, hauteurMurs);
+            PointDouble pointInfDroitePignon = new PointDouble((longueurChalet+epaisseurChalet), hauteurMurs);
 
             Toit gauche = new Toit("PignonGauche", Arrays.asList(pointSupGauchePignon, pointInfGauchePignon, pointInfDroitePignon));
             listeToit.add(gauche);
@@ -99,13 +101,23 @@ public class Chalet {
             listeToit.add(gauche);
         }
 
-        //else {System.out.println("Pas EST ........");}
+        //else {System.out.println("Pas EST ........");}*/
     }
 
     public void rainurerToit(List<Toit> listeDeToitARainurer, String orientationToit) {
         List<Toit> toitsDecoupes = new LinkedList<>();
+        //if (Objects.equals(orientationToit, "Nord") || Objects.equals(orientationToit, "Sud")) {
+            for (Toit toit : listeDeToitARainurer) {
+                if (Objects.equals(toit.getNomToit(), "PignonGauche")) {
 
-    }
+                    //Vue coté
+                    toit.getSommetsToit().get(0); //A: InfGauche // Point(0, 0) reste Point(0, 0)
+
+                    toitsDecoupes.add(toit);
+                }
+            }
+        }
+
 
 
     public void initialiserMurFacade() {
@@ -366,6 +378,9 @@ public class Chalet {
     public List<Mur> getMursUsines(double distanceUsinage, String orientationToit) {
         retirerRainures(listeMurs, retraitChalet, Chalet.orientationToit);
         return listeMurs;
+    }
+    public List<Toit> getToitsUsines(String orientationToit) {
+        return listeToit;
     }
 
 
