@@ -42,7 +42,9 @@ public class Mur {
     public List<PointDouble> getSommetsMur() {
         return this.sommetsMur;
     }
-
+    public List<PointDouble> getSommetsToit() {
+        return Toit.sommetsToit;
+    }
     public void setSommetsMur(LinkedList<PointDouble> sommetsMur) {
         this.sommetsMur = sommetsMur;
     }

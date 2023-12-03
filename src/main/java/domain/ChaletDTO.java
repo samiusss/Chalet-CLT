@@ -11,6 +11,8 @@ public class ChaletDTO {
     public static Mur arriere; // mur arriere deja codé en bas
     public static Mur gauche ; // mur gauche deja codé en bas
     public static Mur droite; // mur droite deja codé en bas
+    public static Toit pignongauche; // pignon à gauche de la pente
+
 
 
     public enum AffichageVue
@@ -89,6 +91,8 @@ public class ChaletDTO {
         }
         chalet.getListeMurs().clear();
 
+        Chalet.initialiserPignonGauche();
+
         chalet.initialiserMurFacade();
         chalet.initialiserMurArriere();
         chalet.initialiserMurGauche();
@@ -107,7 +111,7 @@ public class ChaletDTO {
         arriere = chalet.getMursUsines(distanceUsinage, orientationToit).get(1); // mur arriere deja codé en bas
         gauche = chalet.getMursUsines(distanceUsinage, orientationToit).get(2); // mur gauche deja codé en bas
         droite = chalet.getMursUsines(distanceUsinage, orientationToit).get(3); // mur droite deja codé en bas
-
+        pignongauche = chalet.getToitsUsines(orientationToit).get(0);
         return true;
     }
 

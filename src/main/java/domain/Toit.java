@@ -8,9 +8,10 @@ import java.util.List;
 public class Toit {
 
     public static double hauteurPignon;
+    public static List<PointDouble> sommetsToit;
 
     private String nomToit;
-    private LinkedList<PointDouble> sommetsToit;
+    //public LinkedList<PointDouble> sommetsToit;
 
     public Toit(String nomToit, List<PointDouble> sommetsToit) {
         this.nomToit = nomToit;

@@ -52,7 +52,8 @@ public class Main {
         STLWriterSecondaire.ExporterPanneauxBrut(filePathBrut);
         STLWriterSecondaire.ExporterPanneauxFinisRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
         */
-        Chalet.initialiserPignonDroit();
+        Chalet.orientationToit = "Est";
+        Chalet.initialiserPignonGauche();
         System.out.println("liste de toit est: "+Chalet.listeToit);
         //System.out.println(Toit.);
 
