@@ -30,8 +30,4 @@ public class Toit {
     public String toString() {
         return "Toit: " + nomToit + ", Coordinates: " + sommetsToit ;
     }
-
-
-
-
 }

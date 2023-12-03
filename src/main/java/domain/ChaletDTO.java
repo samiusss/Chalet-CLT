@@ -111,7 +111,7 @@ public class ChaletDTO {
         arriere = chalet.getMursUsines(distanceUsinage, orientationToit).get(1); // mur arriere deja codé en bas
         gauche = chalet.getMursUsines(distanceUsinage, orientationToit).get(2); // mur gauche deja codé en bas
         droite = chalet.getMursUsines(distanceUsinage, orientationToit).get(3); // mur droite deja codé en bas
-        pignongauche = chalet.getToitsUsines(orientationToit).get(0);
+        //pignongauche = chalet.getToitsUsines(orientationToit).get(0);
         return true;
     }
 
