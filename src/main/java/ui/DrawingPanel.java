@@ -26,6 +26,7 @@ public class DrawingPanel extends JPanel implements Serializable {
     public int h = (int) initialDimensionNonStatic.getHeight();
     public Dimension initialDimensionReturn = new Dimension(w, h);
     private double zoomFactor = 1.0;
+    private Porte porteSelectionnee;
 
     /*public DrawingPanel() {
         controleur = new Controleur();
@@ -65,14 +66,14 @@ public class DrawingPanel extends JPanel implements Serializable {
             }
         });
         // Drag de la porte qu'il reste a tester
-        addMouseMotionListener(new MouseAdapter() {
+        addMouseListener(new MouseAdapter() {
             public Porte porteSelectionnee;
             @Override
             public void mousePressed(MouseEvent mousePointClicked) {
                 Point mousePoint = mousePointClicked.getPoint();
                 Chalet chalet = controleur.getChaletProduction();
-                System.out.println(mousePoint);
                 System.out.println("Zebirafiou");
+                System.out.println(mousePoint);
                 boolean succes = chalet.selectionPorte(porteSelectionnee,mousePoint);
 
 
@@ -82,6 +83,11 @@ public class DrawingPanel extends JPanel implements Serializable {
                     xOffsetDrag = (int) (mousePoint.getX() - porteSelectionnee.getPoint().getX());
                     yOffsetDrag = (int) (mousePoint.getY() - porteSelectionnee.getPoint().getY());}
 
+            }
+        });
+        addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseReleased (MouseEvent e){
+                porteSelectionnee = null;
             }
             @Override
             public void mouseDragged(MouseEvent e) {
@@ -94,9 +100,7 @@ public class DrawingPanel extends JPanel implements Serializable {
                     repaint();
                 }
             }
-            public void mouseReleased (MouseEvent e){
-                  porteSelectionnee = null;
-                }
+
             });
 
 
