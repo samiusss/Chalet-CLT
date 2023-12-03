@@ -1597,6 +1597,9 @@ public class Chalet {
 
     // Fonction qui sera utile pour le Drag
     public static boolean selectionPorte(Porte porte, Point mousePointClicked){
+        if (porte == null) {
+            return false; // Ajoutez cette vérification pour éviter la NullPointerException
+        }
         int largeurPorte = convertirPoucesEnInt(porte.getLargeur());
         int hauteurPorte = convertirPoucesEnInt(porte.getHauteur());
 
