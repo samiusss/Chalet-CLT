@@ -625,7 +625,7 @@
               <text value="Exporter Retrait STl"/>
             </properties>
           </component>
-          <component id="c9332" class="javax.swing.JButton" binding="Brut">
+          <component id="c9332" class="javax.swing.JButton" binding="BrutExport">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>

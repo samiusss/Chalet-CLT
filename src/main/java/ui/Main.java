@@ -1,13 +1,18 @@
 package ui;
 
+import Utilitaires.STLWriterSecondaire;
+
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        /*
 
         // Spécifiez le nom du fichier STL de sortie
         //String fileName = "chemin/vers/votre/repertoire/fichier.stl";
@@ -48,8 +53,7 @@ public class Main {
         }
 
         STLWriterSecondaire.ExporterPanneauxBrut(filePathBrut);
-        STLWriterSecondaire.ExporterPanneauxFinisRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
-        */
+        //STLWriterSecondaire.ExporterPanneauxFinisRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
 
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);
