@@ -67,11 +67,11 @@ public class DrawingPanel extends JPanel implements Serializable {
         });
         // Drag de la porte qu'il reste a tester
         addMouseListener(new MouseAdapter() {
-            public Porte porteSelectionnee;
-            @Override
+
             public void mousePressed(MouseEvent mousePointClicked) {
                 Point mousePoint = mousePointClicked.getPoint();
                 Chalet chalet = controleur.getChaletProduction();
+                porteSelectionnee = Porte.getPorte(mousePoint,Porte.PORTE_LARGEUR_STANDARD,Porte.PORTE_HAUTEUR_STANDARD);
                 System.out.println("Zebirafiou");
                 System.out.println(mousePoint);
                 boolean succes = chalet.selectionPorte(porteSelectionnee,mousePoint);
@@ -84,6 +84,7 @@ public class DrawingPanel extends JPanel implements Serializable {
                     yOffsetDrag = (int) (mousePoint.getY() - porteSelectionnee.getPoint().getY());}
 
             }
+
         });
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseReleased (MouseEvent e){
@@ -94,7 +95,7 @@ public class DrawingPanel extends JPanel implements Serializable {
                 if (SwingUtilities.isLeftMouseButton(e)&& porteSelectionnee != null) {
                     int newX = (int) e.getPoint().getX() - xOffsetDrag;
                     int newY = (int) e.getPoint().getY() - yOffsetDrag;
-
+                    System.out.println("Nouvelles coordonnées : X=" + newX + ", Y=" + newY);
                     // Mettre à jour la position de la porte sélectionnée
                     porteSelectionnee.setPoint(new Point(newX, newY));
                     repaint();

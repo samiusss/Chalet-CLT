@@ -26,6 +26,10 @@ public class Porte extends Accessoires implements Serializable {
         return mousePoint;
     }
 
+    public static Porte getPorte(Point mousePoint, Pouces largeur, Pouces hauteur) {
+        return new Porte(mousePoint, largeur, hauteur);
+    }
+
 
     public boolean setHauteurPorte(Pouces valeur) {
         hauteur = valeur;
