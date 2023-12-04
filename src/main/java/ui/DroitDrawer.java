@@ -372,7 +372,7 @@ public class DroitDrawer {
             System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
         }
-        if (Objects.equals(orientationToit, "Ouest"))
+        if (Objects.equals(orientationToit, "Est"))
         {
             double positionX = 0;
             double positionY = 0;
@@ -405,7 +405,7 @@ public class DroitDrawer {
 
 
         }
-        if (Objects.equals(orientationToit, "Est"))
+        if (Objects.equals(orientationToit, "Ouest"))
         {
             double positionX = 0;
             double positionY = 0;

@@ -200,7 +200,7 @@ public class FacadeDrawer {
         hauteurPignon= Chalet.longueurChalet * tan((Chalet.angleToit)* (Math.PI / 180)); //largeurChalet est la largeur du pignon
         hauteurRallonge = hauteurPignon + epaisseurChalet/2 * tan((Chalet.angleToit)* (Math.PI / 180));
 
-        if (Objects.equals(orientationToit, "Est"))
+        if (Objects.equals(orientationToit, "Ouest"))
         {
             double positionX = 0;
             double positionY = 0;
@@ -286,7 +286,7 @@ public class FacadeDrawer {
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 5);
         }
-        if (Objects.equals(orientationToit, "Ouest"))
+        if (Objects.equals(orientationToit, "Est"))
         {
             double positionX = 0;
             double positionY = 0;
