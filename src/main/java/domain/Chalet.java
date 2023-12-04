@@ -104,19 +104,6 @@ public class Chalet {
         //else {System.out.println("Pas EST ........");}*/
     }
 
-    public void rainurerToit(List<Toit> listeDeToitARainurer, String orientationToit) {
-        List<Toit> toitsDecoupes = new LinkedList<>();
-        //if (Objects.equals(orientationToit, "Nord") || Objects.equals(orientationToit, "Sud")) {
-            for (Toit toit : listeDeToitARainurer) {
-                if (Objects.equals(toit.getNomToit(), "PignonGauche")) {
-
-                    //Vue coté
-                    toit.getSommetsToit().get(0); //A: InfGauche // Point(0, 0) reste Point(0, 0)
-
-                    toitsDecoupes.add(toit);
-                }
-            }
-        }
 
 
 
@@ -1869,6 +1856,10 @@ public class Chalet {
         return this.listeMurs;
     }
 
+    public static void setAngleToit(double angleToitMN) {
+        angleToit = angleToitMN;
+
+    }
 
     public static void setLargeurChalet(double largeurChaletMN) {
         largeurChalet = largeurChaletMN;
@@ -1897,9 +1888,6 @@ public class Chalet {
 
     }
 
-    public void setAngleToit(double angleToit) {
-        angleToit = angleToit;
-    }
 
     public void setListeMurs(List<Mur> listerMurs) {
         this.listeMurs = listeMurs;
