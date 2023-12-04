@@ -6,9 +6,11 @@ import domain.*;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Objects;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
 import static domain.Chalet.*;
+import static java.lang.Math.tan;
 
 public class GaucheDrawer
 {
@@ -38,6 +40,7 @@ public class GaucheDrawer
         drawGauche(g);
         drawPorte(g);
         drawFenetre(g);
+        drawToitGauche(g);
     }
 
 
@@ -207,5 +210,277 @@ public class GaucheDrawer
 
 
     }
+    private void drawToitGauche(Graphics g)
+    {
+        hauteurPignon= Chalet.largeurChalet * tan((Chalet.angleToit)* (Math.PI / 180)); //largeurChalet est la largeur du pignon
+        hauteurRallonge = hauteurPignon + epaisseurChalet/2 * tan((Chalet.angleToit)* (Math.PI / 180));
 
+        if (Objects.equals(orientationToit, "Sud"))
+        {
+            double positionX = 0;
+            double positionY = 0;
+
+            ////PIGNONGAUCHE////
+
+
+            //Points de pignon à gauche de la pente
+            PointDouble pointSupGauchePignon = new PointDouble(epaisseurChalet/2, (0-hauteurPignon));
+            PointDouble pointInfGauchePignon = new PointDouble(epaisseurChalet/2, 0);
+            PointDouble pointInfDroitePignon = new PointDouble((largeurChalet-epaisseurChalet/2), 0);
+
+
+            int pointSupGauchePignonX = (int) (pointSupGauchePignon.getX()* zoomFactor+positionX);
+            int pointSupGauchePignonY = (int) (pointSupGauchePignon.getY()* zoomFactor+positionY);
+
+            int pointInfGauchePignonX = (int) (pointInfGauchePignon.getX()* zoomFactor+positionX);
+            int pointInfGauchePignonY = (int) (pointInfGauchePignon.getY()* zoomFactor+positionY);
+
+            int pointInfDroitePignonX = (int) (pointInfDroitePignon.getX()* zoomFactor+positionX);
+            int pointInfDroitePignonY = (int) (pointInfDroitePignon.getY()* zoomFactor+positionY);
+
+            int[] xPointsPignon = {pointSupGauchePignonX, pointInfGauchePignonX, pointInfDroitePignonX};
+            int[] yPointsPignon = {pointSupGauchePignonY, pointInfGauchePignonY, pointInfDroitePignonY};
+
+            g.setColor(new Color(2, 125, 0));
+            g.fillPolygon(xPointsPignon, yPointsPignon, 3);
+            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
+
+            ///RALLONGE///
+
+
+            PointDouble pointSupGaucheRallonge = new PointDouble(0, (0-hauteurRallonge));
+            PointDouble pointInfGaucheRallonge = new PointDouble(0, 0);
+            PointDouble pointInfDroiteRallonge = new PointDouble(epaisseurChalet/2, 0);
+            PointDouble pointSupDroiteRallonge = new PointDouble(epaisseurChalet/2, (0-hauteurPignon));
+
+
+
+            int pointSupGaucheRallongeX = (int) (pointSupGaucheRallonge.getX()*zoomFactor+positionX);
+            int pointSupGaucheRallongeY = (int) (pointSupGaucheRallonge.getY()*zoomFactor+positionY);
+
+            int pointInfGaucheRallongeX = (int) (pointInfGaucheRallonge.getX()*zoomFactor+positionX);
+            int pointInfGaucheRallongeY = (int) (pointInfGaucheRallonge.getY()*zoomFactor+positionY);
+
+            int pointInfDroiteRallongeX = (int) (pointInfDroiteRallonge.getX()*zoomFactor+positionX);
+            int pointInfDroiteRallongeY = (int) (pointInfDroiteRallonge.getY()*zoomFactor+positionY);
+
+            int pointSupDroiteRallongeX = (int) (pointSupDroiteRallonge.getX()*zoomFactor+positionX);
+            int pointSupDroiteRallongeY = (int) (pointSupDroiteRallonge.getY()*zoomFactor+positionY);
+
+            int[] xPointsRallonge = {pointSupGaucheRallongeX, pointInfGaucheRallongeX, pointInfDroiteRallongeX, pointSupDroiteRallongeX};
+            int[] yPointsRallonge = {pointSupGaucheRallongeY, pointInfGaucheRallongeY, pointInfDroiteRallongeY, pointSupDroiteRallongeY};
+
+            g.setColor(new Color(200, 200, 200));
+            g.fillPolygon(xPointsRallonge, yPointsRallonge, 4);
+
+            /// TOIT ///
+            PointDouble pointSupGaucheToit = new PointDouble(0, (0-hauteurRallonge-epaisseurChalet/2));
+            PointDouble pointInfGaucheToit = new PointDouble(0, (0-hauteurRallonge));
+            PointDouble pointInfDroiteProcheToit = new PointDouble((largeurChalet-epaisseurChalet/2), 0);
+            PointDouble pointInfDroiteLoinToit = new PointDouble((largeurChalet), 0);
+            PointDouble pointSupDroiteToit = new PointDouble((largeurChalet), -epaisseurChalet/2);
+
+            int pointSupGaucheToitX = (int) (pointSupGaucheToit.getX()*zoomFactor+positionX);
+            int pointSupGaucheToitY = (int) (pointSupGaucheToit.getY()*zoomFactor+positionY);
+
+            int pointInfGaucheToitX = (int) (pointInfGaucheToit.getX()*zoomFactor+positionX);
+            int pointInfGaucheToitY = (int) (pointInfGaucheToit.getY()*zoomFactor+positionY);
+
+            int pointInfDroiteProcheToitX = (int) (pointInfDroiteProcheToit.getX()*zoomFactor+positionX);
+            int pointInfDroiteProcheToitY = (int) (pointInfDroiteProcheToit.getY()*zoomFactor+positionY);
+
+            int pointInfDroiteLoinToitX = (int) (pointInfDroiteLoinToit.getX()*zoomFactor+positionX);
+            int pointInfDroiteLoinToitY = (int) (pointInfDroiteLoinToit.getY()*zoomFactor+positionY);
+
+            int pointSupDroiteToitX = (int) (pointSupDroiteToit.getX()*zoomFactor+positionX);
+            int pointSupDroiteToitY = (int) (pointSupDroiteToit.getY()*zoomFactor+positionY);
+
+            int[] xPointsToit = {pointSupGaucheToitX, pointInfGaucheToitX, pointInfDroiteProcheToitX, pointInfDroiteLoinToitX, pointSupDroiteToitX};
+            int[] yPointsToit = {pointSupGaucheToitY, pointInfGaucheToitY, pointInfDroiteProcheToitY, pointInfDroiteLoinToitY, pointSupDroiteToitY};
+
+            g.setColor(new Color(0, 0, 50));
+            g.fillPolygon(xPointsToit, yPointsToit, 5);
+        }
+        if (Objects.equals(orientationToit, "Nord"))
+        {
+            double positionX = 0;
+            double positionY = 0;
+
+            ////PIGNONGAUCHE////
+
+
+            //Points de pignon à gauche de la pente
+            PointDouble pointSupDroitePignon = new PointDouble((largeurChalet-epaisseurChalet/2), (0-hauteurPignon));
+            PointDouble pointInfGauchePignon = new PointDouble(epaisseurChalet/2, 0);
+            PointDouble pointInfDroitePignon = new PointDouble((largeurChalet-epaisseurChalet/2), 0);
+
+
+            int pointSupDroitePignonX = (int) (pointSupDroitePignon.getX()* zoomFactor+positionX);
+            int pointSupDroitePignonY = (int) (pointSupDroitePignon.getY()* zoomFactor+positionY);
+
+            int pointInfGauchePignonX = (int) (pointInfGauchePignon.getX()* zoomFactor+positionX);
+            int pointInfGauchePignonY = (int) (pointInfGauchePignon.getY()* zoomFactor+positionY);
+
+            int pointInfDroitePignonX = (int) (pointInfDroitePignon.getX()* zoomFactor+positionX);
+            int pointInfDroitePignonY = (int) (pointInfDroitePignon.getY()* zoomFactor+positionY);
+
+            int[] xPointsPignon = {pointSupDroitePignonX, pointInfDroitePignonX, pointInfGauchePignonX};
+            int[] yPointsPignon = {pointSupDroitePignonY, pointInfDroitePignonY, pointInfGauchePignonY};
+
+            g.setColor(new Color(2, 125, 0));
+            g.fillPolygon(xPointsPignon, yPointsPignon, 3);
+            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
+
+            ///RALLONGE///
+
+
+            PointDouble pointSupGaucheRallonge = new PointDouble(largeurChalet-epaisseurChalet/2, (0-hauteurPignon));
+            PointDouble pointInfGaucheRallonge = new PointDouble(largeurChalet-epaisseurChalet/2, 0);
+            PointDouble pointInfDroiteRallonge = new PointDouble(largeurChalet, 0);
+            PointDouble pointSupDroiteRallonge = new PointDouble(largeurChalet, (0-hauteurRallonge));
+
+
+
+            int pointSupGaucheRallongeX = (int) (pointSupGaucheRallonge.getX()*zoomFactor+positionX);
+            int pointSupGaucheRallongeY = (int) (pointSupGaucheRallonge.getY()*zoomFactor+positionY);
+
+            int pointInfGaucheRallongeX = (int) (pointInfGaucheRallonge.getX()*zoomFactor+positionX);
+            int pointInfGaucheRallongeY = (int) (pointInfGaucheRallonge.getY()*zoomFactor+positionY);
+
+            int pointInfDroiteRallongeX = (int) (pointInfDroiteRallonge.getX()*zoomFactor+positionX);
+            int pointInfDroiteRallongeY = (int) (pointInfDroiteRallonge.getY()*zoomFactor+positionY);
+
+            int pointSupDroiteRallongeX = (int) (pointSupDroiteRallonge.getX()*zoomFactor+positionX);
+            int pointSupDroiteRallongeY = (int) (pointSupDroiteRallonge.getY()*zoomFactor+positionY);
+
+            int[] xPointsRallonge = {pointSupGaucheRallongeX, pointInfGaucheRallongeX, pointInfDroiteRallongeX, pointSupDroiteRallongeX};
+            int[] yPointsRallonge = {pointSupGaucheRallongeY, pointInfGaucheRallongeY, pointInfDroiteRallongeY, pointSupDroiteRallongeY};
+
+            g.setColor(new Color(200, 200, 200));
+            g.fillPolygon(xPointsRallonge, yPointsRallonge, 4);
+
+            /// TOIT ///
+            PointDouble pointSupGaucheToit = new PointDouble(largeurChalet, (0-hauteurRallonge-epaisseurChalet/2));
+            PointDouble pointInfGaucheToit = new PointDouble(largeurChalet, (0-hauteurRallonge));
+            PointDouble pointInfDroiteProcheToit = new PointDouble((0+epaisseurChalet/2), 0);
+            PointDouble pointInfDroiteLoinToit = new PointDouble((0), 0);
+            PointDouble pointSupDroiteToit = new PointDouble((0), -epaisseurChalet/2);
+
+            int pointSupGaucheToitX = (int) (pointSupGaucheToit.getX()*zoomFactor+positionX);
+            int pointSupGaucheToitY = (int) (pointSupGaucheToit.getY()*zoomFactor+positionY);
+
+            int pointInfGaucheToitX = (int) (pointInfGaucheToit.getX()*zoomFactor+positionX);
+            int pointInfGaucheToitY = (int) (pointInfGaucheToit.getY()*zoomFactor+positionY);
+
+            int pointInfDroiteProcheToitX = (int) (pointInfDroiteProcheToit.getX()*zoomFactor+positionX);
+            int pointInfDroiteProcheToitY = (int) (pointInfDroiteProcheToit.getY()*zoomFactor+positionY);
+
+            int pointInfDroiteLoinToitX = (int) (pointInfDroiteLoinToit.getX()*zoomFactor+positionX);
+            int pointInfDroiteLoinToitY = (int) (pointInfDroiteLoinToit.getY()*zoomFactor+positionY);
+
+            int pointSupDroiteToitX = (int) (pointSupDroiteToit.getX()*zoomFactor+positionX);
+            int pointSupDroiteToitY = (int) (pointSupDroiteToit.getY()*zoomFactor+positionY);
+
+            int[] xPointsToit = {pointSupGaucheToitX, pointInfGaucheToitX, pointInfDroiteProcheToitX, pointInfDroiteLoinToitX, pointSupDroiteToitX};
+            int[] yPointsToit = {pointSupGaucheToitY, pointInfGaucheToitY, pointInfDroiteProcheToitY, pointInfDroiteLoinToitY, pointSupDroiteToitY};
+
+            g.setColor(new Color(0, 0, 50));
+            g.fillPolygon(xPointsToit, yPointsToit, 5);
+            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
+
+        }
+        if (Objects.equals(orientationToit, "Ouest"))
+        {
+            double positionX = 0;
+            double positionY = 0;
+
+            //// TOIT CAR FACADE ORIENTÉ NORD DONNE LA PENTE (OU LE TOIT) ////
+
+            PointDouble pSupGaucheToit = new PointDouble(0, (0-hauteurPignon-epaisseurChalet/2));
+            PointDouble pInfGaucheToit = new PointDouble(0, 0);
+            PointDouble pInfDroiteLoinToit = new PointDouble((largeurChalet), 0);
+            PointDouble pSupDroiteToit = new PointDouble((largeurChalet), (0-hauteurPignon-epaisseurChalet/2));
+
+            int pSupGaucheToitX = (int) (pSupGaucheToit.getX()*zoomFactor+positionX);
+            int pSupGaucheToitY = (int) (pSupGaucheToit.getY()*zoomFactor+positionY);
+
+            int pInfGaucheToitX = (int) (pInfGaucheToit.getX()*zoomFactor+positionX);
+            int pInfGaucheToitY = (int) (pInfGaucheToit.getY()*zoomFactor+positionY);
+
+            int pInfDroiteLoinToitX = (int) (pInfDroiteLoinToit.getX()*zoomFactor+positionX);
+            int pInfDroiteLoinToitY = (int) (pInfDroiteLoinToit.getY()*zoomFactor+positionY);
+
+            int pSupDroiteToitX = (int) (pSupDroiteToit.getX()*zoomFactor+positionX);
+            int pSupDroiteToitY = (int) (pSupDroiteToit.getY()*zoomFactor+positionY);
+
+            int[] xPointsToit = {pSupGaucheToitX, pInfGaucheToitX , pInfDroiteLoinToitX, pSupDroiteToitX};
+            int[] yPointsToit = {pSupGaucheToitY, pInfGaucheToitY , pInfDroiteLoinToitY, pSupDroiteToitY};
+
+            g.setColor(new Color(0, 0, 50));
+            g.fillPolygon(xPointsToit, yPointsToit, 4);
+            System.out.println("Je détecte l'orientation "+ orientationToit +" dans le mur de facade...");
+
+
+        }
+        if (Objects.equals(orientationToit, "Est"))
+        {
+            double positionX = 0;
+            double positionY = 0;
+
+            //// TOIT CAR FACADE ORIENTÉ SUD DONNE LE DOS DU TOIT (AVEC RALLONGE) ////
+
+            PointDouble pSupGaucheToit = new PointDouble(0, (0-hauteurRallonge-epaisseurChalet/2));
+            PointDouble pInfGaucheToit = new PointDouble(0, -hauteurPignon);
+            PointDouble pInfDroiteLoinToit = new PointDouble((largeurChalet), -hauteurPignon);
+            PointDouble pSupDroiteToit = new PointDouble((largeurChalet), (0-hauteurRallonge-epaisseurChalet/2));
+
+            int pSupGaucheToitX = (int) (pSupGaucheToit.getX()*zoomFactor+positionX);
+            int pSupGaucheToitY = (int) (pSupGaucheToit.getY()*zoomFactor+positionY);
+
+            int pInfGaucheToitX = (int) (pInfGaucheToit.getX()*zoomFactor+positionX);
+            int pInfGaucheToitY = (int) (pInfGaucheToit.getY()*zoomFactor+positionY);
+
+            int pInfDroiteLoinToitX = (int) (pInfDroiteLoinToit.getX()*zoomFactor+positionX);
+            int pInfDroiteLoinToitY = (int) (pInfDroiteLoinToit.getY()*zoomFactor+positionY);
+
+            int pSupDroiteToitX = (int) (pSupDroiteToit.getX()*zoomFactor+positionX);
+            int pSupDroiteToitY = (int) (pSupDroiteToit.getY()*zoomFactor+positionY);
+
+            int[] xPointsToit = {pSupGaucheToitX, pInfGaucheToitX , pInfDroiteLoinToitX, pSupDroiteToitX};
+            int[] yPointsToit = {pSupGaucheToitY, pInfGaucheToitY , pInfDroiteLoinToitY, pSupDroiteToitY};
+
+            g.setColor(new Color(0, 0, 50));
+            g.fillPolygon(xPointsToit, yPointsToit, 4);
+            System.out.println("Je détecte l'orientation "+ orientationToit +" dans le mur de facade...");
+
+            ///RALLONGE DE DOS///
+
+
+            PointDouble pointSupGaucheRallonge = new PointDouble(0, (0-hauteurRallonge));
+            PointDouble pointInfGaucheRallonge = new PointDouble(0, 0);
+            PointDouble pointInfDroiteRallonge = new PointDouble(largeurChalet, 0);
+            PointDouble pointSupDroiteRallonge = new PointDouble(largeurChalet, 0-hauteurRallonge);
+
+
+            int pointSupGaucheRallongeX = (int) (pointSupGaucheRallonge.getX()*zoomFactor+positionX);
+            int pointSupGaucheRallongeY = (int) (pointSupGaucheRallonge.getY()*zoomFactor+positionY);
+
+            int pointInfGaucheRallongeX = (int) (pointInfGaucheRallonge.getX()*zoomFactor+positionX);
+            int pointInfGaucheRallongeY = (int) (pointInfGaucheRallonge.getY()*zoomFactor+positionY);
+
+            int pointInfDroiteRallongeX = (int) (pointInfDroiteRallonge.getX()*zoomFactor+positionX);
+            int pointInfDroiteRallongeY = (int) (pointInfDroiteRallonge.getY()*zoomFactor+positionY);
+
+            int pointSupDroiteRallongeX = (int) (pointSupDroiteRallonge.getX()*zoomFactor+positionX);
+            int pointSupDroiteRallongeY = (int) (pointSupDroiteRallonge.getY()*zoomFactor+positionY);
+
+            int[] xPointsRallonge = {pointSupGaucheRallongeX, pointInfGaucheRallongeX, pointInfDroiteRallongeX, pointSupDroiteRallongeX};
+            int[] yPointsRallonge = {pointSupGaucheRallongeY, pointInfGaucheRallongeY, pointInfDroiteRallongeY, pointSupDroiteRallongeY};
+
+            g.setColor(new Color(200, 200, 200));
+            g.fillPolygon(xPointsRallonge, yPointsRallonge, 4);
+
+
+        }
+    }
 }

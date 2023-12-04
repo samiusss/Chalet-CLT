@@ -41,12 +41,6 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel MurPanel;
     private JLabel ToitPanelLabel;
     private JPanel ToitPanel;
-    //private DrawingPanel PannelAffichage; // Utilisez DrawingPanel au lieu de JPanel
-    private JTabbedPane ToitPaneltabbedPane;
-    private JPanel ToitPaneltabbedPaneDevantPanel;
-    private JPanel ToitPaneltabbedPaneDerrierePanel;
-    private JPanel ToitPaneltabbedPaneDroitPanel;
-    private JPanel ToitPaneltabbedPaneGauchePanel;
     private JLabel NomProjetLabel;
     private JLabel VueLabel;
     public JPanel PannelAffichage;
@@ -82,13 +76,10 @@ public class MainWindow extends javax.swing.JFrame {
     private JLabel AccessoirePanelIDPanel;
     private JLabel AccessoireID;
     private JLabel AccessoirePanelLargeurPanel;
-    private JLabel ToitPaneltabbedPaneDroitPanelAngleLabel;
-    private JLabel ToitPaneltabbedPaneDroitPanelHauteurLabel;
     public JTextField ToitPaneltabbedPaneDroitPanelAngleTextField;
     public JTextField ToitPaneltabbedPaneDroitPanelHauteurTextField;
     public JTextField ToitPaneltabbedPaneGauchePanelAngleTextField;
     public JTextField ToitPaneltabbedPaneGauchePanelHauteurTextField;
-    private JLabel ToitPaneltabbedPaneGauchePanelAngleLabel;
 
     public JTextField XPorteField;
 
@@ -96,17 +87,12 @@ public class MainWindow extends javax.swing.JFrame {
 
     public JTextField YporteField;
 
-    private JLabel ToitPaneltabbedPaneGauchePanelHauteurLabel;
     private JLabel AjoutPorteLabel;
     private JLabel AjoutFenetreLabel;
     public JTextField ToitPaneltabbedPaneDevantPanelAngleTextField;
     public JTextField ToitPaneltabbedPaneDevantPanelHauteurTextField;
-    private JLabel ToitPaneltabbedPaneDevantPanelAngleLabel;
-    private JLabel ToitPaneltabbedPaneDevantPanelHauteurLabel;
     public JTextField ToitPaneltabbedPaneDerrierePanelAngleTextField;
     public JTextField ToitPaneltabbedPaneDerrierePanelHauteurTextField;
-    private JLabel ToitPaneltabbedPaneDerrierePanelAngleLabel;
-    private JLabel ToitPaneltabbedPaneDerrierePanelHauteurLabel;
     private JComboBox AccessoireComboBox;
     public JButton supprimmerLAccessoireButton;
     public JButton Selection;
@@ -138,6 +124,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JButton changeOrientationButton;
     public JTextField retrait;
     private JTextField orientationTextField;
+    private JTextField angleTextField;
     private Point ZoomOrigin;
 
     private ChaletDTO.AffichageVue selectedVue;
@@ -228,57 +215,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-//        public void setAccessoireIDText(String Accessoires.UUID) {
-//            AccessoireID.setText(Accessoires.UUID);
-//        }
-        ToitPaneltabbedPaneDroitPanelAngleTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = ToitPaneltabbedPaneDroitPanelAngleTextField.getText();
-            }
-        });
-        ToitPaneltabbedPaneDroitPanelHauteurTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = ToitPaneltabbedPaneDroitPanelHauteurTextField.getText();
-            }
-        });
-
-
-
-        ToitPaneltabbedPaneGauchePanelAngleTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = ToitPaneltabbedPaneGauchePanelAngleTextField.getText();
-            }
-        });
-
-        ToitPaneltabbedPaneGauchePanelHauteurTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = ToitPaneltabbedPaneGauchePanelHauteurTextField.getText();
-            }
-        });
-
-        ToitPaneltabbedPaneDevantPanelAngleTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = ToitPaneltabbedPaneDevantPanelAngleTextField.getText();
-            }
-        });
-        ToitPaneltabbedPaneDevantPanelHauteurTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = ToitPaneltabbedPaneDevantPanelHauteurTextField.getText();
-
-            }
-        });
-        ToitPaneltabbedPaneDerrierePanelAngleTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = ToitPaneltabbedPaneDerrierePanelAngleTextField.getText();
-            }
-        });
 
         PannelAffichage.addMouseWheelListener(new MouseWheelListener() {
             @Override
@@ -299,21 +235,6 @@ public class MainWindow extends javax.swing.JFrame {
                 repaint();
             }
         });
-
-
-
-
-
-
-        ToitPaneltabbedPaneDerrierePanelHauteurTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = ToitPaneltabbedPaneDerrierePanelHauteurTextField.getText();
-            }
-        });
-
-
-
 
 
         YporteField.addActionListener(new ActionListener() {
@@ -729,6 +650,16 @@ public class MainWindow extends javax.swing.JFrame {
                 FenetrePrincipale.repaint();
                 System.out.println(inputText + " comme orientation a été rentré...");
 
+            }
+        });
+        angleTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double inputText = Double.parseDouble(angleTextField.getText());
+                Controleur.setAngleToit(inputText);
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
+                System.out.println(inputText + " comme orientation a été rentré...");
             }
         });
     }

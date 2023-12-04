@@ -165,7 +165,11 @@ public class Controleur {
 
     }
 
-
+    public static void setAngleToit(double angleToit)
+    {
+        Chalet.setAngleToit(angleToit);
+        initialiserChalet(chaletProduction);
+    }
 
 
         public static void setEpaisseurChalet(double epaisseurChalet)

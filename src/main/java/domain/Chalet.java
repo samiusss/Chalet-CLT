@@ -42,89 +42,13 @@ public class Chalet {
         this.largeurChalet = largeurChalet;
         this.longueurChalet = longueurChalet;
         this.hauteurMurs = hauteurMurs;
+        this.hauteurPignon = hauteurPignon;
         this.epaisseurChalet = epaisseurChalet;
         this.angleToit = angleToit;
         this.listeMurs = listeMurs;
         this.orientationToit = orientationToit;
         this.zoom = 1;
     }
-
-    public static void initialiserPignonGauche() {/*
-        //Toujours le pignons a gauche de la pente
-        //Pour EST et OUEST, Facade et Arriere ont les pignons entre les rainures
-        //Pour NORD et SUD, Droite et Gauche ont les pignons entre les rainures
-
-        //double basePignon = 0;
-        if (Objects.equals(Chalet.orientationToit, "Est"))
-        {
-            //basePignon = Chalet.longueurChalet;
-            hauteurPignon= Chalet.longueurChalet * tan(Chalet.angleToit* (Math.PI / 180)); //largeurChalet est la largeur du pignon
-
-            //Points de coté
-            PointDouble pointSupGauchePignon = new PointDouble(epaisseurChalet, (hauteurPignon+hauteurMurs));
-            PointDouble pointInfGauchePignon = new PointDouble(epaisseurChalet, hauteurMurs);
-            PointDouble pointInfDroitePignon = new PointDouble((longueurChalet+epaisseurChalet), hauteurMurs);
-
-            Toit gauche = new Toit("PignonGauche", Arrays.asList(pointSupGauchePignon, pointInfGauchePignon, pointInfDroitePignon));
-            listeToit.add(gauche);
-        }
-        if (Objects.equals(Chalet.orientationToit, "Ouest"))
-        {
-            basePignon = Chalet.longueurChalet;
-            Toit.hauteurPignon= basePignon * tan(Chalet.angleToit* (Math.PI / 180)); //largeurChalet est la largeur du pignon
-
-            //Points de coté
-            PointDouble pointSupDroitePignon = new PointDouble(Chalet.epaisseurChalet, (Toit.hauteurPignon+Chalet.hauteurMurs));
-            PointDouble pointInfGauchePignon = new PointDouble(Chalet.epaisseurChalet, Chalet.hauteurMurs);
-            PointDouble pointInfDroitePignon = new PointDouble(basePignon+Chalet.epaisseurChalet, Chalet.hauteurMurs);
-
-            Toit gauche = new Toit("PignonGauche", Arrays.asList(pointSupDroitePignon, pointInfGauchePignon, pointInfDroitePignon));
-            listeToit.add(gauche);
-        }
-        if (Objects.equals(Chalet.orientationToit, "Nord"))
-        {
-            basePignon = Chalet.largeurChalet;
-            Toit.hauteurPignon= basePignon * tan(Chalet.angleToit* (Math.PI / 180)); //largeurChalet est la largeur du pignon
-
-            //Points de coté
-            PointDouble pointSupDroitePignon = new PointDouble(Chalet.epaisseurChalet, (Toit.hauteurPignon+Chalet.hauteurMurs));
-            PointDouble pointInfGauchePignon = new PointDouble(Chalet.epaisseurChalet, Chalet.hauteurMurs);
-            PointDouble pointInfDroitePignon = new PointDouble(basePignon+Chalet.epaisseurChalet, Chalet.hauteurMurs);
-
-            Toit gauche = new Toit("PignonGauche", Arrays.asList(pointSupDroitePignon, pointInfGauchePignon, pointInfDroitePignon));
-            listeToit.add(gauche);
-        }
-        if (Objects.equals(Chalet.orientationToit, "Sud"))
-        {
-            basePignon = Chalet.largeurChalet;
-            Toit.hauteurPignon= basePignon * tan(Chalet.angleToit* (Math.PI / 180)); //largeurChalet est la largeur du pignon
-
-            //Points de coté
-            PointDouble pointSupGauchePignon = new PointDouble(Chalet.epaisseurChalet, (Toit.hauteurPignon+Chalet.hauteurMurs));
-            PointDouble pointInfGauchePignon = new PointDouble(Chalet.epaisseurChalet, Chalet.hauteurMurs);
-            PointDouble pointInfDroitePignon = new PointDouble(basePignon+Chalet.epaisseurChalet, Chalet.hauteurMurs);
-
-            Toit gauche = new Toit("PignonGauche", Arrays.asList(pointSupGauchePignon, pointInfGauchePignon, pointInfDroitePignon));
-            listeToit.add(gauche);
-        }
-
-        //else {System.out.println("Pas EST ........");}*/
-    }
-
-    public void rainurerToit(List<Toit> listeDeToitARainurer, String orientationToit) {
-        List<Toit> toitsDecoupes = new LinkedList<>();
-        //if (Objects.equals(orientationToit, "Nord") || Objects.equals(orientationToit, "Sud")) {
-        for (Toit toit : listeDeToitARainurer) {
-            if (Objects.equals(toit.getNomToit(), "PignonGauche")) {
-
-                //Vue coté
-                toit.getSommetsToit().get(0); //A: InfGauche // Point(0, 0) reste Point(0, 0)
-
-                toitsDecoupes.add(toit);
-            }
-        }
-    }
-
 
     public void initialiserMurFacade() {
 
@@ -1692,13 +1616,10 @@ public class Chalet {
 
         }
 
-        if (listeFenetre != null) {
+        int lenghtlisteFenetre = listeFenetre.size();
 
-            int lenghtlisteFenetre = listeFenetre.size();
-
-            if (lenghtlisteFenetre > 0) {
-                mur.clearListeFenetre();
-            }
+        if (lenghtlisteFenetre > 0) {
+            mur.clearListeFenetre();
         }
 
         return false;
@@ -1730,11 +1651,11 @@ public class Chalet {
         for (Fenetre fenetre : listeFenetre) {
 
             boolean fenetreTrouve = selectionFenetre(fenetre, mousePointClicked);
-            if (fenetreTrouve == true) {
+            if (fenetreTrouve) {
 
                 if (AntiCollisionAccessoireMur(mur, fenetre.mousePoint, fenetre.largeur, nouvelleHauteur, initialDimension)) {
 
-                    if (AntiCollisionFenetreModification(mur, fenetre, fenetre.mousePoint, fenetre.largeur, nouvelleHauteur) == false) {
+                    if (!AntiCollisionFenetreModification(mur, fenetre, fenetre.mousePoint, fenetre.largeur, nouvelleHauteur)) {
 
                         boolean success = fenetre.setHauteurFenetre(nouvelleHauteur);
                         System.out.println(fenetre + "Hauteur de la Fenetre Modifie ");
@@ -1764,9 +1685,9 @@ public class Chalet {
         for (Fenetre fenetre : listeFenetre) {
 
             boolean fenetreTrouve = selectionFenetre(fenetre, mousePointClicked);
-            if (fenetreTrouve == true) {
+            if (fenetreTrouve) {
                 if (AntiCollisionAccessoireMur(mur, fenetre.mousePoint, nouvelleLargeur, fenetre.hauteur, initialDimension)) {
-                    if (AntiCollisionFenetreModification(mur, fenetre, fenetre.mousePoint, nouvelleLargeur, fenetre.hauteur) == false) {
+                    if (!AntiCollisionFenetreModification(mur, fenetre, fenetre.mousePoint, nouvelleLargeur, fenetre.hauteur)) {
 
                         boolean success = fenetre.setLargeurFenetre(nouvelleLargeur);
                         System.out.println(fenetre + "Largeur de la Fenetre Modifie ");
@@ -1838,6 +1759,10 @@ public class Chalet {
         return this.listeMurs;
     }
 
+    public static void setAngleToit(double angleToitMN) {
+        angleToit = angleToitMN;
+
+    }
 
     public static void setLargeurChalet(double largeurChaletMN) {
         largeurChalet = largeurChaletMN;
@@ -1867,9 +1792,6 @@ public class Chalet {
 
     }
 
-    public void setAngleToit(double angleToit) {
-        angleToit = angleToit;
-    }
 
     public void setListeMurs(List<Mur> listerMurs) {
         this.listeMurs = listeMurs;
