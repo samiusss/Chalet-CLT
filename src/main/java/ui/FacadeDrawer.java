@@ -197,6 +197,9 @@ public class FacadeDrawer {
         }
     private void drawToitFacade(Graphics g)
     {
+        hauteurPignon= Chalet.longueurChalet * tan((Chalet.angleToit)* (Math.PI / 180)); //largeurChalet est la largeur du pignon
+        hauteurRallonge = hauteurPignon + epaisseurChalet/2 * tan((Chalet.angleToit)* (Math.PI / 180));
+
         if (Objects.equals(orientationToit, "Est"))
         {
             double positionX = 0;
@@ -204,7 +207,6 @@ public class FacadeDrawer {
 
             ////PIGNONGAUCHE////
 
-            hauteurPignon= Chalet.longueurChalet * tan((Chalet.angleToit)* (Math.PI / 180)); //largeurChalet est la largeur du pignon
 
             //Points de pignon à gauche de la pente
             PointDouble pointSupGauchePignon = new PointDouble(epaisseurChalet/2, (0-hauteurPignon));
@@ -230,7 +232,6 @@ public class FacadeDrawer {
 
             ///RALLONGE///
 
-            hauteurRallonge = hauteurPignon + epaisseurChalet/2 * tan((Chalet.angleToit)* (Math.PI / 180));
 
             PointDouble pointSupGaucheRallonge = new PointDouble(0, (0-hauteurRallonge));
             PointDouble pointInfGaucheRallonge = new PointDouble(0, 0);
@@ -292,7 +293,6 @@ public class FacadeDrawer {
 
             ////PIGNONGAUCHE////
 
-            hauteurPignon= Chalet.longueurChalet * tan((Chalet.angleToit)* (Math.PI / 180)); //largeurChalet est la largeur du pignon
 
             //Points de pignon à gauche de la pente
             PointDouble pointSupDroitePignon = new PointDouble((longueurChalet-epaisseurChalet/2), (0-hauteurPignon));
@@ -318,7 +318,6 @@ public class FacadeDrawer {
 
             ///RALLONGE///
 
-            hauteurRallonge = hauteurPignon + epaisseurChalet/2 * tan((Chalet.angleToit)* (Math.PI / 180));
 
             PointDouble pointSupGaucheRallonge = new PointDouble(longueurChalet-epaisseurChalet/2, (0-hauteurPignon));
             PointDouble pointInfGaucheRallonge = new PointDouble(longueurChalet-epaisseurChalet/2, 0);
@@ -382,10 +381,10 @@ public class FacadeDrawer {
 
             //// TOIT CAR FACADE ORIENTÉ NORD DONNE LA PENTE (OU LE TOIT) ////
 
-            PointDouble pSupGaucheToit = new PointDouble(0, (0-hauteurRallonge-epaisseurChalet/2));
+            PointDouble pSupGaucheToit = new PointDouble(0, (0-hauteurPignon-epaisseurChalet/2));
             PointDouble pInfGaucheToit = new PointDouble(0, 0);
             PointDouble pInfDroiteLoinToit = new PointDouble((longueurChalet), 0);
-            PointDouble pSupDroiteToit = new PointDouble((longueurChalet), (0-hauteurRallonge-epaisseurChalet/2));
+            PointDouble pSupDroiteToit = new PointDouble((longueurChalet), (0-hauteurPignon-epaisseurChalet/2));
 
             int pSupGaucheToitX = (int) (pSupGaucheToit.getX()*zoomFactor+positionX);
             int pSupGaucheToitY = (int) (pSupGaucheToit.getY()*zoomFactor+positionY);
@@ -441,7 +440,6 @@ public class FacadeDrawer {
 
             ///RALLONGE DE DOS///
 
-            hauteurRallonge = hauteurPignon + epaisseurChalet/2 * tan((Chalet.angleToit)* (Math.PI / 180));
 
             PointDouble pointSupGaucheRallonge = new PointDouble(0, (0-hauteurRallonge));
             PointDouble pointInfGaucheRallonge = new PointDouble(0, 0);

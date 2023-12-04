@@ -35,76 +35,13 @@ public class Chalet {
         this.largeurChalet = largeurChalet;
         this.longueurChalet = longueurChalet;
         this.hauteurMurs = hauteurMurs;
+        this.hauteurPignon = hauteurPignon;
         this.epaisseurChalet = epaisseurChalet;
         this.angleToit = angleToit;
         this.listeMurs = listeMurs;
         this.orientationToit = orientationToit;
         this.zoom = 1;
     }
-    public static void initialiserPignonGauche()
-    {/*
-        //Toujours le pignons a gauche de la pente
-        //Pour EST et OUEST, Facade et Arriere ont les pignons entre les rainures
-        //Pour NORD et SUD, Droite et Gauche ont les pignons entre les rainures
-
-        //double basePignon = 0;
-        if (Objects.equals(Chalet.orientationToit, "Est"))
-        {
-            //basePignon = Chalet.longueurChalet;
-            hauteurPignon= Chalet.longueurChalet * tan(Chalet.angleToit* (Math.PI / 180)); //largeurChalet est la largeur du pignon
-
-            //Points de coté
-            PointDouble pointSupGauchePignon = new PointDouble(epaisseurChalet, (hauteurPignon+hauteurMurs));
-            PointDouble pointInfGauchePignon = new PointDouble(epaisseurChalet, hauteurMurs);
-            PointDouble pointInfDroitePignon = new PointDouble((longueurChalet+epaisseurChalet), hauteurMurs);
-
-            Toit gauche = new Toit("PignonGauche", Arrays.asList(pointSupGauchePignon, pointInfGauchePignon, pointInfDroitePignon));
-            listeToit.add(gauche);
-        }
-        if (Objects.equals(Chalet.orientationToit, "Ouest"))
-        {
-            basePignon = Chalet.longueurChalet;
-            Toit.hauteurPignon= basePignon * tan(Chalet.angleToit* (Math.PI / 180)); //largeurChalet est la largeur du pignon
-
-            //Points de coté
-            PointDouble pointSupDroitePignon = new PointDouble(Chalet.epaisseurChalet, (Toit.hauteurPignon+Chalet.hauteurMurs));
-            PointDouble pointInfGauchePignon = new PointDouble(Chalet.epaisseurChalet, Chalet.hauteurMurs);
-            PointDouble pointInfDroitePignon = new PointDouble(basePignon+Chalet.epaisseurChalet, Chalet.hauteurMurs);
-
-            Toit gauche = new Toit("PignonGauche", Arrays.asList(pointSupDroitePignon, pointInfGauchePignon, pointInfDroitePignon));
-            listeToit.add(gauche);
-        }
-        if (Objects.equals(Chalet.orientationToit, "Nord"))
-        {
-            basePignon = Chalet.largeurChalet;
-            Toit.hauteurPignon= basePignon * tan(Chalet.angleToit* (Math.PI / 180)); //largeurChalet est la largeur du pignon
-
-            //Points de coté
-            PointDouble pointSupDroitePignon = new PointDouble(Chalet.epaisseurChalet, (Toit.hauteurPignon+Chalet.hauteurMurs));
-            PointDouble pointInfGauchePignon = new PointDouble(Chalet.epaisseurChalet, Chalet.hauteurMurs);
-            PointDouble pointInfDroitePignon = new PointDouble(basePignon+Chalet.epaisseurChalet, Chalet.hauteurMurs);
-
-            Toit gauche = new Toit("PignonGauche", Arrays.asList(pointSupDroitePignon, pointInfGauchePignon, pointInfDroitePignon));
-            listeToit.add(gauche);
-        }
-        if (Objects.equals(Chalet.orientationToit, "Sud"))
-        {
-            basePignon = Chalet.largeurChalet;
-            Toit.hauteurPignon= basePignon * tan(Chalet.angleToit* (Math.PI / 180)); //largeurChalet est la largeur du pignon
-
-            //Points de coté
-            PointDouble pointSupGauchePignon = new PointDouble(Chalet.epaisseurChalet, (Toit.hauteurPignon+Chalet.hauteurMurs));
-            PointDouble pointInfGauchePignon = new PointDouble(Chalet.epaisseurChalet, Chalet.hauteurMurs);
-            PointDouble pointInfDroitePignon = new PointDouble(basePignon+Chalet.epaisseurChalet, Chalet.hauteurMurs);
-
-            Toit gauche = new Toit("PignonGauche", Arrays.asList(pointSupGauchePignon, pointInfGauchePignon, pointInfDroitePignon));
-            listeToit.add(gauche);
-        }
-
-        //else {System.out.println("Pas EST ........");}*/
-    }
-
-
 
 
     public void initialiserMurFacade() {
