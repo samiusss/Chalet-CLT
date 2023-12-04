@@ -238,9 +238,9 @@ public class Controleur {
         boolean success = Chalet.supprimerPorte(nomMur, listeMursDrawer);
         return success;
     }
-    public boolean modifierXPorte(Point mousePointClicked,int nouveauXporteint, String nomMur, List<Mur> listeMursDrawer,Dimension initialDimension)
+    public boolean modifierXPorte(int nouveauXporteint, String nomMur, Dimension initialDimension)
     {
-        boolean success = Chalet.modifierXporte(mousePointClicked,nouveauXporteint, nomMur, listeMursDrawer,initialDimension );
+        boolean success = chaletProduction.modifierXporte(nouveauXporteint, nomMur,initialDimension );
         return success;}
     // J'ai un bugg ici
     public boolean modifierXFenetre(Point mousePointClicked, int nouveauXfenetreint, String nomMur, List<Mur> listeMursDrawer,Dimension initialDimension)

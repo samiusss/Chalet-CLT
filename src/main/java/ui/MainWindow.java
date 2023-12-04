@@ -5,7 +5,7 @@ import domain.Chalet;
 import domain.ChaletDTO;
 import domain.Controleur;
 import domain.Mur;
-import domain.Porte;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -450,31 +450,31 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputText = XPorteField.getText();
-                //int nouveauXPorte = Integer.parseInt(inputText);
                 Pouces nouveauXPorte = convertirStringImperialEnPouces(inputText);
-                Dimension initialDimension = DrawingPanel.getPreferredSize();
-                int adjustedX = (int)((mousePointClicked.getX() - controleur.getOffsetX()) / controleur.getZoom());
-                int adjustedY = (int)((mousePointClicked.getY() - controleur.getOffsetY()) / controleur.getZoom());
-                Point mPoint = new Point(adjustedX, adjustedY);
 
-                if (nouveauXPorte!=null){
+                if (nouveauXPorte != null) {
                     System.out.println("Yes");
                     String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                     Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                    // On convertir mon point pouces en Point int
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
+
+                    int adjustedX = (int) ((mousePointClicked.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                    int adjustedY = (int) ((mousePointClicked.getY() - controleur.getOffsetY()) / controleur.getZoom());
+                    Point mPoint = new Point(adjustedX, adjustedY);
+
                     int nouveauXporteint = convertirPoucesEnInt(nouveauXPorte);
                     nouveauXporteint = Math.round(nouveauXporteint);
 
+                    boolean xporteModifie = controleur.modifierXPorte(nouveauXporteint, nomMur, DrawingPanel.getPreferredSize());
 
-                    boolean xportemodifie = controleur.modifierXPorte(mPoint, nouveauXporteint, nomMur, listeMursDrawer,initialDimension );
-                    if (xportemodifie == true) {
+                    if (xporteModifie) {
                         DrawingPanel.repaint();
                     } else {
                         JOptionPane.showMessageDialog(null, "Une erreur s'est produite en essayant de modifier le X de la porte !", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
+                }
             }
-            }
+
         });
 
 
