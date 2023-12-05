@@ -1368,7 +1368,6 @@ public class Chalet {
         System.out.println(false+"(AntiCollisionPorte) ");
         return false;
 
-
     }
 
     public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer,Dimension initialDimension){
@@ -1385,7 +1384,6 @@ public class Chalet {
         if(Anticollision)
         {
 
-
             if(AntiCollisionPorteFenetre(mur,mousepoint,largeur,largeur) == false){
 
                 if(Anticollision && listePorte != null) {
@@ -1401,22 +1399,13 @@ public class Chalet {
                 return success;
             }
 
-
         }
 
-        /*listePorte = mur.getListePorte();
-        for (Porte porte1 : listePorte) {
-            System.out.println(porte1);
-            return success;
-        } */
-
         return false;
-
 
     }
 
     public static boolean supprimerPorte(String nomMur, List<Mur> listeMursDrawer){
-
 
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
@@ -1461,7 +1450,6 @@ public class Chalet {
 
         }
 
-
         return false;
 
     }
@@ -1492,6 +1480,7 @@ public class Chalet {
 
                 if(AntiCollisionFenetreFenetre(mur,mousepoint,largeur,largeur) == false) {
 
+                    System.out.println("Le point" + mousepoint);
 
                     Fenetre Fenetre = new Fenetre(mousepoint,largeur,hauteur);
                     boolean success = mur.ajouterFenetre(Fenetre);
@@ -1663,13 +1652,11 @@ public class Chalet {
 
     public static boolean supprimerToutesFenetre(String nomMur, List<Mur> listeMursDrawer){
 
-
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
         //Une porte par mur
         List<Fenetre> listeFenetre = mur.getListeFenetre();
         listeFenetre.clear();
-
 
         return true;
 

@@ -9,6 +9,7 @@ import domain.Mur;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.*;
@@ -370,7 +371,6 @@ public class MainWindow extends javax.swing.JFrame {
                 Dimension initialDimension = DrawingPanel.getPreferredSize();
                 XFenetreField.setText(String.valueOf(mousePointClicked.getY()));
                 YfenetreField.setText(String.valueOf(mousePointClicked.getY()));
-
 
 
                 if (nouvelleLargeur != null) {
@@ -745,6 +745,36 @@ public class MainWindow extends javax.swing.JFrame {
                 FenetrePrincipale.repaint();
                 System.out.println(inputText + " comme orientation a été rentré...");
 
+            }
+        });
+        Brut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Controleur.ExporterPanneauxBrut();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        ExporterFinit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Controleur.ExporterPanneauxFinis();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        ExporterRetrait.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Controleur.ExporterPanneauxRetrait();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }

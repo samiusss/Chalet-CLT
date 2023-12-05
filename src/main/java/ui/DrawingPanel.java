@@ -66,6 +66,7 @@ public class DrawingPanel extends JPanel implements Serializable {
             }
         });
 
+
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -84,7 +85,7 @@ public class DrawingPanel extends JPanel implements Serializable {
                     if(nomMur != "SURPLOMB") {
                         boolean ajoutReussi = controleur.ajouterPorte(mPoint,nomMur,listeMursDrawer,intitalDimension);
                         if(ajoutReussi == false){
-                            JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Position Invalide Mouse Wheel DrawingPanel !", "Erreur", JOptionPane.ERROR_MESSAGE);
                         }
                         repaint();
 
@@ -92,6 +93,7 @@ public class DrawingPanel extends JPanel implements Serializable {
                     MainWindow.isAddingPorte = false;
 
                 }
+
                 if (MainWindow.isAddingFenetre && !MainWindow.isSelection)
                 {
 
@@ -106,7 +108,7 @@ public class DrawingPanel extends JPanel implements Serializable {
                     if(nomMur != "SURPLOMB") {
                         boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mPoint,nomMur,listeMursDrawer, intitalDimension);
                         if(ajoutFenetrereussi == false){
-                            JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Position Invalide Position Invalide Mouse Wheel DrawingPanel !", "Erreur", JOptionPane.ERROR_MESSAGE);
                         }
                         repaint();
                     }
