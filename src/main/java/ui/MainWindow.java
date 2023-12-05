@@ -1,6 +1,7 @@
 package ui;
 
 import Utilitaires.Pouces;
+//import Utilitaires.STLWriterSecondaire;
 import domain.Chalet;
 import domain.ChaletDTO;
 import domain.Controleur;
@@ -9,6 +10,7 @@ import domain.Mur;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.*;
@@ -117,7 +119,7 @@ public class MainWindow extends javax.swing.JFrame {
     public JTextField largeurchaletMN;
     public JTextField epaisseurchaletMN;
     public JTextField hauteurchaletMN;
-    private JButton Brut;
+    private JButton BrutExport;
     private JButton ExporterFinit;
     private JButton ExporterRetrait;
     public JButton nouveauChaletButton;
@@ -660,6 +662,41 @@ public class MainWindow extends javax.swing.JFrame {
                 FenetrePrincipale.revalidate();
                 FenetrePrincipale.repaint();
                 System.out.println(inputText + " comme orientation a été rentré...");
+            }
+        });
+        BrutExport.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    controleur.ExporterPanneauxBrut();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                JOptionPane.showMessageDialog(null, "Vous avez exporté Chalet Brut", "Exportations STL", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        /*ExporterFinit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    controleur.ExporterPanneauxFinit();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                JOptionPane.showMessageDialog(null, "Vous avez exporté Chalet Fini", "Exportations STL", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });*/
+
+        ExporterRetrait.addActionListener(new ActionListener(){
+            @Override
+           public void actionPerformed(ActionEvent e){
+                try{
+                    controleur.ExporterPanneauxRetrait();
+                } catch(IOException ex){
+                    throw new RuntimeException(ex);
+                }
+                JOptionPane.showMessageDialog(null, "Vous avez exporté Chalet Retrait", "Exportations STL", JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }
