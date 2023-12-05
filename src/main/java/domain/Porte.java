@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.UUID;
 import Utilitaires.*;
 
+import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
+
 
 public class Porte extends Accessoires implements Serializable {
 
@@ -25,6 +27,7 @@ public class Porte extends Accessoires implements Serializable {
     public Point getPoint() {
         return mousePoint;
     }
+
 
 
     public boolean setHauteurPorte(Pouces valeur) {
@@ -76,5 +79,36 @@ public class Porte extends Accessoires implements Serializable {
         mousePoint = newMousePoint;
     }
 
+    public Point getCoinSuperieurGauche() {
+        return new Point(mousePoint.x - convertirPoucesEnPixels(largeur) / 2, mousePoint.y - convertirPoucesEnPixels(hauteur) / 2);
     }
+
+    public Point getCoinSuperieurDroit() {
+        return new Point(mousePoint.x + convertirPoucesEnPixels(largeur) / 2, mousePoint.y - convertirPoucesEnPixels(hauteur) / 2);
+    }
+
+    public Point getCoinInferieurGauche() {
+        return new Point(mousePoint.x - convertirPoucesEnPixels(largeur) / 2, mousePoint.y + convertirPoucesEnPixels(hauteur) / 2);
+    }
+
+    public Point getCoinInferieurDroit() {
+        return new Point(mousePoint.x + convertirPoucesEnPixels(largeur) / 2, mousePoint.y + convertirPoucesEnPixels(hauteur) / 2);
+    }
+
+    public boolean estDansMousePoint(Point targetMousePoint) {
+        // Obtenez les coins de la porte
+        Point coinSuperieurGauche = getCoinSuperieurGauche();
+        Point coinSuperieurDroit = getCoinSuperieurDroit();
+        Point coinInferieurGauche = getCoinInferieurGauche();
+        Point coinInferieurDroit = getCoinInferieurDroit();
+
+        // Vérifiez si le mousePoint est à l'intérieur des limites de la porte
+        return targetMousePoint.x >= Math.min(coinSuperieurGauche.x, coinSuperieurDroit.x) &&
+                targetMousePoint.x <= Math.max(coinSuperieurGauche.x, coinSuperieurDroit.x) &&
+                targetMousePoint.y >= Math.min(coinSuperieurGauche.y, coinInferieurGauche.y) &&
+                targetMousePoint.y <= Math.max(coinSuperieurGauche.y, coinInferieurGauche.y);
+    }
+
+
+}
 

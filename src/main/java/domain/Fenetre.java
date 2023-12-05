@@ -5,6 +5,8 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 
+import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
+
 public class Fenetre extends Accessoires implements Serializable {
 
     public List<pointPouces> sommetsFenetre;
@@ -70,6 +72,35 @@ public class Fenetre extends Accessoires implements Serializable {
         hauteur = valeur;
         return true;
     }
+    public Point getCoinSuperieurGauche() {
+        return new Point(mousePoint.x - convertirPoucesEnPixels(largeur) / 2, mousePoint.y - convertirPoucesEnPixels(hauteur) / 2);
+    }
+
+    public Point getCoinSuperieurDroit() {
+        return new Point(mousePoint.x + convertirPoucesEnPixels(largeur) / 2, mousePoint.y - convertirPoucesEnPixels(hauteur) / 2);
+    }
+
+    public Point getCoinInferieurGauche() {
+        return new Point(mousePoint.x - convertirPoucesEnPixels(largeur) / 2, mousePoint.y + convertirPoucesEnPixels(hauteur) / 2);
+    }
+
+    public Point getCoinInferieurDroit() {
+        return new Point(mousePoint.x + convertirPoucesEnPixels(largeur) / 2, mousePoint.y + convertirPoucesEnPixels(hauteur) / 2);
+    }
+    public boolean estDansMousePoint(Point targetMousePoint) {
+        // Obtenez les coins de la fenêtre
+        Point coinSuperieurGauche = getCoinSuperieurGauche();
+        Point coinSuperieurDroit = getCoinSuperieurDroit();
+        Point coinInferieurGauche = getCoinInferieurGauche();
+        Point coinInferieurDroit = getCoinInferieurDroit();
+
+        // Vérifiez si le targetMousePoint est à l'intérieur des limites de la fenêtre
+        return targetMousePoint.x >= Math.min(coinSuperieurGauche.x, coinSuperieurDroit.x) &&
+                targetMousePoint.x <= Math.max(coinSuperieurGauche.x, coinSuperieurDroit.x) &&
+                targetMousePoint.y >= Math.min(coinSuperieurGauche.y, coinInferieurGauche.y) &&
+                targetMousePoint.y <= Math.max(coinSuperieurGauche.y, coinInferieurGauche.y);
+    }
+
 
 
 

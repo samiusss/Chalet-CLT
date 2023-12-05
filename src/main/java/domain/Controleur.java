@@ -20,6 +20,7 @@ public class Controleur {
     private ChaletDTO chaletdto;
     private double zoom;
     private float OffsetX;
+
     private float OffsetY;
 
 
@@ -30,10 +31,12 @@ public class Controleur {
         chalet = new Chalet();
     }
 */
-    public Controleur()
+   public Controleur()
    {
        this.zoom = 1;
    }
+
+
 
     public static void ExporterPanneauxFinis() throws IOException {
         // Spécifiez le nom du fichier STL de sortie
@@ -78,6 +81,8 @@ public class Controleur {
 
     }
 
+
+
     public static void ExporterPanneauxBrut() throws IOException {
         // Spécifiez le nom du fichier STL de sortie
         //String fileName = "chemin/vers/votre/repertoire/fichier.stl";
@@ -115,6 +120,7 @@ public class Controleur {
         STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutDroite);
 
     }
+
 
     public static void ExporterPanneauxRetrait() throws IOException {
         // Spécifiez le nom du fichier STL de sortie
@@ -159,7 +165,14 @@ public class Controleur {
 
     }
 
-    public static void setEpaisseurChalet(double epaisseurChalet)
+    public static void setAngleToit(double angleToit)
+    {
+        Chalet.setAngleToit(angleToit);
+        initialiserChalet(chaletProduction);
+    }
+
+
+        public static void setEpaisseurChalet(double epaisseurChalet)
     {
         Chalet.setEpaisseurChalet(epaisseurChalet);
         initialiserChalet(chaletProduction);
@@ -190,27 +203,23 @@ public class Controleur {
         initialiserChalet(chaletProduction);
 
     }
-
     public static void setRetraitChalet(double distanceUsinage) {
         Chalet.setRetraitChalet(distanceUsinage);
         System.out.println(distanceUsinage +" updated in Controleur"); //test
         initialiserChalet(chaletProduction);
 
     }
-
     public static void setOrientation(String orientation) {
         Chalet.setOrientation(orientation);
         System.out.println(orientation +" comme orientation a été updated in Controleur"); //test
         initialiserChalet(chaletProduction);
 
     }
-
     public boolean setLargeurPorte(Pouces nouvellelargeur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setLargeurPorte(nouvellelargeur, nomMur, listeMursDrawer, initialDimension);
         return success;
     }
-
     public boolean setHauteurPorte(Pouces nouvelleHauteur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setHauteurPorte(nouvelleHauteur, nomMur, listeMursDrawer,initialDimension);
@@ -233,20 +242,20 @@ public class Controleur {
         boolean success = Chalet.supprimerPorte(nomMur, listeMursDrawer);
         return success;
     }
-    public boolean modifierXPorte(Point mousePointClicked,int nouveauXporteint, String nomMur, List<Mur> listeMursDrawer,Dimension initialDimension)
+    public boolean modifierXPorte(int nouveauXporteint, String nomMur, Dimension initialDimension)
     {
-        boolean success = Chalet.modifierXporte(mousePointClicked,nouveauXporteint, nomMur, listeMursDrawer,initialDimension );
+        boolean success = chaletProduction.modifierXporte(nouveauXporteint, nomMur,initialDimension );
         return success;}
     // J'ai un bugg ici
-    public boolean modifierXFenetre(Point mousePointClicked, int nouveauXfenetreint, String nomMur, List<Mur> listeMursDrawer,Dimension initialDimension)
+    public boolean modifierXFenetre(int nouveauXfenetreint, String nomMur,Dimension initialDimension)
     {
-        boolean success = Chalet.modifierXfenetre(mousePointClicked,nouveauXfenetreint, nomMur, listeMursDrawer,initialDimension );
+        boolean success = Chalet.modifierXfenetre(nouveauXfenetreint,nomMur,initialDimension );
         return success;
     }
 
-    public boolean modifierYFenetre(Point mousePointClicked, int nouveauYfenetreint, String nomMur, List<Mur> listeMursDrawer,Dimension initialDimension)
+    public boolean modifierYFenetre( int nouveauYfenetreint, String nomMur,Dimension initialDimension)
     {
-        boolean success = Chalet.modifierYfenetre(mousePointClicked,nouveauYfenetreint, nomMur, listeMursDrawer,initialDimension );
+        boolean success = Chalet.modifierYfenetre(nouveauYfenetreint, nomMur,initialDimension );
         return success;
     }
 
@@ -262,6 +271,8 @@ public class Controleur {
         return success;
     }
 
+
+
     static Chalet chaletProduction = createChalet();
 
     boolean rep = initialiserChalet(chaletProduction);
@@ -272,6 +283,10 @@ public class Controleur {
     public static Chalet getChaletProductionStatic() {
         return chaletProduction;
     }
+
+
+
+
 
     public static boolean ajouterFenetre(Point mousepoint, String nomMur, List<Mur> listeMursDrawer, Dimension intitalDimension){
 
@@ -295,6 +310,10 @@ public class Controleur {
         //Porte newPorte = newAccessoires("AID",mousepoint, double largeur,double hauteur);
         //accessoiresmur.add(newPorte);
     }
+
+
+
+
 
     public ChaletDTO getChalet() {
         return chaletdto;

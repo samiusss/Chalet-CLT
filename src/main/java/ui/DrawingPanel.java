@@ -1,10 +1,6 @@
 package ui;
 
-import Utilitaires.Pouces;
-import domain.Chalet;
-import domain.ChaletDTO;
-import domain.Controleur;
-import domain.Mur;
+import domain.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,14 +8,14 @@ import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
-import static Utilitaires.ConvertisseurMesures.*;
-import static Utilitaires.ConvertisseurMesures.imperialToDoubleUniversel;
 import static ui.MainWindow.*;
 
 
 public class DrawingPanel extends JPanel implements Serializable {
-
+    private int xOffsetDrag;
+    private int yOffsetDrag;
     private MainWindow mainWindow;
     public Controleur controleur;
     public Dimension initialDimensionNonStatic = getPreferredSize();
@@ -27,6 +23,8 @@ public class DrawingPanel extends JPanel implements Serializable {
     public int h = (int) initialDimensionNonStatic.getHeight();
     public Dimension initialDimensionReturn = new Dimension(w, h);
     private double zoomFactor = 1.0;
+    private Optional<Porte> porteSelectionnee = Optional.empty();
+    private Optional<Fenetre> fenetreSelectionnee = Optional.empty();
 
     /*public DrawingPanel() {
         controleur = new Controleur();
@@ -34,7 +32,6 @@ public class DrawingPanel extends JPanel implements Serializable {
     }*/
 
     public static ChaletDTO.AffichageVue selectedAffichageVue;
-
 
 
     public DrawingPanel(final MainWindow mainWindow) {
@@ -65,58 +62,119 @@ public class DrawingPanel extends JPanel implements Serializable {
                 repaint();
             }
         });
+        // Drag de la porte
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent mousePointClicked) {
+
+                if (!MainWindow.isAddingPorte) {
+
+                    // Réinitialisez le décalage ici
+                    xOffsetDrag = 0;
+                    yOffsetDrag = 0;
+
+                    //Selection de la porte
+                    Point mousePoint = mousePointClicked.getPoint();
+                    Chalet chalet = controleur.getChaletProduction();
+                    porteSelectionnee = chalet.determinerPorte(selectedAffichageVue.toString(), mousePoint);
+
+                    System.out.println(mousePoint + "porte selectionne" + porteSelectionnee);
+                }
+
+                // Drag de la fenetre
+                if (!MainWindow.isAddingFenetre){
+                    // Réinitialisez le décalage ici
+                    xOffsetDrag = 0;
+                    yOffsetDrag = 0;
+
+                    //Selection de la fenetre
+                    Point mousePoint = mousePointClicked.getPoint();
+                    Chalet chalet = controleur.getChaletProduction();
+                    fenetreSelectionnee = chalet.determinerFenetre(selectedAffichageVue.toString(), mousePoint);
+
+                    System.out.println(mousePoint + "fenetre selectionne" + fenetreSelectionnee);
+
+                }
+            }
+        });
+
+        addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+
+                if (!MainWindow.isAddingPorte) {
+
+                    if (SwingUtilities.isLeftMouseButton(e) && porteSelectionnee.isPresent()) {
+                        System.out.println("Avant mise à jour : " + porteSelectionnee.get().mousePoint.getX());
+                        int newX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
+
+                        System.out.println("Nouvelles coordonnées : X=" + newX);
+
+                        Chalet chalet = controleur.getChaletProduction();
+                        chalet.modifierXporte(newX, selectedAffichageVue.toString(), initialDimensionReturn);
+                        repaint();
+                    }
+
+                }
+                // Drag de la fenetre
+                if (!MainWindow.isAddingFenetre) {
+
+                    if (SwingUtilities.isLeftMouseButton(e) && fenetreSelectionnee.isPresent()) {
+                        System.out.println("Avant mise à jour : " + fenetreSelectionnee.get().mousePoint.getX());
+                        int newX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                        /*int newY = (int) ((e.getY() - controleur.getOffsetY()) / controleur.getZoom());*/
+
+                        System.out.println("Nouvelles coordonnées : X=" + newX);
+                        /*System.out.println("Nouvelles coordonnées : Y=" + newY);*/
+
+                        Chalet chalet = controleur.getChaletProduction();
+                        chalet.modifierXfenetre(newX, selectedAffichageVue.toString(), initialDimensionReturn);
+                        /*chalet.modifierYfenetre(newY, selectedAffichageVue.toString(), initialDimensionReturn);*/
+                        repaint();
+                    }
+
+                }
+            }
+        });
 
 
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 mousePointClicked = e.getPoint();
-
                 System.out.println(mousePointClicked);
-                if (MainWindow.isAddingPorte)
-                {
-                    int adjustedX = (int)((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
-                    int adjustedY = (int)((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
-                    Point mPoint = new Point(adjustedX, adjustedY);
-                    String nomMur = String.valueOf(selectedAffichageVue);
-                    Chalet chalet = controleur.getChaletProduction();
-                    java.util.List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
-                    Dimension intitalDimension = getPreferredSize();
-                    if(nomMur != "SURPLOMB") {
-                        boolean ajoutReussi = controleur.ajouterPorte(mPoint,nomMur,listeMursDrawer,intitalDimension);
-                        if(ajoutReussi == false){
-                            JOptionPane.showMessageDialog(null, "Position Invalide Mouse Wheel DrawingPanel !", "Erreur", JOptionPane.ERROR_MESSAGE);
-                        }
-                        repaint();
 
+                int adjustedX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                int adjustedY = (int) ((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
+                Point mPoint = new Point(adjustedX, adjustedY);
+
+                String nomMur = String.valueOf(selectedAffichageVue);
+                Chalet chalet = controleur.getChaletProduction();
+                List<Mur> listeMursDrawer = nomMur.equals("SURPLOMB") ?
+                        chalet.getMursUsines(1700, "NORD") : chalet.getMursUsines(0, "NORD");
+
+                Dimension intitalDimension = getPreferredSize();
+
+                if (MainWindow.isAddingPorte) {
+                    boolean ajoutReussi = controleur.ajouterPorte(mPoint, nomMur, listeMursDrawer, intitalDimension);
+                    if (!ajoutReussi) {
+                        JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
                     MainWindow.isAddingPorte = false;
-
                 }
 
-                if (MainWindow.isAddingFenetre && !MainWindow.isSelection)
-                {
-
-                    String nomMur = String.valueOf(selectedAffichageVue);
-                    Chalet chalet = controleur.getChaletProduction();
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(1700,"NORD");
-                    Point mousePoint = e.getPoint();
-                    int adjustedX = (int)((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
-                    int adjustedY = (int)((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
-                    Point mPoint = new Point(adjustedX, adjustedY);
-                    Dimension intitalDimension = getPreferredSize();
-                    if(nomMur != "SURPLOMB") {
-                        boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mPoint,nomMur,listeMursDrawer, intitalDimension);
-                        if(ajoutFenetrereussi == false){
-                            JOptionPane.showMessageDialog(null, "Position Invalide Position Invalide Mouse Wheel DrawingPanel !", "Erreur", JOptionPane.ERROR_MESSAGE);
-                        }
-                        repaint();
+                if (MainWindow.isAddingFenetre && !MainWindow.isSelection) {
+                    boolean ajoutFenetrereussi = Controleur.ajouterFenetre(mPoint, nomMur, listeMursDrawer, intitalDimension);
+                    if (!ajoutFenetrereussi) {
+                        JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
                     MainWindow.isAddingFenetre = false;
                 }
 
+                repaint();
             }
         });
+
 
 
     }
@@ -701,7 +759,7 @@ public class DrawingPanel extends JPanel implements Serializable {
                     revalidate();
                     repaint();
                 }*/
-           /* });*/
+            /* });*/
 
         }
     }
@@ -716,6 +774,5 @@ public class DrawingPanel extends JPanel implements Serializable {
     }
 
 
-
-    }
+}
 
