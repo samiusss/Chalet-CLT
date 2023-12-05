@@ -247,15 +247,15 @@ public class Controleur {
         boolean success = chaletProduction.modifierXporte(nouveauXporteint, nomMur,initialDimension );
         return success;}
     // J'ai un bugg ici
-    public boolean modifierXFenetre(Point mousePointClicked, int nouveauXfenetreint, String nomMur, List<Mur> listeMursDrawer,Dimension initialDimension)
+    public boolean modifierXFenetre(int nouveauXfenetreint, String nomMur,Dimension initialDimension)
     {
-        boolean success = Chalet.modifierXfenetre(mousePointClicked,nouveauXfenetreint, nomMur, listeMursDrawer,initialDimension );
+        boolean success = Chalet.modifierXfenetre(nouveauXfenetreint,nomMur,initialDimension );
         return success;
     }
 
-    public boolean modifierYFenetre(Point mousePointClicked, int nouveauYfenetreint, String nomMur, List<Mur> listeMursDrawer,Dimension initialDimension)
+    public boolean modifierYFenetre( int nouveauYfenetreint, String nomMur,Dimension initialDimension)
     {
-        boolean success = Chalet.modifierYfenetre(mousePointClicked,nouveauYfenetreint, nomMur, listeMursDrawer,initialDimension );
+        boolean success = Chalet.modifierYfenetre(nouveauYfenetreint, nomMur,initialDimension );
         return success;
     }
 

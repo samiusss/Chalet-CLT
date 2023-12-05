@@ -24,6 +24,7 @@ public class DrawingPanel extends JPanel implements Serializable {
     public Dimension initialDimensionReturn = new Dimension(w, h);
     private double zoomFactor = 1.0;
     private Optional<Porte> porteSelectionnee = Optional.empty();
+    private Optional<Fenetre> fenetreSelectionnee = Optional.empty();
 
     /*public DrawingPanel() {
         controleur = new Controleur();
@@ -79,6 +80,21 @@ public class DrawingPanel extends JPanel implements Serializable {
 
                     System.out.println(mousePoint + "porte selectionne" + porteSelectionnee);
                 }
+
+                // Drag de la fenetre
+                if (!MainWindow.isAddingFenetre){
+                    // Réinitialisez le décalage ici
+                    xOffsetDrag = 0;
+                    yOffsetDrag = 0;
+
+                    //Selection de la fenetre
+                    Point mousePoint = mousePointClicked.getPoint();
+                    Chalet chalet = controleur.getChaletProduction();
+                    fenetreSelectionnee = chalet.determinerFenetre(selectedAffichageVue.toString(), mousePoint);
+
+                    System.out.println(mousePoint + "fenetre selectionne" + fenetreSelectionnee);
+
+                }
             }
         });
 
@@ -98,6 +114,25 @@ public class DrawingPanel extends JPanel implements Serializable {
                         chalet.modifierXporte(newX, selectedAffichageVue.toString(), initialDimensionReturn);
                         repaint();
                     }
+
+                }
+                // Drag de la fenetre
+                if (!MainWindow.isAddingFenetre) {
+
+                    if (SwingUtilities.isLeftMouseButton(e) && fenetreSelectionnee.isPresent()) {
+                        System.out.println("Avant mise à jour : " + fenetreSelectionnee.get().mousePoint.getX());
+                        int newX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                        /*int newY = (int) ((e.getY() - controleur.getOffsetY()) / controleur.getZoom());*/
+
+                        System.out.println("Nouvelles coordonnées : X=" + newX);
+                        /*System.out.println("Nouvelles coordonnées : Y=" + newY);*/
+
+                        Chalet chalet = controleur.getChaletProduction();
+                        chalet.modifierXfenetre(newX, selectedAffichageVue.toString(), initialDimensionReturn);
+                        /*chalet.modifierYfenetre(newY, selectedAffichageVue.toString(), initialDimensionReturn);*/
+                        repaint();
+                    }
+
                 }
             }
         });

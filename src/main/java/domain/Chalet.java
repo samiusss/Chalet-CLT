@@ -338,6 +338,25 @@ public class Chalet {
         return Optional.ofNullable(portes.get(determinerMur(nomMur)));
     }
 
+    public Optional<Fenetre> determinerFenetre(String nomMur, Point mousePosition) {
+
+        List<Fenetre> fenetres = listeMurs.get(determinerMur(nomMur)).getListeFenetre();
+
+        if(fenetres.isEmpty()) {
+            return Optional.empty();
+        }
+
+        for (Fenetre fenetre : fenetres) {
+            if (fenetre.estDansMousePoint(mousePosition)) {
+
+                System.out.println("Fenetre trouvée");
+                return Optional.of(fenetre);
+            }
+        }
+
+        return Optional.ofNullable(fenetres.get(determinerMur(nomMur)));
+    }
+
 
     public static List<Point> DeterminerCollisionSommetsMur(Mur mur, Dimension initialDimension) {
 
@@ -1538,60 +1557,45 @@ public class Chalet {
     }
 
 
-    public static boolean modifierXfenetre(Point mousePointClicked, int nouveauXfenetreint, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension) {
+    public static boolean modifierXfenetre(int nouveauXfenetreint, String nomMur, Dimension initialDimension) {
         int numMur = determinerMur(nomMur);
-        Mur mur = listeMursDrawer.get(numMur);
-        //Une porte par mur
-        List<Fenetre> listeFenetre = mur.getListeFenetre();
-        System.out.println("modifierXfenetre Chalet");
 
-        for (Fenetre fenetre : listeFenetre) {
-            System.out.println("fenetreExistante" + fenetre);
+        Mur mur = listeMurs.get(numMur);
 
-            boolean fenetreTrouve = selectionFenetre(fenetre, mousePointClicked);
-            System.out.println("fenetreTrouve" + fenetreTrouve);
+        for (Fenetre fenetre : mur.getListeFenetre()) {
+            Point nouveauPoint = new Point(nouveauXfenetreint, (int) fenetre.mousePoint.getY());
 
-            if (fenetreTrouve == true) {
-                Point nouveauMousePoint = new Point(nouveauXfenetreint, (int) fenetre.mousePoint.y);
-                System.out.println("nouveauMousePoint" + nouveauMousePoint);
-                //mousePointClicked.setLocation(nouveauXfenetreint, fenetre.mousePoint.getY());
-                if (AntiCollisionAccessoireMur(mur, nouveauMousePoint, fenetre.largeur, fenetre.hauteur, initialDimension)) {
-                    System.out.println("AntiCollisionAccessoireMur Passé");
-                    if (AntiCollisionFenetreModification(mur, fenetre, nouveauMousePoint, fenetre.largeur, fenetre.hauteur) == false) {
-                        System.out.println("AntiCollisionFenetreModification Passé");
-                        boolean modificationXreussiefenetre = fenetre.setPoint(nouveauMousePoint);
-                        System.out.println(fenetre + "X de la Fenetre Modifie ");
-                        return modificationXreussiefenetre;
-                    }
-                }
+            if (nouveauXfenetreint != fenetre.mousePoint.getX() &&
+                    AntiCollisionAccessoireMur(mur, nouveauPoint, fenetre.largeur, fenetre.hauteur, initialDimension) &&
+                    !AntiCollisionFenetreModification(mur, fenetre, nouveauPoint, fenetre.largeur, fenetre.hauteur)) {
+
+                fenetre.setPoint(nouveauPoint);
+                System.out.println(fenetre + " - X de la Fenetre Modifié");
+                return true;
             }
         }
-        return false;
 
+        return false;
     }
 
-    public static boolean modifierYfenetre(Point mousePointClicked, int nouveauYfenetreint, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension) {
+
+    public static boolean modifierYfenetre(int nouveauYfenetreint, String nomMur, Dimension initialDimension) {
         int numMur = determinerMur(nomMur);
-        Mur mur = listeMursDrawer.get(numMur);
+        Mur mur = listeMurs.get(numMur);
+        for (Fenetre fenetre : mur.getListeFenetre()) {
+            Point nouveauPoint = new Point(nouveauYfenetreint,(int) fenetre.mousePoint.getX());
 
-        List<Fenetre> listeFenetre = mur.getListeFenetre();
+            if (nouveauYfenetreint != fenetre.mousePoint.getY() &&
+                    AntiCollisionAccessoireMur(mur, nouveauPoint, fenetre.largeur, fenetre.hauteur, initialDimension) &&
+                    !AntiCollisionFenetreModification(mur, fenetre, nouveauPoint, fenetre.largeur, fenetre.hauteur)) {
 
-        for (Fenetre fenetre : listeFenetre) {
-            boolean fenetreTrouve = selectionFenetre(fenetre, mousePointClicked);
-            if (fenetreTrouve == true) {
-                //mousePointClicked.setLocation(fenetre.mousePoint.getX(), nouveauYfenetreint);
-                Point nouveauMousesPointClicked = new Point(nouveauYfenetreint, (int) fenetre.mousePoint.y);
-                if (AntiCollisionAccessoireMur(mur, nouveauMousesPointClicked, fenetre.largeur, fenetre.hauteur, initialDimension)) {
-                    if (AntiCollisionFenetreModification(mur, fenetre, nouveauMousesPointClicked, fenetre.largeur, fenetre.hauteur) == false) {
-                        boolean modificationYreussiefenetre = fenetre.setPoint(nouveauMousesPointClicked);
-                        System.out.println(fenetre + "Y de la Fenetre Modifie ");
-                        return modificationYreussiefenetre;
-                    }
-                }
+                fenetre.setPoint(nouveauPoint);
+                System.out.println(fenetre + " - Y de la Fenetre Modifié");
+                return true;
             }
         }
-        return false;
 
+        return false;
     }
 
     public static boolean supprimerFenetre(Point mousePointClicked, String nomMur, List<Mur> listeMursDrawer) {

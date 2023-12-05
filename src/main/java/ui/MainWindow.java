@@ -420,9 +420,9 @@ public class MainWindow extends javax.swing.JFrame {
                     nouveauXFenetreint = Math.round(nouveauXFenetreint);
                     System.out.println("Nouveau X" + nouveauXFenetreint);
 
-                    boolean xFenetremodifie = controleur.modifierXFenetre(mPoint, nouveauXFenetreint, nomMur, listeMursDrawer,initialDimension );
+                    boolean xFenetremodifie = controleur.modifierXFenetre(nouveauXFenetreint, nomMur, DrawingPanel.getPreferredSize());
 
-                    if (xFenetremodifie == true)
+                    if (xFenetremodifie)
                     {
                         DrawingPanel.repaint();
                     }
@@ -453,7 +453,7 @@ public class MainWindow extends javax.swing.JFrame {
                     nouveauYFenetreint = Math.round(nouveauYFenetreint);
                     System.out.println("Nouveau Y" + nouveauYFenetreint);
 
-                    boolean yFenetremodifie = controleur.modifierYFenetre(mPoint, nouveauYFenetreint, nomMur, listeMursDrawer,initialDimension );
+                    boolean yFenetremodifie = controleur.modifierYFenetre(nouveauYFenetreint, nomMur, DrawingPanel.getPreferredSize());
                     System.out.println(mPoint);
                     if (yFenetremodifie == true) {
                         DrawingPanel.repaint();
