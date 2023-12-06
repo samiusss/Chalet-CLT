@@ -488,6 +488,42 @@ public class Chalet {
 
     }
 
+    public static boolean estDansRectanglePorte(Point point, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
+        int x = point.x;
+        int y = point.y;
+
+        int x1 = coinSupGauche.x;
+        int y3 = (int) hauteurMurs - (coinInfGauche.y-coinSupGauche.y);
+
+        int x2 = coinSupDroit.x;
+        int y2 = coinSupDroit.y;
+
+        int x3 = coinInfGauche.x;
+        int y1 = (int) hauteurMurs;
+
+        int x4 = coinInfDroit.x;
+        int y4 = coinInfDroit.y;
+
+        //Probleme dans la méthode de generations des sommets des murs. Le points superieur droit est plus petit que le coin superieur gauche.
+        //boolean conditionUn = x >= x1;
+        //boolean conditionDeux = x <= x2 ;
+
+        boolean conditionUn = x >= x1;
+        boolean conditionDeux = x <= x2;
+        boolean conditionTrois = y <= y1;
+        boolean conditionQuatre = y >= y3;
+        //System.out.println(conditionUn +""+  conditionDeux +""+  conditionTrois +""+  conditionQuatre +"Les conditions" );
+
+        // Vérifie si le point se trouve à l'intérieur du rectangle
+        boolean estDansRectangle = (conditionUn && conditionDeux && conditionTrois && conditionQuatre);
+
+        //System.out.println(estDansRectangle + "(estDansRectangle) " + point);
+        return estDansRectangle;
+
+
+    }
+
+
     public static boolean estDansRectangleMurArriere(Point point, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
         int x = point.x;
         int y = point.y;
@@ -593,6 +629,46 @@ public class Chalet {
         PointsMur.add(InfDroitAccessoires);
 
         return PointsMur;
+    }
+
+    public static boolean MethodeTest(String nomMur,List<Mur> listeMursDrawer, Point mousePoint) {
+
+        int numMur = determinerMur(nomMur);
+
+        Mur mur = listeMursDrawer.get(numMur);
+
+        List<Porte> listePorte = mur.getListePorte();
+
+        for (Porte porte : listePorte) {
+            int largeurPorte = convertirPoucesEnInt(porte.largeur);
+            int hauteurPorte = convertirPoucesEnInt(porte.hauteur);
+
+
+            List<Point> listePoints = determinerSommetsAccessoires(porte.mousePoint, largeurPorte, hauteurPorte);
+            Point SupGauchePorte = listePoints.get(0);
+            Point SupDroitPorte = listePoints.get(1);
+            Point InfGauchePorte = listePoints.get(2);
+            Point InfDroitPorte = listePoints.get(3);
+
+            boolean PointUnRect = estDansRectanglePorte(mousePoint, SupGauchePorte, SupDroitPorte, InfGauchePorte, InfDroitPorte);
+
+            System.out.println(SupGauchePorte+"(SupGaucheFenetre est dans rectangle ?) ");
+            System.out.println(SupDroitPorte+"(SupDroitFenetre est dans rectangle ?) ");
+            System.out.println(InfGauchePorte+"(InfGaucheFenetre est dans rectangle ?) ");
+            System.out.println(InfDroitPorte+"(InfDroitFenetre est dans rectangle ?) ");
+
+            if (PointUnRect) {
+                System.out.println(true + "(Porte Est Dans Rectangle) ");
+
+                return true;
+            }
+            System.out.println(mousePoint + " " + porte.mousePoint + " " + largeurPorte + " " + hauteurPorte + "(MousPoint, MousePoint Porte Domaine) ");
+    //
+
+        }
+
+        System.out.println(false + "(Porte Est Pas Dans Rectangle) ");
+        return false;
     }
 
 

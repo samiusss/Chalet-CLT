@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static ui.MainWindow.*;
+import static ui.MainWindow.mousePointClicked;
 
 
 public class DrawingPanel extends JPanel implements Serializable {
@@ -24,7 +25,7 @@ public class DrawingPanel extends JPanel implements Serializable {
     public int h = (int) initialDimensionNonStatic.getHeight();
     public Dimension initialDimensionReturn = new Dimension(w, h);
     private double zoomFactor = 1.0;
-    private Optional<Porte> porteSelectionnee = Optional.empty();
+    private boolean porteSelectionnee ;
     private Optional<Fenetre> fenetreSelectionnee = Optional.empty();
 
     /*public DrawingPanel() {
@@ -66,7 +67,7 @@ public class DrawingPanel extends JPanel implements Serializable {
         // Drag de la porte
         addMouseListener(new MouseAdapter() {
             @Override
-            public void mousePressed(MouseEvent mousePointClicked) {
+            public void mousePressed(MouseEvent e) {
 
                 if (!MainWindow.isAddingPorte) {
 
