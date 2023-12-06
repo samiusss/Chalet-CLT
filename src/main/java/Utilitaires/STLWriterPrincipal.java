@@ -19,9 +19,6 @@ public class STLWriterPrincipal {
     }
 
 
-
-
-
     // Méthode pour le traitement automatique des vertices
     private static String processVertex(float originalValue) {
         BigDecimal bd = new BigDecimal(Float.toString(originalValue));

@@ -43,8 +43,6 @@ public class STLWriterSecondaire {
         return nombreAvecPoint;
     }
 
-
-
     public static List<float[]> determinerPointsPrismes(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
         List<float[]> listeVertex = new LinkedList<>();
         int numCellsLength = 35;
@@ -78,8 +76,111 @@ public class STLWriterSecondaire {
         return listeVertex;
     }
 
+    public static List<Triangle> generateRectangularPrism(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche, String type) {
+        List<Triangle> triangles = new ArrayList<>();
+        List<float[]> listeVertex = determinerPointsPrismes(length, width, height, xSupGauche, ySupGauche, zSupGauche);
 
-    public static List<Triangle> generateRectangularPrism(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
+        int numCellsLength = 35;
+        int numCellsWidth = 1;
+        int numCellsHeight = 25;
+
+        for (int i = 0; i < numCellsLength; i++) {
+            for (int j = 0; j < numCellsWidth; j++) {
+                for (int k = 0; k < numCellsHeight; k++) {
+                    int index = i * (numCellsWidth + 1) * (numCellsHeight + 1) + j * (numCellsHeight + 1) + k;
+                    float[] v0 = listeVertex.get(index);
+                    float[] v1 = listeVertex.get(index + 1);
+                    float[] v2 = listeVertex.get(index + (numCellsHeight + 1));
+                    float[] v3 = listeVertex.get(index + (numCellsHeight + 1) + 1);
+                    float[] v4 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1));
+                    float[] v5 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1) + 1);
+                    float[] v6 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1) + (numCellsHeight + 1));
+                    float[] v7 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1) + (numCellsHeight + 1) + 1);
+
+                    // Front face
+                    triangles.add(new Triangle(v0, v1, v2, type));
+                    triangles.add(new Triangle(v1, v3, v2, type));
+
+                    // Back face
+                    triangles.add(new Triangle(v4, v6, v5, type));
+                    triangles.add(new Triangle(v5, v6, v7, type));
+
+                    // Left face
+                    triangles.add(new Triangle(v0, v2, v4, type));
+                    triangles.add(new Triangle(v2, v6, v4, type));
+
+                    // Right face
+                    triangles.add(new Triangle(v1, v5, v3, type));
+                    triangles.add(new Triangle(v3, v5, v7, type));
+
+                    // Top face
+                    triangles.add(new Triangle(v2, v3, v6, type));
+                    triangles.add(new Triangle(v3, v7, v6, type));
+
+                    // Bottom face
+                    triangles.add(new Triangle(v0, v4, v1, type));
+                    triangles.add(new Triangle(v1, v4, v5, type));
+                }
+            }
+        }
+
+        return triangles;
+    }
+
+    public static List<float[]> determinerPointsPrismeSupDroite(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche, float xSupDroit, float ySupDroit, float zSupDroit) {
+        List<float[]> listeVertex = new LinkedList<>();
+        int numCellsLength = 35;
+        int numCellsWidth = 1;
+        int numCellsHeight = 25;
+
+        float cellLength = length / numCellsLength;
+        float cellWidth = width / numCellsWidth;
+        float cellHeight = height / numCellsHeight;
+
+        for (int i = 0; i <= numCellsLength; i++) {
+            for (int j = 0; j <= numCellsWidth; j++) {
+                for (int k = 0; k <= numCellsHeight; k++) {
+                    float x = xSupGauche + i * cellLength + j * (xSupDroit - xSupGauche) / numCellsWidth;
+                    float y = ySupGauche + j * cellWidth;
+                    float z = zSupGauche + k * cellHeight;
+                    listeVertex.add(new float[]{x, y, z});
+                }
+            }
+        }
+
+        return listeVertex;
+    }
+
+    public static List<Triangle> generateRectangularPrismeSupDroite(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche, float xSupDroit, float ySupDroit, float zSupDroit, String type) {
+        List<Triangle> triangles = new ArrayList<>();
+        List<float[]> listeVertex = determinerPointsPrismeSupDroite(length, width, height, xSupGauche, ySupGauche, zSupGauche, xSupDroit, ySupDroit, zSupDroit);
+
+        int numCellsLength = 35;
+        int numCellsWidth = 1;
+        int numCellsHeight = 25;
+
+        for (int i = 0; i < numCellsLength; i++) {
+            for (int j = 0; j < numCellsWidth; j++) {
+                for (int k = 0; k < numCellsHeight; k++) {
+                    int index = i * (numCellsWidth + 1) * (numCellsHeight + 1) + j * (numCellsHeight + 1) + k;
+                    float[] v0 = listeVertex.get(index);
+                    float[] v1 = listeVertex.get(index + 1);
+                    float[] v2 = listeVertex.get(index + (numCellsHeight + 1));
+                    float[] v3 = listeVertex.get(index + (numCellsHeight + 1) + 1);
+                    float[] v4 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1));
+                    float[] v5 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1) + 1);
+                    float[] v6 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1) + (numCellsHeight + 1));
+                    float[] v7 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1) + (numCellsHeight + 1) + 1);
+
+                    // Reste du code inchangé...
+                }
+            }
+        }
+
+        return triangles;
+    }
+
+    public static List<Triangle> generateRectangularPrismWithoutType(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche) {
 
         List<Triangle> triangles = new ArrayList<>();
         List<float[]> listeVertex = determinerPointsPrismes(length, width, height, xSupGauche, ySupGauche, zSupGauche);
@@ -135,7 +236,7 @@ public class STLWriterSecondaire {
         return triangles;
     }
 
-    public static float[] calculerNormale(float[] pointA, float[] pointB, float[] pointC) {
+    public static float[] calculerNormale2(float[] pointA, float[] pointB, float[] pointC) {
         // Calculez les vecteurs AB et AC
         float[] vecteurAB = {pointB[0] - pointA[0], pointB[1] - pointA[1], pointB[2] - pointA[2]};
         float[] vecteurAC = {pointC[0] - pointA[0], pointC[1] - pointA[1], pointC[2] - pointA[2]};
@@ -156,6 +257,80 @@ public class STLWriterSecondaire {
         return normal;
     }
 
+    public static float[] calculerNormaleAvecTransformations(float[] pointA, float[] pointB, float[] pointC, String Type) {
+/*
+        float[] translation = {0.0f, 0.0f, 10.0f};
+        float rotationAngle = 0.0f ;
+        float[] scale = {1.0f, 1.0f, 1.0f};
+
+        if(Type == "ARRIERE") {
+            translation = new float[]{0.0f, 0.0f, -10.0f};
+            rotationAngle = 0.0f ;
+            scale = new float[]{1.0f, 1.0f, 1.0f};
+        }
+        if(Type == "DROITE") {
+            translation = new float[]{-10.0f, 0.0f, 0.0f};
+            rotationAngle =  90.0f ;
+            scale = new float[]{1.0f, 1.0f, 1.0f};
+        }
+        if(Type == "GAUCHE") {
+            translation = new float[]{10.0f, 0.0f, 0.0f};
+            rotationAngle = 90.0f ;
+            scale = new float[]{1.0f, 1.0f, 1.0f};
+        }
+
+        // Appliquer la translation, rotation et mise à l'échelle aux points A, B et C
+        appliquerTranslation(pointA, translation);
+        appliquerTranslation(pointB, translation);
+        appliquerTranslation(pointC, translation);
+
+        appliquerRotation(pointA, rotationAngle);
+        appliquerRotation(pointB, rotationAngle);
+        appliquerRotation(pointC, rotationAngle);
+
+        appliquerMiseAEchelle(pointA, scale);
+        appliquerMiseAEchelle(pointB, scale);
+        appliquerMiseAEchelle(pointC, scale); */
+
+        // Calculez les vecteurs AB et AC après les transformations
+        float[] vecteurAB = {pointB[0] - pointA[0], pointB[1] - pointA[1], pointB[2] - pointA[2]};
+        float[] vecteurAC = {pointC[0] - pointA[0], pointC[1] - pointA[1], pointC[2] - pointA[2]};
+
+        // Calculez le produit vectoriel des vecteurs AB et AC pour obtenir la normale
+        float[] normal = {
+                vecteurAB[1] * vecteurAC[2] - vecteurAB[2] * vecteurAC[1],
+                vecteurAB[2] * vecteurAC[0] - vecteurAB[0] * vecteurAC[2],
+                vecteurAB[0] * vecteurAC[1] - vecteurAB[1] * vecteurAC[0]
+        };
+
+        // Normalisez le vecteur résultant (mettez-le à l'échelle pour qu'il ait une longueur de 1)
+        float longueur = (float) Math.sqrt(normal[0] * normal[0] + normal[1] * normal[1] + normal[2] * normal[2]);
+        normal[0] /= longueur;
+        normal[1] /= longueur;
+        normal[2] /= longueur;
+
+        return normal;
+    }
+
+    private static void appliquerTranslation(float[] point, float[] translation) {
+        point[0] += translation[0];
+        point[1] += translation[1];
+        point[2] += translation[2];
+    }
+
+    private static void appliquerRotation(float[] point, float angle) {
+        // Appliquer la rotation autour de l'axe y
+        float x = point[0];
+        float z = point[2];
+        point[0] = (float) (x * Math.cos(angle) - z * Math.sin(angle));
+        point[2] = (float) (x * Math.sin(angle) + z * Math.cos(angle));
+    }
+
+    private static void appliquerMiseAEchelle(float[] point, float[] scale) {
+        point[0] *= scale[0];
+        point[1] *= scale[1];
+        point[2] *= scale[2];
+    }
 
     public static List<Triangle> decomposerRectangleTriangle(Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit, Double EpaisseurChalet){
         /* Un rectangle est composer de deux triangles */
@@ -183,6 +358,165 @@ public class STLWriterSecondaire {
 
     }
 
+    public static List<Triangle> generateRectangularPrismPrism2(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche, String type) {
+        List<Triangle> triangles = new ArrayList<>();
+        List<float[]> listeVertex = determinerPointsPrismes(length, width, height, xSupGauche, ySupGauche, zSupGauche);
+
+        int numCellsLength = 35;
+        int numCellsWidth = 1;
+        int numCellsHeight = 25;
+
+        for (int i = 0; i < numCellsLength; i++) {
+            for (int j = 0; j < numCellsWidth; j++) {
+                for (int k = 0; k < numCellsHeight; k++) {
+                    int index = i * (numCellsWidth + 1) * (numCellsHeight + 1) + j * (numCellsHeight + 1) + k;
+                    float[] v0 = listeVertex.get(index);
+                    float[] v1 = listeVertex.get(index + 1);
+                    float[] v2 = listeVertex.get(index + (numCellsHeight + 1));
+                    float[] v3 = listeVertex.get(index + (numCellsHeight + 1) + 1);
+                    float[] v4 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1));
+                    float[] v5 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1) + 1);
+                    float[] v6 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1) + (numCellsHeight + 1));
+                    float[] v7 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1) + (numCellsHeight + 1) + 1);
+
+                    // Subdivide each face further
+                    int subCellsLength = 2;  // Number of subdivisions in the length direction
+                    int subCellsWidth = 2;   // Number of subdivisions in the width direction
+                    int subCellsHeight = 2;  // Number of subdivisions in the height direction
+
+                    float subCellLength = 1.0f / subCellsLength;
+                    float subCellWidth = 1.0f / subCellsWidth;
+                    float subCellHeight = 1.0f / subCellsHeight;
+
+                    for (int l = 0; l < subCellsLength; l++) {
+                        for (int w = 0; w < subCellsWidth; w++) {
+                            for (int h = 0; h < subCellsHeight; h++) {
+                                float[] v0Sub = interpolateVertices(v0, v1, v2, v3, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l, w, h);
+                                float[] v1Sub = interpolateVertices(v0, v1, v2, v3, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l + 1, w, h);
+                                float[] v2Sub = interpolateVertices(v0, v1, v2, v3, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l, w + 1, h);
+                                float[] v3Sub = interpolateVertices(v0, v1, v2, v3, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l + 1, w + 1, h);
+                                float[] v4Sub = interpolateVertices(v4, v5, v6, v7, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l, w, h);
+                                float[] v5Sub = interpolateVertices(v4, v5, v6, v7, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l + 1, w, h);
+                                float[] v6Sub = interpolateVertices(v4, v5, v6, v7, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l, w + 1, h);
+                                float[] v7Sub = interpolateVertices(v4, v5, v6, v7, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l + 1, w + 1, h);
+
+                                // Generate triangles for the subdivided face
+                                triangles.add(new Triangle(v0Sub, v1Sub, v2Sub, type));
+                                triangles.add(new Triangle(v1Sub, v3Sub, v2Sub, type));
+                                triangles.add(new Triangle(v4Sub, v6Sub, v5Sub, type));
+                                triangles.add(new Triangle(v5Sub, v6Sub, v7Sub, type));
+                                triangles.add(new Triangle(v0Sub, v2Sub, v4Sub, type));
+                                triangles.add(new Triangle(v2Sub, v6Sub, v4Sub, type));
+                                triangles.add(new Triangle(v1Sub, v5Sub, v3Sub, type));
+                                triangles.add(new Triangle(v3Sub, v5Sub, v7Sub, type));
+                                triangles.add(new Triangle(v2Sub, v3Sub, v6Sub, type));
+                                triangles.add(new Triangle(v3Sub, v7Sub, v6Sub, type));
+                                triangles.add(new Triangle(v0Sub, v4Sub, v1Sub, type));
+                                triangles.add(new Triangle(v1Sub, v4Sub, v5Sub, type));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return triangles;
+    }
+
+    //Dans ce code, les boucles for à travers la hauteur (k) excluent la première et la dernière itération, ce qui correspond aux faces supérieure et inférieure du prisme. Cela devrait générer le prisme sans ces deux faces. Assurez-vous de bien tester le code pour vous assurer qu'il fonctionne comme prévu dans votre application.
+    public static List<Triangle> generateRectangularPrismPrism(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche, String type) {
+        List<Triangle> triangles = new ArrayList<>();
+        List<float[]> listeVertex = determinerPointsPrismes(length, width, height, xSupGauche, ySupGauche, zSupGauche);
+
+        int numCellsLength = 35;
+        int numCellsWidth = 1;
+        int numCellsHeight = 25;
+
+        int startHeight = 1; // Exclure la face inférieure
+        int endHeight = numCellsHeight - 1; // Exclure la face supérieure
+
+        for (int i = 0; i < numCellsLength; i++) {
+            for (int j = 0; j < numCellsWidth; j++) {
+                for (int k = startHeight; k < endHeight; k++) {
+
+                    int index = i * (numCellsWidth + 1) * (numCellsHeight + 1) + j * (numCellsHeight + 1) + k;
+                    float[] v0 = listeVertex.get(index);
+                    float[] v1 = listeVertex.get(index + 1);
+                    float[] v2 = listeVertex.get(index + (numCellsHeight + 1));
+                    float[] v3 = listeVertex.get(index + (numCellsHeight + 1) + 1);
+                    float[] v4 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1));
+                    float[] v5 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1) + 1);
+                    float[] v6 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1) + (numCellsHeight + 1));
+                    float[] v7 = listeVertex.get(index + (numCellsWidth + 1) * (numCellsHeight + 1) + (numCellsHeight + 1) + 1);
+
+                    // Subdivide each face further
+                    int subCellsLength = 2;  // Number of subdivisions in the length direction
+                    int subCellsWidth = 2;   // Number of subdivisions in the width direction
+                    int subCellsHeight = 2;  // Number of subdivisions in the height direction
+
+                    float subCellLength = 1.0f / subCellsLength;
+                    float subCellWidth = 1.0f / subCellsWidth;
+                    float subCellHeight = 1.0f / subCellsHeight;
+
+                    for (int l = 0; l < subCellsLength; l++) {
+                        for (int w = 0; w < subCellsWidth; w++) {
+                            for (int h = 0; h < subCellsHeight; h++) {
+                                float[] v0Sub = interpolateVertices(v0, v1, v2, v3, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l, w, h);
+                                float[] v1Sub = interpolateVertices(v0, v1, v2, v3, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l + 1, w, h);
+                                float[] v2Sub = interpolateVertices(v0, v1, v2, v3, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l, w + 1, h);
+                                float[] v3Sub = interpolateVertices(v0, v1, v2, v3, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l + 1, w + 1, h);
+                                float[] v4Sub = interpolateVertices(v4, v5, v6, v7, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l, w, h);
+                                float[] v5Sub = interpolateVertices(v4, v5, v6, v7, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l + 1, w, h);
+                                float[] v6Sub = interpolateVertices(v4, v5, v6, v7, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l, w + 1, h);
+                                float[] v7Sub = interpolateVertices(v4, v5, v6, v7, v4, v5, v6, v7, subCellLength, subCellWidth, subCellHeight, l + 1, w + 1, h);
+
+                                // Generate triangles for the subdivided face
+                                triangles.add(new Triangle(v0Sub, v1Sub, v2Sub, type));
+                                triangles.add(new Triangle(v1Sub, v3Sub, v2Sub, type));
+                                triangles.add(new Triangle(v4Sub, v6Sub, v5Sub, type));
+                                triangles.add(new Triangle(v5Sub, v6Sub, v7Sub, type));
+                                triangles.add(new Triangle(v0Sub, v2Sub, v4Sub, type));
+                                triangles.add(new Triangle(v2Sub, v6Sub, v4Sub, type));
+                                triangles.add(new Triangle(v1Sub, v5Sub, v3Sub, type));
+                                triangles.add(new Triangle(v3Sub, v5Sub, v7Sub, type));
+                                triangles.add(new Triangle(v2Sub, v3Sub, v6Sub, type));
+                                triangles.add(new Triangle(v3Sub, v7Sub, v6Sub, type));
+                                triangles.add(new Triangle(v0Sub, v4Sub, v1Sub, type));
+                                triangles.add(new Triangle(v1Sub, v4Sub, v5Sub, type));
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        return triangles;
+    }
+
+    private static float[] interpolateVertices(float[] v0, float[] v1, float[] v2, float[] v3, float[] v4, float[] v5, float[] v6, float[] v7, float subCellLength, float subCellWidth, float subCellHeight, int l, int w, int h) {
+        float u = l * subCellLength;
+        float v = w * subCellWidth;
+        float t = h * subCellHeight;
+
+        float u1 = 1.0f - u;
+        float v1Value = 1.0f - v;  // Rename variable from v1 to v1Value
+        float t1 = 1.0f - t;
+
+        float[] interpolatedVertex = new float[3];
+        interpolatedVertex[0] = (u1 * v1Value * t1 * v0[0] + u * v1Value * t1 * v1[0] + u1 * v * t1 * v2[0] + u * v * t1 * v3[0] +
+                u1 * v1Value * t * v4[0] + u * v1Value * t * v5[0] + u1 * v * t * v6[0] + u * v * t * v7[0]);
+
+        interpolatedVertex[1] = (u1 * v1Value * t1 * v0[1] + u * v1Value * t1 * v1[1] + u1 * v * t1 * v2[1] + u * v * t1 * v3[1] +
+                u1 * v1Value * t * v4[1] + u * v1Value * t * v5[1] + u1 * v * t * v6[1] + u * v * t * v7[1]);
+
+        interpolatedVertex[2] = (u1 * v1Value * t1 * v0[2] + u * v1Value * t1 * v1[2] + u1 * v * t1 * v2[2] + u * v * t1 * v3[2] +
+                u1 * v1Value * t * v4[2] + u * v1Value * t * v5[2] + u1 * v * t * v6[2] + u * v * t * v7[2]);
+
+        return interpolatedVertex;
+    }
+
+
     public static void generateSTL(List<Triangle> triangles, String fileName) {
         try (FileWriter fileWriter = new FileWriter(new File(fileName))) {
             // Écrire l'en-tête du fichier STL
@@ -192,7 +526,7 @@ public class STLWriterSecondaire {
             for (Triangle triangle : triangles) {
 
 
-                float[] normal = calculerNormale(triangle.vertex1, triangle.vertex2,triangle.vertex3);
+                float[] normal = calculerNormaleAvecTransformations(triangle.vertex1, triangle.vertex2,triangle.vertex3, triangle.Type);
 
                 // Remplacement pour le vertex 1
                 String normalA = processVertex(normal[0]);
@@ -245,8 +579,6 @@ public class STLWriterSecondaire {
         System.out.println("Fichier STL généré avec succès : " + fileName);
     }
 
-
-
     public static void ExporterPanneauxBrut(String fileName) {
         Point point = new Point(0,0);
         //determinerSommetsAccessoires fait le meme traitement dont on a besoin d'ou son utlisation ici.
@@ -260,12 +592,10 @@ public class STLWriterSecondaire {
         double epaisseurChalet = Chalet.epaisseurChalet;
         //double epaisseur = 15.0;
 
-        List<Triangle> listeTriangles = generateRectangularPrism(500,(float) epaisseurChalet, 400,0,0,0);
+        List<Triangle> listeTriangles = generateRectangularPrism(500,(float) epaisseurChalet, 400,0,0,0,"AVANT");
         generateSTL(listeTriangles,fileName);
 
     }
-
-
 
     public static List<Triangle> ExporterPanneauxFinisDroite(float[] SupGauche, float length, float width, float height){
         /* MUR DROITE */
@@ -294,7 +624,7 @@ public class STLWriterSecondaire {
         float thicknessPrincipal = (float) (Chalet.epaisseurChalet);
 
         // Générer le prisme principal
-        List<Triangle> listeTriangles = generateRectangularPrism(lengthPrincipal, thicknessPrincipal, height, xSupGauchePrincipal, ySupGauchePrincipal, zSupGauchePrincipal);
+        List<Triangle> listeTriangles = generateRectangularPrism(lengthPrincipal, thicknessPrincipal, height, xSupGauchePrincipal, ySupGauchePrincipal, zSupGauchePrincipal,"DROITE");
 
         // Utiliser les dimensions du prisme secondaire
         float lengthSecondaire = length / 10;
@@ -306,8 +636,8 @@ public class STLWriterSecondaire {
         float xSupGaucheDroite = xSupGauchePrincipal + lengthPrincipal;
 
         // Générer les prismes secondaires à gauche et à droite
-        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal);
-        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal);
+        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal,"DROITE");
+        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal,"DROITE");
 
         // Ajouter les prismes secondaires à la liste des triangles
         listeTriangles.addAll(listeTrianglesGauche);
@@ -317,15 +647,13 @@ public class STLWriterSecondaire {
         Chalet chalet = Controleur.getChaletProductionStatic();
         List<Fenetre> listeFenetre = chalet.getListeMurs().get(3).fenetreMur ;
         List<Porte> listePorte =  chalet.getListeMurs().get(3).porteMur ;
-        retirerAccessoires(listeFenetre, listePorte,listeTriangles, length, height,thicknessPrincipal);
+        retirerAccessoires(listeFenetre, listePorte,listeTriangles, length, height,thicknessPrincipal, "DROITE");
 
 
         return listeTriangles;
 
 
-
     }
-
 
     public static List<Triangle> ExporterPanneauxRetraitDroite(float[] SupGauche, float length, float width, float height){
         /* MUR DROITE */
@@ -364,8 +692,8 @@ public class STLWriterSecondaire {
         List<Triangle> listeTrianglesSecondaire = new LinkedList<>();
 
         // Générer les prismes secondaires à gauche et à droite
-        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal);
-        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal);
+        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal,"DROITE");
+        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal,"DROITE");
 
         // Ajouter les prismes secondaires à la liste des triangles
         listeTrianglesSecondaire.addAll(listeTrianglesGauche);
@@ -376,15 +704,13 @@ public class STLWriterSecondaire {
         List<Fenetre> listeFenetre = chalet.getListeMurs().get(3).fenetreMur ;
         List<Porte> listePorte =  chalet.getListeMurs().get(3).porteMur ;
 
-        List<Triangle> listeTrianglesPortes =  GenererRetraitAccessoires(listeFenetre, listePorte, length, height, thicknessPrincipal);
+        List<Triangle> listeTrianglesPortes =  GenererRetraitAccessoires(listeFenetre, listePorte, length, height, thicknessPrincipal,"DROITE");
         listeTrianglesSecondaire.addAll(listeTrianglesPortes);
 
 
         return listeTrianglesSecondaire;
 
     }
-
-
 
     public static List<Triangle> ExporterPanneauxFinisGauche(float[] SupGauche, float length, float width, float height){
         /* MUR GAUUCHE */
@@ -413,7 +739,7 @@ public class STLWriterSecondaire {
         float thicknessPrincipal = (float) (Chalet.epaisseurChalet);
 
         // Générer le prisme principal
-        List<Triangle> listeTriangles = generateRectangularPrism(lengthPrincipal, thicknessPrincipal, height, xSupGauchePrincipal, ySupGauchePrincipal, zSupGauchePrincipal);
+        List<Triangle> listeTriangles = generateRectangularPrism(lengthPrincipal, thicknessPrincipal, height, xSupGauchePrincipal, ySupGauchePrincipal, zSupGauchePrincipal,"GAUCHE");
 
         // Utiliser les dimensions du prisme secondaire
         float lengthSecondaire = length / 10;
@@ -425,8 +751,8 @@ public class STLWriterSecondaire {
         float xSupGaucheDroite = xSupGauchePrincipal + lengthPrincipal;
 
         // Générer les prismes secondaires à gauche et à droite
-        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal);
-        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal);
+        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal,"GAUCHE");
+        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal,"GAUCHE");
 
         // Ajouter les prismes secondaires à la liste des triangles
         listeTriangles.addAll(listeTrianglesGauche);
@@ -436,15 +762,12 @@ public class STLWriterSecondaire {
         Chalet chalet = Controleur.getChaletProductionStatic();
         List<Fenetre> listeFenetre = chalet.getListeMurs().get(2).fenetreMur ;
         List<Porte> listePorte =  chalet.getListeMurs().get(2).porteMur ;
-        retirerAccessoires(listeFenetre, listePorte,listeTriangles, length, height,thicknessPrincipal);
+        retirerAccessoires(listeFenetre, listePorte,listeTriangles, length, height,thicknessPrincipal,"GAUCHE");
 
 
         return listeTriangles;
 
-
     }
-
-
 
     public static List<Triangle> ExporterPanneauxRetraitGauche(float[] SupGauche, float length, float width, float height){
         /* MUR GAUUCHE */
@@ -483,8 +806,8 @@ public class STLWriterSecondaire {
         List<Triangle> listeTrianglesSecondaire = new LinkedList<>();
 
         // Générer les prismes secondaires à gauche et à droite
-        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal);
-        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal);
+        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal,"GAUCHE");
+        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal,"GAUCHE");
 
         // Ajouter les prismes secondaires à la liste des triangles
         listeTrianglesSecondaire.addAll(listeTrianglesGauche);
@@ -495,14 +818,13 @@ public class STLWriterSecondaire {
         List<Fenetre> listeFenetre = chalet.getListeMurs().get(2).fenetreMur ;
         List<Porte> listePorte =  chalet.getListeMurs().get(2).porteMur ;
 
-        List<Triangle> listeTrianglesPortes =  GenererRetraitAccessoires(listeFenetre, listePorte, length, height, thicknessPrincipal);
+        List<Triangle> listeTrianglesPortes =  GenererRetraitAccessoires(listeFenetre, listePorte, length, height, thicknessPrincipal,"GAUCHE");
         listeTrianglesSecondaire.addAll(listeTrianglesPortes);
 
 
         return listeTrianglesSecondaire;
 
     }
-
 
     public static List<Triangle> ExporterPanneauxFinisArriere(float[] SupGauche, float length, float width, float height) {
         //Dimension du prisme de base
@@ -528,7 +850,7 @@ public class STLWriterSecondaire {
         float thicknessPrincipal = (float) (Chalet.epaisseurChalet);
 
         // Générer le prisme principal
-        List<Triangle> listeTriangles = generateRectangularPrism(lengthPrincipal, thicknessPrincipal, height, xSupGauchePrincipal, ySupGauchePrincipal, zSupGauchePrincipal);
+        List<Triangle> listeTriangles = generateRectangularPrism(lengthPrincipal, thicknessPrincipal, height, xSupGauchePrincipal, ySupGauchePrincipal, zSupGauchePrincipal,"ARRIERE");
 
         // Utiliser les dimensions du prisme secondaire
         float lengthSecondaire = length / 10;
@@ -540,8 +862,8 @@ public class STLWriterSecondaire {
         float xSupGaucheDroite = xSupGauchePrincipal + lengthPrincipal;
 
         // Générer les prismes secondaires à gauche et à droite
-        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal);
-        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal);
+        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal,"ARRIERE");
+        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal,"ARRIERE");
 
         // Ajouter les prismes secondaires à la liste des triangles
         listeTriangles.addAll(listeTrianglesGauche);
@@ -565,14 +887,11 @@ public class STLWriterSecondaire {
         Chalet chalet = Controleur.getChaletProductionStatic();
         List<Fenetre> listeFenetre = chalet.getListeMurs().get(1).fenetreMur ;
         List<Porte> listePorte =  chalet.getListeMurs().get(1).porteMur ;
-        retirerAccessoires(listeFenetre, listePorte,listeTriangles, length, height,thicknessPrincipal);
-
-
+        retirerAccessoires(listeFenetre, listePorte,listeTriangles, length, height,thicknessPrincipal, "ARRIERE");
 
 
         return listeTriangles;
     }
-
 
     public static List<Triangle> ExporterPanneauxRetraitArriere(float[] SupGauche, float length, float width, float height) {
         //Dimension du prisme de base
@@ -604,8 +923,8 @@ public class STLWriterSecondaire {
         List<Triangle> listeTrianglesSecondaire = new LinkedList<>();
 
         // Générer les prismes secondaires à gauche et à droite
-        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal);
-        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal);
+        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal,"ARRIERE");
+        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal,"ARRIERE");
 
         // Ajouter les prismes secondaires à la liste des triangles
         listeTrianglesSecondaire.addAll(listeTrianglesGauche);
@@ -616,16 +935,16 @@ public class STLWriterSecondaire {
         List<Fenetre> listeFenetre = chalet.getListeMurs().get(1).fenetreMur ;
         List<Porte> listePorte =  chalet.getListeMurs().get(1).porteMur ;
 
-        List<Triangle> listeTrianglesPortes =  GenererRetraitAccessoires(listeFenetre, listePorte, length, height, thicknessPrincipal);
+        List<Triangle> listeTrianglesPortes =  GenererRetraitAccessoires(listeFenetre, listePorte, length, height, thicknessPrincipal,"ARRIERE");
         listeTrianglesSecondaire.addAll(listeTrianglesPortes);
 
 
         return listeTrianglesSecondaire;
     }
 
-    public static List<Triangle> ExporterPanneauxFinisAvant(float[] SupGauche, float length, float width, float height) {
+    public static List<Triangle> ExporterPanneauxFinisAvant(float[] SupGauche, float length, float width, float height,float [] SupDroitePrincipal) {
 
-
+        /*
         //Dimension du prisme de base
         float[] supGauche = {0,0,0};
 
@@ -633,7 +952,7 @@ public class STLWriterSecondaire {
         float xSupGauche = SupGauche[0];
         float ySupGauche = SupGauche[1];
         float zSupGauche = SupGauche[2];
-
+        */
 
         /* // Dimensions du prisme de base
         float[] supGauche = {0,0,0};
@@ -646,11 +965,11 @@ public class STLWriterSecondaire {
         float xSupGauche = 0f;
         float ySupGauche = 0f;
         float zSupGauche = 0f;
-
-         Coordonnées du coin supérieur gauche du prisme principal
+*/
+         //Coordonnées du coin supérieur gauche du prisme principal
         float xSupGauche = SupGauche[0];
         float ySupGauche = SupGauche[1];
-        float zSupGauche = SupGauche[2]; */
+        float zSupGauche = SupGauche[2];
 
 
         // Déterminer les points du prisme de base
@@ -661,12 +980,16 @@ public class STLWriterSecondaire {
         float ySupGauchePrincipal = ySupGauche;
         float zSupGauchePrincipal = zSupGauche;
 
+        float xSupDroitePrincipal = SupGauche[0];
+        float ySupDroitePrincipal = SupGauche[1];
+        float zSupDroitePrincipal = SupGauche[2];
+
         // Utiliser les dimensions du prisme principal
         float lengthPrincipal = length - length / 10;
         float thicknessPrincipal = width;
 
         // Générer le prisme principal
-        List<Triangle> listeTriangles = generateRectangularPrism(lengthPrincipal, thicknessPrincipal, height, xSupGauchePrincipal, ySupGauchePrincipal, zSupGauchePrincipal);
+        List<Triangle> listeTriangles = generateRectangularPrismeSupDroite(lengthPrincipal, thicknessPrincipal, height, xSupGauchePrincipal, ySupGauchePrincipal, zSupGauchePrincipal,xSupDroitePrincipal, ySupDroitePrincipal, zSupDroitePrincipal, "AVANT");
 
         // Utiliser les dimensions du prisme secondaire
         float lengthSecondaire = length / 10;
@@ -678,8 +1001,8 @@ public class STLWriterSecondaire {
         float xSupGaucheDroite = xSupGauchePrincipal + lengthPrincipal;
 
         // Générer les prismes secondaires à gauche et à droite
-        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal);
-        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal);
+        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal,"AVANT");
+        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal,"AVANT");
 
         // Ajouter les prismes secondaires à la liste des triangles
         listeTriangles.addAll(listeTrianglesGauche);
@@ -689,7 +1012,7 @@ public class STLWriterSecondaire {
         Chalet chalet = Controleur.getChaletProductionStatic();
         List<Fenetre> listeFenetre = chalet.getListeMurs().get(0).fenetreMur ;
         List<Porte> listePorte =  chalet.getListeMurs().get(0).porteMur ;
-        retirerAccessoires(listeFenetre, listePorte,listeTriangles, length, height,thicknessPrincipal);
+        retirerAccessoires(listeFenetre, listePorte,listeTriangles, length, height,thicknessPrincipal, "AVANT");
 
 
         int i = 0;
@@ -703,15 +1026,12 @@ public class STLWriterSecondaire {
         return listeTriangles;
     }
 
-
-
-
     public static List<Triangle> ExporterPanneauxRetraitAvant(float[] SupGauche, float length, float width, float height) {
 
         //Dimension du prisme de base
 
         // Mur (Arriere/Avant => longueur = longueur Chalet) (Droite/Gauche => longueur = largeur Chalet)
-        float[] supGauche = {0,0,0};
+        //float[] supGauche = {0,0,0};
 
 
         // Coordonnées du coin inferieur gauche du prisme principal
@@ -744,8 +1064,8 @@ public class STLWriterSecondaire {
         List<Triangle> listeTrianglesSecondaire = new LinkedList<>();
 
         // Générer les prismes secondaires à gauche et à droite (Vue d'avant sur la visionneuse , le point 0,0 est en bas a gauche -> +  )
-        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal);
-        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal);
+        List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal,"AVANT");
+        List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal,"AVANT");
 
         // Ajouter les prismes secondaires à la liste des triangles
         listeTrianglesSecondaire.addAll(listeTrianglesGauche);
@@ -756,14 +1076,13 @@ public class STLWriterSecondaire {
         List<Fenetre> listeFenetre = chalet.getListeMurs().get(0).fenetreMur ;
         List<Porte> listePorte =  chalet.getListeMurs().get(0).porteMur ;
 
-        List<Triangle> listeTrianglesPortes =  GenererRetraitAccessoires(listeFenetre, listePorte, length, height, thicknessPrincipal);
+        List<Triangle> listeTrianglesPortes =  GenererRetraitAccessoires(listeFenetre, listePorte, length, height, thicknessPrincipal,"AVANT");
         listeTrianglesSecondaire.addAll(listeTrianglesPortes);
 
 
         return listeTrianglesSecondaire;
 
     }
-
 
     public static void ExporterPanneauxFinis(String fileNameAvant, String fileNameDroite, String fileNameChalet, String fileNameGauches, String fileNameArriere,String fileNameRetraitAvant,String fileNameRetraitArriere, String fileNameRetraitDroite,String fileNameRetraitGauches) throws IOException {
 
@@ -795,7 +1114,7 @@ public class STLWriterSecondaire {
         float zSupGauche = 0f;
 
         // Determiner les points du prisme de base
-        List<float[]> listeVertex = determinerPointsPrismes(lengthGaucheDroite,width,height,xSupGauche,ySupGauche,zSupGauche);
+        List<float[]> listeVertex = determinerPointsPrismeSupDroite(lengthGaucheDroite,width,height,xSupGauche,ySupGauche,zSupGauche,xSupGauche + lengthFacadeArriere,ySupGauche, zSupGauche);
 
         // Determiner les points de prismes qui seront d'une longueur determine et
         // d'épaisseur correspondant a la moitie de l'épaisseur du prisme de base afin de construire les rainures gauches et droites
@@ -808,23 +1127,35 @@ public class STLWriterSecondaire {
         float[] v6 = listeVertex.get(6);
         float[] v7 = listeVertex.get(7);
 
+        // Mur Gauche
+        float[] supGaucheMurGauche = {supGauche[0], supGauche[1] - lengthGaucheDroite, supGauche[2]};
+        float[] supGaucheMurGaucheAvant = {supGauche[0] + lengthGaucheDroite, supGauche[1] , supGauche[2]};
+
+
+        // Mur Droite
+        float[] supGaucheMurDroites = {supGauche[0], supGauche[1] + lengthGaucheDroite, supGauche[2]};
+
+
+        // Mur Avant
+        float[] supGaucheMurAvant = {supGauche[0] + lengthFacadeArriere, supGauche[1], supGauche[2]};
+
+        List<Triangle> trianglesPrisme = generateRectangularPrismPrism(lengthFacadeArriere, 80, height, supGauche[0],supGauche[1],supGauche[2], "AVANT");
+
         // MUR AVANT
-        List<Triangle> trianglesAvant = ExporterPanneauxFinisAvant(supGauche,lengthFacadeArriere,width,height);
-        List<Triangle> trianglesRetraitAvant = ExporterPanneauxRetraitAvant(supGauche,lengthFacadeArriere,width,height);
+        List<Triangle> trianglesAvant = ExporterPanneauxFinisAvant(supGaucheMurGauche, lengthFacadeArriere, width, height, supGaucheMurGaucheAvant);
+        List<Triangle> trianglesRetraitAvant = ExporterPanneauxRetraitAvant(supGaucheMurAvant, lengthFacadeArriere, width, height);
 
         // MUR DROITE
-        List<Triangle> trianglesDroites = ExporterPanneauxFinisDroite(supGauche,lengthGaucheDroite,width,height);
-        List<Triangle> trianglesRetraitDroites = ExporterPanneauxRetraitDroite(v3,lengthGaucheDroite,width,height);
+        List<Triangle> trianglesDroites = ExporterPanneauxFinisDroite(supGaucheMurDroites, lengthGaucheDroite, width, height);
+        List<Triangle> trianglesRetraitDroites = ExporterPanneauxRetraitDroite(supGaucheMurDroites, lengthGaucheDroite, width, height);
 
+        // MUR GAUCHE
+        List<Triangle> trianglesGauche = ExporterPanneauxFinisGauche(supGaucheMurGauche, lengthGaucheDroite, width, height);
+        List<Triangle> trianglesRetraitGauche = ExporterPanneauxRetraitGauche(supGaucheMurGauche, lengthGaucheDroite, width, height);
 
-        //MUR GAUCHE
-        List<Triangle> trianglesGauche = ExporterPanneauxFinisGauche(supGauche,lengthGaucheDroite,width,height);
-        List<Triangle> trianglesRetraitGauche = ExporterPanneauxRetraitGauche(v2,lengthGaucheDroite,width,height);
-
-        //MUR ARRIERE
-        List<Triangle> trianglesArriere  = ExporterPanneauxFinisArriere(supGauche,lengthFacadeArriere,width,height);
-        List<Triangle> trianglesRetraitArriere = ExporterPanneauxRetraitArriere(supGauche,lengthFacadeArriere,width,height);
-
+        // MUR ARRIERE
+        List<Triangle> trianglesArriere = ExporterPanneauxFinisArriere(supGauche, lengthFacadeArriere, width, height);
+        List<Triangle> trianglesRetraitArriere = ExporterPanneauxRetraitArriere(supGauche, lengthFacadeArriere, width, height);
 
         //CHALET
         List<Triangle> triangleChalet = new LinkedList<>();
@@ -832,8 +1163,6 @@ public class STLWriterSecondaire {
         triangleChalet.addAll(trianglesDroites);
         triangleChalet.addAll(trianglesGauche);
         triangleChalet.addAll(trianglesArriere);
-
-
 
 /*
         //Chalet
@@ -852,6 +1181,8 @@ public class STLWriterSecondaire {
         generateSTL(trianglesDroites,fileNameDroite);
         generateSTL(trianglesGauche,fileNameGauches);
         generateSTL(trianglesArriere,fileNameArriere);
+        generateSTL(trianglesPrisme,fileNameArriere);
+
 
 
 
@@ -870,12 +1201,12 @@ public class STLWriterSecondaire {
 
         // Dimensions du prisme de base
         // Mur (Arriere/Avant => longueur = longueur Chalet) (Droite/Gauche => longueur = largeur Chalet)
-        float[] supGauche = {0,0,0};
+/*        float[] supGauche = {0,0,0};
         double epaisseurChalet = Chalet.epaisseurChalet;
         double lengthChalet = Chalet.longueurChalet;
         double widthChalet = Chalet.largeurChalet;
 
-        double heightChalet = Chalet.longueurChalet;
+        double heightChalet = Chalet.hauteurMurs;
 
         float lengthFacadeArriere = (float) lengthChalet;
         float lengthGaucheDroite = (float) widthChalet;
@@ -889,7 +1220,24 @@ public class STLWriterSecondaire {
         float zSupGauche = 0f;
 
         // Determiner les points du prisme de base
-        List<float[]> listeVertex = determinerPointsPrismes(lengthGaucheDroite,width,height,xSupGauche,ySupGauche,zSupGauche);
+        List<float[]> listeVertex = determinerPointsPrismes(chaletLength,chaletWidth,chaletHeight,xSupGauche,ySupGauche,zSupGauche);
+
+*/
+
+        // Définir les dimensions du chalet
+        float chaletLength = (float) Chalet.longueurChalet;
+        float chaletWidth = (float) Chalet.largeurChalet;
+        float chaletHeight = (float) Chalet.hauteurMurs;
+
+        // Coordonnées du coin supérieur gauche du prisme principal
+        float xSupGauche = 0f;
+        float ySupGauche = 0f;
+        float zSupGauche = 0f;
+
+
+        // Determiner les points du prisme de base
+        List<float[]> listeVertex = determinerPointsPrismes(chaletLength, chaletWidth, chaletHeight, xSupGauche, ySupGauche, zSupGauche);
+
 
         // Determiner les points de prismes qui seront d'une longueur determine et
         // d'épaisseur correspondant a la moitie de l'épaisseur du prisme de base afin de construire les rainures gauches et droites
@@ -902,21 +1250,66 @@ public class STLWriterSecondaire {
         float[] v6 = listeVertex.get(6);
         float[] v7 = listeVertex.get(7);
 
-        // MUR AVANT
+        // Définir les coordonnées du coin supérieur gauche initial
+        float[] supGauche = {0, 0, 0};
+
+        // Calculer les coordonnées des coins supérieurs gauches pour chaque mur
+        float[] supGaucheAvant = {supGauche[0], supGauche[1], supGauche[2] + chaletHeight};
+        float[] supGaucheDroite = {supGauche[0] + chaletLength, supGauche[1], supGauche[2]};
+        float[] supGaucheGauche = {supGauche[0], supGauche[1], supGauche[2]};
+        float[] supGaucheArriere = {supGauche[0], supGauche[1] + chaletWidth, supGauche[2]};
+
+        // Maintenant, vous pouvez utiliser ces valeurs pour créer vos murs
+        List<Triangle> trianglesAvant = ExporterPanneauxFinisAvant(supGaucheAvant, chaletLength, chaletWidth, chaletHeight,supGaucheDroite);
+        List<Triangle> trianglesRetraitAvant = ExporterPanneauxRetraitAvant(supGaucheAvant, chaletLength, chaletWidth, chaletHeight);
+
+        List<Triangle> trianglesDroites = ExporterPanneauxFinisDroite(supGaucheDroite, chaletWidth, chaletLength, chaletHeight);
+        List<Triangle> trianglesRetraitDroites = ExporterPanneauxRetraitDroite(supGaucheDroite, chaletWidth, chaletLength, chaletHeight);
+
+        List<Triangle> trianglesGauche = ExporterPanneauxFinisGauche(supGaucheGauche, chaletWidth, chaletLength, chaletHeight);
+        List<Triangle> trianglesRetraitGauche = ExporterPanneauxRetraitGauche(supGaucheGauche, chaletWidth, chaletLength, chaletHeight);
+
+        List<Triangle> trianglesArriere = ExporterPanneauxFinisArriere(supGaucheArriere, chaletLength, chaletWidth, chaletHeight);
+        List<Triangle> trianglesRetraitArriere = ExporterPanneauxRetraitArriere(supGaucheArriere, chaletLength, chaletWidth, chaletHeight);
+
+
+        // CHALET
+        List<Triangle> triangleChalet = new LinkedList<>();
+        triangleChalet.addAll(trianglesAvant);
+        triangleChalet.addAll(trianglesDroites);
+        triangleChalet.addAll(trianglesGauche);
+        triangleChalet.addAll(trianglesArriere);
+
+
+        //Retrait
+        generateSTL(trianglesRetraitAvant,fileNameRetraitAvant);
+        generateSTL(trianglesRetraitDroites,fileNameRetraitDroite);
+        generateSTL(trianglesRetraitGauche,fileNameRetraitGauches);
+        generateSTL(trianglesRetraitArriere,fileNameRetraitArriere);
+
+
+
+
+/*
+        // MUR AVANT FINIS
         List<Triangle> trianglesAvant = ExporterPanneauxFinisAvant(supGauche,lengthFacadeArriere,width,height);
+        // MUR AVANT RETRAIT
         List<Triangle> trianglesRetraitAvant = ExporterPanneauxRetraitAvant(supGauche,lengthFacadeArriere,width,height);
 
-        // MUR DROITE
+        // MUR DROITE FINIS
         List<Triangle> trianglesDroites = ExporterPanneauxFinisDroite(supGauche,lengthGaucheDroite,width,height);
+        // MUR DROITE RETRAIT
         List<Triangle> trianglesRetraitDroites = ExporterPanneauxRetraitDroite(v3,lengthGaucheDroite,width,height);
 
 
-        //MUR GAUCHE
+        //MUR GAUCHE FINIS
         List<Triangle> trianglesGauche = ExporterPanneauxFinisGauche(supGauche,lengthGaucheDroite,width,height);
+        //MUR GAUCHE RETRAIT
         List<Triangle> trianglesRetraitGauche = ExporterPanneauxRetraitGauche(v2,lengthGaucheDroite,width,height);
 
-        //MUR ARRIERE
+        //MUR ARRIERE FINIS
         List<Triangle> trianglesArriere  = ExporterPanneauxFinisArriere(supGauche,lengthFacadeArriere,width,height);
+        //MUR ARRIERE RETRAIT
         List<Triangle> trianglesRetraitArriere = ExporterPanneauxRetraitArriere(supGauche,lengthFacadeArriere,width,height);
 
 
@@ -925,7 +1318,7 @@ public class STLWriterSecondaire {
         triangleChalet.addAll(trianglesAvant);
         triangleChalet.addAll(trianglesDroites);
         triangleChalet.addAll(trianglesGauche);
-        triangleChalet.addAll(trianglesArriere);
+        triangleChalet.addAll(trianglesArriere);*/
 
 /*
 
@@ -941,20 +1334,9 @@ public class STLWriterSecondaire {
 */
 
 
-        //Retrait
-        generateSTL(trianglesRetraitAvant,fileNameRetraitAvant);
-        generateSTL(trianglesRetraitDroites,fileNameRetraitDroite);
-        generateSTL(trianglesRetraitGauche,fileNameRetraitGauches);
-        generateSTL(trianglesRetraitArriere,fileNameRetraitArriere);
-
-
-
     }
 
-
-
-
-    public static List<Triangle> GenererRetraitAccessoires(List<Fenetre> listeFenetre, List<Porte> listePorte , float length, float height, float thicknessPrincipal) {
+    public static List<Triangle> GenererRetraitAccessoires(List<Fenetre> listeFenetre, List<Porte> listePorte , float length, float height, float thicknessPrincipal, String Type) {
 
         double epaisseurChalet = Chalet.epaisseurChalet;
         List<Triangle> listeTriangleAccessoire = new LinkedList<>();
@@ -979,7 +1361,7 @@ public class STLWriterSecondaire {
             float zSupGaucheAccessoire = 0f ;//+ zSupGauchePorte;
 
 
-            List<Triangle> listeTrianglesPortes = generateRectangularPrism(lengthPorte, thicknessPrincipal, heightPorte, xSupGauchePorte, ySupGauchePorte, zSupGauchePorte);
+            List<Triangle> listeTrianglesPortes = generateRectangularPrism(lengthPorte, thicknessPrincipal, heightPorte, xSupGauchePorte, ySupGauchePorte, zSupGauchePorte, "Type");
             listeTriangleAccessoire.addAll(listeTrianglesPortes);
         }
 
@@ -1009,16 +1391,14 @@ public class STLWriterSecondaire {
             float ySupGaucheAccessoire = ySupGauchePorte; //+ ySupGauchePorte;
             float zSupGaucheAccessoire = 0f ;//+ zSupGauchePorte;
 
-            List<Triangle> listeTrianglesFenetre = generateRectangularPrism(lengthPorte, thicknessPrincipal, heightPorte, xSupGauchePorte, ySupGauchePorte, zSupGauchePorte);
+            List<Triangle> listeTrianglesFenetre = generateRectangularPrism(lengthPorte, thicknessPrincipal, heightPorte, xSupGauchePorte, ySupGauchePorte, zSupGauchePorte, "Type");
             listeTriangleAccessoire.addAll(listeTrianglesFenetre);
 
         }
         return listeTriangleAccessoire;
     }
 
-
-
-    public static void retirerAccessoires(List<Fenetre> listeFenetre, List<Porte> listePorte ,List<Triangle> listeTriangles, float lenght,float heigth,float thicknessPrincipal) {
+    public static void retirerAccessoires(List<Fenetre> listeFenetre, List<Porte> listePorte ,List<Triangle> listeTriangles, float lenght,float heigth,float thicknessPrincipal, String Type) {
 
         double epaisseurChalet = Chalet.epaisseurChalet;
 
@@ -1048,7 +1428,7 @@ public class STLWriterSecondaire {
             float zSupGaucheAccessoire = 0f ;//+ zSupGauchePorte;
 
 
-            List<Triangle> listeTrianglesPortes = generateRectangularPrism(lengthPorte, thicknessPrincipal, heightPorte, xSupGauchePorte, ySupGauchePorte, zSupGauchePorte);
+            List<Triangle> listeTrianglesPortes = generateRectangularPrism(lengthPorte, thicknessPrincipal, heightPorte, xSupGauchePorte, ySupGauchePorte, zSupGauchePorte, "Type");
             retirerTrianglesCommuns(listeTriangles,listeTrianglesPortes);
 
         }
@@ -1095,12 +1475,11 @@ public class STLWriterSecondaire {
             float zSupGaucheAccessoire = zSupGauchePorte + heigth / 2;
 
 
-            List<Triangle> listeTrianglesPortes = generateRectangularPrism(lengthPorte, thicknessPrincipal, heightPorte, xSupGauchePorte, ySupGauchePorte, zSupGauchePorte);
+            List<Triangle> listeTrianglesPortes = generateRectangularPrism(lengthPorte, thicknessPrincipal, heightPorte, xSupGauchePorte, ySupGauchePorte, zSupGauchePorte, "Type");
             retirerTrianglesCommuns(listeTriangles,listeTrianglesPortes);
 
         }
     }
-
 
     public static void retirerTrianglesCommuns(List<Triangle> listeTrianglesMur, List<Triangle> listeTrianglesAccessoires) {
         // Supprimer les triangles communs des listes en utilisant une méthode plus souple de comparaison
@@ -1126,7 +1505,7 @@ public class STLWriterSecondaire {
 
     private static boolean pointsSeChevauchent(float[] point1, float[] point2) {
         // Vérifier si les coordonnées des points se chevauchent (tolérance à ajuster selon la précision requise)
-        float tolerance = 4f;
+        float tolerance = 20f;
         return Math.abs(point1[0] - point2[0]) < tolerance &&
                 Math.abs(point1[1] - point2[1]) < tolerance &&
                 Math.abs(point1[2] - point2[2]) < tolerance;

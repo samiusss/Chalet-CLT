@@ -47,14 +47,11 @@ public class ArriereDrawer {
     private void drawFenetre(Graphics g) {
 
         System.out.println("porteARRIERE");
-
         g.setColor(new Color(102, 102, 0));
-
         List<Fenetre> listeFenetre = arriere.getListeFenetre();
         int lenghtlisteFenetre = listeFenetre.size();
 
         for (Fenetre fenetre : listeFenetre) {
-
             Fenetre fenetreActuel = (Fenetre) fenetre;
             if (fenetreActuel != null) {
                 Point mousePoint = fenetre.mousePoint;
@@ -90,10 +87,8 @@ public class ArriereDrawer {
                 int largeurPorteInt = (int) (convertirPoucesEnInt(largeur) * zoomFactor);
                 int hauteurPorteInt = (int) (convertirPoucesEnInt(hauteur) * zoomFactor);
 
-
                 PointDouble pointInfDroitac = arriere.getSommetsMur().get(6);
                 PointDouble pointInfGaucheac = arriere.getSommetsMur().get(7);
-
 
                 int xPorte = (int) (((mousePoint.x) * zoomFactor) ) ;
 
@@ -142,6 +137,7 @@ public class ArriereDrawer {
             RainureDroiteSupDroit = new PointDouble(longueurChalet, hauteurMurs);
             RainureDroiteInfDroite = new PointDouble(longueurChalet, 0);
         }
+
         int positionX = 0;
         int positionY = 0;
 
