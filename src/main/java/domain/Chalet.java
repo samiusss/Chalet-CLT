@@ -320,23 +320,22 @@ public class Chalet {
     }
 
     public Optional<Porte> determinerPorte(String nomMur, Point mousePosition) {
-
         List<Porte> portes = listeMurs.get(determinerMur(nomMur)).getListePorte();
 
-        if(portes.isEmpty()) {
+        if (portes.isEmpty()) {
             return Optional.empty();
         }
 
         for (Porte porte : portes) {
             if (porte.estDansMousePoint(mousePosition)) {
-
                 System.out.println("Porte trouvée");
                 return Optional.of(porte);
             }
         }
 
-        return Optional.ofNullable(portes.get(determinerMur(nomMur)));
+        return Optional.empty();
     }
+
 
     public Optional<Fenetre> determinerFenetre(String nomMur, Point mousePosition) {
 
@@ -1513,7 +1512,7 @@ public class Chalet {
     }
 
     // Fonction qui sera utile pour le Drag
-    public static boolean selectionPorte(Porte porte, Point mousePointClicked) {
+    public static boolean selectionPorte(Porte porte, Point mousePointClicked, String nomMur) {
         if (porte == null) {
             return false; // Ajoutez cette vérification pour éviter la NullPointerException
         }
@@ -1557,7 +1556,7 @@ public class Chalet {
     }
 
 
-    public static boolean modifierXfenetre(int nouveauXfenetreint, String nomMur, Dimension initialDimension) {
+    public  boolean modifierXfenetre(int nouveauXfenetreint, String nomMur, Dimension initialDimension) {
         int numMur = determinerMur(nomMur);
 
         Mur mur = listeMurs.get(numMur);
@@ -1579,7 +1578,7 @@ public class Chalet {
     }
 
 
-    public static boolean modifierYfenetre(int nouveauYfenetreint, String nomMur, Dimension initialDimension) {
+    public boolean modifierYfenetre(int nouveauYfenetreint, String nomMur, Dimension initialDimension) {
         int numMur = determinerMur(nomMur);
         Mur mur = listeMurs.get(numMur);
         for (Fenetre fenetre : mur.getListeFenetre()) {
@@ -1773,6 +1772,7 @@ public class Chalet {
         System.out.println(largeurChaletMN); //test
         System.out.println(largeurChalet + " is the new value of largeur in Chalet.java"); //test
     }
+
 
     public static void setHauteurMurs(double hauteurMursMN) {
         hauteurMurs = hauteurMursMN;
