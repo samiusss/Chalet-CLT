@@ -16,6 +16,7 @@ import static ui.MainWindow.*;
 public class DrawingPanel extends JPanel implements Serializable {
     private int xOffsetDrag;
     private int yOffsetDrag;
+
     private MainWindow mainWindow;
     public Controleur controleur;
     public Dimension initialDimensionNonStatic = getPreferredSize();
@@ -74,27 +75,33 @@ public class DrawingPanel extends JPanel implements Serializable {
                     yOffsetDrag = 0;
 
                     //Selection de la porte
-                    Point mousePoint = mousePointClicked.getPoint();
-                    Chalet chalet = controleur.getChaletProduction();
-                    porteSelectionnee = chalet.determinerPorte(selectedAffichageVue.toString(), mousePoint);
+                    mousePointClicked = e.getPoint();
+                    int adjustedX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                    int adjustedY = (int) ((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
+                    Point mousePoint = new Point(adjustedX, adjustedY);
 
-                    System.out.println(mousePoint + "porte selectionne" + porteSelectionnee);
+                    Chalet chalet = controleur.getChaletProduction();
+                    String nomMur = String.valueOf(selectedAffichageVue);
+                    List<Mur> listeMursDrawer = chalet.getMursUsines(0,"NORD");
+                    boolean porteSelectionnee = controleur.MethodeTest(nomMur,listeMursDrawer,mousePoint);
+                    setPorteSelectionnee(porteSelectionnee);
+                    System.out.println(mousePoint + "porte selectionne Mouse Point Porte Ui" + porteSelectionnee);
                 }
 
                 // Drag de la fenetre
-                if (!MainWindow.isAddingFenetre){
+                /*if (!MainWindow.isAddingFenetre){
                     // Réinitialisez le décalage ici
                     xOffsetDrag = 0;
                     yOffsetDrag = 0;
 
                     //Selection de la fenetre
-                    Point mousePoint = mousePointClicked.getPoint();
+                    *//*Point mousePoint = mousePointClicked.getPoint();
                     Chalet chalet = controleur.getChaletProduction();
                     fenetreSelectionnee = chalet.determinerFenetre(selectedAffichageVue.toString(), mousePoint);
 
-                    System.out.println(mousePoint + "fenetre selectionne" + fenetreSelectionnee);
+                    System.out.println(mousePoint + "fenetre selectionne" + fenetreSelectionnee);*//*
 
-                }
+                }*/
             }
         });
 
@@ -103,9 +110,10 @@ public class DrawingPanel extends JPanel implements Serializable {
             public void mouseDragged(MouseEvent e) {
 
                 if (!MainWindow.isAddingPorte) {
+                    System.out.println(getPorteSelectionnee() + "porte selectionne est REEL");
 
-                    if (SwingUtilities.isLeftMouseButton(e) && porteSelectionnee.isPresent()) {
-                        System.out.println("Avant mise à jour : " + porteSelectionnee.get().mousePoint.getX());
+                    if (SwingUtilities.isLeftMouseButton(e) && porteSelectionnee) {
+                        System.out.println("Avant mise à jour : " + porteSelectionnee);
                         int newX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
 
                         System.out.println("Nouvelles coordonnées : X=" + newX);
@@ -116,24 +124,24 @@ public class DrawingPanel extends JPanel implements Serializable {
                     }
 
                 }
-                // Drag de la fenetre
+               /* // Drag de la fenetre
                 if (!MainWindow.isAddingFenetre) {
 
                     if (SwingUtilities.isLeftMouseButton(e) && fenetreSelectionnee.isPresent()) {
                         System.out.println("Avant mise à jour : " + fenetreSelectionnee.get().mousePoint.getX());
                         int newX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
-                        /*int newY = (int) ((e.getY() - controleur.getOffsetY()) / controleur.getZoom());*/
+                        //int newY = (int) ((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
 
                         System.out.println("Nouvelles coordonnées : X=" + newX);
-                        /*System.out.println("Nouvelles coordonnées : Y=" + newY);*/
+                        //System.out.println("Nouvelles coordonnées : Y=" + newY);
 
                         Chalet chalet = controleur.getChaletProduction();
                         chalet.modifierXfenetre(newX, selectedAffichageVue.toString(), initialDimensionReturn);
-                        /*chalet.modifierYfenetre(newY, selectedAffichageVue.toString(), initialDimensionReturn);*/
+                        //chalet.modifierYfenetre(newY, selectedAffichageVue.toString(), initialDimensionReturn);
                         repaint();
                     }
 
-                }
+                }*/
             }
         });
 
@@ -771,6 +779,13 @@ public class DrawingPanel extends JPanel implements Serializable {
 
     public void setMainWindow(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
+    }
+
+    public void setPorteSelectionnee(boolean porteSelectionnee) {
+        this.porteSelectionnee = porteSelectionnee;
+    }
+    public boolean getPorteSelectionnee() {
+        return porteSelectionnee;
     }
 
 

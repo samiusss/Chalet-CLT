@@ -102,6 +102,7 @@ public class Porte extends Accessoires implements Serializable {
         Point coinInferieurGauche = getCoinInferieurGauche();
         Point coinInferieurDroit = getCoinInferieurDroit();
 
+
         // Vérifiez si le mousePoint est à l'intérieur des limites de la porte
         return targetMousePoint.x >= Math.min(coinSuperieurGauche.x, coinSuperieurDroit.x) &&
                 targetMousePoint.x <= Math.max(coinSuperieurGauche.x, coinSuperieurDroit.x) &&
