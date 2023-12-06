@@ -123,7 +123,7 @@ public class DrawingPanel extends JPanel implements Serializable {
                         repaint();
                     }
 
-                }
+                } //
                /* // Drag de la fenetre
                 if (!MainWindow.isAddingFenetre) {
 
