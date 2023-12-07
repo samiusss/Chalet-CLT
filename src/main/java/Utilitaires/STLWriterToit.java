@@ -68,11 +68,11 @@ public class STLWriterToit {
         return listeVertex;
     }
 
-    public static List<Triangle> generatePignonPrism(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche, String type){
+    /*public static List<Triangle> generatePignonPrism(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche, String type){
         List<Triangle> trianglesPignon = new ArrayList<>();
 
         //List<float[]> listeVertex = determinerSommetsPignons(length, height);
-    }
+    }*/
 
     public static java.util.List<Triangle> generateRectangularPrism(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche, String type) {
         java.util.List<Triangle> triangles = new ArrayList<>();
