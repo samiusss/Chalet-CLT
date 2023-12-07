@@ -125,8 +125,8 @@ public class MainWindow extends javax.swing.JFrame {
     public JButton nouveauChaletButton;
     private JButton changeOrientationButton;
     public JTextField retrait;
-    private JTextField orientationTextField;
     private JTextField angleTextField;
+    private JComboBox orientation;
     private Point ZoomOrigin;
 
     private ChaletDTO.AffichageVue selectedVue;
@@ -643,17 +643,17 @@ public class MainWindow extends javax.swing.JFrame {
                 FenetrePrincipale.repaint();
             }
         });
-        orientationTextField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String inputText = orientationTextField.getText();
-                Controleur.setOrientation(inputText);
-                FenetrePrincipale.revalidate();
-                FenetrePrincipale.repaint();
-                System.out.println(inputText + " comme orientation a été rentré...");
-
-            }
-        });
+//        orientationTextField.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                String inputText = orientationTextField.getText();
+//                Controleur.setOrientation(inputText);
+//                FenetrePrincipale.revalidate();
+//                FenetrePrincipale.repaint();
+//                System.out.println(inputText + " comme orientation a été rentré...");
+//
+//            }
+//        });
         angleTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -697,6 +697,22 @@ public class MainWindow extends javax.swing.JFrame {
                     throw new RuntimeException(ex);
                 }
                 JOptionPane.showMessageDialog(null, "Vous avez exporté Chalet Retrait", "Exportations STL", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        orientation.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Obtenez la valeur sélectionnée dans le JComboBox
+                String selectedOrientation = (String) orientation.getSelectedItem();
+
+                // Utilisez la valeur sélectionnée comme orientation
+                Controleur.setOrientation(selectedOrientation);
+
+                // Rafraîchissez la fenêtre principale
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
+
+                System.out.println(selectedOrientation + " comme orientation a été sélectionné...");
             }
         });
     }

@@ -320,23 +320,22 @@ public class Chalet {
     }
 
     public Optional<Porte> determinerPorte(String nomMur, Point mousePosition) {
-
         List<Porte> portes = listeMurs.get(determinerMur(nomMur)).getListePorte();
 
-        if(portes.isEmpty()) {
+        if (portes.isEmpty()) {
             return Optional.empty();
         }
 
         for (Porte porte : portes) {
             if (porte.estDansMousePoint(mousePosition)) {
-
                 System.out.println("Porte trouvée");
                 return Optional.of(porte);
             }
         }
 
-        return Optional.ofNullable(portes.get(determinerMur(nomMur)));
+        return Optional.empty();
     }
+
 
     public Optional<Fenetre> determinerFenetre(String nomMur, Point mousePosition) {
 
@@ -511,6 +510,42 @@ public class Chalet {
 
     }
 
+    public static boolean estDansRectanglePorte(Point point, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
+        int x = point.x;
+        int y = point.y;
+
+        int x1 = coinSupGauche.x;
+        int y3 = (int) hauteurMurs - (coinInfGauche.y-coinSupGauche.y);
+
+        int x2 = coinSupDroit.x;
+        int y2 = coinSupDroit.y;
+
+        int x3 = coinInfGauche.x;
+        int y1 = (int) hauteurMurs;
+
+        int x4 = coinInfDroit.x;
+        int y4 = coinInfDroit.y;
+
+        //Probleme dans la méthode de generations des sommets des murs. Le points superieur droit est plus petit que le coin superieur gauche.
+        //boolean conditionUn = x >= x1;
+        //boolean conditionDeux = x <= x2 ;
+
+        boolean conditionUn = x >= x1;
+        boolean conditionDeux = x <= x2;
+        boolean conditionTrois = y <= y1;
+        boolean conditionQuatre = y >= y3;
+        //System.out.println(conditionUn +""+  conditionDeux +""+  conditionTrois +""+  conditionQuatre +"Les conditions" );
+
+        // Vérifie si le point se trouve à l'intérieur du rectangle
+        boolean estDansRectangle = (conditionUn && conditionDeux && conditionTrois && conditionQuatre);
+
+        //System.out.println(estDansRectangle + "(estDansRectangle) " + point);
+        return estDansRectangle;
+
+
+    }
+
+
     public static boolean estDansRectangleMurArriere(Point point, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
         int x = point.x;
         int y = point.y;
@@ -616,6 +651,46 @@ public class Chalet {
         PointsMur.add(InfDroitAccessoires);
 
         return PointsMur;
+    }
+
+    public static boolean MethodeTest(String nomMur,List<Mur> listeMursDrawer, Point mousePoint) {
+
+        int numMur = determinerMur(nomMur);
+
+        Mur mur = listeMursDrawer.get(numMur);
+
+        List<Porte> listePorte = mur.getListePorte();
+
+        for (Porte porte : listePorte) {
+            int largeurPorte = convertirPoucesEnInt(porte.largeur);
+            int hauteurPorte = convertirPoucesEnInt(porte.hauteur);
+
+
+            List<Point> listePoints = determinerSommetsAccessoires(porte.mousePoint, largeurPorte, hauteurPorte);
+            Point SupGauchePorte = listePoints.get(0);
+            Point SupDroitPorte = listePoints.get(1);
+            Point InfGauchePorte = listePoints.get(2);
+            Point InfDroitPorte = listePoints.get(3);
+
+            boolean PointUnRect = estDansRectanglePorte(mousePoint, SupGauchePorte, SupDroitPorte, InfGauchePorte, InfDroitPorte);
+
+            System.out.println(SupGauchePorte+"(SupGaucheFenetre est dans rectangle ?) ");
+            System.out.println(SupDroitPorte+"(SupDroitFenetre est dans rectangle ?) ");
+            System.out.println(InfGauchePorte+"(InfGaucheFenetre est dans rectangle ?) ");
+            System.out.println(InfDroitPorte+"(InfDroitFenetre est dans rectangle ?) ");
+
+            if (PointUnRect) {
+                System.out.println(true + "(Porte Est Dans Rectangle) ");
+
+                return true;
+            }
+            System.out.println(mousePoint + " " + porte.mousePoint + " " + largeurPorte + " " + hauteurPorte + "(MousPoint, MousePoint Porte Domaine) ");
+    //
+
+        }
+
+        System.out.println(false + "(Porte Est Pas Dans Rectangle) ");
+        return false;
     }
 
 
@@ -1535,7 +1610,7 @@ public class Chalet {
     }
 
     // Fonction qui sera utile pour le Drag
-    public static boolean selectionPorte(Porte porte, Point mousePointClicked) {
+    public static boolean selectionPorte(Porte porte, Point mousePointClicked, String nomMur) {
         if (porte == null) {
             return false; // Ajoutez cette vérification pour éviter la NullPointerException
         }
@@ -1579,7 +1654,7 @@ public class Chalet {
     }
 
 
-    public static boolean modifierXfenetre(int nouveauXfenetreint, String nomMur, Dimension initialDimension) {
+    public  boolean modifierXfenetre(int nouveauXfenetreint, String nomMur, Dimension initialDimension) {
         int numMur = determinerMur(nomMur);
 
         Mur mur = listeMurs.get(numMur);
@@ -1601,7 +1676,7 @@ public class Chalet {
     }
 
 
-    public static boolean modifierYfenetre(int nouveauYfenetreint, String nomMur, Dimension initialDimension) {
+    public boolean modifierYfenetre(int nouveauYfenetreint, String nomMur, Dimension initialDimension) {
         int numMur = determinerMur(nomMur);
         Mur mur = listeMurs.get(numMur);
         for (Fenetre fenetre : mur.getListeFenetre()) {
@@ -1795,6 +1870,7 @@ public class Chalet {
         System.out.println(largeurChaletMN); //test
         System.out.println(largeurChalet + " is the new value of largeur in Chalet.java"); //test
     }
+
 
     public static void setHauteurMurs(double hauteurMursMN) {
         hauteurMurs = hauteurMursMN;

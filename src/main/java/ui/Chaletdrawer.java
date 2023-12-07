@@ -142,6 +142,7 @@ public class Chaletdrawer {
 
 
 
+
     private void drawFenetre(Graphics g)
     {
 

@@ -249,13 +249,13 @@ public class Controleur {
     // J'ai un bugg ici
     public boolean modifierXFenetre(int nouveauXfenetreint, String nomMur,Dimension initialDimension)
     {
-        boolean success = Chalet.modifierXfenetre(nouveauXfenetreint,nomMur,initialDimension );
+        boolean success = chaletProduction.modifierXfenetre(nouveauXfenetreint,nomMur,initialDimension );
         return success;
     }
 
     public boolean modifierYFenetre( int nouveauYfenetreint, String nomMur,Dimension initialDimension)
     {
-        boolean success = Chalet.modifierYfenetre(nouveauYfenetreint, nomMur,initialDimension );
+        boolean success = chaletProduction.modifierYfenetre(nouveauYfenetreint, nomMur,initialDimension );
         return success;
     }
 
@@ -270,6 +270,15 @@ public class Controleur {
         boolean success = Chalet.supprimerToutesFenetre(nomMur, listeMursDrawer);
         return success;
     }
+
+    public boolean MethodeTest(String nomMur,List<Mur> listeMursDrawer, Point mousePoint)
+    {
+        boolean succes = Chalet.MethodeTest(nomMur,listeMursDrawer,mousePoint);
+        return succes;
+    }
+
+
+
 
 
 

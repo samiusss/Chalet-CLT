@@ -405,16 +405,6 @@
                   <text value="Orientation"/>
                 </properties>
               </component>
-              <component id="21eea" class="javax.swing.JTextField" binding="orientationTextField" default-binding="true">
-                <constraints>
-                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <text value=""/>
-                </properties>
-              </component>
               <component id="1c1a2" class="javax.swing.JLabel">
                 <constraints>
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -443,6 +433,19 @@
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
               </hspacer>
+              <component id="ebd7e" class="javax.swing.JComboBox" binding="orientation">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <model>
+                    <item value="Est"/>
+                    <item value="Ouest"/>
+                    <item value="Nord"/>
+                    <item value="Sud"/>
+                  </model>
+                </properties>
+              </component>
             </children>
           </grid>
           <hspacer id="cb72b">
