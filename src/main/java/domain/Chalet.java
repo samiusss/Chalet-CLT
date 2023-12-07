@@ -609,6 +609,22 @@ public class Chalet {
                 && estDansRectangle(InfDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur)); */
     }
 
+    //TODO: A METTRE LES VRAIS POINTS DES PIGNONS
+    public static List<Point> determinterSommetsPignons(int largeurPignon, int hauteurPignon){
+
+        Point InfGauchePignon = new Point(0, 0);
+        Point SupGauchePignon = new Point(0, hauteurPignon);
+        Point InfDroitPignon = new Point(largeurPignon, 0);
+
+        List<Point> pointsPignon = new ArrayList<>();
+
+        pointsPignon.add(InfGauchePignon);
+        pointsPignon.add(SupGauchePignon);
+        pointsPignon.add(InfDroitPignon);
+
+        return pointsPignon;
+    }
+
 
     public static List<Point> determinerSommetsAccessoires(Point mousePoint, int largeur, int hauteur) {
 
