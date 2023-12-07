@@ -358,6 +358,28 @@ public class Chalet {
     }
 
 
+    public Optional<Fenetre> determinerPorteFinal(String nomMur, Point mousePosition) {
+
+        List<Fenetre> fenetres = listeMurs.get(determinerMur(nomMur)).getListeFenetre();
+
+        if(fenetres.isEmpty()) {
+            return Optional.empty();
+        }
+
+        for (Fenetre fenetre : fenetres) {
+            if (fenetre.estDansMousePoint(mousePosition)) {
+
+                System.out.println("Fenetre trouvée");
+                return Optional.of(fenetre);
+            }
+        }
+
+        return Optional.ofNullable(fenetres.get(determinerMur(nomMur)));
+    }
+
+
+
+
     public static List<Point> DeterminerCollisionSommetsMur(Mur mur, Dimension initialDimension) {
 
         //List<PointDouble> sommetsMur = mur.getSommetsMur();

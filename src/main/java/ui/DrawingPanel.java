@@ -68,10 +68,13 @@ public class DrawingPanel extends JPanel implements Serializable {
             public void mousePressed(MouseEvent mousePointClicked) {
 
                 if (!MainWindow.isAddingPorte) {
-
                     // Réinitialisez le décalage ici
                     xOffsetDrag = 0;
                     yOffsetDrag = 0;
+
+                    int adjustedX = (int)((mousePointClicked.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                    int adjustedY = (int)((mousePointClicked.getY() - controleur.getOffsetY()) / controleur.getZoom());
+                    Point mPoint = new Point(adjustedX, adjustedY);
 
                     //Selection de la porte
                     Point mousePoint = mousePointClicked.getPoint();
@@ -142,7 +145,12 @@ public class DrawingPanel extends JPanel implements Serializable {
             @Override
             public void mouseClicked(MouseEvent e) {
                 mousePointClicked = e.getPoint();
-                System.out.println(mousePointClicked);
+                Point Clicked = e.getPoint();
+
+                Point t = MainWindow.mousePointClicked;
+                System.out.println("MainWindows" + t);
+
+                System.out.println("DrawinfPanel" + Clicked);
 
                 int adjustedX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
                 int adjustedY = (int) ((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
