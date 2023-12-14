@@ -277,6 +277,13 @@ public class Controleur {
         return succes;
     }
 
+    public boolean MethodeTestFenetre(String nomMur,List<Mur> listeMursDrawer, Point mousePoint)
+    {
+        boolean succes = Chalet.MethodeTestFenetre(nomMur,listeMursDrawer,mousePoint);
+        return succes;
+    }
+
+
 
 
 

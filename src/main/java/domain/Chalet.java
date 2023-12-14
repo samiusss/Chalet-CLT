@@ -426,9 +426,6 @@ public class Chalet {
         int x4 = coinInfDroit.x;
         int y4 = coinInfDroit.y;
 
-        //Probleme dans la méthode de generations des sommets des murs. Le points superieur droit est plus petit que le coin superieur gauche.
-        //boolean conditionUn = x >= x1;
-        //boolean conditionDeux = x <= x2 ;
 
         boolean conditionUn = x <= x1;
         boolean conditionDeux = x >= x2;
@@ -452,7 +449,35 @@ public class Chalet {
     } */
 
     }
+    public static boolean MethodeTestFenetre(String nomMur,List<Mur> listeMursDrawer, Point mousePoint) {
 
+        int numMur = determinerMur(nomMur);
+
+        Mur mur = listeMursDrawer.get(numMur);
+
+        List<Fenetre> listeFenetre = mur.getListeFenetre();
+
+        for (Fenetre fenetre : listeFenetre) {
+            int largeurFenetre = convertirPoucesEnInt(fenetre.largeur);
+            int hauteurFenetre = convertirPoucesEnInt(fenetre.hauteur);
+
+
+            List<Point> listePointsFenetre = determinerSommetsAccessoires(fenetre.mousePoint, largeurFenetre, hauteurFenetre);
+            Point SupGaucheFenetre = listePointsFenetre.get(0);
+            Point SupDroitFenetre = listePointsFenetre.get(1);
+            Point InfGaucheFenetre = listePointsFenetre.get(2);
+            Point InfDroitFenetre = listePointsFenetre.get(3);
+
+            boolean PointUnRectFenetre = estDansRectangleAcc(mousePoint, SupGaucheFenetre, SupDroitFenetre, InfGaucheFenetre, InfDroitFenetre);
+
+            if (PointUnRectFenetre) {
+
+                return true;
+            }
+
+        }
+        return false;
+    }
     public static boolean estDansRectangleAcc(Point point, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
         int x = point.x;
         int y = point.y;
@@ -469,10 +494,6 @@ public class Chalet {
         int x4 = coinInfDroit.x;
         int y4 = coinInfDroit.y;
 
-        //Probleme dans la méthode de generations des sommets des murs. Le points superieur droit est plus petit que le coin superieur gauche.
-        //boolean conditionUn = x >= x1;
-        //boolean conditionDeux = x <= x2 ;
-
         boolean conditionUn = x >= x1;
         boolean conditionDeux = x <= x2;
         boolean conditionTrois = y >= y1;
@@ -487,6 +508,8 @@ public class Chalet {
 
 
     }
+
+
 
     public static boolean estDansRectanglePorte(Point point, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
         int x = point.x;
