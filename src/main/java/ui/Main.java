@@ -1,5 +1,6 @@
 package ui;
 
+import Utilitaires.STLWriter3;
 import Utilitaires.STLWriterSecondaire;
 
 import java.io.File;
@@ -52,7 +53,7 @@ public class Main {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterSecondaire.ExporterPanneauxBrut(filePathBrut);
+        //STLWriter3.ExportPanneauxRetrait(filePathBrut);
         //STLWriterSecondaire.ExporterPanneauxFinisRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
 
         MainWindow mainWindow = new MainWindow();

@@ -1131,10 +1131,8 @@ public class STLWriterSecondaire {
         float[] supGaucheMurGauche = {supGauche[0], supGauche[1] - lengthGaucheDroite, supGauche[2]};
         float[] supGaucheMurGaucheAvant = {supGauche[0] + lengthGaucheDroite, supGauche[1] , supGauche[2]};
 
-
         // Mur Droite
         float[] supGaucheMurDroites = {supGauche[0], supGauche[1] + lengthGaucheDroite, supGauche[2]};
-
 
         // Mur Avant
         float[] supGaucheMurAvant = {supGauche[0] + lengthFacadeArriere, supGauche[1], supGauche[2]};

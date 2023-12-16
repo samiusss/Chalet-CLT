@@ -1,6 +1,7 @@
 package domain;
 
 import Utilitaires.Pouces;
+import Utilitaires.STLWriter3;
 import Utilitaires.STLWriterSecondaire;
 
 import java.awt.*;
@@ -114,10 +115,12 @@ public class Controleur {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutFacade);
-        STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutArriere);
-        STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutGauche);
-        STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutDroite);
+        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutFacade);
+        STLWriter3.ExportPanneauxRetrait(filePathBrutFacade);
+
+        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutArriere);
+        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutGauche);
+        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutDroite);
 
     }
 

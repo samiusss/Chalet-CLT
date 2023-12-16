@@ -300,7 +300,6 @@ public class MainWindow extends javax.swing.JFrame {
                         boolean success = controleur.setLargeurFenetre(mPoint,nouvelleLargeur, nomMur, listeMursDrawer,initialDimension);
                         if(success == false){
                             JOptionPane.showMessageDialog(null, "Position Invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
-
                         }
                         DrawingPanel.repaint();
                     }
@@ -325,7 +324,6 @@ public class MainWindow extends javax.swing.JFrame {
                     if(mPoint != null && isSelection) {
                         XFenetreField.setText(String.valueOf(adjustedX));
                         YfenetreField.setText(String.valueOf(adjustedY));
-
 
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
                         Chalet chalet = controleur.getChaletProduction();
