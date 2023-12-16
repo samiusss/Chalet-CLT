@@ -614,14 +614,14 @@ public class MainWindow extends javax.swing.JFrame {
                 Controleur.supprimerToutesFenetre("DROITE", listeMursDrawer);
                 controleur.supprimerPorte("GAUCHE", listeMursDrawer);
                 Controleur.supprimerToutesFenetre("GAUCHE", listeMursDrawer);
-                controleur.supprimerPorte("Arriere", listeMursDrawer);
-                Controleur.supprimerToutesFenetre("Arriere", listeMursDrawer);
+                controleur.supprimerPorte("ARRIERE", listeMursDrawer);
+                Controleur.supprimerToutesFenetre("ARRIERE", listeMursDrawer);
                 Controleur.setEpaisseurChalet(imperialToDoubleUniversel("2'"));
                 Controleur.setLongueurChalet(imperialToDoubleUniversel("20'"));
                 Controleur.setLargeurChalet(imperialToDoubleUniversel("20'"));
                 Controleur.setHauteurMurs(imperialToDoubleUniversel("17'"));
 
-                System.out.println("Nouveau Chalet Créeer");
+                System.out.println("Nouveau Chalet Créer");
 
                 FenetrePrincipale.revalidate();
                 FenetrePrincipale.repaint();
