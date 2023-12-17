@@ -34,6 +34,8 @@ public class ChaletDTO {
     public static List<Mur> listeMurs;
     public static String orientationToit;
     public static double ZoomFactor;
+    public static double grilleP = 10.0;
+
 
 
     public static Chalet createChalet() {

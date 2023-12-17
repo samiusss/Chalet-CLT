@@ -26,6 +26,7 @@ public class Chalet {
     public static double zoom;
     public static float offsetX = 100;
     public static float offsetY = 170;
+    public static double grilleP = 15.0;
 
     private static final Map<String, Integer> MURS = new HashMap<>();
 
@@ -1941,6 +1942,11 @@ public class Chalet {
     public static void setOrientation(String orientation) {
         Chalet.orientationToit = orientation;
         System.out.println(orientation + " is the new value of orientation in TOIT.java"); //test
+
+    }
+    public static void setGrille(double grille) {
+        Chalet.grilleP = grille;
+        System.out.println(grille + " is the new value of grille in Chalet"); //test
 
     }
 

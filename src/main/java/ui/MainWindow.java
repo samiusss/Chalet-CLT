@@ -127,6 +127,7 @@ public class MainWindow extends javax.swing.JFrame {
     public JTextField retrait;
     private JTextField angleTextField;
     private JComboBox orientation;
+    private JTextField grilleTextField;
     private Point ZoomOrigin;
 
     private ChaletDTO.AffichageVue selectedVue;
@@ -713,6 +714,18 @@ public class MainWindow extends javax.swing.JFrame {
                 System.out.println(selectedOrientation + " comme orientation a été sélectionné...");
             }
         });
+        grilleTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = grilleTextField.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double grilleMN= imperialToDoubleUniversel(inputText);
+                Controleur.setGrille(grilleMN);
+                System.out.println(grilleMN+" entered by you..");
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
+            }
+        });
     }
 
 
@@ -722,8 +735,8 @@ public class MainWindow extends javax.swing.JFrame {
         DrawingPanel = new DrawingPanel(this);
         PannelAffichage.setLayout(new BorderLayout());
         PannelAffichage.add(DrawingPanel, BorderLayout.CENTER);
-        DrawingPanel.setPreferredSize(new java.awt.Dimension(500, 500));
-//        DrawingPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        DrawingPanel.setPreferredSize(new java.awt.Dimension(700, 500));
+        PannelAffichage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setContentPane(FenetrePrincipale);
         setSize(1200, 700);
         setLocationRelativeTo(null);

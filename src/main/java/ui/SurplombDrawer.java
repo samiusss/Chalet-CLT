@@ -1,15 +1,10 @@
 package ui;
 
 import Utilitaires.PointDouble;
-import Utilitaires.Pouces;
-import Utilitaires.pointPouces;
 import domain.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
-
-import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 
 public class SurplombDrawer extends JFrame
 {
@@ -46,8 +41,24 @@ public class SurplombDrawer extends JFrame
     public void draw(Graphics g)
     {
         drawSurplomb(g);
+        drawGrid(g);
     }
 
+    private void drawGrid(Graphics g) {
+
+        g.setColor(Color.lightGray);
+
+        double grilleP = Chalet.grilleP*zoomFactor;
+
+        // Lignes verticales
+        for (int x = -500; x < 1500; x += grilleP) {
+            g.drawLine(x, 1500, x, -1500);
+        }
+        // Lignes horizontales
+        for (int y = -500; y < 1500; y += grilleP) {
+            g.drawLine(1500, y, -1500, y);
+        }
+    }
 
     private void drawSurplomb(Graphics g)
     {
@@ -200,5 +211,7 @@ public class SurplombDrawer extends JFrame
         int[] yPointsDroit = {y1r1d, y1r2d, y1d, y2d, y3r1d, y3r2d, y3d, y4d};
         g.setColor(new Color(96, 96, 238));
         g.fillPolygon(xPointsDroit, yPointsDroit, 8);
+
+
     }
 }

@@ -42,6 +42,23 @@ public class FacadeDrawer {
         drawPorte(g);
         drawFenetre(g);
         drawToitFacade(g);
+        drawGrid(g);
+    }
+
+    private void drawGrid(Graphics g) {
+
+        g.setColor(Color.lightGray);
+
+        double grilleP = Chalet.grilleP*zoomFactor;
+
+        // Lignes verticales
+        for (int x = -500; x < 1500; x += grilleP) {
+            g.drawLine(x, 1500, x, -1500);
+        }
+        // Lignes horizontales
+        for (int y = -500; y < 1500; y += grilleP) {
+            g.drawLine(1500, y, -1500, y);
+        }
     }
 
 

@@ -286,7 +286,11 @@ public class Controleur {
         return succes;
     }
 
+    public static void setGrille(double grille) {
+        Chalet.setGrille(grille);
+        System.out.println(grille +" comme grille a été updated in Controleur"); //test
 
+    }
 
 
 
