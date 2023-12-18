@@ -1,7 +1,7 @@
 package domain;
 
 import Utilitaires.Pouces;
-import Utilitaires.STLWriter3;
+import Utilitaires.STLWriterToit;
 import Utilitaires.STLWriterSecondaire;
 
 import java.awt.*;
