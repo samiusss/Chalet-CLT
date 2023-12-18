@@ -10,9 +10,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
-public class Main {
+public class Main implements java.io.Serializable {
 
     public static void main(String[] args) throws IOException {
+
 
 
         // Spécifiez le nom du fichier STL de sortie

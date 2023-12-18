@@ -2,21 +2,21 @@ package ui;
 
 import Utilitaires.Pouces;
 //import Utilitaires.STLWriterSecondaire;
-import domain.Chalet;
-import domain.ChaletDTO;
-import domain.Controleur;
-import domain.Mur;
+import domain.*;
+import Utilitaires.ChaletCopie;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.*;
 
 
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame implements java.io.Serializable {
     private Controleur controleur;
     private ChaletDTO chaletdto;
     private Chalet chalet;
@@ -128,6 +128,8 @@ public class MainWindow extends javax.swing.JFrame {
     private JTextField angleTextField;
     private JComboBox orientation;
     private JTextField grilleTextField;
+    private JButton Save;
+    private JButton Charge;
     private Point ZoomOrigin;
 
     private ChaletDTO.AffichageVue selectedVue;
@@ -245,6 +247,38 @@ public class MainWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
 
 
+            }
+        });
+
+        Save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int userSelection = fileChooser.showSaveDialog(MainWindow.this);
+
+                if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    File fileToSave = fileChooser.getSelectedFile();
+                    ChaletCopie chaletCopie = new ChaletCopie(
+                            Chalet.largeurChalet, Chalet.longueurChalet, Chalet.epaisseurChalet,
+                            Chalet.angleToit, Chalet.hauteurMurs, Chalet.hauteurPignon,
+                            Chalet.listeMurs, Chalet.listeToit, Chalet.orientationToit
+                    );
+                    chaletCopie.serialiserChalet(fileToSave.getAbsolutePath());
+                }
+            }
+        });
+        Charge.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int userSelection = fileChooser.showOpenDialog(MainWindow.this);
+
+                if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    File fileToOpen = fileChooser.getSelectedFile();
+                    ChaletCopie.deserialiserChalet(fileToOpen.getAbsolutePath());
+                    FenetrePrincipale.revalidate();
+                    FenetrePrincipale.repaint();
+                }
             }
         });
         AccessoireLargeurPorteField.addActionListener(new ActionListener() {

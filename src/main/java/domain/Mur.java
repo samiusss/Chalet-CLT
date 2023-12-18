@@ -6,7 +6,7 @@ import Utilitaires.PointDouble;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Mur {
+public class Mur implements java.io.Serializable {
     private String nomMur;
     private LinkedList<PointDouble> sommetsMur;
     private static List<String> accessoiresMur;

@@ -15,7 +15,7 @@ import java.util.List;
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnFloat;
 import static domain.Chalet.determinerSommetsAccessoires;
 
-public class STLWriterToit {
+public class STLWriterToit implements java.io.Serializable {
     public ChaletDTO chaletdto;
     public static Chalet chalet;
     public static Mur facade ; // mur facade deja codé en bas

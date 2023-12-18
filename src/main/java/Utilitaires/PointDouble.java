@@ -2,7 +2,7 @@ package Utilitaires;
 
 import java.awt.*;
 
-public class PointDouble extends Point{
+public class PointDouble extends Point implements java.io.Serializable{
     private double x;
     private double y;
     private PointDouble(){

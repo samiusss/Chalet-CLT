@@ -2,7 +2,7 @@ package Utilitaires;
 
 import java.awt.Point;
 
-public class Rectangle {
+public class Rectangle implements java.io.Serializable{
     public Point pointSuperieurGauche;
     public Point mousePoint;
     public float length;

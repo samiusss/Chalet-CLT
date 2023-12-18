@@ -12,7 +12,7 @@ import java.util.List;
 import static domain.Chalet.determinerSommetsAccessoires;
 
 
-public class STLWriterPrincipal {
+public class STLWriterPrincipal implements java.io.Serializable {
 
     public static void main(String[] args) {
 

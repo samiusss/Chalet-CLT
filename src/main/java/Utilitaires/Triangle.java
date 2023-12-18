@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Triangle {
+public class Triangle implements java.io.Serializable{
     public float[] vertex1;
     public float[]  vertex2;
     public float[]  vertex3;

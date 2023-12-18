@@ -1,6 +1,6 @@
 package Utilitaires;
 
-public class GridPoint {
+public class GridPoint implements java.io.Serializable{
 
     private int row;
     private int col;

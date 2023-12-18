@@ -17,7 +17,7 @@ import static domain.ChaletDTO.initialiserChalet;
 //import static domain.ChaletDTO.creerNouveauChalet;
 //import static domain.Mur.accessoiresMur;
 
-public class Controleur {
+public class Controleur implements java.io.Serializable {
     private ChaletDTO chaletdto;
     private double zoom;
     private float OffsetX;

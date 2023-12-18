@@ -1,6 +1,6 @@
 package Utilitaires;
 
-public class PointUtils {
+public class PointUtils implements java.io.Serializable {
     // Utility method to check if x is greater than or equal to another x
     public static boolean greaterOrEqualsX(java.awt.Point point, int otherX) {
         return point.x >= otherX;

@@ -10,7 +10,7 @@ import java.util.List;
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
 import static java.util.Arrays.asList;
 
-public class Chalet {
+public class Chalet implements java.io.Serializable{
 
     public static double largeurChalet = 300;
     public static double longueurChalet = 300;
@@ -39,11 +39,10 @@ public class Chalet {
 
     public Chalet(double largeurChalet, double longueurChalet,
                   double epaisseurChalet, double angleToit,
-                  double hauteurMurs, double hauteurPignon, List<Mur> listeMurs, List<Toit> listeToit, String orientationToit) {
+                  double hauteurMurs, List<Mur> listeMurs, String orientationToit) {
         this.largeurChalet = largeurChalet;
         this.longueurChalet = longueurChalet;
         this.hauteurMurs = hauteurMurs;
-        this.hauteurPignon = hauteurPignon;
         this.epaisseurChalet = epaisseurChalet;
         this.angleToit = angleToit;
         this.listeMurs = listeMurs;
@@ -1719,11 +1718,11 @@ public class Chalet {
     public boolean modifierYfenetre(int nouveauYfenetreint, String nomMur, Dimension initialDimension) {
         int numMur = determinerMur(nomMur);
         Mur mur = listeMurs.get(numMur);
-        for (Fenetre fenetre : mur.getListeFenetre()) {
-            Point nouveauPoint = new Point(nouveauYfenetreint,(int) fenetre.mousePoint.getX());
 
-            if (nouveauYfenetreint != fenetre.mousePoint.getY() &&
-                    AntiCollisionAccessoireMur(mur, nouveauPoint, fenetre.largeur, fenetre.hauteur, initialDimension) &&
+        for (Fenetre fenetre : mur.getListeFenetre()) {
+            Point nouveauPoint = new Point((int) fenetre.mousePoint.getX(), nouveauYfenetreint);
+
+            if (AntiCollisionAccessoireMur(mur, nouveauPoint, fenetre.largeur, fenetre.hauteur, initialDimension) &&
                     !AntiCollisionFenetreModification(mur, fenetre, nouveauPoint, fenetre.largeur, fenetre.hauteur)) {
 
                 fenetre.setPoint(nouveauPoint);
@@ -1734,6 +1733,7 @@ public class Chalet {
 
         return false;
     }
+
 
     public static boolean supprimerFenetre(Point mousePointClicked, String nomMur, List<Mur> listeMursDrawer) {
 

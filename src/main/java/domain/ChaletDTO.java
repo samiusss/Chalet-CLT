@@ -6,7 +6,7 @@ import java.util.List;
 
 //import static domain.Chalet.distanceUsinage;
 
-public class ChaletDTO {
+public class ChaletDTO implements java.io.Serializable {
     public static Mur facade ; // mur facade deja codé en bas
     public static Mur arriere; // mur arriere deja codé en bas
     public static Mur gauche ; // mur gauche deja codé en bas
@@ -41,8 +41,6 @@ public class ChaletDTO {
     public static Chalet createChalet() {
 
         ArrayList<Mur> listeMurs = new ArrayList<>();
-        ArrayList<Toit> listeToit = new ArrayList<>();
-
         //Dimensions du mur en 3D
         double epaisseurMur = Chalet.epaisseurChalet;     // Épaisseur du mur
         double hauteurMurs = Chalet.hauteurMurs;      // Hauteur des murs, sera utilisée pour les vues de côté
@@ -50,8 +48,7 @@ public class ChaletDTO {
         double longueurMur = Chalet.longueurChalet;
         double angleToit = Chalet.angleToit;
         String orientationToit = "Est";
-        double hauteurPignon = Chalet.hauteurPignon;
-        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs,  hauteurPignon, listeMurs, listeToit, orientationToit);
+        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs,orientationToit);
         return chalet ;
     }
 

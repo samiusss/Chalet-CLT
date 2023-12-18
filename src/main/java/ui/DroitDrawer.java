@@ -12,7 +12,7 @@ import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
 import static domain.Chalet.*;
 import static java.lang.Math.tan;
 
-public class DroitDrawer {
+public class DroitDrawer implements java.io.Serializable {
 
     private Controleur controleur;
     private ChaletDTO chaletdto;
