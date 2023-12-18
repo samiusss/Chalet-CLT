@@ -1,7 +1,6 @@
 package ui;
 
 import Utilitaires.Pouces;
-//import Utilitaires.STLWriterSecondaire;
 import domain.Chalet;
 import domain.ChaletDTO;
 import domain.Controleur;
@@ -36,6 +35,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel PannelDroit;
     public JPanel FenetrePrincipale;
     private JButton UndoButton;
+
     private JButton RedoButton;
     public  JComboBox VueComboBox;
     private JLabel ChalCLTPanel;
@@ -128,6 +128,7 @@ public class MainWindow extends javax.swing.JFrame {
     private JTextField angleTextField;
     private JComboBox orientation;
     private JTextField grilleTextField;
+    private JButton sauvegarderButton;
     private Point ZoomOrigin;
 
     private ChaletDTO.AffichageVue selectedVue;
@@ -621,6 +622,8 @@ public class MainWindow extends javax.swing.JFrame {
                 Controleur.setLongueurChalet(imperialToDoubleUniversel("20'"));
                 Controleur.setLargeurChalet(imperialToDoubleUniversel("20'"));
                 Controleur.setHauteurMurs(imperialToDoubleUniversel("17'"));
+                Controleur.setAngleToit(15.0);
+
 
                 System.out.println("Nouveau Chalet Créer");
 
@@ -726,6 +729,17 @@ public class MainWindow extends javax.swing.JFrame {
                 FenetrePrincipale.repaint();
             }
         });
+
+        UndoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Controleur.undoChalet();
+                System.out.println("Undo cliquez... Observe");
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
+            }
+        });
+
     }
 
 
@@ -744,17 +758,11 @@ public class MainWindow extends javax.swing.JFrame {
         MurPannelTabbedPaneFaçadeLabelLongueurTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String inputText = MurPannelTabbedPaneFaçadeLabelLongueurTextField.getText();
-                //! MUR ARRIERE, LONGUEUR !\\
-
-                double longueurChaletMN= imperialToDoubleUniversel(inputText);
-                Controleur.setLongueurChalet(longueurChaletMN);
-                System.out.println(longueurChaletMN+" entered by you..");
-
-                revalidate();
-                repaint();
+                MurPannelTabbedPaneFaçadeLabelLongueurTextField.setText("123445");
             }
         });
+
+
 
 
         MurPannelTabbedPaneDerriereLabelLongueurTextField.addActionListener(new ActionListener() {

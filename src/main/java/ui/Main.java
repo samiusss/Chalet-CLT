@@ -1,8 +1,5 @@
 package ui;
 
-import Utilitaires.STLWriter3;
-import Utilitaires.STLWriterSecondaire;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

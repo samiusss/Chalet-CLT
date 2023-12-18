@@ -12,8 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static domain.ChaletDTO.createChalet;
-import static domain.ChaletDTO.initialiserChalet;
+import static domain.ChaletDTO.*;
 //import static domain.ChaletDTO.creerNouveauChalet;
 //import static domain.Mur.accessoiresMur;
 
@@ -175,11 +174,10 @@ public class Controleur {
     }
 
 
-        public static void setEpaisseurChalet(double epaisseurChalet)
+    public static void setEpaisseurChalet(double epaisseurChalet)
     {
         Chalet.setEpaisseurChalet(epaisseurChalet);
         initialiserChalet(chaletProduction);
-        //creerNouveauChalet(chaletProduction);
     }
 
     public static void setLongueurChalet(double longueurChalet)
@@ -188,7 +186,6 @@ public class Controleur {
 
         System.out.println(longueurChalet+" Réinitialisation en cours"); //test
         initialiserChalet(chaletProduction);
-        //creerNouveauChalet(chaletProduction);
 
     }
 
@@ -221,68 +218,81 @@ public class Controleur {
     public boolean setLargeurPorte(Pouces nouvellelargeur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setLargeurPorte(nouvellelargeur, nomMur, listeMursDrawer, initialDimension);
+        initialiserChalet(chaletProduction);
         return success;
+
     }
     public boolean setHauteurPorte(Pouces nouvelleHauteur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setHauteurPorte(nouvelleHauteur, nomMur, listeMursDrawer,initialDimension);
+        initialiserChalet(chaletProduction);
         return success;
     }
 
     public boolean setHauteurFenetre(Point mousePointClicked, Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setHauteurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer, initialDimension);
+        initialiserChalet(chaletProduction);
         return success;
     }
 
     public boolean setLargeurFenetre(Point mousePointClicked,Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setLargeurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer,initialDimension);
+        initialiserChalet(chaletProduction);
         return success;
     }
     public boolean supprimerPorte(String nomMur, List<Mur> listeMursDrawer)
     {
         boolean success = Chalet.supprimerPorte(nomMur, listeMursDrawer);
+        initialiserChalet(chaletProduction);
         return success;
     }
     public boolean modifierXPorte(int nouveauXporteint, String nomMur, Dimension initialDimension)
     {
         boolean success = chaletProduction.modifierXporte(nouveauXporteint, nomMur,initialDimension );
+        initialiserChalet(chaletProduction);
         return success;}
     // J'ai un bugg ici
     public boolean modifierXFenetre(int nouveauXfenetreint, String nomMur,Dimension initialDimension)
     {
         boolean success = chaletProduction.modifierXfenetre(nouveauXfenetreint,nomMur,initialDimension );
+        initialiserChalet(chaletProduction);
         return success;
     }
 
     public boolean modifierYFenetre( int nouveauYfenetreint, String nomMur,Dimension initialDimension)
     {
         boolean success = chaletProduction.modifierYfenetre(nouveauYfenetreint, nomMur,initialDimension );
+        initialiserChalet(chaletProduction);
         return success;
     }
 
     public static boolean supprimerFenetre(Point mousePointClicked,String nomMur, List<Mur> listeMursDrawer)
     {
         boolean success = Chalet.supprimerFenetre(mousePointClicked,nomMur, listeMursDrawer);
+        initialiserChalet(chaletProduction);
         return success;
     }
 
     public static boolean supprimerToutesFenetre(String nomMur, List<Mur> listeMursDrawer)
     {
         boolean success = Chalet.supprimerToutesFenetre(nomMur, listeMursDrawer);
+        initialiserChalet(chaletProduction);
         return success;
     }
 
     public boolean MethodeTest(String nomMur,List<Mur> listeMursDrawer, Point mousePoint)
     {
         boolean succes = Chalet.MethodeTest(nomMur,listeMursDrawer,mousePoint);
+        initialiserChalet(chaletProduction);
         return succes;
     }
 
     public boolean MethodeTestFenetre(String nomMur,List<Mur> listeMursDrawer, Point mousePoint)
     {
         boolean succes = Chalet.MethodeTestFenetre(nomMur,listeMursDrawer,mousePoint);
+        initialiserChalet(chaletProduction);
         return succes;
     }
 
@@ -296,16 +306,6 @@ public class Controleur {
 
 
 
-    static Chalet chaletProduction = createChalet();
-
-    boolean rep = initialiserChalet(chaletProduction);
-
-    public Chalet getChaletProduction() {
-        return chaletProduction;
-    }
-    public static Chalet getChaletProductionStatic() {
-        return chaletProduction;
-    }
 
 
 
@@ -366,4 +366,44 @@ public class Controleur {
     {
         Chalet.setOffsetY(newOffY);
     }
+
+    public static Chalet monChalet(Chalet nouvelleCopie, Chalet other) {
+        nouvelleCopie.listeMurs = other.getListeMurs();
+
+        nouvelleCopie.largeurChalet = other.getLargeurChalet();
+        nouvelleCopie.longueurChalet = other.getLongueurChalet();
+        nouvelleCopie.epaisseurChalet = other.getEpaisseurChalet();
+        nouvelleCopie.angleToit = other.getAngleToit();
+        nouvelleCopie.hauteurMurs = other.getHauteurMurs();
+        nouvelleCopie.orientationToit = other.getOrientationToit();
+
+        System.out.println("////////////////////////////// Le UNDO prend un angle d'une copie.... "+nouvelleCopie.angleToit);
+
+        initialiserChaletSansCopier(nouvelleCopie); //Éviter que le code détecte le undo comme une modification, et qu'il ajoute une autre copie par accident
+
+        return nouvelleCopie;
+    }
+    static Chalet chaletProduction = createChalet();
+
+    public static void undoChalet()
+    {
+
+        Chalet chosenChalet=ChaletDTO.listeCopiesChalets.get(1);
+        //chaletProduction = monChalet(chosenChalet, chaletProduction);
+        //initialiserChaletSansCopier(chaletProduction);
+        initialiserChaletSansCopier(chaletProduction); //Fais juste marcher surplomb
+        System.out.println("Le controleur détecte un UNDO voici l'objet chalet.... "+ChaletDTO.listeCopiesChalets.get(1));
+
+    }
+
+
+    boolean rep = initialiserChalet(chaletProduction);
+
+    public Chalet getChaletProduction() {
+        return chaletProduction;
+    }
+    public static Chalet getChaletProductionStatic() {
+        return chaletProduction;
+    }
+
 }

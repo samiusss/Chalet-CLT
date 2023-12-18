@@ -10,12 +10,21 @@ import java.util.List;
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
 import static java.util.Arrays.asList;
 
-public class Chalet {
+public class Chalet implements Cloneable {
+    // ... existing  ...
+
+    public Chalet clone() {
+        try {
+            return (Chalet) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);  // Should not happen
+        }
+    }
 
     public static double largeurChalet = 300;
     public static double longueurChalet = 300;
     public static double hauteurMurs = 2 * 80;
-    public static double epaisseurChalet = 2 * 15; //15
+    public static double epaisseurChalet = 2 * 15; //30
     public static double angleToit = 15.0;
     public static double retraitChalet;
     public static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
@@ -39,13 +48,11 @@ public class Chalet {
 
     public Chalet(double largeurChalet, double longueurChalet,
                   double epaisseurChalet, double angleToit,
-                  double hauteurMurs, double hauteurPignon, List<Mur> listeMurs, List<Toit> listeToit, String orientationToit) {
+                  double hauteurMurs, List<Mur> listeMurs, String orientationToit) {
         this.largeurChalet = largeurChalet;
         this.longueurChalet = longueurChalet;
         this.hauteurMurs = hauteurMurs;
-        this.hauteurPignon = hauteurPignon;
         this.epaisseurChalet = epaisseurChalet;
-        this.angleToit = angleToit;
         this.listeMurs = listeMurs;
         this.orientationToit = orientationToit;
         this.zoom = 1;
@@ -221,7 +228,6 @@ public class Chalet {
             //System.out.println("Liste des murs avec rainures: " + mursDecoupes);
         }
         if (Objects.equals(orientationToit, "Ouest") || Objects.equals(orientationToit, "Est")) {
-            System.out.println("Orientation toit est Est OU Ouest, dans ce cas: " + orientationToit);
             for (Mur mur : listeDeMursARainurer) {
                 if (Objects.equals(mur.getNomMur(), "Facade")) {
                     mur.getSommetsMur().get(0).setLocation(epaisseurChalet / 2 + distanceUsinage, 0); //sommet0 dessin
@@ -308,6 +314,8 @@ public class Chalet {
 
     public List<Mur> getMursUsines(double distanceUsinage, String orientationToit) {
         retirerRainures(listeMurs, retraitChalet, Chalet.orientationToit);
+        System.out.println("Usinage activated");
+
         return listeMurs;
     }
 
@@ -1894,6 +1902,9 @@ public class Chalet {
 
     public double getAngleToit() {
         return this.angleToit;
+    }
+    public String getOrientationToit() {
+        return this.orientationToit;
     }
 
     public List<Mur> getListeMurs() {
