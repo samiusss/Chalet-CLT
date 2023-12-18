@@ -17,7 +17,7 @@ public class Main implements java.io.Serializable {
 
 
 
-        // Spécifiez le nom du fichier STL de sortie
+        // Spécifiez le nom du fichier STL de sortiee
         //String fileName = "chemin/vers/votre/repertoire/fichier.stl";
 
         // Créez un objet Path représentant le chemin du répertoire
