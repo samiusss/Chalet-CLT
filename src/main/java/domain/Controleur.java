@@ -1,7 +1,7 @@
 package domain;
 
 import Utilitaires.Pouces;
-import Utilitaires.STLWriter3;
+import Utilitaires.STLWriterToit;
 import Utilitaires.STLWriterSecondaire;
 
 import java.awt.*;
@@ -16,7 +16,7 @@ import static domain.ChaletDTO.*;
 //import static domain.ChaletDTO.creerNouveauChalet;
 //import static domain.Mur.accessoiresMur;
 
-public class Controleur {
+public class Controleur implements java.io.Serializable {
     private ChaletDTO chaletdto;
     private double zoom;
     private float OffsetX;
@@ -35,8 +35,6 @@ public class Controleur {
    {
        this.zoom = 1;
    }
-
-
 
     public static void ExporterPanneauxFinis() throws IOException {
         // Spécifiez le nom du fichier STL de sortie
@@ -114,12 +112,8 @@ public class Controleur {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutFacade);
-        STLWriter3.ExportPanneauxRetrait(filePathBrutFacade);
-
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutArriere);
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutGauche);
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutDroite);
+        STLWriterToit.ExporterPanneauxBrut("fileTestBrutToitFacade.stl");
+        STLWriterToit.ExporterPignonBrut("toitPignon.,stl");
 
     }
 
@@ -367,34 +361,9 @@ public class Controleur {
         Chalet.setOffsetY(newOffY);
     }
 
-    public static Chalet monChalet(Chalet nouvelleCopie, Chalet other) {
-        nouvelleCopie.listeMurs = other.getListeMurs();
 
-        nouvelleCopie.largeurChalet = other.getLargeurChalet();
-        nouvelleCopie.longueurChalet = other.getLongueurChalet();
-        nouvelleCopie.epaisseurChalet = other.getEpaisseurChalet();
-        nouvelleCopie.angleToit = other.getAngleToit();
-        nouvelleCopie.hauteurMurs = other.getHauteurMurs();
-        nouvelleCopie.orientationToit = other.getOrientationToit();
-
-        System.out.println("////////////////////////////// Le UNDO prend un angle d'une copie.... "+nouvelleCopie.angleToit);
-
-        initialiserChaletSansCopier(nouvelleCopie); //Éviter que le code détecte le undo comme une modification, et qu'il ajoute une autre copie par accident
-
-        return nouvelleCopie;
-    }
     static Chalet chaletProduction = createChalet();
 
-    public static void undoChalet()
-    {
-
-        Chalet chosenChalet=ChaletDTO.listeCopiesChalets.get(1);
-        //chaletProduction = monChalet(chosenChalet, chaletProduction);
-        //initialiserChaletSansCopier(chaletProduction);
-        initialiserChaletSansCopier(chaletProduction); //Fais juste marcher surplomb
-        System.out.println("Le controleur détecte un UNDO voici l'objet chalet.... "+ChaletDTO.listeCopiesChalets.get(1));
-
-    }
 
 
     boolean rep = initialiserChalet(chaletProduction);

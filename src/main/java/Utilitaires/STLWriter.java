@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Arrays;
 
 
-public class STLWriter {
+public class STLWriter implements java.io.Serializable {
 
     public static void main(String[] args) {
 

@@ -6,7 +6,7 @@ import domain.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class SurplombDrawer extends JFrame
+public class SurplombDrawer extends JFrame implements java.io.Serializable
 {
     private Controleur controleur;
 

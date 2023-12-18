@@ -5,7 +5,7 @@ import Utilitaires.PointDouble;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Toit {
+public class Toit implements java.io.Serializable {
 
     public static List<PointDouble> sommetsToit;
 

@@ -10,7 +10,7 @@ import java.util.List;
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
 
 
-public class Chaletdrawer {
+public class Chaletdrawer implements java.io.Serializable {
     private Controleur controleur;
     public  ChaletDTO chaletdto;
     private Accessoires accessoires;

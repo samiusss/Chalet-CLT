@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 
 
-public class ConvertisseurMesures {
+public class ConvertisseurMesures implements java.io.Serializable {
 
 
 

@@ -1,5 +1,6 @@
 package ui;
 
+import Utilitaires.ChaletCopie;
 import Utilitaires.Pouces;
 import domain.Chalet;
 import domain.ChaletDTO;
@@ -9,13 +10,14 @@ import domain.Mur;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.*;
 
 
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame implements java.io.Serializable {
     private Controleur controleur;
     private ChaletDTO chaletdto;
     private Chalet chalet;
@@ -35,7 +37,6 @@ public class MainWindow extends javax.swing.JFrame {
     private JPanel PannelDroit;
     public JPanel FenetrePrincipale;
     private JButton UndoButton;
-
     private JButton RedoButton;
     public  JComboBox VueComboBox;
     private JLabel ChalCLTPanel;
@@ -128,7 +129,8 @@ public class MainWindow extends javax.swing.JFrame {
     private JTextField angleTextField;
     private JComboBox orientation;
     private JTextField grilleTextField;
-    private JButton sauvegarderButton;
+    private JButton Save;
+    private JButton Charge;
     private Point ZoomOrigin;
 
     private ChaletDTO.AffichageVue selectedVue;
@@ -246,6 +248,38 @@ public class MainWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
 
 
+            }
+        });
+
+        Save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int userSelection = fileChooser.showSaveDialog(MainWindow.this);
+
+                if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    File fileToSave = fileChooser.getSelectedFile();
+                    ChaletCopie chaletCopie = new ChaletCopie(
+                            Chalet.largeurChalet, Chalet.longueurChalet, Chalet.epaisseurChalet,
+                            Chalet.angleToit, Chalet.hauteurMurs, Chalet.hauteurPignon,
+                            Chalet.listeMurs, Chalet.listeToit, Chalet.orientationToit
+                    );
+                    chaletCopie.serialiserChalet(fileToSave.getAbsolutePath());
+                }
+            }
+        });
+        Charge.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int userSelection = fileChooser.showOpenDialog(MainWindow.this);
+
+                if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    File fileToOpen = fileChooser.getSelectedFile();
+                    ChaletCopie.deserialiserChalet(fileToOpen.getAbsolutePath());
+                    FenetrePrincipale.revalidate();
+                    FenetrePrincipale.repaint();
+                }
             }
         });
         AccessoireLargeurPorteField.addActionListener(new ActionListener() {
@@ -622,8 +656,7 @@ public class MainWindow extends javax.swing.JFrame {
                 Controleur.setLongueurChalet(imperialToDoubleUniversel("20'"));
                 Controleur.setLargeurChalet(imperialToDoubleUniversel("20'"));
                 Controleur.setHauteurMurs(imperialToDoubleUniversel("17'"));
-                Controleur.setAngleToit(15.0);
-
+                Controleur.setAngleToit(15);
 
                 System.out.println("Nouveau Chalet Créer");
 
@@ -729,17 +762,6 @@ public class MainWindow extends javax.swing.JFrame {
                 FenetrePrincipale.repaint();
             }
         });
-
-        UndoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controleur.undoChalet();
-                System.out.println("Undo cliquez... Observe");
-                FenetrePrincipale.revalidate();
-                FenetrePrincipale.repaint();
-            }
-        });
-
     }
 
 
@@ -758,11 +780,17 @@ public class MainWindow extends javax.swing.JFrame {
         MurPannelTabbedPaneFaçadeLabelLongueurTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MurPannelTabbedPaneFaçadeLabelLongueurTextField.setText("123445");
+                String inputText = MurPannelTabbedPaneFaçadeLabelLongueurTextField.getText();
+                //! MUR ARRIERE, LONGUEUR !\\
+
+                double longueurChaletMN= imperialToDoubleUniversel(inputText);
+                Controleur.setLongueurChalet(longueurChaletMN);
+                System.out.println(longueurChaletMN+" entered by you..");
+
+                revalidate();
+                repaint();
             }
         });
-
-
 
 
         MurPannelTabbedPaneDerriereLabelLongueurTextField.addActionListener(new ActionListener() {

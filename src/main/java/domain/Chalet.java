@@ -10,21 +10,12 @@ import java.util.List;
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
 import static java.util.Arrays.asList;
 
-public class Chalet implements Cloneable {
-    // ... existing  ...
-
-    public Chalet clone() {
-        try {
-            return (Chalet) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);  // Should not happen
-        }
-    }
+public class Chalet implements java.io.Serializable{
 
     public static double largeurChalet = 300;
     public static double longueurChalet = 300;
     public static double hauteurMurs = 2 * 80;
-    public static double epaisseurChalet = 2 * 15; //30
+    public static double epaisseurChalet = 2 * 15; //15
     public static double angleToit = 15.0;
     public static double retraitChalet;
     public static List<Mur> listeMurs; //ex: listeMurs  = [Mur n, Mur w, Mur e, Mur s]
@@ -53,6 +44,7 @@ public class Chalet implements Cloneable {
         this.longueurChalet = longueurChalet;
         this.hauteurMurs = hauteurMurs;
         this.epaisseurChalet = epaisseurChalet;
+        this.angleToit = angleToit;
         this.listeMurs = listeMurs;
         this.orientationToit = orientationToit;
         this.zoom = 1;
@@ -228,6 +220,7 @@ public class Chalet implements Cloneable {
             //System.out.println("Liste des murs avec rainures: " + mursDecoupes);
         }
         if (Objects.equals(orientationToit, "Ouest") || Objects.equals(orientationToit, "Est")) {
+            System.out.println("Orientation toit est Est OU Ouest, dans ce cas: " + orientationToit);
             for (Mur mur : listeDeMursARainurer) {
                 if (Objects.equals(mur.getNomMur(), "Facade")) {
                     mur.getSommetsMur().get(0).setLocation(epaisseurChalet / 2 + distanceUsinage, 0); //sommet0 dessin
@@ -314,8 +307,6 @@ public class Chalet implements Cloneable {
 
     public List<Mur> getMursUsines(double distanceUsinage, String orientationToit) {
         retirerRainures(listeMurs, retraitChalet, Chalet.orientationToit);
-        System.out.println("Usinage activated");
-
         return listeMurs;
     }
 
@@ -664,7 +655,7 @@ public class Chalet implements Cloneable {
     }
 
     //TODO: A METTRE LES VRAIS POINTS DES PIGNONS
-    public static List<Point> determinterSommetsPignons(int largeurPignon, int hauteurPignon){
+    public static List<Point> determinerSommetsPignons(int largeurPignon, int hauteurPignon){
 
         Point InfGauchePignon = new Point(0, 0);
         Point SupGauchePignon = new Point(0, hauteurPignon);
@@ -1727,11 +1718,11 @@ public class Chalet implements Cloneable {
     public boolean modifierYfenetre(int nouveauYfenetreint, String nomMur, Dimension initialDimension) {
         int numMur = determinerMur(nomMur);
         Mur mur = listeMurs.get(numMur);
-        for (Fenetre fenetre : mur.getListeFenetre()) {
-            Point nouveauPoint = new Point(nouveauYfenetreint,(int) fenetre.mousePoint.getX());
 
-            if (nouveauYfenetreint != fenetre.mousePoint.getY() &&
-                    AntiCollisionAccessoireMur(mur, nouveauPoint, fenetre.largeur, fenetre.hauteur, initialDimension) &&
+        for (Fenetre fenetre : mur.getListeFenetre()) {
+            Point nouveauPoint = new Point((int) fenetre.mousePoint.getX(), nouveauYfenetreint);
+
+            if (AntiCollisionAccessoireMur(mur, nouveauPoint, fenetre.largeur, fenetre.hauteur, initialDimension) &&
                     !AntiCollisionFenetreModification(mur, fenetre, nouveauPoint, fenetre.largeur, fenetre.hauteur)) {
 
                 fenetre.setPoint(nouveauPoint);
@@ -1742,6 +1733,7 @@ public class Chalet implements Cloneable {
 
         return false;
     }
+
 
     public static boolean supprimerFenetre(Point mousePointClicked, String nomMur, List<Mur> listeMursDrawer) {
 
@@ -1902,9 +1894,6 @@ public class Chalet implements Cloneable {
 
     public double getAngleToit() {
         return this.angleToit;
-    }
-    public String getOrientationToit() {
-        return this.orientationToit;
     }
 
     public List<Mur> getListeMurs() {
