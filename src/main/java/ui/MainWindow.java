@@ -261,8 +261,8 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
                     File fileToSave = fileChooser.getSelectedFile();
                     ChaletCopie chaletCopie = new ChaletCopie(
                             Chalet.largeurChalet, Chalet.longueurChalet, Chalet.epaisseurChalet,
-                            Chalet.angleToit, Chalet.hauteurMurs, Chalet.hauteurPignon,
-                            Chalet.listeMurs, Chalet.listeToit, Chalet.orientationToit
+                            Chalet.angleToit, Chalet.hauteurMurs,
+                            Chalet.listeMurs, Chalet.orientationToit
                     );
                     chaletCopie.serialiserChalet(fileToSave.getAbsolutePath());
                 }
@@ -693,10 +693,16 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
             @Override
             public void actionPerformed(ActionEvent e) {
                 double inputText = Double.parseDouble(angleTextField.getText());
-                Controleur.setAngleToit(inputText);
-                FenetrePrincipale.revalidate();
-                FenetrePrincipale.repaint();
-                System.out.println(inputText + " comme orientation a été rentré...");
+
+                if (90<=inputText)
+                {
+                    JOptionPane.showMessageDialog(null, "Ne dépassez pas 90 degrés svp", "Alerte angle", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    Controleur.setAngleToit(inputText);
+                    FenetrePrincipale.revalidate();
+                    FenetrePrincipale.repaint();
+                    System.out.println(inputText + " comme orientation a été rentré...");}
             }
         });
         BrutExport.addActionListener(new ActionListener() {

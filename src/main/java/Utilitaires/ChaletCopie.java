@@ -6,7 +6,6 @@ import domain.Mur;
 import domain.Toit;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,11 +38,11 @@ public class ChaletCopie implements Serializable {
 
     public ChaletCopie(double largeurChalet, double longueurChalet,
                        double epaisseurChalet, double angleToit,
-                       double hauteurMurs, double hauteurPignon, List<Mur> listeMurs, List<Toit> listeToit, String orientationToit) {
+                       double hauteurMurs, List<Mur> listeMurs,  String orientationToit) {
         this.largeurChalet = largeurChalet;
         this.longueurChalet = longueurChalet;
         this.hauteurMurs = hauteurMurs;
-        this.hauteurPignon = hauteurPignon;
+       // this.hauteurPignon = hauteurPignon;
         this.epaisseurChalet = epaisseurChalet;
         this.angleToit = angleToit;
         this.listeMurs = listeMurs;
@@ -115,9 +114,9 @@ public class ChaletCopie implements Serializable {
             Chalet.angleToit = copieChalet.angleToit;
             Chalet.retraitChalet = copieChalet.retraitChalet;
             Chalet.listeMurs = copieChalet.listeMurs;
-            Chalet.listeToit = copieChalet.listeToit;
-            Chalet.hauteurPignon = copieChalet.hauteurPignon;
-            Chalet.hauteurRallonge = copieChalet.hauteurRallonge;
+            //Chalet.listeToit = copieChalet.listeToit;
+            //Chalet.hauteurPignon = copieChalet.hauteurPignon;
+            //Chalet.hauteurRallonge = copieChalet.hauteurRallonge;
             Chalet.orientationToit = copieChalet.orientationToit;
             Controleur.setLongueurChalet(copieChalet.longueurChalet);
             Chalet.zoom = copieChalet.zoom;
