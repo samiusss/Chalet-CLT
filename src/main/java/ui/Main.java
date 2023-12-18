@@ -54,10 +54,7 @@ public class Main {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterPignon("C:\\STL\\Pignon.stl");
-
-        //STLWriter3.ExportPanneauxRetrait(filePathBrut);
-        //STLWriterSecondaire.ExporterPanneauxFinisRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
+        STLWriterToit.ExporterPignonBrut("C:\\STL\\Pignon.stl");
 
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);

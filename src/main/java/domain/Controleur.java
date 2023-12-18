@@ -113,14 +113,8 @@ public class Controleur {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutFacade);
         STLWriterToit.ExporterPanneauxBrut("fileTestBrutToitFacade.stl");
-        STLWriterToit.ExporterPignon("toitPignon.,stl");
-        /*STLWriter3.ExportPanneauxRetrait(filePathBrutFacade);*/
-
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutArriere);
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutGauche);
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutDroite);
+        STLWriterToit.ExporterPignonBrut("toitPignon.,stl");
 
     }
 

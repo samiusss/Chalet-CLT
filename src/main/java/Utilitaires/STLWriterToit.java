@@ -867,7 +867,7 @@ public class STLWriterToit {
         System.out.println("Fichier STL généré avec succès : " + fileName);
     }
 
-    public static void ExporterPignon(String fileName) {
+    public static void ExporterPignonBrut(String fileName) {
         Point point = new Point(0, 0);
 
         List<Point> pointsPignon = Chalet.determinerSommetsPignons(100, 100);
