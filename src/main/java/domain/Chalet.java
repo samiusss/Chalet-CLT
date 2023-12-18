@@ -655,7 +655,7 @@ public class Chalet implements java.io.Serializable{
     }
 
     //TODO: A METTRE LES VRAIS POINTS DES PIGNONS
-    public static List<Point> determinterSommetsPignons(int largeurPignon, int hauteurPignon){
+    public static List<Point> determinerSommetsPignons(int largeurPignon, int hauteurPignon){
 
         Point InfGauchePignon = new Point(0, 0);
         Point SupGauchePignon = new Point(0, hauteurPignon);

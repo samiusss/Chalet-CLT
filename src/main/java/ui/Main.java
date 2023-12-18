@@ -1,7 +1,8 @@
 package ui;
 
-import Utilitaires.STLWriter3;
-import Utilitaires.STLWriterSecondaire;
+/*import Utilitaires.STLWriter3;
+import Utilitaires.STLWriterSecondaire;*/
+import Utilitaires.STLWriterToit;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,8 +55,7 @@ public class Main implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        //STLWriter3.ExportPanneauxRetrait(filePathBrut);
-        //STLWriterSecondaire.ExporterPanneauxFinisRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
+        STLWriterToit.ExporterPignonBrut("C:\\STL\\Pignon.stl");
 
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);

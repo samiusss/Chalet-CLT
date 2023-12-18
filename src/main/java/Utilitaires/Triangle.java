@@ -1,8 +1,5 @@
 package Utilitaires;
-import java.util.ArrayList;
 import java.util.*;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Triangle implements java.io.Serializable{
     public float[] vertex1;
@@ -90,5 +87,17 @@ public class Triangle implements java.io.Serializable{
         }
         Triangle other = (Triangle) obj;
         return Arrays.deepEquals(toObjectArray(this.getVertices()), toObjectArray(other.getVertices()));
+    }
+
+    public float[] getV0() {
+        return this.vertex1;
+    }
+
+    public float[] getV1() {
+        return this.vertex2;
+    }
+
+    public float[] getV2() {
+        return this.vertex3;
     }
 }

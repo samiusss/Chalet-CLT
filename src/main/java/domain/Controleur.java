@@ -1,7 +1,7 @@
 package domain;
 
 import Utilitaires.Pouces;
-import Utilitaires.STLWriter3;
+import Utilitaires.STLWriterToit;
 import Utilitaires.STLWriterSecondaire;
 
 import java.awt.*;
@@ -36,8 +36,6 @@ public class Controleur implements java.io.Serializable {
    {
        this.zoom = 1;
    }
-
-
 
     public static void ExporterPanneauxFinis() throws IOException {
         // Spécifiez le nom du fichier STL de sortie
@@ -115,12 +113,8 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutFacade);
-        STLWriter3.ExportPanneauxRetrait(filePathBrutFacade);
-
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutArriere);
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutGauche);
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutDroite);
+        STLWriterToit.ExporterPanneauxBrut("fileTestBrutToitFacade.stl");
+        STLWriterToit.ExporterPignonBrut("toitPignon.,stl");
 
     }
 
