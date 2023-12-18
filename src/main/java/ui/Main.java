@@ -1,7 +1,8 @@
 package ui;
 
-import Utilitaires.STLWriter3;
-import Utilitaires.STLWriterSecondaire;
+/*import Utilitaires.STLWriter3;
+import Utilitaires.STLWriterSecondaire;*/
+import Utilitaires.STLWriterToit;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,6 +53,8 @@ public class Main {
         } else {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
+
+        STLWriterToit.ExporterPignon("C:\\STL\\Pignon.stl");
 
         //STLWriter3.ExportPanneauxRetrait(filePathBrut);
         //STLWriterSecondaire.ExporterPanneauxFinisRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);

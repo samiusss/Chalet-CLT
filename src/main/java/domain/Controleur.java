@@ -37,8 +37,6 @@ public class Controleur {
        this.zoom = 1;
    }
 
-
-
     public static void ExporterPanneauxFinis() throws IOException {
         // Spécifiez le nom du fichier STL de sortie
         //String fileName = "chemin/vers/votre/repertoire/fichier.stl";
@@ -116,7 +114,9 @@ public class Controleur {
         }
 
         //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutFacade);
-        STLWriter3.ExportPanneauxRetrait(filePathBrutFacade);
+        STLWriterToit.ExporterPanneauxBrut("fileTestBrutToitFacade.stl");
+        STLWriterToit.ExporterPignon("toitPignon.,stl");
+        /*STLWriter3.ExportPanneauxRetrait(filePathBrutFacade);*/
 
         //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutArriere);
         //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutGauche);
