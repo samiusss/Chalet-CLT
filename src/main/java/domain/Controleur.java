@@ -459,15 +459,30 @@ public class Controleur implements java.io.Serializable {
         Chalet.setRetraitChalet(copieDuChalet.retraitChalet);
         Chalet.setOrientation(copieDuChalet.orientationToit);
         Chalet.setGrille(copieDuChalet.grilleP);
+/*
+        Chalet.setListeMurs(copieDuChalet.listeMurs);
+        Chalet.listeMurs = copieDuChalet.listeMurs;
 
-        initialiserChalet(chaletProduction);
+        System.out.println("\n            -                          \n" );
+        System.out.println(copieDuChalet.hauteurMurs+" Copies de la listes murs setUndo :" + copieDuChalet.listeMurs.get(0).porteMur+ copieDuChalet.listeMurs.get(0).fenetreMur );
+        System.out.println("\n            -                          \n" );
+*/
+
+        initialiserChaletUndoRedo(chaletProduction,copieDuChalet);
+
 
 
         return copieDuChalet;
     }
 
+    public static void setListeMurs(List<Mur> listeMurs)
+    {
+        Chalet.setListeMurs(listeMurs);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        initialiserChalet(chaletProduction);
+    }
 
-    public static void setAngleToit(double angleToit)
+        public static void setAngleToit(double angleToit)
     {
         Chalet.setAngleToit(angleToit);
         UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();

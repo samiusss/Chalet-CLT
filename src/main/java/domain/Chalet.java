@@ -1687,8 +1687,10 @@ public class Chalet implements java.io.Serializable {
         retraitChalet = retraitChaletMN;
     }
 
-    public void setListeMurs(List<Mur> listerMurs) {
-        this.listeMurs = listeMurs;
+    public static void setListeMurs(List<Mur> listeMurs) {
+        Chalet.listeMurs = listeMurs;
+        //System.out.println("setListeMur activé dans le Chalet (pour accessoires)"); //test
+
     }
 
     public static void setOrientation(String orientation) {
