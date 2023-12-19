@@ -123,10 +123,31 @@ public class Controleur implements java.io.Serializable {
         STLWriterToit.ExporterPignonBrut(fileName);
     }
 
-    public static void ExporterPignonFini() throws IOException{
+    public static void ExporterParDessusFini()throws IOException{
         Path directory = Paths.get("C:\\STL");
 
         String directoryPath = "C:\\STL";
+        String fileName = "ParDessusFile.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterParDessusFini(fileName);
+    }
+
+    public static void ExporterPignonFini() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\CASTL";
         String fileName = "PignonFiniFile.stl";
 
         if (!Files.exists(directory)) {
