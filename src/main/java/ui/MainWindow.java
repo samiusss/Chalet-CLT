@@ -820,8 +820,8 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
             public void actionPerformed(ActionEvent e) {
                 try {
                     Controleur.ExporterRallongeVerticale();
-                    Controleur.ExporterPignonFini();
-                    //Controleur.ExporterPignonFini();
+                    Controleur.ExporterPignonFiniDroite();
+                    Controleur.ExporterPignonFiniGauche();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
