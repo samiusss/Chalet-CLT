@@ -309,7 +309,7 @@ public class Controleur implements java.io.Serializable {
     public static void ExporterToit()throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String fileName = "ChalCLT_Toit.stl";
+        String fileName = "Chalclt_Fini_Toit.stl";
         String fileParDessusRetrait  = directory + File.separator + fileName;
 
         if (!Files.exists(directory)) {
