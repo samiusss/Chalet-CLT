@@ -224,19 +224,19 @@ public class STLWriterToit implements java.io.Serializable {
         float hauteurP = length * (float) (Math.tan(angle * Math.PI / 180));
         float hauteurR = hauteurP + (float) ((epaisseur/2)*(Math.tan(angle * Math.PI / 180)));
 
-        listeVertex.add(new float[]{((float) longueurChalet - epaisseur /2), hauteurP, 0}); //v1
-        listeVertex.add(new float[]{((float) longueurChalet - epaisseur /2), (hauteurP + epaisseur/2), 0}); //v2
-        listeVertex.add(new float[]{length, hauteurR + epaisseur/2, 0}); //v3
-        listeVertex.add(new float[]{length, (float)Math.tan(angle)*epaisseur/2, 0}); //v4
-        listeVertex.add(new float[]{length, (hauteurP + epaisseur/2), 0}); //v5
-        listeVertex.add(new float[]{(float)(longueurChalet -epaisseur/2), (float)(Math.tan(angle)*epaisseur/2), 0}); //v6
+        listeVertex.add(new float[]{0, 0, 0}); //v0
+        listeVertex.add(new float[]{epaisseur/2, (float)Math.tan(angle)*epaisseur/2, 0}); //v1
+        listeVertex.add(new float[]{0, (float)Math.tan(angle)*epaisseur/2, 0}); //v2
+        listeVertex.add(new float[]{0, epaisseur/2, 0}); //v3
+        listeVertex.add(new float[]{epaisseur/2, epaisseur/2, 0}); //v4
+        listeVertex.add(new float[]{epaisseur/2, (float)(Math.tan(angle)*epaisseur/2)+epaisseur/2, 0}); //v5
 
-        listeVertex.add(new float[]{((float) longueurChalet - epaisseur /2), hauteurP, width}); //v7
-        listeVertex.add(new float[]{((float) longueurChalet - epaisseur /2), (hauteurP + epaisseur/2), width}); //v8
-        listeVertex.add(new float[]{length, hauteurR + epaisseur/2, width}); //v9
-        listeVertex.add(new float[]{length, (float)Math.tan(angle)*epaisseur/2, width}); //v10
-        listeVertex.add(new float[]{length, (hauteurP + epaisseur/2), width}); //v11
-        listeVertex.add(new float[]{(float)(longueurChalet -epaisseur/2), (float)(Math.tan(angle)*epaisseur/2), width}); //v12
+        listeVertex.add(new float[]{0, 0, width}); //v6
+        listeVertex.add(new float[]{epaisseur/2, (float)Math.tan(angle)*epaisseur/2, width}); //v7
+        listeVertex.add(new float[]{0, (float)Math.tan(angle)*epaisseur/2, width}); //v8
+        listeVertex.add(new float[]{0, epaisseur/2, width}); //v9
+        listeVertex.add(new float[]{epaisseur/2, epaisseur/2, width}); //v10
+        listeVertex.add(new float[]{epaisseur/2, (float)(Math.tan(angle)*epaisseur/2)+epaisseur/2, width}); //v11
 
         return listeVertex;
     }
@@ -302,42 +302,37 @@ public class STLWriterToit implements java.io.Serializable {
 
         List<float[]> listeVertexRetraitParDessus = determinerPointsRetraitParDessus(angle, length, width, epaisseur, height, "AVANT");
 
-        float[] v1 = listeVertexRetraitParDessus.get(0);
-        float[] v2 = listeVertexRetraitParDessus.get(1);
-        float[] v3 = listeVertexRetraitParDessus.get(2);
-        float[] v4 = listeVertexRetraitParDessus.get(3);
-        float[] v5 = listeVertexRetraitParDessus.get(4);
-        float[] v6 = listeVertexRetraitParDessus.get(5);
-        float[] v7 = listeVertexRetraitParDessus.get(6);
-        float[] v8 = listeVertexRetraitParDessus.get(7);
-        float[] v9 = listeVertexRetraitParDessus.get(8);
-        float[] v10 = listeVertexRetraitParDessus.get(9);
-        float[] v11 = listeVertexRetraitParDessus.get(10);
-        float[] v12 = listeVertexRetraitParDessus.get(11);
+        float[] v0 = listeVertexRetraitParDessus.get(0);
+        float[] v1 = listeVertexRetraitParDessus.get(1);
+        float[] v2 = listeVertexRetraitParDessus.get(2);
+        float[] v3 = listeVertexRetraitParDessus.get(3);
+        float[] v4 = listeVertexRetraitParDessus.get(4);
+        float[] v5 = listeVertexRetraitParDessus.get(5);
+        float[] v6 = listeVertexRetraitParDessus.get(6);
+        float[] v7 = listeVertexRetraitParDessus.get(7);
+        float[] v8 = listeVertexRetraitParDessus.get(8);
+        float[] v9 = listeVertexRetraitParDessus.get(9);
+        float[] v10 = listeVertexRetraitParDessus.get(10);
+        float[] v11 = listeVertexRetraitParDessus.get(11);
 
-        trianglesRetraitParDessus.add(new Triangle(v1, v6, v4, type));
-        trianglesRetraitParDessus.add(new Triangle(v7, v12, v10, type));
+        trianglesRetraitParDessus.add(new Triangle(v0, v1, v3, type));
+        trianglesRetraitParDessus.add(new Triangle(v6, v7, v9, type));
 
-        trianglesRetraitParDessus.add(new Triangle(v6, v2, v4, type));
-        trianglesRetraitParDessus.add(new Triangle(v12, v8, v10, type));
+        trianglesRetraitParDessus.add(new Triangle(v1, v3, v5, type));
+        trianglesRetraitParDessus.add(new Triangle(v7, v9, v11, type));
 
-        trianglesRetraitParDessus.add(new Triangle(v2, v5, v4, type));
-        trianglesRetraitParDessus.add(new Triangle(v8, v11, v12, type));
 
-        trianglesRetraitParDessus.add(new Triangle(v2, v5, v3, type));
-        trianglesRetraitParDessus.add(new Triangle(v8, v11, v9, type));
+        trianglesRetraitParDessus.add(new Triangle(v0, v1, v7, type));
+        trianglesRetraitParDessus.add(new Triangle(v0, v6, v7, type));
 
-        trianglesRetraitParDessus.add(new Triangle(v3, v4, v10, type));
-        trianglesRetraitParDessus.add(new Triangle(v3, v10, v9, type));
+        trianglesRetraitParDessus.add(new Triangle(v0, v3, v9, type));
+        trianglesRetraitParDessus.add(new Triangle(v0, v6, v9, type));
 
-        trianglesRetraitParDessus.add(new Triangle(v2, v3, v8, type));
-        trianglesRetraitParDessus.add(new Triangle(v8, v3, v9, type));
+        trianglesRetraitParDessus.add(new Triangle(v3, v5, v11, type));
+        trianglesRetraitParDessus.add(new Triangle(v3, v9, v11, type));
 
-        trianglesRetraitParDessus.add(new Triangle(v2, v1, v8, type));
-        trianglesRetraitParDessus.add(new Triangle(v1, v7, v8, type));
-
-        trianglesRetraitParDessus.add(new Triangle(v1, v4, v10, type));
-        trianglesRetraitParDessus.add(new Triangle(v1, v10, v7, type));
+        trianglesRetraitParDessus.add(new Triangle(v1, v5, v11, type));
+        trianglesRetraitParDessus.add(new Triangle(v1, v7, v11, type));
 
         return trianglesRetraitParDessus;
     }
