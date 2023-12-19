@@ -343,30 +343,59 @@ public class STLWriterToit implements java.io.Serializable {
     public static List<float[]> determinerPointRallongeVerticale(double angle, double length, double height, double width) {
         List<float[]> listeVertex = new LinkedList<>();
 
-        float firstBaseWidth = (float) ((float) Math.tan(angle) * (width / 2));
+        if (orientationToit == "North" || orientationToit == "South") {
+            // Swap length and width
+            double temp = length;
+            length = width;
+            width = temp;
+        }
 
+        float firstBaseWidth = (float) ((float) Math.tan(angle) * (epaisseurChalet / 2));
         listeVertex.add(new float[]{0, 0, 0});//v0
         listeVertex.add(new float[]{(float) length, 0, 0}); //v1
-        listeVertex.add(new float[]{(float) length, (float) height, 0});//v2
-        listeVertex.add(new float[]{0, (float) height, 0}); //v3
 
-        listeVertex.add(new float[]{0, 0, (float) width}); //v4
-        listeVertex.add(new float[]{(float) length, 0, (float) width}); //v5
-        listeVertex.add(new float[]{(float) length, (float) height - 2 * firstBaseWidth + (float) width / 2, (float) width}); //v6
-        listeVertex.add(new float[]{0, (float) height - 2 * firstBaseWidth + (float) width / 2, (float) width}); //v7
+        listeVertex.add(new float[]{(float) length, (float) (Math.tan(angle) * width + epaisseurChalet), 0});//v2
+        listeVertex.add(new float[]{0, (float) (Math.tan(angle) * width + epaisseurChalet), 0}); //v3
 
-        listeVertex.add(new float[]{0, (float) height - firstBaseWidth, (float) width / 2}); //v8
-        listeVertex.add(new float[]{(float) length, (float) height - firstBaseWidth, (float) width / 2});//v9
-        listeVertex.add(new float[]{(float) length, (float) height - firstBaseWidth + (float) width / 2, (float) width / 2});//v10
-        listeVertex.add(new float[]{0, (float) height - firstBaseWidth + (float) width / 2, (float) width / 2});//v11
-        listeVertex.add(new float[]{0, (float) height - firstBaseWidth, (float) width});//v12
-        listeVertex.add(new float[]{(float) length, (float) height - firstBaseWidth + (float) width / 2, (float) width});//v13
-        listeVertex.add(new float[]{0, (float) height - firstBaseWidth + (float) width / 2, (float) width});//v14
-        listeVertex.add(new float[]{0, (float) height, (float) width / 2}); //v15
-        listeVertex.add(new float[]{(float) length, (float) height, (float) width / 2}); //v16
-        listeVertex.add(new float[]{0, (float) height, (float) width});//v17
-        listeVertex.add(new float[]{(float) length, (float) height, (float) width});//v18
-        listeVertex.add(new float[]{(float) length, (float) height - firstBaseWidth, (float) width});//v19
+        listeVertex.add(new float[]{0, 0, (float) epaisseurChalet}); //v4
+        listeVertex.add(new float[]{(float) length, 0, (float) epaisseurChalet}); //v5
+
+        listeVertex.add(new float[]{(float) length, (float) ((float) Math.tan(angle) * width), (float) epaisseurChalet}); //v6
+        listeVertex.add(new float[]{0, (float) ((float) Math.tan(angle) * width), (float) epaisseurChalet}); //v7
+
+        listeVertex.add(new float[]{0, (float) ((float) Math.tan(angle) * width + epaisseurChalet/2), (float) epaisseurChalet / 2}); //v8
+        listeVertex.add(new float[]{(float) length, (float) ((float) Math.tan(angle) * width + epaisseurChalet/2), (float) epaisseurChalet / 2});//v9
+
+        listeVertex.add(new float[]{(float) length, (float) ((float) Math.tan(angle) * width + epaisseurChalet/2) - (float)epaisseurChalet/2, (float) epaisseurChalet / 2});//v10
+        listeVertex.add(new float[]{0, (float) ((float) Math.tan(angle) * width + epaisseurChalet/2) - (float)epaisseurChalet/2, (float) epaisseurChalet / 2});//v11
+
+        listeVertex.add(new float[]{0, (float) ((float) Math.tan(angle) * width + epaisseurChalet/2), (float) epaisseurChalet});//v12
+        listeVertex.add(new float[]{(float) length, (float) ((float) Math.tan(angle) * width + epaisseurChalet/2) + (float)epaisseurChalet/2, (float) epaisseurChalet});//v13
+
+        listeVertex.add(new float[]{0, (float) ((float) Math.tan(angle) * width + epaisseurChalet/2) + (float)epaisseurChalet/2, (float) epaisseurChalet});//v14
+        listeVertex.add(new float[]{0, (float) (Math.tan(angle) * width + epaisseurChalet), (float) epaisseurChalet / 2}); //v15
+
+        listeVertex.add(new float[]{(float) length, (float) (Math.tan(angle) * width + epaisseurChalet), (float) epaisseurChalet / 2}); //v16
+        listeVertex.add(new float[]{0, (float) (Math.tan(angle) * width + epaisseurChalet), (float) epaisseurChalet});//v17
+
+        listeVertex.add(new float[]{(float) length, (float) (Math.tan(angle) * width + epaisseurChalet), (float) epaisseurChalet});//v18
+        listeVertex.add(new float[]{(float) length, (float) ((float) Math.tan(angle) * width + epaisseurChalet/2), (float) epaisseurChalet});//v19
+
+        //points pour brut
+        listeVertex.add(new float[]{0, (float) ((float) Math.tan(angle) * width), 0}); //v20
+        listeVertex.add(new float[]{(float) length, (float) ((float) Math.tan(angle) * width), 0}); //v21
+
+        //et retrait
+        listeVertex.add(new float[]{0, (float) ((float) Math.tan(angle) * width), (float)epaisseurChalet/2}); //v22
+        listeVertex.add(new float[]{(float) length, (float) ((float) Math.tan(angle) * width), (float)epaisseurChalet/2}); //v23
+        listeVertex.add(new float[]{0, (float) ((float) Math.tan(angle) * width + epaisseurChalet/2), 0}); //v24
+        listeVertex.add(new float[]{(float) length, (float) ((float) Math.tan(angle) * width + epaisseurChalet/2), 0}); //v25
+
+        System.out.println("epaisseurChalet/2: " + (float) Math.tan(angle) * epaisseurChalet/2);
+        System.out.println("epaisseurChalet: " + (float) Math.tan(angle) * epaisseurChalet);
+        System.out.println("width: " + (float) Math.tan(angle) * width);
+        System.out.println("width - epaisseurChalet: " + (float) (Math.tan(angle) * width - (float) epaisseurChalet));
+        System.out.println("width - epaisseurChalet/2: " + (float) (Math.tan(angle) * width - (float) epaisseurChalet/2));
 
         return listeVertex;
     }
@@ -481,6 +510,47 @@ public class STLWriterToit implements java.io.Serializable {
         return trianglesPignon;
     }
 
+    public static List<Triangle> generateRallongeVerticaleBrut(double anglee, double lenghtt, double widthh, double heightt, String type){
+        float angle = (float) anglee;
+        float length = (float) lenghtt;
+        float width = (float) widthh;
+        float height = (float) heightt;
+
+        List<Triangle> trianglesRallongeBrut = new ArrayList<>();
+
+        List<float[]> listeVertexRallonge = determinerPointRallongeVerticale(angle, length, height, width);
+
+        float[] v0 = listeVertexRallonge.get(0);
+        float[] v1 = listeVertexRallonge.get(1);
+        float[] v4 = listeVertexRallonge.get(4);
+        float[] v5 = listeVertexRallonge.get(5);
+        float[] v6 = listeVertexRallonge.get(6);
+        float[] v7 = listeVertexRallonge.get(7);
+        float[] v20 = listeVertexRallonge.get(20);
+        float[] v21 = listeVertexRallonge.get(21);
+
+        trianglesRallongeBrut.add(new Triangle(v0, v1, v21, type));
+        trianglesRallongeBrut.add(new Triangle(v0, v20, v21, type));
+
+        trianglesRallongeBrut.add(new Triangle(v21, v20, v7, type));
+        trianglesRallongeBrut.add(new Triangle(v21, v7, v6, type));
+
+        trianglesRallongeBrut.add(new Triangle(v7, v5, v6, type));
+        trianglesRallongeBrut.add(new Triangle(v7, v5, v4, type));
+
+        trianglesRallongeBrut.add(new Triangle(v4, v5, v1, type));
+        trianglesRallongeBrut.add(new Triangle(v4, v1, v0, type));
+
+        trianglesRallongeBrut.add(new Triangle(v4, v7, v20, type));
+        trianglesRallongeBrut.add(new Triangle(v4, v20, v0, type));
+
+        trianglesRallongeBrut.add(new Triangle(v5, v6, v21, type));
+        trianglesRallongeBrut.add(new Triangle(v5, v21, v1, type));
+
+        return trianglesRallongeBrut;
+
+    }
+
     public static List<Triangle> generateRallongeVerticaleFini(double anglee, double lenghtt, double widthh, double heightt, String type) {
 
         float angle = (float) anglee;
@@ -563,6 +633,56 @@ public class STLWriterToit implements java.io.Serializable {
         trianglesRallonge.add(new Triangle(v3, v2, v9, type));
 
         return trianglesRallonge;
+    }
+
+    public static List<float[]> determinerPignonRetraitGauche(float angle, float length, float width, float height, String type){
+
+        List<float[]> listeVertex = new LinkedList<>();
+
+
+        listeVertex.add(new float[]{0, 0, width - 2*(float)epaisseurChalet/2}); //v0
+        listeVertex.add(new float[]{0, 0, 0}); //v1
+        listeVertex.add(new float[]{(float) epaisseurChalet / 2, 0, 0}); //v2
+
+        listeVertex.add(new float[]{0, 0, width - 2*(float)epaisseurChalet}); //v3
+        return null;
+
+    }
+
+    public static List<Triangle> generatePignonRetraitGauche(double anglee, double lenghtt, double widthh, double heightt, String type){
+
+
+        float angle = (float) anglee;
+        float length = (float) lenghtt;
+        float width = (float) widthh;
+        float height = (float) heightt;
+
+        return null;
+    }
+
+    public static List<Triangle> findUnsharedTriangles(List<Triangle> list1, List<Triangle> list2) {
+        List<Triangle> result = new ArrayList<>(list1);
+        result.removeAll(list2);  // Remove common elements from list1
+
+        List<Triangle> commonTriangles = new ArrayList<>(list1);
+        commonTriangles.retainAll(list2);  // Keep only common elements
+
+        result.addAll(list2);
+        result.removeAll(commonTriangles);  // Remove common elements from list2
+
+        return result;
+    }
+
+    public static void ExporterPignonRetrait(String fileName){
+
+        java.util.List<Triangle> listeTriangles = generatePignonRetraitGauche(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs,"AVANT");
+        generateSTL(listeTriangles,fileName);
+    }
+
+    public static void ExporterRallongeVerticaleBrut(String fileName){
+
+            java.util.List<Triangle> listeTriangles = generateRallongeVerticaleBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs,"AVANT");
+            generateSTL(listeTriangles,fileName);
     }
 
     public static List<Triangle> generatePignonBrut(double anglee, double lenghtt, double widthh, double heightt, String type) {
