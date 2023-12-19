@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.*;
+import static Utilitaires.UndoRedoManager.CopieChaletVersion1;
 
 
 public class MainWindow extends javax.swing.JFrame implements java.io.Serializable {
@@ -591,6 +592,8 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
         hauteurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.hauteurMurs)));
         retrait.setText(String.valueOf(doubleToImperial(Chalet.retraitChalet)));
         grilleTextField.setText(String.valueOf(doubleToImperial(Chalet.grilleP)));
+        CopieChaletVersion1();
+
         longueurchaletMN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

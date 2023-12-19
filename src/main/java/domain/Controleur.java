@@ -163,8 +163,6 @@ public class Controleur implements java.io.Serializable {
         STLWriterToit.ExporterPignonsFinis(fileName);
     }
 
-
-
     public static void ExporterPanneauxBrut() throws IOException {
         // Spécifiez le nom du fichier STL de sortie
         //String fileName = "chemin/vers/votre/repertoire/fichier.stl";
@@ -255,7 +253,7 @@ public class Controleur implements java.io.Serializable {
         Chalet.setOrientation(copieDuChalet.orientationToit);
 
         initialiserChalet(chaletProduction);
-        System.out.println("======== Voici la valeur suite au UNDO "+copieDuChalet.angleToit); //test
+        System.out.println("======== Voici la valeur suite au UNDO "+copieDuChalet); //test
 
         return copieDuChalet;
     }
@@ -270,30 +268,12 @@ public class Controleur implements java.io.Serializable {
         Chalet.setHauteurMurs(copieDuChalet.hauteurMurs);
         Chalet.setRetraitChalet(copieDuChalet.retraitChalet);
         Chalet.setOrientation(copieDuChalet.orientationToit);
-        //Chalet.supprimerPorte(nomMur, copieDuChalet.listeMurs);
 
         initialiserChalet(chaletProduction);
 
         return copieDuChalet;
     }
 
-    public static UndoRedoManager.CopieChaletUR setUndoGeneral()
-    {
-        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.undo();
-
-
-        Chalet.setAngleToit(copieDuChalet.angleToit);
-        Chalet.setEpaisseurChalet(copieDuChalet.epaisseurChalet);
-        Chalet.setLongueurChalet(copieDuChalet.longueurChalet);
-        Chalet.setLargeurChalet(copieDuChalet.largeurChalet);
-        Chalet.setHauteurMurs(copieDuChalet.hauteurMurs);
-        Chalet.setRetraitChalet(copieDuChalet.retraitChalet);
-        Chalet.setOrientation(copieDuChalet.orientationToit);
-
-        initialiserChalet(chaletProduction);
-
-        return copieDuChalet;
-    }
 
     public static void setAngleToit(double angleToit)
     {
@@ -394,7 +374,7 @@ public class Controleur implements java.io.Serializable {
 
         initialiserChalet(chaletProduction);
         return success;}
-    // J'ai un bugg ici
+
     public boolean modifierXFenetre(int nouveauXfenetreint, String nomMur,Dimension initialDimension)
     {
         boolean success = chaletProduction.modifierXfenetre(nouveauXfenetreint,nomMur,initialDimension );

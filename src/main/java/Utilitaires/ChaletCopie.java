@@ -7,6 +7,7 @@ import domain.Toit;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,9 +19,7 @@ public class ChaletCopie implements Serializable {
     public double angleToit;
     public double retraitChalet;
     public List<Mur> listeMurs;
-    public List<Toit> listeToit;
-    public double hauteurPignon;
-    public double hauteurRallonge;
+
     public String orientationToit;
     public double zoom;
     public float offsetX;
@@ -49,6 +48,7 @@ public class ChaletCopie implements Serializable {
         this.orientationToit = orientationToit;
         this.zoom = 1;
     }
+
 
     public void serialiserChalet(String cheminFichier) {
         CopieChalet copieChalet = new CopieChalet();
@@ -88,9 +88,7 @@ public class ChaletCopie implements Serializable {
         public double angleToit;
         public double retraitChalet;
         public List<Mur> listeMurs;
-        public List<Toit> listeToit;
-        public double hauteurPignon;
-        public double hauteurRallonge;
+
         public String orientationToit;
         public double zoom;
         public float offsetX;

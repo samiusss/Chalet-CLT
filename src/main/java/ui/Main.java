@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
+
 public class Main implements java.io.Serializable {
 
     public static void main(String[] args) throws IOException {
@@ -56,7 +57,6 @@ public class Main implements java.io.Serializable {
         }
 
         STLWriterToit.ExporterParDessusFini("ParDessusFiniFileeee.stl");
-
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);
 

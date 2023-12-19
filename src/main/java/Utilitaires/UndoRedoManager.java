@@ -1,13 +1,13 @@
 package Utilitaires;
 import domain.Chalet;
-import domain.Fenetre;
 import domain.Mur;
-import domain.Porte;
+
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
 public class UndoRedoManager {
-
-
 
         public static class CopieChaletUR {
             public double largeurChalet;
@@ -23,6 +23,13 @@ public class UndoRedoManager {
             public float offsetY;
             public double grilleP;
         }
+        private static final Map<String, Integer> MURS = new HashMap<>();
+        static {
+            MURS.put("FACADE", 0);
+            MURS.put("ARRIERE", 1);
+            MURS.put("DROITE", 3);
+            MURS.put("GAUCHE", 2);
+        }
         public static List<CopieChaletUR> listeVersionsChalets = new LinkedList<>();
         public static int compteurNbrUndoRedo = 0 ;
         public static int compteurUndoRedo;
@@ -31,6 +38,7 @@ public class UndoRedoManager {
         {
             if(compteurNbrUndoRedo == 0){
                 compteurUndoRedo = listeVersionsChalets.size() -1;
+
             }
             compteurNbrUndoRedo = compteurNbrUndoRedo + 1;
             if(compteurUndoRedo == 0){
@@ -90,6 +98,7 @@ public class UndoRedoManager {
             copieChalet.offsetX = Chalet.offsetX;
             copieChalet.offsetY = Chalet.offsetY;
             copieChalet.grilleP = Chalet.grilleP;
+
             List<Porte> listePorteDAVANTf = new LinkedList<>();
             List<Porte> listePorteDAVANTa = new LinkedList<>();
             List<Porte> listePorteDAVANTg = new LinkedList<>();
@@ -148,13 +157,11 @@ public class UndoRedoManager {
             copieChalet.offsetX = Chalet.offsetX;
             copieChalet.offsetY = Chalet.offsetY;
             copieChalet.grilleP = Chalet.grilleP;
-            //CopieChaletUR chaletV1 = new CopieChaletUR(copieChalet.largeurChalet, copieChalet.longueurChalet, copieChalet.epaisseurChalet, copieChalet.angleToit,
-            //copieChalet.hauteurMurs, copieChalet.listeMurs, copieChalet.orientationToit);
 
             listeVersionsChalets.add(copieChalet);
             System.out.printf("Le chalet de base est copié dans la liste : "+listeVersionsChalets);
             return copieChalet;
         }
 
-    }
+}
 
