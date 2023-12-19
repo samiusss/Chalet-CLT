@@ -14,8 +14,7 @@ import static ui.MainWindow.mousePointClicked;
 
 
 public class DrawingPanel extends JPanel implements Serializable {
-    private int xOffsetDrag;
-    private int yOffsetDrag;
+
     private int nombreFenetresSelectionnees = 0;
 
     private MainWindow mainWindow;
