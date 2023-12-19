@@ -7,6 +7,7 @@ import domain.ChaletDTO;
 import domain.Controleur;
 import domain.Mur;
 
+import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -824,6 +825,7 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
                     Controleur.ExporterRallongeVerticale();
                     Controleur.ExporterPignonFiniDroite();
                     Controleur.ExporterPignonFiniGauche();
+                    Controleur.ExporterRallongeVerticaleRetrait();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
