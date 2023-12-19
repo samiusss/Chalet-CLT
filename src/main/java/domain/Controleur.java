@@ -79,6 +79,70 @@ public class Controleur implements java.io.Serializable {
 
     }
 
+    public static void ExporterRallongeVerticale() throws IOException{
+       Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "RallongeVerticaleFile.stl";
+
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterRallongeVerticaleFini(fileName);
+    }
+
+    public static void ExporterPignonBrut() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "PignonBrutFile.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterPignonBrut(fileName);
+    }
+
+    public static void ExporterPignonFini() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "PignonFiniFile.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterPignonsFinis(fileName);
+    }
+
 
 
     public static void ExporterPanneauxBrut() throws IOException {
@@ -112,7 +176,6 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterPanneauxBrut("fileTestBrutToitFacade.stl");
         STLWriterToit.ExporterPignonBrut("toitPignon.,stl");
     }
 

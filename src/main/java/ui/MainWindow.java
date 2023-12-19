@@ -131,6 +131,8 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
     private JTextField grilleTextField;
     private JButton Save;
     private JButton Charge;
+    private JButton exporterToitBrut;
+    private JButton exporterToitFini;
     private Point ZoomOrigin;
 
     private ChaletDTO.AffichageVue selectedVue;
@@ -766,6 +768,29 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
                 System.out.println(grilleMN+" entered by you..");
                 FenetrePrincipale.revalidate();
                 FenetrePrincipale.repaint();
+            }
+        });
+        exporterToitBrut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Controleur.ExporterPignonBrut();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                JOptionPane.showMessageDialog(null, "Vous avez exporté Toit Brut", "Exportations STL", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        exporterToitFini.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Controleur.ExporterRallongeVerticale();
+                    Controleur.ExporterPignonFini();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                JOptionPane.showMessageDialog(null, "Vous avez exporté Toit Fini", "Exportations STL", JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }
