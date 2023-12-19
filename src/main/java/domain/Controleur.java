@@ -1,9 +1,6 @@
 package domain;
 
-import Utilitaires.Pouces;
-import Utilitaires.STLWriterToit;
-import Utilitaires.STLWriterSecondaire;
-import Utilitaires.UndoRedoManager;
+import Utilitaires.*;
 
 import java.awt.*;
 import java.io.File;
@@ -76,6 +73,31 @@ public class Controleur implements java.io.Serializable {
 
         STLWriterSecondaire.ExporterPanneauxFinis(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
 
+    }
+
+
+    public static void ExporterToitPignonFinis() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "ChalCLT_PIGNON_RV.stl";
+        String filePathDroite = directoryPath + File.separator + fileName;
+        String filePathGauche = directoryPath + File.separator + fileName;
+
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit2.ExporterToitPignonFinis(filePathDroite,filePathGauche);
     }
 
     public static void ExporterRallongeVerticale() throws IOException{
@@ -204,6 +226,8 @@ public class Controleur implements java.io.Serializable {
 
         STLWriterToit.ExporterPignonBrutGauche(fileName);
     }
+
+
 
     public static void ExporterParDessusFini()throws IOException{
         Path directory = Paths.get("C:\\STL");

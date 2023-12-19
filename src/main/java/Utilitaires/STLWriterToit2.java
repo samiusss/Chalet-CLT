@@ -47,7 +47,7 @@ public class STLWriterToit2 implements java.io.Serializable {
     }
 
 
-    public static List<float[]> determinerPointsPignon(float angle, float length, float width, float height, float space) {
+    public static List<float[]> determinerPointsPignon(float angle, float width) {
         List<float[]> listeVertex = new LinkedList<>();
 
 
@@ -217,7 +217,7 @@ public class STLWriterToit2 implements java.io.Serializable {
         float height = (float) heightt;
 
         List<Triangle> trianglesPignon = new ArrayList<>();
-        List<float[]> listeVertexPignonGauche = determinerPointsPignon(angle, length, width, height, length);
+        List<float[]> listeVertexPignonGauche = determinerPointsPignon(angle, width);
         //List<float[]> listeVertexPignonDroit = determinerPointsPignon(angle, length, width, height, length);
 
 
@@ -244,27 +244,66 @@ public class STLWriterToit2 implements java.io.Serializable {
         return trianglesPignon;
     }
 
+    public static void ExporterToitBrut(String fileNameRallongeVertical,String fileNamePignonDroit, String fileNamePignonGauche ){
 
-    public static void ExporterRallongeVerticaleBrut(String fileName){
-
-        java.util.List<Triangle> listeTriangles = generateRallongeVerticaleBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs,"AVANT");
-        generateSTL(listeTriangles,fileName);
-    }
-
-    public static void ExporterPignonBrutDroite(String fileName) {
-
-        List<Triangle> listeTrianglesPignon = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
+        java.util.List<Triangle> listeTrianglesRallongeVertical = generateRallongeVerticaleBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs,"AVANT");
+        List<Triangle> listeTrianglesPignonDroit = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
+        List<Triangle> listeTrianglesPignonGauche = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
 
         // Generate STL file
-        generateSTL(listeTrianglesPignon, fileName);
+        generateSTL(listeTrianglesPignonGauche, fileNamePignonGauche);
+        generateSTL(listeTrianglesPignonDroit, fileNamePignonDroit);
+        generateSTL(listeTrianglesRallongeVertical,fileNameRallongeVertical);
     }
 
-    public static void ExporterPignonBrutGauche(String fileName) {
+    public static void ExporterToitPignonFinis(String fileNamePignonDroit, String fileNamePignonGauche){
 
-        List<Triangle> listeTrianglesPignon = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
+        // Utiliser les dimensions du prisme principal
+        double largeurSecondaire = Chalet.largeurChalet - Chalet.largeurChalet / 10;
 
-        generateSTL(listeTrianglesPignon, fileName);
+        List<Triangle> listeTrianglesPignonDroit = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
+        List<Triangle> listeTrianglesPignonDroitFinis = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet,largeurSecondaire, Chalet.hauteurMurs, "ARRIERE");
+        listeTrianglesPignonDroit.addAll(listeTrianglesPignonDroitFinis);
+
+        List<Triangle> listeTrianglesPignonGauche = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
+        List<Triangle> listeTrianglesPignonGaucheFinis = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet,largeurSecondaire, Chalet.hauteurMurs, "ARRIERE");
+
+        // Generate STL file
+        generateSTL(listeTrianglesPignonDroit, fileNamePignonDroit);
+
+        //generateSTL(listeTrianglesPignonGaucheFinis, fileNamePignonGauche);
+        //generateSTL(listeTrianglesPignonDroitFinis, fileNamePignonDroit);
     }
+
+    public static void ExporterToitFinis(String fileNameRallongeVertical,String fileNamePignonDroit, String fileNamePignonGauche ){
+
+        java.util.List<Triangle> listeTrianglesRallongeVertical = generateRallongeVerticaleBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs,"AVANT");
+
+
+        List<Triangle> listeTrianglesPignonDroit = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
+        List<Triangle> listeTrianglesPignonDroitFinis = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
+
+        List<Triangle> listeTrianglesPignonGauche = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
+
+        // Generate STL file
+        generateSTL(listeTrianglesPignonGauche, fileNamePignonGauche);
+        generateSTL(listeTrianglesPignonDroit, fileNamePignonDroit);
+        generateSTL(listeTrianglesRallongeVertical,fileNameRallongeVertical);
+    }
+
+    public static void ExporterToitRetrait(String fileNameRallongeVertical,String fileNamePignonDroit, String fileNamePignonGauche ){
+
+        java.util.List<Triangle> listeTrianglesRallongeVertical = generateRallongeVerticaleBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs,"AVANT");
+        List<Triangle> listeTrianglesPignonDroit = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
+        List<Triangle> listeTrianglesPignonGauche = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
+
+        // Generate STL file
+        generateSTL(listeTrianglesPignonGauche, fileNamePignonGauche);
+        generateSTL(listeTrianglesPignonDroit, fileNamePignonDroit);
+        generateSTL(listeTrianglesRallongeVertical,fileNameRallongeVertical);
+    }
+
+
 
 
 
