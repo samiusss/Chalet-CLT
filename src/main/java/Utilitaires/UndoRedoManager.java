@@ -85,6 +85,7 @@ public class UndoRedoManager {
             }
         }
 
+
         public static CopieChaletUR versionURCHALET() {
             //Crée un nouveau CopieCHaletUR et récupère les informations
             CopieChaletUR copieChalet = new CopieChaletUR();
@@ -148,6 +149,9 @@ public class UndoRedoManager {
 
             return copieChalet;
         }
+
+
+
         public static CopieChaletUR CopieChaletVersion1() {
             //Crée un nouveau CopieChaletUR et récupère les informations
             CopieChaletUR copieChalet = new CopieChaletUR();
@@ -166,6 +170,11 @@ public class UndoRedoManager {
 
             listeVersionsChalets.add(copieChalet);
             System.out.printf("Le chalet de base est copié dans la liste : "+listeVersionsChalets);
+
+            System.out.println("\n            -                          \n" );
+            System.out.println("Apres copies du chalet ddee base, voici, la listes des portes  :" + copieChalet.listeMurs.get(0).porteMur+ copieChalet.listeMurs.get(0).fenetreMur );
+            System.out.println("\n            -                          \n" );
+
             return copieChalet;
         }
     }

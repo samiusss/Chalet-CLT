@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.LinkedList;
 import java.util.List;
 
 import static domain.ChaletDTO.*;
@@ -688,6 +689,7 @@ public class Controleur implements java.io.Serializable {
             return true;
 
         }
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
 
         return false;
 
@@ -700,6 +702,7 @@ public class Controleur implements java.io.Serializable {
             UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
             return true;
         }
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
 
         return false;
         //Porte newPorte = newAccessoires("AID",mousepoint, double largeur,double hauteur);
