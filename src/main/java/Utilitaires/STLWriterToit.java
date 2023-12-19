@@ -344,12 +344,12 @@ public class STLWriterToit implements java.io.Serializable {
     public static List<float[]> determinerPointRallongeVerticale(double angle, double length, double height, double width) {
         List<float[]> listeVertex = new LinkedList<>();
 
-        /*if (orientationToit == "North" || orientationToit == "South") {
+        if (orientationToit == "North" || orientationToit == "South") {
             // Swap length and width
             double temp = length;
             length = width;
             width = temp;
-        }*/
+        }
 
         float firstBaseWidth = (float) ((float) Math.tan(angle) * (epaisseurChalet / 2));
 
