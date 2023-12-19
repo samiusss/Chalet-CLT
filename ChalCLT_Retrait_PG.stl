@@ -1,0 +1,212 @@
+solid generated
+  facet normal 0.00 -1.00 0.00
+    outer loop
+     vertex 0.00 0.00 120.00
+     vertex 0.00 0.00 105.00
+     vertex 15.00 0.00 105.00
+    endloop
+  endfacet
+  facet normal 0.00 1.00 0.00
+    outer loop
+     vertex 0.00 0.00 120.00
+     vertex 15.00 0.00 120.00
+     vertex 15.00 0.00 105.00
+    endloop
+  endfacet
+  facet normal 0.00 0.00 -1.00
+    outer loop
+     vertex 0.00 0.00 105.00
+     vertex 15.00 0.00 105.00
+     vertex 0.00 -77.04 105.00
+    endloop
+  endfacet
+  facet normal 0.00 0.00 1.00
+    outer loop
+     vertex 15.00 0.00 105.00
+     vertex 0.00 -77.04 105.00
+     vertex 15.00 -77.04 105.00
+    endloop
+  endfacet
+  facet normal 0.00 0.00 -1.00
+    outer loop
+     vertex 0.00 0.00 120.00
+     vertex 15.00 0.00 120.00
+     vertex 0.00 -89.88 120.00
+    endloop
+  endfacet
+  facet normal 0.00 0.00 1.00
+    outer loop
+     vertex 15.00 0.00 120.00
+     vertex 0.00 -89.88 120.00
+     vertex 15.00 -89.88 120.00
+    endloop
+  endfacet
+  facet normal 0.00 0.76 0.65
+    outer loop
+     vertex 0.00 -89.88 120.00
+     vertex 15.00 -89.88 120.00
+     vertex 0.00 -77.04 105.00
+    endloop
+  endfacet
+  facet normal 0.00 -0.76 -0.65
+    outer loop
+     vertex 0.00 -77.04 105.00
+     vertex 15.00 -77.04 105.00
+     vertex 15.00 -89.88 120.00
+    endloop
+  endfacet
+  facet normal -1.00 0.00 0.00
+    outer loop
+     vertex 0.00 0.00 120.00
+     vertex 0.00 0.00 105.00
+     vertex 0.00 -77.04 120.00
+    endloop
+  endfacet
+  facet normal -1.00 0.00 0.00
+    outer loop
+     vertex 0.00 0.00 105.00
+     vertex 0.00 -77.04 105.00
+     vertex 0.00 -77.04 120.00
+    endloop
+  endfacet
+  facet normal 1.00 0.00 0.00
+    outer loop
+     vertex 0.00 -77.04 105.00
+     vertex 0.00 -77.04 120.00
+     vertex 0.00 -89.88 120.00
+    endloop
+  endfacet
+  facet normal 1.00 0.00 0.00
+    outer loop
+     vertex 15.00 0.00 105.00
+     vertex 15.00 0.00 120.00
+     vertex 15.00 -77.04 120.00
+    endloop
+  endfacet
+  facet normal -1.00 0.00 0.00
+    outer loop
+     vertex 15.00 0.00 105.00
+     vertex 15.00 -77.04 105.00
+     vertex 15.00 -77.04 120.00
+    endloop
+  endfacet
+  facet normal 1.00 0.00 0.00
+    outer loop
+     vertex 15.00 -77.04 105.00
+     vertex 15.00 -77.04 120.00
+     vertex 15.00 -89.88 120.00
+    endloop
+  endfacet
+  facet normal 0.00 -1.00 0.00
+    outer loop
+     vertex 0.00 0.00 0.00
+     vertex 15.00 0.00 0.00
+     vertex 0.00 0.00 15.00
+    endloop
+  endfacet
+  facet normal 0.00 1.00 0.00
+    outer loop
+     vertex 0.00 0.00 15.00
+     vertex 15.00 0.00 15.00
+     vertex 15.00 0.00 0.00
+    endloop
+  endfacet
+  facet normal 0.00 0.76 0.65
+    outer loop
+     vertex 0.00 0.00 15.00
+     vertex 15.00 -89.88 120.00
+     vertex 15.00 0.00 15.00
+    endloop
+  endfacet
+  facet normal 0.00 0.76 0.65
+    outer loop
+     vertex 0.00 0.00 15.00
+     vertex 0.00 -89.88 120.00
+     vertex 15.00 -89.88 120.00
+    endloop
+  endfacet
+  facet normal 0.00 0.76 0.65
+    outer loop
+     vertex 0.00 -102.72 120.00
+     vertex 15.00 -102.72 120.00
+     vertex 0.00 0.00 0.00
+    endloop
+  endfacet
+  facet normal 0.00 -0.76 -0.65
+    outer loop
+     vertex 0.00 0.00 0.00
+     vertex 15.00 0.00 0.00
+     vertex 15.00 -102.72 120.00
+    endloop
+  endfacet
+  facet normal 0.00 0.00 1.00
+    outer loop
+     vertex 0.00 -89.88 120.00
+     vertex 0.00 -102.72 120.00
+     vertex 15.00 -89.88 120.00
+    endloop
+  endfacet
+  facet normal 0.00 0.00 -1.00
+    outer loop
+     vertex 15.00 -89.88 120.00
+     vertex 15.00 -102.72 120.00
+     vertex 0.00 -102.72 120.00
+    endloop
+  endfacet
+  facet normal 1.00 0.00 0.00
+    outer loop
+     vertex 0.00 0.00 15.00
+     vertex 0.00 -38.52 45.00
+     vertex 0.00 0.00 0.00
+    endloop
+  endfacet
+  facet normal 1.00 0.00 0.00
+    outer loop
+     vertex 15.00 0.00 0.00
+     vertex 15.00 0.00 15.00
+     vertex 15.00 -38.52 45.00
+    endloop
+  endfacet
+  facet normal -1.00 0.00 0.00
+    outer loop
+     vertex 0.00 -89.88 120.00
+     vertex 0.00 -96.30 112.50
+     vertex 0.00 -102.72 120.00
+    endloop
+  endfacet
+  facet normal -1.00 0.00 0.00
+    outer loop
+     vertex 15.00 -89.88 120.00
+     vertex 15.00 -96.30 112.50
+     vertex 15.00 -102.72 120.00
+    endloop
+  endfacet
+  facet normal -1.00 0.00 0.00
+    outer loop
+     vertex 0.00 -96.30 112.50
+     vertex 0.00 -89.88 120.00
+     vertex 0.00 0.00 15.00
+    endloop
+  endfacet
+  facet normal -1.00 0.00 0.00
+    outer loop
+     vertex 0.00 0.00 15.00
+     vertex 0.00 -38.52 45.00
+     vertex 0.00 -96.30 112.50
+    endloop
+  endfacet
+  facet normal -1.00 0.00 0.00
+    outer loop
+     vertex 15.00 -96.30 112.50
+     vertex 15.00 -89.88 120.00
+     vertex 15.00 0.00 15.00
+    endloop
+  endfacet
+  facet normal -1.00 0.00 0.00
+    outer loop
+     vertex 15.00 0.00 15.00
+     vertex 15.00 -38.52 45.00
+     vertex 15.00 -96.30 112.50
+    endloop
+  endfacet
+endsolid generated

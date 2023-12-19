@@ -765,7 +765,7 @@ public class STLWriterToit implements java.io.Serializable {
         return trianglesRallonge;
     }
 
-    public static List<Triangle> generatePignonRetraitGauche(double anglee, double lenghtt, double widthh, double heightt, String type){
+    public static List<Triangle> generatePignonRetraits(double anglee, double lenghtt, double widthh, double heightt, String type){
 
         float angle = (float) anglee;
         float length = (float) lenghtt;
@@ -787,39 +787,111 @@ public class STLWriterToit implements java.io.Serializable {
         float[] v9 = listeVertexPignonGauche.get(9);
         float[] v10 = listeVertexPignonGauche.get(10);
         float[] v11 = listeVertexPignonGauche.get(11);
+        float[] vA = listeVertexPignonGauche.get(12);
+        float[] vB = listeVertexPignonGauche.get(13);
+        float[] vC = listeVertexPignonGauche.get(14);
+        float[] vD = listeVertexPignonGauche.get(15);
+        float[] vE = listeVertexPignonGauche.get(16);
+        float[] vF = listeVertexPignonGauche.get(17);
+        float[] vG = listeVertexPignonGauche.get(18);
+        float[] vH = listeVertexPignonGauche.get(19);
 
 
-        trianglesPignon.add(new Triangle(v0, v1, v2, type));
-        trianglesPignon.add(new Triangle(v3, v4, v5, type));
-        trianglesPignon.add(new Triangle(v6, v7, v8, type));
-        return null;
+        trianglesPignon.add(new Triangle(v2, v9, v8, type));
+        trianglesPignon.add(new Triangle(v2, v3, v8, type));
+
+        trianglesPignon.add(new Triangle(v9, v8, v11, type));
+        trianglesPignon.add(new Triangle(v8, v11, v10, type));
+
+        trianglesPignon.add(new Triangle(v2, v3, vA, type));
+        trianglesPignon.add(new Triangle(v3, vA, vB, type));
+
+        trianglesPignon.add(new Triangle(vA, vB, v11, type));
+        trianglesPignon.add(new Triangle(v11, v10, vB, type));
+        /////
+        trianglesPignon.add(new Triangle(v2, v9, vC, type));
+        trianglesPignon.add(new Triangle(v9, v11, vC, type));
+        trianglesPignon.add(new Triangle(v11, vC, vA, type));
+
+        trianglesPignon.add(new Triangle(v8, v3, vD, type));
+        trianglesPignon.add(new Triangle(v8, v10, vD, type));
+        trianglesPignon.add(new Triangle(v10, vD, vB, type));
+        //// finish of alumette
+        trianglesPignon.add(new Triangle(v0, v1, v7, type));
+        trianglesPignon.add(new Triangle(v7, v6, v1, type));
+
+        trianglesPignon.add(new Triangle(v7, vB, v6, type));
+        trianglesPignon.add(new Triangle(v7, vA, vB, type));
+
+        trianglesPignon.add(new Triangle(v4, v5, v0, type));
+        trianglesPignon.add(new Triangle(v0, v1, v5, type));
+
+        trianglesPignon.add(new Triangle(vA, v4, vB, type));
+        trianglesPignon.add(new Triangle(vB, v5, v4, type));
+
+        trianglesPignon.add(new Triangle(v7, vE, v0, type));
+        trianglesPignon.add(new Triangle(v1, v6, vF, type));
+
+        trianglesPignon.add(new Triangle(vA, vG, v4, type));
+        trianglesPignon.add(new Triangle(vB, vH, v5, type));
+
+        trianglesPignon.add(new Triangle(vG, vA, v7, type));
+        trianglesPignon.add(new Triangle(v7, vE, vG, type));
+
+        trianglesPignon.add(new Triangle(vH, vB, v6, type));
+        trianglesPignon.add(new Triangle(v6, vF, vH, type));
+
+
+        return trianglesPignon;
     }
 
     public static List<float[]> determinerPignonRetraitGauche(float angle, float length, float width, float height, String type){
 
         List<float[]> listeVertex = new LinkedList<>();
 
-        float hauteurBig = (float) (Math.tan(angle) * (width - 2*(float)epaisseurChalet));
-        float hauteurSmall = (float) (Math.tan(angle) * (width - 2*(float)epaisseurChalet));
+        float smallLength = width - (float) epaisseurChalet*2 - (float) epaisseurChalet;
 
-        //big triangle
-        listeVertex.add(new float[]{0, 0, 0}); // v0
-        listeVertex.add(new float[]{0, 0, (width - 2*(float)epaisseurChalet)}); // v1
-        listeVertex.add(new float[]{0, hauteurBig, (width - 2*(float)epaisseurChalet)}); // v2
 
-        listeVertex.add(new float[]{(float) epaisseurChalet/2, 0, 0}); // v6
-        listeVertex.add(new float[]{(float) epaisseurChalet/2, 0, (width - 2*(float)epaisseurChalet)}); // v9
-        listeVertex.add(new float[]{(float) epaisseurChalet/2, hauteurBig, (width - 2*(float)epaisseurChalet)}); // v11
+        float smallHeight = (float) Math.tan(angle) * smallLength;
+        float bigHeight = (float) Math.tan(angle) * (width - (float) epaisseurChalet*2);
 
-        //small triangle
-        listeVertex.add(new float[]{0, 0, (float) epaisseurChalet/2}); // v1
-        listeVertex.add(new float[]{0, hauteurBig, (width - 2*(float)epaisseurChalet) + (float) epaisseurChalet/2}); // v2 //revoir + or -
-        listeVertex.add(new float[]{0, hauteurSmall, (width - 2*(float)epaisseurChalet) + (float) epaisseurChalet/2}); // v4 //revoir + or -
+        float heightA = (float) Math.tan(angle) * (width - 2*(float) epaisseurChalet - (float)epaisseurChalet/2);
 
-        listeVertex.add(new float[]{(float) epaisseurChalet/2, 0, (float) epaisseurChalet/2}); // v7
-        listeVertex.add(new float[]{(float) epaisseurChalet/2, hauteurBig, (width - 2*(float)epaisseurChalet) + (float) epaisseurChalet/2}); // v8 //revoir + or -
-        listeVertex.add(new float[]{(float) epaisseurChalet/2, hauteurSmall, (width - 2*(float)epaisseurChalet) + (float) epaisseurChalet/2}); // v10 //revoir + or -
+        listeVertex.add(new float[]{0, 0, 0}); //v0
+        listeVertex.add(new float[]{(float) epaisseurChalet / 2, 0, 0}); //v1
 
+        listeVertex.add(new float[]{0, 0, width - 2*(float)epaisseurChalet}); //v2
+        listeVertex.add(new float[]{(float) epaisseurChalet/2, 0, width - 2*(float)epaisseurChalet}); //v3
+
+        listeVertex.add(new float[]{0, bigHeight, width - 2*(float)epaisseurChalet}); //v4
+        listeVertex.add(new float[]{(float) epaisseurChalet/2, bigHeight, width - 2*(float)epaisseurChalet}); //v5
+
+        listeVertex.add(new float[]{(float) epaisseurChalet/2, 0, (float) epaisseurChalet/2}); //v6
+        listeVertex.add(new float[]{(float) 0, 0, (float) epaisseurChalet/2}); //v7
+
+        listeVertex.add(new float[]{(float) epaisseurChalet/2, 0, width - 2*(float) epaisseurChalet - (float) epaisseurChalet/2}); //v8
+        listeVertex.add(new float[]{(float) 0, 0, width - 2*(float) epaisseurChalet - (float) epaisseurChalet/2}); //v9
+
+        listeVertex.add(new float[]{(float) epaisseurChalet/2, smallHeight, width - 2*(float) epaisseurChalet - (float) epaisseurChalet/2}); //v10
+        listeVertex.add(new float[]{(float) 0, smallHeight, width - 2*(float) epaisseurChalet - (float) epaisseurChalet/2}); //v11
+
+        //vertex AB
+        listeVertex.add(new float[]{ 0, heightA, width - 2*(float)epaisseurChalet}); //A
+        listeVertex.add(new float[]{ (float)epaisseurChalet/2, heightA, width - 2*(float)epaisseurChalet}); //B
+
+        //vertex CD
+        listeVertex.add(new float[]{ 0, smallHeight, width - 2*(float)epaisseurChalet}); //C
+        listeVertex.add(new float[]{ (float) epaisseurChalet/2, smallHeight, width - 2*(float)epaisseurChalet}); //D
+
+        //vertex EF
+        listeVertex.add(new float[]{ 0, (float) (Math.tan(angle) * ((float) epaisseurChalet + (float)epaisseurChalet/2)), (float) epaisseurChalet + (float)epaisseurChalet/2}); //E
+        listeVertex.add(new float[]{ (float) epaisseurChalet/2, (float) (Math.tan(angle) * ((float) epaisseurChalet + (float)epaisseurChalet/2)), (float) epaisseurChalet + (float)epaisseurChalet/2}); //F
+
+        //vertex GH
+        float hauteurGH = heightA + (((bigHeight) - (heightA))/2);
+        float zGH = hauteurGH / (float) (Math.tan(angle));
+        listeVertex.add(new float[]{ 0, hauteurGH, zGH}); //G
+        listeVertex.add(new float[]{ (float) epaisseurChalet/2, hauteurGH, zGH}); //H
 
         return listeVertex;
 
@@ -827,7 +899,7 @@ public class STLWriterToit implements java.io.Serializable {
 
     public static void ExporterPignonRetrait(String fileName){
 
-        java.util.List<Triangle> listeTriangles = generatePignonRetraitGauche(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs,"AVANT");
+        java.util.List<Triangle> listeTriangles = generatePignonRetraits(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs,"AVANT");
         generateSTL(listeTriangles,fileName);
     }
 
