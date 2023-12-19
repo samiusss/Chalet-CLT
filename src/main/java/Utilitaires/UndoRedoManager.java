@@ -27,12 +27,13 @@ public class UndoRedoManager {
 
 
         }
-        private static final Map<String, Integer> MURS = new HashMap<>();
+        private static final Map<String, Integer> murs = new HashMap<>();
+
         static {
-            MURS.put("FACADE", 0);
-            MURS.put("ARRIERE", 1);
-            MURS.put("DROITE", 3);
-            MURS.put("GAUCHE", 2);
+            murs.put("FACADE", 0);
+            murs.put("ARRIERE", 1);
+            murs.put("DROITE", 3);
+            murs.put("GAUCHE", 2);
         }
         public static List<CopieChaletUR> listeVersionsChalets = new LinkedList<>();
         public static int compteurNbrUndoRedo = 0 ;
@@ -102,47 +103,51 @@ public class UndoRedoManager {
             copieChalet.offsetX = Chalet.offsetX;
             copieChalet.offsetY = Chalet.offsetY;
             copieChalet.grilleP = Chalet.grilleP;
-//            List<Porte> listePorteDAVANTf = new LinkedList<>();
-//            List<Porte> listePorteDAVANTa = new LinkedList<>();
-//            List<Porte> listePorteDAVANTg = new LinkedList<>();
-//            List<Porte> listePorteDAVANTd = new LinkedList<>();
-//            List<Fenetre> listeFenetreDAVANTf = new LinkedList<>();
-//            List<Fenetre> listeFenetreDAVANTa = new LinkedList<>();
-//            List<Fenetre> listeFenetreDAVANTg = new LinkedList<>();
-//            List<Fenetre> listeFenetreDAVANTd = new LinkedList<>();
-//
-//            List<Mur> listeMur = copieChalet.listeMurs;
-//            if (!listeMur.isEmpty()) {
-//                for (int i = 0; i < 4; i++) {
-//                    Mur mur = listeMur.get(i);
-//                    List<Porte> listePorte = mur.getListePorte();
-//                    List<Fenetre> listeFenetre = mur.getListeFenetre();
-//                    if (i == 0) {
-//                        listePorteDAVANTf = listePorte;
-//                        listeFenetreDAVANTf = listeFenetre;
-//                    } else if (i == 1) {
-//                        listePorteDAVANTa = listePorte;
-//                        listeFenetreDAVANTa = listeFenetre;
-//                    } else if (i == 2) {
-//                        listePorteDAVANTg = listePorte;
-//                        listeFenetreDAVANTg = listeFenetre;
-//                    } else if (i == 3) {
-//                        listePorteDAVANTd = listePorte;
-//                        listeFenetreDAVANTd = listeFenetre;
-//                    }
-//                }
-//            }
-//            copieChalet.listeMurs.get(0).porteMur = listePorteDAVANTf;
-//            copieChalet.listeMurs.get(1).porteMur = listePorteDAVANTa;
-//            copieChalet.listeMurs.get(2).porteMur = listePorteDAVANTg;
-//            copieChalet.listeMurs.get(3).porteMur = listePorteDAVANTd;
-//            copieChalet.listeMurs.get(0).fenetreMur = listeFenetreDAVANTf;
-//            copieChalet.listeMurs.get(1).fenetreMur = listeFenetreDAVANTa;
-//            copieChalet.listeMurs.get(2).fenetreMur = listeFenetreDAVANTg;
-//            copieChalet.listeMurs.get(3).fenetreMur = listeFenetreDAVANTd;
+
+            List<Porte> listePorteDAVANTf = new LinkedList<>();
+            List<Porte> listePorteDAVANTa = new LinkedList<>();
+            List<Porte> listePorteDAVANTg = new LinkedList<>();
+            List<Porte> listePorteDAVANTd = new LinkedList<>();
+            List<Fenetre> listeFenetreDAVANTf = new LinkedList<>();
+            List<Fenetre> listeFenetreDAVANTa = new LinkedList<>();
+            List<Fenetre> listeFenetreDAVANTg = new LinkedList<>();
+            List<Fenetre> listeFenetreDAVANTd = new LinkedList<>();
+
+            List<Mur> listeMur = copieChalet.listeMurs;
+            if (!listeMur.isEmpty()) {
+                for (int i = 0; i < 4; i++) {
+                    Mur mur = listeMur.get(i);
+                    List<Porte> listePorte = mur.getListePorte();
+                    List<Fenetre> listeFenetre = mur.getListeFenetre();
+                    if (i == 0) {
+                        listePorteDAVANTf = listePorte;
+                        listeFenetreDAVANTf = listeFenetre;
+                    } else if (i == 1) {
+                        listePorteDAVANTa = listePorte;
+                        listeFenetreDAVANTa = listeFenetre;
+                    } else if (i == 2) {
+                        listePorteDAVANTg = listePorte;
+                        listeFenetreDAVANTg = listeFenetre;
+                    } else if (i == 3) {
+                        listePorteDAVANTd = listePorte;
+                        listeFenetreDAVANTd = listeFenetre;
+                    }
+                }
+            }
+            copieChalet.listeMurs.get(0).porteMur = listePorteDAVANTf;
+            copieChalet.listeMurs.get(1).porteMur = listePorteDAVANTa;
+            copieChalet.listeMurs.get(2).porteMur = listePorteDAVANTg;
+            copieChalet.listeMurs.get(3).porteMur = listePorteDAVANTd;
+            copieChalet.listeMurs.get(0).fenetreMur = listeFenetreDAVANTf;
+            copieChalet.listeMurs.get(1).fenetreMur = listeFenetreDAVANTa;
+            copieChalet.listeMurs.get(2).fenetreMur = listeFenetreDAVANTg;
+            copieChalet.listeMurs.get(3).fenetreMur = listeFenetreDAVANTd;
+
+
 
             listeVersionsChalets.add(copieChalet);
-            System.out.printf("Les données viennent d'être copié, voici la liste: "+listeVersionsChalets);
+            System.out.printf("Les données viennent d'être copiés, essayons de print la liste d'accessoire du mur facade: "+ copieChalet.listeMurs.get(0));
+
             return copieChalet;
         }
         public static CopieChaletUR CopieChaletVersion1() {

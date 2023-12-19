@@ -2,6 +2,7 @@ package ui;
 
 import Utilitaires.ChaletCopie;
 import Utilitaires.Pouces;
+import Utilitaires.STLWriterToit;
 import domain.Chalet;
 import domain.ChaletDTO;
 import domain.Controleur;
@@ -847,6 +848,8 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
                     Controleur.ExporterPignonFiniGauche();
                     Controleur.ExporterRallongeVerticaleRetrait();
                     Controleur.ExporterRetraitParDessus();
+                    Controleur.ExporterParDessusFini();
+
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

@@ -56,8 +56,7 @@ public class Main implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterParDessusFini("ParDessusFiniFileeee.stl");
-        //STLWriterToit.ExporterPignonRetrait("PignonRetraitFile.stl");
+
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);
 

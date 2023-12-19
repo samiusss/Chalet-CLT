@@ -221,7 +221,7 @@ public class Controleur implements java.io.Serializable {
     public static void ExporterParDessusFini()throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String fileName = "ParDessusFile.stl";
+        String fileName = "ChalCLT_Fini_ParDessus.stl";
 
         String fileParDessusFini  = directory + File.separator + fileName;
 
@@ -242,7 +242,8 @@ public class Controleur implements java.io.Serializable {
     public static void ExporterRetraitParDessus()throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String fileName = "RetraitParDessusFile.stl";
+        String fileName = "ChalCLT_Retrait_ParDessus.stl";
+        String fileParDessusRetrait  = directory + File.separator + fileName;
 
         if (!Files.exists(directory)) {
             try {
@@ -256,7 +257,7 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterRetraitParDessus(fileName);
+        STLWriterToit.ExporterRetraitParDessus(fileParDessusRetrait);
     }
 
 
@@ -338,7 +339,7 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterPanneauxBrut(filePathBrutDroite);
+        STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutDroite);
     }
 
 
@@ -413,7 +414,9 @@ public class Controleur implements java.io.Serializable {
         Chalet.setRetraitChalet(copieDuChalet.retraitChalet);
         Chalet.setOrientation(copieDuChalet.orientationToit);
         Chalet.setGrille(copieDuChalet.grilleP);
+
         initialiserChalet(chaletProduction);
+
 
         return copieDuChalet;
     }
@@ -588,7 +591,9 @@ public class Controleur implements java.io.Serializable {
 
         if(Chalet.ajouterFenetre(mousepoint, nomMur,listeMursDrawer,intitalDimension))
         {
+            UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
             return true;
+
         }
 
         return false;
@@ -599,6 +604,7 @@ public class Controleur implements java.io.Serializable {
 
         if(Chalet.ajouterPorte(mousepoint, nomMur,listeMursDrawer,intitalDimension))
         {
+            UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
             return true;
         }
 
