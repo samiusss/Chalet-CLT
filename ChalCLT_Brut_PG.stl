@@ -1,0 +1,58 @@
+solid generated
+  facet normal 0.00 -1.00 0.00
+    outer loop
+     vertex 0.00 0.00 0.00
+     vertex 30.00 0.00 0.00
+     vertex 0.00 0.00 240.00
+    endloop
+  endfacet
+  facet normal 0.00 1.00 0.00
+    outer loop
+     vertex 0.00 0.00 240.00
+     vertex 30.00 0.00 240.00
+     vertex 30.00 0.00 0.00
+    endloop
+  endfacet
+  facet normal 0.00 -0.41 0.91
+    outer loop
+     vertex 0.00 0.00 0.00
+     vertex 30.00 0.00 0.00
+     vertex 0.00 536.92 240.00
+    endloop
+  endfacet
+  facet normal 0.00 0.41 -0.91
+    outer loop
+     vertex 30.00 0.00 0.00
+     vertex 0.00 536.92 240.00
+     vertex 30.00 536.92 240.00
+    endloop
+  endfacet
+  facet normal 0.00 0.00 -1.00
+    outer loop
+     vertex 0.00 536.92 240.00
+     vertex 30.00 536.92 240.00
+     vertex 0.00 0.00 240.00
+    endloop
+  endfacet
+  facet normal 0.00 0.00 1.00
+    outer loop
+     vertex 0.00 0.00 240.00
+     vertex 30.00 0.00 240.00
+     vertex 30.00 536.92 240.00
+    endloop
+  endfacet
+  facet normal -1.00 0.00 0.00
+    outer loop
+     vertex 0.00 0.00 0.00
+     vertex 0.00 0.00 240.00
+     vertex 0.00 536.92 240.00
+    endloop
+  endfacet
+  facet normal -1.00 0.00 0.00
+    outer loop
+     vertex 30.00 0.00 0.00
+     vertex 30.00 0.00 240.00
+     vertex 30.00 536.92 240.00
+    endloop
+  endfacet
+endsolid generated

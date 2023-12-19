@@ -154,7 +154,29 @@ public class Controleur implements java.io.Serializable {
     public static void ExporterPignonRetraitGauche() throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String fileName = "File.stl";
+        String directoryPath = "C:\\STL";
+        String fileName = "ChalCLT_Retrait_PG.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterPignonRetrait(fileName);
+    }
+
+    public static void ExporterPignonRetraitDroit() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "ChalCLT_Retrait_PD.stl";
 
         String filePathPignonRetraitGauche = directory + File.separator + "ChalCLT_Retrait_PG" + fileName;
 
