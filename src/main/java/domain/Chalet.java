@@ -94,7 +94,6 @@ public class Chalet implements java.io.Serializable{
     }
 
     public void initialiserMurGauche() {
-
         //points de haut
         PointDouble pointInfGauche = new PointDouble(0, 0);
         PointDouble pointSupGauche = new PointDouble(0, largeurChalet);
@@ -336,52 +335,7 @@ public class Chalet implements java.io.Serializable{
         return Optional.empty();
     }
 
-
-    public Optional<Fenetre> determinerFenetre(String nomMur, Point mousePosition) {
-
-        List<Fenetre> fenetres = listeMurs.get(determinerMur(nomMur)).getListeFenetre();
-
-        if(fenetres.isEmpty()) {
-            return Optional.empty();
-        }
-
-        for (Fenetre fenetre : fenetres) {
-            if (fenetre.estDansMousePoint(mousePosition)) {
-
-                System.out.println("Fenetre trouvée");
-                return Optional.of(fenetre);
-            }
-        }
-
-        return Optional.ofNullable(fenetres.get(determinerMur(nomMur)));
-    }
-
-
-    public Optional<Fenetre> determinerPorteFinal(String nomMur, Point mousePosition) {
-
-        List<Fenetre> fenetres = listeMurs.get(determinerMur(nomMur)).getListeFenetre();
-
-        if(fenetres.isEmpty()) {
-            return Optional.empty();
-        }
-
-        for (Fenetre fenetre : fenetres) {
-            if (fenetre.estDansMousePoint(mousePosition)) {
-
-                System.out.println("Fenetre trouvée");
-                return Optional.of(fenetre);
-            }
-        }
-
-        return Optional.ofNullable(fenetres.get(determinerMur(nomMur)));
-    }
-
-
-
-
     public static List<Point> DeterminerCollisionSommetsMur(Mur mur, Dimension initialDimension) {
-
-        //List<PointDouble> sommetsMur = mur.getSommetsMur();
 
         double width = initialDimension.getWidth();
         double height = initialDimension.getHeight();
@@ -409,11 +363,6 @@ public class Chalet implements java.io.Serializable{
         // Construire tableaux de coordonnées pour le mur facade de coté
         int[] xPointsFacadeCote = {x1fc, x2fc, x3fc, x4fc};
         int[] yPointsFacadeCote = {y1fc, y2fc, y3fc, y4fc};
-        System.out.println(x1fc + " " + y1fc + " En Haut a Gauche ");
-        System.out.println(x2fc + " " + y2fc + " En Bas a Gauche ");
-        System.out.println(x3fc + " " + y3fc + " En Bas a Droite ");
-        System.out.println(x4fc + " " + y4fc + " En Haut a Droite ");
-
 
         Point SupGauche = new Point(x1fc, y1fc);
         Point SupDroite = new Point(x4fc, y4fc);
@@ -453,22 +402,11 @@ public class Chalet implements java.io.Serializable{
         boolean conditionDeux = x >= x2;
         boolean conditionTrois = y >= y1;
         boolean conditionQuatre = y <= y3;
-        System.out.println(conditionUn + "" + conditionDeux + "" + conditionTrois + "" + conditionQuatre + "Les conditions");
 
         // Vérifie si le point se trouve à l'intérieur du rectangle
         boolean estDansRectangle = (conditionUn && conditionDeux && conditionTrois && conditionQuatre);
 
-        //System.out.println(estDansRectangle + "(estDansRectangle) " + point);
         return estDansRectangle;
-
-    /*private static boolean estDansRectangle2(Point pointVerification, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
-        boolean Rect = pointVerification.x >= coinSupGauche.x && pointVerification.x <= coinSupDroit.x
-                && pointVerification.y >= coinSupGauche.y && pointVerification.y <= coinInfGauche.y ;
-        System.out.println(Rect + "(estDansRectangle) "+pointVerification);
-
-    return (pointVerification.x >= coinSupGauche.x && pointVerification.x <= coinSupDroit.x
-                && pointVerification.y >= coinSupGauche.y && pointVerification.y <= coinInfGauche.y);
-    } */
 
     }
     public static boolean MethodeTestFenetre(String nomMur,List<Mur> listeMursDrawer, Point mousePoint) {
@@ -520,12 +458,10 @@ public class Chalet implements java.io.Serializable{
         boolean conditionDeux = x <= x2;
         boolean conditionTrois = y >= y1;
         boolean conditionQuatre = y <= y3;
-        //System.out.println(conditionUn +""+  conditionDeux +""+  conditionTrois +""+  conditionQuatre +"Les conditions" );
 
         // Vérifie si le point se trouve à l'intérieur du rectangle
         boolean estDansRectangle = (conditionUn && conditionDeux && conditionTrois && conditionQuatre);
 
-        //System.out.println(estDansRectangle + "(estDansRectangle) " + point);
         return estDansRectangle;
 
 
@@ -549,20 +485,14 @@ public class Chalet implements java.io.Serializable{
         int x4 = coinInfDroit.x;
         int y4 = coinInfDroit.y;
 
-        //Probleme dans la méthode de generations des sommets des murs. Le points superieur droit est plus petit que le coin superieur gauche.
-        //boolean conditionUn = x >= x1;
-        //boolean conditionDeux = x <= x2 ;
-
         boolean conditionUn = x >= x1;
         boolean conditionDeux = x <= x2;
         boolean conditionTrois = y <= y1;
         boolean conditionQuatre = y >= y3;
-        //System.out.println(conditionUn +""+  conditionDeux +""+  conditionTrois +""+  conditionQuatre +"Les conditions" );
 
         // Vérifie si le point se trouve à l'intérieur du rectangle
         boolean estDansRectangle = (conditionUn && conditionDeux && conditionTrois && conditionQuatre);
 
-        //System.out.println(estDansRectangle + "(estDansRectangle) " + point);
         return estDansRectangle;
 
 
@@ -585,30 +515,14 @@ public class Chalet implements java.io.Serializable{
         int x4 = coinInfDroit.x;
         int y4 = coinInfDroit.y;
 
-        //Probleme dans la méthode de generations des sommets des murs. Le points superieur droit est plus petit que le coin superieur gauche.
-        //boolean conditionUn = x >= x1;
-        //boolean conditionDeux = x <= x2 ;
-
         boolean conditionUn = x >= x1;
         boolean conditionDeux = x <= x2;
         boolean conditionTrois = y >= y1;
         boolean conditionQuatre = y <= y3;
-        //System.out.println(conditionUn +""+  conditionDeux +""+  conditionTrois +""+  conditionQuatre +"Les conditions" );
 
         // Vérifie si le point se trouve à l'intérieur du rectangle
         boolean estDansRectangle = (conditionUn && conditionDeux && conditionTrois && conditionQuatre);
-
-        //System.out.println(estDansRectangle + "(estDansRectangle) " + point);
         return estDansRectangle;
-
-    /*private static boolean estDansRectangle2(Point pointVerification, Point coinSupGauche, Point coinSupDroit, Point coinInfGauche, Point coinInfDroit) {
-        boolean Rect = pointVerification.x >= coinSupGauche.x && pointVerification.x <= coinSupDroit.x
-                && pointVerification.y >= coinSupGauche.y && pointVerification.y <= coinInfGauche.y ;
-        System.out.println(Rect + "(estDansRectangle) "+pointVerification);
-
-    return (pointVerification.x >= coinSupGauche.x && pointVerification.x <= coinSupDroit.x
-                && pointVerification.y >= coinSupGauche.y && pointVerification.y <= coinInfGauche.y);
-    } */
 
     }
 
@@ -624,21 +538,12 @@ public class Chalet implements java.io.Serializable{
         Point SupDroiteMur = PointsMur.get(1);
         Point InfGaucheMur = PointsMur.get(2);
         Point InfDroiteMur = PointsMur.get(3);
-        /*System.out.println(SupGaucheMur+"(DeterminerCollisionSommetsMur) Mur En Haut a Gauche ");
-        System.out.println(InfGaucheMur+"(DeterminerCollisionSommetsMur) Mur En Bas a Gauche ");
-        System.out.println(InfDroiteMur+"(DeterminerCollisionSommetsMur) Mur En Bas a Droite ");
-        System.out.println(SupDroiteMur+"(DeterminerCollisionSommetsMur) Mur En Haut a Droite "); */
-
 
         //On determine les sommets de la fenetres
         Point SupGaucheFenetre = mousePoint;
         Point SupDroitFenetre = new Point(SupGaucheFenetre.x + largeur, SupGaucheFenetre.y);
         Point InfGaucheFenetre = new Point(SupGaucheFenetre.x, SupGaucheFenetre.y + hauteur);
         Point InfDroitFenetre = new Point(SupGaucheFenetre.x + largeur, SupGaucheFenetre.y + hauteur);
-        /*System.out.println(SupGaucheFenetre+"(AntiCollisionFenetreMur) Fenetre En Haut a Gauche ");
-        System.out.println(InfGaucheFenetre+"(AntiCollisionFenetreMur) Fenetre En Bas a Gauche ");
-        System.out.println(InfDroitFenetre+"(AntiCollisionFenetreMur) Fenetre En Bas a Droite ");
-        System.out.println(SupDroitFenetre+"(AntiCollisionFenetreMur) Fenetre En Haut a Droite "); */
 
         boolean PointUnRect = estDansRectangle(SupGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
         boolean PointDeuxRect = estDansRectangle(SupDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
@@ -646,12 +551,6 @@ public class Chalet implements java.io.Serializable{
         boolean PointQuatreRect = estDansRectangle(InfDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur);
 
         return (PointUnRect && PointDeuxRect & PointTroisRect && PointQuatreRect);
-
-
-        /* return (estDansRectangle(SupGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur)
-                && estDansRectangle(SupDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur)
-                && estDansRectangle(InfGaucheFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur)
-                && estDansRectangle(InfDroitFenetre, SupGaucheMur, SupDroiteMur, InfGaucheMur, InfDroiteMur)); */
     }
 
     //TODO: A METTRE LES VRAIS POINTS DES PIGNONS
@@ -678,10 +577,6 @@ public class Chalet implements java.io.Serializable{
         Point SupDroitAccessoires = new Point(SupGaucheAccessoires.x + largeur, SupGaucheAccessoires.y);
         Point InfGaucheAccessoires = new Point(SupGaucheAccessoires.x, SupGaucheAccessoires.y + hauteur);
         Point InfDroitAccessoires = new Point(SupGaucheAccessoires.x + largeur, SupGaucheAccessoires.y + hauteur);
-        /*System.out.println(SupGaucheAccessoires+"(AntiCollisionAccessoires) Accessoires En Haut a Gauche ");
-        System.out.println(InfGaucheAccessoires+"(AntiCollisionAccessoires) Accessoires En Bas a Gauche ");
-        System.out.println(InfDroitAccessoires+ "(AntiCollisionAccessoires) Accessoires En Bas a Droite ");
-        System.out.println(SupDroitAccessoires+ "(AntiCollisionAccessoires) Accessoires En Haut a Droite "); */
 
         List<Point> PointsMur = new ArrayList<>();
         PointsMur.add(SupGaucheAccessoires);
@@ -713,22 +608,12 @@ public class Chalet implements java.io.Serializable{
 
             boolean PointUnRect = estDansRectanglePorte(mousePoint, SupGauchePorte, SupDroitPorte, InfGauchePorte, InfDroitPorte);
 
-            System.out.println(SupGauchePorte+"(SupGaucheFenetre est dans rectangle ?) ");
-            System.out.println(SupDroitPorte+"(SupDroitFenetre est dans rectangle ?) ");
-            System.out.println(InfGauchePorte+"(InfGaucheFenetre est dans rectangle ?) ");
-            System.out.println(InfDroitPorte+"(InfDroitFenetre est dans rectangle ?) ");
-
             if (PointUnRect) {
-                System.out.println(true + "(Porte Est Dans Rectangle) ");
 
                 return true;
             }
-            System.out.println(mousePoint + " " + porte.mousePoint + " " + largeurPorte + " " + hauteurPorte + "(MousPoint, MousePoint Porte Domaine) ");
-    //
 
         }
-
-        System.out.println(false + "(Porte Est Pas Dans Rectangle) ");
         return false;
     }
 
@@ -744,13 +629,6 @@ public class Chalet implements java.io.Serializable{
         Point SupDroitFenetre = listePoints.get(1);
         Point InfGaucheFenetre = listePoints.get(2);
         Point InfDroitFenetre = listePoints.get(3);
-
-
-        /*System.out.println(SupGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Haut a Gauche ");
-        System.out.println(SupDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Bas a Gauche ");
-        System.out.println(InfGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Bas a Droite ");
-        System.out.println(InfDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Haut a Droite "); */
-
 
         List<Fenetre> listeFenetre = mur.getListeFenetre();
 
@@ -768,7 +646,6 @@ public class Chalet implements java.io.Serializable{
             Pouces hauteurListe = fenetre.getHauteur();
             hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
             int hauteurFenetre = convertirPoucesEnInt(hauteurListe);
-            System.out.println(fenetre + "FenetreDeListeFenetre ");
 
             List<Point> listePointsFenetre = determinerSommetsAccessoires(mousePointFenetre, largeurFenetre, hauteurFenetre);
 
@@ -777,36 +654,19 @@ public class Chalet implements java.io.Serializable{
             Point InfGaucheListeFenetre = listePointsFenetre.get(2);
             Point InfDroitListeFenetre = listePointsFenetre.get(3);
 
-            /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listeFenetre En Haut a Gauche ");
-            System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listeFenetre En Bas a Gauche ");
-            System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listeFenetre En Bas a Droite ");
-            System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listeFenetre En Haut a Droite "); */
-
             boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
-            //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
-
-            /* System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
-            System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
             if (PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect) {
-                System.out.println(true + "(AntiCollisionPorteFenetre) ");
 
                 return true;
 
             }
 
         }
-
-
-        System.out.println(false + "(AntiCollisionPorteFenetre) ");
         return false;
-
-
     }
 
     public static boolean AntiCollisionFenetreFenetre(Mur mur, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
@@ -820,13 +680,6 @@ public class Chalet implements java.io.Serializable{
         Point SupDroitFenetre = listePoints.get(1);
         Point InfGaucheFenetre = listePoints.get(2);
         Point InfDroitFenetre = listePoints.get(3);
-
-
-        /*System.out.println(SupGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Haut a Gauche ");
-        System.out.println(SupDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Bas a Gauche ");
-        System.out.println(InfGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Bas a Droite ");
-        System.out.println(InfDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Haut a Droite "); */
-
 
         List<Fenetre> listeFenetre = mur.getListeFenetre();
 
@@ -846,9 +699,6 @@ public class Chalet implements java.io.Serializable{
             hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
             int hauteurFenetre = convertirPoucesEnInt(hauteurListe);
 
-
-            System.out.println(fenetre + "FenetreDeListeFenetre ");
-
             List<Point> listePointsFenetre = determinerSommetsAccessoires(mousePointFenetre, largeurFenetre, hauteurFenetre);
 
             Point SupGaucheListeFenetre = listePointsFenetre.get(0);
@@ -856,35 +706,18 @@ public class Chalet implements java.io.Serializable{
             Point InfGaucheListeFenetre = listePointsFenetre.get(2);
             Point InfDroitListeFenetre = listePointsFenetre.get(3);
 
-                /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listeFenetre En Haut a Gauche ");
-                System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listeFenetre En Bas a Gauche ");
-                System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listeFenetre En Bas a Droite ");
-                System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listeFenetre En Haut a Droite "); */
-
             boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
-            //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
-
-            System.out.println(PointUnRect + "(SupGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointDeuxRect + "(SupDroitFenetre est dans rectangle ?) ");
-            System.out.println(PointTroisRect + "(InfGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointQuatreRect + "(InfDroitFenetre est dans rectangle ?) ");
 
             if (PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect) {
-                System.out.println(true + "(AntiCollisionFenetre) ");
 
                 return true;
 
             }
-
-
         }
-
-        System.out.println(false + "(AntiCollisionPorteFenetre) ");
         return false;
-
 
     }
 
@@ -899,12 +732,6 @@ public class Chalet implements java.io.Serializable{
         Point SupDroitFenetre = listePoints.get(1);
         Point InfGaucheFenetre = listePoints.get(2);
         Point InfDroitFenetre = listePoints.get(3);
-
-
-        /*System.out.println(SupGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Haut a Gauche ");
-        System.out.println(SupDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Bas a Gauche ");
-        System.out.println(InfGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Bas a Droite ");
-        System.out.println(InfDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Haut a Droite "); */
 
         List<Porte> listePorte = mur.getListePorte();
 
@@ -923,7 +750,6 @@ public class Chalet implements java.io.Serializable{
             Pouces hauteurListe = porte.getHauteur();
             hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
             int hauteurPorte = convertirPoucesEnInt(hauteurListe);
-            System.out.println(porte + "PorteDeListePorte");
 
             List<Point> listePointsPorte = determinerSommetsAccessoires(mousePointFenetre, largeurPorte, hauteurPorte);
 
@@ -932,33 +758,18 @@ public class Chalet implements java.io.Serializable{
             Point InfGaucheListePorte = listePointsPorte.get(2);
             Point InfDroitListePorte = listePointsPorte.get(3);
 
-            /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Haut a Gauche ");
-            System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Bas a Gauche ");
-            System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Bas a Droite ");
-            System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Haut a Droite "); */
-
             boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
             boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
             boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
             boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
-            //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
 
-            /* System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
-            System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
             if (PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect) {
-                System.out.println(true + "(AntiCollisionFenetrePorte) ");
 
                 return true;
-
             }
 
         }
-
-
-        System.out.println(false + "(AntiCollisionFenetrePorte, Il y'a collision) ");
         return false;
 
 
@@ -977,12 +788,6 @@ public class Chalet implements java.io.Serializable{
         Point InfDroitFenetre = listePoints.get(3);
 
 
-        /*System.out.println(SupGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Haut a Gauche ");
-        System.out.println(SupDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Bas a Gauche ");
-        System.out.println(InfGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Bas a Droite ");
-        System.out.println(InfDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Haut a Droite "); */
-
-
         List<Fenetre> listeFenetre = mur.getListeFenetre();
 
         for (Fenetre fenetre : listeFenetre) {
@@ -1001,7 +806,6 @@ public class Chalet implements java.io.Serializable{
                 Pouces hauteurListe = fenetre.getHauteur();
                 hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
                 int hauteurFenetre = convertirPoucesEnInt(hauteurListe);
-                System.out.println(fenetre + "FenetreDeListeFenetre ");
 
                 List<Point> listePointsFenetre = determinerSommetsAccessoires(mousePointFenetre, largeurFenetre, hauteurFenetre);
 
@@ -1010,31 +814,17 @@ public class Chalet implements java.io.Serializable{
                 Point InfGaucheListeFenetre = listePointsFenetre.get(2);
                 Point InfDroitListeFenetre = listePointsFenetre.get(3);
 
-            /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listeFenetre En Haut a Gauche ");
-            System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listeFenetre En Bas a Gauche ");
-            System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listeFenetre En Bas a Droite ");
-            System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listeFenetre En Haut a Droite "); */
-
                 boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
                 boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
                 boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
                 boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
-                //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
-
-            /* System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
-            System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
                 if (PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect) {
-                    System.out.println(true + "(AntiCollisionFenetre) ");
 
                     return true;
 
                 }
-
             }
-
         }
 
         List<Porte> listePorte = mur.getListePorte();
@@ -1054,7 +844,6 @@ public class Chalet implements java.io.Serializable{
             Pouces hauteurListe = porte.getHauteur();
             hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
             int hauteurPorte = convertirPoucesEnInt(hauteurListe);
-            System.out.println(porte + "PorteDeListePorte");
 
             List<Point> listePointsPorte = determinerSommetsAccessoires(mousePointFenetre, largeurPorte, hauteurPorte);
 
@@ -1063,21 +852,10 @@ public class Chalet implements java.io.Serializable{
             Point InfGaucheListePorte = listePointsPorte.get(2);
             Point InfDroitListePorte = listePointsPorte.get(3);
 
-            /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Haut a Gauche ");
-            System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Bas a Gauche ");
-            System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Bas a Droite ");
-            System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Haut a Droite "); */
-
             boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
             boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
             boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
             boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
-            //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
-
-            /* System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
-            System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
             if (PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect) {
                 System.out.println(true + "(AntiCollisionPorte) ");
@@ -1087,16 +865,10 @@ public class Chalet implements java.io.Serializable{
             }
 
         }
-
-
-        System.out.println(false + "(AntiCollisionFenetre) ");
         return false;
-
-
     }
 
     public static boolean AntiCollisionPorteModificationErreur(Mur mur, Porte porteExistante, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
-        //On récupere les mesures de la fenetres
         int largeur = convertirPoucesEnInt(largeurPouces);
         int hauteur = convertirPoucesEnInt(hauteurPouces);
 
@@ -1106,13 +878,6 @@ public class Chalet implements java.io.Serializable{
         Point SupDroitFenetre = listePoints.get(1);
         Point InfGaucheFenetre = listePoints.get(2);
         Point InfDroitFenetre = listePoints.get(3);
-
-
-        /*System.out.println(SupGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Haut a Gauche ");
-        System.out.println(SupDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Bas a Gauche ");
-        System.out.println(InfGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Bas a Droite ");
-        System.out.println(InfDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Haut a Droite "); */
-
 
         List<Fenetre> listeFenetre = mur.getListeFenetre();
 
@@ -1131,7 +896,6 @@ public class Chalet implements java.io.Serializable{
             Pouces hauteurListe = fenetre.getHauteur();
             hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
             int hauteurFenetre = convertirPoucesEnInt(hauteurListe);
-            System.out.println(fenetre + "FenetreDeListeFenetre ");
 
             List<Point> listePointsFenetre = determinerSommetsAccessoires(mousePointFenetre, largeurFenetre, hauteurFenetre);
 
@@ -1140,29 +904,15 @@ public class Chalet implements java.io.Serializable{
             Point InfGaucheListeFenetre = listePointsFenetre.get(2);
             Point InfDroitListeFenetre = listePointsFenetre.get(3);
 
-            /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listeFenetre En Haut a Gauche ");
-            System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listeFenetre En Bas a Gauche ");
-            System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listeFenetre En Bas a Droite ");
-            System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listeFenetre En Haut a Droite "); */
-
             boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
-            //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
-
-            /* System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
-            System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
             if (PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect) {
-                System.out.println(true + "(AntiCollisionFenetre) ");
-
                 return true;
 
             }
-
 
         }
 
@@ -1171,7 +921,6 @@ public class Chalet implements java.io.Serializable{
         for (Porte porte : listePorte) {
 
             if (porte != porteExistante) {
-
 
                 Point mousePointFenetre = porte.getPoint();
                 Pouces ValidationTroisPouces = new Pouces(3, 0, 1);
@@ -1186,7 +935,6 @@ public class Chalet implements java.io.Serializable{
                 Pouces hauteurListe = porte.getHauteur();
                 hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
                 int hauteurPorte = convertirPoucesEnInt(hauteurListe);
-                System.out.println(porte + "PorteDeListePorte");
 
                 List<Point> listePointsPorte = determinerSommetsAccessoires(mousePointFenetre, largeurPorte, hauteurPorte);
 
@@ -1195,21 +943,10 @@ public class Chalet implements java.io.Serializable{
                 Point InfGaucheListePorte = listePointsPorte.get(2);
                 Point InfDroitListePorte = listePointsPorte.get(3);
 
-            /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Haut a Gauche ");
-            System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Bas a Gauche ");
-            System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Bas a Droite ");
-            System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Haut a Droite "); */
-
                 boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
                 boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
                 boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
                 boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
-                //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
-
-            /* System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
-            System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
                 if (PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect) {
                     System.out.println(true + "(AntiCollisionPorte) ");
@@ -1221,9 +958,6 @@ public class Chalet implements java.io.Serializable{
             }
 
         }
-
-
-        System.out.println(false + "(AntiCollisionFenetre) ");
         return false;
 
 
@@ -1241,19 +975,11 @@ public class Chalet implements java.io.Serializable{
         Point InfGaucheFenetre = listePoints.get(2);
         Point InfDroitFenetre = listePoints.get(3);
 
-
-        /*System.out.println(SupGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Haut a Gauche ");
-        System.out.println(SupDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Bas a Gauche ");
-        System.out.println(InfGaucheFenetre+"(determinerSommetsAccessoires) NouvelleFenetre En Bas a Droite ");
-        System.out.println(InfDroitFenetre+"(determinerSommetsAccessoires)  NouvelleFenetre En Haut a Droite "); */
-
-
         List<Fenetre> listeFenetre = mur.getListeFenetre();
 
         for (Fenetre fenetre : listeFenetre) {
 
             if (fenetre != fenetreExistante) {
-
 
                 Point mousePointFenetre = fenetre.getPoint();
                 Pouces ValidationTroisPouces = new Pouces(3, 0, 1);
@@ -1268,9 +994,6 @@ public class Chalet implements java.io.Serializable{
                 hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
                 int hauteurFenetre = convertirPoucesEnInt(hauteurListe);
 
-
-                System.out.println(fenetre + "FenetreDeListeFenetre ");
-
                 List<Point> listePointsFenetre = determinerSommetsAccessoires(mousePointFenetre, largeurFenetre, hauteurFenetre);
 
                 Point SupGaucheListeFenetre = listePointsFenetre.get(0);
@@ -1278,27 +1001,13 @@ public class Chalet implements java.io.Serializable{
                 Point InfGaucheListeFenetre = listePointsFenetre.get(2);
                 Point InfDroitListeFenetre = listePointsFenetre.get(3);
 
-                /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listeFenetre En Haut a Gauche ");
-                System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listeFenetre En Bas a Gauche ");
-                System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listeFenetre En Bas a Droite ");
-                System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listeFenetre En Haut a Droite "); */
-
                 boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
                 boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
                 boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
                 boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
-                //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
-
-                System.out.println(PointUnRect + "(SupGaucheFenetre est dans rectangle ?) ");
-                System.out.println(PointDeuxRect + "(SupDroitFenetre est dans rectangle ?) ");
-                System.out.println(PointTroisRect + "(InfGaucheFenetre est dans rectangle ?) ");
-                System.out.println(PointQuatreRect + "(InfDroitFenetre est dans rectangle ?) ");
-
-                if (PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect) {
-                    System.out.println(true + "(AntiCollisionFenetre) ");
+               if (PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect) {
 
                     return true;
-
                 }
 
             }
@@ -1322,7 +1031,6 @@ public class Chalet implements java.io.Serializable{
             Pouces hauteurListe = porte.getHauteur();
             hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
             int hauteurFenetre = convertirPoucesEnInt(hauteurListe);
-            System.out.println(porte + "PorteDeListePorte");
 
             List<Point> listePointsPorte = determinerSommetsAccessoires(mousePointFenetre, largeurFenetre, hauteurFenetre);
 
@@ -1331,36 +1039,19 @@ public class Chalet implements java.io.Serializable{
             Point InfGaucheListeFenetre = listePointsPorte.get(2);
             Point InfDroitListeFenetre = listePointsPorte.get(3);
 
-            /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Haut a Gauche ");
-            System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Bas a Gauche ");
-            System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Bas a Droite ");
-            System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Haut a Droite "); */
-
             boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
-            //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
-
-            /*System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
-            System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
             if (PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect) {
-                System.out.println(true + "(AntiCollisionPorte) ");
 
                 return true;
 
             }
 
         }
-
-
-        System.out.println(false + "(AntiCollisionFenetre) ");
         return false;
-
-
     }
 
     public static boolean AntiCollisionPorteModification(Mur mur, Porte porteExistante, Point mousePoint, Pouces largeurPouces, Pouces hauteurPouces) {
@@ -1374,13 +1065,6 @@ public class Chalet implements java.io.Serializable{
         Point SupDroitFenetre = listePoints.get(1);
         Point InfGaucheFenetre = listePoints.get(2);
         Point InfDroitFenetre = listePoints.get(3);
-
-
-        /*System.out.println(SupGaucheFenetre+"(determinerSommetsAccessoires) NouvellePorte En Haut a Gauche ");
-        System.out.println(SupDroitFenetre+"(determinerSommetsAccessoires)  NouvellePorte En Bas a Gauche ");
-        System.out.println(InfGaucheFenetre+"(determinerSommetsAccessoires) NouvellePorte En Bas a Droite ");
-        System.out.println(InfDroitFenetre+"(determinerSommetsAccessoires)  NouvellePorte En Haut a Droite "); */
-
 
         List<Fenetre> listeFenetre = mur.getListeFenetre();
 
@@ -1400,8 +1084,6 @@ public class Chalet implements java.io.Serializable{
             hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
             int hauteurFenetre = convertirPoucesEnInt(hauteurListe);
 
-            System.out.println(fenetre + "FenetreDeListeFenetre ");
-
             List<Point> listePointsFenetre = determinerSommetsAccessoires(mousePointFenetre, largeurFenetre, hauteurFenetre);
 
             Point SupGaucheListeFenetre = listePointsFenetre.get(0);
@@ -1409,36 +1091,20 @@ public class Chalet implements java.io.Serializable{
             Point InfGaucheListeFenetre = listePointsFenetre.get(2);
             Point InfDroitListeFenetre = listePointsFenetre.get(3);
 
-            System.out.println(SupGaucheListeFenetre + "(determinerSommetsAccessoires) listeFenetre En Haut a Gauche ");
-            System.out.println(InfGaucheListeFenetre + "(determinerSommetsAccessoires) listeFenetre En Bas a Gauche ");
-            System.out.println(InfDroitListeFenetre + "(determinerSommetsAccessoires)  listeFenetre En Bas a Droite ");
-            System.out.println(SupDroitListeFenetre + "(determinerSommetsAccessoires)  listeFenetre En Haut a Droite ");
-
             boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
             boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListeFenetre, SupDroitListeFenetre, InfGaucheListeFenetre, InfDroitListeFenetre);
-            //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
-
-                /*System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
-                System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
-                System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
-                System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
             if (PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect) {
-                System.out.println(true + "(AntiCollisionFenetre) ");
-
                 return true;
-
             }
 
         }
 
 
         List<Porte> listePorte = mur.getListePorte();
-
         for (Porte porte : listePorte) {
-
             if (porte != porteExistante) {
 
                 Point mousePointFenetre = porte.getPoint();
@@ -1453,7 +1119,6 @@ public class Chalet implements java.io.Serializable{
                 Pouces hauteurListe = porte.getHauteur();
                 hauteurListe = hauteurListe.addPouces(ValidationTroisPouces);
                 int hauteurPorte = convertirPoucesEnInt(hauteurListe);
-                System.out.println(porte + "PorteDeListePorte");
 
                 List<Point> listePointsPorte = determinerSommetsAccessoires(mousePointFenetre, largeurPorte, hauteurPorte);
 
@@ -1462,36 +1127,20 @@ public class Chalet implements java.io.Serializable{
                 Point InfGaucheListePorte = listePointsPorte.get(2);
                 Point InfDroitListePorte = listePointsPorte.get(3);
 
-            /*System.out.println(SupGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Haut a Gauche ");
-            System.out.println(InfGaucheListeFenetre+"(determinerSommetsAccessoires) listePorte En Bas a Gauche ");
-            System.out.println(InfDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Bas a Droite ");
-            System.out.println(SupDroitListeFenetre+"(determinerSommetsAccessoires)  listePorte En Haut a Droite "); */
 
                 boolean PointUnRect = estDansRectangleAcc(SupGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
                 boolean PointDeuxRect = estDansRectangleAcc(SupDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
                 boolean PointTroisRect = estDansRectangleAcc(InfGaucheFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
                 boolean PointQuatreRect = estDansRectangleAcc(InfDroitFenetre, SupGaucheListePorte, SupDroitListePorte, InfGaucheListePorte, InfDroitListePorte);
-                //boolean collision = PointUnRect && PointDeuxRect && PointTroisRect && PointQuatreRect;
-
-            /* System.out.println(PointUnRect+"(SupGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointDeuxRect+"(SupDroitFenetre est dans rectangle ?) ");
-            System.out.println(PointTroisRect+"(InfGaucheFenetre est dans rectangle ?) ");
-            System.out.println(PointQuatreRect+"(InfDroitFenetre est dans rectangle ?) "); */
 
                 if (PointUnRect || PointDeuxRect || PointTroisRect || PointQuatreRect) {
-                    System.out.println(true + "(AntiCollisionPorte) ");
-
                     return true;
-
                 }
-
             }
-
         }
 
         System.out.println(false + "(AntiCollisionPorte) ");
         return false;
-
 
     }
 
@@ -1520,21 +1169,13 @@ public class Chalet implements java.io.Serializable{
 
                 Porte porte = new Porte(mousepoint, largeur, hauteur);
                 boolean success = mur.ajouterPorte(porte);
-                //System.out.println(porte+"(ajouterPorte) Porte ajoute");
                 return success;
             }
 
 
         }
 
-        /*listePorte = mur.getListePorte();
-        for (Porte porte1 : listePorte) {
-            System.out.println(porte1);
-            return success;
-        } */
-
         return false;
-
 
     }
 
@@ -1543,7 +1184,6 @@ public class Chalet implements java.io.Serializable{
 
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
-        //Une porte par mur
         List<Porte> listePorte = mur.getListePorte();
 
         if (listePorte != null) {
@@ -1572,17 +1212,13 @@ public class Chalet implements java.io.Serializable{
                 if (AntiCollisionPorteModification(mur, porte, porte.mousePoint, nouvelleLargeur, porte.hauteur) == false) {
 
                     boolean success = porte.setLargeurPorte(nouvelleLargeur);
-                    System.out.println(porte + "Largeur de la Porte Modifie ");
                     return success;
 
                 }
 
-
             }
 
-
         }
-
 
         return false;
 
@@ -1616,7 +1252,6 @@ public class Chalet implements java.io.Serializable{
 
                     Fenetre Fenetre = new Fenetre(mousepoint, largeur, hauteur);
                     boolean success = mur.ajouterFenetre(Fenetre);
-                    //System.out.println(Fenetre+"(ajouterFenetre) Fenetre ajoute");
                     return success;
 
                 }
@@ -1648,7 +1283,6 @@ public class Chalet implements java.io.Serializable{
         return false;
     }
 
-    // Fonction qui sera utile pour le Drag
     public static boolean selectionPorte(Porte porte, Point mousePointClicked, String nomMur) {
         if (porte == null) {
             return false; // Ajoutez cette vérification pour éviter la NullPointerException
@@ -1684,7 +1318,7 @@ public class Chalet implements java.io.Serializable{
                     !AntiCollisionPorteModification(mur, porte, nouveauPoint, porte.largeur, porte.hauteur)) {
 
                 porte.setPoint(nouveauPoint);
-                System.out.println(porte + " - X de la Porte Modifié");
+
                 return true;
             }
         }
@@ -1706,7 +1340,7 @@ public class Chalet implements java.io.Serializable{
                     !AntiCollisionFenetreModification(mur, fenetre, nouveauPoint, fenetre.largeur, fenetre.hauteur)) {
 
                 fenetre.setPoint(nouveauPoint);
-                System.out.println(fenetre + " - X de la Fenetre Modifié");
+
                 return true;
             }
         }
@@ -1726,7 +1360,7 @@ public class Chalet implements java.io.Serializable{
                     !AntiCollisionFenetreModification(mur, fenetre, nouveauPoint, fenetre.largeur, fenetre.hauteur)) {
 
                 fenetre.setPoint(nouveauPoint);
-                System.out.println(fenetre + " - Y de la Fenetre Modifié");
+
                 return true;
             }
         }
@@ -1740,7 +1374,7 @@ public class Chalet implements java.io.Serializable{
 
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
-        //Une porte par mur
+
         List<Fenetre> listeFenetre = mur.getListeFenetre();
         int i = 0;
         for (Fenetre fenetre : listeFenetre) {
@@ -1749,7 +1383,7 @@ public class Chalet implements java.io.Serializable{
             if (fenetreTrouve == true) {
 
                 listeFenetre.remove(i);
-                System.out.println(fenetre + "(supprimerFenetre) La fenetre supprimer en question");
+
                 return true;
 
             }
@@ -1772,7 +1406,7 @@ public class Chalet implements java.io.Serializable{
 
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
-        //Une porte par mur
+
         List<Fenetre> listeFenetre = mur.getListeFenetre();
         listeFenetre.clear();
 
@@ -1785,7 +1419,7 @@ public class Chalet implements java.io.Serializable{
 
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
-        //Une porte par mur
+
         List<Fenetre> listeFenetre = mur.getListeFenetre();
 
 
@@ -1799,7 +1433,6 @@ public class Chalet implements java.io.Serializable{
                     if (!AntiCollisionFenetreModification(mur, fenetre, fenetre.mousePoint, fenetre.largeur, nouvelleHauteur)) {
 
                         boolean success = fenetre.setHauteurFenetre(nouvelleHauteur);
-                        System.out.println(fenetre + "Hauteur de la Fenetre Modifie ");
                         return success;
 
                     }
@@ -1831,7 +1464,6 @@ public class Chalet implements java.io.Serializable{
                     if (!AntiCollisionFenetreModification(mur, fenetre, fenetre.mousePoint, nouvelleLargeur, fenetre.hauteur)) {
 
                         boolean success = fenetre.setLargeurFenetre(nouvelleLargeur);
-                        System.out.println(fenetre + "Largeur de la Fenetre Modifie ");
                         return success;
 
                     }
@@ -1851,7 +1483,7 @@ public class Chalet implements java.io.Serializable{
 
         int numMur = determinerMur(nomMur);
         Mur mur = listeMursDrawer.get(numMur);
-        //Une porte par mur
+
         List<Porte> listePorte = mur.getListePorte();
 
         for (Porte porte : listePorte) {
@@ -1860,12 +1492,10 @@ public class Chalet implements java.io.Serializable{
                 if (AntiCollisionPorteModification(mur, porte, porte.mousePoint, porte.largeur, nouvelleHauteur) == false) {
 
                     boolean success = porte.setHauteurPorte(nouvelleHauteur);
-                    System.out.println(porte + "Hauteur de la Porte Modifie ");
                     return success;
 
 
                 }
-
 
             }
 
@@ -1902,13 +1532,10 @@ public class Chalet implements java.io.Serializable{
 
     public static void setAngleToit(double angleToitMN) {
         angleToit = angleToitMN;
-
     }
 
     public static void setLargeurChalet(double largeurChaletMN) {
         largeurChalet = largeurChaletMN;
-        System.out.println(largeurChaletMN); //test
-        System.out.println(largeurChalet + " is the new value of largeur in Chalet.java"); //test
     }
 
 
@@ -1918,9 +1545,6 @@ public class Chalet implements java.io.Serializable{
 
     public static void setLongueurChalet(double longueurChaletMN) {
         longueurChalet = longueurChaletMN;
-        System.out.println(longueurChaletMN); //test
-        System.out.println(longueurChalet + " is the new value in Chalet.java"); //test
-
 
     }
 
@@ -1930,10 +1554,7 @@ public class Chalet implements java.io.Serializable{
 
     public static void setRetraitChalet(double retraitChaletMN) {
         retraitChalet = retraitChaletMN;
-        System.out.println(retraitChalet + " is the new value of retrait in Chalet.java"); //test
-
     }
-
 
     public void setListeMurs(List<Mur> listerMurs) {
         this.listeMurs = listeMurs;

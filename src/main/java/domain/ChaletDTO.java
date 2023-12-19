@@ -109,20 +109,6 @@ public class ChaletDTO implements java.io.Serializable {
         gauche = chalet.getMursUsines(distanceUsinage, orientationToit).get(2); // mur gauche deja codé en bas
         droite = chalet.getMursUsines(distanceUsinage, orientationToit).get(3); // mur droite deja codé en bas
 
-       /*halet.initialiserPignonGauche();
-
-        pignongauche = Chalet.listeToit.get(0);
-        System.out.println("===CHALETDTO========== "+pignongauche);
-        List<PointDouble> coordinates = pignongauche.getSommetsToit();
-
-        PointDouble firstPoint = coordinates.get(1);
-
-
-        double XpointSupGauchePignon = firstPoint.getX();  // Obtenez la coordonnée x de la première paire
-        double YpointSupGauchePignon = firstPoint.getY();  // Obtenez la coordonnée y de la première paire
-
-        System.out.println("Première paire de coordonnées : (" + XpointSupGauchePignon + ", " + YpointSupGauchePignon + ")");*/
-
         return true;
     }
 }

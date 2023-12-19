@@ -361,6 +361,7 @@ public class DroitDrawer implements java.io.Serializable {
 
             /// TOIT ///
             PointDouble pointSupGaucheToit = new PointDouble(largeurChalet, (0-hauteurRallonge-epaisseurChalet/2));
+
             PointDouble pointInfGaucheToit = new PointDouble(largeurChalet, (0-hauteurRallonge));
             PointDouble pointInfDroiteProcheToit = new PointDouble((0+epaisseurChalet/2), 0);
             PointDouble pointInfDroiteLoinToit = new PointDouble((0), 0);

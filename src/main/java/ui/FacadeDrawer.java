@@ -125,6 +125,7 @@ public class FacadeDrawer implements java.io.Serializable{
 
                 g.fillRect(xPorte , yPorte, largeurPorteInt, hauteurPorteInt);
                 porte.setLaportefutdessinee(true);
+
             }
         }
     }
@@ -277,7 +278,9 @@ public class FacadeDrawer implements java.io.Serializable{
 
             /// TOIT ///
             PointDouble pointSupGaucheToit = new PointDouble(0, (0-hauteurRallonge-epaisseurChalet/2));
+
             PointDouble pointInfGaucheToit = new PointDouble(0, (0-hauteurRallonge));
+
             PointDouble pointInfDroiteProcheToit = new PointDouble((longueurChalet-epaisseurChalet/2), 0);
             PointDouble pointInfDroiteLoinToit = new PointDouble((longueurChalet), 0);
             PointDouble pointSupDroiteToit = new PointDouble((longueurChalet), -epaisseurChalet/2);
@@ -363,10 +366,15 @@ public class FacadeDrawer implements java.io.Serializable{
 
             /// TOIT ///
             PointDouble pointSupGaucheToit = new PointDouble(longueurChalet, (0-hauteurRallonge-epaisseurChalet/2));
+
             PointDouble pointInfGaucheToit = new PointDouble(longueurChalet, (0-hauteurRallonge));
+
             PointDouble pointInfDroiteProcheToit = new PointDouble((0+epaisseurChalet/2), 0);
+
             PointDouble pointInfDroiteLoinToit = new PointDouble((0), 0);
+
             PointDouble pointSupDroiteToit = new PointDouble((0), -epaisseurChalet/2);
+
 
             int pointSupGaucheToitX = (int) (pointSupGaucheToit.getX()*zoomFactor+positionX);
             int pointSupGaucheToitY = (int) (pointSupGaucheToit.getY()*zoomFactor+positionY);

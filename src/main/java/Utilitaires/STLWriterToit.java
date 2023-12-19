@@ -15,8 +15,7 @@ import java.util.List;
 import java.lang.Math;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnFloat;
-import static domain.Chalet.determinerSommetsAccessoires;
-import static domain.Chalet.determinerSommetsPignons;
+import static domain.Chalet.*;
 
 public class STLWriterToit implements java.io.Serializable {
     public ChaletDTO chaletdto;
@@ -179,25 +178,28 @@ public class STLWriterToit implements java.io.Serializable {
         float floatParDessusBigWidth = (float) Math.cos(angle) / (width + 2*epaisseur);
         float floatParDessusSmallWidth = ((float) Math.tan(angle) * (width)) + (float) Math.cos(angle) / (epaisseur/2);
 
+        float hauteurP = length * (float) (Math.tan(angle * Math.PI / 180));
+        float hauteurR = hauteurP + (float) ((epaisseur/2)*(Math.tan(angle * Math.PI / 180)));
+
         listeVertex.add(new float[]{0, 0, 0}); //v0
-        listeVertex.add(new float[]{length, 0, 0}); //v1
-        listeVertex.add(new float[]{length, epaisseur, 0}); //v2
+        listeVertex.add(new float[]{0, 0, width}); //v1
+        listeVertex.add(new float[]{0, epaisseur, width}); //v2
         listeVertex.add(new float[]{0, epaisseur, 0}); //v3
 
-        listeVertex.add(new float[]{0, 0, epaisseur}); //v4
-        listeVertex.add(new float[]{length, 0, epaisseur}); //v5
+        listeVertex.add(new float[]{epaisseur, 0, 0}); //v4
+        listeVertex.add(new float[]{epaisseur, 0, width}); //v5
 
-        listeVertex.add(new float[]{0, (float) Math.tan(angle) * (width - epaisseur - epaisseur/2), width - epaisseur/2}); //v6
-        listeVertex.add(new float[]{length, (float) Math.tan(angle) * (width - epaisseur - epaisseur/2), width - epaisseur/2}); //v7
+        listeVertex.add(new float[]{((float) longueurChalet - epaisseur /2),  hauteurP, 0}); //v6
+        listeVertex.add(new float[]{((float) longueurChalet - epaisseur /2),  hauteurP, width}); //v7
 
-        listeVertex.add(new float[]{0, (float) Math.tan(angle) * (width - epaisseur - epaisseur/2) + width/2, width - epaisseur/2}); //v8
-        listeVertex.add(new float[]{length, (float) Math.tan(angle) * (width - epaisseur - epaisseur/2) + width/2, width - epaisseur/2}); //v9
+        listeVertex.add(new float[]{((float) longueurChalet - epaisseur /2), (hauteurP + epaisseur/2), 0}); //v8
+        listeVertex.add(new float[]{((float) longueurChalet - epaisseur /2), (hauteurP + epaisseur/2), width}); //v9
 
-        listeVertex.add(new float[]{0, (float) Math.tan(angle) * width, width}); //v10
-        listeVertex.add(new float[]{length, (float) Math.tan(angle) * width, width}); //v11
+        listeVertex.add(new float[]{length, hauteurR + epaisseur / 2, 0}); //v10
+        listeVertex.add(new float[]{length, hauteurR + epaisseur / 2, width}); //v11
 
-        listeVertex.add(new float[]{0, (float) Math.tan(angle) * width + epaisseur/2, width}); //v12
-        listeVertex.add(new float[]{length, (float) Math.tan(angle) * width + epaisseur/2, width}); //v13
+        listeVertex.add(new float[]{length, hauteurR + epaisseur, 0}); //v12
+        listeVertex.add(new float[]{length, hauteurR + epaisseur, width}); //v13
 
         return listeVertex;
 

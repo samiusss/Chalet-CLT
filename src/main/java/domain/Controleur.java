@@ -14,8 +14,6 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import static domain.ChaletDTO.*;
-//import static domain.ChaletDTO.creerNouveauChalet;
-//import static domain.Mur.accessoiresMur;
 
 public class Controleur implements java.io.Serializable {
     private ChaletDTO chaletdto;
@@ -514,10 +512,7 @@ public class Controleur implements java.io.Serializable {
         Chalet.setOffsetY(newOffY);
     }
 
-
     static Chalet chaletProduction = createChalet();
-
-
 
     boolean rep = initialiserChalet(chaletProduction);
 

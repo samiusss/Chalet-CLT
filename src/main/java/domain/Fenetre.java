@@ -1,6 +1,5 @@
 package domain;
 import Utilitaires.*;
-import java.util.UUID;
 import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
