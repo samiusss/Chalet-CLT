@@ -225,6 +225,27 @@ public class Controleur implements java.io.Serializable {
 
         STLWriterToit.ExporterParDessusFini(fileName);
     }
+    public static void ExporterRetraitParDessus()throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "RetraitParDessusFile.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterRetraitParDessus(fileName);
+    }
+
 
     public static void ExporterPignonFiniDroite() throws IOException{
         Path directory = Paths.get("C:\\STL");

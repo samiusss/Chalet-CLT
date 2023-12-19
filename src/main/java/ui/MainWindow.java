@@ -303,6 +303,13 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
                 if (userSelection == JFileChooser.APPROVE_OPTION) {
                     File fileToOpen = fileChooser.getSelectedFile();
                     ChaletCopie.deserialiserChalet(fileToOpen.getAbsolutePath());
+                    longueurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.longueurChalet)));
+                    largeurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.largeurChalet)));
+                    epaisseurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.epaisseurChalet)));
+                    angleTextField.setText(String.valueOf(Chalet.angleToit));
+                    hauteurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.hauteurMurs)));
+                    retrait.setText(String.valueOf(doubleToImperial(Chalet.retraitChalet)));
+                    grilleTextField.setText(String.valueOf(doubleToImperial(Chalet.grilleP)));
                     FenetrePrincipale.revalidate();
                     FenetrePrincipale.repaint();
                 }
@@ -750,6 +757,13 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controleur.setUndo();
+                longueurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.longueurChalet)));
+                largeurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.largeurChalet)));
+                epaisseurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.epaisseurChalet)));
+                angleTextField.setText(String.valueOf(Chalet.angleToit));
+                hauteurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.hauteurMurs)));
+                retrait.setText(String.valueOf(doubleToImperial(Chalet.retraitChalet)));
+                grilleTextField.setText(String.valueOf(doubleToImperial(Chalet.grilleP)));
                 FenetrePrincipale.revalidate();
                 FenetrePrincipale.repaint();
             }
@@ -758,6 +772,13 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controleur.setRedo();
+                longueurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.longueurChalet)));
+                largeurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.largeurChalet)));
+                epaisseurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.epaisseurChalet)));
+                angleTextField.setText(String.valueOf(Chalet.angleToit));
+                hauteurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.hauteurMurs)));
+                retrait.setText(String.valueOf(doubleToImperial(Chalet.retraitChalet)));
+                grilleTextField.setText(String.valueOf(doubleToImperial(Chalet.grilleP)));
                 FenetrePrincipale.revalidate();
                 FenetrePrincipale.repaint();
             }
