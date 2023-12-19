@@ -3,6 +3,7 @@ package domain;
 import Utilitaires.Pouces;
 import Utilitaires.STLWriterToit;
 import Utilitaires.STLWriterSecondaire;
+import Utilitaires.UndoRedoManager;
 
 import java.awt.*;
 import java.io.File;
@@ -222,10 +223,63 @@ public class Controleur implements java.io.Serializable {
         STLWriterSecondaire.ExporterPanneauxRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
 
     }
+    public static UndoRedoManager.CopieChaletUR setRedo()
+    {
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.redo();
+
+        Chalet.setAngleToit(copieDuChalet.angleToit);
+        Chalet.setEpaisseurChalet(copieDuChalet.epaisseurChalet);
+        Chalet.setLongueurChalet(copieDuChalet.longueurChalet);
+        Chalet.setLargeurChalet(copieDuChalet.largeurChalet);
+        Chalet.setHauteurMurs(copieDuChalet.hauteurMurs);
+        Chalet.setRetraitChalet(copieDuChalet.retraitChalet);
+        Chalet.setOrientation(copieDuChalet.orientationToit);
+
+        initialiserChalet(chaletProduction);
+        System.out.println("======== Voici la valeur suite au UNDO "+copieDuChalet.angleToit); //test
+
+        return copieDuChalet;
+    }
+    public static UndoRedoManager.CopieChaletUR setUndo()
+    {
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.undo();
+
+        Chalet.setAngleToit(copieDuChalet.angleToit);
+        Chalet.setEpaisseurChalet(copieDuChalet.epaisseurChalet);
+        Chalet.setLongueurChalet(copieDuChalet.longueurChalet);
+        Chalet.setLargeurChalet(copieDuChalet.largeurChalet);
+        Chalet.setHauteurMurs(copieDuChalet.hauteurMurs);
+        Chalet.setRetraitChalet(copieDuChalet.retraitChalet);
+        Chalet.setOrientation(copieDuChalet.orientationToit);
+        //Chalet.supprimerPorte(nomMur, copieDuChalet.listeMurs);
+
+        initialiserChalet(chaletProduction);
+
+        return copieDuChalet;
+    }
+
+    public static UndoRedoManager.CopieChaletUR setUndoGeneral()
+    {
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.undo();
+
+
+        Chalet.setAngleToit(copieDuChalet.angleToit);
+        Chalet.setEpaisseurChalet(copieDuChalet.epaisseurChalet);
+        Chalet.setLongueurChalet(copieDuChalet.longueurChalet);
+        Chalet.setLargeurChalet(copieDuChalet.largeurChalet);
+        Chalet.setHauteurMurs(copieDuChalet.hauteurMurs);
+        Chalet.setRetraitChalet(copieDuChalet.retraitChalet);
+        Chalet.setOrientation(copieDuChalet.orientationToit);
+
+        initialiserChalet(chaletProduction);
+
+        return copieDuChalet;
+    }
 
     public static void setAngleToit(double angleToit)
     {
         Chalet.setAngleToit(angleToit);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
     }
 
@@ -233,14 +287,14 @@ public class Controleur implements java.io.Serializable {
     public static void setEpaisseurChalet(double epaisseurChalet)
     {
         Chalet.setEpaisseurChalet(epaisseurChalet);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
     }
 
     public static void setLongueurChalet(double longueurChalet)
     {
         Chalet.setLongueurChalet(longueurChalet);
-
-        System.out.println(longueurChalet+" Réinitialisation en cours"); //test
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
 
     }
@@ -248,32 +302,34 @@ public class Controleur implements java.io.Serializable {
     public static void setLargeurChalet(double largeurChalet)
     {
         Chalet.setLargeurChalet(largeurChalet);
-        System.out.println(largeurChalet+" Réinitialisation en cours"); //test
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
 
     }
 
     public static void setHauteurMurs(double hauteurMurs) {
         Chalet.setHauteurMurs(hauteurMurs);
-        System.out.println(hauteurMurs+" Réinitialisation en cours"); //test
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
 
     }
     public static void setRetraitChalet(double distanceUsinage) {
         Chalet.setRetraitChalet(distanceUsinage);
-        System.out.println(distanceUsinage +" updated in Controleur"); //test
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
 
     }
     public static void setOrientation(String orientation) {
         Chalet.setOrientation(orientation);
-        System.out.println(orientation +" comme orientation a été updated in Controleur"); //test
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
 
     }
     public boolean setLargeurPorte(Pouces nouvellelargeur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setLargeurPorte(nouvellelargeur, nomMur, listeMursDrawer, initialDimension);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
         initialiserChalet(chaletProduction);
         return success;
 
@@ -281,6 +337,8 @@ public class Controleur implements java.io.Serializable {
     public boolean setHauteurPorte(Pouces nouvelleHauteur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setHauteurPorte(nouvelleHauteur, nomMur, listeMursDrawer,initialDimension);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
         initialiserChalet(chaletProduction);
         return success;
     }
@@ -288,6 +346,8 @@ public class Controleur implements java.io.Serializable {
     public boolean setHauteurFenetre(Point mousePointClicked, Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setHauteurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer, initialDimension);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
         initialiserChalet(chaletProduction);
         return success;
     }
@@ -295,24 +355,32 @@ public class Controleur implements java.io.Serializable {
     public boolean setLargeurFenetre(Point mousePointClicked,Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setLargeurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer,initialDimension);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
         initialiserChalet(chaletProduction);
         return success;
     }
     public boolean supprimerPorte(String nomMur, List<Mur> listeMursDrawer)
     {
         boolean success = Chalet.supprimerPorte(nomMur, listeMursDrawer);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
         initialiserChalet(chaletProduction);
         return success;
     }
     public boolean modifierXPorte(int nouveauXporteint, String nomMur, Dimension initialDimension)
     {
         boolean success = chaletProduction.modifierXporte(nouveauXporteint, nomMur,initialDimension );
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
         initialiserChalet(chaletProduction);
         return success;}
     // J'ai un bugg ici
     public boolean modifierXFenetre(int nouveauXfenetreint, String nomMur,Dimension initialDimension)
     {
         boolean success = chaletProduction.modifierXfenetre(nouveauXfenetreint,nomMur,initialDimension );
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
         initialiserChalet(chaletProduction);
         return success;
     }
@@ -320,6 +388,8 @@ public class Controleur implements java.io.Serializable {
     public boolean modifierYFenetre( int nouveauYfenetreint, String nomMur,Dimension initialDimension)
     {
         boolean success = chaletProduction.modifierYfenetre(nouveauYfenetreint, nomMur,initialDimension );
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
         initialiserChalet(chaletProduction);
         return success;
     }
@@ -327,6 +397,8 @@ public class Controleur implements java.io.Serializable {
     public static boolean supprimerFenetre(Point mousePointClicked,String nomMur, List<Mur> listeMursDrawer)
     {
         boolean success = Chalet.supprimerFenetre(mousePointClicked,nomMur, listeMursDrawer);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
         initialiserChalet(chaletProduction);
         return success;
     }
@@ -334,6 +406,8 @@ public class Controleur implements java.io.Serializable {
     public static boolean supprimerToutesFenetre(String nomMur, List<Mur> listeMursDrawer)
     {
         boolean success = Chalet.supprimerToutesFenetre(nomMur, listeMursDrawer);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
         initialiserChalet(chaletProduction);
         return success;
     }
@@ -341,6 +415,8 @@ public class Controleur implements java.io.Serializable {
     public boolean MethodeTest(String nomMur,List<Mur> listeMursDrawer, Point mousePoint)
     {
         boolean succes = Chalet.MethodeTest(nomMur,listeMursDrawer,mousePoint);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
         initialiserChalet(chaletProduction);
         return succes;
     }
@@ -348,12 +424,15 @@ public class Controleur implements java.io.Serializable {
     public boolean MethodeTestFenetre(String nomMur,List<Mur> listeMursDrawer, Point mousePoint)
     {
         boolean succes = Chalet.MethodeTestFenetre(nomMur,listeMursDrawer,mousePoint);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
         initialiserChalet(chaletProduction);
         return succes;
     }
 
     public static void setGrille(double grille) {
         Chalet.setGrille(grille);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         System.out.println(grille +" comme grille a été updated in Controleur"); //test
 
     }
@@ -362,27 +441,28 @@ public class Controleur implements java.io.Serializable {
 
 
 
-
-
-
-
-
     public static boolean ajouterFenetre(Point mousepoint, String nomMur, List<Mur> listeMursDrawer, Dimension intitalDimension){
 
-        return Chalet.ajouterFenetre(mousepoint, nomMur, listeMursDrawer, intitalDimension);
+        if(Chalet.ajouterFenetre(mousepoint, nomMur,listeMursDrawer,intitalDimension))
+        {
+            return true;
+        }
+
+        return false;
 
     }
 
     public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer,Dimension intitalDimension){
 
-        return Chalet.ajouterPorte(mousepoint, nomMur, listeMursDrawer, intitalDimension);
+        if(Chalet.ajouterPorte(mousepoint, nomMur,listeMursDrawer,intitalDimension))
+        {
+            return true;
+        }
+
+        return false;
         //Porte newPorte = newAccessoires("AID",mousepoint, double largeur,double hauteur);
         //accessoiresmur.add(newPorte);
     }
-
-
-
-
 
     public ChaletDTO getChalet() {
         return chaletdto;
@@ -425,6 +505,14 @@ public class Controleur implements java.io.Serializable {
     }
     public static Chalet getChaletProductionStatic() {
         return chaletProduction;
-    }
+    }}
 
-}
+
+
+
+
+
+
+
+
+

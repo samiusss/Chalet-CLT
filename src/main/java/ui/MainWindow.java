@@ -583,6 +583,13 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
 
             }
         });
+        longueurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.longueurChalet)));
+        largeurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.largeurChalet)));
+        epaisseurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.epaisseurChalet)));
+        angleTextField.setText(String.valueOf(Chalet.angleToit));
+        hauteurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.hauteurMurs)));
+        retrait.setText(String.valueOf(doubleToImperial(Chalet.retraitChalet)));
+        grilleTextField.setText(String.valueOf(doubleToImperial(Chalet.grilleP)));
         longueurchaletMN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -661,7 +668,13 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
                 Controleur.setAngleToit(15);
 
                 System.out.println("Nouveau Chalet Créer");
-
+                longueurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.longueurChalet)));
+                largeurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.largeurChalet)));
+                epaisseurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.epaisseurChalet)));
+                angleTextField.setText(String.valueOf(Chalet.angleToit));
+                hauteurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.hauteurMurs)));
+                retrait.setText(String.valueOf(doubleToImperial(Chalet.retraitChalet)));
+                grilleTextField.setText(String.valueOf(doubleToImperial(Chalet.grilleP)));
                 FenetrePrincipale.revalidate();
                 FenetrePrincipale.repaint();
                 isAddingPorte = false;
@@ -707,6 +720,23 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
                     System.out.println(inputText + " comme orientation a été rentré...");}
             }
         });
+        UndoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Controleur.setUndo();
+                revalidate();
+                repaint();
+            }
+        });
+        RedoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Controleur.setRedo();
+                revalidate();
+                repaint();
+            }
+        });
+
         BrutExport.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

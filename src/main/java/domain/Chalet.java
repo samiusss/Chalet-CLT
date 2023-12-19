@@ -27,7 +27,7 @@ public class Chalet implements java.io.Serializable{
     public static float offsetX = 100;
     public static float offsetY = 170;
     public static double grilleP = 15.0;
-
+    public static boolean grilleActive = true;
     private static final Map<String, Integer> MURS = new HashMap<>();
 
     static {
