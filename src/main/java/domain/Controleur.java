@@ -388,6 +388,39 @@ public class Controleur implements java.io.Serializable {
     }
 
 
+
+
+    public static void setEpaisseurNouveauChalet(double epaisseurChalet)
+    {
+        Chalet.setEpaisseurChalet(epaisseurChalet);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        initialiserChalet(chaletProduction);
+    }
+
+    public static void setLongueurNouveauChalet(double longueurChalet)
+    {
+        Chalet.setLongueurChalet(longueurChalet);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        initialiserChalet(chaletProduction);
+
+    }
+
+    public static void setLargeurNouveauChalet(double largeurChalet)
+    {
+        Chalet.setLargeurChalet(largeurChalet);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        initialiserChalet(chaletProduction);
+
+    }
+
+    public static void setHauteurNouveauMurs(double hauteurMurs) {
+        Chalet.setHauteurMurs(hauteurMurs);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        initialiserChalet(chaletProduction);
+
+    }
+
+
     public static void setEpaisseurChalet(double epaisseurChalet)
     {
         Chalet.setEpaisseurChalet(epaisseurChalet);
