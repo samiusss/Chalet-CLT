@@ -306,6 +306,26 @@ public class Controleur implements java.io.Serializable {
 
         STLWriterToit.ExporterRetraitParDessus(fileParDessusRetrait);
     }
+    public static void ExporterToit()throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String fileName = "ChalCLT_Toit.stl";
+        String fileParDessusRetrait  = directory + File.separator + fileName;
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterToit(fileParDessusRetrait);
+    }
 
     public static void ExporterParDessusBrut()throws IOException{
         Path directory = Paths.get("C:\\STL");
