@@ -1,9 +1,6 @@
 package ui;
 
-import domain.Chalet;
-import domain.ChaletDTO;
-import domain.Controleur;
-import domain.Mur;
+import domain.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,6 +27,8 @@ public class DrawingPanel extends JPanel implements Serializable {
     private double zoomFactor = 1.0;
     private boolean porteSelectionnee = false;
     private boolean fenetreSelectionnee = false;
+    private Point coordonneFenetreSelectionne;
+    private Fenetre objetFenetreSelectionnee;
 
 
     public static ChaletDTO.AffichageVue selectedAffichageVue;
@@ -67,69 +66,64 @@ public class DrawingPanel extends JPanel implements Serializable {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if (!MainWindow.isAddingPorte) {
-                    // Réinitialisez le décalage ici
+
+
+                int x = e.getX();
+                int y = e.getY();
+                int adjustedX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                int adjustedY = (int) ((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
+
+                Point mousePoint = new Point(adjustedX, adjustedY);
+                Chalet chalet = controleur.getChaletProduction();
+                String nomMur = String.valueOf(selectedAffichageVue);
+
+                List<Mur> listeMur = chalet.getListeMurs();
+                boolean estDansFenetre = Chalet.MethodeTestFenetre(nomMur, listeMur, mousePoint);
+                boolean estDansPorte = Chalet.MethodeTest(nomMur, listeMur, mousePoint);
+
+                System.out.println("Dragged");
+                System.out.println("x : " + x + " y : " + y);
+
+                if (estDansFenetre) {
+                    setFenetreSelectionnee(true);
                     setPorteSelectionnee(false);
-                    setFenetreSelectionnee(false);
-                    xOffsetDrag = 0;
-                    yOffsetDrag = 0;
-                    // Sélection de la porte
-                    mousePointClicked = e.getPoint();
-                    int adjustedX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
-                    int adjustedY = (int) ((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
-                    Point mousePoint = new Point(adjustedX, adjustedY);
-
-                    Chalet chalet = controleur.getChaletProduction();
-                    String nomMur = String.valueOf(selectedAffichageVue);
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
-                    setPorteSelectionnee(controleur.MethodeTest(nomMur, listeMursDrawer, mousePoint));
+                    Optional<Fenetre> fenetre = Chalet.estDansFenetre(nomMur, listeMur, mousePoint);
+                    fenetre.ifPresent(value -> setObjetFenetreSelectionnee(value));
                 }
-
-                // Drag de la fenêtre
-                if (!MainWindow.isAddingFenetre) {
+                else if(estDansPorte){
+                    setPorteSelectionnee(true);
                     setFenetreSelectionnee(false);
 
-                    // Sélection de la fenêtre
-                    mousePointClicked = e.getPoint();
-                    int adjustedX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
-                    int adjustedY = (int) ((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
-                    Point mousePoint = new Point(adjustedX, adjustedY);
+                }
+                else {
+                    setFenetreSelectionnee(false);
+                    setPorteSelectionnee(false);
+                }
 
-                    Chalet chalet = controleur.getChaletProduction();
-                    String nomMur = String.valueOf(selectedAffichageVue);
-                    List<Mur> listeMursDrawer = chalet.getMursUsines(0, "NORD");
-                    setFenetreSelectionnee(controleur.MethodeTestFenetre(nomMur, listeMursDrawer, mousePoint));
-                }
-                if (isFenetreSelectionnee()) {
-                    nombreFenetresSelectionnees++;
-                    System.out.println("Nombre de fenêtres sélectionnées : " + nombreFenetresSelectionnees);
-                }
             }
         });
 
         addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                if (!MainWindow.isAddingPorte) {
-                    if (SwingUtilities.isLeftMouseButton(e) && isPorteSelectionnee()) {
-                        System.out.println("Avant mise à jour : " + isPorteSelectionnee());
-                        int newX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
-                        Chalet chalet = controleur.getChaletProduction();
-                        chalet.modifierXporte(newX, selectedAffichageVue.toString(), initialDimensionReturn);
-                        repaint();
-                    }
+                int adjustedX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
+                int adjustedY = (int) ((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
+
+                Point mousePoint = new Point(adjustedX, adjustedY);
+                Chalet chalet = controleur.getChaletProduction();
+                String nomMur = String.valueOf(selectedAffichageVue);
+
+                System.out.println("Dragged");
+
+                if (fenetreSelectionnee) {
+                    chalet.modifierXYdunObjetfenetre(mousePoint,objetFenetreSelectionnee,nomMur,initialDimensionReturn);//
+                    repaint();
+                }else if (porteSelectionnee) {
+                    chalet.modifierXporte(adjustedX,nomMur,initialDimensionReturn);//
+                    repaint();
                 }
-                if (!MainWindow.isAddingFenetre) {
-                    if (SwingUtilities.isLeftMouseButton(e) && isFenetreSelectionnee()) {
-                        System.out.println("Avant mise à jour : " + isFenetreSelectionnee());
-                        int newX = (int) ((e.getX() - controleur.getOffsetX()) / controleur.getZoom());
-                        int newY = (int) ((e.getY() - controleur.getOffsetY()) / controleur.getZoom());
-                        Chalet chalet = controleur.getChaletProduction();
-                        chalet.modifierXfenetre(newX, selectedAffichageVue.toString(), initialDimensionReturn);
-                        chalet.modifierYfenetre(newY, selectedAffichageVue.toString(), initialDimensionReturn);
-                        repaint();
-                    }
-                }
+
+
             }
         });
 
@@ -174,7 +168,6 @@ public class DrawingPanel extends JPanel implements Serializable {
                 repaint();
             }
         });
-
 
 
     }
@@ -238,28 +231,19 @@ public class DrawingPanel extends JPanel implements Serializable {
     }
 
 
-    public MainWindow getMainWindow() {
-        return mainWindow;
-    }
-
-    public void setMainWindow(MainWindow mainWindow) {
-        this.mainWindow = mainWindow;
-    }
-
     public void setPorteSelectionnee(boolean porteSelectionnee) {
         this.porteSelectionnee = porteSelectionnee;
-    }
-
-    public boolean isPorteSelectionnee() {
-        return porteSelectionnee;
     }
 
     public void setFenetreSelectionnee(boolean fenetreSelectionnee) {
         this.fenetreSelectionnee = fenetreSelectionnee;
     }
 
-    public boolean isFenetreSelectionnee() {
-        return fenetreSelectionnee;
-    }}
+
+    public void setObjetFenetreSelectionnee(Fenetre objetFenetreSelectionnee) {
+        this.objetFenetreSelectionnee = objetFenetreSelectionnee;
+    }
+
+}
 
 

@@ -251,7 +251,9 @@ public class Controleur implements java.io.Serializable {
         Chalet.setHauteurMurs(copieDuChalet.hauteurMurs);
         Chalet.setRetraitChalet(copieDuChalet.retraitChalet);
         Chalet.setOrientation(copieDuChalet.orientationToit);
-        //Chalet.supprimerPorte(nomMur, copieDuChalet.listeMurs);
+/*
+        Chalet.supprimerPorte(nomMur,copieDuChalet.listeMurs);
+*/
 
         initialiserChalet(chaletProduction);
 
@@ -426,7 +428,7 @@ public class Controleur implements java.io.Serializable {
         boolean succes = Chalet.MethodeTestFenetre(nomMur,listeMursDrawer,mousePoint);
         //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
 
-        initialiserChalet(chaletProduction);
+//        initialiserChalet(chaletProduction);
         return succes;
     }
 
