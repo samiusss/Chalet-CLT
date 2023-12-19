@@ -6,6 +6,8 @@ import domain.*;
 import javax.swing.*;
 import java.awt.*;
 
+import static domain.Chalet.grilleActive;
+
 public class SurplombDrawer extends JFrame implements java.io.Serializable
 {
     private final Controleur controleur;
@@ -41,7 +43,8 @@ public class SurplombDrawer extends JFrame implements java.io.Serializable
     public void draw(Graphics g)
     {
         drawSurplomb(g);
-        drawGrid(g);
+        if (grilleActive==true)
+        {drawGrid(g);}
     }
 
     private void drawGrid(Graphics g) {
