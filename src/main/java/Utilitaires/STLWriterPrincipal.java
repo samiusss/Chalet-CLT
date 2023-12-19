@@ -12,7 +12,7 @@ import java.util.List;
 import static domain.Chalet.determinerSommetsAccessoires;
 
 
-public class STLWriterPrincipal {
+public class STLWriterPrincipal implements java.io.Serializable {
 
     public static void main(String[] args) {
 
@@ -357,11 +357,11 @@ public class STLWriterPrincipal {
 
         // Dimensions du prisme secondaire
         float lengthSecondaire = length/10;
-        float widthSecondaire = (float) (width / 2);
+        float widthSecondaire = width / 2;
         float heightSecondaire = height;
 
         // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
-        float thicknessSecondaire = (float) (width / 2);
+        float thicknessSecondaire = width / 2;
 
         List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire,thicknessSecondaire, heightSecondaire,SupGauche[0]-lengthSecondaire,SupGauche[1],SupGauche[2]);
         listeTriangles.addAll(listeTrianglesGauche);
@@ -400,7 +400,7 @@ public class STLWriterPrincipal {
         float heightSecondaire = height;
 
         // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
-        float thicknessSecondaire = (float) (width / 2);
+        float thicknessSecondaire = width / 2;
 
         List<Triangle> listeTrianglesRetraitDroite = new LinkedList<>();
 
@@ -447,7 +447,7 @@ public class STLWriterPrincipal {
         float heightSecondaire = height;
 
         // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
-        float thicknessSecondaire = (float) (width / 2);
+        float thicknessSecondaire = width / 2;
 
 
         List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire,thicknessSecondaire, heightSecondaire,SupGauche[0]-lengthSecondaire,SupGauche[1],SupGauche[2]);
@@ -491,7 +491,7 @@ public class STLWriterPrincipal {
         float heightSecondaire = height;
 
         // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
-        float thicknessSecondaire = (float) (width / 2);
+        float thicknessSecondaire = width / 2;
 
         List<Triangle> listeTrianglesRetraitGauche = new LinkedList<>();
         List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire,thicknessSecondaire, heightSecondaire,SupGauche[0]-lengthSecondaire,SupGauche[1],SupGauche[2]);
@@ -535,10 +535,10 @@ public class STLWriterPrincipal {
 
         // Dimensions des prismes secondaires rainures
         float lengthSecondaire = length/10;
-        float widthSecondaire = (float) (width / 2);
+        float widthSecondaire = width / 2;
         float heightSecondaire = height;
         // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
-        float thicknessSecondaire = (float) (width / 2);
+        float thicknessSecondaire = width / 2;
 
 
         //Generer les prisme scondaire (rainures)
@@ -581,7 +581,7 @@ public class STLWriterPrincipal {
         float lengthSecondaire = length/10;
         float heightSecondaire = height;
         // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
-        float thicknessSecondaire = (float) (width / 2);
+        float thicknessSecondaire = width / 2;
 
 
         //Generer les prisme scondaire (rainures)
@@ -671,7 +671,7 @@ public class STLWriterPrincipal {
         float heightSecondaire = height;
 
         // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
-        float thicknessSecondaire = (float) (thickness / 2);
+        float thicknessSecondaire = thickness / 2;
 
         List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire,thicknessSecondaire, height,xSupGauche-lengthSecondaire,ySupGauche,zSupGauche);
         listeTriangles.addAll(listeTrianglesGauche);
@@ -750,7 +750,7 @@ public class STLWriterPrincipal {
         float heightSecondaire = height;
 
         // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
-        float thicknessSecondaire = (float) (thickness / 2);
+        float thicknessSecondaire = thickness / 2;
 
         List<Triangle> listeTrianglesSecondaire = new LinkedList<>();
 

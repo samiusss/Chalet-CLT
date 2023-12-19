@@ -1,6 +1,6 @@
 package Utilitaires;
 
-public class Point3D {
+public class Point3D implements java.io.Serializable{
     private double longueurMur;
     private double hauteurMur;
     private double epaisseurMur;

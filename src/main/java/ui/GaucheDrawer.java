@@ -12,14 +12,14 @@ import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
 import static domain.Chalet.*;
 import static java.lang.Math.tan;
 
-public class GaucheDrawer
+public class GaucheDrawer implements java.io.Serializable
 {
-    private Controleur controleur;
+    private final Controleur controleur;
     public ChaletDTO chaletdto;
     public static Chalet chalet;
     private Accessoires accessoires;
-    private Dimension initialDimension;
-    private double zoomFactor;
+    private final Dimension initialDimension;
+    private final double zoomFactor;
 
     public Mur gauche ; // mur arriere deja codé en bas
     public Toit pignongauche;
@@ -31,7 +31,7 @@ public class GaucheDrawer
         this.initialDimension = initialDimension;
 
         Chalet chalet = controleur.getChaletProduction();
-        this.gauche = chaletdto.gauche; // mur facade deja codé en bas
+        this.gauche = ChaletDTO.gauche; // mur facade deja codé en bas
         this.zoomFactor = controleur.getZoom();
     }
 
@@ -41,6 +41,23 @@ public class GaucheDrawer
         drawPorte(g);
         drawFenetre(g);
         drawToitGauche(g);
+        if(grilleActive){      drawGrid(g);}
+    }
+
+    private void drawGrid(Graphics g) {
+
+        g.setColor(Color.lightGray);
+
+        double grilleP = Chalet.grilleP*zoomFactor;
+
+        // Lignes verticales
+        for (int x = -500; x < 1500; x += grilleP) {
+            g.drawLine(x, 1500, x, -1500);
+        }
+        // Lignes horizontales
+        for (int y = -500; y < 1500; y += grilleP) {
+            g.drawLine(1500, y, -1500, y);
+        }
     }
 
 
@@ -61,7 +78,7 @@ public class GaucheDrawer
 
             System.out.println(fenetre);
 
-            Fenetre fenetreActuel = (Fenetre) fenetre;
+            Fenetre fenetreActuel = fenetre;
             if (fenetreActuel != null) {
                 Point mousePoint = fenetre.mousePoint;
 
@@ -243,7 +260,6 @@ public class GaucheDrawer
 
             g.setColor(new Color(2, 125, 0));
             g.fillPolygon(xPointsPignon, yPointsPignon, 3);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
             ///RALLONGE///
 
@@ -329,7 +345,6 @@ public class GaucheDrawer
 
             g.setColor(new Color(2, 125, 0));
             g.fillPolygon(xPointsPignon, yPointsPignon, 3);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
             ///RALLONGE///
 
@@ -386,7 +401,6 @@ public class GaucheDrawer
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 5);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
         }
         if (Objects.equals(orientationToit, "Ouest"))
@@ -418,7 +432,6 @@ public class GaucheDrawer
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 4);
-            System.out.println("Je détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
 
         }
@@ -451,7 +464,6 @@ public class GaucheDrawer
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 4);
-            System.out.println("Je détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
             ///RALLONGE DE DOS///
 

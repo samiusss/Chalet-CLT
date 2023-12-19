@@ -1,7 +1,8 @@
 package ui;
 
-import Utilitaires.STLWriter3;
-import Utilitaires.STLWriterSecondaire;
+/*import Utilitaires.STLWriter3;
+import Utilitaires.STLWriterSecondaire;*/
+import Utilitaires.STLWriterToit;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,12 +11,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
-public class Main {
+
+public class Main implements java.io.Serializable {
 
     public static void main(String[] args) throws IOException {
 
 
-        // Spécifiez le nom du fichier STL de sortie
+
+        // Spécifiez le nom du fichier STL de sortiee
         //String fileName = "chemin/vers/votre/repertoire/fichier.stl";
 
         // Créez un objet Path représentant le chemin du répertoire
@@ -53,9 +56,8 @@ public class Main {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        //STLWriter3.ExportPanneauxRetrait(filePathBrut);
-        //STLWriterSecondaire.ExporterPanneauxFinisRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
-
+        STLWriterToit.ExporterParDessusFini("ParDessusFiniFileeee.stl");
+        //STLWriterToit.ExporterPignonRetrait("PignonRetraitFile.stl");
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);
 

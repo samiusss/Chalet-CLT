@@ -6,13 +6,14 @@ import java.util.UUID;
 
 
 public abstract class Accessoires implements Serializable {
-    private UUID AID;
-    private Point mousepoint;
+    private final UUID AID;
+
     public Pouces largeur;
+
     public Pouces hauteur;
 
     public Accessoires() {
-        this.AID = UUID.randomUUID();;
+        this.AID = UUID.randomUUID();
     }
     public UUID getIdAccessoire() {
         return AID;
@@ -24,7 +25,6 @@ public abstract class Accessoires implements Serializable {
         return new pointPouces (xPouces,yPouces);
 
     }
-
 
 }
 

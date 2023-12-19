@@ -2,7 +2,7 @@ package Utilitaires;
 
 import java.awt.*;
 
-public class PointDouble extends Point{
+public class PointDouble extends Point implements java.io.Serializable{
     private double x;
     private double y;
     private PointDouble(){
@@ -10,7 +10,7 @@ public class PointDouble extends Point{
         this.x = 0.0;
         this.y = 0.0;
     }
-    private static PointDouble instance = new PointDouble(); // c'est le GRASP Singleton
+    private static final PointDouble instance = new PointDouble(); // c'est le GRASP Singleton
     public static PointDouble getInstance(){
         return instance;
     }

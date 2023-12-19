@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PorteDTO {
 
-    private List<pointPouces> sommetsPorte;
+    private final List<pointPouces> sommetsPorte;
     public Point mousePoint;
 
     public PorteDTO(Porte bi){

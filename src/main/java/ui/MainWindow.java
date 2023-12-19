@@ -1,22 +1,25 @@
 package ui;
 
+import Utilitaires.ChaletCopie;
 import Utilitaires.Pouces;
-//import Utilitaires.STLWriterSecondaire;
 import domain.Chalet;
 import domain.ChaletDTO;
 import domain.Controleur;
 import domain.Mur;
 
+import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.*;
+import static Utilitaires.UndoRedoManager.CopieChaletVersion1;
 
 
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame implements java.io.Serializable {
     private Controleur controleur;
     private ChaletDTO chaletdto;
     private Chalet chalet;
@@ -127,6 +130,12 @@ public class MainWindow extends javax.swing.JFrame {
     public JTextField retrait;
     private JTextField angleTextField;
     private JComboBox orientation;
+    private JTextField grilleTextField;
+    private JButton Save;
+    private JButton Charge;
+    private JButton exporterToitBrut;
+    private JButton exporterToitFini;
+    private JComboBox comboBox1;
     private Point ZoomOrigin;
 
     private ChaletDTO.AffichageVue selectedVue;
@@ -244,6 +253,38 @@ public class MainWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
 
 
+            }
+        });
+
+        Save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int userSelection = fileChooser.showSaveDialog(MainWindow.this);
+
+                if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    File fileToSave = fileChooser.getSelectedFile();
+                    ChaletCopie chaletCopie = new ChaletCopie(
+                            Chalet.largeurChalet, Chalet.longueurChalet, Chalet.epaisseurChalet,
+                            Chalet.angleToit, Chalet.hauteurMurs,
+                            Chalet.listeMurs, Chalet.orientationToit
+                    );
+                    chaletCopie.serialiserChalet(fileToSave.getAbsolutePath());
+                }
+            }
+        });
+        Charge.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int userSelection = fileChooser.showOpenDialog(MainWindow.this);
+
+                if (userSelection == JFileChooser.APPROVE_OPTION) {
+                    File fileToOpen = fileChooser.getSelectedFile();
+                    ChaletCopie.deserialiserChalet(fileToOpen.getAbsolutePath());
+                    FenetrePrincipale.revalidate();
+                    FenetrePrincipale.repaint();
+                }
             }
         });
         AccessoireLargeurPorteField.addActionListener(new ActionListener() {
@@ -544,6 +585,15 @@ public class MainWindow extends javax.swing.JFrame {
 
             }
         });
+        longueurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.longueurChalet)));
+        largeurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.largeurChalet)));
+        epaisseurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.epaisseurChalet)));
+        angleTextField.setText(String.valueOf(Chalet.angleToit));
+        hauteurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.hauteurMurs)));
+        retrait.setText(String.valueOf(doubleToImperial(Chalet.retraitChalet)));
+        grilleTextField.setText(String.valueOf(doubleToImperial(Chalet.grilleP)));
+        CopieChaletVersion1();
+
         longueurchaletMN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -619,9 +669,16 @@ public class MainWindow extends javax.swing.JFrame {
                 Controleur.setLongueurChalet(imperialToDoubleUniversel("20'"));
                 Controleur.setLargeurChalet(imperialToDoubleUniversel("20'"));
                 Controleur.setHauteurMurs(imperialToDoubleUniversel("17'"));
+                Controleur.setAngleToit(15);
 
                 System.out.println("Nouveau Chalet Créer");
-
+                longueurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.longueurChalet)));
+                largeurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.largeurChalet)));
+                epaisseurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.epaisseurChalet)));
+                angleTextField.setText(String.valueOf(Chalet.angleToit));
+                hauteurchaletMN.setText(String.valueOf(doubleToImperial(Chalet.hauteurMurs)));
+                retrait.setText(String.valueOf(doubleToImperial(Chalet.retraitChalet)));
+                grilleTextField.setText(String.valueOf(doubleToImperial(Chalet.grilleP)));
                 FenetrePrincipale.revalidate();
                 FenetrePrincipale.repaint();
                 isAddingPorte = false;
@@ -655,12 +712,35 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 double inputText = Double.parseDouble(angleTextField.getText());
-                Controleur.setAngleToit(inputText);
-                FenetrePrincipale.revalidate();
-                FenetrePrincipale.repaint();
-                System.out.println(inputText + " comme orientation a été rentré...");
+
+                if (90<=inputText)
+                {
+                    JOptionPane.showMessageDialog(null, "Ne dépassez pas 90 degrés svp", "Alerte angle", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    Controleur.setAngleToit(inputText);
+                    FenetrePrincipale.revalidate();
+                    FenetrePrincipale.repaint();
+                    System.out.println(inputText + " comme orientation a été rentré...");}
             }
         });
+        UndoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Controleur.setUndo();
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
+            }
+        });
+        RedoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Controleur.setRedo();
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
+            }
+        });
+
         BrutExport.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -712,6 +792,62 @@ public class MainWindow extends javax.swing.JFrame {
                 System.out.println(selectedOrientation + " comme orientation a été sélectionné...");
             }
         });
+        grilleTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String inputText = grilleTextField.getText();
+                //VÉRIFIER SI IL A APPUYER
+                double grilleMN= imperialToDoubleUniversel(inputText);
+                Controleur.setGrille(grilleMN);
+                System.out.println(grilleMN+" entered by you..");
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
+            }
+        });
+        exporterToitBrut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Controleur.ExporterPignonBrutGauche();
+                    Controleur.ExporterPignonBrutDroite();
+                    Controleur.ExporterRallongeVerticaleBrut();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                JOptionPane.showMessageDialog(null, "Vous avez exporté Toit Brut", "Exportations STL", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        exporterToitFini.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Controleur.ExporterRallongeVerticale();
+                    Controleur.ExporterPignonFiniDroite();
+                    Controleur.ExporterPignonFiniGauche();
+                    Controleur.ExporterRallongeVerticaleRetrait();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                JOptionPane.showMessageDialog(null, "Vous avez exporté Toit Fini", "Exportations STL", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        comboBox1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String input = (String) comboBox1.getSelectedItem();
+
+                if (input == "Avec");
+                {
+                    Chalet.setGrilleActive(true);
+                }
+                if (input == "Sans")
+                {
+                    Chalet.setGrilleActive(false);
+                }
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
+            }
+        });
     }
 
 
@@ -721,8 +857,8 @@ public class MainWindow extends javax.swing.JFrame {
         DrawingPanel = new DrawingPanel(this);
         PannelAffichage.setLayout(new BorderLayout());
         PannelAffichage.add(DrawingPanel, BorderLayout.CENTER);
-        DrawingPanel.setPreferredSize(new java.awt.Dimension(500, 500));
-//        DrawingPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        DrawingPanel.setPreferredSize(new java.awt.Dimension(700, 500));
+        PannelAffichage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setContentPane(FenetrePrincipale);
         setSize(1200, 700);
         setLocationRelativeTo(null);

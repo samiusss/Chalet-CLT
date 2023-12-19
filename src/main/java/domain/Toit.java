@@ -5,18 +5,18 @@ import Utilitaires.PointDouble;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Toit {
+public class Toit implements java.io.Serializable {
 
     public static List<PointDouble> sommetsToit;
 
-    private String nomToit;
+    private final String nomToit;
 
     public Toit(String nomToit, List<PointDouble> sommetsToit) {
         this.nomToit = nomToit;
-        this.sommetsToit = new LinkedList<>(sommetsToit);  // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
+        Toit.sommetsToit = new LinkedList<>(sommetsToit);  // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
     }
     public List<PointDouble> getSommetsToit() {
-        return this.sommetsToit;
+        return sommetsToit;
     }
 
     public String getNomToit() {

@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 
 
-public class ConvertisseurMesures {
+public class ConvertisseurMesures implements java.io.Serializable {
 
 
 
@@ -88,7 +88,7 @@ public class ConvertisseurMesures {
 
     public static int convertirPoucesEnInt(Pouces pouces)
     {
-        int total = (int) pouces.getValeurEntiere() + (int) pouces.getNumerateur() /(int) pouces.getDenominateur();
+        int total = pouces.getValeurEntiere() + pouces.getNumerateur() / pouces.getDenominateur();
         return total;
     }
 
@@ -148,6 +148,37 @@ public class ConvertisseurMesures {
         return new Pouces(0,0,1); //Null
     }
 
+    public static String doubleToImperial(double totalInches) {
+        // Convert total inches to feet and remaining inches
+        double feet = Math.floor(totalInches / 12);
+        double remainingInches = totalInches % 12;
+
+        // Convert the remaining inches to fraction and whole inches
+        double fraction = remainingInches % 1;
+        double wholeInches = remainingInches - fraction;
+
+        // Convert fraction to string
+        String fractionString = "";
+        if (fraction > 0) {
+            fractionString = " " + (int) (fraction * 8) + "/8"; // assuming 8 parts in an inch
+        }
+
+        // Build the imperial format string
+        String imperialString = "";
+        if (feet > 0) {
+            imperialString += (int) feet + "'";
+        }
+
+        if (wholeInches > 0) {
+            imperialString += " " + (int) wholeInches + "\"";
+        }
+
+        if (!fractionString.isEmpty()) {
+            imperialString += fractionString;
+        }
+
+        return imperialString.trim();
+    }
 
 
 

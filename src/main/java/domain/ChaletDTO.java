@@ -6,7 +6,7 @@ import java.util.List;
 
 //import static domain.Chalet.distanceUsinage;
 
-public class ChaletDTO {
+public class ChaletDTO implements java.io.Serializable {
     public static Mur facade ; // mur facade deja codé en bas
     public static Mur arriere; // mur arriere deja codé en bas
     public static Mur gauche ; // mur gauche deja codé en bas
@@ -34,13 +34,13 @@ public class ChaletDTO {
     public static List<Mur> listeMurs;
     public static String orientationToit;
     public static double ZoomFactor;
+    public static double grilleP = 10.0;
+
 
 
     public static Chalet createChalet() {
 
         ArrayList<Mur> listeMurs = new ArrayList<>();
-        ArrayList<Toit> listeToit = new ArrayList<>();
-
         //Dimensions du mur en 3D
         double epaisseurMur = Chalet.epaisseurChalet;     // Épaisseur du mur
         double hauteurMurs = Chalet.hauteurMurs;      // Hauteur des murs, sera utilisée pour les vues de côté
@@ -48,8 +48,7 @@ public class ChaletDTO {
         double longueurMur = Chalet.longueurChalet;
         double angleToit = Chalet.angleToit;
         String orientationToit = "Est";
-        double hauteurPignon = Chalet.hauteurPignon;
-        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs,  hauteurPignon, listeMurs, listeToit, orientationToit);
+        Chalet chalet = new Chalet(largeurMur, longueurMur, epaisseurMur, angleToit, hauteurMurs, listeMurs,orientationToit);
         return chalet ;
     }
 
@@ -109,20 +108,6 @@ public class ChaletDTO {
         arriere = chalet.getMursUsines(distanceUsinage, orientationToit).get(1); // mur arriere deja codé en bas
         gauche = chalet.getMursUsines(distanceUsinage, orientationToit).get(2); // mur gauche deja codé en bas
         droite = chalet.getMursUsines(distanceUsinage, orientationToit).get(3); // mur droite deja codé en bas
-
-       /*halet.initialiserPignonGauche();
-
-        pignongauche = Chalet.listeToit.get(0);
-        System.out.println("===CHALETDTO========== "+pignongauche);
-        List<PointDouble> coordinates = pignongauche.getSommetsToit();
-
-        PointDouble firstPoint = coordinates.get(1);
-
-
-        double XpointSupGauchePignon = firstPoint.getX();  // Obtenez la coordonnée x de la première paire
-        double YpointSupGauchePignon = firstPoint.getY();  // Obtenez la coordonnée y de la première paire
-
-        System.out.println("Première paire de coordonnées : (" + XpointSupGauchePignon + ", " + YpointSupGauchePignon + ")");*/
 
         return true;
     }

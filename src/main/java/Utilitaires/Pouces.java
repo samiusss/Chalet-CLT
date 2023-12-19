@@ -156,10 +156,7 @@ public class Pouces implements Serializable {
     //Cette methode permet de verifier si un objet Pouces est null
     public boolean estNull()
     {
-        boolean valeurNull = false;
-        if (valeurEntiere == 0 && numerateur == 0 && denominateur == 1) {
-            valeurNull = true;
-        };
+        boolean valeurNull = valeurEntiere == 0 && numerateur == 0 && denominateur == 1;
         return (valeurNull);
     }
 

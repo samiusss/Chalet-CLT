@@ -12,7 +12,7 @@ import static Utilitaires.ConvertisseurMesures.convertirPoucesEnInt;
 import static domain.Chalet.*;
 import static java.lang.Math.tan;
 
-public class ArriereDrawer {
+public class ArriereDrawer implements java.io.Serializable {
     private Controleur controleur;
     public static Chalet chalet;
     public ChaletDTO chaletdto;
@@ -39,11 +39,25 @@ public class ArriereDrawer {
         drawPorte(g);
         drawFenetre(g);
         drawToitArriere(g);
+        if(grilleActive){      drawGrid(g);}
 
     }
 
+    private void drawGrid(Graphics g) {
 
+        g.setColor(Color.lightGray);
 
+        double grilleP = Chalet.grilleP*zoomFactor;
+
+        // Lignes verticales
+        for (int x = -500; x < 1500; x += grilleP) {
+            g.drawLine(x, 1500, x, -1500);
+        }
+        // Lignes horizontales
+        for (int y = -500; y < 1500; y += grilleP) {
+            g.drawLine(1500, y, -1500, y);
+        }
+    }
     private void drawFenetre(Graphics g) {
 
         System.out.println("porteARRIERE");
@@ -227,7 +241,6 @@ public class ArriereDrawer {
 
             g.setColor(new Color(2, 125, 0));
             g.fillPolygon(xPointsPignon, yPointsPignon, 3);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur arriere...");
 
             ///RALLONGE///
 
@@ -315,7 +328,6 @@ public class ArriereDrawer {
 
             g.setColor(new Color(2, 125, 0));
             g.fillPolygon(xPointsPignon, yPointsPignon, 3);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
             ///RALLONGE///
 
@@ -373,7 +385,6 @@ public class ArriereDrawer {
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 5);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de arriere...");
 
         }
         if (Objects.equals(orientationToit, "Sud"))
@@ -405,7 +416,6 @@ public class ArriereDrawer {
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 4);
-            System.out.println("Je détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
 
         }
@@ -438,7 +448,6 @@ public class ArriereDrawer {
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 4);
-            System.out.println("Je détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
             ///RALLONGE DE DOS///
 

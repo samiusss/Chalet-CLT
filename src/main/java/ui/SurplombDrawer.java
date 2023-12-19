@@ -1,27 +1,24 @@
 package ui;
 
 import Utilitaires.PointDouble;
-import Utilitaires.Pouces;
-import Utilitaires.pointPouces;
 import domain.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
-import static Utilitaires.ConvertisseurMesures.convertirPoucesEnPixels;
+import static domain.Chalet.grilleActive;
 
-public class SurplombDrawer extends JFrame
+public class SurplombDrawer extends JFrame implements java.io.Serializable
 {
-    private Controleur controleur;
+    private final Controleur controleur;
 
     public Chalet chalet;
     public ChaletDTO chaletdto;
 
     private Accessoires accessoires;
-    private Dimension initialDimension;
+    private final Dimension initialDimension;
 
-    private double zoomFactor;
+    private final double zoomFactor;
 
 
     public Mur facade ; // mur facade deja codé en bas
@@ -34,10 +31,10 @@ public class SurplombDrawer extends JFrame
         this.controleur = controleur;
         this.initialDimension = initialDimension;
         Chalet chalet = controleur.getChaletProduction();
-        this.facade = chaletdto.facade; // mur facade deja codé en bas
-        this.arriere = chaletdto.arriere; // mur facade deja codé en bas
-        this.droite = chaletdto.droite; // mur facade deja codé en bas
-        this.gauche = chaletdto.gauche; // mur facade deja codé en bas
+        this.facade = ChaletDTO.facade; // mur facade deja codé en bas
+        this.arriere = ChaletDTO.arriere; // mur facade deja codé en bas
+        this.droite = ChaletDTO.droite; // mur facade deja codé en bas
+        this.gauche = ChaletDTO.gauche; // mur facade deja codé en bas
         this.zoomFactor = controleur.getZoom();
 
 
@@ -46,8 +43,25 @@ public class SurplombDrawer extends JFrame
     public void draw(Graphics g)
     {
         drawSurplomb(g);
+        if (grilleActive==true)
+        {drawGrid(g);}
     }
 
+    private void drawGrid(Graphics g) {
+
+        g.setColor(Color.lightGray);
+
+        double grilleP = Chalet.grilleP*zoomFactor;
+
+        // Lignes verticales
+        for (int x = -500; x < 1500; x += grilleP) {
+            g.drawLine(x, 1500, x, -1500);
+        }
+        // Lignes horizontales
+        for (int y = -500; y < 1500; y += grilleP) {
+            g.drawLine(1500, y, -1500, y);
+        }
+    }
 
     private void drawSurplomb(Graphics g)
     {
@@ -60,6 +74,7 @@ public class SurplombDrawer extends JFrame
         PointDouble pointSupGauchef = facade.getSommetsMur().get(1); // Je veux le deuxieme sommet (index 1) // pointSupGauchef = pointSupGauche facade
         PointDouble pointSupDroitf = facade.getSommetsMur().get(2); // Je veux le troisième sommet (index 2) // pointSupDroitf = pointSupDroit facade
         PointDouble pointInfDroitf = facade.getSommetsMur().get(3); // Je veux le quatrième sommet (index 3) // pointInfDroitf = pointInfDroit facade
+
 
         PointDouble rainureGauche1 = facade.getSommetsMur().get(8); // Je veux le neuvième sommet (index 8) // rainureGauche1 = rainureGauche1 facade
         PointDouble rainureGauche2 = facade.getSommetsMur().get(9); // Je veux le dixième sommet (index 9) // rainureGauche2 = rainureGauche2 facade
@@ -200,5 +215,7 @@ public class SurplombDrawer extends JFrame
         int[] yPointsDroit = {y1r1d, y1r2d, y1d, y2d, y3r1d, y3r2d, y3d, y4d};
         g.setColor(new Color(96, 96, 238));
         g.fillPolygon(xPointsDroit, yPointsDroit, 8);
+
+
     }
 }

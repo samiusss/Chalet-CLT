@@ -10,7 +10,7 @@ import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnFloat;
 import static domain.Chalet.determinerSommetsAccessoires;
-public class codeAlgo {
+public class codeAlgo implements java.io.Serializable {
     protected static void writeStlForRectangle(FileWriter writer, double debutRectangleX, double endRectangleX, double debutRectangleY, double endRectangleY, double z, String normalVector) throws IOException{
         writer.write("facet normal " + normalVector + "\n");
         writer.write("outer loop\n");

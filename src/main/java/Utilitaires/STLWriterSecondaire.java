@@ -13,7 +13,7 @@ import static Utilitaires.ConvertisseurMesures.convertirPoucesEnFloat;
 import static domain.Chalet.determinerSommetsAccessoires;
 
 
-public class STLWriterSecondaire {
+public class STLWriterSecondaire implements java.io.Serializable {
     public ChaletDTO chaletdto;
     public static Chalet chalet;
     public static Mur facade ; // mur facade deja codé en bas
@@ -29,7 +29,7 @@ public class STLWriterSecondaire {
         this.droite = ChaletDTO.droite; // mur facade deja codé en bas
         this.gauche = ChaletDTO.gauche; // mur gauche deja codé en bas
         this.arriere = ChaletDTO.arriere; // mur gauche deja codé en bas
-        this.facade = chaletdto.facade;
+        facade = ChaletDTO.facade;
 
     }
 

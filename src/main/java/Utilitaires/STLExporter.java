@@ -17,7 +17,7 @@ public class STLExporter {
         }
     }
 
-    public static class Triangle {
+    public static class Triangle implements java.io.Serializable {
         Point vertex1, vertex2, vertex3;
 
         public Triangle(Point vertex1, Point vertex2, Point vertex3) {

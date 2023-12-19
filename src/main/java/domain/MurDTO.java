@@ -5,16 +5,16 @@ import Utilitaires.PointDouble;
 import java.util.List;
 
 public class MurDTO {
-    private String nomMur;
-    private List<PointDouble> sommetsMur;
+    private final String nomMur;
+    private final List<PointDouble> sommetsMur;
     private static List<String> accessoiresMur;
-    private List<Porte> porteMur;
-    private List<Fenetre> fenetreMur;
+    private final List<Porte> porteMur;
+    private final List<Fenetre> fenetreMur;
 
     public MurDTO(Mur bi){
         nomMur = bi.getNomMur();
         sommetsMur = bi.getSommetsMur();
-        accessoiresMur = bi.getAccessoiresMur();
+        accessoiresMur = Mur.getAccessoiresMur();
         porteMur = bi.getListePorte();
         fenetreMur = bi.getListeFenetre();
     }

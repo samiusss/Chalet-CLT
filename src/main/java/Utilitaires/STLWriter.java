@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Arrays;
 
 
-public class STLWriter {
+public class STLWriter implements java.io.Serializable {
 
     public static void main(String[] args) {
 
@@ -684,11 +684,11 @@ public class STLWriter {
 
         // Dimensions du prisme secondaire
         float lengthSecondaire = length/10;
-        float widthSecondaire = (float) (width / 2);
+        float widthSecondaire = width / 2;
         float heightSecondaire = height;
 
         // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
-        float thicknessSecondaire = (float) (width / 2);
+        float thicknessSecondaire = width / 2;
 
 
         List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire,thicknessSecondaire, heightSecondaire,SupGauche[0]-lengthSecondaire,SupGauche[1],SupGauche[2]);
@@ -759,11 +759,11 @@ public class STLWriter {
 
         // Dimensions du prisme secondaire
         float lengthSecondaire = length/10;
-        float widthSecondaire = (float) (width / 2);
+        float widthSecondaire = width / 2;
         float heightSecondaire = height;
 
         // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
-        float thicknessSecondaire = (float) (width / 2);
+        float thicknessSecondaire = width / 2;
 
 
         List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire,thicknessSecondaire, heightSecondaire,SupGauche[0]-lengthSecondaire,SupGauche[1],SupGauche[2]);
@@ -1041,11 +1041,11 @@ public class STLWriter {
 
         // Dimensions du prisme secondaire
         float lengthSecondaire = length/10;
-        float widthSecondaire = (float) (width / 2);
+        float widthSecondaire = width / 2;
         float heightSecondaire = height;
 
         // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
-        float thicknessSecondaire = (float) (width / 2);
+        float thicknessSecondaire = width / 2;
 
 
         List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire,thicknessSecondaire, heightSecondaire,SupGauche[0]-lengthSecondaire,SupGauche[1],SupGauche[2]);
@@ -1203,11 +1203,11 @@ public class STLWriter {
 
         // Dimensions du prisme secondaire
         float lengthSecondaire = length/10;
-        float widthSecondaire = (float) (width / 2);
+        float widthSecondaire = width / 2;
         float heightSecondaire = height;
 
         // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
-        float thicknessSecondaire = (float) (width / 2);
+        float thicknessSecondaire = width / 2;
 
 
         List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire,thicknessSecondaire, heightSecondaire,SupGauche[0]-lengthSecondaire,SupGauche[1],SupGauche[2]);
@@ -1300,7 +1300,7 @@ public class STLWriter {
         float heightSecondaire = height;
 
         // Épaisseur du prisme emboîté (moitié de l'épaisseur du prisme principal)
-        float thicknessSecondaire = (float) (thickness / 2);
+        float thicknessSecondaire = thickness / 2;
 
 
         List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire,thicknessSecondaire, height,xSupGauche-lengthSecondaire,ySupGauche,zSupGauche);

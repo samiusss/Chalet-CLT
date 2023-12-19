@@ -10,7 +10,7 @@ import java.util.List;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnFloat;
 import static domain.Chalet.determinerSommetsAccessoires;
-public class STLWriter3 {
+public class STLWriter3 implements java.io.Serializable {
 
 
     protected static void writeStlForRectangle(String fileName, double debutRectangleX, double endRectangleX, double debutRectangleY, double endRectangleY, double z, String normalVector) throws IOException{

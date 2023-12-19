@@ -1,8 +1,9 @@
 package domain;
 
 import Utilitaires.Pouces;
-import Utilitaires.STLWriter3;
+import Utilitaires.STLWriterToit;
 import Utilitaires.STLWriterSecondaire;
+import Utilitaires.UndoRedoManager;
 
 import java.awt.*;
 import java.io.File;
@@ -12,14 +13,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static domain.ChaletDTO.createChalet;
-import static domain.ChaletDTO.initialiserChalet;
-//import static domain.ChaletDTO.creerNouveauChalet;
-//import static domain.Mur.accessoiresMur;
+import static domain.ChaletDTO.*;
 
-public class Controleur {
+public class Controleur implements java.io.Serializable {
     private ChaletDTO chaletdto;
-    private double zoom;
+    private final double zoom;
     private float OffsetX;
 
     private float OffsetY;
@@ -36,8 +34,6 @@ public class Controleur {
    {
        this.zoom = 1;
    }
-
-
 
     public static void ExporterPanneauxFinis() throws IOException {
         // Spécifiez le nom du fichier STL de sortie
@@ -82,7 +78,195 @@ public class Controleur {
 
     }
 
+    public static void ExporterRallongeVerticale() throws IOException{
+       Path directory = Paths.get("C:\\STL");
 
+        String directoryPath = "C:\\STL";
+        String fileName = "RallongeVerticaleFile.stl";
+
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterRallongeVerticaleFini(fileName);
+    }
+
+    public static void ExporterPignonBrutDroite() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "ChalCLT_Brut_PD.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterPignonBrutDroite(fileName);
+    }
+
+    public static void ExporterPignonRetraitGauche() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "ChalCLT_Brut_PG.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterPignonRetrait(fileName);
+    }
+
+    public static void ExporterRallongeVerticaleBrut() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "ChalCLT_Brut_RV.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterRallongeVerticaleBrut(fileName);
+    }
+
+    public static void ExporterRallongeVerticaleRetrait() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "ChalCLT_Retrait_RV.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterRallongeVerticaleRetrait(fileName);
+    }
+
+    public static void ExporterPignonBrutGauche() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "ChalCLT_Brut_PG.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterPignonBrutGauche(fileName);
+    }
+
+    public static void ExporterParDessusFini()throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "ParDessusFile.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterParDessusFini(fileName);
+    }
+
+    public static void ExporterPignonFiniDroite() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\CASTL";
+        String fileName = "ChalCLT_Fini_PD.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterPignonFiniDroite(fileName);
+    }
+
+    public static void ExporterPignonFiniGauche() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\CASTL";
+        String fileName = "ChalCLT_Fini_PG.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterPignonFiniGauche(fileName);
+    }
 
     public static void ExporterPanneauxBrut() throws IOException {
         // Spécifiez le nom du fichier STL de sortie
@@ -115,13 +299,7 @@ public class Controleur {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutFacade);
-        STLWriter3.ExportPanneauxRetrait(filePathBrutFacade);
-
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutArriere);
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutGauche);
-        //STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutDroite);
-
+        STLWriterToit.ExporterPignonBrutDroite("toitPignon.,stl");
     }
 
 
@@ -167,140 +345,200 @@ public class Controleur {
         STLWriterSecondaire.ExporterPanneauxRetrait(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
 
     }
+    public static UndoRedoManager.CopieChaletUR setRedo()
+    {
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.redo();
+
+        Chalet.setAngleToit(copieDuChalet.angleToit);
+        Chalet.setEpaisseurChalet(copieDuChalet.epaisseurChalet);
+        Chalet.setLongueurChalet(copieDuChalet.longueurChalet);
+        Chalet.setLargeurChalet(copieDuChalet.largeurChalet);
+        Chalet.setHauteurMurs(copieDuChalet.hauteurMurs);
+        Chalet.setRetraitChalet(copieDuChalet.retraitChalet);
+        Chalet.setOrientation(copieDuChalet.orientationToit);
+
+        initialiserChalet(chaletProduction);
+        System.out.println("======== Voici la valeur suite au UNDO "+copieDuChalet); //test
+
+        return copieDuChalet;
+    }
+    public static UndoRedoManager.CopieChaletUR setUndo()
+    {
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.undo();
+
+        Chalet.setAngleToit(copieDuChalet.angleToit);
+        Chalet.setEpaisseurChalet(copieDuChalet.epaisseurChalet);
+        Chalet.setLongueurChalet(copieDuChalet.longueurChalet);
+        Chalet.setLargeurChalet(copieDuChalet.largeurChalet);
+        Chalet.setHauteurMurs(copieDuChalet.hauteurMurs);
+        Chalet.setRetraitChalet(copieDuChalet.retraitChalet);
+        Chalet.setOrientation(copieDuChalet.orientationToit);
+        Chalet.setGrille(copieDuChalet.grilleP);
+        initialiserChalet(chaletProduction);
+
+        return copieDuChalet;
+    }
+
 
     public static void setAngleToit(double angleToit)
     {
         Chalet.setAngleToit(angleToit);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
     }
 
 
-        public static void setEpaisseurChalet(double epaisseurChalet)
+    public static void setEpaisseurChalet(double epaisseurChalet)
     {
         Chalet.setEpaisseurChalet(epaisseurChalet);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
-        //creerNouveauChalet(chaletProduction);
     }
 
     public static void setLongueurChalet(double longueurChalet)
     {
         Chalet.setLongueurChalet(longueurChalet);
-
-        System.out.println(longueurChalet+" Réinitialisation en cours"); //test
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
-        //creerNouveauChalet(chaletProduction);
 
     }
 
     public static void setLargeurChalet(double largeurChalet)
     {
         Chalet.setLargeurChalet(largeurChalet);
-        System.out.println(largeurChalet+" Réinitialisation en cours"); //test
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
 
     }
 
     public static void setHauteurMurs(double hauteurMurs) {
         Chalet.setHauteurMurs(hauteurMurs);
-        System.out.println(hauteurMurs+" Réinitialisation en cours"); //test
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
 
     }
     public static void setRetraitChalet(double distanceUsinage) {
         Chalet.setRetraitChalet(distanceUsinage);
-        System.out.println(distanceUsinage +" updated in Controleur"); //test
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
 
     }
     public static void setOrientation(String orientation) {
         Chalet.setOrientation(orientation);
-        System.out.println(orientation +" comme orientation a été updated in Controleur"); //test
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
 
     }
     public boolean setLargeurPorte(Pouces nouvellelargeur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setLargeurPorte(nouvellelargeur, nomMur, listeMursDrawer, initialDimension);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
+        initialiserChalet(chaletProduction);
         return success;
+
     }
     public boolean setHauteurPorte(Pouces nouvelleHauteur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setHauteurPorte(nouvelleHauteur, nomMur, listeMursDrawer,initialDimension);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
+        initialiserChalet(chaletProduction);
         return success;
     }
 
     public boolean setHauteurFenetre(Point mousePointClicked, Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setHauteurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer, initialDimension);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
+        initialiserChalet(chaletProduction);
         return success;
     }
 
     public boolean setLargeurFenetre(Point mousePointClicked,Pouces nouvelleLongueur, String nomMur, List<Mur> listeMursDrawer, Dimension initialDimension)
     {
         boolean success = Chalet.setLargeurFenetre(mousePointClicked,nouvelleLongueur, nomMur, listeMursDrawer,initialDimension);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
+        initialiserChalet(chaletProduction);
         return success;
     }
     public boolean supprimerPorte(String nomMur, List<Mur> listeMursDrawer)
     {
         boolean success = Chalet.supprimerPorte(nomMur, listeMursDrawer);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
+        initialiserChalet(chaletProduction);
         return success;
     }
     public boolean modifierXPorte(int nouveauXporteint, String nomMur, Dimension initialDimension)
     {
         boolean success = chaletProduction.modifierXporte(nouveauXporteint, nomMur,initialDimension );
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
+        initialiserChalet(chaletProduction);
         return success;}
-    // J'ai un bugg ici
+
     public boolean modifierXFenetre(int nouveauXfenetreint, String nomMur,Dimension initialDimension)
     {
         boolean success = chaletProduction.modifierXfenetre(nouveauXfenetreint,nomMur,initialDimension );
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
+        initialiserChalet(chaletProduction);
         return success;
     }
 
     public boolean modifierYFenetre( int nouveauYfenetreint, String nomMur,Dimension initialDimension)
     {
         boolean success = chaletProduction.modifierYfenetre(nouveauYfenetreint, nomMur,initialDimension );
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
+        initialiserChalet(chaletProduction);
         return success;
     }
 
     public static boolean supprimerFenetre(Point mousePointClicked,String nomMur, List<Mur> listeMursDrawer)
     {
         boolean success = Chalet.supprimerFenetre(mousePointClicked,nomMur, listeMursDrawer);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
+        initialiserChalet(chaletProduction);
         return success;
     }
 
     public static boolean supprimerToutesFenetre(String nomMur, List<Mur> listeMursDrawer)
     {
         boolean success = Chalet.supprimerToutesFenetre(nomMur, listeMursDrawer);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
+        initialiserChalet(chaletProduction);
         return success;
     }
 
     public boolean MethodeTest(String nomMur,List<Mur> listeMursDrawer, Point mousePoint)
     {
         boolean succes = Chalet.MethodeTest(nomMur,listeMursDrawer,mousePoint);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
+        initialiserChalet(chaletProduction);
         return succes;
     }
 
     public boolean MethodeTestFenetre(String nomMur,List<Mur> listeMursDrawer, Point mousePoint)
     {
         boolean succes = Chalet.MethodeTestFenetre(nomMur,listeMursDrawer,mousePoint);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+
+//        initialiserChalet(chaletProduction);
         return succes;
     }
 
+    public static void setGrille(double grille) {
+        Chalet.setGrille(grille);
+        UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        System.out.println(grille +" comme grille a été updated in Controleur"); //test
 
-
-
-
-
-
-    static Chalet chaletProduction = createChalet();
-
-    boolean rep = initialiserChalet(chaletProduction);
-
-    public Chalet getChaletProduction() {
-        return chaletProduction;
-    }
-    public static Chalet getChaletProductionStatic() {
-        return chaletProduction;
     }
 
 
@@ -330,10 +568,6 @@ public class Controleur {
         //accessoiresmur.add(newPorte);
     }
 
-
-
-
-
     public ChaletDTO getChalet() {
         return chaletdto;
     }
@@ -362,4 +596,24 @@ public class Controleur {
     {
         Chalet.setOffsetY(newOffY);
     }
-}
+
+    static Chalet chaletProduction = createChalet();
+
+    boolean rep = initialiserChalet(chaletProduction);
+
+    public Chalet getChaletProduction() {
+        return chaletProduction;
+    }
+    public static Chalet getChaletProductionStatic() {
+        return chaletProduction;
+    }}
+
+
+
+
+
+
+
+
+
+
