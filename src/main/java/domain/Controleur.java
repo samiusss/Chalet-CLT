@@ -287,8 +287,8 @@ public class Controleur implements java.io.Serializable {
     public static void ExporterParDessusBrut()throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String directoryPath = "C:\\STL";
-        String fileName = "ParDessusBrutFile.stl";
+        String fileName = "ChalCLT_Brut_ParDessus.stl";
+        String fileParDessusBrut  = directory + File.separator + fileName;
 
         if (!Files.exists(directory)) {
             try {
@@ -302,7 +302,7 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterParDessusBrut(fileName);
+        STLWriterToit.ExporterParDessusBrut(fileParDessusBrut);
     }
 
 
