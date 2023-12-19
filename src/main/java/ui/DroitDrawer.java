@@ -14,12 +14,12 @@ import static java.lang.Math.tan;
 
 public class DroitDrawer implements java.io.Serializable {
 
-    private Controleur controleur;
+    private final Controleur controleur;
     private ChaletDTO chaletdto;
 
     public static Chalet chalet;
     private Accessoires accessoires;
-    private Dimension initialDimension;
+    private final Dimension initialDimension;
     public Mur droite; // mur facade deja codé en bas
     public PointDouble GaucheRainureInfGauche, GaucheRainureSupGauche, GaucheRainureSupDroit, GaucheRainureInfDroit;
     public PointDouble DroiteRainureInfGauche, DroiteRainureSupGauche, DroiteRainureSupDroit, DroiteRainureInfDroit;
@@ -29,7 +29,7 @@ public class DroitDrawer implements java.io.Serializable {
         this.initialDimension = initialDimension;
 
         Chalet chalet = controleur.getChaletProduction();
-        this.droite = chaletdto.droite; // mur facade deja codé en bas
+        this.droite = ChaletDTO.droite; // mur facade deja codé en bas
         this.zoomFactor = controleur.getZoom();
     }
 

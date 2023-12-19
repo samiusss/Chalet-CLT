@@ -6,13 +6,13 @@ import java.util.UUID;
 
 
 public abstract class Accessoires implements Serializable {
-    private UUID AID;
+    private final UUID AID;
     private Point mousepoint;
     public Pouces largeur;
     public Pouces hauteur;
 
     public Accessoires() {
-        this.AID = UUID.randomUUID();;
+        this.AID = UUID.randomUUID();
     }
     public UUID getIdAccessoire() {
         return AID;

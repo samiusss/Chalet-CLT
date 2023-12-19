@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.UUID;
 
 public class AccessoiresDTO {
-    private UUID AID;
+    private final UUID AID;
     /*private Point mousepoint;
     public Pouces largeur;
     public Pouces hauteur; */

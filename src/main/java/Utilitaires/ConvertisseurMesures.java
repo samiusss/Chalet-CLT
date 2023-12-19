@@ -88,7 +88,7 @@ public class ConvertisseurMesures implements java.io.Serializable {
 
     public static int convertirPoucesEnInt(Pouces pouces)
     {
-        int total = (int) pouces.getValeurEntiere() + (int) pouces.getNumerateur() /(int) pouces.getDenominateur();
+        int total = pouces.getValeurEntiere() + pouces.getNumerateur() / pouces.getDenominateur();
         return total;
     }
 

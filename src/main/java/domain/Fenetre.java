@@ -52,14 +52,14 @@ public class Fenetre extends Accessoires implements Serializable {
     }
     public boolean modifierLargeurStandard(Pouces valeur) {
         largeur = valeur;
-        this.FENETRE_LARGEUR_STANDARD = valeur;
+        FENETRE_LARGEUR_STANDARD = valeur;
 
         return false;
     }
 
     public boolean modifierHauteurStandard(Pouces valeur) {
         hauteur = valeur;
-        this.FENETRE_HAUTEUR_STANDARD = valeur;
+        FENETRE_HAUTEUR_STANDARD = valeur;
         return true;
     }
 

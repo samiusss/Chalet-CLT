@@ -56,6 +56,7 @@ public class Main implements java.io.Serializable {
         }
 
         STLWriterToit.ExporterPignonBrut("C:\\STL\\Pignon.stl");
+        STLWriterToit.ExporterPignonExtrait("C:\\STL\\PignonsExtrait.stl");
 
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);

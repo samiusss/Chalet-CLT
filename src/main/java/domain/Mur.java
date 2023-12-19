@@ -22,7 +22,7 @@ public class Mur implements java.io.Serializable {
     public Mur(String nomMur, List<PointDouble> sommetsMur, List<String> accessoiresMur) {
         this.nomMur = nomMur;
         this.sommetsMur = new LinkedList<>(sommetsMur);  // ceci est comme ci: [Point(0,0), Point(10,0), Point(10,5), Point(0,5)]
-        this.accessoiresMur = accessoiresMur;           // ceci est comme ci: [Liste de accessoires]
+        Mur.accessoiresMur = accessoiresMur;           // ceci est comme ci: [Liste de accessoires]
 
     }
 
@@ -58,7 +58,7 @@ public class Mur implements java.io.Serializable {
     }
 
     public void setAccessoiresMur(List<String> accessoiresMur) {
-        this.accessoiresMur = accessoiresMur;
+        Mur.accessoiresMur = accessoiresMur;
     }
 
     public List<Porte> getListePorte(){

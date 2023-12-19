@@ -14,11 +14,11 @@ import static java.lang.Math.tan;
 
 public class FacadeDrawer implements java.io.Serializable{
 
-    private Controleur controleur;
+    private final Controleur controleur;
     public ChaletDTO chaletdto;
     public static Chalet chalet;
     private Accessoires accessoires;
-    private Dimension initialDimension;
+    private final Dimension initialDimension;
 
     public Mur facade ; // mur facade deja codé en bas
 
@@ -32,7 +32,7 @@ public class FacadeDrawer implements java.io.Serializable{
         this.controleur = controleur;
         this.initialDimension = initialDimension;
         Chalet chalet = controleur.getChaletProduction();
-        this.facade = chaletdto.facade;
+        this.facade = ChaletDTO.facade;
         this.zoomFactor = controleur.getZoom();
     }
 

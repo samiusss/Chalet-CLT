@@ -29,7 +29,7 @@ public class STLWriterSecondaire implements java.io.Serializable {
         this.droite = ChaletDTO.droite; // mur facade deja codé en bas
         this.gauche = ChaletDTO.gauche; // mur gauche deja codé en bas
         this.arriere = ChaletDTO.arriere; // mur gauche deja codé en bas
-        this.facade = chaletdto.facade;
+        facade = ChaletDTO.facade;
 
     }
 

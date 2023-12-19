@@ -18,7 +18,7 @@ import static domain.ChaletDTO.*;
 
 public class Controleur implements java.io.Serializable {
     private ChaletDTO chaletdto;
-    private double zoom;
+    private final double zoom;
     private float OffsetX;
 
     private float OffsetY;
@@ -114,7 +114,6 @@ public class Controleur implements java.io.Serializable {
 
         STLWriterToit.ExporterPanneauxBrut("fileTestBrutToitFacade.stl");
         STLWriterToit.ExporterPignonBrut("toitPignon.,stl");
-
     }
 
 
@@ -307,23 +306,13 @@ public class Controleur implements java.io.Serializable {
 
     public static boolean ajouterFenetre(Point mousepoint, String nomMur, List<Mur> listeMursDrawer, Dimension intitalDimension){
 
-        if(Chalet.ajouterFenetre(mousepoint, nomMur,listeMursDrawer,intitalDimension))
-        {
-            return true;
-        }
-
-        return false;
+        return Chalet.ajouterFenetre(mousepoint, nomMur, listeMursDrawer, intitalDimension);
 
     }
 
     public static boolean ajouterPorte(Point mousepoint, String nomMur, List<Mur> listeMursDrawer,Dimension intitalDimension){
 
-        if(Chalet.ajouterPorte(mousepoint, nomMur,listeMursDrawer,intitalDimension))
-        {
-            return true;
-        }
-
-        return false;
+        return Chalet.ajouterPorte(mousepoint, nomMur, listeMursDrawer, intitalDimension);
         //Porte newPorte = newAccessoires("AID",mousepoint, double largeur,double hauteur);
         //accessoiresmur.add(newPorte);
     }

@@ -8,15 +8,15 @@ import java.awt.*;
 
 public class SurplombDrawer extends JFrame implements java.io.Serializable
 {
-    private Controleur controleur;
+    private final Controleur controleur;
 
     public Chalet chalet;
     public ChaletDTO chaletdto;
 
     private Accessoires accessoires;
-    private Dimension initialDimension;
+    private final Dimension initialDimension;
 
-    private double zoomFactor;
+    private final double zoomFactor;
 
 
     public Mur facade ; // mur facade deja codé en bas
@@ -29,10 +29,10 @@ public class SurplombDrawer extends JFrame implements java.io.Serializable
         this.controleur = controleur;
         this.initialDimension = initialDimension;
         Chalet chalet = controleur.getChaletProduction();
-        this.facade = chaletdto.facade; // mur facade deja codé en bas
-        this.arriere = chaletdto.arriere; // mur facade deja codé en bas
-        this.droite = chaletdto.droite; // mur facade deja codé en bas
-        this.gauche = chaletdto.gauche; // mur facade deja codé en bas
+        this.facade = ChaletDTO.facade; // mur facade deja codé en bas
+        this.arriere = ChaletDTO.arriere; // mur facade deja codé en bas
+        this.droite = ChaletDTO.droite; // mur facade deja codé en bas
+        this.gauche = ChaletDTO.gauche; // mur facade deja codé en bas
         this.zoomFactor = controleur.getZoom();
 
 

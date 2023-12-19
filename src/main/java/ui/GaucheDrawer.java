@@ -14,12 +14,12 @@ import static java.lang.Math.tan;
 
 public class GaucheDrawer implements java.io.Serializable
 {
-    private Controleur controleur;
+    private final Controleur controleur;
     public ChaletDTO chaletdto;
     public static Chalet chalet;
     private Accessoires accessoires;
-    private Dimension initialDimension;
-    private double zoomFactor;
+    private final Dimension initialDimension;
+    private final double zoomFactor;
 
     public Mur gauche ; // mur arriere deja codé en bas
     public Toit pignongauche;
@@ -31,7 +31,7 @@ public class GaucheDrawer implements java.io.Serializable
         this.initialDimension = initialDimension;
 
         Chalet chalet = controleur.getChaletProduction();
-        this.gauche = chaletdto.gauche; // mur facade deja codé en bas
+        this.gauche = ChaletDTO.gauche; // mur facade deja codé en bas
         this.zoomFactor = controleur.getZoom();
     }
 
@@ -78,7 +78,7 @@ public class GaucheDrawer implements java.io.Serializable
 
             System.out.println(fenetre);
 
-            Fenetre fenetreActuel = (Fenetre) fenetre;
+            Fenetre fenetreActuel = fenetre;
             if (fenetreActuel != null) {
                 Point mousePoint = fenetre.mousePoint;
 
