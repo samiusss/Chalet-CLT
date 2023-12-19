@@ -194,20 +194,19 @@ public class STLWriterToit implements java.io.Serializable {
 
         List<float[]> listeVertex = new LinkedList<>();
 
-
-        float hauteurP = (length * (float) (Math.tan(angle * Math.PI / 180))) - (epaisseur);
+        float hauteurP = (length * (float) (Math.tan(angle * Math.PI / 180)));
         float hauteurR = hauteurP + (float) ((epaisseur/2)*(Math.tan(angle * Math.PI / 180)));
 
         listeVertex.add(new float[]{0, 0, 0}); // v0
         listeVertex.add(new float[]{epaisseur, 0, 0}); // v1
         listeVertex.add(new float[]{0, epaisseur, 0}); // v2
-        listeVertex.add(new float[]{length, hauteurP, 0}); // v3
+        listeVertex.add(new float[]{length, hauteurR - epaisseur, 0}); // v3
         listeVertex.add(new float[]{length, hauteurR, 0}); // v4
 
         listeVertex.add(new float[]{0, 0, width}); // v5
         listeVertex.add(new float[]{epaisseur, 0, width}); // v6
         listeVertex.add(new float[]{0, epaisseur, width}); // v7
-        listeVertex.add(new float[]{length, hauteurP, width}); // v8
+        listeVertex.add(new float[]{length, hauteurR - epaisseur, width}); // v8
         listeVertex.add(new float[]{length, hauteurR, width}); // v9
 
 
