@@ -291,7 +291,6 @@ public class MainWindow extends javax.swing.JFrame {
                 XFenetreField.setText(String.valueOf(adjustedX));
                 YfenetreField.setText(String.valueOf(adjustedY));
 
-
                 if (nouvelleLargeur != null) {
                     if(mPoint != null && isSelection) {
                         String nomMur = String.valueOf(ui.DrawingPanel.selectedAffichageVue);
@@ -674,17 +673,17 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        /*ExporterFinit.addActionListener(new ActionListener() {
+        ExporterFinit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    controleur.ExporterPanneauxFinit();
+                    controleur.ExporterPanneauxFinis();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
                 JOptionPane.showMessageDialog(null, "Vous avez exporté Chalet Fini", "Exportations STL", JOptionPane.INFORMATION_MESSAGE);
             }
-        });*/
+        });
 
         ExporterRetrait.addActionListener(new ActionListener(){
             @Override

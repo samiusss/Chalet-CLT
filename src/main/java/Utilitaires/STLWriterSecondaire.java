@@ -127,6 +127,39 @@ public class STLWriterSecondaire {
         return triangles;
     }
 
+
+    public static List<Triangle> generateTriangularPrism(float length, float height, float xSupGauche, float ySupGauche, float zSupGauche, String type) {
+        List<Triangle> triangles = new ArrayList<>();
+        List<float[]> listeVertex = determinerPointsPrismes(length, length, height, xSupGauche, ySupGauche, zSupGauche);
+
+        int numCellsLength = 35;
+        int numCellsHeight = 25;
+
+        for (int i = 0; i < numCellsLength; i++) {
+            for (int k = 0; k < numCellsHeight; k++) {
+                int index = i * (numCellsHeight + 1) + k;
+                float[] v0 = listeVertex.get(index);
+                float[] v1 = listeVertex.get(index + 1);
+                float[] v2 = listeVertex.get(index + (numCellsHeight + 1));
+                float[] v3 = listeVertex.get(index + (numCellsHeight + 1) + 1);
+
+                // Front face
+                triangles.add(new Triangle(v0, v1, v2, type));
+                triangles.add(new Triangle(v1, v3, v2, type));
+
+                // Back face
+                triangles.add(new Triangle(v0, v2, v1, type));
+                triangles.add(new Triangle(v1, v2, v3, type));
+
+                // Bottom face
+                triangles.add(new Triangle(v0, v1, v3, type));
+            }
+        }
+
+        return triangles;
+    }
+
+
     public static List<float[]> determinerPointsPrismeSupDroite(float length, float width, float height, float xSupGauche, float ySupGauche, float zSupGauche, float xSupDroit, float ySupDroit, float zSupDroit) {
         List<float[]> listeVertex = new LinkedList<>();
         int numCellsLength = 35;
@@ -635,7 +668,7 @@ public class STLWriterSecondaire {
         float xSupGaucheGauche = xSupGauchePrincipal - lengthSecondaire;
         float xSupGaucheDroite = xSupGauchePrincipal + lengthPrincipal;
 
-        // Générer les prismes secondaires à gauche et à droite
+        // Générer les prismes secondaires à gauche et à droite (rainure)
         List<Triangle> listeTrianglesGauche = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheGauche, ySupGauchePrincipal, zSupGauchePrincipal,"DROITE");
         List<Triangle> listeTrianglesDroite = generateRectangularPrism(lengthSecondaire, thicknessSecondaire, heightSecondaire, xSupGaucheDroite, ySupGauchePrincipal, zSupGauchePrincipal,"DROITE");
 
@@ -989,7 +1022,7 @@ public class STLWriterSecondaire {
         float thicknessPrincipal = width;
 
         // Générer le prisme principal
-        List<Triangle> listeTriangles = generateRectangularPrismeSupDroite(lengthPrincipal, thicknessPrincipal, height, xSupGauchePrincipal, ySupGauchePrincipal, zSupGauchePrincipal,xSupDroitePrincipal, ySupDroitePrincipal, zSupDroitePrincipal, "AVANT");
+        List<Triangle> listeTriangles = generateTriangularPrism(lengthPrincipal, height, xSupGauchePrincipal, ySupGauchePrincipal, zSupGauchePrincipal, "AVANT");
 
         // Utiliser les dimensions du prisme secondaire
         float lengthSecondaire = length / 10;
