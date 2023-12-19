@@ -268,7 +268,7 @@ public class Controleur implements java.io.Serializable {
         Chalet.setHauteurMurs(copieDuChalet.hauteurMurs);
         Chalet.setRetraitChalet(copieDuChalet.retraitChalet);
         Chalet.setOrientation(copieDuChalet.orientationToit);
-
+        Chalet.setGrille(copieDuChalet.grilleP);
         initialiserChalet(chaletProduction);
 
         return copieDuChalet;
