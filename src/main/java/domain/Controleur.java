@@ -464,9 +464,24 @@ public class Controleur implements java.io.Serializable {
         Chalet.setHauteurMurs(copieDuChalet.hauteurMurs);
         Chalet.setRetraitChalet(copieDuChalet.retraitChalet);
         Chalet.setOrientation(copieDuChalet.orientationToit);
+        Chalet.setGrille(copieDuChalet.grilleP);
+        //Chalet.setListeMurs(copieDuChalet.listeMurs);
 
+        chaletProduction.getListeMurs().get(0).porteMur = copieDuChalet.listeMurs.get(0).porteMur;
+        chaletProduction.getListeMurs().get(1).porteMur = copieDuChalet.listeMurs.get(1).porteMur;
+        chaletProduction.getListeMurs().get(2).porteMur = copieDuChalet.listeMurs.get(2).porteMur;
+        chaletProduction.getListeMurs().get(3).porteMur = copieDuChalet.listeMurs.get(3).porteMur;
+        chaletProduction.getListeMurs().get(0).fenetreMur = copieDuChalet.listeMurs.get(0).fenetreMur;
+        chaletProduction.getListeMurs().get(1).fenetreMur = copieDuChalet.listeMurs.get(1).fenetreMur;
+        chaletProduction.getListeMurs().get(2).fenetreMur = copieDuChalet.listeMurs.get(2).fenetreMur;
+        chaletProduction.getListeMurs().get(3).fenetreMur = copieDuChalet.listeMurs.get(3).fenetreMur;
+
+
+        //if longueur largeur tataat
         initialiserChalet(chaletProduction);
-        System.out.println("======== Voici la valeur suite au UNDO "+copieDuChalet); //test
+        // if listeMur donc accessoire change
+
+        initialiserChaletUndoRedo(chaletProduction,copieDuChalet);
 
         return copieDuChalet;
     }
@@ -482,18 +497,25 @@ public class Controleur implements java.io.Serializable {
         Chalet.setRetraitChalet(copieDuChalet.retraitChalet);
         Chalet.setOrientation(copieDuChalet.orientationToit);
         Chalet.setGrille(copieDuChalet.grilleP);
-/*
-        Chalet.setListeMurs(copieDuChalet.listeMurs);
-        Chalet.listeMurs = copieDuChalet.listeMurs;
+        //Chalet.setListeMurs(copieDuChalet.listeMurs);
+        //Chalet.setListePorteFacade(copieDuChalet.listeMurs.get(0).porteMur,copieDuChalet.listeMurs.get(1).porteMur,copieDuChalet.listeMurs.get(2).porteMur,copieDuChalet.listeMurs.get(3).porteMur,copieDuChalet.listeMurs.get(0).fenetreMur,copieDuChalet.listeMurs.get(1).fenetreMur,copieDuChalet.listeMurs.get(2).fenetreMur,copieDuChalet.listeMurs.get(3).fenetreMur);
 
-        System.out.println("\n            -                          \n" );
-        System.out.println(copieDuChalet.hauteurMurs+" Copies de la listes murs setUndo :" + copieDuChalet.listeMurs.get(0).porteMur+ copieDuChalet.listeMurs.get(0).fenetreMur );
-        System.out.println("\n            -                          \n" );
-*/
+
+//        chaletProduction.getListeMurs().get(0).porteMur = copieDuChalet.listeMurs.get(0).porteMur;
+//        chaletProduction.getListeMurs().get(1).porteMur = copieDuChalet.listeMurs.get(1).porteMur;
+//        chaletProduction.getListeMurs().get(2).porteMur = copieDuChalet.listeMurs.get(2).porteMur;
+//        chaletProduction.getListeMurs().get(3).porteMur = copieDuChalet.listeMurs.get(3).porteMur;
+//        chaletProduction.getListeMurs().get(0).fenetreMur = copieDuChalet.listeMurs.get(0).fenetreMur;
+//        chaletProduction.getListeMurs().get(1).fenetreMur = copieDuChalet.listeMurs.get(1).fenetreMur;
+//        chaletProduction.getListeMurs().get(2).fenetreMur = copieDuChalet.listeMurs.get(2).fenetreMur;
+//        chaletProduction.getListeMurs().get(3).fenetreMur = copieDuChalet.listeMurs.get(3).fenetreMur;
+
+
+        //if longueur largeur tataat
+        initialiserChalet(chaletProduction);
+        // if listeMur donc accessoire change
 
         initialiserChaletUndoRedo(chaletProduction,copieDuChalet);
-
-
 
         return copieDuChalet;
     }

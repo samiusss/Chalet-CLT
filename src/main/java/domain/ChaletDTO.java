@@ -178,4 +178,19 @@ public class ChaletDTO implements java.io.Serializable {
 
         return true;
     }
+
+    public static boolean initialiserChaletMOSTAFA(Chalet chalet) {
+
+
+        chalet.getListeMurs().clear();
+
+
+        chalet.initialiserMurFacade();
+        chalet.initialiserMurArriere();
+        chalet.initialiserMurGauche();
+        chalet.initialiserMurDroite();
+
+
+        return true;
+    }
 }
