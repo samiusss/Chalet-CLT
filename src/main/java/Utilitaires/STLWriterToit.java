@@ -45,7 +45,7 @@ public class STLWriterToit implements java.io.Serializable {
         return nombreAvecPoint;
     }
 
-    public static List<float[]> determinerPointsPignon(float length, float width, float height, float space) {
+    /*public static List<float[]> determinerPointsPignon(float length, float width, float height, float space) {
         List<float[]> listeVertex = new LinkedList<>();
 
         int numCellsLength = 10;
@@ -71,6 +71,24 @@ public class STLWriterToit implements java.io.Serializable {
         listeVertex.add(new float[]{0, 0, width + space});
         listeVertex.add(new float[]{length, 0, width + space});
         listeVertex.add(new float[]{0, height, width + space});
+
+        return listeVertex;
+    }*/
+
+    public static List<float[]> determinerPointsPignon(float angle, float length, float width, float height, float space) {
+        List<float[]> listeVertex = new LinkedList<>();
+
+
+        float bigHeight = (float) Math.tan(angle) * (width - (float) epaisseurChalet*2);
+
+        listeVertex.add(new float[]{0, 0, 0}); //v0
+        listeVertex.add(new float[]{(float) epaisseurChalet, 0, 0}); //v1
+
+        listeVertex.add(new float[]{0, 0, width - 2*(float)epaisseurChalet}); //v2
+        listeVertex.add(new float[]{(float) epaisseurChalet, 0, width - 2*(float)epaisseurChalet}); //v3
+
+        listeVertex.add(new float[]{0, bigHeight, width - 2*(float)epaisseurChalet}); //v4
+        listeVertex.add(new float[]{(float) epaisseurChalet, bigHeight, width - 2*(float)epaisseurChalet}); //v5
 
         return listeVertex;
     }
@@ -555,12 +573,9 @@ public class STLWriterToit implements java.io.Serializable {
         float height = (float) heightt;
 
         List<Triangle> trianglesPignon = new ArrayList<>();
-        List<float[]> listeVertexPignonGauche = determinerPointsPignon(length, width, height, 400);
-        List<float[]> listeVertexPignonDroit = determinerPointsPignon(length, width, height, 400);
+        List<float[]> listeVertexPignonGauche = determinerPointsPignon(angle, length, width, height, length);
+        //List<float[]> listeVertexPignonDroit = determinerPointsPignon(angle, length, width, height, length);
 
-        int numCellsLength = 10;
-        int numCellsWidth = 1;
-        int numCellsHeight = 10;
 
         float[] v0 = listeVertexPignonGauche.get(0);
         float[] v1 = listeVertexPignonGauche.get(1);
@@ -569,37 +584,18 @@ public class STLWriterToit implements java.io.Serializable {
         float[] v4 = listeVertexPignonGauche.get(4);
         float[] v5 = listeVertexPignonGauche.get(5);
 
-        float[] v6 = listeVertexPignonDroit.get(6);
-        float[] v7 = listeVertexPignonDroit.get(7);
-        float[] v8 = listeVertexPignonDroit.get(8);
-        float[] v9 = listeVertexPignonDroit.get(9);
-        float[] v10 = listeVertexPignonDroit.get(10);
-        float[] v11 = listeVertexPignonDroit.get(11);
-
-
         trianglesPignon.add(new Triangle(v0, v1, v2, type));
-        trianglesPignon.add(new Triangle(v3, v4, v5, type));
+        trianglesPignon.add(new Triangle(v2, v3, v1, type));
 
-        trianglesPignon.add(new Triangle(v0, v2, v3, type));
-        trianglesPignon.add(new Triangle(v3, v5, v2, type));
-
-        trianglesPignon.add(new Triangle(v0, v1, v3, type));
-        trianglesPignon.add(new Triangle(v3, v4, v1, type));
-
-        trianglesPignon.add(new Triangle(v2, v5, v1, type));
+        trianglesPignon.add(new Triangle(v0, v1, v4, type));
         trianglesPignon.add(new Triangle(v1, v4, v5, type));
-        /////////////////////////////////////////////////////////
-        trianglesPignon.add(new Triangle(v6, v7, v8, type));
-        trianglesPignon.add(new Triangle(v9, v10, v11, type));
 
-        trianglesPignon.add(new Triangle(v6, v8, v9, type));
-        trianglesPignon.add(new Triangle(v9, v11, v8, type));
+        trianglesPignon.add(new Triangle(v4, v5, v2, type));
+        trianglesPignon.add(new Triangle(v2, v3, v5, type));
 
-        trianglesPignon.add(new Triangle(v6, v7, v10, type));
-        trianglesPignon.add(new Triangle(v9, v10, v6, type));
+        trianglesPignon.add(new Triangle(v0, v2, v4, type));
+        trianglesPignon.add(new Triangle(v1, v3, v5, type));
 
-        trianglesPignon.add(new Triangle(v8, v7, v10, type));
-        trianglesPignon.add(new Triangle(v8, v10, v11, type));
 
         return trianglesPignon;
     }
@@ -1360,11 +1356,18 @@ public class STLWriterToit implements java.io.Serializable {
             generateSTL(listeTriangles,fileName);
     }
 
-    public static void ExporterPignonBrut(String fileName) {
+    public static void ExporterPignonBrutDroite(String fileName) {
 
         List<Triangle> listeTrianglesPignon = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
 
         // Generate STL file
+        generateSTL(listeTrianglesPignon, fileName);
+    }
+
+    public static void ExporterPignonBrutGauche(String fileName) {
+
+        List<Triangle> listeTrianglesPignon = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
+
         generateSTL(listeTrianglesPignon, fileName);
     }
 

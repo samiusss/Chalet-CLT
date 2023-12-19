@@ -7,10 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="A23-Equipe9" />
+        <module name="chalclt" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="chalclt" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

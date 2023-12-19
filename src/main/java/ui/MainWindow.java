@@ -808,7 +808,8 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Controleur.ExporterPignonBrut();
+                    Controleur.ExporterPignonBrutGauche();
+                    Controleur.ExporterPignonBrutDroite();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

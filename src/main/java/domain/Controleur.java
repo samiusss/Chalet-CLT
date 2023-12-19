@@ -100,11 +100,11 @@ public class Controleur implements java.io.Serializable {
         STLWriterToit.ExporterRallongeVerticaleFini(fileName);
     }
 
-    public static void ExporterPignonBrut() throws IOException{
+    public static void ExporterPignonBrutDroite() throws IOException{
         Path directory = Paths.get("C:\\STL");
 
         String directoryPath = "C:\\STL";
-        String fileName = "PignonBrutFile.stl";
+        String fileName = "ChalCLT_Brut_PD.stl";
 
         if (!Files.exists(directory)) {
             try {
@@ -118,7 +118,28 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterPignonBrut(fileName);
+        STLWriterToit.ExporterPignonBrutDroite(fileName);
+    }
+
+    public static void ExporterPignonBrutGauche() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "ChalCLT_Brut_PG.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterPignonBrutGauche(fileName);
     }
 
     public static void ExporterParDessusFini()throws IOException{
@@ -215,7 +236,7 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterPignonBrut("toitPignon.,stl");
+        STLWriterToit.ExporterPignonBrutDroite("toitPignon.,stl");
     }
 
 
