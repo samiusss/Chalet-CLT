@@ -8,7 +8,6 @@ import domain.ChaletDTO;
 import domain.Controleur;
 import domain.Mur;
 
-import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -137,6 +136,7 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
     private JButton exporterToitBrut;
     private JButton exporterToitFini;
     private JComboBox comboBox1;
+    private JButton saveButton;
     private Point ZoomOrigin;
 
     private ChaletDTO.AffichageVue selectedVue;
@@ -144,6 +144,8 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
     private double zoomFactor = 1.0;
     private int xOffsetDrag;
     private int yOffsetDrag;
+    private String sauvgardeCourante;
+
 
 
     public MainWindow() {
@@ -257,6 +259,24 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
             }
         });
 
+
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (sauvgardeCourante != null) {
+                    ChaletCopie chaletCopie = new ChaletCopie(
+                            Chalet.largeurChalet, Chalet.longueurChalet, Chalet.epaisseurChalet,
+                            Chalet.angleToit, Chalet.hauteurMurs,
+                            Chalet.listeMurs, Chalet.orientationToit
+                    );
+                    chaletCopie.serialiserChalet(sauvgardeCourante);
+            } else {
+                    JOptionPane.showMessageDialog(null, "Sauvegarde Inexistante !", "Erreur", JOptionPane.ERROR_MESSAGE);
+
+                }
+        }
+        });
+
         Save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -270,6 +290,7 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
                             Chalet.angleToit, Chalet.hauteurMurs,
                             Chalet.listeMurs, Chalet.orientationToit
                     );
+                    sauvgardeCourante = fileToSave.getAbsolutePath();
                     chaletCopie.serialiserChalet(fileToSave.getAbsolutePath());
                 }
             }
@@ -673,10 +694,11 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
                 Controleur.supprimerToutesFenetre("GAUCHE", listeMursDrawer);
                 controleur.supprimerPorte("ARRIERE", listeMursDrawer);
                 Controleur.supprimerToutesFenetre("ARRIERE", listeMursDrawer);
-                Controleur.setEpaisseurChalet(imperialToDoubleUniversel("2'"));
-                Controleur.setLongueurChalet(imperialToDoubleUniversel("20'"));
-                Controleur.setLargeurChalet(imperialToDoubleUniversel("20'"));
-                Controleur.setHauteurMurs(imperialToDoubleUniversel("17'"));
+
+                Controleur.setEpaisseurNouveauChalet(imperialToDoubleUniversel("2'"));
+                Controleur.setLongueurNouveauChalet(imperialToDoubleUniversel("25'"));
+                Controleur.setLargeurNouveauChalet(imperialToDoubleUniversel("25'"));
+                Controleur.setHauteurNouveauMurs(imperialToDoubleUniversel("13'"));
                 Controleur.setAngleToit(15);
 
                 System.out.println("Nouveau Chalet Créer");
@@ -833,6 +855,8 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
                     Controleur.ExporterPignonBrutGauche();
                     Controleur.ExporterPignonBrutDroite();
                     Controleur.ExporterRallongeVerticaleBrut();
+                    Controleur.ExporterParDessusBrut();
+
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -873,6 +897,7 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
                 FenetrePrincipale.repaint();
             }
         });
+
     }
 
 

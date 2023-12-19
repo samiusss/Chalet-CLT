@@ -1,9 +1,6 @@
 package domain;
 
-import Utilitaires.Pouces;
-import Utilitaires.STLWriterToit;
-import Utilitaires.STLWriterSecondaire;
-import Utilitaires.UndoRedoManager;
+import Utilitaires.*;
 
 import java.awt.*;
 import java.io.File;
@@ -79,6 +76,31 @@ public class Controleur implements java.io.Serializable {
 
         STLWriterSecondaire.ExporterPanneauxFinis(filePath,filePathDroite,filePathChalet,filePathGauche,filePathArriere,filePathRetraitAvant,filePathRetraitArriere,filePathRetraitDroite,filePathRetraitGauche);
 
+    }
+
+
+    public static void ExporterToitPignonFinis() throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "ChalCLT_PIGNON_RV.stl";
+        String filePathDroite = directoryPath + File.separator + fileName;
+        String filePathGauche = directoryPath + File.separator + fileName;
+
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit2.ExporterToitPignonFinis(filePathDroite,filePathGauche);
     }
 
     public static void ExporterRallongeVerticale() throws IOException{
@@ -218,6 +240,8 @@ public class Controleur implements java.io.Serializable {
         STLWriterToit.ExporterPignonBrutGauche(filePathChalCLT_Brut_PG);
     }
 
+
+
     public static void ExporterParDessusFini()throws IOException{
         Path directory = Paths.get("C:\\STL");
 
@@ -258,6 +282,27 @@ public class Controleur implements java.io.Serializable {
         }
 
         STLWriterToit.ExporterRetraitParDessus(fileParDessusRetrait);
+    }
+
+    public static void ExporterParDessusBrut()throws IOException{
+        Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+        String fileName = "ParDessusBrutFile.stl";
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterParDessusBrut(fileName);
     }
 
 
@@ -427,6 +472,39 @@ public class Controleur implements java.io.Serializable {
         Chalet.setAngleToit(angleToit);
         UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
+    }
+
+
+
+
+    public static void setEpaisseurNouveauChalet(double epaisseurChalet)
+    {
+        Chalet.setEpaisseurChalet(epaisseurChalet);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        initialiserChalet(chaletProduction);
+    }
+
+    public static void setLongueurNouveauChalet(double longueurChalet)
+    {
+        Chalet.setLongueurChalet(longueurChalet);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        initialiserChalet(chaletProduction);
+
+    }
+
+    public static void setLargeurNouveauChalet(double largeurChalet)
+    {
+        Chalet.setLargeurChalet(largeurChalet);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        initialiserChalet(chaletProduction);
+
+    }
+
+    public static void setHauteurNouveauMurs(double hauteurMurs) {
+        Chalet.setHauteurMurs(hauteurMurs);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        initialiserChalet(chaletProduction);
+
     }
 
 
