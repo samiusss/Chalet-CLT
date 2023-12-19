@@ -208,6 +208,37 @@ public class STLWriterToit implements java.io.Serializable {
         return listeVertex;
 
     }
+
+    public static List<float[]> determinerPointsParDessusBrut(double anglee, double lengthh, double widthh, double epaisseurr, double heightt, String type){
+
+        float angle = (float) anglee;
+        float length = (float) lengthh;
+        float width = (float) widthh;
+        float height = (float) heightt;
+        float epaisseur = (float) epaisseurr;
+
+        List<float[]> listeVertex = new LinkedList<>();
+
+
+        float hauteurP = (length * (float) (Math.tan(angle * Math.PI / 180))) - (epaisseur);
+        float hauteurR = hauteurP + (float) ((epaisseur/2)*(Math.tan(angle * Math.PI / 180)));
+
+        listeVertex.add(new float[]{0, 0, 0}); // v0
+        listeVertex.add(new float[]{epaisseur, 0, 0}); // v1
+        listeVertex.add(new float[]{0, epaisseur, 0}); // v2
+        listeVertex.add(new float[]{length, hauteurP, 0}); // v3
+        listeVertex.add(new float[]{length, hauteurR, 0}); // v4
+
+        listeVertex.add(new float[]{0, 0, width}); // v5
+        listeVertex.add(new float[]{epaisseur, 0, width}); // v6
+        listeVertex.add(new float[]{0, epaisseur, width}); // v7
+        listeVertex.add(new float[]{length, hauteurP, width}); // v8
+        listeVertex.add(new float[]{length, hauteurR, width}); // v9
+
+
+        return listeVertex;
+
+    }
     public static List<float[]> determinerPointsRetraitParDessus(double anglee, double lengthh, double widthh, double epaisseurr, double heightt, String type){
 
         float angle = (float) anglee;
@@ -287,6 +318,55 @@ public class STLWriterToit implements java.io.Serializable {
 
         trianglesParDessus.add(new Triangle(v12, v13, v2, type));
         trianglesParDessus.add(new Triangle(v2, v3, v12, type));
+
+        return trianglesParDessus;
+    }
+
+    public static List<Triangle> generateParDessusBrut(double anglee, double lengthh, double widthh, double heightt, double epaisseurr, String type){
+        float angle = (float) anglee;
+        float length = (float) lengthh;
+        float width = (float) widthh;
+        float height = (float) heightt;
+        float epaisseur = (float) epaisseurr;
+
+        List<Triangle> trianglesParDessus = new ArrayList<>();
+
+        List<float[]> listeVertexParDessus = determinerPointsParDessusBrut(angle, length, width, epaisseur, height, "AVANT");
+
+        float[] v0 = listeVertexParDessus.get(0);
+        float[] v1 = listeVertexParDessus.get(1);
+        float[] v2 = listeVertexParDessus.get(2);
+        float[] v3 = listeVertexParDessus.get(3);
+        float[] v4 = listeVertexParDessus.get(4);
+        float[] v5 = listeVertexParDessus.get(5);
+        float[] v6 = listeVertexParDessus.get(6);
+        float[] v7 = listeVertexParDessus.get(7);
+        float[] v8 = listeVertexParDessus.get(8);
+        float[] v9 = listeVertexParDessus.get(9);
+
+        trianglesParDessus.add(new Triangle(v0, v2, v5, type));
+        trianglesParDessus.add(new Triangle(v7, v2, v5, type));
+
+        trianglesParDessus.add(new Triangle(v0, v1, v5, type));
+        trianglesParDessus.add(new Triangle(v6, v1, v5, type));
+
+        trianglesParDessus.add(new Triangle(v1, v3, v8, type));
+        trianglesParDessus.add(new Triangle(v1, v6, v8, type));
+
+        trianglesParDessus.add(new Triangle(v3, v4, v9, type));
+        trianglesParDessus.add(new Triangle(v9, v4, v8, type));
+
+        trianglesParDessus.add(new Triangle(v2, v4, v7, type));
+        trianglesParDessus.add(new Triangle(v9, v4, v7, type));
+
+        trianglesParDessus.add(new Triangle(v2, v4, v3, type));
+        trianglesParDessus.add(new Triangle(v7, v9, v8, type));
+
+        trianglesParDessus.add(new Triangle(v2, v4, v1, type));
+        trianglesParDessus.add(new Triangle(v7, v9, v6, type));
+
+        trianglesParDessus.add(new Triangle(v2, v0, v1, type));
+        trianglesParDessus.add(new Triangle(v7, v5, v6, type));
 
         return trianglesParDessus;
     }
@@ -1211,6 +1291,12 @@ public class STLWriterToit implements java.io.Serializable {
         java.util.List<Triangle> listeTriangles = generateRetraitParDessus(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs,Chalet.epaisseurChalet, "ARRIERE");
         generateSTL(listeTriangles,fileName);
     }
+    public static void ExporterParDessusBrut(String fileName){
+
+        java.util.List<Triangle> listeTriangles = generateParDessusBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs,Chalet.epaisseurChalet, "ARRIERE");
+        generateSTL(listeTriangles,fileName);
+    }
+
 
     public static void ExporterPignonBrutDroite(String fileName) {
 

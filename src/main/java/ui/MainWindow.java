@@ -832,6 +832,8 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
                     Controleur.ExporterPignonBrutGauche();
                     Controleur.ExporterPignonBrutDroite();
                     Controleur.ExporterRallongeVerticaleBrut();
+                    Controleur.ExporterParDessusBrut();
+
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
