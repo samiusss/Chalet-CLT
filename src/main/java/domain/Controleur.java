@@ -154,8 +154,8 @@ public class Controleur implements java.io.Serializable {
     public static void ExporterPignonRetraitGauche() throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String directoryPath = "C:\\STL";
         String fileName = "ChalCLT_Retrait_PG.stl";
+        String filePathPignonRetraitGauche = directory + File.separator + "ChalCLT_Retrait_PG.stl";
 
         if (!Files.exists(directory)) {
             try {
@@ -169,7 +169,7 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterPignonRetrait(fileName);
+        STLWriterToit.ExporterPignonRetrait(filePathPignonRetraitGauche);
     }
 
     public static void ExporterPignonRetraitDroit() throws IOException{
@@ -178,7 +178,7 @@ public class Controleur implements java.io.Serializable {
         String directoryPath = "C:\\STL";
         String fileName = "ChalCLT_Retrait_PD.stl";
 
-        String filePathPignonRetraitGauche = directory + File.separator + "ChalCLT_Retrait_PG" + fileName;
+        String filePathPignonRetraitGauche = directory + File.separator + "ChalCLT_Retrait_PD.stl";
 
 
         if (!Files.exists(directory)) {
@@ -487,21 +487,21 @@ public class Controleur implements java.io.Serializable {
         Chalet.setGrille(copieDuChalet.grilleP);
         //Chalet.setListeMurs(copieDuChalet.listeMurs);
 
-        chaletProduction.getListeMurs().get(0).porteMur = copieDuChalet.listeMurs.get(0).porteMur;
-        chaletProduction.getListeMurs().get(1).porteMur = copieDuChalet.listeMurs.get(1).porteMur;
-        chaletProduction.getListeMurs().get(2).porteMur = copieDuChalet.listeMurs.get(2).porteMur;
-        chaletProduction.getListeMurs().get(3).porteMur = copieDuChalet.listeMurs.get(3).porteMur;
-        chaletProduction.getListeMurs().get(0).fenetreMur = copieDuChalet.listeMurs.get(0).fenetreMur;
-        chaletProduction.getListeMurs().get(1).fenetreMur = copieDuChalet.listeMurs.get(1).fenetreMur;
-        chaletProduction.getListeMurs().get(2).fenetreMur = copieDuChalet.listeMurs.get(2).fenetreMur;
-        chaletProduction.getListeMurs().get(3).fenetreMur = copieDuChalet.listeMurs.get(3).fenetreMur;
+//        chaletProduction.getListeMurs().get(0).porteMur = copieDuChalet.listeMurs.get(0).porteMur;
+//        chaletProduction.getListeMurs().get(1).porteMur = copieDuChalet.listeMurs.get(1).porteMur;
+//        chaletProduction.getListeMurs().get(2).porteMur = copieDuChalet.listeMurs.get(2).porteMur;
+//        chaletProduction.getListeMurs().get(3).porteMur = copieDuChalet.listeMurs.get(3).porteMur;
+//        chaletProduction.getListeMurs().get(0).fenetreMur = copieDuChalet.listeMurs.get(0).fenetreMur;
+//        chaletProduction.getListeMurs().get(1).fenetreMur = copieDuChalet.listeMurs.get(1).fenetreMur;
+//        chaletProduction.getListeMurs().get(2).fenetreMur = copieDuChalet.listeMurs.get(2).fenetreMur;
+//        chaletProduction.getListeMurs().get(3).fenetreMur = copieDuChalet.listeMurs.get(3).fenetreMur;
 
 
         //if longueur largeur tataat
         initialiserChalet(chaletProduction);
         // if listeMur donc accessoire change
 
-        initialiserChaletUndoRedo(chaletProduction,copieDuChalet);
+        initialiserChaletUndoRedo(chaletProduction,copieDuChalet); //undo accessoire seuelemnt marche ici
 
         return copieDuChalet;
     }
