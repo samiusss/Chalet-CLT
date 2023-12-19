@@ -1,9 +1,6 @@
 package domain;
 
-import Utilitaires.Pouces;
-import Utilitaires.STLWriterToit;
-import Utilitaires.STLWriterSecondaire;
-import Utilitaires.UndoRedoManager;
+import Utilitaires.*;
 
 import java.awt.*;
 import java.io.File;
@@ -61,6 +58,9 @@ public class Controleur implements java.io.Serializable {
         String filePathRetraitArriere = directoryPath + File.separator + "MurArriereRetrait" + fileName;
 
 
+        //String fileName = "ChalCLT_Brut_PG.stl";
+
+
         // Vérifiez si le répertoire existe, sinon, créez-le
         if (!Files.exists(directory)) {
             try {
@@ -78,11 +78,14 @@ public class Controleur implements java.io.Serializable {
 
     }
 
-    public static void ExporterRallongeVerticale() throws IOException{
-       Path directory = Paths.get("C:\\STL");
+
+    public static void ExporterToitPignonFinis() throws IOException{
+        Path directory = Paths.get("C:\\STL");
 
         String directoryPath = "C:\\STL";
-        String fileName = "RallongeVerticaleFile.stl";
+        String fileName = "ChalCLT_PIGNON_RV.stl";
+        String filePathDroite = directoryPath + File.separator + fileName;
+        String filePathGauche = directoryPath + File.separator + fileName;
 
 
         if (!Files.exists(directory)) {
@@ -97,14 +100,40 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterRallongeVerticaleFini(fileName);
+        STLWriterToit2.ExporterToitPignonFinis(filePathDroite,filePathGauche);
+    }
+
+    public static void ExporterRallongeVerticale() throws IOException{
+       Path directory = Paths.get("C:\\STL");
+
+        String directoryPath = "C:\\STL";
+
+        String filePathRallongeV = directoryPath + File.separator + "ChalCLT_Fini_RV.stl";
+
+
+        if (!Files.exists(directory)) {
+            try {
+                Files.createDirectories(directory);
+                System.out.println("Le répertoire a été créé avec succès : " + directory);
+            } catch (Exception e) {
+                System.out.println("Erreur : Le répertoire n'a pas pu être créé.");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Le répertoire existe déjà : " + directory);
+        }
+
+        STLWriterToit.ExporterRallongeVerticaleFini(filePathRallongeV);
     }
 
     public static void ExporterPignonBrutDroite() throws IOException{
         Path directory = Paths.get("C:\\STL");
 
         String directoryPath = "C:\\STL";
-        String fileName = "ChalCLT_Brut_PD.stl";
+        String fileName = "File.stl";
+
+
+        String filePathPignonBrutDroite = directoryPath + File.separator + "ChalCLT_Brut_PD.stl";
 
         if (!Files.exists(directory)) {
             try {
@@ -118,14 +147,16 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterPignonBrutDroite(fileName);
+        STLWriterToit.ExporterPignonBrutDroite(filePathPignonBrutDroite);
     }
 
     public static void ExporterPignonRetraitGauche() throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String directoryPath = "C:\\STL";
-        String fileName = "ChalCLT_Brut_PG.stl";
+        String fileName = "File.stl";
+
+        String filePathPignonRetraitGauche = directory + File.separator + "ChalCLT_Retrait_PG" + fileName;
+
 
         if (!Files.exists(directory)) {
             try {
@@ -139,14 +170,15 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterPignonRetrait(fileName);
+        STLWriterToit.ExporterPignonRetrait(filePathPignonRetraitGauche);
     }
 
     public static void ExporterRallongeVerticaleBrut() throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String directoryPath = "C:\\STL";
-        String fileName = "ChalCLT_Brut_RV.stl";
+
+        String filePathRallongeVerticaleBrut = directory + File.separator + "ChalCLT_Brut_RV.stl";
+
 
         if (!Files.exists(directory)) {
             try {
@@ -160,14 +192,15 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterRallongeVerticaleBrut(fileName);
+        STLWriterToit.ExporterRallongeVerticaleBrut(filePathRallongeVerticaleBrut);
     }
 
     public static void ExporterRallongeVerticaleRetrait() throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String directoryPath = "C:\\STL";
-        String fileName = "ChalCLT_Retrait_RV.stl";
+        String fileName = ".stl";
+        String filePathChalCLT_Retrait_RV  = directory + File.separator + "ChalCLT_Retrait_RV" + fileName;
+
 
         if (!Files.exists(directory)) {
             try {
@@ -181,14 +214,16 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterRallongeVerticaleRetrait(fileName);
+        STLWriterToit.ExporterRallongeVerticaleRetrait(filePathChalCLT_Retrait_RV);
     }
 
     public static void ExporterPignonBrutGauche() throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String directoryPath = "C:\\STL";
         String fileName = "ChalCLT_Brut_PG.stl";
+
+        String filePathChalCLT_Brut_PG  = directory + File.separator + fileName;
+
 
         if (!Files.exists(directory)) {
             try {
@@ -202,14 +237,17 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterPignonBrutGauche(fileName);
+        STLWriterToit.ExporterPignonBrutGauche(filePathChalCLT_Brut_PG);
     }
+
+
 
     public static void ExporterParDessusFini()throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String directoryPath = "C:\\STL";
         String fileName = "ParDessusFile.stl";
+
+        String fileParDessusFini  = directory + File.separator + fileName;
 
         if (!Files.exists(directory)) {
             try {
@@ -223,12 +261,11 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterParDessusFini(fileName);
+        STLWriterToit.ExporterParDessusFini(fileParDessusFini);
     }
     public static void ExporterRetraitParDessus()throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String directoryPath = "C:\\STL";
         String fileName = "RetraitParDessusFile.stl";
 
         if (!Files.exists(directory)) {
@@ -271,8 +308,10 @@ public class Controleur implements java.io.Serializable {
     public static void ExporterPignonFiniDroite() throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String directoryPath = "C:\\CASTL";
         String fileName = "ChalCLT_Fini_PD.stl";
+
+        String filePignonFiniDroite  = directory + File.separator + fileName;
+
 
         if (!Files.exists(directory)) {
             try {
@@ -286,14 +325,15 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterPignonFiniDroite(fileName);
+        STLWriterToit.ExporterPignonFiniDroite(filePignonFiniDroite);
     }
 
     public static void ExporterPignonFiniGauche() throws IOException{
         Path directory = Paths.get("C:\\STL");
 
-        String directoryPath = "C:\\CASTL";
         String fileName = "ChalCLT_Fini_PG.stl";
+        String filePignonFiniGauche  = directory + File.separator + fileName;
+
 
         if (!Files.exists(directory)) {
             try {
@@ -307,7 +347,7 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterPignonFiniGauche(fileName);
+        STLWriterToit.ExporterPignonFiniGauche(filePignonFiniGauche);
     }
 
     public static void ExporterPanneauxBrut() throws IOException {
@@ -321,11 +361,13 @@ public class Controleur implements java.io.Serializable {
         String directoryPath = "C:\\STL";
         String fileName = "fichier.stl";
 
+
+
         // Concaténez le chemin du répertoire et le nom du fichier pour obtenir le chemin complet
-        String filePathBrutFacade = directoryPath + File.separator + "MurBrutFacade" + fileName;
-        String filePathBrutArriere = directoryPath + File.separator + "MurBrutArriere" + fileName;
-        String filePathBrutGauche = directoryPath + File.separator + "MurBrutGauche" + fileName;
-        String filePathBrutDroite = directoryPath + File.separator + "MurBrutDroite" + fileName;
+        String filePathBrutFacade = directory + File.separator + "MurBrutFacade" + fileName;
+        String filePathBrutArriere = directory + File.separator + "MurBrutArriere" + fileName;
+        String filePathBrutGauche = directory + File.separator + "MurBrutGauche" + fileName;
+        String filePathBrutDroite = directory + File.separator + "MurBrutDroite" + fileName;
 
 
         // Vérifiez si le répertoire existe, sinon, créez-le
@@ -341,7 +383,7 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterPignonBrutDroite("toitPignon.,stl");
+        STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutDroite);
     }
 
 
@@ -427,6 +469,39 @@ public class Controleur implements java.io.Serializable {
         Chalet.setAngleToit(angleToit);
         UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
         initialiserChalet(chaletProduction);
+    }
+
+
+
+
+    public static void setEpaisseurNouveauChalet(double epaisseurChalet)
+    {
+        Chalet.setEpaisseurChalet(epaisseurChalet);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        initialiserChalet(chaletProduction);
+    }
+
+    public static void setLongueurNouveauChalet(double longueurChalet)
+    {
+        Chalet.setLongueurChalet(longueurChalet);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        initialiserChalet(chaletProduction);
+
+    }
+
+    public static void setLargeurNouveauChalet(double largeurChalet)
+    {
+        Chalet.setLargeurChalet(largeurChalet);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        initialiserChalet(chaletProduction);
+
+    }
+
+    public static void setHauteurNouveauMurs(double hauteurMurs) {
+        Chalet.setHauteurMurs(hauteurMurs);
+        //UndoRedoManager.CopieChaletUR copieDuChalet = UndoRedoManager.versionURCHALET();
+        initialiserChalet(chaletProduction);
+
     }
 
 
