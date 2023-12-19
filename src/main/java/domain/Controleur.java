@@ -362,7 +362,7 @@ public class Controleur implements java.io.Serializable {
             System.out.println("Le répertoire existe déjà : " + directory);
         }
 
-        STLWriterToit.ExporterPanneauxBrut(filePathBrutDroite);
+        STLWriterSecondaire.ExporterPanneauxBrut(filePathBrutDroite);
     }
 
 
