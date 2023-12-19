@@ -1636,6 +1636,20 @@ public class Chalet implements java.io.Serializable {
 
     }
 
+//    public static boolean setListePorteFacade(porteMurIndex0, porteMurIndex1, porteMurIndex2, porteMurIndex3, fenetreMurIndex0,fenetreMurIndex1. fenetreMurIndex2, fenetreMurIndex3 ) {
+//
+//        listeMurs.get(0).porteMur = porteMurIndex0;
+//        listeMurs.get(1).porteMur = porteMurIndex1;
+//        listeMurs.get(2).porteMur = porteMurIndex2;
+//        listeMurs.get(3).porteMur = porteMurIndex3;
+//
+//        listeMurs.get(0).fenetreMur = fenetreMurIndex0;
+//        listeMurs.get(1).fenetreMur = fenetreMurIndex1;
+//        listeMurs.get(2).fenetreMur = fenetreMurIndex2;
+//        listeMurs.get(3).fenetreMur = fenetreMurIndex3;
+//
+//
+//    }
 
     public double getLargeurChalet() {
         return largeurChalet;

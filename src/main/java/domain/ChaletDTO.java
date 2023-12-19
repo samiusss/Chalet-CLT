@@ -59,57 +59,41 @@ public class ChaletDTO implements java.io.Serializable {
     public static boolean initialiserChaletUndoRedo(Chalet chalet, UndoRedoManager.CopieChaletUR copieDuChalett ) {
         //get les accessoires deja existant dans une variable externe
         //System.out.println("Here la liste"+chalet.getListeMurs());
-        List<Porte> listePorteDAVANTf = new LinkedList<>();
-        List<Porte> listePorteDAVANTa = new LinkedList<>();
-        List<Porte> listePorteDAVANTg = new LinkedList<>();
-        List<Porte> listePorteDAVANTd = new LinkedList<>();
-        List<Fenetre> listeFenetreDAVANTf = new LinkedList<>();
-        List<Fenetre> listeFenetreDAVANTa = new LinkedList<>();
-        List<Fenetre> listeFenetreDAVANTg = new LinkedList<>();
-        List<Fenetre> listeFenetreDAVANTd = new LinkedList<>();
-
-
-            List<Mur> listeMur = copieDuChalett.listeMurs;
+        List<Mur> listeMur = copieDuChalett.listeMurs;
 
         System.out.println("\n            -                          \n" );
-        System.out.println(" Copies de la listes murs dans intialiserChaletUndoRedo de setUndo :" + listeMur.get(0).porteMur+listeMur.get(0).fenetreMur );
+//        System.out.println(" Copies de la listes murs XX1 dans intialiserChaletUndoRedo de setUndo :" + listeMur.get(0).porteMur+listeMur.get(0).fenetreMur );
         System.out.println("\n            -                          \n" );
-            if (!listeMur.isEmpty())
-                for (int i = 0; i < 4; i++) {
-                    Mur mur = listeMur.get(i);
-                    List<Porte> listePorte = mur.getListePorte();
-                    List<Fenetre> listeFenetre = mur.getListeFenetre();
-
-                    if (i == 0) {
-                        listePorteDAVANTf = listePorte;
-                        listeFenetreDAVANTf = listeFenetre;
-                    } else if (i == 1) {
-                        listePorteDAVANTa = listePorte;
-                        listeFenetreDAVANTa = listeFenetre;
-                    } else if (i == 2) {
-                        listePorteDAVANTg = listePorte;
-                        listeFenetreDAVANTg = listeFenetre;
-                    } else if (i == 3) {
-                        listePorteDAVANTd = listePorte;
-                        listeFenetreDAVANTd = listeFenetre;
-                    }
-                }
-
 
         chalet.getListeMurs().clear();
+
+         listeMur = copieDuChalett.listeMurs;
+
+        System.out.println("\n            -                          \n" );
+//        System.out.println(" Copies de la listes murs XX2 dans intialiser ChaletUndoRedo de setUndo :" + listeMur.get(0).porteMur+listeMur.get(0).fenetreMur );
+        System.out.println("\n            -                          \n" );
+
 
         chalet.initialiserMurFacade();
         chalet.initialiserMurArriere();
         chalet.initialiserMurGauche();
         chalet.initialiserMurDroite();
-        chalet.getListeMurs().get(0).porteMur = listePorteDAVANTf;
-        chalet.getListeMurs().get(1).porteMur = listePorteDAVANTa;
-        chalet.getListeMurs().get(2).porteMur = listePorteDAVANTg;
-        chalet.getListeMurs().get(3).porteMur = listePorteDAVANTd;
-        chalet.getListeMurs().get(0).fenetreMur = listeFenetreDAVANTf;
-        chalet.getListeMurs().get(1).fenetreMur = listeFenetreDAVANTa;
-        chalet.getListeMurs().get(2).fenetreMur = listeFenetreDAVANTg;
-        chalet.getListeMurs().get(3).fenetreMur = listeFenetreDAVANTd;
+
+        listeMur = copieDuChalett.listeMurs;
+
+        System.out.println("\n            -                          \n" );
+//        System.out.println(" Copies de la listes murs XX2 dans intialiser ChaletUndoRedo de setUndo :" + listeMur.get(0).porteMur+listeMur.get(0).fenetreMur );
+        System.out.println("\n            -                          \n" );
+
+        chalet.getListeMurs().get(0).porteMur = copieDuChalett.listeMurs.get(0).porteMur;
+        chalet.getListeMurs().get(1).porteMur = copieDuChalett.listeMurs.get(1).porteMur;
+        chalet.getListeMurs().get(2).porteMur = copieDuChalett.listeMurs.get(2).porteMur;
+        chalet.getListeMurs().get(3).porteMur = copieDuChalett.listeMurs.get(3).porteMur;
+        chalet.getListeMurs().get(0).fenetreMur = copieDuChalett.listeMurs.get(0).fenetreMur;
+        chalet.getListeMurs().get(1).fenetreMur = copieDuChalett.listeMurs.get(1).fenetreMur;
+        chalet.getListeMurs().get(2).fenetreMur = copieDuChalett.listeMurs.get(2).fenetreMur;
+        chalet.getListeMurs().get(3).fenetreMur = copieDuChalett.listeMurs.get(3).fenetreMur;
+
 
         // set les accessoires dans les nouveaux murs
         facade = chalet.getMursUsines(distanceUsinage, orientationToit).get(0); // mur facade deja codé en bas
