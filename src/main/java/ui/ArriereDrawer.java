@@ -39,8 +39,8 @@ public class ArriereDrawer implements java.io.Serializable {
         drawPorte(g);
         drawFenetre(g);
         drawToitArriere(g);
+        if(grilleActive){      drawGrid(g);}
 
-        drawGrid(g);
     }
 
     private void drawGrid(Graphics g) {
@@ -241,7 +241,6 @@ public class ArriereDrawer implements java.io.Serializable {
 
             g.setColor(new Color(2, 125, 0));
             g.fillPolygon(xPointsPignon, yPointsPignon, 3);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur arriere...");
 
             ///RALLONGE///
 
@@ -329,7 +328,6 @@ public class ArriereDrawer implements java.io.Serializable {
 
             g.setColor(new Color(2, 125, 0));
             g.fillPolygon(xPointsPignon, yPointsPignon, 3);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
             ///RALLONGE///
 
@@ -387,7 +385,6 @@ public class ArriereDrawer implements java.io.Serializable {
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 5);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de arriere...");
 
         }
         if (Objects.equals(orientationToit, "Sud"))
@@ -419,7 +416,6 @@ public class ArriereDrawer implements java.io.Serializable {
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 4);
-            System.out.println("Je détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
 
         }
@@ -452,7 +448,6 @@ public class ArriereDrawer implements java.io.Serializable {
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 4);
-            System.out.println("Je détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
             ///RALLONGE DE DOS///
 

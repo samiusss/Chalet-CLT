@@ -38,7 +38,7 @@ public class DroitDrawer implements java.io.Serializable {
         drawPorte(g);
         drawFenetre(g);
         drawToitDroit(g);
-        drawGrid(g);
+        if(grilleActive){      drawGrid(g);}
     }
 
     private void drawGrid(Graphics g) {
@@ -243,7 +243,6 @@ public class DroitDrawer implements java.io.Serializable {
 
             g.setColor(new Color(2, 125, 0));
             g.fillPolygon(xPointsPignon, yPointsPignon, 3);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
             ///RALLONGE///
 
@@ -329,7 +328,6 @@ public class DroitDrawer implements java.io.Serializable {
 
             g.setColor(new Color(2, 125, 0));
             g.fillPolygon(xPointsPignon, yPointsPignon, 3);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
             ///RALLONGE///
 
@@ -361,6 +359,7 @@ public class DroitDrawer implements java.io.Serializable {
 
             /// TOIT ///
             PointDouble pointSupGaucheToit = new PointDouble(largeurChalet, (0-hauteurRallonge-epaisseurChalet/2));
+
             PointDouble pointInfGaucheToit = new PointDouble(largeurChalet, (0-hauteurRallonge));
             PointDouble pointInfDroiteProcheToit = new PointDouble((0+epaisseurChalet/2), 0);
             PointDouble pointInfDroiteLoinToit = new PointDouble((0), 0);
@@ -386,7 +385,6 @@ public class DroitDrawer implements java.io.Serializable {
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 5);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
         }
         if (Objects.equals(orientationToit, "Est"))
@@ -418,7 +416,6 @@ public class DroitDrawer implements java.io.Serializable {
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 4);
-            System.out.println("Je détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
 
         }
@@ -451,7 +448,6 @@ public class DroitDrawer implements java.io.Serializable {
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 4);
-            System.out.println("Je détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
             ///RALLONGE DE DOS///
 

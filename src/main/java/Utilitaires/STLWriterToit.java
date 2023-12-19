@@ -15,8 +15,7 @@ import java.util.List;
 import java.lang.Math;
 
 import static Utilitaires.ConvertisseurMesures.convertirPoucesEnFloat;
-import static domain.Chalet.determinerSommetsAccessoires;
-import static domain.Chalet.determinerSommetsPignons;
+import static domain.Chalet.*;
 
 public class STLWriterToit implements java.io.Serializable {
     public ChaletDTO chaletdto;
@@ -109,21 +108,21 @@ public class STLWriterToit implements java.io.Serializable {
         listeVertex.add(new float[]{length - width / 2, 0, width});
         listeVertex.add(new float[]{0 + width / 2, smallHeight, width});
         /////////////////////////////////////////////////////////////
-        listeVertex.add(new float[]{0, 0, width + space});
-        listeVertex.add(new float[]{length, 0, width + space});
-        listeVertex.add(new float[]{0, bigHeight, width + space});
+        listeVertex.add(new float[]{0, 0, 0});
+        listeVertex.add(new float[]{length, 0, 0});
+        listeVertex.add(new float[]{0, bigHeight, 0});
 
-        listeVertex.add(new float[]{0, 0, width + width / 2 + space});
-        listeVertex.add(new float[]{length, 0, width + width / 2 + space});
-        listeVertex.add(new float[]{0, bigHeight, width + width / 2 + space});
+        listeVertex.add(new float[]{0, 0, -width / 2});
+        listeVertex.add(new float[]{length, 0, -width / 2});
+        listeVertex.add(new float[]{0, bigHeight, -width / 2});
 
-        listeVertex.add(new float[]{0 + width / 2, 0, width + width / 2 + space});
-        listeVertex.add(new float[]{length - width / 2, 0, width + width / 2 + space});
-        listeVertex.add(new float[]{0 + width / 2, smallHeight, width + width / 2 + space});
+        listeVertex.add(new float[]{0 + width / 2, 0, -width / 2});
+        listeVertex.add(new float[]{length - width / 2, 0, -width / 2});
+        listeVertex.add(new float[]{0 + width / 2, smallHeight, -width / 2});
 
-        listeVertex.add(new float[]{0 + width / 2, 0, width + space - width / 2});
-        listeVertex.add(new float[]{length - width / 2, 0, width + space - width / 2});
-        listeVertex.add(new float[]{0 + width / 2, smallHeight, width + space - width / 2});
+        listeVertex.add(new float[]{0 + width / 2, 0, -width});
+        listeVertex.add(new float[]{length - width / 2, 0, -width});
+        listeVertex.add(new float[]{0 + width / 2, smallHeight, -width});
 
 
         return listeVertex;
@@ -165,6 +164,96 @@ public class STLWriterToit implements java.io.Serializable {
 
 
     }*/
+
+    public static List<float[]> determinerPointsParDessus(double anglee, double lengthh, double widthh, double epaisseurr, double heightt, String type){
+
+        float angle = (float) anglee;
+        float length = (float) lengthh;
+        float width = (float) widthh;
+        float height = (float) heightt;
+        float epaisseur = (float) epaisseurr;
+
+        List<float[]> listeVertex = new LinkedList<>();
+
+        float floatParDessusBigWidth = (float) Math.cos(angle) / (width + 2*epaisseur);
+        float floatParDessusSmallWidth = ((float) Math.tan(angle) * (width)) + (float) Math.cos(angle) / (epaisseur/2);
+
+        float hauteurP = length * (float) (Math.tan(angle * Math.PI / 180));
+        float hauteurR = hauteurP + (float) ((epaisseur/2)*(Math.tan(angle * Math.PI / 180)));
+
+        listeVertex.add(new float[]{0, 0, 0}); //v0
+        listeVertex.add(new float[]{0, 0, width}); //v1
+        listeVertex.add(new float[]{0, epaisseur, width}); //v2
+        listeVertex.add(new float[]{0, epaisseur, 0}); //v3
+
+        listeVertex.add(new float[]{epaisseur, 0, 0}); //v4
+        listeVertex.add(new float[]{epaisseur, 0, width}); //v5
+
+        listeVertex.add(new float[]{((float) longueurChalet - epaisseur /2),  hauteurP, 0}); //v6
+        listeVertex.add(new float[]{((float) longueurChalet - epaisseur /2),  hauteurP, width}); //v7
+
+        listeVertex.add(new float[]{((float) longueurChalet - epaisseur /2), (hauteurP + epaisseur/2), 0}); //v8
+        listeVertex.add(new float[]{((float) longueurChalet - epaisseur /2), (hauteurP + epaisseur/2), width}); //v9
+
+        listeVertex.add(new float[]{length, hauteurR + epaisseur / 2, 0}); //v10
+        listeVertex.add(new float[]{length, hauteurR + epaisseur / 2, width}); //v11
+
+        listeVertex.add(new float[]{length, hauteurR + epaisseur, 0}); //v12
+        listeVertex.add(new float[]{length, hauteurR + epaisseur, width}); //v13
+
+        return listeVertex;
+
+    }
+
+    public static List<Triangle> generateParDessus(double anglee, double lengthh, double widthh, double heightt, double epaisseurr, String type){
+        float angle = (float) anglee;
+        float length = (float) lengthh;
+        float width = (float) widthh;
+        float height = (float) heightt;
+        float epaisseur = (float) epaisseurr;
+
+        List<Triangle> trianglesParDessus = new ArrayList<>();
+
+        List<float[]> listeVertexParDessus = determinerPointsParDessus(angle, length, width, epaisseur, height, "AVANT");
+
+        float[] v0 = listeVertexParDessus.get(0);
+        float[] v1 = listeVertexParDessus.get(1);
+        float[] v2 = listeVertexParDessus.get(2);
+        float[] v3 = listeVertexParDessus.get(3);
+        float[] v4 = listeVertexParDessus.get(4);
+        float[] v5 = listeVertexParDessus.get(5);
+        float[] v6 = listeVertexParDessus.get(6);
+        float[] v7 = listeVertexParDessus.get(7);
+        float[] v8 = listeVertexParDessus.get(8);
+        float[] v9 = listeVertexParDessus.get(9);
+        float[] v10 = listeVertexParDessus.get(10);
+        float[] v11 = listeVertexParDessus.get(11);
+        float[] v12 = listeVertexParDessus.get(12);
+        float[] v13 = listeVertexParDessus.get(13);
+
+        trianglesParDessus.add(new Triangle(v0, v1, v2, type));
+        trianglesParDessus.add(new Triangle(v0, v2, v3, type));
+
+        trianglesParDessus.add(new Triangle(v0, v1, v4, type));
+        trianglesParDessus.add(new Triangle(v1, v4, v5, type));
+
+        trianglesParDessus.add(new Triangle(v4, v5, v7, type));
+        trianglesParDessus.add(new Triangle(v4, v7, v6, type));
+
+        trianglesParDessus.add(new Triangle(v6, v7, v8, type));
+        trianglesParDessus.add(new Triangle(v7, v8, v9, type));
+
+        trianglesParDessus.add(new Triangle(v8, v9, v10, type));
+        trianglesParDessus.add(new Triangle(v9, v10, v11, type));
+
+        trianglesParDessus.add(new Triangle(v10, v11, v12, type));
+        trianglesParDessus.add(new Triangle(v11, v12, v13, type));
+
+        trianglesParDessus.add(new Triangle(v12, v13, v2, type));
+        trianglesParDessus.add(new Triangle(v2, v3, v12, type));
+
+        return trianglesParDessus;
+    }
 
     public static List<float[]> determinerPointRallongeVerticale(double angle, double length, double height, double width) {
         List<float[]> listeVertex = new LinkedList<>();
@@ -823,8 +912,8 @@ public class STLWriterToit implements java.io.Serializable {
         return normal;
     }
 
-    public static float[] calculerNormaleAvecTransformations(float[] pointA, float[] pointB, float[] pointC, String Type) {
-/*
+    /*public static float[] calculerNormaleAvecTransformations(float[] pointA, float[] pointB, float[] pointC, String Type) {
+*//*
         float[] translation = {0.0f, 0.0f, 10.0f};
         float rotationAngle = 0.0f ;
         float[] scale = {1.0f, 1.0f, 1.0f};
@@ -856,7 +945,7 @@ public class STLWriterToit implements java.io.Serializable {
 
         appliquerMiseAEchelle(pointA, scale);
         appliquerMiseAEchelle(pointB, scale);
-        appliquerMiseAEchelle(pointC, scale); */
+        appliquerMiseAEchelle(pointC, scale); *//*
 
         // Calculez les vecteurs AB et AC après les transformations
         float[] vecteurAB = {pointB[0] - pointA[0], pointB[1] - pointA[1], pointB[2] - pointA[2]};
@@ -874,6 +963,39 @@ public class STLWriterToit implements java.io.Serializable {
         normal[0] /= longueur;
         normal[1] /= longueur;
         normal[2] /= longueur;
+
+        return normal;
+    }*/
+
+    public static float[] calculerNormaleAvecTransformations(float[] vertex1, float[] vertex2, float[] vertex3, String type) {
+        float[] normal = new float[3];
+
+        // Calculate the cross product of two edges of the triangle
+        float[] edge1 = new float[3];
+        float[] edge2 = new float[3];
+        for (int i = 0; i < 3; i++) {
+            edge1[i] = vertex2[i] - vertex1[i];
+            edge2[i] = vertex3[i] - vertex1[i];
+        }
+
+        normal[0] = edge1[1] * edge2[2] - edge1[2] * edge2[1];
+        normal[1] = edge1[2] * edge2[0] - edge1[0] * edge2[2];
+        normal[2] = edge1[0] * edge2[1] - edge1[1] * edge2[0];
+
+        // Normalize the normal vector
+        float length = (float) Math.sqrt(normal[0] * normal[0] + normal[1] * normal[1] + normal[2] * normal[2]);
+
+        if (Float.isNaN(length) || length == 0) {
+            // Handle the case where the length is NaN or zero
+            // You can set a default normal or perform some other appropriate action
+            normal[0] = 1.0f;
+            normal[1] = 0.0f;
+            normal[2] = 0.0f;
+        } else {
+            normal[0] /= length;
+            normal[1] /= length;
+            normal[2] /= length;
+        }
 
         return normal;
     }
@@ -1151,25 +1273,15 @@ public class STLWriterToit implements java.io.Serializable {
         generateSTL(listeTriangles,fileName);
     }
 
+    public static void ExporterParDessusFini(String fileName){
+
+            java.util.List<Triangle> listeTriangles = generateParDessus(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs,Chalet.epaisseurChalet, "ARRIERE");
+            generateSTL(listeTriangles,fileName);
+    }
+
     public static void ExporterPignonBrut(String fileName) {
-        Point point = new Point(0, 0);
 
-        List<Point> pointsPignon = Chalet.determinerSommetsPignons(100, 100);
-
-        double epaisseurChalet = Chalet.epaisseurChalet;
-
-        Point infGauche = pointsPignon.get(0);
-        Point supGauche = pointsPignon.get(1);
-        Point infDroit = pointsPignon.get(2);
-
-        // Create vertices for the 3D triangle
-        float[] v0 = {(float) infGauche.getX(), (float)infGauche.getY(), 0};
-        float[] v1 = {(float)supGauche.getX(), (float)supGauche.getY(), 0};
-        float[] v2 = {(float)infDroit.getX(), (float)infDroit.getY(), 0};
-
-        // Generate a 3D triangle
-        /*List<Triangle> listeTrianglesPignon = generateTriangle(v0, v1, v2, "ARRIERE");*/
-        List<Triangle> listeTrianglesPignon = generatePignonBrut(20, 400, 20, 400, "ARRIERE");
+        List<Triangle> listeTrianglesPignon = generatePignonBrut(Chalet.angleToit, Chalet.longueurChalet, Chalet.largeurChalet, Chalet.hauteurMurs, "ARRIERE");
 
         // Generate STL file
         generateSTL(listeTrianglesPignon, fileName);

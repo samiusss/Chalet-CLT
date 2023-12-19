@@ -42,7 +42,10 @@ public class FacadeDrawer implements java.io.Serializable{
         drawPorte(g);
         drawFenetre(g);
         drawToitFacade(g);
-        drawGrid(g);
+        if (grilleActive)
+        {
+            drawGrid(g);
+        }
     }
 
     private void drawGrid(Graphics g) {
@@ -125,6 +128,7 @@ public class FacadeDrawer implements java.io.Serializable{
 
                 g.fillRect(xPorte , yPorte, largeurPorteInt, hauteurPorteInt);
                 porte.setLaportefutdessinee(true);
+
             }
         }
     }
@@ -245,7 +249,7 @@ public class FacadeDrawer implements java.io.Serializable{
 
             g.setColor(new Color(2, 125, 0));
             g.fillPolygon(xPointsPignon, yPointsPignon, 3);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
+
 
             ///RALLONGE///
 
@@ -277,7 +281,9 @@ public class FacadeDrawer implements java.io.Serializable{
 
             /// TOIT ///
             PointDouble pointSupGaucheToit = new PointDouble(0, (0-hauteurRallonge-epaisseurChalet/2));
+
             PointDouble pointInfGaucheToit = new PointDouble(0, (0-hauteurRallonge));
+
             PointDouble pointInfDroiteProcheToit = new PointDouble((longueurChalet-epaisseurChalet/2), 0);
             PointDouble pointInfDroiteLoinToit = new PointDouble((longueurChalet), 0);
             PointDouble pointSupDroiteToit = new PointDouble((longueurChalet), -epaisseurChalet/2);
@@ -331,7 +337,7 @@ public class FacadeDrawer implements java.io.Serializable{
 
             g.setColor(new Color(2, 125, 0));
             g.fillPolygon(xPointsPignon, yPointsPignon, 3);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
+
 
             ///RALLONGE///
 
@@ -363,10 +369,15 @@ public class FacadeDrawer implements java.io.Serializable{
 
             /// TOIT ///
             PointDouble pointSupGaucheToit = new PointDouble(longueurChalet, (0-hauteurRallonge-epaisseurChalet/2));
+
             PointDouble pointInfGaucheToit = new PointDouble(longueurChalet, (0-hauteurRallonge));
+
             PointDouble pointInfDroiteProcheToit = new PointDouble((0+epaisseurChalet/2), 0);
+
             PointDouble pointInfDroiteLoinToit = new PointDouble((0), 0);
+
             PointDouble pointSupDroiteToit = new PointDouble((0), -epaisseurChalet/2);
+
 
             int pointSupGaucheToitX = (int) (pointSupGaucheToit.getX()*zoomFactor+positionX);
             int pointSupGaucheToitY = (int) (pointSupGaucheToit.getY()*zoomFactor+positionY);
@@ -388,7 +399,7 @@ public class FacadeDrawer implements java.io.Serializable{
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 5);
-            System.out.println("Le drawer détecte l'orientation "+ orientationToit +" dans le mur de facade...");
+
 
         }
         if (Objects.equals(orientationToit, "Nord"))
@@ -420,7 +431,6 @@ public class FacadeDrawer implements java.io.Serializable{
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 4);
-            System.out.println("Je détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
 
         }
@@ -453,7 +463,6 @@ public class FacadeDrawer implements java.io.Serializable{
 
             g.setColor(new Color(0, 0, 50));
             g.fillPolygon(xPointsToit, yPointsToit, 4);
-            System.out.println("Je détecte l'orientation "+ orientationToit +" dans le mur de facade...");
 
             ///RALLONGE DE DOS///
 

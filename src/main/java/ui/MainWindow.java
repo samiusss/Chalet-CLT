@@ -133,6 +133,7 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
     private JButton Charge;
     private JButton exporterToitBrut;
     private JButton exporterToitFini;
+    private JComboBox comboBox1;
     private Point ZoomOrigin;
 
     private ChaletDTO.AffichageVue selectedVue;
@@ -724,16 +725,16 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controleur.setUndo();
-                revalidate();
-                repaint();
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
             }
         });
         RedoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controleur.setRedo();
-                revalidate();
-                repaint();
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
             }
         });
 
@@ -817,10 +818,28 @@ public class MainWindow extends javax.swing.JFrame implements java.io.Serializab
                 try {
                     Controleur.ExporterRallongeVerticale();
                     Controleur.ExporterPignonFini();
+                    //Controleur.ExporterPignonFini();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
                 JOptionPane.showMessageDialog(null, "Vous avez exporté Toit Fini", "Exportations STL", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        comboBox1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String input = (String) comboBox1.getSelectedItem();
+
+                if (input == "Avec");
+                {
+                    Chalet.setGrilleActive(true);
+                }
+                if (input == "Sans")
+                {
+                    Chalet.setGrilleActive(false);
+                }
+                FenetrePrincipale.revalidate();
+                FenetrePrincipale.repaint();
             }
         });
     }

@@ -7,8 +7,9 @@ import java.util.UUID;
 
 public abstract class Accessoires implements Serializable {
     private final UUID AID;
-    private Point mousepoint;
+
     public Pouces largeur;
+
     public Pouces hauteur;
 
     public Accessoires() {
@@ -24,7 +25,6 @@ public abstract class Accessoires implements Serializable {
         return new pointPouces (xPouces,yPouces);
 
     }
-
 
 }
 
